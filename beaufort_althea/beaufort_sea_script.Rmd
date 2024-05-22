@@ -1,21 +1,11 @@
 ---
-title: "{Project name} chart for Climate Chart Gallery"
-author: "Hayley Corson-Dosch"
-date: "2024-04-30"
+title: "Beaufort Sea chart for Climate Chart Gallery"
+author: "Althea Archer"
+date: "2024-05-22"
 output: html_document
 ---
 
-## Instructions for using this template
 
-> Make sure you have copied the template subdirectory and named it with your project name and your name (e.g., `/FishAsFood_hcorson-dosch`) before editing this document!
-
-1.  Put all comments either in the html text (like this) or in the `r` chunks (delineated with 3 "\`" marks) to explain your process to Vizlab reviewers
-2.  Put all R code in the chunks. They're organized for you to (in order): do some set-up steps (load libraries), load in any data (manually or with built in packages), process your data for plotting, create plot using ggplot, and finally compose the final image with cowplot.
-3.  You can run individual code chunks while developing code and plots. Note: the plots that are created in the RStudio coding window *do not* match the plot as created through the ggsave function.
-4.  To preview the final plot, use the `Knit` button above. That will create a preview of the final plot in the output `html` and will save the `png` in the `out/` folder. On many systems, the preview in the script document and the html will not match the output `png`, so please refer to the `png` for final proofing.
-5.  When you're happy with the final plot, fill out the supporting information at the bottom and push to gitlab for review. **Note: only commit input data if it can't be downloaded directly with code (e.g., `sbtools` or `dataRetrieval`)**.
-
-This website has great information on how to use RMarkdown: <https://yihui.org/knitr/>
 
 ## Set up
 
@@ -30,6 +20,7 @@ Define libraries here.
 # Load libraries
 library(tidyverse) # includes ggplot
 library(readr) # best for reading and writing csvs
+library(sbtools)
 
 # These are used for the layout of the viz
 library(cowplot) # for laying out the final plot
@@ -40,12 +31,19 @@ library(magick) # for adding logo
 
 ## Load files
 
-Save any files that you are using directly in the `in` folder. Then read them in to the environment with this chunk of code. Remember, use the RStudio project and relative file pathways, and never include any personal computer file pathways.
+Sciencebase:
 
-This is also a good place to load any data from other built-in packages such as `dataRetrieval` or `spData`, etc.
+> Gemery, L., 2021, Data Release to Multi-proxy record of ocean-climate variability during the last 2 millennia on the Mackenzie Shelf, Beaufort Sea (2013): U.S. Geological Survey data release, https://doi.org/10.5066/P9SRRW6T.
+
+Original manuscript: 
+
+> Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., and Schwartz, V., 2023, Multi-proxy record of ocean-climate variability during the last two millennia on the Mackenzie Shelf, Beaufort Sea: Micropaleontology, v. 69, no. 3, p. 345–360, https://doi.org/10.47894/mpal.69.3.04.
 
 ```{r load}
-# Add your code here
+sbtools::item_file_download(sb_id = "6197a410d34eb622f692ce0e",
+                            names = "Data release HLY1302 IP135359.xlsx",
+                            destinations = "out/Data release HLY1302 IP135359.xlsx",
+                            overwrite_file = FALSE)
 
 
 
