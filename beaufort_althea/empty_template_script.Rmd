@@ -1,0 +1,241 @@
+---
+title: "{Project name} chart for Climate Chart Gallery"
+author: "Hayley Corson-Dosch"
+date: "2024-04-30"
+output: html_document
+---
+
+## Instructions for using this template
+
+> Make sure you have copied the template subdirectory and named it with your project name and your name (e.g., `/FishAsFood_hcorson-dosch`) before editing this document!
+
+1.  Put all comments either in the html text (like this) or in the `r` chunks (delineated with 3 "\`" marks) to explain your process to Vizlab reviewers
+2.  Put all R code in the chunks. They're organized for you to (in order): do some set-up steps (load libraries), load in any data (manually or with built in packages), process your data for plotting, create plot using ggplot, and finally compose the final image with cowplot.
+3.  You can run individual code chunks while developing code and plots. Note: the plots that are created in the RStudio coding window *do not* match the plot as created through the ggsave function.
+4.  To preview the final plot, use the `Knit` button above. That will create a preview of the final plot in the output `html` and will save the `png` in the `out/` folder. On many systems, the preview in the script document and the html will not match the output `png`, so please refer to the `png` for final proofing.
+5.  When you're happy with the final plot, fill out the supporting information at the bottom and push to gitlab for review. **Note: only commit input data if it can't be downloaded directly with code (e.g., `sbtools` or `dataRetrieval`)**.
+
+This website has great information on how to use RMarkdown: <https://yihui.org/knitr/>
+
+## Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+Define libraries here.
+
+```{r libraries, warning=FALSE, message=FALSE}
+# Load libraries
+library(tidyverse) # includes ggplot
+library(readr) # best for reading and writing csvs
+
+# These are used for the layout of the viz
+library(cowplot) # for laying out the final plot
+library(sysfonts) # for text editing
+library(showtext) # for adding in google fonts
+library(magick) # for adding logo
+```
+
+## Load files
+
+Save any files that you are using directly in the `in` folder. Then read them in to the environment with this chunk of code. Remember, use the RStudio project and relative file pathways, and never include any personal computer file pathways.
+
+This is also a good place to load any data from other built-in packages such as `dataRetrieval` or `spData`, etc.
+
+```{r load}
+# Add your code here
+
+
+
+```
+
+## Get data ready for plotting
+
+This next section is for doing any pre-processing steps, data joins, etc, to get your data ready for plotting with ggplot. Remember that most of the time, ggplot prefers data in a "wide" format.
+
+If your processing is expensive or involved, feel free to put in into a separate script or pipeline and read in the processed output here.
+
+```{r processing}
+# Add your processing code here
+
+
+```
+
+## Set up main plot
+
+This chunk is where the main ggplot grob definition and set-up occurs. You may have several ggplot grobs, depending on your approach. For each one, if you define it with the `<-` assignment operator and surround the whole code statement in parentheses, you'll be able to preview here what the plot looks like before the next cowplot step.
+
+> Note: The hardest part of this process is getting text to be the optimum size in the final `png`. The font sizes here will **not** be the same as in the final image after the cowplot step. Make sure to check the output `png` for true font sizing and plot composition.
+
+```{r plotting}
+# Load some custom fonts and set some custom settings
+title_font <- "Lora"
+sysfonts::font_add_google(title_font)
+supporting_font <- "Source Sans Pro"
+sysfonts::font_add_google(supporting_font)
+showtext::showtext_opts(dpi = 300, regular.wt = 200, bold.wt = 700)
+showtext::showtext_auto(enable = TRUE)
+title_font_size <- 55
+explainer_font_size <- 18
+
+# Define colors
+background_color <- "#ffffff"
+font_color <- "#0A1927"
+  
+# Define margin for cowplotting
+margin_cowplot <- 0.04
+
+# The background canvas for your viz on mobile
+mobile_height <- 16
+mobile_width <- 9
+canvas_mobile <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = mobile_width, height = mobile_height,
+  gp = grid::gpar(fill = background_color, alpha = 1, col = background_color)
+)
+
+# The background canvas for your viz on instagram
+square_dim <- 9
+canvas_square <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = square_dim, height = square_dim,
+  gp = grid::gpar(fill = background_color, alpha = 1, col = background_color)
+)
+
+# Load in USGS logo (black and white logos available)
+usgs_logo <- magick::image_read("../usgs_logo_black.png")
+# usgs_logo <- magick::image_read("../usgs_logo_white.png") 
+
+# Main plot
+(main_plot <- ggplot()
+ )
+
+
+
+```
+
+## Produce final plot - MOBILE
+
+Here, use `cowplot` and `ggsave` to create the final viz. This template includes adding the USGS logo, title, text, etc.
+
+```{r cowplot_mobile, fig.width = 9, fig.height = 16}
+ggdraw(ylim = c(0,1), # 0-1 scale makes it easy to place viz items on canvas
+       xlim = c(0,1)) +
+  # a background
+  draw_grob(canvas_mobile,
+            x = 0, y = 1,
+            height = mobile_height, 
+            width = mobile_width,
+            hjust = 0, 
+            vjust = 1) +
+  # the main plot
+  draw_plot(main_plot,
+            x = margin_cowplot,
+            y = 0.1,
+            height = 0.8,
+            width = 0.92) +
+  # explainer text
+  draw_label("Explainer text\nin multiple\nlines",
+             fontfamily = supporting_font,
+             x = 1 - margin_cowplot,   
+             y = margin_cowplot,
+             size = explainer_font_size,
+             hjust = 1,
+             vjust = 0,
+             color = font_color)+
+  # Title
+  draw_label("Title",
+             x = margin_cowplot,
+             y = 1 - margin_cowplot,
+             hjust = 0,
+             vjust = 1,
+             lineheight = 0.75,
+             fontfamily = title_font,
+             fontface = 'bold',
+             color = font_color,
+             size = title_font_size) +
+  # Add logo
+  draw_image(usgs_logo, 
+             x = margin_cowplot,
+             y = margin_cowplot,
+             width = 0.2, 
+             hjust = 0, 
+             vjust = 0, 
+             halign = 0, 
+             valign = 0)
+
+# Save the final image
+ggsave(filename = "out/yourproject_yourname_mobile.png", 
+       width = mobile_width, height = mobile_height, dpi = 300)
+```
+
+## Produce final plot - SQUARE
+
+Here, use `cowplot` and `ggsave` to create the final viz. This template includes adding the USGS logo, title, text, etc.
+
+```{r cowplot_square, fig.width = 9, fig.height = 9}
+ggdraw(ylim = c(0,1), # 0-1 scale makes it easy to place viz items on canvas
+       xlim = c(0,1)) +
+  # a background
+  draw_grob(canvas_square,
+            x = 0, y = 1,
+            height = square_dim, width = square_dim,
+            hjust = 0, vjust = 1) +
+  # the main plot
+  draw_plot(main_plot,
+            x = margin_cowplot,
+            y = 0.11,
+            height = 0.78,
+            width = 0.92) +
+  # explainer text
+  draw_label("Explainer text\nin multiple lines",
+             fontfamily = supporting_font,
+             x = 1 - margin_cowplot,   
+             y = margin_cowplot,
+             size = explainer_font_size,
+             hjust = 1,
+             vjust = 0,
+             color = font_color)+
+  # Title
+  draw_label("Title",
+             x = margin_cowplot,
+             y = 1 - margin_cowplot,
+             hjust = 0,
+             vjust = 1,
+             lineheight = 0.75,
+             fontfamily = title_font,
+             fontface = 'bold',
+             color = font_color,
+             size = title_font_size) +
+  # Add logo
+  draw_image(usgs_logo, 
+             x = margin_cowplot,
+             y = margin_cowplot,
+             width = 0.15, 
+             hjust = 0, vjust = 0, 
+             halign = 0, valign = 0)
+
+# Save the final image
+ggsave(filename = "out/yourproject_yourname_square.png", 
+       width = square_dim, height = square_dim, dpi = 300)
+```
+
+## Supporting information
+
+### Caption with key message relating this viz
+
+1.  Key takeaways here (1-2 sentences each)
+
+### Data source(s)
+
+Data sources here
+
+### Alt text
+
+Alt text for visualization here
+
+### Authors
+
+List authors here
