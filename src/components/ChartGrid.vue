@@ -1,60 +1,24 @@
 <template>
     <div id="chartGrid" class="padded">
-        <!-- When we get actual charts, we can pull all the info and urls in from a js file and loop through
-        like in the VizLab home site -->
-            <a href="/"> <!-- Populate hrefs with relative routes -->
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
-            <a href="/">
-                <div class="chart">
-                    <img :src="sampleChart" alt=""/>
-                </div>
-            </a>
+        <a v-for="(item, index) in chartContent" :key="index" :href="item.route">
+            <div class="chart">
+                <img :src="item.img_src" alt=""/>
+            </div>
+        </a>
     </div>
 </template>
 
 <script>
-import sampleChart from '@/assets/images/sampleChart.PNG';
+import ChartGrid from '@/assets/content/ChartGrid.js';
 
 export default {
-    data() {
-        return {
-            sampleChart
-        };
-    }
+  data() {
+    return {
+      chartContent: ChartGrid.chartGridItems
+    };
+  }
 };
+
 </script>
 
 <style>
