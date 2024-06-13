@@ -1,62 +1,86 @@
 export default {
     chartGridItems: [
         //we'll be replacing these img_src with paths to location on s3
-        //routes will direct to appropriate subpage
+        //pageRoutes will direct to appropriate subpage
         {
             title: 'Viz 1',
             project: 'Findex',
-            route: 'viz-1',
+            pageRoute: 'viz-1',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+
+            }
         },        
         {
             title: 'Viz 2',
             project: 'Findex',
-            route: 'viz-2',
+            pageRoute: 'viz-2',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },       
         {
             title: 'Viz 3',
             project: 'Findex',
-            route: 'viz-3',
+            pageRoute: 'viz-3',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },         
         {
             title: 'Viz 4',
             project: 'Fire in Ice',
-            route: 'viz-4',
+            pageRoute: 'viz-4',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },       
         {
             title: 'Viz 5',
             project: 'Fish as Food',
-            route: 'viz-5',
+            pageRoute: 'viz-5',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },  
         {
             title: 'Viz 6',
             project: 'Beaufort Sea',
-            route: 'viz-6',
+            pageRoute: 'viz-6',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },  
         {
             title: 'Viz 7',
             project: 'Beaufort Sea',
-            route: 'viz-7',
+            pageRoute: 'viz-7',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },  
         {
             title: 'Viz 8',
             project: 'Beaufort Sea',
-            route: 'viz-8',
+            pageRoute: 'viz-8',
             img_src: 'src/assets/images/sampleChart.PNG',
-            alt: ''
+            alt: '',
+            pageContent: {
+                
+            }
         },  
     ]
 };

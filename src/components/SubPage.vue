@@ -1,5 +1,5 @@
 <template>
-    The route for this page is {{ subPageRoute }}
+    The route for this page is {{ pageRoute }}
     <ReferencesSection />
     <AuthorshipSection />
 </template>
@@ -12,7 +12,8 @@
 
     // global variables
     const route = useRoute()
-    const subPageRoute = route.params.route
+    const pageRoute = route.params.pageRoute
+    const pageContent = route.params.pageContent
 </script>
 
 <style scoped lang="scss">
