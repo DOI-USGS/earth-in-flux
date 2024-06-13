@@ -1,19 +1,25 @@
 <template>
     <div id="chartGrid" class="padded">
-        <a v-for="(item, index) in chartContent" :key="index" :href="item.route">
-            <ChartCard 
-				:src="item.img_src"
-				:alt="item.alt"
-			/>
-        </a>
+		<ChartCard @click.enter="showSubPage" v-for="(item, index) in chartContent" :key="index"
+			:src="item.img_src"
+			:alt="item.alt"
+		/>
     </div>
 </template>
 
 <script setup>
+	import { useRouter } from 'vue-router'
+
 	import ChartCard from '@/components/ChartCard.vue'
 	import ChartGrid from '@/assets/content/ChartGrid.js';
 	
+	// global variables
+	const router = useRouter()
 	const chartContent = ChartGrid.chartGridItems;
+
+	function showSubPage() {
+		router.push('/subpage')
+	}
 
 </script>
 
