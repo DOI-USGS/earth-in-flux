@@ -1,5 +1,5 @@
 export default {
-    pageTitle: "Climate chart gallery",
+    pageTitle: "Earth is changing...",
     sections: {
         A: {
             title: "Section A",
