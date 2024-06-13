@@ -1,23 +1,19 @@
 <template>
     <div id="chartGrid" class="padded">
         <a v-for="(item, index) in chartContent" :key="index" :href="item.route">
-            <div class="chart">
-                <img :src="item.img_src" alt=""/>
-            </div>
+            <ChartCard 
+				:src="item.img_src"
+				:alt="item.alt"
+			/>
         </a>
     </div>
 </template>
 
-<script>
-import ChartGrid from '@/assets/content/ChartGrid.js';
-
-export default {
-  data() {
-    return {
-      chartContent: ChartGrid.chartGridItems
-    };
-  }
-};
+<script setup>
+	import ChartCard from '@/components/ChartCard.vue'
+	import ChartGrid from '@/assets/content/ChartGrid.js';
+	
+	const chartContent = ChartGrid.chartGridItems;
 
 </script>
 
@@ -32,17 +28,5 @@ export default {
 	gap: 50px;
 	width: 100%;
 	max-width: 60%;
-
-	.chart{
-		display: flex;
-		flex-direction: column-reverse;
-		justify-content: flex-start;
-		position: relative;
-		width: 280px;
-		height: 100%;
-	}
-    .chart:hover {
-        transform: scale(1.1);
-    }
 }
 </style>
