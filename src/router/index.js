@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import VisualizationView from '@/views/VisualizationView.vue'
+import SubPage from '@/components/SubPage.vue'
 
 function lazyLoad(view){
   return() => import(`@/views/${view}.vue`)
@@ -21,7 +22,7 @@ const router = createRouter({
     {
       path: '/subpage',
       name: 'Subpage',
-      component: VisualizationView
+      component: SubPage
     },
     {
       path: "/404",
