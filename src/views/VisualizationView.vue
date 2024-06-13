@@ -6,16 +6,12 @@
       </h1>
     </div>
     <ChartGrid />
-    <ReferencesSection />
-    <AuthorshipSection />
   </section>
 </template>
 
 <script setup>
   import { isMobile } from 'mobile-device-detect';
   import text from "@/assets/text/text.js";
-  import ReferencesSection from '@/components/ReferencesSection.vue';
-  import AuthorshipSection from '@/components/AuthorshipSection.vue';
   import ChartGrid from '@/components/ChartGrid.vue';
 
   // global variables
