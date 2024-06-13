@@ -19,6 +19,11 @@ const router = createRouter({
       component: VisualizationView
     },
     {
+      path: '/subpage',
+      name: 'Subpage',
+      component: VisualizationView
+    },
+    {
       path: "/404",
       name: "Error404",
       component: lazyLoad('Error404Page')
