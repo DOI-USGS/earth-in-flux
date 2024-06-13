@@ -16,7 +16,7 @@
   import text from "@/assets/text/text.js";
   import ReferencesSection from '@/components/ReferencesSection.vue';
   import AuthorshipSection from '@/components/AuthorshipSection.vue';
-  import ChartGrid from '../components/ChartGrid.vue';
+  import ChartGrid from '@/components/ChartGrid.vue';
 
   // global variables
   const mobileView = isMobile;
