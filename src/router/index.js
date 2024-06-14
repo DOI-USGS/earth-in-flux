@@ -34,7 +34,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*', 
       redirect: { name: "Error404" }
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
 })
 
 export default router
