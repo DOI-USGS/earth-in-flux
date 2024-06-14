@@ -25,7 +25,7 @@ const router = createRouter({
       component: VisualizationView
     },
     {
-      path: '/:projectRoute/:pageRoute',
+      path: '/:projectRoute/:vizRoute',
       name: 'SubPage',
       component: SubPage
     },

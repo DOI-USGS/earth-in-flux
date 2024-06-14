@@ -1,60 +1,68 @@
 export default {
     chartGridItems: [
         //we'll be replacing these img_src with paths to location on s3
-        //pageRoutes will direct to appropriate subpage
+        //vizRoutes will direct to appropriate subpage
         {
             title: 'Viz 1',
             project: 'Findex',
-            pageRoute: 'viz-1',
+            vizKey: 'Viz1',
+            vizRoute: 'viz-1',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },        
         {
             title: 'Viz 2',
             project: 'Findex',
-            pageRoute: 'viz-2',
+            vizKey: 'Viz2',
+            vizRoute: 'viz-2',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },       
         {
             title: 'Viz 3',
             project: 'Findex',
-            pageRoute: 'viz-3',
+            vizKey: 'Viz3',
+            vizRoute: 'viz-3',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },         
         {
-            title: 'Viz 4',
+            title: 'Glacier/Topography D3 Cross-Section Scan',
             project: 'Fire in Ice',
-            pageRoute: 'viz-4',
+            vizKey: 'GlacierScanViz',
+            vizRoute: 'glacier-scan',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },       
         {
             title: 'Viz 5',
             project: 'Fish as Food',
-            pageRoute: 'viz-5',
+            vizKey: 'Viz5',
+            vizRoute: 'viz-5',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },  
         {
             title: 'Viz 6',
             project: 'Beaufort Sea',
-            pageRoute: 'viz-6',
+            vizKey: 'Viz6',
+            vizRoute: 'viz-6',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },  
         {
             title: 'Viz 7',
             project: 'Beaufort Sea',
-            pageRoute: 'viz-7',
+            vizKey: 'Viz7',
+            vizRoute: 'viz-7',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },  
         {
             title: 'Viz 8',
             project: 'Beaufort Sea',
-            pageRoute: 'viz-8',
+            vizKey: 'Viz8',
+            vizRoute: 'viz-8',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
         },  
