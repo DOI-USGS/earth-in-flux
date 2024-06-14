@@ -13,7 +13,7 @@
     // global variables
     const route = useRoute()
     const pageRoute = route.params.pageRoute
-    const pageContent = route.params.pageContent
+    
 </script>
 
 <style scoped lang="scss">

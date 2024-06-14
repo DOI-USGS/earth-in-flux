@@ -1,6 +1,6 @@
 <template>
     <div id="chartGrid" class="padded">
-		<ChartCard @click.enter="showSubPage(item.project, item.pageRoute, item.pageContent)" v-for="(item, index) in chartContent" :key="index"
+		<ChartCard @click.enter="showSubPage(item.project, item.pageRoute)" v-for="(item, index) in chartContent" :key="index"
 			:src="item.img_src"
 			:alt="item.alt"
 		/>
@@ -17,10 +17,9 @@
 	const router = useRouter()
 	const chartContent = ChartGrid.chartGridItems;
 
-	function showSubPage(project, pageRoute, pageContent) {
+	function showSubPage(project, pageRoute) {
 		const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
-		router.push(`${projectRoute}/${pageRoute}`)
-		router.push({ name: 'SubPage', params: { projectRoute, pageRoute, pageContent } })
+		router.push({ name: 'SubPage', params: { projectRoute, pageRoute } })
 	}
 
 </script>

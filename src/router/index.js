@@ -22,8 +22,7 @@ const router = createRouter({
     {
       path: '/:projectRoute/:pageRoute',
       name: 'SubPage',
-      component: SubPage,
-      props: true,
+      component: SubPage
     },
     {
       path: "/404",
