@@ -1,8 +1,11 @@
 <template>
     <div id="chartGrid" class="padded">
 		<ChartCard @click.enter="showSubPage(item.project, item.pageRoute)" v-for="(item, index) in chartContent" :key="index"
+			:id="item.pageRoute"
 			:src="item.img_src"
 			:alt="item.alt"
+			:project="item.project"
+            :view="view"
 		/>
     </div>
 </template>
@@ -12,6 +15,13 @@
 
 	import ChartCard from '@/components/ChartCard.vue'
 	import ChartGrid from '@/assets/content/ChartGrid.js';
+
+	const props = defineProps({
+        view: {
+            type: String,
+            default: ``
+        },
+    })
 	
 	// global variables
 	const router = useRouter()
