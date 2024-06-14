@@ -35,7 +35,7 @@ const router = createRouter({
       redirect: { name: "Error404" }
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     // always scroll to top
     return { top: 0 }
   },
