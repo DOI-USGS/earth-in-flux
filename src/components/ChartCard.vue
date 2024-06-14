@@ -1,5 +1,5 @@
 <template>
-    <div class="chart" v-if="show">
+    <div class="chart">
         <img :src="src" :alt="alt"/>
     </div>
 </template>
@@ -14,20 +14,7 @@
             type: String,
             default: ``
         },
-        project: {
-            type: String,
-            default: ``
-        },
-        view: {
-            type: String,
-            default: ``
-        },
     })
-
-    // global variables
-    const projectRoute = props.project.replace(/\s+/g, '-').toLowerCase();
-    let show = props.view == projectRoute ? true : false;
-    show = props.view == 'all' ? true : show;
 </script>
 
 <style scoped lang="scss">

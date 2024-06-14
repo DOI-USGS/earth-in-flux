@@ -1,11 +1,9 @@
 <template>
     <div id="chartGrid" class="padded">
-		<ChartCard @click.enter="showSubPage(item.project, item.pageRoute)" v-for="(item, index) in chartContent" :key="index"
+		<ChartCard @click.enter="showSubPage(item.project, item.pageRoute)" v-for="(item, index) in filteredChartContent" :key="index"
 			:id="item.pageRoute"
 			:src="item.img_src"
 			:alt="item.alt"
-			:project="item.project"
-            :view="view"
 		/>
     </div>
 </template>
@@ -26,6 +24,7 @@
 	// global variables
 	const router = useRouter()
 	const chartContent = ChartGrid.chartGridItems;
+	const filteredChartContent = props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)
 
 	function showSubPage(project, pageRoute) {
 		const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
