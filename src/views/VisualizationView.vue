@@ -6,6 +6,9 @@
       </h1>
     </div>
     <ChartGrid :view="currentView"/>
+    <div v-if="projectPage">
+      Project blurb
+    </div>
     <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
   </section>
 </template>
@@ -22,6 +25,7 @@
   const mobileView = isMobile;
   const projectRoute = route.params.projectRoute
   const currentView = projectRoute ? projectRoute : 'all'
+  const projectPage = projectRoute ? true : false
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 </script>
 
