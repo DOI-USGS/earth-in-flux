@@ -1,5 +1,5 @@
 export default {
-  references: [
+  GlacierScan: [
     {
       reference: "Reference 1.",
       num: "1",
@@ -51,6 +51,111 @@ export default {
       journal_issue: " 43",
       data_release: false,
       doi: "https://doi.org/10.1029/2006WR005653"
+    },
+  ],
+  Viz1: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz2: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz3: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz5: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz6: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz7: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
+    },
+  ],
+  Viz8: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Simeone, C.",
+      year: "2022",
+      title: "Streamflow Drought Metrics for Select United States Geological Survey Streamgages for Three Different Time Periods from 1921 - 2020",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
+      doi: "https://doi.org/10.5066/P92FAASD"
     },
   ]
 };

@@ -12,7 +12,7 @@
             The route for this page is {{ vizRoute }}. This viz is associated with the {{ projectRoute }} project.
         </div>
         <VizComponent/>
-        <ReferencesSection />
+        <ReferencesSection :references="vizReferences"/>
         <AuthorshipSection />
     </section>
 </template>
@@ -24,6 +24,7 @@
 
     import ChartGrid from '@/assets/content/ChartGrid.js';
     import ReferencesSection from '@/components/ReferencesSection.vue';
+    import references from "@/assets/text/references";
     import AuthorshipSection from '@/components/AuthorshipSection.vue';
 
     // global variables
@@ -33,9 +34,10 @@
     const mobileView = isMobile;
     const chartContent = ChartGrid.chartGridItems;
 	const filteredChartContent = chartContent.filter(d => d.vizRoute === vizRoute)[0]
+    const vizReferences = references[`${filteredChartContent.vizKey}`]
 
     const VizComponent = defineAsyncComponent(() =>
-        import(`./${filteredChartContent.vizKey}.vue`)
+        import(`./${filteredChartContent.vizKey}Viz.vue`)
     )
 </script>
 
