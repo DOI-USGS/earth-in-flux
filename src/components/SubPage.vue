@@ -39,7 +39,10 @@
     const vizAuthors = authors[`${filteredChartContent.vizKey}`]
 
     const VizComponent = defineAsyncComponent(() =>
-        import(`./${filteredChartContent.vizKey}Viz.vue`)
+        //Use convention of adding Viz to component names to ensure are two words
+        //Plus, also allows us to specify a filename pattern here, per:
+        //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
+        import(`./${filteredChartContent.vizKey}Viz.vue`) //
     )
 </script>
 
