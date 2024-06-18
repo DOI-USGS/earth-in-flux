@@ -1,7 +1,6 @@
 <template>
     <!---VizSection-->
     <VizSection
-        :id="`${vizRoute}-content`"
         :figures="true"
         :fig-caption="false"
     >
@@ -27,18 +26,12 @@
 </template>
 
 <script setup>
-    import { useRoute } from 'vue-router'
-
     import VizSection from '@/components/VizSection.vue';
 
     // define props
     defineProps({
         text: { type: Object }
     })
-
-    // global variables
-    const route = useRoute()
-    const vizRoute = route.params.vizRoute
 </script>
 
 <style>

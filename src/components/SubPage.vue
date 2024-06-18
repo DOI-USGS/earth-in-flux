@@ -11,7 +11,7 @@
             </h1>
             <p>The route for this page is {{ vizRoute }}. This viz is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
         </div>
-        <VizComponent :text="vizText"/>
+        <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
         <ReferencesSection v-if="vizReferences" :references="vizReferences"/>
         <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
