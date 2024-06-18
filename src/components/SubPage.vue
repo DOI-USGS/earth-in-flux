@@ -1,6 +1,6 @@
 <template>
     <section 
-        :id="vizRoute"
+        :id="`${vizRoute}-subpage`"
     >
         <div
             class="text-container" 
@@ -9,9 +9,9 @@
             <h1 class = 'title'>
                 {{ filteredChartContent.title }}
             </h1>
-            The route for this page is {{ vizRoute }}. This viz is associated with the {{ projectRoute }} project.
+            <p>The route for this page is {{ vizRoute }}. This viz is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
         </div>
-        <VizComponent/>
+        <VizComponent :text="vizText"/>
         <ReferencesSection v-if="vizReferences" :references="vizReferences"/>
         <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
@@ -24,6 +24,7 @@
     import { defineAsyncComponent } from 'vue'
 
     import ChartGrid from '@/assets/content/ChartGrid.js';
+    import text from "@/assets/text/text.js";
     import ReferencesSection from '@/components/ReferencesSection.vue';
     import references from "@/assets/text/references";
     import AuthorshipSection from '@/components/AuthorshipSection.vue';
@@ -38,6 +39,7 @@
     const chartContent = ChartGrid.chartGridItems;
 	const filteredChartContent = chartContent.filter(d => d.vizRoute === vizRoute)[0]
     const vizKey = filteredChartContent.vizKey
+    const vizText = text.visualizations[`${filteredChartContent.vizKey}`]
     const vizReferences = references[`${filteredChartContent.vizKey}`]
     const vizAuthors = authors[`${filteredChartContent.vizKey}`]
     const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
