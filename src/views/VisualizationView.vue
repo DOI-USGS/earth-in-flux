@@ -6,10 +6,22 @@
       </h1>
     </div>
     <ChartGrid :view="currentView"/>
-    <div class="text-container" v-if="projectPage">
-      <h2>About the {{ projectBlurbText.title }} project</h2>
-      {{ projectBlurbText.blurb }}
-    </div>
+    <!---VizSection-->
+    <VizSection
+        v-if="projectPage"
+        :figures="false"
+        :fig-caption="false"
+    >
+        <!-- HEADING -->
+        <template #heading>
+            <h2>
+              About the {{ projectBlurbText.title }} project
+            </h2>
+        </template>
+        <template #aboveExplanation>
+            <p v-html="projectBlurbText.blurb" />
+        </template>
+    </VizSection>
     <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
   </section>
 </template>
@@ -19,6 +31,7 @@
   import { isMobile } from 'mobile-device-detect';
   import text from "@/assets/text/text.js";
   import ChartGrid from '@/components/ChartGrid.vue';
+  import VizSection from '@/components/VizSection.vue';
   import PreFooterCodeLinks from "@/components/PreFooterCodeLinks.vue";
 
   // global variables
