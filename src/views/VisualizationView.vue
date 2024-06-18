@@ -7,8 +7,8 @@
     </div>
     <ChartGrid :view="currentView"/>
     <div class="text-container" v-if="projectPage">
-      <h2>About the {{ projectBlurbContent.title }} project</h2>
-      {{ projectBlurbContent.blurb }}
+      <h2>About the {{ projectBlurbText.title }} project</h2>
+      {{ projectBlurbText.blurb }}
     </div>
     <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
   </section>
@@ -27,7 +27,7 @@
   const projectRoute = route.params.projectRoute
   const currentView = projectRoute ? projectRoute : 'all'
   const projectPage = projectRoute ? true : false
-  const projectBlurbContent = projectRoute ? text.projectBlurbs[`${projectRoute.replace(/-/g, '')}`] : null
+  const projectBlurbText = projectRoute ? text.projects[`${projectRoute.replace(/-/g, '')}`] : null
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 </script>
 

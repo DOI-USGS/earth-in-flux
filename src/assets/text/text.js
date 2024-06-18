@@ -1,6 +1,6 @@
 export default {
     pageTitle: "Climate chart gallery",
-    projectBlurbs: {
+    projects: {
         // keys must match project routes (with '-' replaced with '')
         findex: {
             title: "Findex",
