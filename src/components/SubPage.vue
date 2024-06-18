@@ -12,8 +12,8 @@
             The route for this page is {{ vizRoute }}. This viz is associated with the {{ projectRoute }} project.
         </div>
         <VizComponent/>
-        <ReferencesSection :references="vizReferences"/>
-        <AuthorshipSection />
+        <ReferencesSection v-if="vizReferences" :references="vizReferences"/>
+        <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
     </section>
 </template>
 
@@ -26,6 +26,7 @@
     import ReferencesSection from '@/components/ReferencesSection.vue';
     import references from "@/assets/text/references";
     import AuthorshipSection from '@/components/AuthorshipSection.vue';
+    import authors from "@/assets/text/authors";
 
     // global variables
     const route = useRoute()
@@ -35,6 +36,7 @@
     const chartContent = ChartGrid.chartGridItems;
 	const filteredChartContent = chartContent.filter(d => d.vizRoute === vizRoute)[0]
     const vizReferences = references[`${filteredChartContent.vizKey}`]
+    const vizAuthors = authors[`${filteredChartContent.vizKey}`]
 
     const VizComponent = defineAsyncComponent(() =>
         import(`./${filteredChartContent.vizKey}Viz.vue`)
