@@ -6,6 +6,7 @@
       </h1>
     </div>
     <ChartGrid :view="currentView"/>
+    <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
   </section>
 </template>
 
@@ -14,12 +15,14 @@
   import { isMobile } from 'mobile-device-detect';
   import text from "@/assets/text/text.js";
   import ChartGrid from '@/components/ChartGrid.vue';
+  import PreFooterCodeLinks from "@/components/PreFooterCodeLinks.vue";
 
   // global variables
   const route = useRoute()
   const mobileView = isMobile;
   const projectRoute = route.params.projectRoute
   const currentView = projectRoute ? projectRoute : 'all'
+  const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 </script>
 
 <style scoped>

@@ -5,7 +5,6 @@
     <HeaderUSGS />
     <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
     <RouterView />
-    <PreFooterCodeLinks />
     <FooterUSGS />
   </div>
 </template>
@@ -17,7 +16,6 @@
   import HeaderUSWDSBanner from "@/components/HeaderUSWDSBanner.vue";
   import HeaderUSGS from '@/components/HeaderUSGS.vue';
   import WorkInProgressWarning from "@/components/WorkInProgressWarning.vue";
-  import PreFooterCodeLinks from "@/components/PreFooterCodeLinks.vue";
   import FooterUSGS from '@/components/FooterUSGS.vue';
   import { useWindowSizeStore } from '@/stores/WindowSizeStore';
 
