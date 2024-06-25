@@ -11,7 +11,13 @@
 </template>
 
 <script setup>
-  const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
+  // define props
+  defineProps({
+    gitHubRepositoryLink:{
+      type: String,
+      default: 'https://github.com/DOI-USGS'
+    },
+  })
 </script>
 
 <style scoped lang="scss">

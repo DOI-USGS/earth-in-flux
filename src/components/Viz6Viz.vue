@@ -7,12 +7,11 @@
         <!-- HEADING -->
         <template #heading>
             <h2>
-                {{ text.heading }}
+                This is the Viz 6 viz!
             </h2>
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
         </template>
         <template #figures>
         </template>

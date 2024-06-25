@@ -13,7 +13,7 @@
     <template #aboveExplanation>
       <div>
         <div
-          v-for="reference in references.references"
+          v-for="reference in references"
           :key="reference.num"
         >
           <p>
@@ -37,7 +37,13 @@
 
 <script setup>
   import VizSection from '@/components/VizSection.vue';
-  import references from "@/assets/text/references";
+
+  // define props
+  defineProps({
+    references:{
+      type: Object,
+    },
+  })
 </script>
 
 <style scoped lang="scss">

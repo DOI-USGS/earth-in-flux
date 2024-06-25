@@ -29,7 +29,7 @@ export default {
         {
             title: 'Glacier/Topography D3 Cross-Section Scan',
             project: 'Fire in Ice',
-            vizKey: 'GlacierScanViz',
+            vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'src/assets/images/sampleChart.PNG',
             alt: ''
