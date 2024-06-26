@@ -7,7 +7,7 @@ export default {
             project: 'Findex',
             vizKey: 'ThreatBumpChart',
             vizRoute: 'inland-fish-threats',
-            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/ThreatBumpChart.png',
+            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/ThreatBumpChart_thumbnail.png',
             alt: ''
         },        
         {
