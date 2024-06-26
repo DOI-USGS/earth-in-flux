@@ -7,13 +7,18 @@
         <!-- HEADING -->
         <template #heading>
             <h2>
-                This is the Viz 6 viz!
+                {{ text.heading }}
             </h2>
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
         </template>
         <template #figures>
+            <div class="single maxWidth">
+                <figure v-for="index in 20" :key="index">
+                    <img :src="`https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_${index}.PNG`">
+                </figure>
+            </div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>

@@ -26,6 +26,12 @@ export default {
         },
         ThreatBumpChart: {
             heading: "Inland fisheries are threatened"
+        },
+        BeaufortSeaCore: {
+            heading: "How do USGS scientists collect ice cores?"
+        },
+        BeaufortSeaSpecies: {
+            heading: "Species assemblages as proxies"
         }
     }
 }
