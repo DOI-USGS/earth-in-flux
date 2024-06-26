@@ -3,11 +3,11 @@ export default {
         //we'll be replacing these img_src with paths to location on s3
         //vizRoutes will direct to appropriate subpage
         {
-            title: 'Viz 1',
+            title: 'Inland fisheries are threatened',
             project: 'Findex',
-            vizKey: 'Viz1',
-            vizRoute: 'viz-1',
-            img_src: 'src/assets/images/sampleChart.PNG',
+            vizKey: 'ThreatBumpChart',
+            vizRoute: 'inland-fish-threats',
+            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/ThreatBumpChart.png',
             alt: ''
         },        
         {

@@ -2,18 +2,20 @@
     <section 
         :id="`${vizRoute}-subpage`"
     >
-        <div
-            class="text-container" 
-            :class="{ mobile: mobileView}"
-        >
-            <h1 class = 'title'>
-                {{ filteredChartContent.title }}
-            </h1>
-            <p>The route for this page is {{ vizRoute }}. This viz is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
+        <div class="subpage-content">
+            <div
+                class="text-container" 
+                :class="{ mobile: mobileView}"
+            >
+                <h1 class = 'title'>
+                    {{ filteredChartContent.title }}
+                </h1>
+                <p>The route for this page is {{ vizRoute }}. This viz is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
+            </div>
+            <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
+            <ReferencesSection v-if="vizReferences" :references="vizReferences"/>
+            <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
         </div>
-        <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
-        <ReferencesSection v-if="vizReferences" :references="vizReferences"/>
-        <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>
 </template>
@@ -54,4 +56,7 @@
 </script>
 
 <style scoped lang="scss">
+    .subpage-content {
+        margin: 5rem 0 5rem 0;
+    }
 </style>

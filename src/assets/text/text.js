@@ -23,6 +23,9 @@ export default {
         GlacierScan: {
             heading: "Glacier MRI",
             paragraph1: "Here is a paragraph.",
+        },
+        ThreatBumpChart: {
+            heading: "Inland fisheries are threatened"
         }
     }
 }

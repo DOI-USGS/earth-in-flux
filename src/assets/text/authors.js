@@ -116,4 +116,38 @@ export default {
       }
     ]
   },
+  ThreatBumpChart: {
+    primaryAuthors: [
+      {
+        firstName: 'Cee',
+        lastName: 'Nell',
+        fullName: 'Cee Nell',
+        initials: 'CN',
+        profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
+        role: 'team lead',
+        contribution: 'led the development of the data visualization'
+      },
+    ],
+    additionalAuthors: [
+      {
+        firstName: 'Hayley',
+        lastName: 'Corson-Dosch',
+        fullName: 'Hayley Corson-Dosch',
+        initials: 'HCD',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        
+        role: 'lead developer',
+        contribution: 'co-led the design and development of the website'
+      },
+      {
+        firstName: 'Maggie',
+        lastName: 'Jaenicke',
+        fullName: 'Maggie Jaenicke',
+        initials: 'MJ',
+        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
+        role: 'lead developer',
+        contribution: 'co-led the design and development of the website'
+      }
+    ]
+  },
 };
