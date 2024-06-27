@@ -23,10 +23,10 @@
   max-width: 100%;
   max-width: 70rem; /* 70 pixels on desktop */
   margin: 20px auto 0 auto;
-  position: -webkit-sticky; /* For Safari */
-  position: sticky;
+  /* position: -webkit-sticky; /* For Safari */
+  /* position: sticky;  */
   top: 68px;
-  z-index: 1000;
+  /* z-index: 1000; */
   background-color: #d2e9ff;
   border-radius: 2px;
 }
