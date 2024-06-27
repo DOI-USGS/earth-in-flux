@@ -1,37 +1,37 @@
 export default {
-    pageTitle: "Earth is changing...",
-    sections: {
-        A: {
-            title: "Section A",
-            id: "sectionA",
-            image: "sectionA_banner.png",
-            alt: "An overhead view of a braided river, surrounded by snow-covered ground."
+    pageTitle: "Climate chart gallery",
+    projects: {
+        // keys must match project routes (with '-' replaced with '')
+        findex: {
+            title: "Findex",
+            blurb: "The Findex project..."
         },
-        B: {
-            title: "Section B",
-            id: "sectionB",
-            image: "sectionB_banner.jpg",
-            alt: "An overhead view of a river flowing through a snow-covered decidious forest."
+        fireinice: {
+            title: "Fire in Ice",
+            blurb: "The Fire in Ice project..."
+        },
+        fishasfood: {
+            title: "Fish as Food",
+            blurb: "The Fish as Food project..."
+        },
+        beaufortsea: {
+            title: "Beaufort Sea",
+            blurb: "The Beaufort Sea project..."
         }
     },
-    components: {
-        IntroSection: {
-            heading: "Introduction",
-            paragraph1: "Here is a paragraph with some introductory context for this viz.",
-            caption: "This is a caption for this figure.",
-            paragraph2: "Here's a paragraph that follows the figure.",
-            paragraph3_bullet1: "Here is a bullet.",
+    visualizations: {
+        GlacierScan: {
+            heading: "Glacier MRI",
+            paragraph1: "Here is a paragraph.",
         },
-        RegionalViolins: {
-            heading: "svg import w/ d3-added interaction + v-for",
-            paragraph1: "First paragraph of text.",
-            paragraph2: "Second paragraph of text."
+        ThreatBumpChart: {
+            heading: "Inland fisheries are threatened"
         },
-        BarChartExample: {
-            heading: "d3 bar chart from data",
-            paragraph1: "First paragraph of text.",
-            paragraph2: "Second paragraph of text.",
-            paragraph3: "Third paragraph of text."
+        BeaufortSeaCore: {
+            heading: "How do USGS scientists collect ice cores?"
+        },
+        BeaufortSeaSpecies: {
+            heading: "Species assemblages as proxies"
         }
     }
 }

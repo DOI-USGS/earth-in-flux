@@ -1,5 +1,6 @@
 export default {
-  references: [
+  TEMPLATE: [
+    // Journal article with single author
     {
       reference: "Reference 1.",
       num: "1",
@@ -13,6 +14,7 @@ export default {
       data_release: false,
       doi: "https://doi.org/10.1175/2009JCLI2951.1"
     },
+    // USGS ScienceBase Data Release
     {
       reference: "Reference 2.",
       num: "2",
@@ -26,6 +28,7 @@ export default {
       link: "https://www.sciencebase.gov/catalog/item/62793493d34e8d45aa6e3ba9",
       doi: "https://doi.org/10.5066/P92FAASD"
     },
+    // Website
     {
       reference: "Reference 3.",
       num: "3",
@@ -39,6 +42,7 @@ export default {
       link: "https://www.usgs.gov/mission-areas/water-resources/science/drought-prediction-science",
       doi: null
     },
+    // Journal article with multiple authors
     {
       reference: "Reference 4.",
       num: "4",
@@ -52,5 +56,20 @@ export default {
       data_release: false,
       doi: "https://doi.org/10.1029/2006WR005653"
     },
-  ]
+  ],
+  GlacierScan: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Jasmann, J.R., Kehrwald, N.M., Dunham, M.E., Ferris, D.G., Osterburg, E.C., Kennedy, J., & Barber, L.B.",
+      year: "2020",
+      title: "Using wildland fire tracer molecules to investigate fire frequency and vegetative combustion sources archived in the Juneau Icefield of Alaska",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/5e472c3ee4b0ff554f6837bc",
+      doi: "https://doi.org/10.5066/P9DNAN1M"
+    },
+  ],
 };

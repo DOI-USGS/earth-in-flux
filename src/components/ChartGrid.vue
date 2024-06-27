@@ -1,23 +1,35 @@
 <template>
     <div id="chartGrid" class="padded">
-        <a v-for="(item, index) in chartContent" :key="index" :href="item.route">
-            <div class="chart">
-                <img :src="item.img_src" alt=""/>
-            </div>
-        </a>
+		<ChartCard @click.enter="showSubPage(item.project, item.vizRoute)" v-for="(item, index) in filteredChartContent" :key="index"
+			:id="item.vizRoute"
+			:src="item.img_src"
+			:alt="item.alt"
+		/>
     </div>
 </template>
 
-<script>
-import ChartGrid from '@/assets/content/ChartGrid.js';
+<script setup>
+	import { useRouter } from 'vue-router'
 
-export default {
-  data() {
-    return {
-      chartContent: ChartGrid.chartGridItems
-    };
-  }
-};
+	import ChartCard from '@/components/ChartCard.vue'
+	import ChartGrid from '@/assets/content/ChartGrid.js';
+
+	const props = defineProps({
+        view: {
+            type: String,
+            default: ``
+        },
+    })
+	
+	// global variables
+	const router = useRouter()
+	const chartContent = ChartGrid.chartGridItems;
+	const filteredChartContent = props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)
+
+	function showSubPage(project, vizRoute) {
+		const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
+		router.push({ name: 'SubPage', params: { projectRoute, vizRoute } })
+	}
 
 </script>
 
@@ -32,17 +44,5 @@ export default {
 	gap: 50px;
 	width: 100%;
 	max-width: 60%;
-
-	.chart{
-		display: flex;
-		flex-direction: column-reverse;
-		justify-content: flex-start;
-		position: relative;
-		width: 280px;
-		height: 100%;
-	}
-    .chart:hover {
-        transform: scale(1.1);
-    }
 }
 </style>

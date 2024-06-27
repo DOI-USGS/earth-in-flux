@@ -18,7 +18,7 @@
       >
         <p>
           <span id="primary-author-statment">
-            The development of {{ appTitle }} was led by 
+            The development of this visualization was led by 
             <span
               v-for="(author, index) in primaryAuthors" 
               :id="`initial-${author.initials}`"
@@ -98,13 +98,16 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import VizSection from '@/components/VizSection.vue';
-  import authors from "@/assets/text/authors";
 
-  // Pull in title of page from Vue environment (set in .env)
-  const appTitle = import.meta.env.VITE_APP_TITLE;
-
-  const primaryAuthors = authors.primaryAuthors;
-  const additionalAuthors = authors.additionalAuthors;
+  // define props
+  const props = defineProps({
+    authors:{
+      type: Object,
+    },
+  })
+  
+  const primaryAuthors = props.authors.primaryAuthors;
+  const additionalAuthors = props.authors.additionalAuthors;
   // Turn on or off attribution for all authors
   const showAuthors = ref(null);
   // If showAuthors is true, turn on or off attribution for additional authors
