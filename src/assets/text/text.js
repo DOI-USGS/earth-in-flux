@@ -23,6 +23,15 @@ export default {
         GlacierScan: {
             heading: "Glacier MRI",
             paragraph1: "Here is a paragraph.",
+        },
+        ThreatBumpChart: {
+            heading: "Inland fisheries are threatened"
+        },
+        BeaufortSeaCore: {
+            heading: "How do USGS scientists collect ice cores?"
+        },
+        BeaufortSeaSpecies: {
+            heading: "Species assemblages as proxies"
         }
     }
 }
