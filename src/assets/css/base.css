@@ -26,7 +26,7 @@
 :root {
   --color-background: var(--white);
   --color-text: var(--black-soft);
-  --color-title-text: var(--dodger-blue);
+  --color-title-text: var(--usgs-blue);
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--medium-grey);

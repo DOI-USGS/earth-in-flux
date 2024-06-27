@@ -14,7 +14,6 @@ export default ({mode}) => {
   return defineConfig({
     publicPath: "./",
     outputDir: "dist",
-    assetsInclude: ['**/*.PNG'],
     assetsDir: "static",
     plugins: [
       vue(), 

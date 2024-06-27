@@ -13,6 +13,10 @@
 #visualization-container {
   margin: 0;
 }
+/* All content between USGS header and pre-footer code links */
+.page-content {
+  margin: 5rem 0 5rem 0;
+}
 .title {
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--title-font);
