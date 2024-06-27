@@ -2,7 +2,7 @@
     <section 
         :id="`${vizRoute}-subpage`"
     >
-        <div class="subpage-content">
+        <div class="page-content">
             <div
                 class="text-container" 
                 :class="{ mobile: mobileView}"
@@ -56,7 +56,4 @@
 </script>
 
 <style scoped lang="scss">
-    .subpage-content {
-        margin: 5rem 0 5rem 0;
-    }
 </style>
