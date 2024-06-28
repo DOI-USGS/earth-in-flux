@@ -30,7 +30,7 @@
 
 <script setup>
   import { useRoute } from 'vue-router';
-  import { watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { isMobile } from 'mobile-device-detect';
   import text from "@/assets/text/text.js";
   import ChartGrid from '@/components/ChartGrid.vue';
@@ -40,15 +40,22 @@
   // global variables
   const route = useRoute()
   const mobileView = isMobile;
-  const projectRoute = route.params.projectRoute
-  const currentView = projectRoute ? projectRoute : 'all'
-  const projectPage = projectRoute ? true : false
-  const projectBlurbText = projectRoute ? text.projects[`${projectRoute.replace(/-/g, '')}`] : null
+  const projectRoute = ref(route.params.projectRoute)
+  const currentView = computed(() => {
+      return projectRoute.value ? projectRoute.value : 'all'
+  });
+  const projectPage = computed(() => {
+      return projectRoute.value ? true : false
+  });
+  const projectBlurbText = computed(() => {
+      return projectRoute.value ? text.projects[`${projectRoute.value.replace(/-/g, '')}`] : null
+  });
+  
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 
   //watches router params for changes
   watch(route, () => {
-    window.location.reload();
+    projectRoute.value = route.params.projectRoute
   })
 
 </script>
