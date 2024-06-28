@@ -10,7 +10,7 @@
                 <RouterLink :to="{ path: '/findex' }">Findex</RouterLink>
             </div>
         </div>
-            <a href="https://labs.waterdata.usgs.gov/visualizations/index.html#/" target="_blank">About VizLab</a>
+            <RouterLink :to="{ path: '/about' }">About</RouterLink>
         </div>
     </header>
 </template>
