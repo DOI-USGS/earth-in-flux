@@ -34,17 +34,14 @@
     justify-content: center;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
     background-color: #d2e9ff;
     color: var(--dodger-blue);
@@ -55,7 +52,6 @@
     overflow: hidden;
 }
 
-/* Dropdown button */
 .dropdown .dropbtn {
     font-size: 16px;  
     border: none;
@@ -67,18 +63,15 @@
     margin: 0;
 }
 
-/* Add a background color to dropdown links on hover */
 .dropdown-content a:hover {
     background-color: #d2e9ff;
     color: var(--dodger-blue)
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -89,10 +82,9 @@
     z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
     float: none;
-    color: black;
+    color: var(--usgs-blue);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
