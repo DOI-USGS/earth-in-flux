@@ -10,9 +10,9 @@
 
 <script setup>
 	import { useRouter } from 'vue-router';
-	import { computed } from 'vue'
+	import { computed } from 'vue';
 
-	import ChartCard from '@/components/ChartCard.vue'
+	import ChartCard from '@/components/ChartCard.vue';
 	import ChartGrid from '@/assets/content/ChartGrid.js';
 
 	const props = defineProps({
