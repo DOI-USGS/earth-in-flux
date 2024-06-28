@@ -25,7 +25,6 @@
 	// global variables
 	const router = useRouter()
 	const chartContent = ChartGrid.chartGridItems;
-
 	// set up filtered chart data as computed property
 	const filteredChartContent = computed(() => {
 		return props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)

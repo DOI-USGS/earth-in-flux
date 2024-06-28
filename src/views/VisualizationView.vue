@@ -50,7 +50,6 @@
   const projectBlurbText = computed(() => {
       return projectRoute.value ? text.projects[`${projectRoute.value.replace(/-/g, '')}`] : null
   });
-  
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 
   //watches router params for changes
