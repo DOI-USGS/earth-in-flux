@@ -9,9 +9,10 @@
 </template>
 
 <script setup>
-	import { useRouter } from 'vue-router'
+	import { useRouter } from 'vue-router';
+	import { computed } from 'vue';
 
-	import ChartCard from '@/components/ChartCard.vue'
+	import ChartCard from '@/components/ChartCard.vue';
 	import ChartGrid from '@/assets/content/ChartGrid.js';
 
 	const props = defineProps({
@@ -24,7 +25,10 @@
 	// global variables
 	const router = useRouter()
 	const chartContent = ChartGrid.chartGridItems;
-	const filteredChartContent = props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)
+	// set up filtered chart data as computed property
+	const filteredChartContent = computed(() => {
+		return props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)
+	});
 
 	function showSubPage(project, vizRoute) {
 		const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
