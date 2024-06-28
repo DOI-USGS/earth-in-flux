@@ -21,6 +21,18 @@
   font-family: sans-serif; /* This is fallback font for old browsers */
   font-family: var(--title-font);
   color: var(--color-title-text);
+  text-align: center;
+}
+.title-container {
+  max-width: 100%;
+  max-width: 70rem; /* 70 pixels on desktop */
+  margin: 20px auto 0 auto;
+  /* position: -webkit-sticky; /* For Safari */
+  /* position: sticky;  */
+  top: 68px;
+  /* z-index: 1000; */
+  background-color: #d2e9ff;
+  border-radius: 2px;
 }
 /* set color of links throughout */
 a {
@@ -38,4 +50,11 @@ a {
 .figure-container {
   max-width: 80vw;
   margin: 0 auto 0 auto;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .title-container {
+    top: 105px;
+  }
 }

@@ -29,7 +29,8 @@
 </template>
 
 <script setup>
-  import { useRoute } from 'vue-router'
+  import { useRoute } from 'vue-router';
+  import { watch } from 'vue';
   import { isMobile } from 'mobile-device-detect';
   import text from "@/assets/text/text.js";
   import ChartGrid from '@/components/ChartGrid.vue';
@@ -44,6 +45,12 @@
   const projectPage = projectRoute ? true : false
   const projectBlurbText = projectRoute ? text.projects[`${projectRoute.replace(/-/g, '')}`] : null
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
+
+  //watches router params for changes
+  watch(route, () => {
+    window.location.reload();
+  })
+
 </script>
 
 <style scoped>

@@ -3,6 +3,7 @@
     <WindowSize v-if="typeOfEnv === '-test build-'" />
     <HeaderUSWDSBanner v-if="typeOfEnv !== '-test build-'" />
     <HeaderUSGS />
+    <NavBar />
     <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
     <RouterView />
     <FooterUSGS />
@@ -18,6 +19,7 @@
   import WorkInProgressWarning from "@/components/WorkInProgressWarning.vue";
   import FooterUSGS from '@/components/FooterUSGS.vue';
   import { useWindowSizeStore } from '@/stores/WindowSizeStore';
+  import NavBar from '@/components/NavBar.vue';
 
   const windowSizeStore = useWindowSizeStore();
   const typeOfEnv = import.meta.env.VITE_APP_TIER;
