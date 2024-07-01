@@ -10,14 +10,17 @@ Once the dependencies have been installed, run `npm run dev` to run the site loc
 ## Notes for adding content to the site/editing draft content
 The master file controlling viz content is `'src/assets/content/ChartGrid.js'`. This controls the cards seen in the landing view, as well as the content used to populate the visualization subpages. Note that the page routing setup requires that very specific naming conventions be followed. In `'src/assets/content/ChartGrid.js'`, there is an object for each visualization. The critical parameter to note is `vizKey`, which is used to dynamically load the component, text, references, and authors content for each visualization subpage. The component associated with the visualization must be named `src/components/${vizKey}Viz.vue` (e.g., `'src/components/GlacierScanViz.vue'`), and the nested objects in `'src/assets/text/text.js'`, `'src/assets/text/references.js'`, and `'src/assets/text/authors.js'` (see notes, below), must be named to match `vizKey`.
 
-Page text setup
+### Page text setup
   * All page text should be added directly to `'src/assets/text/text.js'`. The master text object from that file is automatically imported in `'src/views/VisualizationView.vue'` and used to set the page title. The text object is also imported in `'src/components/SubPage.vue'` and nested objects containing text for each visualization page are dynamically passed to visualization subpages. The nested objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`
 
-References setup
+### References setup
   * All references for your viz should be added directly to `'src/assets/text/references.js'`. There is a object for each visualization. The content will be dynamically passed to visualization subpages. The objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`. See the `TEMPLATE` object for how to format different types of references.
 
-Authors setup
+### Authors setup
   * All references for your viz should be added directly to `'src/assets/text/authors.js'`. There is a object for each visualization. The content will be dynamically passed to visualization subpages. The objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`. See the `TEMPLATE` object for how to specify different authors. Note that we may need to refine how we list authors/describe their contributions.
+
+### Data Pipelines
+Any preparatory pipeline code should be placed in subdirectories in the main repo, e.g., the snakemake pipeline for the GlacierScan viz would go in a folder in the root directory named 'GlacierScan'. Please include a README.md in that subdirectory with instructions on how to run your code. Whatever your code generates (data, images, svgs), should be uploaded to s3 in your pipeline instead of committed to the repo. Hayley can help with that step as needed.
  
 ## General notes for development when using this template
 1. This website template uses Vue 3 and the `<script setup>` composition API syntax to build components, which requires less boilerplate. See the [`<script setup>` guide](https://vuejs.org/api/sfc-script-setup.html). Any top-level defined variables or imported components are directly available for use in the `<template>`. Components now no longer need to be explicitly named, and can be imported directly by name using the filename, e.g. `import HeaderUSWDSBanner from "@/components/HeaderUSWDSBanner.vue"`.
