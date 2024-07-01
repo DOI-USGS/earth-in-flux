@@ -8,7 +8,7 @@ Clone the repo. In the directory, run `npm install` to install the required modu
 Once the dependencies have been installed, run `npm run dev` to run the site locally from your browser.
 
 ## Notes for adding content to the site/editing draft content
-The master file controlling viz content is `'src/assets/content/ChartGrid.js'`. This controls the cards seen in the landing view, as well as the content used to populate the visualization subpages. Note that the page routing setup requires that very specific naming conventions be followed. In `'src/assets/content/ChartGrid.js'`, there is an object for each visualization. The critical parameter to note is `vizKey`, which is used to dynamically load the component and text content for each visualization subpage. The component associated with the visualization must be named `src/components/${vizKey}Viz.vue` (e.g., `'src/components/GlacierScanViz.vue'`), and the nested objects in `'src/assets/text/text.js'`, `'src/assets/text/references.js'`, and `'src/assets/text/authors.js'` (see notes, below), must be named to match `vizKey`.
+The master file controlling viz content is `'src/assets/content/ChartGrid.js'`. This controls the cards seen in the landing view, as well as the content used to populate the visualization subpages. Note that the page routing setup requires that very specific naming conventions be followed. In `'src/assets/content/ChartGrid.js'`, there is an object for each visualization. The critical parameter to note is `vizKey`, which is used to dynamically load the component, text, references, and authors content for each visualization subpage. The component associated with the visualization must be named `src/components/${vizKey}Viz.vue` (e.g., `'src/components/GlacierScanViz.vue'`), and the nested objects in `'src/assets/text/text.js'`, `'src/assets/text/references.js'`, and `'src/assets/text/authors.js'` (see notes, below), must be named to match `vizKey`.
 
 Page text setup
   * All page text should be added directly to `'src/assets/text/text.js'`. The master text object from that file is automatically imported in `'src/views/VisualizationView.vue'` and used to set the page title. The text object is also imported in `'src/components/SubPage.vue'` and nested objects containing text for each visualization page are dynamically passed to visualization subpages. The nested objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`
@@ -30,16 +30,16 @@ Authors setup
         * `'custom.css'` 
       * The contents of the `'src/assets/usgsHeaderAndFooter'` directory
     * In `'src/components/'`
-        * `'AuthorshipSection.vue'`
-        * `'ChartCard.vue'`
-        * `'ChartGrid.vue'`
+        * `'AuthorshipSection.vue'` - this should only be edited by the webdev team
+        * `'ChartCard.vue'` - this should only be edited by the webdev team
+        * `'ChartGrid.vue'` - this should only be edited by the webdev team
         * `'FooterUSGS.vue'`
         * `'HeaderUSGS.vue'`
         * `'HeaderUSWDSBanner.vue'`
-        * `'NavBar.vue'`
+        * `'NavBar.vue'` - this should only be edited by the webdev team
         * `'PreFooterCodeLinks.vue'`
-        * `'ReferencesSection.vue'`
-        * `'SubPage.vue'`
+        * `'ReferencesSection.vue'` - this should only be edited by the webdev team
+        * `'SubPage.vue'` - this should only be edited by the webdev team
         * `'VizSection.vue'` _(see caveat in 4., below)_
         * `'WindowSize.vue'`
         * `'WorkInProgressWarning.vue'`
