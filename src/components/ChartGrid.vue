@@ -2,7 +2,7 @@
     <div id="chartGrid" class="padded">
 		<ChartCard @click.enter="showSubPage(item.project, item.vizRoute)" v-for="(item, index) in filteredChartContent" :key="index"
 			:id="item.vizRoute"
-			:src="item.img_src"
+			:src="getThumb(item.img_src)"
 			:alt="item.alt"
 		/>
     </div>
@@ -34,6 +34,10 @@
 		const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
 		router.push({ name: 'SubPage', params: { projectRoute, vizRoute } })
 	}
+
+	function getThumb(pic) {
+        return 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/'+pic
+    }
 
 </script>
 

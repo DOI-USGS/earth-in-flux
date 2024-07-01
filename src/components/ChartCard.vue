@@ -1,6 +1,6 @@
 <template>
     <div class="chart">
-        <img :src="getThumb(src)" :alt="alt"/>
+        <img :src="src" :alt="alt"/>
     </div>
 </template>
 
@@ -16,9 +16,6 @@
         },
     })
 
-    function getThumb(pic) {
-        return 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/'+pic
-    }
 </script>
 
 <style scoped lang="scss">
