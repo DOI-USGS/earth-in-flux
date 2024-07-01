@@ -6,8 +6,20 @@ The climate chart gallery is a shared initiative between the USGS Water Mission 
 Clone the repo. In the directory, run `npm install` to install the required modules. This repository requires `npm v20` to run. If you are using a later version of `npm`, you may [try using `nvm` to manage multiple versions of npm](https://betterprogramming.pub/how-to-change-node-js-version-between-projects-using-nvm-3ad2416bda7e).
 
 Once the dependencies have been installed, run `npm run dev` to run the site locally from your browser.
+
+## Notes for adding content to the site/editing draft content
+The master file controlling viz content is `'src/assets/content/ChartGrid.js'`. This controls the cards seen in the landing view, as well as the content used to populate the visualization subpages. Note that the page routing setup requires that very specific naming conventions be followed. In `'src/assets/content/ChartGrid.js'`, there is an object for each visualization. The critical parameter to note is `vizKey`, which is used to dynamically load the component and text content for each visualization subpage. The component associated with the visualization must be named `src/components/${vizKey}Viz.vue` (e.g., `'src/components/GlacierScanViz.vue'`), and the nested objects in `'src/assets/text/text.js'`, `'src/assets/text/references.js'`, and `'src/assets/text/authors.js'` (see notes, below), must be named to match `vizKey`.
+
+Page text setup
+  * All page text should be added directly to `'src/assets/text/text.js'`. The master text object from that file is automatically imported in `'src/views/VisualizationView.vue'` and used to set the page title. The text object is also imported in `'src/components/SubPage.vue'` and nested objects containing text for each visualization page are dynamically passed to visualization subpages. The nested objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`
+
+References setup
+  * All references for your viz should be added directly to `'src/assets/text/references.js'`. There is a object for each visualization. The content will be dynamically passed to visualization subpages. The objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`. See the `TEMPLATE` object for how to format different types of references.
+
+Authors setup
+  * All references for your viz should be added directly to `'src/assets/text/authors.js'`. There is a object for each visualization. The content will be dynamically passed to visualization subpages. The objects must be named to match the `vizKey` specified for each viz in `ChartGrid.js`. See the `TEMPLATE` object for how to specify different authors. Note that we may need to refine how we list authors/describe their contributions.
  
-## Notes for development when using this template
+## General notes for development when using this template
 1. This website template uses Vue 3 and the `<script setup>` composition API syntax to build components, which requires less boilerplate. See the [`<script setup>` guide](https://vuejs.org/api/sfc-script-setup.html). Any top-level defined variables or imported components are directly available for use in the `<template>`. Components now no longer need to be explicitly named, and can be imported directly by name using the filename, e.g. `import HeaderUSWDSBanner from "@/components/HeaderUSWDSBanner.vue"`.
 2. Please do not delete or make any modifications to the following components/files:
     * The `node_modules` directory
@@ -63,15 +75,12 @@ Once the dependencies have been installed, run `npm run dev` to run the site loc
     * `'vite.config.mjs'`. 
 5. The template component `'src/components/VizSection.vue'` is designed to be flexible, but may require additional customization to work for your viz. Editing them is fine, but note that `'src/components/ReferencesSection.vue'` and `'src/components/AuthorshipSection.vue'` make use of the `'VizSection.vue'` template, so please do not make breaking changes. If you think your edits could be useful in other sites, please submit a MR to the `vue3-template` repo.
 6. Development conventions/best practices
-    * Use existing folder structure for assets - e.g., images in `'src/assets/images'`, svgs in `'src/assets/svgs'`.
-    * Place data files (e.g., `.csv` or `.json` files) in the `public` directory.
+    * Upload data files (e.g., `.csv` or `.json` files) svgs and images to s3 - don't commit them to the repository.
     * Page styling with `css`
       * Import all fonts and set **global css color variables** and body and html element styling (including **global font sizing**) in `'src/assets/css/base.css'`
         * Note that we use a [fixed `:root` font size of `62.5%`](https://blog.hubspot.com/website/css-rem#:~:text=By%20setting%20the%20root%20font,%2C%20and%202.0rem%2C%20respectively.), and all `css` font sizes should be specified in units of `rem`, where `1 rem` is equivalent `10 px`.
       * Use `'main.css'` for global page content styling that is exclusive of the USGS header and footer and is not component-specific (e.g., defining styles for standard text or figure container `<div>` elements, styling all section titles, etc.). For all colors, remember to reference color variables set in `'src/assets/css/base.css'`, e.g., `color: var(--color-title-text);`
       * Put component-specific styling in the `<style>` tags of specific components. Again, for all colors, remember to reference color variables set in `'src/assets/css/base.css'`, e.g., `color: var(--color-title-text);`
-    * Page text setup
-      * All page text should be added directly to `'src/assets/text/text.js'`. The master text object from that file is automatically imported in `'src/views/VisualizationView.vue'` and used to set the page title and pass content to populate the section titles (which make use of the 'SectionTitle.vue' template). In addition, nested objects containing text for each component are passed to each component as a prop, and then accessed in each component to place the text into the `'VizSection.vue'` template component, or directly into the component, if not using the `'VizSection.vue'` template. With this set up, all of the page text, including titles, section title image alt text, and page text is in a single .js file, which makes it easier to edit, particularly by a team member who is not familiar with Vue.
     * Class and ID naming conventions
       * TBD
       * Do not use spaces in class or ID names
