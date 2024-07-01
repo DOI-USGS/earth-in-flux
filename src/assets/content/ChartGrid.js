@@ -7,7 +7,7 @@ export default {
             project: 'Findex',
             vizKey: 'ThreatBumpChart',
             vizRoute: 'inland-fish-threats',
-            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/ThreatBumpChart_thumbnail.png',
+            img_src: 'ThreatBumpChart_thumbnail.png',
             alt: ''
         },        
         {
@@ -15,7 +15,7 @@ export default {
             project: 'Findex',
             vizKey: 'Viz2',
             vizRoute: 'viz-2',
-            img_src: 'src/assets/images/sampleChart.PNG',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: ''
         },       
         {
@@ -23,7 +23,7 @@ export default {
             project: 'Findex',
             vizKey: 'Viz3',
             vizRoute: 'viz-3',
-            img_src: 'src/assets/images/sampleChart.PNG',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: ''
         },         
         {
@@ -31,7 +31,7 @@ export default {
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
-            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/GlacierScan_thumbnail.png',
+            img_src: 'GlacierScan_thumbnail.png',
             alt: ''
         },       
         {
@@ -39,7 +39,7 @@ export default {
             project: 'Fish as Food',
             vizKey: 'Viz5',
             vizRoute: 'viz-5',
-            img_src: 'src/assets/images/sampleChart.PNG',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: ''
         },
         {
@@ -47,7 +47,7 @@ export default {
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaCore',
             vizRoute: 'beaufort-sea-ice-coring',
-            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/BeaufortSeaCore_thumbnail.PNG',
+            img_src: 'BeaufortSeaCore_thumbnail.PNG',
             alt: ''
         },  
         {
@@ -55,7 +55,7 @@ export default {
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
-            img_src: 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/BeaufortSeaSpecies_thumbnail.PNG',
+            img_src: 'BeaufortSeaSpecies_thumbnail.PNG',
             alt: ''
         },   
         {
@@ -63,7 +63,7 @@ export default {
             project: 'Beaufort Sea',
             vizKey: 'Viz8',
             vizRoute: 'viz-8',
-            img_src: 'src/assets/images/sampleChart.PNG',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: ''
         }   
     ]
