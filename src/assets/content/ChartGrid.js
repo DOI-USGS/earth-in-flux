@@ -8,7 +8,8 @@ export default {
             vizKey: 'ThreatBumpChart',
             vizRoute: 'inland-fish-threats',
             img_src: 'ThreatBumpChart_thumbnail.png',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Inland fisheries are threatened)'
         },        
         {
             title: 'Viz 2',
@@ -16,7 +17,8 @@ export default {
             vizKey: 'Viz2',
             vizRoute: 'viz-2',
             img_src: 'Placeholder_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Viz 2)'
         },       
         {
             title: 'Viz 3',
@@ -24,7 +26,8 @@ export default {
             vizKey: 'Viz3',
             vizRoute: 'viz-3',
             img_src: 'Placeholder_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Viz 3)'
         },         
         {
             title: 'Glacier/Topography D3 Cross-Section Scan',
@@ -32,7 +35,8 @@ export default {
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'GlacierScan_thumbnail.png',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Glacier/Topography D3 Cross-Section Scan)'
         },       
         {
             title: 'Viz 5',
@@ -40,7 +44,8 @@ export default {
             vizKey: 'Viz5',
             vizRoute: 'viz-5',
             img_src: 'Placeholder_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Viz 5)'
         },
         {
             title: 'Beaufort Sea Ice Coring',
@@ -48,7 +53,8 @@ export default {
             vizKey: 'BeaufortSeaCore',
             vizRoute: 'beaufort-sea-ice-coring',
             img_src: 'BeaufortSeaCore_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Beaufort Sea Ice Coring)'
         },  
         {
             title: 'Beaufort Sea Species',
@@ -56,7 +62,8 @@ export default {
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
             img_src: 'BeaufortSeaSpecies_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Beaufort Sea Species)'
         },   
         {
             title: 'Viz 8',
@@ -64,7 +71,8 @@ export default {
             vizKey: 'Viz8',
             vizRoute: 'viz-8',
             img_src: 'Placeholder_thumbnail.PNG',
-            alt: ''
+            alt: '',
+            description: 'Description or key takeaways from this Viz (Viz 8)'
         }   
     ]
 };
