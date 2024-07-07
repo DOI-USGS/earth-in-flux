@@ -1,0 +1,482 @@
+---
+title: "Beaufort Sea chart for Climate Chart Gallery"
+author: "Althea Archer"
+date: "2024-05-22"
+output: html_document
+---
+
+
+
+## Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+Define libraries here.
+
+```{r libraries, warning=FALSE, message=FALSE}
+# Load libraries
+library(tidyverse) # includes ggplot
+library(readr) # best for reading and writing csvs
+library(sbtools)
+library(readxl)
+
+# These are used for the layout of the viz
+library(cowplot) # for laying out the final plot
+library(sysfonts) # for text editing
+library(showtext) # for adding in google fonts
+library(magick) # for adding logo
+```
+
+## Load files
+
+Sciencebase:
+
+> Gemery, L., 2021, Data Release to Multi-proxy record of ocean-climate variability during the last 2 millennia on the Mackenzie Shelf, Beaufort Sea (2013): U.S. Geological Survey data release, https://doi.org/10.5066/P9SRRW6T.
+
+Original manuscript: 
+
+> Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., and Schwartz, V., 2023, Multi-proxy record of ocean-climate variability during the last two millennia on the Mackenzie Shelf, Beaufort Sea: Micropaleontology, v. 69, no. 3, p. 345–360, https://doi.org/10.47894/mpal.69.3.04.
+
+```{r load}
+sbtools::item_file_download(sb_id = "6197a410d34eb622f692ce0e",
+                            names = "Data release HLY1302 IP135359.xlsx",
+                            destinations = "in/Data release HLY1302 IP135359.xlsx",
+                            overwrite_file = FALSE)
+
+raw_pct_abundance <- read_excel(path = "in/Data release HLY1302 IP135359.xlsx", 
+                                sheet = "T2 Ost MC29bin5G30bin10J32bin20",
+                                skip = 1, 
+                                range = cell_cols(c(7, 70:131)))
+
+forams_raw <- read_excel(path = "in/HLY1302 faunal bin foraminifera.xlsx", 
+                                sheet = "HLY1302 FORAM counts as valu",
+                                range = cell_cols(c(7, 70:131))
+                         ) 
+
+```
+
+## Get data ready for plotting
+
+This next section is for doing any pre-processing steps, data joins, etc, to get your data ready for plotting with ggplot. Remember that most of the time, ggplot prefers data in a "wide" format.
+
+If your processing is expensive or involved, feel free to put in into a separate script or pipeline and read in the processed output here.
+
+```{r processing}
+# Clean up data (drop unneeded columns, rename columns)
+clean_data <- raw_pct_abundance |> 
+  select("Calendar AGE",
+         "Kotoracythere arctoborealis Schornikov and Zenina 2006...90",
+         "Paracyprideis pseudopunctillata Swain 1963...93") |>
+  rename(K_arctoborealis = "Kotoracythere arctoborealis Schornikov and Zenina 2006...90",
+         P_pseudopunctillata = "Paracyprideis pseudopunctillata Swain 1963...93",
+         YEAR = "Calendar AGE") |>
+  mutate(other_species = 100 - (K_arctoborealis + P_pseudopunctillata),
+         total_pct = K_arctoborealis + P_pseudopunctillata + other_species,
+         YEAR = round(YEAR, 0))
+
+long_pct_data <- clean_data |>
+  pivot_longer(cols = c(K_arctoborealis, P_pseudopunctillata, other_species),
+               names_to = "species")
+
+# clean up forams
+foram_clean_data <- forams_raw |> 
+  select("calendar yr",
+         "Spiroplectammina biformis...34",
+         "Spiroplectammina earlandi...35",
+         "E. excavatum clavatum...28") |>
+  rename(S_biformis = "Spiroplectammina biformis...34",
+         S_earlandi = "Spiroplectammina earlandi...35",
+         E_excavatum = "E. excavatum clavatum...28",
+         YEAR = "calendar yr") |>
+  mutate(
+    S_spp = S_biformis + S_earlandi,
+    other_species = 100 - (S_spp + E_excavatum),
+    total_pct = S_spp + E_excavatum + other_species,
+    YEAR = round(YEAR, 0)) |>
+  drop_na(YEAR)
+
+foram_long_pct_data <- foram_clean_data |>
+  pivot_longer(cols = c(S_spp, E_excavatum, other_species),
+               names_to = "species")
+```
+
+## Set up main plot
+
+```{r plotting}
+# Load some custom fonts and set some custom settings
+title_font <- "Lora"
+sysfonts::font_add_google(title_font)
+supporting_font <- "Source Sans Pro"
+sysfonts::font_add_google(supporting_font)
+showtext::showtext_opts(dpi = 300, regular.wt = 200, bold.wt = 700)
+showtext::showtext_auto(enable = TRUE)
+title_font_size <- 55
+explainer_font_size <- 18
+
+# Define colors
+background_color <- "#ffffff"
+font_color <- "#0A1927"
+  
+# Define margin for cowplotting
+margin_cowplot <- 0.04
+
+# The background canvas for your viz on mobile
+mobile_height <- 16
+mobile_width <- 9
+canvas_mobile <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = mobile_width, height = mobile_height,
+  gp = grid::gpar(fill = background_color, alpha = 1, col = background_color)
+)
+
+# The background canvas for your viz on instagram
+square_dim <- 9
+canvas_square <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = square_dim, height = square_dim,
+  gp = grid::gpar(fill = background_color, alpha = 1, col = background_color)
+)
+
+# Load in USGS logo (black and white logos available)
+usgs_logo <- magick::image_read("../usgs_logo_black.png")
+# usgs_logo <- magick::image_read("../usgs_logo_white.png") 
+
+# Main plot
+(main_plot <- ggplot(long_pct_data,
+                     aes(fill = species,
+                         y = value,
+                         x = YEAR)) +
+    annotate(geom = "rect", 
+             xmin = 800, xmax = 1200,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1300, xmax = 1600,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1900, xmax = 2000,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    geom_bar(position = "stack", stat = "identity",
+             width = 15, color = NA) +
+    coord_flip() +
+    theme_minimal() +
+    theme(legend.position = "top",
+          legend.title = element_blank()) +
+    xlim(c(2000,0)) +
+    scale_fill_manual(values = c("#Ecb05f", "#FDEFDF", "#3C475A"))
+ )
+ggsave("out/long_time.png",
+       height = 20, width = 4)
+
+(foram_main_plot <- ggplot(foram_long_pct_data,
+                     aes(fill = fct_rev(species),
+                         y = value,
+                         x = YEAR)) +
+    annotate(geom = "rect", 
+             xmin = 800, xmax = 1200,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1300, xmax = 1600,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1900, xmax = 2000,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    geom_bar(position = "stack", stat = "identity",
+             width = 15, color = NA) +
+    coord_flip() +
+    theme_minimal() +
+    theme(legend.position = "top",
+          legend.title = element_blank()) +
+    xlim(c(2000,0)) +
+    ylim(c(0,100)) +
+    scale_fill_manual(values = c("#Ecb05f", "#FDEFDF", "#3C475A"),
+                      breaks = c("S_spp", "other_species", "E_excavatum"))
+ )
+ggsave("out/foram_long_time.png",
+       height = 20, width = 4)
+
+# (k_arcto <- ggplot(data = clean_data,
+#                    aes(x = YEAR,
+#                        y = K_arctoborealis)) +
+#     geom_point() +
+#     geom_smooth(method = "lm"))
+# 
+# (P_pseudo <- ggplot(data = clean_data,
+#                     aes(x = YEAR,
+#                         y = P_pseudopunctillata)) +
+#     geom_point() +
+#     geom_smooth(method = "lm"))
+# 
+# # Main plot: forams
+# (foram_main_plot <- ggplot(foram_long_pct_data,
+#                      aes(fill = species,
+#                          y = value,
+#                          x = (YEAR))) +
+#     geom_bar(position = "stack", stat = "identity") +
+#     coord_flip()
+#  )
+# 
+# (s_spp <- ggplot(data = foram_clean_data,
+#                    aes(x = YEAR,
+#                        y = S_spp)) +
+#     geom_point() +
+#     geom_smooth(method = "lm"))
+# 
+# (E_excavatum <- ggplot(data = foram_clean_data,
+#                     aes(x = YEAR,
+#                         y = E_excavatum)) +
+#     geom_point() +
+#     geom_smooth(method = "lm"))
+
+(S_spp <- ggplot(data = foram_clean_data,
+                    aes(x = YEAR,
+                        y = S_spp)) +
+    annotate(geom = "rect", 
+             xmin = 800, xmax = 1200,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1300, xmax = 1600,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1900, xmax = 2000,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    geom_point(color = "#Ecb05f") +
+    geom_smooth(color = "#Ecb05f", fill = "#fdefdf",
+                alpha = 0.5) +
+    ggtitle("Agglutinated Species (S. spp)") +
+    ylim(c(0,100))) +
+  ylab("% Abundance") +
+    theme_minimal() +
+    theme(legend.position = "top",
+          legend.title = element_blank())
+
+ggsave("out/agglutinated_Trend.png",
+       height = 4, width = 6)
+
+(K_arcto <- ggplot(data = clean_data,
+                    aes(x = YEAR,
+                        y = K_arctoborealis)) +
+    annotate(geom = "rect", 
+             xmin = 800, xmax = 1200,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1300, xmax = 1600,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    annotate(geom = "rect", 
+             xmin = 1900, xmax = 2000,
+             ymin = 0, ymax = 100,
+             fill = "grey80", alpha = 0.37) +
+    geom_point(color = "#Ecb05f") +
+    geom_smooth(color = "#Ecb05f", fill = "#fdefdf",
+                alpha = 0.5, method = "lm") +
+    ggtitle("K. arctoborealis") +
+    #ylim(c(0,100))) +
+  ylab("% Abundance") +
+    theme_minimal() +
+    theme(legend.position = "top",
+          legend.title = element_blank()))
+
+ggsave("out/K-arcto_Trend.png",
+       height = 4, width = 6)
+
+```
+
+
+## Principal component plots
+
+```{r}
+
+library(factoextra)
+
+pca_data <- raw_pct_abundance[,65:123] 
+names(pca_data) <- substr(names(pca_data), 1, 20)
+rownames(pca_data) <- round(raw_pct_abundance$`Calendar AGE`, 0)
+
+res.pca <- prcomp(pca_data, retx = TRUE)
+
+# Graph of individuals
+fviz_pca_ind(res.pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+# Graph of variables
+fviz_pca_var(res.pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+
+# Both variables and individuals
+fviz_pca_biplot(res.pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+                )
+
+# forams
+fpca_data <- forams_raw[c(1:25, 27:120),c(24:42)] 
+names(fpca_data) <- substr(names(fpca_data), 1, 20)
+rownames(fpca_data) <- round(forams_raw$`calendar yr`[c(1:25, 27:120)], 1)
+
+fres.pca <- prcomp(fpca_data, retx = TRUE)
+
+# Graph of individuals
+fviz_pca_ind(fres.pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+# Graph of variables
+fviz_pca_var(fres.pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+
+# Both variables and individuals
+fviz_pca_biplot(fres.pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+                )
+```
+
+## Produce final plot - MOBILE
+
+Here, use `cowplot` and `ggsave` to create the final viz. This template includes adding the USGS logo, title, text, etc.
+
+```{r cowplot_mobile, fig.width = 9, fig.height = 16}
+ggdraw(ylim = c(0,1), # 0-1 scale makes it easy to place viz items on canvas
+       xlim = c(0,1)) +
+  # a background
+  draw_grob(canvas_mobile,
+            x = 0, y = 1,
+            height = mobile_height, 
+            width = mobile_width,
+            hjust = 0, 
+            vjust = 1) +
+  # the main plot
+  draw_plot(main_plot,
+            x = margin_cowplot,
+            y = 0.1,
+            height = 0.8,
+            width = 0.92) +
+  # explainer text
+  draw_label("Explainer text\nin multiple\nlines",
+             fontfamily = supporting_font,
+             x = 1 - margin_cowplot,   
+             y = margin_cowplot,
+             size = explainer_font_size,
+             hjust = 1,
+             vjust = 0,
+             color = font_color)+
+  # Title
+  draw_label("Title",
+             x = margin_cowplot,
+             y = 1 - margin_cowplot,
+             hjust = 0,
+             vjust = 1,
+             lineheight = 0.75,
+             fontfamily = title_font,
+             fontface = 'bold',
+             color = font_color,
+             size = title_font_size) +
+  # Add logo
+  draw_image(usgs_logo, 
+             x = margin_cowplot,
+             y = margin_cowplot,
+             width = 0.2, 
+             hjust = 0, 
+             vjust = 0, 
+             halign = 0, 
+             valign = 0)
+
+# Save the final image
+ggsave(filename = "out/yourproject_yourname_mobile.png", 
+       width = mobile_width, height = mobile_height, dpi = 300)
+```
+
+## Produce final plot - SQUARE
+
+Here, use `cowplot` and `ggsave` to create the final viz. This template includes adding the USGS logo, title, text, etc.
+
+```{r cowplot_square, fig.width = 9, fig.height = 9}
+ggdraw(ylim = c(0,1), # 0-1 scale makes it easy to place viz items on canvas
+       xlim = c(0,1)) +
+  # a background
+  draw_grob(canvas_square,
+            x = 0, y = 1,
+            height = square_dim, width = square_dim,
+            hjust = 0, vjust = 1) +
+  # the main plot
+  draw_plot(main_plot,
+            x = margin_cowplot,
+            y = 0.11,
+            height = 0.78,
+            width = 0.92) +
+  # explainer text
+  draw_label("Explainer text\nin multiple lines",
+             fontfamily = supporting_font,
+             x = 1 - margin_cowplot,   
+             y = margin_cowplot,
+             size = explainer_font_size,
+             hjust = 1,
+             vjust = 0,
+             color = font_color)+
+  # Title
+  draw_label("Title",
+             x = margin_cowplot,
+             y = 1 - margin_cowplot,
+             hjust = 0,
+             vjust = 1,
+             lineheight = 0.75,
+             fontfamily = title_font,
+             fontface = 'bold',
+             color = font_color,
+             size = title_font_size) +
+  # Add logo
+  draw_image(usgs_logo, 
+             x = margin_cowplot,
+             y = margin_cowplot,
+             width = 0.15, 
+             hjust = 0, vjust = 0, 
+             halign = 0, valign = 0)
+
+# Save the final image
+ggsave(filename = "out/yourproject_yourname_square.png", 
+       width = square_dim, height = square_dim, dpi = 300)
+```
+
+## Supporting information
+
+### Caption with key message relating this viz
+
+1.  Key takeaways here (1-2 sentences each)
+
+### Data source(s)
+
+Data sources here
+
+### Alt text
+
+Alt text for visualization here
+
+### Authors
+
+List authors here
