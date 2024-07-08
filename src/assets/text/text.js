@@ -1,5 +1,5 @@
 export default {
-    pageTitle: "Climate chart gallery",
+    pageTitle: "Earth is changing...",
     projects: {
         // keys must match project routes (with '-' replaced with '')
         findex: {
