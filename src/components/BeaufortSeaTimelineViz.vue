@@ -5,10 +5,7 @@
         :fig-caption="false"
     >
         <!-- HEADING -->
-        <template #heading>
-            <h2>
-                This is the Viz 8 viz!
-            </h2>
+
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
