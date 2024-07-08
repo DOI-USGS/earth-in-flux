@@ -67,6 +67,11 @@ list(
     values = tibble(years = c(100, 500, 1000, 1500, 2000)),
     tar_target(p3_assemblage_plots,
                plot_assemblages(data_in = p2_decade_abundance_long, year = years))),
+  tar_target(
+    p3_viz_thumbnail_png,
+    ggsave(p3_assemblage_plots_2000, file = "out/BeaufortSeaTimeline_thumbnail.PNG",
+           width = 4, height = 4)
+  ),
   
   # Create timeline plot as grob
   tar_target(p3_timeline_plot,

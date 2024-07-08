@@ -61,18 +61,18 @@ export default {
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
-            img_src: 'BeaufortSeaSpecies_thumbnail.PNG',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: '',
             description: 'Description or key takeaways from this Viz (Beaufort Sea Species)'
         },   
         {
-            title: 'Viz 8',
+            title: 'Beaufort Sea Timeline',
             project: 'Beaufort Sea',
-            vizKey: 'Viz8',
-            vizRoute: 'viz-8',
-            img_src: 'Placeholder_thumbnail.PNG',
+            vizKey: 'BeaufortSeaTimeline',
+            vizRoute: 'beaufort-sea-timeline',
+            img_src: 'BeaufortSeaTimeline_thumbnail.PNG',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Viz 8)'
+            description: 'Description or key takeaways from this Viz (Beaufort Sea Timeline)'
         }   
     ]
 };

@@ -16,7 +16,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/out/BeaufortSeaTimeline.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSeaTimeline.png">
                 </figure>
             </div>
         </template>
