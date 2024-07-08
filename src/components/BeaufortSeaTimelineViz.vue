@@ -5,8 +5,6 @@
         :fig-caption="false"
     >
         <!-- HEADING -->
-
-        </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
         </template>
