@@ -40,4 +40,3 @@ Overall method to create this viz:
 1. Create an RStudio project in the `beaufortSea` folder
 2. Download data sources and store them in the `beaufortSea/in` folder
 3. Run `targets::tar_make()` to create the visualization
-4. View website build with `npm install` and `npm run dev` to view the timeline png in the website
