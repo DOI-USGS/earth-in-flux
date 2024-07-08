@@ -6,7 +6,9 @@ options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "readxl",
                             "packcircles",
-                            "cowplot"))
+                            "cowplot",
+                            "showtext",
+                            "sysfonts"))
 
 source("src/fetch_data.R")
 source("src/prep_data.R")
@@ -68,6 +70,18 @@ list(
   # Create timeline plot as grob
   tar_target(p3_timeline_plot,
              plot_timeline(data_in = p2_decade_abundance_long)
-  )
+  ),
+  
+  
+  ################ COMPOSE PLOT FOR WEBSITE #############
+  
+  tar_target(p3_visualization_png,
+             compose_timeline(timeline_grob = p3_timeline_plot,
+                              assemblage_grob_100 = p3_assemblage_plots_100,
+                              assemblage_grob_500 = p3_assemblage_plots_500,
+                              assemblage_grob_1000 = p3_assemblage_plots_1000,
+                              color_scheme = color_scheme,
+                              png_out = "out/BeaufortSeaTimeline.png"))
+  
 )
 

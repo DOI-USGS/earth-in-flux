@@ -14,6 +14,11 @@
         <template #aboveExplanation>
         </template>
         <template #figures>
+            <div class="single maxWidth">
+                <figure>
+                    <img src="../../beaufortSea/out/BeaufortSeaTimeline.png">
+                </figure>
+            </div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>

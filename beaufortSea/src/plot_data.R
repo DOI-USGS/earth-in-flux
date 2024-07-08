@@ -17,7 +17,7 @@ plot_assemblages <- function(data_in, year){
                  colour = "grey80", linewidth = 0.3) +
     # Add text in the center of each bubble + control its size
     geom_text(data = year_join, aes(x, y, size = mean_abundance, label = name)) +
-    scale_size_continuous(range = c(1,6)) +
+    scale_size_continuous(range = c(1,3)) +
     scale_fill_identity() +
     # General theme:
     theme_void() + 
@@ -33,6 +33,5 @@ plot_timeline <- function(data_in){
     scale_fill_identity() +
     scale_y_reverse() +
     theme_minimal() +
-    ylab("Year") +
-    xlab("Relative Abundance")
+    theme(axis.title = element_blank())
 }
