@@ -26,3 +26,39 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*/_targets/*
+*.Rproj
+*/_targets/
+*/scratch.R
+#Python
+*/.ipynb_checkpoints/
+.DS_Store
+# Large files
+*.ai
+*.psd
+*.nc
+examples/pydrograph/
+# Subdirectory specific files
+# IF NEED TO COMMIT SPECIFIC INPUT FILES,
+# ADD AS USERS SUBMIT CODE IN SUBDIRECTORIES
+*/in/*
+*/out/*
+*.html
+# allow empty files to be committed
+!*/in/.empty
+!*/out/.empty
+# Spatial
+*.cpg
+*.dbf
+*.fix
+*.prj
+*.shp
+*.shx
+# Associated Journal articles
+33670_articles_article_file_2322.pdf
