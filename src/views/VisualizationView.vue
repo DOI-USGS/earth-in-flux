@@ -2,9 +2,12 @@
   <section id="visualization-container">
     <div class="page-content">
       <div class="text-container" :class="{ mobile: mobileView}">
-        <h1 class = 'title'>
+        <h1 class="title">
           {{ text.pageTitle }}
         </h1>
+        <h2 v-if="projectPage" class="subtitle">
+          {{ projectBlurbText.title }} project visualizations
+        </h2>
       </div>
       <ChartGrid :view="currentView"/>
       <!---VizSection-->
