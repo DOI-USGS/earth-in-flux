@@ -65,6 +65,7 @@
 </script>
 
 <style scoped>
+  /* https://css-tricks.com/snippets/css/typewriter-effect/ */
   .typewriter h1 {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid var(--usgs-blue); /* The typwriter cursor */
