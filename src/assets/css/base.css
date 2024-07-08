@@ -6,7 +6,7 @@
 :root {
   --white: #ffffff;
   --white-soft: #F0F0F0;
-
+  --light-grey: #F8F8F8;
   --black-soft: #151515;
   --dodger-blue: #1e90ff;
   --medium-grey: #B5B5B5;
@@ -24,7 +24,7 @@
 
 /* Declare color variables */
 :root {
-  --color-background: var(--white);
+  --color-background: var(--light-grey);
   --color-text: var(--black-soft);
   --color-title-text: var(--usgs-blue);
   --color-overlay: var(--black-soft);
