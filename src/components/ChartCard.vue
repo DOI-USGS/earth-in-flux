@@ -50,6 +50,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 700;
     }
 
     .chart:hover .overlay {
