@@ -25,7 +25,7 @@
 }
 .subtitle {
   font-family: sans-serif; /* This is fallback font for old browsers */
-  font-family: var(--title-font);
+  font-family: var(--default-font);
   color: var(--color-title-text);
   text-align: center;
 }
