@@ -2,9 +2,14 @@
   <section id="visualization-container">
     <div class="page-content">
       <div class="text-container" :class="{ mobile: mobileView}">
-        <h1 class = 'title'>
-          {{ text.pageTitle }}
-        </h1>
+        <div class="typewriter">
+          <h1 class="title">
+            {{ text.pageTitle }}
+          </h1>
+        </div>
+        <h2 v-if="projectPage" class="subtitle">
+          {{ projectBlurbText.title }} project visualizations
+        </h2>
       </div>
       <ChartGrid :view="currentView"/>
       <!---VizSection-->
@@ -60,4 +65,27 @@
 </script>
 
 <style scoped>
+  /* https://css-tricks.com/snippets/css/typewriter-effect/ */
+  .typewriter h1 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid var(--usgs-blue); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .9s step-end infinite;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--usgs-blue); }
+  }
 </style>

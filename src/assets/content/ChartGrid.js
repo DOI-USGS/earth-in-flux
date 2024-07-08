@@ -9,7 +9,7 @@ export default {
             vizRoute: 'inland-fish-threats',
             img_src: 'ThreatBumpChart_thumbnail.png',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Inland fisheries are threatened)'
+            description: 'Inland fisheries are threatened'
         },        
         {
             title: 'Viz 2',

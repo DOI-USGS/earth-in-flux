@@ -37,6 +37,10 @@
         text: { type: Object }
     })
 
+    // global variables
+    const bodyCSS = window.getComputedStyle(document.body);
+    const backgroundColor = bodyCSS.getPropertyValue('--color-background');
+
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
@@ -48,8 +52,14 @@
                 svgGrid.appendChild(xml.documentElement);
                 
                 // add id to svg
-                d3.select("#cross_section-grid-container").select("svg")
+                const svg = d3.select("#cross_section-grid-container").select("svg")
                     .attr("id", "cross_section-svg")
+
+                // style to match background color
+                svg.select('#patch_1').select('path')
+                    .style("fill", backgroundColor)
+                svg.select('#patch_3').select('path')
+                    .style("fill", backgroundColor)
 
                 // add interactivity
                 addInteractions();

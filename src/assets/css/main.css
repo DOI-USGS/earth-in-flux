@@ -23,6 +23,12 @@
   color: var(--color-title-text);
   text-align: center;
 }
+.subtitle {
+  font-family: sans-serif; /* This is fallback font for old browsers */
+  font-family: var(--default-font);
+  color: var(--color-title-text);
+  text-align: center;
+}
 .title-container {
   max-width: 100%;
   max-width: 70rem; /* 70 pixels on desktop */

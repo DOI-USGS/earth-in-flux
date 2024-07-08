@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
 /* semantic color variables for this project */
 /* Define colors */
 :root {
   --white: #ffffff;
   --white-soft: #F0F0F0;
-
+  --light-grey: #F8F8F8;
   --black-soft: #151515;
   --dodger-blue: #1e90ff;
   --medium-grey: #B5B5B5;
@@ -18,13 +18,13 @@
 
   font-size: 62.5%;
 
-  --title-font: Roboto Slab;
+  --title-font: Noto Sans Mono;
   --default-font: Source Sans Pro;
 }
 
 /* Declare color variables */
 :root {
-  --color-background: var(--white);
+  --color-background: var(--light-grey);
   --color-text: var(--black-soft);
   --color-title-text: var(--usgs-blue);
   --color-overlay: var(--black-soft);

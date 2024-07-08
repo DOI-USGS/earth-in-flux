@@ -8,6 +8,7 @@
                 <RouterLink :to="{ path: '/beaufort-sea' }">Beaufort Sea</RouterLink>
                 <RouterLink :to="{ path: '/fire-in-ice' }">Fire in Ice</RouterLink>
                 <RouterLink :to="{ path: '/findex' }">Findex</RouterLink>
+                <RouterLink :to="{ path: '/fish-as-food' }">Fish as Food</RouterLink>
             </div>
         </div>
             <RouterLink :to="{ path: '/about' }">About</RouterLink>
