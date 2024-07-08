@@ -29,6 +29,7 @@ join_abundance <- function(ostracode_in, foram_in, color_long){
                             genus == "Cassidulina" ~ "Cassidulina",
                             genus == "Elphidium" ~ "Elphidium",
                             genus == "Kotoracythere" ~ "Kotoracythere",
+                            genus == "Paracyprideis" ~ "Paracyprideis",
                             type == "Ostracode" ~ "Ostracode",
                             type == "Foram" ~ "Foram",
                             TRUE ~ NA)) 

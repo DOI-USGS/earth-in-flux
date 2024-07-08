@@ -19,6 +19,7 @@ source("src/compose_plot.R")
 color_scheme = tibble(
   Cassidulina = "#3c475a", # declines, Foram
   Elphidium = "#697a93", # declines, Foram
+  Paracyprideis = "#b4cfd1", # commonly dominant, except LIA
   Ostracode = "#e7f0e7",
   Foram = "#e7f0e7",
   Spiroplectammina = "#dd605a", # increases, Foram
@@ -26,7 +27,7 @@ color_scheme = tibble(
 )
 # Mutate color scheme to long
 color_long <- pivot_longer(color_scheme, cols = everything(), values_to = "hexcode") |>
-  mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#e7f0e7", "#c49051", "#dd605a")))
+  mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#b4cfd1","#e7f0e7", "#c49051", "#dd605a")))
 
 list(
   
