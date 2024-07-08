@@ -31,7 +31,7 @@ export default {
             heading: "How do USGS scientists collect ice cores?"
         },
         BeaufortSeaSpecies: {
-            heading: "Species assemblages as proxies"
+            heading: "Reconstructing past and present climates with Arctic microfossils"
         }
     }
 }
