@@ -70,7 +70,7 @@ list(
   tar_target(
     p3_viz_thumbnail_png,
     ggsave(p3_assemblage_plots_2000, file = "out/BeaufortSeaTimeline_thumbnail.PNG",
-           width = 4, height = 4)
+           width = 3, height = 3)
   ),
   
   # Create timeline plot as grob
