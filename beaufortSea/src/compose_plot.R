@@ -2,6 +2,8 @@ compose_timeline <- function(timeline_grob,
                              assemblage_grob_100, 
                              assemblage_grob_500, 
                              assemblage_grob_1000,
+                             assemblage_grob_1500,
+                             assemblage_grob_2000,
                              color_scheme, png_out){
   
   # Load some custom fonts and set some custom settings
@@ -53,7 +55,7 @@ compose_timeline <- function(timeline_grob,
               x = 0.5,
               y = 23.5,
               size = explainer_font_size, family = annotation_font) +
-    draw_text("The horizontal bars show the relative abundance of each microfossil genus",
+    draw_text("The horizontal bars and circle sizes show the relative abundance\nof each microfossil genus",
               hjust = 0, vjust = 0,
               x = 0.65,
               y = 23,
@@ -64,13 +66,13 @@ compose_timeline <- function(timeline_grob,
               y = 21,
               height = 3,
               width = 3) +
-    draw_text("2000 years ago, the system\nwas dominated by\nCassidulina and Elphidium species.",
+    draw_text("2000 years ago, the system\nwas dominated by Paracyprideis,\nCassidulina and Elphidium species.",
               hjust = 0, vjust = 0,
-              x = 2,
+              x = 1.5,
               y = 22,
               size = explainer_font_size, family = supporting_font) +
     # t = 500
-    draw_text("The first 500 years demonstrated relative stability",
+    draw_text("The first 1000 years demonstrated relative stability",
               hjust = 0, vjust = 0,
               x = 1,
               y = 18,
@@ -88,7 +90,29 @@ compose_timeline <- function(timeline_grob,
               size = explainer_font_size, family = supporting_font) +
     draw_plot(assemblage_grob_1000,
               x = 3.1,
-              y = 9.5,
+              y = 10.5,
+              height = 3,
+              width = 3) +
+    # t = 1500
+    draw_text("During the Little Ice Age, Paracyprideis declined\nto its lowest levels in the record",
+              hjust = 0, vjust = 0,
+              x = 1,
+              y = 7,
+              size = explainer_font_size, family = supporting_font) +
+    draw_plot(assemblage_grob_1500,
+              x = 3.1,
+              y = 4.8,
+              height = 3,
+              width = 3) +
+    # t = 1500
+    draw_text("In the modern record, Spiroplectammina and\nKotoracythere are at all-time highs, and the\npreviously dominant Elphidium and Cassidulina are sparser ",
+              hjust = 0, vjust = 0,
+              x = 0.5,
+              y = 0.3,
+              size = explainer_font_size, family = supporting_font) +
+    draw_plot(assemblage_grob_2000,
+              x = 3.1,
+              y = 0.2,
               height = 3,
               width = 3)
   

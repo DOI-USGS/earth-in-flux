@@ -81,6 +81,8 @@ list(
                               assemblage_grob_100 = p3_assemblage_plots_100,
                               assemblage_grob_500 = p3_assemblage_plots_500,
                               assemblage_grob_1000 = p3_assemblage_plots_1000,
+                              assemblage_grob_1500 = p3_assemblage_plots_1500,
+                              assemblage_grob_2000 = p3_assemblage_plots_2000,
                               color_scheme = color_scheme,
                               png_out = "out/BeaufortSeaTimeline.png"))
   
