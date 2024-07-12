@@ -1,4 +1,4 @@
-join_abundance <- function(ostracode_in, foram_in, color_long){
+join_abundance <- function(ostracode_in, foram_in, color_long, focal_species){
   ## Join data
   ostracodes <- ostracode_in |>
     rename(year = `Calendar AGE`) |>
@@ -35,7 +35,8 @@ join_abundance <- function(ostracode_in, foram_in, color_long){
                             TRUE ~ NA)) 
   
   join_to_colors <- join_long |>
-    left_join(color_long, by = "name")
+    left_join(color_long, by = "name") |>
+    left_join(focal_species, by = "species")
   
   return(join_to_colors)
 }
@@ -45,7 +46,8 @@ decade_abundance <- function(data_in){
   # Not all years match exactly, so going average by every 50 years and species
   join_decades <- data_in |>
     mutate(decade = year - year %% 100) |>
-    group_by(decade, species, type, genus, name, hexcode) |>
+    group_by(decade, species, type, genus, name, hexcode, 
+             species_name, focal_L, epithet, image_name) |>
     summarize(mean_abundance = mean(value, na.rm = TRUE))
   
   # Not all 50-year periods have both species types, so need to add up total abundance by

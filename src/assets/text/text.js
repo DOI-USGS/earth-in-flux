@@ -16,7 +16,7 @@ export default {
         },
         beaufortsea: {
             title: "Beaufort Sea",
-            blurb: "The Beaufort Sea project..."
+            blurb: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use micro-fossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying the bottom-dwelling, microscopic arthropods (called Ostracodes) and single-celled protists (called Forams), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region."
         }
     },
     visualizations: {

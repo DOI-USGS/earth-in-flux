@@ -35,3 +35,30 @@ plot_timeline <- function(data_in){
     theme_minimal() +
     theme(axis.title = element_blank())
 }
+
+
+plot_species_trend <- function(data_in, species_name){
+  # Filter data to the species
+  data_species <- data_in |> filter(epithet == {{ species_name }}) 
+  
+  image_path <- sprintf("images/%s", unique(data_species$image_name))
+  
+  hexcode <- as.character(unique(data_species$hexcode))
+  
+  ggplot(data_species, aes(x = decade, y = pct_abundance)) +
+    geom_smooth(method = "lm", se = FALSE, color = hexcode) +
+    geom_image(image = image_path,
+               aes(size = I(pct_abundance/100))) +
+    ylim(c(0, max(data_species$pct_abundance, na.rm = TRUE)))+
+    ylab("Relative Abundance (%)") +
+    xlab("Year (A.D.)") +
+    theme_bw() +
+    theme(legend.position = "none")
+}
+
+save_plot <- function(plot_grob, save_name, width, height){
+  ggsave(plot = plot_grob,
+         file = save_name,
+         width = width, height = height, unit = "px")
+  return(save_name)
+}

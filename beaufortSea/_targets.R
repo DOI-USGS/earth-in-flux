@@ -6,6 +6,7 @@ options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "readxl",
                             "packcircles",
+                            "ggimage",
                             "cowplot",
                             "showtext",
                             "sysfonts"))
@@ -28,6 +29,19 @@ color_scheme = tibble(
 # Mutate color scheme to long
 color_long <- pivot_longer(color_scheme, cols = everything(), values_to = "hexcode") |>
   mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#b4cfd1","#e7f0e7", "#c49051", "#dd605a")))
+
+# Focal species
+focal_species <- tibble(
+  species = c("E. excavatum clavatu", "Spiroplectammina bif", "Paracyprideis pseudo",
+              "Kotoracythere arctob", "C. reniforme...25"),
+  species_name = c("E. excavatum", "S. biformis", "P. pseudopunctillata",
+                   "K. arctoborealis", "C. reniforme"),
+  epithet = c("excavatum", "biformis", "pseudopunctillata",
+              "arctoborealis", "reniforme"),
+  focal_L = rep(TRUE, 5),
+  image_name = c("F_Elphidium.png", "F_Spiroplectammina.png", "O_Paracyprideis.png",
+                 "O_Kotoracythere.png", "F_Cassidulina.png"))
+
 
 list(
   
@@ -54,7 +68,8 @@ list(
   tar_target(p2_join_abundance_long,
              join_abundance(ostracode_in = p1_ostracode_raw_df,
                             foram_in = p1_foram_raw_df,
-                            color_long = color_long)),
+                            color_long = color_long,
+                            focal_species = focal_species)),
   
   # Because foram and ostracode years don't align perfectly, summarize by decade
   tar_target(p2_decade_abundance_long,
@@ -76,6 +91,23 @@ list(
   # Create timeline plot as grob
   tar_target(p3_timeline_plot,
              plot_timeline(data_in = p2_decade_abundance_long)
+  ),
+  
+  ## Species trend plots
+  tar_map(
+    values = tibble(species = focal_species$epithet),
+    tar_target(
+      p3_species_trend_plots,
+      plot_species_trend(data_in = p2_decade_abundance_long,
+                         species_name = species)
+    ),
+    tar_target(
+      p3_species_trend_pngs,
+      save_plot(plot_grob = p3_species_trend_plots,
+                save_name = sprintf("out/species_trend_%s.png", species),
+                width = 1600, height = 900),
+      format = "file"
+    )
   ),
   
   
