@@ -34,9 +34,19 @@ export default {
             heading1: "Reconstructing past and present climates with Arctic microfossils",
             paragraph1: "As climate conditions change at the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Alaska, the small species of ostracodes and forams respond and the overall assemblage of species changes. Researchers have reconstructed the past climates of the Arctic using these microfossils. In particular, a couple species work as indicator species, which means we can monitor their growth (or lack thereof) to understand how healthy the local ocean climate is at a given time in the past or present.",
             heading2: "Meet the ostracodes!",
-            paragraph2: "Ostracodes are a microscopic species of arthropods, distantly related to crustaceans and insects. The fossil remains are from their hardened shells, each distinctly patterned. Kotorachythere arctoborealis is a species that was relatively sparse in the Beaufort Sea fossil record until more recent years. Paracyprideis pseudopunctillata is one of the most dominant species in this Arctic fossil record, at least until the recent decades.",
+            paragraph2: "Ostracodes are a microscopic species of arthropods, distantly related to crustaceans and insects. The fossil remains are from their hardened shells, each distinctly patterned.", 
+            heading2a: "Kotorachythere arctoborealis",
+            paragraph2a: "Kotorachythere arctoborealis is a species that was relatively sparse in the Beaufort Sea fossil record until more recent years.",
+            heading2b: "Paracyprideis pseudopuntillata",
+            paragraph2b: "Paracyprideis pseudopunctillata is one of the most dominant species in this Arctic fossil record, at least until the recent decades.",
             heading3: "Meet the forams!",
-            paragraph3: "Foraminifera, or 'forams', are a group of single-celled protists covered by an external shell called a 'test.' It is these tests that are found in the sedimentary fossil record and are used to identify the different species. The tests, like those of the Cassidulina and Elphidium species, are often made of calcium carbonate. However, some species such as Spiroplectammina create tests that are agglutinated, or clumped together particles such as sand and sediment."
+            paragraph3: "Foraminifera, or 'forams', are a group of single-celled protists covered by an external shell called a 'test.' It is these tests that are found in the sedimentary fossil record and are used to identify the different species. The tests, like those of the Cassidulina and Elphidium species, are often made of calcium carbonate. However, some species such as Spiroplectammina create tests that are agglutinated, or clumped together particles such as sand and sediment.",
+            heading3a: "Cassidulina reniforme",
+            paragraph3a: "Lorem ipsum ...",
+            heading3b: "Elphidium excavatum",
+            paragraph3b: "Lorem ipsum ...",
+            heading3c: "Spiroplectammina biformis",
+            paragraph3c: "Lorem ipsum ..."
         }
     }
 }

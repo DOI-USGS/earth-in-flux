@@ -23,7 +23,7 @@ color_scheme = tibble(
   Paracyprideis = "#b4cfd1", # commonly dominant, except LIA
   Ostracode = "#e7f0e7",
   Foram = "#e7f0e7",
-  Spiroplectammina = "#dd605a", # increases, Foram
+  Spiroplectammina = "#dd605a", # increases, Foram #"#dd605a"
   Kotoracythere = "#c49051" # increases, Ostracode
 )
 # Mutate color scheme to long
@@ -81,7 +81,14 @@ list(
   tar_map(
     values = tibble(years = c(100, 500, 1000, 1500, 2000)),
     tar_target(p3_assemblage_plots,
-               plot_assemblages(data_in = p2_decade_abundance_long, year = years))),
+               plot_assemblages(data_in = p2_decade_abundance_long, year = years)),
+    tar_target(
+      p3_assemblage_plot_pngs,
+      save_plot(plot_grob = p3_assemblage_plots,
+                save_name = sprintf("out/assemblage_%s.png", years),
+                width = 900, height = 900),
+      format = "file"
+    )),
   tar_target(
     p3_viz_thumbnail_png,
     ggsave(p3_assemblage_plots_2000, file = "out/BeaufortSeaTimeline_thumbnail.PNG",
