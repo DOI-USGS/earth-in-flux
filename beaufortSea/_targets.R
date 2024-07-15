@@ -30,6 +30,14 @@ color_scheme = tibble(
 color_long <- pivot_longer(color_scheme, cols = everything(), values_to = "hexcode") |>
   mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#b4cfd1","#e7f0e7", "#c49051", "#dd605a")))
 
+# Load some custom fonts and set some custom settings
+title_font <- "Lora"
+sysfonts::font_add_google(title_font)
+supporting_font <- "Source Sans Pro"
+sysfonts::font_add_google(supporting_font)
+annotation_font <- "Caveat"
+sysfonts::font_add_google(annotation_font)
+
 # Focal species
 focal_species <- tibble(
   species = c("E. excavatum clavatu", "Spiroplectammina bif", "Paracyprideis pseudo",

@@ -55,9 +55,9 @@ plot_species_trend <- function(data_in, species_name){
     ylab("Relative Abundance (%)") +
     xlab("Year (A.D.)") +
     #ggtitle(name) +
-    theme_dark() +
+    theme_minimal() +
     theme(legend.position = "none",
-          panel.background = element_rect(fill = "#697a93"))
+          axis.title = element_text(family = annotation_font))
 }
 
 save_plot <- function(plot_grob, save_name, width, height){
