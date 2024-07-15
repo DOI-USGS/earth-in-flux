@@ -45,15 +45,21 @@ plot_species_trend <- function(data_in, species_name){
   
   hexcode <- as.character(unique(data_species$hexcode))
   
-  #name <- sprintf("%s %s", unique(data_species$genus),
-  #                unique(data_species$epithet))
+  image_size <- unique(data_species$image_size)
   
-  ggplot(data_species, aes(x = decade, y = pct_abundance)) +
-    #geom_smooth(method = "lm", se = FALSE, color = "#ffffff") +
-    geom_image(image = image_path) +
-    ylim(c(0, max(data_species$pct_abundance, na.rm = TRUE)))+
+  image_y <- unique(data_species$image_y)
+  
+  ylim <- unique(data_species$ylim)
+  
+  ggplot(data_species, aes(x = year, y = value)) +
+    geom_point(color = hexcode) +
+    geom_image(image = image_path, size = image_size,
+               y = image_y, x = 150) +
+    #ylim(c(0, ylim)) +
     ylab("Relative Abundance (%)") +
     xlab("Year (A.D.)") +
+    scale_y_continuous(limit = c(0, ylim), 
+                       breaks = c(0, 25, 50, 75, 100)) +
     #ggtitle(name) +
     theme_minimal() +
     theme(legend.position = "none",

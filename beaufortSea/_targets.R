@@ -20,7 +20,7 @@ source("src/compose_plot.R")
 color_scheme = tibble(
   Cassidulina = "#3c475a", # declines, Foram
   Elphidium = "#697a93", # declines, Foram
-  Paracyprideis = "#b4cfd1", # commonly dominant, except LIA
+  Paracyprideis = "#729C9D", # commonly dominant, except LIA
   Ostracode = "#e7f0e7",
   Foram = "#e7f0e7",
   Spiroplectammina = "#dd605a", # increases, Foram #"#dd605a"
@@ -28,7 +28,7 @@ color_scheme = tibble(
 )
 # Mutate color scheme to long
 color_long <- pivot_longer(color_scheme, cols = everything(), values_to = "hexcode") |>
-  mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#b4cfd1","#e7f0e7", "#c49051", "#dd605a")))
+  mutate(hexcode = factor(hexcode, levels = c("#3c475a", "#697a93", "#729C9D","#e7f0e7", "#c49051", "#dd605a")))
 
 # Load some custom fonts and set some custom settings
 title_font <- "Lora"
@@ -48,7 +48,10 @@ focal_species <- tibble(
               "arctoborealis", "reniforme"),
   focal_L = rep(TRUE, 5),
   image_name = c("F_Elphidium.png", "F_Spiroplectammina.png", "O_Paracyprideis.png",
-                 "O_Kotoracythere.png", "F_Cassidulina.png"))
+                 "O_Kotoracythere.png", "F_Cassidulina.png"),
+  image_size = c(0.2, 0.15, 0.3, 0.3, 0.2),
+  image_y = c(48, 55, 100, 25, 80),
+  ylim = c(60, 70, 110, 30, 90))
 
 
 list(
@@ -113,7 +116,7 @@ list(
     values = tibble(species = focal_species$epithet),
     tar_target(
       p3_species_trend_plots,
-      plot_species_trend(data_in = p2_decade_abundance_long,
+      plot_species_trend(data_in = p2_join_abundance_long,
                          species_name = species)
     ),
     tar_target(
