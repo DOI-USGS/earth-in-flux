@@ -40,7 +40,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_2.png">
+                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_3.png">
                 </figure>
             </div>
         </template>
@@ -67,7 +67,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_arctoborealis.png">
+                    <img src="../../beaufortSea/out/species_trend_reniforme.png">
                 </figure>
             </div>
         </template>
@@ -92,7 +92,33 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_pseudopunctillata.png">
+                    <img src="../../beaufortSea/out/species_trend_excavatum.png">
+                </figure>
+            </div>
+        </template>
+        <!-- EXPLANATION -->
+        <template #belowExplanation>
+        </template>
+    </VizSection>
+    <!---VizSection 2c-->
+    <VizSection
+        :figures="true"
+        :fig-caption="false"
+    >
+        <!-- HEADING -->
+        <template #heading>
+            <h3 class="scientificName">
+                {{ text.heading2c }}
+            </h3>
+        </template>
+        <!-- FIGURES -->
+        <template #aboveExplanation>
+            {{ text.paragraph2c }}
+        </template>
+        <template #figures>
+            <div class="single narrow">
+                <figure>
+                    <img src="../../beaufortSea/out/species_trend_biformis.png">
                 </figure>
             </div>
         </template>
@@ -117,7 +143,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_3.png">
+                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_2.png">
                 </figure>
             </div>
         </template>
@@ -144,7 +170,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_reniforme.png">
+                    <img src="../../beaufortSea/out/species_trend_arctoborealis.png">
                 </figure>
             </div>
         </template>
@@ -170,7 +196,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_excavatum.png">
+                    <img src="../../beaufortSea/out/species_trend_pseudopunctillata.png">
                 </figure>
             </div>
         </template>
@@ -178,7 +204,8 @@
         <template #belowExplanation>
         </template>
     </VizSection>
-     <!---VizSection 3c-->
+     
+     <!---VizSection 4-->
      <VizSection
         :figures="true"
         :fig-caption="false"
@@ -186,19 +213,14 @@
         <!-- HEADING -->
         <template #heading>
             <h3 class="scientificName">
-                {{ text.heading3c }}
+                {{ text.heading4 }}
             </h3>
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph3c }}
+            {{ text.paragraph4 }}
         </template>
         <template #figures>
-            <div class="single narrow">
-                <figure>
-                    <img src="../../beaufortSea/out/species_trend_biformis.png">
-                </figure>
-            </div>
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
