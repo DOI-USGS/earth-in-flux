@@ -50,6 +50,7 @@ examples/pydrograph/
 */in/*
 */out/*
 *.html
+beaufortSea/images/*
 # allow empty files to be committed
 !*/in/.empty
 !*/out/.empty
