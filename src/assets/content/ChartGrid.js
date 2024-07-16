@@ -61,7 +61,7 @@ export default {
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
-            img_src: 'BeaufortSeaSpecies_thumbnail.PNG',
+            img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
             description: 'Description or key takeaways from this Viz (Beaufort Sea Species)'
         },   

@@ -51,7 +51,9 @@ focal_species <- tibble(
                  "O_Kotoracythere.png", "F_Cassidulina.png"),
   image_size = c(0.2, 0.15, 0.3, 0.3, 0.2),
   image_y = c(48, 55, 100, 25, 80),
-  ylim = c(60, 70, 110, 30, 90))
+  ylim = c(60, 70, 110, 30, 90),
+  fig_number = c("2b", "2c", "3b", "3a", "2a") # for aligning with vue build
+  )
 
 
 list(
@@ -113,7 +115,8 @@ list(
   
   ## Species trend plots
   tar_map(
-    values = tibble(species = focal_species$epithet),
+    values = tibble(species = focal_species$epithet,
+                    fig_num = focal_species$fig_number),
     tar_target(
       p3_species_trend_plots,
       plot_species_trend(data_in = p2_join_abundance_long,
@@ -122,7 +125,7 @@ list(
     tar_target(
       p3_species_trend_pngs,
       save_plot(plot_grob = p3_species_trend_plots,
-                save_name = sprintf("out/species_trend_%s.png", species),
+                save_name = sprintf("images/BeaufortSeaSpecies_%s.png", fig_num),
                 width = 1600, height = 900),
       format = "file"
     )

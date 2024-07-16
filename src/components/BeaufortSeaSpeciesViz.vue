@@ -14,7 +14,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_1.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_1.png">
                 </figure>
             </div>
         </template>
@@ -40,7 +40,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_3.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2.png">
                 </figure>
             </div>
         </template>
@@ -67,7 +67,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_reniforme.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2a.png">
                 </figure>
             </div>
         </template>
@@ -92,7 +92,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_excavatum.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2b.png">
                 </figure>
             </div>
         </template>
@@ -118,7 +118,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_biformis.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2c.png">
                 </figure>
             </div>
         </template>
@@ -143,7 +143,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaSpecies_2.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3.png">
                 </figure>
             </div>
         </template>
@@ -170,7 +170,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_arctoborealis.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3a.png">
                 </figure>
             </div>
         </template>
@@ -196,7 +196,7 @@
         <template #figures>
             <div class="single narrow">
                 <figure>
-                    <img src="../../beaufortSea/out/species_trend_pseudopunctillata.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3b.png">
                 </figure>
             </div>
         </template>
