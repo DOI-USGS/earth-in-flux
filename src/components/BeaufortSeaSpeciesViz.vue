@@ -56,13 +56,11 @@
     >
            <!-- HEADING -->
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading2a }}
-            </h3>
+            <h3 v-html="text.heading2a" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph2a }}
+            <p v-html="text.paragraph2a" />
         </template>
         <template #figures>
             <div class="single narrow">
@@ -81,13 +79,11 @@
         :fig-caption="false"
     >
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading2b }}
-            </h3>
+            <h3 v-html="text.heading2b" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph2b }}
+            <p v-html="text.paragraph2b" />
         </template>
         <template #figures>
             <div class="single narrow">
@@ -107,13 +103,11 @@
     >
         <!-- HEADING -->
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading2c }}
-            </h3>
+            <h3 v-html="text.heading2c" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph2c }}
+            <p v-html="text.paragraph2c" />
         </template>
         <template #figures>
             <div class="single narrow">
@@ -149,7 +143,7 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            {{ text.paragraph3 }}
+            <p v-html="text.paragraph3" />
         </template>
     </VizSection>
        <!---VizSection 3a-->
@@ -159,13 +153,11 @@
     >
         <!-- HEADING -->
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading3a }}
-            </h3>
+            <h3 v-html="text.heading3a" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph3a }}
+            <p v-html="text.paragraph3a" />
         </template>
         <template #figures>
             <div class="single narrow">
@@ -185,13 +177,11 @@
     >
         <!-- HEADING -->
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading3b }}
-            </h3>
+            <h3 v-html="text.heading3b" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph3b }}
+            <p v-html="text.paragraph3b" />
         </template>
         <template #figures>
             <div class="single narrow">
@@ -212,13 +202,11 @@
     >
         <!-- HEADING -->
         <template #heading>
-            <h3 class="scientificName">
-                {{ text.heading4 }}
-            </h3>
+            <h3 v-html="text.heading4" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            {{ text.paragraph4 }}
+            <p v-html="text.paragraph4" />
         </template>
         <template #figures>
         </template>
