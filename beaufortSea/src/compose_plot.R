@@ -6,13 +6,7 @@ compose_timeline <- function(timeline_grob,
                              assemblage_grob_2000,
                              color_scheme, png_out){
   
-  # Load some custom fonts and set some custom settings
-  title_font <- "Lora"
-  sysfonts::font_add_google(title_font)
-  supporting_font <- "Source Sans Pro"
-  sysfonts::font_add_google(supporting_font)
-  annotation_font <- "Caveat"
-  sysfonts::font_add_google(annotation_font)
+
   showtext::showtext_opts(dpi = 300, regular.wt = 200, bold.wt = 700)
   showtext::showtext_auto(enable = TRUE)
   title_font_size <- 35

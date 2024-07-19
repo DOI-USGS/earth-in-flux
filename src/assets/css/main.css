@@ -57,7 +57,9 @@ a {
   max-width: 80vw;
   margin: 0 auto 0 auto;
 }
-
+.scientificName{
+  font-style:italic;
+}
 
 @media only screen and (max-width: 900px) {
   .title-container {
