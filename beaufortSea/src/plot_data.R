@@ -41,7 +41,7 @@ plot_species_trend <- function(data_in, species_name){
   # Filter data to the species
   data_species <- data_in |> filter(epithet == {{ species_name }}) 
   
-  image_path <- sprintf("images/%s", unique(data_species$image_name))
+  image_path <- sprintf("images/in/%s", unique(data_species$image_name))
   
   hexcode <- as.character(unique(data_species$hexcode))
   

@@ -39,20 +39,13 @@ annotation_font <- "Caveat"
 sysfonts::font_add_google(annotation_font)
 
 # Focal species
-focal_species <- tibble(
-  species = c("E. excavatum clavatu", "Spiroplectammina bif", "Paracyprideis pseudo",
-              "Kotoracythere arctob", "C. reniforme...25"),
-  species_name = c("E. excavatum", "S. biformis", "P. pseudopunctillata",
-                   "K. arctoborealis", "C. reniforme"),
-  epithet = c("excavatum", "biformis", "pseudopunctillata",
-              "arctoborealis", "reniforme"),
-  focal_L = rep(TRUE, 5),
-  image_name = c("F_Elphidium.png", "F_Spiroplectammina.png", "O_Paracyprideis.png",
-                 "O_Kotoracythere.png", "F_Cassidulina.png"),
-  image_size = c(0.2, 0.15, 0.3, 0.3, 0.2),
-  image_y = c(48, 55, 100, 25, 80),
-  ylim = c(60, 70, 110, 30, 90),
-  fig_number = c("2b", "2c", "3b", "3a", "2a") # for aligning with vue build
+focal_species <- tribble(
+  ~species, ~species_name, ~epithet, ~focal_L, ~image_name, ~image_size, ~image_y, ~ylim, ~fig_number,
+  "E. excavatum clavatu","E. excavatum","excavatum",TRUE,"F_Elphidium.png",0.2,48,60,"2b",
+  "Spiroplectammina bif","S. biformis","biformis",TRUE,"F_Spiroplectammina.png",0.15,55,70,"2c",
+  "Paracyprideis pseudo","P. pseudopunctillata","pseudopunctillata",TRUE,"O_Paracyprideis.png",0.3,100,110,"3b", 
+  "Kotoracythere arctob","K. arctoborealis","arctoborealis",TRUE,"O_Kotoracythere.png",0.3,25,30,"3a",
+  "C. reniforme...25","C. reniforme","reniforme",TRUE,"F_Cassidulina.png",0.2,80,90,"2a"
   )
 
 
