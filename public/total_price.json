@@ -1,0 +1,3473 @@
+{
+ "name": "fish", "children":[
+  {
+    "name": "Acipenseridae",
+    "children": [
+      {
+        "name": "Russian sturgeon",
+        "children": [
+          {
+            "name": "Bulgaria",
+            "value": 97608
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Alestidae",
+    "children": [
+      {
+        "name": "Big-scale tetra",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 40741.9592
+          }
+        ]
+      },
+      {
+        "name": "Nurse tetra",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 40741.9592
+          }
+        ]
+      },
+      {
+        "name": "Tigerfish",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 211858.1881
+          },
+          {
+            "name": "Zambia",
+            "value": 384455.8694
+          },
+          {
+            "name": "Zimbabwe",
+            "value": 531851.8837
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anabantidae",
+    "children": [
+      {
+        "name": "Koi",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 186610.392
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anguillidae",
+    "children": [
+      {
+        "name": "Australian eel",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 713524.5927
+          }
+        ]
+      },
+      {
+        "name": "European eel",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 5204990.7
+          },
+          {
+            "name": "Belgium",
+            "value": 1474052.58
+          },
+          {
+            "name": "Czech Republic",
+            "value": 53892.9864
+          },
+          {
+            "name": "Denmark",
+            "value": 1090397.3969
+          },
+          {
+            "name": "Germany",
+            "value": 151682440
+          },
+          {
+            "name": "Hungary",
+            "value": 20586.8663
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Netherlands"
+          },
+          {
+            "name": "Poland",
+            "value": 9315710.976
+          },
+          {
+            "name": "Spain",
+            "value": 6258.98
+          },
+          {
+            "name": "Switzerland"
+          },
+          {
+            "name": "Turkey",
+            "value": 73481.4672
+          }
+        ]
+      },
+      {
+        "name": "Japanese eel",
+        "children": [
+          {
+            "name": "Japan",
+            "value": 6329738.7
+          },
+          {
+            "name": "South Korea",
+            "value": 1425303.2904
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anostomidae",
+    "children": [
+      {
+        "name": "Boga",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 17034600
+          }
+        ]
+      },
+      {
+        "name": "Piapara, Piau, Piavucu",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 1279357.2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Atherinidae",
+    "children": [
+      {
+        "name": "Sand smelt",
+        "children": [
+          {
+            "name": "Greece",
+            "value": 430560.462
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Atherinopsidae",
+    "children": [
+      {
+        "name": "Argentinian silverside/pejerrey",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 49481250
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Auchenipteridae",
+    "children": [
+      {
+        "name": "Chancleto",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 192797.2595
+          }
+        ]
+      },
+      {
+        "name": "Doncella",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 193657.9615
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Bagridae",
+    "children": [
+      {
+        "name": "Nilgiri mystus",
+        "children": [
+          {
+            "name": "India",
+            "value": 22440.6
+          }
+        ]
+      },
+      {
+        "name": "Yellow catfish",
+        "children": [
+          {
+            "name": "China",
+            "value": 157985100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Centrarchidae",
+    "children": [
+      {
+        "name": "Bass",
+        "children": [
+          {
+            "name": "Canada",
+            "value": 365295287.628
+          },
+          {
+            "name": "Mexico",
+            "value": 16589502.237
+          }
+        ]
+      },
+      {
+        "name": "Black bass",
+        "children": [
+          {
+            "name": "Morocco",
+            "value": 405000
+          },
+          {
+            "name": "Portugal",
+            "value": 392374.8
+          },
+          {
+            "name": "United States of America",
+            "value": 247774350.6
+          }
+        ]
+      },
+      {
+        "name": "Crappie",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 455017711.75
+          }
+        ]
+      },
+      {
+        "name": "Largemouth bass",
+        "children": [
+          {
+            "name": "South Africa",
+            "value": 77578.2
+          },
+          {
+            "name": "Spain"
+          },
+          {
+            "name": "Zimbabwe",
+            "value": 454682.1442
+          }
+        ]
+      },
+      {
+        "name": "Sunfish",
+        "children": [
+          {
+            "name": "Mexico",
+            "value": 9691948.002
+          },
+          {
+            "name": "United States of America",
+            "value": 495548701.2
+          }
+        ]
+      },
+      {
+        "name": "White bass, striped bass",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 272551785.66
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Centropomidae",
+    "children": [
+      {
+        "name": "Snook",
+        "children": [
+          {
+            "name": "Mexico",
+            "value": 9032143.197
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Channidae",
+    "children": [
+      {
+        "name": "Great snakehead",
+        "children": [
+          {
+            "name": "Myanmar",
+            "value": 48770.15
+          }
+        ]
+      },
+      {
+        "name": "Shol",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 305018.571
+          }
+        ]
+      },
+      {
+        "name": "Snakehead",
+        "children": [
+          {
+            "name": "India",
+            "value": 8976.24
+          },
+          {
+            "name": "South Korea",
+            "value": 7658045.0856
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 14591.85
+          }
+        ]
+      },
+      {
+        "name": "Striped snakehead",
+        "children": [
+          {
+            "name": "Myanmar",
+            "value": 56377.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Characidae",
+    "children": [
+      {
+        "name": "Dorado",
+        "children": [
+          {
+            "name": "Brazil"
+          },
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "Goldenfish",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 28391000
+          }
+        ]
+      },
+      {
+        "name": "Macabil",
+        "children": [
+          {
+            "name": "Mexico",
+            "value": 66176798.688
+          }
+        ]
+      },
+      {
+        "name": "Machaca",
+        "children": [
+          {
+            "name": "Panama"
+          }
+        ]
+      },
+      {
+        "name": "Sabaleta",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "Sabalo del Patía",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "South American trout",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 1419550
+          }
+        ]
+      },
+      {
+        "name": "Yamú, Bocón, Sábalo",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cichlidae",
+    "children": [
+      {
+        "name": "Bay snook (Tenguayaca)",
+        "children": [
+          {
+            "name": "Mexico",
+            "value": 10929970.557
+          }
+        ]
+      },
+      {
+        "name": "Mojarra Amarilla",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Mojarra Plateada, Tilapia",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Mozambique tilapia",
+        "children": [
+          {
+            "name": "South Africa",
+            "value": 178252.2
+          }
+        ]
+      },
+      {
+        "name": "Nile tilapia",
+        "children": [
+          {
+            "name": "Kenya",
+            "value": 29717.6
+          },
+          {
+            "name": "Uganda",
+            "value": 3679.4804
+          }
+        ]
+      },
+      {
+        "name": "Oscar",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          },
+          {
+            "name": "Panama"
+          }
+        ]
+      },
+      {
+        "name": "Pavón",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Pavón Cinchado - Pinta de Lapa",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Pavón Mariposo",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Peacock Bass",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 1163052
+          },
+          {
+            "name": "Panama"
+          }
+        ]
+      },
+      {
+        "name": "Pemá, Mojarra Pemá",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      },
+      {
+        "name": "Redhead cichlid",
+        "children": [
+          {
+            "name": "Panama"
+          }
+        ]
+      },
+      {
+        "name": "Speckled pavon, speckled peacock bass (percid)",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 1163052
+          }
+        ]
+      },
+      {
+        "name": "Tilapia",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 720984.7125
+          },
+          {
+            "name": "India",
+            "value": 2635.88
+          },
+          {
+            "name": "Panama"
+          }
+        ]
+      },
+      {
+        "name": "Tilapia Negra",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 253907.1051
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Clariidae",
+    "children": [
+      {
+        "name": "African catfish",
+        "children": [
+          {
+            "name": "India",
+            "value": 1317.94
+          }
+        ]
+      },
+      {
+        "name": "African sharptooth catfish",
+        "children": [
+          {
+            "name": "South Africa",
+            "value": 619836
+          }
+        ]
+      },
+      {
+        "name": "Catfish",
+        "children": [
+          {
+            "name": "Uganda",
+            "value": 2580.81
+          }
+        ]
+      },
+      {
+        "name": "North African catfish",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 46645.1885
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Claroteidae",
+    "children": [
+      {
+        "name": "Bagrid catfish",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 1381239.5154
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Clupeidae",
+    "children": [
+      {
+        "name": "Agone",
+        "children": [
+          {
+            "name": "Switzerland",
+            "value": 22727.7785
+          }
+        ]
+      },
+      {
+        "name": "Pontic shad",
+        "children": [
+          {
+            "name": "Romania",
+            "value": 252532.8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cynodontidae",
+    "children": [
+      {
+        "name": "Payara",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cyprinidae",
+    "children": [
+      {
+        "name": "Albanian roach",
+        "children": [
+          {
+            "name": "Albania"
+          },
+          {
+            "name": "Montenegro",
+            "value": 7759.2
+          }
+        ]
+      },
+      {
+        "name": "Asp",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 19465.6704
+          },
+          {
+            "name": "Hungary",
+            "value": 504378.2234
+          },
+          {
+            "name": "Poland",
+            "value": 823869.696
+          },
+          {
+            "name": "Turkey",
+            "value": 7787.4381
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 38163.3
+          }
+        ]
+      },
+      {
+        "name": "Barbel",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 2994.0548
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 1330.628
+          },
+          {
+            "name": "Morocco",
+            "value": 56250
+          },
+          {
+            "name": "Portugal",
+            "value": 139449.2
+          },
+          {
+            "name": "Spain"
+          }
+        ]
+      },
+      {
+        "name": "Bata",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 264789.369
+          }
+        ]
+      },
+      {
+        "name": "Beyşehir bleak",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 1697.2622
+          }
+        ]
+      },
+      {
+        "name": "Bigheaded carps",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 177364.2112
+          }
+        ]
+      },
+      {
+        "name": "Black bream",
+        "children": [
+          {
+            "name": "China",
+            "value": 1093357200
+          }
+        ]
+      },
+      {
+        "name": "Black carp",
+        "children": [
+          {
+            "name": "China",
+            "value": 293400900
+          }
+        ]
+      },
+      {
+        "name": "Blue-finned mahseer",
+        "children": [
+          {
+            "name": "India",
+            "value": 9402.77
+          }
+        ]
+      },
+      {
+        "name": "Bream",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 1147448.722
+          }
+        ]
+      },
+      {
+        "name": "Carnatic carp",
+        "children": [
+          {
+            "name": "India",
+            "value": 3445.65
+          }
+        ]
+      },
+      {
+        "name": "Catla",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 805230.7725
+          },
+          {
+            "name": "India",
+            "value": 10840.7
+          }
+        ]
+      },
+      {
+        "name": "Chocolate mahseer",
+        "children": [
+          {
+            "name": "India",
+            "value": 1334.84
+          }
+        ]
+      },
+      {
+        "name": "Chub",
+        "children": [
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 2989.3775
+          }
+        ]
+      },
+      {
+        "name": "Common barbel",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 167305.5004
+          }
+        ]
+      },
+      {
+        "name": "Common bleak",
+        "children": [
+          {
+            "name": "Poland",
+            "value": 405030.912
+          }
+        ]
+      },
+      {
+        "name": "Common bream",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 5184232.2
+          },
+          {
+            "name": "Belarus",
+            "value": 815850
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 93556.8
+          },
+          {
+            "name": "Croatia",
+            "value": 291346.875
+          },
+          {
+            "name": "Czech Republic",
+            "value": 134283.3578
+          },
+          {
+            "name": "Estonia",
+            "value": 22954.7843
+          },
+          {
+            "name": "Finland",
+            "value": 11346456.03
+          },
+          {
+            "name": "Germany",
+            "value": 33300240
+          },
+          {
+            "name": "Greece",
+            "value": 2526818.58
+          },
+          {
+            "name": "Latvia",
+            "value": 159608.07
+          },
+          {
+            "name": "Lithuania",
+            "value": 1801200
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Netherlands",
+            "value": 56184.9799
+          },
+          {
+            "name": "Poland",
+            "value": 8919885.312
+          },
+          {
+            "name": "Romania",
+            "value": 194256
+          },
+          {
+            "name": "Russia",
+            "value": 1728600
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 118476.8
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "Switzerland",
+            "value": 43439.1938
+          },
+          {
+            "name": "Turkey",
+            "value": 2995.1685
+          },
+          {
+            "name": "Ukraine",
+            "value": 3322257.12
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 38163.3
+          }
+        ]
+      },
+      {
+        "name": "Common carp",
+        "children": [
+          {
+            "name": "Albania"
+          },
+          {
+            "name": "Bangladesh",
+            "value": 365743.092
+          },
+          {
+            "name": "Belarus",
+            "value": 288817.2
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 316128
+          },
+          {
+            "name": "Bulgaria",
+            "value": 1929375
+          },
+          {
+            "name": "China",
+            "value": 236977650
+          },
+          {
+            "name": "Croatia",
+            "value": 647437.5
+          },
+          {
+            "name": "Czech Republic",
+            "value": 2341350.8536
+          },
+          {
+            "name": "Hungary",
+            "value": 22010325.5511
+          },
+          {
+            "name": "India",
+            "value": 10463.375
+          },
+          {
+            "name": "Italy",
+            "value": 13463.0371
+          },
+          {
+            "name": "Japan",
+            "value": 3554085
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 18571.4639
+          },
+          {
+            "name": "Moldova"
+          },
+          {
+            "name": "Montenegro",
+            "value": 21740.4
+          },
+          {
+            "name": "Morocco",
+            "value": 18750
+          },
+          {
+            "name": "Poland",
+            "value": 28352163.84
+          },
+          {
+            "name": "Portugal",
+            "value": 348623
+          },
+          {
+            "name": "Romania",
+            "value": 913344
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 596456.64
+          },
+          {
+            "name": "Slovakia",
+            "value": 7942725
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "South Africa",
+            "value": 4896704.4
+          },
+          {
+            "name": "South Korea",
+            "value": 3310272.052
+          },
+          {
+            "name": "Spain"
+          },
+          {
+            "name": "Switzerland",
+            "value": 94960.0981
+          },
+          {
+            "name": "Turkey",
+            "value": 551610.1987
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 76326.6
+          },
+          {
+            "name": "Zimbabwe",
+            "value": 130067.9706
+          }
+        ]
+      },
+      {
+        "name": "Common nase",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 2994.0548
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 4811.5166
+          },
+          {
+            "name": "Portugal",
+            "value": 69724.6
+          },
+          {
+            "name": "Spain"
+          }
+        ]
+      },
+      {
+        "name": "Common roach",
+        "children": [
+          {
+            "name": "Albania"
+          },
+          {
+            "name": "Austria",
+            "value": 1931050.8
+          },
+          {
+            "name": "Belarus",
+            "value": 744744
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "Estonia",
+            "value": 128024.1214
+          },
+          {
+            "name": "Finland",
+            "value": 17830145.19
+          },
+          {
+            "name": "Germany",
+            "value": 16041360
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Latvia",
+            "value": 109242.8568
+          },
+          {
+            "name": "Lithuania",
+            "value": 1932300
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Macedonia",
+            "value": 2191.9131
+          },
+          {
+            "name": "Montenegro",
+            "value": 7759.2
+          },
+          {
+            "name": "Netherlands",
+            "value": 112369.9597
+          },
+          {
+            "name": "Poland",
+            "value": 6508110.336
+          },
+          {
+            "name": "Russia",
+            "value": 2175800
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "Sweden",
+            "value": 1678400
+          },
+          {
+            "name": "Switzerland",
+            "value": 77786.4633
+          },
+          {
+            "name": "Ukraine",
+            "value": 2098985.0112
+          }
+        ]
+      },
+      {
+        "name": "Crucian carp",
+        "children": [
+          {
+            "name": "Belarus"
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 99680
+          },
+          {
+            "name": "Estonia",
+            "value": 57466.1151
+          },
+          {
+            "name": "Hungary",
+            "value": 0
+          },
+          {
+            "name": "Japan",
+            "value": 7108170
+          },
+          {
+            "name": "Moldova"
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 1206686.208
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "South Korea",
+            "value": 66055760.128
+          },
+          {
+            "name": "Ukraine",
+            "value": 1916686.8
+          }
+        ]
+      },
+      {
+        "name": "Cyprinds",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 2574734.4
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "France",
+            "value": 156675.6
+          },
+          {
+            "name": "Germany",
+            "value": 21388480
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Switzerland",
+            "value": 32326.8419
+          }
+        ]
+      },
+      {
+        "name": "European carp",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 2716321.9048
+          },
+          {
+            "name": "Austria",
+            "value": 14804722.8
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "Germany",
+            "value": 122983760
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Ukraine",
+            "value": 1528238.2752
+          }
+        ]
+      },
+      {
+        "name": "European chub",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 11976.2192
+          }
+        ]
+      },
+      {
+        "name": "Ghonia",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 87850.6785
+          }
+        ]
+      },
+      {
+        "name": "Golden mahseer",
+        "children": [
+          {
+            "name": "India",
+            "value": 1334.84
+          }
+        ]
+      },
+      {
+        "name": "Goldfish",
+        "children": [
+          {
+            "name": "China",
+            "value": 473955300
+          },
+          {
+            "name": "Romania",
+            "value": 1165536
+          }
+        ]
+      },
+      {
+        "name": "Grass carp",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 643683.6
+          },
+          {
+            "name": "Bangladesh",
+            "value": 164328.627
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 266003.2
+          },
+          {
+            "name": "Bulgaria",
+            "value": 551250
+          },
+          {
+            "name": "China",
+            "value": 313462500
+          },
+          {
+            "name": "Croatia",
+            "value": 647437.5
+          },
+          {
+            "name": "Czech Republic",
+            "value": 72314.6204
+          },
+          {
+            "name": "Germany",
+            "value": 4741920
+          },
+          {
+            "name": "Hungary",
+            "value": 1156723.1168
+          },
+          {
+            "name": "India",
+            "value": 4825.925
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Moldova"
+          },
+          {
+            "name": "Myanmar",
+            "value": 112076.25
+          },
+          {
+            "name": "Poland",
+            "value": 2853626.88
+          },
+          {
+            "name": "Slovakia",
+            "value": 334000.8
+          },
+          {
+            "name": "Slovenia"
+          }
+        ]
+      },
+      {
+        "name": "Gudgeon",
+        "children": [
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 1895.9437
+          }
+        ]
+      },
+      {
+        "name": "Italian bleak",
+        "children": [
+          {
+            "name": "Albania"
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 5886.3249
+          },
+          {
+            "name": "Montenegro",
+            "value": 11638.8
+          }
+        ]
+      },
+      {
+        "name": "Kalibaus",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 176938.6905
+          }
+        ]
+      },
+      {
+        "name": "Kutum",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 519.1625
+          }
+        ]
+      },
+      {
+        "name": "Labeo",
+        "children": [
+          {
+            "name": "India",
+            "value": 13446.55
+          }
+        ]
+      },
+      {
+        "name": "Mahseer",
+        "children": [
+          {
+            "name": "Myanmar",
+            "value": 18679.375
+          },
+          {
+            "name": "Myanmar",
+            "value": 18679.375
+          }
+        ]
+      },
+      {
+        "name": "Mrigal",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 1060394.8095
+          },
+          {
+            "name": "India",
+            "value": 11977.225
+          }
+        ]
+      },
+      {
+        "name": "Mullet",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 33679.0058
+          }
+        ]
+      },
+      {
+        "name": "Orange River mudfish",
+        "children": [
+          {
+            "name": "South Africa",
+            "value": 325413.9
+          }
+        ]
+      },
+      {
+        "name": "Pale chub",
+        "children": [
+          {
+            "name": "South Korea",
+            "value": 330296.4
+          }
+        ]
+      },
+      {
+        "name": "Pearl mullet",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 691717.5253
+          }
+        ]
+      },
+      {
+        "name": "Prussian carp",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 17455.2532
+          },
+          {
+            "name": "Hungary",
+            "value": 526476.4725
+          },
+          {
+            "name": "Russia",
+            "value": 2592900
+          },
+          {
+            "name": "Turkey",
+            "value": 156174.7415
+          }
+        ]
+      },
+      {
+        "name": "Prussian/Crucian carp",
+        "children": [
+          {
+            "name": "Poland",
+            "value": 2872037.376
+          }
+        ]
+      },
+      {
+        "name": "Razor fish (ziege)",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 15749.2962
+          }
+        ]
+      },
+      {
+        "name": "Red garra",
+        "children": [
+          {
+            "name": "India",
+            "value": 5387.525
+          }
+        ]
+      },
+      {
+        "name": "Rohu",
+        "children": [
+          {
+            "name": "India",
+            "value": 1334.84
+          }
+        ]
+      },
+      {
+        "name": "Rudd",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 1931050.8
+          },
+          {
+            "name": "Belgium"
+          },
+          {
+            "name": "Germany",
+            "value": 16041360
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Turkey",
+            "value": 3367.9006
+          }
+        ]
+      },
+      {
+        "name": "Rui",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 1231078.4985
+          }
+        ]
+      },
+      {
+        "name": "Sarapunti",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 220428.4005
+          }
+        ]
+      },
+      {
+        "name": "Shabout",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 10250.1322
+          }
+        ]
+      },
+      {
+        "name": "Silver bream",
+        "children": [
+          {
+            "name": "Poland",
+            "value": 952743.168
+          }
+        ]
+      },
+      {
+        "name": "Silver carp",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 521119.965
+          },
+          {
+            "name": "Belarus",
+            "value": 649992
+          },
+          {
+            "name": "Bulgaria",
+            "value": 296940
+          },
+          {
+            "name": "Czech Republic",
+            "value": 2493.6076
+          },
+          {
+            "name": "Moldova"
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 75528.96
+          },
+          {
+            "name": "Ukraine",
+            "value": 781156.3536
+          }
+        ]
+      },
+      {
+        "name": "Snow trout",
+        "children": [
+          {
+            "name": "Uzbekistan",
+            "value": 6678.5775
+          }
+        ]
+      },
+      {
+        "name": "Tench",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 26946.4932
+          },
+          {
+            "name": "Hungary",
+            "value": 12869.6539
+          },
+          {
+            "name": "Latvia",
+            "value": 126409.5914
+          },
+          {
+            "name": "New Zealand"
+          },
+          {
+            "name": "Poland",
+            "value": 7842871.296
+          },
+          {
+            "name": "Switzerland",
+            "value": 17173.6348
+          },
+          {
+            "name": "Turkey",
+            "value": 1397.7453
+          }
+        ]
+      },
+      {
+        "name": "Transcau casian barb",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 19548.4664
+          }
+        ]
+      },
+      {
+        "name": "Trout barb",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 6150.0793
+          }
+        ]
+      },
+      {
+        "name": "Vimba bream",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 2994.0548
+          },
+          {
+            "name": "Latvia",
+            "value": 248988.5892
+          }
+        ]
+      },
+      {
+        "name": "White Bream",
+        "children": [
+          {
+            "name": "Belarus"
+          },
+          {
+            "name": "Ukraine",
+            "value": 1911575.6352
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Danionidae",
+    "children": [
+      {
+        "name": "Burmese trout",
+        "children": [
+          {
+            "name": "Myanmar",
+            "value": 66838.2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Doradidae",
+    "children": [
+      {
+        "name": "Catfish",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 967875
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Erythrinidae",
+    "children": [
+      {
+        "name": "Trahira",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 9936850
+          },
+          {
+            "name": "Brazil",
+            "value": 128288.16
+          },
+          {
+            "name": "Panama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Esocidae",
+    "children": [
+      {
+        "name": "Northern pike",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 20269116
+          },
+          {
+            "name": "Belarus"
+          },
+          {
+            "name": "Belgium",
+            "value": 1138627.4328
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 192844.8
+          },
+          {
+            "name": "Bulgaria",
+            "value": 1069425
+          },
+          {
+            "name": "Canada",
+            "value": 453455440.1958
+          },
+          {
+            "name": "Croatia",
+            "value": 971156.25
+          },
+          {
+            "name": "Czech Republic",
+            "value": 314349.8688
+          },
+          {
+            "name": "Denmark",
+            "value": 59659.6979
+          },
+          {
+            "name": "Estonia",
+            "value": 105646.3328
+          },
+          {
+            "name": "Finland",
+            "value": 45356031.552
+          },
+          {
+            "name": "France",
+            "value": 27720
+          },
+          {
+            "name": "Germany",
+            "value": 120139200
+          },
+          {
+            "name": "Hungary",
+            "value": 1344443.7354
+          },
+          {
+            "name": "Ireland",
+            "value": 14345.9538
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Latvia",
+            "value": 1637917.719
+          },
+          {
+            "name": "Lithuania",
+            "value": 470677.5
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Macedonia",
+            "value": 3705.5055
+          },
+          {
+            "name": "Morocco",
+            "value": 67500
+          },
+          {
+            "name": "Norway",
+            "value": 2816673.75
+          },
+          {
+            "name": "Poland",
+            "value": 28241700.864
+          },
+          {
+            "name": "Russia",
+            "value": 576200
+          },
+          {
+            "name": "Slovakia",
+            "value": 717485.4
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "Sweden",
+            "value": 10846660
+          },
+          {
+            "name": "Switzerland",
+            "value": 848143.0565
+          },
+          {
+            "name": "Turkey",
+            "value": 42065.4776
+          },
+          {
+            "name": "Ukraine",
+            "value": 1782944.6544
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 33336.765
+          }
+        ]
+      },
+      {
+        "name": "Northern pike, muskellunge, hybrids",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 38002863.36
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Haemulidae",
+    "children": [
+      {
+        "name": "Jojorro",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 297802.9097
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Hepsetidae",
+    "children": [
+      {
+        "name": "African pike",
+        "children": [
+          {
+            "name": "Nigeria",
+            "value": 314709.861
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Herorotidinae",
+    "children": [
+      {
+        "name": "Pirarucu, Paiche, Arapaima",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 551710.0148
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Heteropneustidae",
+    "children": [
+      {
+        "name": "Shingi",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 450228.321
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ictaluridae",
+    "children": [
+      {
+        "name": "Black bullhead",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 167305.5004
+          }
+        ]
+      },
+      {
+        "name": "Catfish",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 249717678.84
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Latidae",
+    "children": [
+      {
+        "name": "Barramundi",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 5943603.9125
+          },
+          {
+            "name": "India",
+            "value": 41898.025
+          }
+        ]
+      },
+      {
+        "name": "Nile perch",
+        "children": [
+          {
+            "name": "Kenya",
+            "value": 21794.52
+          },
+          {
+            "name": "Nigeria",
+            "value": 116516.197
+          },
+          {
+            "name": "Uganda",
+            "value": 9677.3538
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Lotidae",
+    "children": [
+      {
+        "name": "Burbot",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 5487.6624
+          },
+          {
+            "name": "Finland",
+            "value": 8572159.05
+          },
+          {
+            "name": "Hungary",
+            "value": 11575.8186
+          },
+          {
+            "name": "Sweden",
+            "value": 302112
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mormyridae",
+    "children": [
+      {
+        "name": "Cornish Jack",
+        "children": [
+          {
+            "name": "Zambia",
+            "value": 68876.5956
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mugilidae",
+    "children": [
+      {
+        "name": "Thinlip mullet",
+        "children": [
+          {
+            "name": "Portugal",
+            "value": 139449.2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Osmeridae",
+    "children": [
+      {
+        "name": "European smelt",
+        "children": [
+          {
+            "name": "Denmark"
+          },
+          {
+            "name": "Lithuania",
+            "value": 1541280
+          },
+          {
+            "name": "Netherlands",
+            "value": 210693.6745
+          }
+        ]
+      },
+      {
+        "name": "Japanese smelt",
+        "children": [
+          {
+            "name": "Japan",
+            "value": 13044358.8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Osteichthyes",
+    "children": [
+      {
+        "name": "Freshwater fishes nei",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 2110623.2363
+          },
+          {
+            "name": "Latvia",
+            "value": 1148058.877
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 2775689.28
+          },
+          {
+            "name": "Switzerland",
+            "value": 3944.2143
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Osteoglossidae",
+    "children": [
+      {
+        "name": "Arawana",
+        "children": [
+          {
+            "name": "Brazil"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pangasiidae",
+    "children": [
+      {
+        "name": "Pangas",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 710473.479
+          },
+          {
+            "name": "India",
+            "value": 11977.225
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Percichthyidae",
+    "children": [
+      {
+        "name": "Australian bass/perch",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 2511190.4149
+          }
+        ]
+      },
+      {
+        "name": "Murray cod",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 46832430.5094
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Percidae",
+    "children": [
+      {
+        "name": "Eurasian Ruffe",
+        "children": [
+          {
+            "name": "Netherlands",
+            "value": 23702.5424
+          }
+        ]
+      },
+      {
+        "name": "European perch",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 7256844
+          },
+          {
+            "name": "Belarus",
+            "value": 552216
+          },
+          {
+            "name": "Belgium",
+            "value": 267731.0064
+          },
+          {
+            "name": "Czech Republic",
+            "value": 32188.2462
+          },
+          {
+            "name": "Denmark",
+            "value": 56363.3678
+          },
+          {
+            "name": "Estonia",
+            "value": 150888.4434
+          },
+          {
+            "name": "Finland",
+            "value": 70346921.944
+          },
+          {
+            "name": "France",
+            "value": 82620
+          },
+          {
+            "name": "Germany",
+            "value": 45379200
+          },
+          {
+            "name": "Greece",
+            "value": 1843026.966
+          },
+          {
+            "name": "Hungary",
+            "value": 66913.0403
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Latvia",
+            "value": 294545.8556
+          },
+          {
+            "name": "Lithuania",
+            "value": 422156.25
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Macedonia",
+            "value": 1757.9248
+          },
+          {
+            "name": "Netherlands",
+            "value": 355538.1365
+          },
+          {
+            "name": "New Zealand"
+          },
+          {
+            "name": "Norway",
+            "value": 2016877.5
+          },
+          {
+            "name": "Poland",
+            "value": 9849615.36
+          },
+          {
+            "name": "Russia",
+            "value": 3102450
+          },
+          {
+            "name": "Sweden",
+            "value": 34340064
+          },
+          {
+            "name": "Switzerland",
+            "value": 2767574.7258
+          },
+          {
+            "name": "Ukraine",
+            "value": 954084.096
+          }
+        ]
+      },
+      {
+        "name": "Golden perch",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 24404476.773
+          }
+        ]
+      },
+      {
+        "name": "Redfin perch",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 11297463.1935
+          }
+        ]
+      },
+      {
+        "name": "Volga pikeperch",
+        "children": [
+          {
+            "name": "Hungary",
+            "value": 158918.4707
+          }
+        ]
+      },
+      {
+        "name": "Walleye",
+        "children": [
+          {
+            "name": "Canada",
+            "value": 838877426.0956
+          },
+          {
+            "name": "United States of America",
+            "value": 208457941.3
+          }
+        ]
+      },
+      {
+        "name": "Yellow perch",
+        "children": [
+          {
+            "name": "Canada",
+            "value": 376690062.1208
+          }
+        ]
+      },
+      {
+        "name": "Zander (pikeperch)",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 7751230.2
+          },
+          {
+            "name": "Belgium",
+            "value": 475574.814
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 156015.36
+          },
+          {
+            "name": "Croatia",
+            "value": 310770
+          },
+          {
+            "name": "Czech Republic",
+            "value": 214588.308
+          },
+          {
+            "name": "Denmark",
+            "value": 180244.0277
+          },
+          {
+            "name": "Finland",
+            "value": 22042694.7
+          },
+          {
+            "name": "France",
+            "value": 55440
+          },
+          {
+            "name": "Germany",
+            "value": 68068800
+          },
+          {
+            "name": "Hungary",
+            "value": 3429293.3143
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Latvia",
+            "value": 540752.1412
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Macedonia",
+            "value": 2978.3023
+          },
+          {
+            "name": "Morocco",
+            "value": 67500
+          },
+          {
+            "name": "Netherlands",
+            "value": 686836.7797
+          },
+          {
+            "name": "Poland",
+            "value": 15418790.4
+          },
+          {
+            "name": "Portugal",
+            "value": 392374.8
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 990575.04
+          },
+          {
+            "name": "Slovakia",
+            "value": 1263814.2
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "Sweden",
+            "value": 14520258
+          },
+          {
+            "name": "Switzerland",
+            "value": 114488.7504
+          },
+          {
+            "name": "Turkey",
+            "value": 74845.9329
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 13357.155
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Pimelodidae",
+    "children": [
+      {
+        "name": "Amarillo, Toruno, Chontaduro",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 565481.2476
+          }
+        ]
+      },
+      {
+        "name": "Baboso",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 407972.7723
+          }
+        ]
+      },
+      {
+        "name": "Bagre, Bagre Rayado",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 543963.6964
+          },
+          {
+            "name": "Colombia",
+            "value": 543963.6964
+          },
+          {
+            "name": "Colombia",
+            "value": 543963.6964
+          },
+          {
+            "name": "Colombia",
+            "value": 403669.262
+          }
+        ]
+      },
+      {
+        "name": "Barbiancho",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 220339.7251
+          }
+        ]
+      },
+      {
+        "name": "Barred sorubim",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 981192.96
+          }
+        ]
+      },
+      {
+        "name": "Blancopobre",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 275424.6564
+          }
+        ]
+      },
+      {
+        "name": "Blanquillo",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 375266.0943
+          }
+        ]
+      },
+      {
+        "name": "Cajaro",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 307270.6323
+          }
+        ]
+      },
+      {
+        "name": "Cucharo",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 281449.5707
+          }
+        ]
+      },
+      {
+        "name": "Dorado",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 419161.8989
+          }
+        ]
+      },
+      {
+        "name": "Flatwhiskered catfish",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 102912.48
+          }
+        ]
+      },
+      {
+        "name": "Kumakuma (catfish)",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 2572812
+          }
+        ]
+      },
+      {
+        "name": "Pati",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 2839100
+          }
+        ]
+      },
+      {
+        "name": "Pintadillo, Bagre, Bagre Rayado",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 488878.7651
+          }
+        ]
+      },
+      {
+        "name": "Redtail catfish",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 336932.64
+          }
+        ]
+      },
+      {
+        "name": "South American catfish",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 14442000
+          }
+        ]
+      },
+      {
+        "name": "Spotted sorubim",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 1614175.2
+          }
+        ]
+      },
+      {
+        "name": "Tigrito, tijero",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 242717.9784
+          }
+        ]
+      },
+      {
+        "name": "Valentón, Plumita",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 386455.221
+          }
+        ]
+      },
+      {
+        "name": "White catfish",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 1677650
+          }
+        ]
+      },
+      {
+        "name": "Yellow catfish",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 2129325
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Plecoglossidae",
+    "children": [
+      {
+        "name": "Ayu (sweetfish)",
+        "children": [
+          {
+            "name": "Japan",
+            "value": 27045720
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Prochilodontidae",
+    "children": [
+      {
+        "name": "Pataló, Jetón",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Salmonidae",
+    "children": [
+      {
+        "name": "Arctic Char",
+        "children": [
+          {
+            "name": "Iceland",
+            "value": 122173.2603
+          },
+          {
+            "name": "Norway",
+            "value": 1242649.44
+          },
+          {
+            "name": "Switzerland",
+            "value": 252776.7829
+          }
+        ]
+      },
+      {
+        "name": "Atlantic salmon",
+        "children": [
+          {
+            "name": "Chile",
+            "value": 76714.915
+          },
+          {
+            "name": "Finland",
+            "value": 4907437.6
+          },
+          {
+            "name": "France",
+            "value": 19281.375
+          },
+          {
+            "name": "Greenland",
+            "value": 155480
+          },
+          {
+            "name": "Iceland",
+            "value": 1663512.152
+          },
+          {
+            "name": "Ireland",
+            "value": 307100.9873
+          }
+        ]
+      },
+      {
+        "name": "Balkan trout",
+        "children": [
+          {
+            "name": "Bulgaria",
+            "value": 390432
+          }
+        ]
+      },
+      {
+        "name": "Brook Trout",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 17964.3288
+          },
+          {
+            "name": "New Zealand",
+            "value": 4585594.8411
+          }
+        ]
+      },
+      {
+        "name": "Brown Trout",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 8530628.4
+          },
+          {
+            "name": "Belgium",
+            "value": 1897758.72
+          },
+          {
+            "name": "Czech Republic",
+            "value": 14974.5882
+          },
+          {
+            "name": "Denmark"
+          },
+          {
+            "name": "Finland",
+            "value": 4907437.6
+          },
+          {
+            "name": "France",
+            "value": 16380
+          },
+          {
+            "name": "Germany",
+            "value": 66273120
+          },
+          {
+            "name": "Hungary",
+            "value": 0
+          },
+          {
+            "name": "Iceland",
+            "value": 302167.7899
+          },
+          {
+            "name": "India",
+            "value": 37677.64
+          },
+          {
+            "name": "Ireland",
+            "value": 7727.4446
+          },
+          {
+            "name": "Italy",
+            "value": 40976.5824
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Macedonia",
+            "value": 5707.3197
+          },
+          {
+            "name": "New Zealand",
+            "value": 9613174.727
+          },
+          {
+            "name": "Norway",
+            "value": 2257435.98
+          },
+          {
+            "name": "South Korea",
+            "value": 3412108.6104
+          },
+          {
+            "name": "Spain",
+            "value": 39209.16
+          },
+          {
+            "name": "Sweden",
+            "value": 4959672
+          },
+          {
+            "name": "Switzerland",
+            "value": 755625.7525
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 6678.5775
+          }
+        ]
+      },
+      {
+        "name": "Cherry trout",
+        "children": [
+          {
+            "name": "South Korea",
+            "value": 1297334.3552
+          }
+        ]
+      },
+      {
+        "name": "Chinook Salmon (Quinnat Salmon)",
+        "children": [
+          {
+            "name": "New Zealand",
+            "value": 13756784.5232
+          }
+        ]
+      },
+      {
+        "name": "Chum salmon",
+        "children": [
+          {
+            "name": "Russia",
+            "value": 1195615
+          }
+        ]
+      },
+      {
+        "name": "Coho salmon",
+        "children": [
+          {
+            "name": "Chile",
+            "value": 357806.9855
+          }
+        ]
+      },
+      {
+        "name": "Common huchen",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 598.811
+          }
+        ]
+      },
+      {
+        "name": "Dolly varden/Char",
+        "children": [
+          {
+            "name": "South Korea",
+            "value": 2251768.6192
+          }
+        ]
+      },
+      {
+        "name": "European grayling",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 4991.5294
+          },
+          {
+            "name": "Norway",
+            "value": 1282531.77
+          },
+          {
+            "name": "Switzerland",
+            "value": 785.0211
+          }
+        ]
+      },
+      {
+        "name": "Pink salmon",
+        "children": [
+          {
+            "name": "Russia",
+            "value": 864300
+          }
+        ]
+      },
+      {
+        "name": "Rainbow trout",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 57768000
+          },
+          {
+            "name": "Austria",
+            "value": 10102428
+          },
+          {
+            "name": "Belgium",
+            "value": 1458427.113
+          },
+          {
+            "name": "Chile",
+            "value": 303514.0806
+          },
+          {
+            "name": "Colombia",
+            "value": 297802.9097
+          },
+          {
+            "name": "Czech Republic",
+            "value": 89821.644
+          },
+          {
+            "name": "Denmark"
+          },
+          {
+            "name": "Germany",
+            "value": 79032600
+          },
+          {
+            "name": "India",
+            "value": 37677.64
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Morocco",
+            "value": 720000
+          },
+          {
+            "name": "New Zealand",
+            "value": 9171189.6821
+          },
+          {
+            "name": "Slovakia",
+            "value": 481518
+          },
+          {
+            "name": "South Africa",
+            "value": 225282.75
+          },
+          {
+            "name": "Switzerland",
+            "value": 29831.7189
+          },
+          {
+            "name": "Zimbabwe",
+            "value": 152267.8028
+          }
+        ]
+      },
+      {
+        "name": "Salmon",
+        "children": [
+          {
+            "name": "Austria",
+            "value": 4356802.8
+          },
+          {
+            "name": "Belgium",
+            "value": 388913.8968
+          },
+          {
+            "name": "Estonia",
+            "value": 14013.7441
+          },
+          {
+            "name": "Germany",
+            "value": 21075360
+          },
+          {
+            "name": "Japan",
+            "value": 140081226.3
+          },
+          {
+            "name": "Luxembourg"
+          },
+          {
+            "name": "Poland",
+            "value": 2034359.808
+          },
+          {
+            "name": "Romania",
+            "value": 680492.4
+          },
+          {
+            "name": "United States of America",
+            "value": 49554870.12
+          }
+        ]
+      },
+      {
+        "name": "Siberian taimen",
+        "children": [
+          {
+            "name": "Mongolia"
+          }
+        ]
+      },
+      {
+        "name": "Sockeye salmon",
+        "children": [
+          {
+            "name": "Russia",
+            "value": 2506900
+          }
+        ]
+      },
+      {
+        "name": "Steelhead",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 32910623.62
+          }
+        ]
+      },
+      {
+        "name": "Trout",
+        "children": [
+          {
+            "name": "Australia",
+            "value": 3739698.0216
+          },
+          {
+            "name": "Canada",
+            "value": 705938259.117
+          },
+          {
+            "name": "Mexico",
+            "value": 17686036.5
+          },
+          {
+            "name": "Portugal",
+            "value": 278898.4
+          },
+          {
+            "name": "Romania",
+            "value": 505236
+          },
+          {
+            "name": "Turkey",
+            "value": 67091.7744
+          },
+          {
+            "name": "United States of America",
+            "value": 329106236.2
+          }
+        ]
+      },
+      {
+        "name": "Vendace",
+        "children": [
+          {
+            "name": "Finland",
+            "value": 9069879.78
+          },
+          {
+            "name": "Sweden"
+          }
+        ]
+      },
+      {
+        "name": "Whitefish",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 4991.5294
+          },
+          {
+            "name": "Denmark"
+          },
+          {
+            "name": "Finland",
+            "value": 28118095.2
+          },
+          {
+            "name": "France",
+            "value": 301190.4
+          },
+          {
+            "name": "Norway",
+            "value": 1183875.48
+          },
+          {
+            "name": "Russia",
+            "value": 2773113
+          },
+          {
+            "name": "Sweden"
+          },
+          {
+            "name": "Switzerland",
+            "value": 1404402.6852
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Schilbeidae",
+    "children": [
+      {
+        "name": "Silund",
+        "children": [
+          {
+            "name": "India",
+            "value": 6713.46
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sciaenidae",
+    "children": [
+      {
+        "name": "Curvinata, Burra",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 258210.6154
+          }
+        ]
+      },
+      {
+        "name": "Curvinata, Pácora",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 297802.9097
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Serrasalmidae",
+    "children": [
+      {
+        "name": "Cachama, Morocoto",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "Cachama, Pacú",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "Cachara, Tambaqui",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 3846530.16
+          }
+        ]
+      },
+      {
+        "name": "Cherna, Cachama Negra",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 231528.8518
+          }
+        ]
+      },
+      {
+        "name": "Pacu",
+        "children": [
+          {
+            "name": "Argentina",
+            "value": 7097750
+          },
+          {
+            "name": "Brazil",
+            "value": 3167730.72
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Siluridae",
+    "children": [
+      {
+        "name": "Boal",
+        "children": [
+          {
+            "name": "Bangladesh",
+            "value": 387004.728
+          }
+        ]
+      },
+      {
+        "name": "Catfish",
+        "children": [
+          {
+            "name": "Bosnia and Herzegovina",
+            "value": 86661.12
+          },
+          {
+            "name": "India",
+            "value": 14960.4
+          },
+          {
+            "name": "Myanmar",
+            "value": 112755.5
+          },
+          {
+            "name": "Republic of Serbia",
+            "value": 1016433.6
+          }
+        ]
+      },
+      {
+        "name": "European catfish",
+        "children": [
+          {
+            "name": "Czech Republic",
+            "value": 289767.5572
+          },
+          {
+            "name": "Poland",
+            "value": 7801447.68
+          }
+        ]
+      },
+      {
+        "name": "Far eastern catfish",
+        "children": [
+          {
+            "name": "South Korea",
+            "value": 536890.6816
+          }
+        ]
+      },
+      {
+        "name": "Wels catfish",
+        "children": [
+          {
+            "name": "Bulgaria",
+            "value": 2289525
+          },
+          {
+            "name": "Croatia",
+            "value": 453206.25
+          },
+          {
+            "name": "Hungary",
+            "value": 2274648.349
+          },
+          {
+            "name": "Italy",
+            "value": 23554.0032
+          },
+          {
+            "name": "Kosovo"
+          },
+          {
+            "name": "Macedonia",
+            "value": 3370.8045
+          },
+          {
+            "name": "Russia",
+            "value": 616297.5
+          },
+          {
+            "name": "Slovakia",
+            "value": 716580
+          },
+          {
+            "name": "Slovenia"
+          },
+          {
+            "name": "Switzerland",
+            "value": 57193.1219
+          },
+          {
+            "name": "Turkey",
+            "value": 72216.8405
+          },
+          {
+            "name": "Uzbekistan",
+            "value": 29183.7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sinipercidae",
+    "children": [
+      {
+        "name": "Golden mandarin",
+        "children": [
+          {
+            "name": "South Korea",
+            "value": 37361188.2124
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "name": "Benin"
+          },
+          {
+            "name": "Eritrea"
+          },
+          {
+            "name": "Ghana"
+          },
+          {
+            "name": "Guinea"
+          },
+          {
+            "name": "Lebanon"
+          },
+          {
+            "name": "Liberia"
+          },
+          {
+            "name": "Madagascar"
+          },
+          {
+            "name": "Mauritania"
+          },
+          {
+            "name": "Mozambique"
+          },
+          {
+            "name": "Namibia"
+          },
+          {
+            "name": "Pakistan"
+          },
+          {
+            "name": "Senegal"
+          },
+          {
+            "name": "United Republic of Tanzania"
+          },
+          {
+            "name": "Togo"
+          },
+          {
+            "name": "Tunisia"
+          },
+          {
+            "name": "United Kingdom"
+          }
+        ]
+      }
+    ]
+  }
+]
+}

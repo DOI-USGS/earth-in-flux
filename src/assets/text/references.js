@@ -72,4 +72,32 @@ export default {
       doi: "https://doi.org/10.5066/P9DNAN1M"
     },
   ],
+  FishAsFoodCirclePacking: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., & Golden, C.D.",
+      year: "2023",
+      title: "Global dataset of nutritional value, economic value, and climate vulnerability for species-specific recreational fisheries harvest for consumption",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/644ae0e0d34e45f6ddccf773",
+      doi: "https://doi.org/10.5066/P9WO91SZ"
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., Golden, C.D., Milardi, M., Arlinghaus, R., Baigun, C., Beard, T.D., Cooke, S.J., Cowx, I.G., Koehn, J.D., Lyach, R., Potts, W., Robertson, A.M., Schmidhuber, J., & Weyl, O.L.F.",
+      year: "2024",
+      title: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
+      link: "https://www.nature.com/articles/s43016-024-00961-8",
+      journal: true,
+      journal_name: "Nature Food",
+      journal_issue: "5",
+      data_release: false,
+      doi: "https://doi.org/10.1038/s43016-024-00961-8"
+    },
+  ],
 };
