@@ -108,21 +108,12 @@
             "value": 20586.8663
           },
           {
-            "name": "Luxembourg"
-          },
-          {
-            "name": "Netherlands"
-          },
-          {
             "name": "Poland",
             "value": 9315710.976
           },
           {
             "name": "Spain",
             "value": 6258.98
-          },
-          {
-            "name": "Switzerland"
           },
           {
             "name": "Turkey",
@@ -292,9 +283,6 @@
             "value": 77578.2
           },
           {
-            "name": "Spain"
-          },
-          {
             "name": "Zimbabwe",
             "value": 454682.1442
           }
@@ -394,9 +382,6 @@
         "name": "Dorado",
         "children": [
           {
-            "name": "Brazil"
-          },
-          {
             "name": "Colombia",
             "value": 231528.8518
           }
@@ -417,14 +402,6 @@
           {
             "name": "Mexico",
             "value": 66176798.688
-          }
-        ]
-      },
-      {
-        "name": "Machaca",
-        "children": [
-          {
-            "name": "Panama"
           }
         ]
       },
@@ -524,9 +501,6 @@
           {
             "name": "Colombia",
             "value": 253907.1051
-          },
-          {
-            "name": "Panama"
           }
         ]
       },
@@ -563,9 +537,6 @@
           {
             "name": "Brazil",
             "value": 1163052
-          },
-          {
-            "name": "Panama"
           }
         ]
       },
@@ -575,14 +546,6 @@
           {
             "name": "Colombia",
             "value": 253907.1051
-          }
-        ]
-      },
-      {
-        "name": "Redhead cichlid",
-        "children": [
-          {
-            "name": "Panama"
           }
         ]
       },
@@ -605,9 +568,6 @@
           {
             "name": "India",
             "value": 2635.88
-          },
-          {
-            "name": "Panama"
           }
         ]
       },
@@ -721,9 +681,6 @@
         "name": "Albanian roach",
         "children": [
           {
-            "name": "Albania"
-          },
-          {
             "name": "Montenegro",
             "value": 7759.2
           }
@@ -762,9 +719,6 @@
             "value": 2994.0548
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Macedonia",
             "value": 1330.628
           },
@@ -775,9 +729,6 @@
           {
             "name": "Portugal",
             "value": 139449.2
-          },
-          {
-            "name": "Spain"
           }
         ]
       },
@@ -879,9 +830,6 @@
         "name": "Chub",
         "children": [
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Macedonia",
             "value": 2989.3775
           }
@@ -915,9 +863,6 @@
           {
             "name": "Belarus",
             "value": 815850
-          },
-          {
-            "name": "Belgium"
           },
           {
             "name": "Bosnia and Herzegovina",
@@ -956,9 +901,6 @@
             "value": 1801200
           },
           {
-            "name": "Luxembourg"
-          },
-          {
             "name": "Netherlands",
             "value": 56184.9799
           },
@@ -977,9 +919,6 @@
           {
             "name": "Republic of Serbia",
             "value": 118476.8
-          },
-          {
-            "name": "Slovenia"
           },
           {
             "name": "Switzerland",
@@ -1002,9 +941,6 @@
       {
         "name": "Common carp",
         "children": [
-          {
-            "name": "Albania"
-          },
           {
             "name": "Bangladesh",
             "value": 365743.092
@@ -1050,14 +986,8 @@
             "value": 3554085
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Macedonia",
             "value": 18571.4639
-          },
-          {
-            "name": "Moldova"
           },
           {
             "name": "Montenegro",
@@ -1088,18 +1018,12 @@
             "value": 7942725
           },
           {
-            "name": "Slovenia"
-          },
-          {
             "name": "South Africa",
             "value": 4896704.4
           },
           {
             "name": "South Korea",
             "value": 3310272.052
-          },
-          {
-            "name": "Spain"
           },
           {
             "name": "Switzerland",
@@ -1127,18 +1051,12 @@
             "value": 2994.0548
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Macedonia",
             "value": 4811.5166
           },
           {
             "name": "Portugal",
             "value": 69724.6
-          },
-          {
-            "name": "Spain"
           }
         ]
       },
@@ -1146,18 +1064,12 @@
         "name": "Common roach",
         "children": [
           {
-            "name": "Albania"
-          },
-          {
             "name": "Austria",
             "value": 1931050.8
           },
           {
             "name": "Belarus",
             "value": 744744
-          },
-          {
-            "name": "Belgium"
           },
           {
             "name": "Estonia",
@@ -1172,18 +1084,12 @@
             "value": 16041360
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Latvia",
             "value": 109242.8568
           },
           {
             "name": "Lithuania",
             "value": 1932300
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Macedonia",
@@ -1206,9 +1112,6 @@
             "value": 2175800
           },
           {
-            "name": "Slovenia"
-          },
-          {
             "name": "Sweden",
             "value": 1678400
           },
@@ -1226,9 +1129,6 @@
         "name": "Crucian carp",
         "children": [
           {
-            "name": "Belarus"
-          },
-          {
             "name": "Bosnia and Herzegovina",
             "value": 99680
           },
@@ -1245,14 +1145,8 @@
             "value": 7108170
           },
           {
-            "name": "Moldova"
-          },
-          {
             "name": "Republic of Serbia",
             "value": 1206686.208
-          },
-          {
-            "name": "Slovenia"
           },
           {
             "name": "South Korea",
@@ -1272,18 +1166,12 @@
             "value": 2574734.4
           },
           {
-            "name": "Belgium"
-          },
-          {
             "name": "France",
             "value": 156675.6
           },
           {
             "name": "Germany",
             "value": 21388480
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Switzerland",
@@ -1303,14 +1191,8 @@
             "value": 14804722.8
           },
           {
-            "name": "Belgium"
-          },
-          {
             "name": "Germany",
             "value": 122983760
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Ukraine",
@@ -1370,9 +1252,6 @@
             "value": 164328.627
           },
           {
-            "name": "Belgium"
-          },
-          {
             "name": "Bosnia and Herzegovina",
             "value": 266003.2
           },
@@ -1405,12 +1284,6 @@
             "value": 4825.925
           },
           {
-            "name": "Luxembourg"
-          },
-          {
-            "name": "Moldova"
-          },
-          {
             "name": "Myanmar",
             "value": 112076.25
           },
@@ -1421,18 +1294,12 @@
           {
             "name": "Slovakia",
             "value": 334000.8
-          },
-          {
-            "name": "Slovenia"
           }
         ]
       },
       {
         "name": "Gudgeon",
         "children": [
-          {
-            "name": "Kosovo"
-          },
           {
             "name": "Macedonia",
             "value": 1895.9437
@@ -1442,12 +1309,6 @@
       {
         "name": "Italian bleak",
         "children": [
-          {
-            "name": "Albania"
-          },
-          {
-            "name": "Kosovo"
-          },
           {
             "name": "Macedonia",
             "value": 5886.3249
@@ -1612,14 +1473,8 @@
             "value": 1931050.8
           },
           {
-            "name": "Belgium"
-          },
-          {
             "name": "Germany",
             "value": 16041360
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Turkey",
@@ -1683,9 +1538,6 @@
             "value": 2493.6076
           },
           {
-            "name": "Moldova"
-          },
-          {
             "name": "Republic of Serbia",
             "value": 75528.96
           },
@@ -1718,9 +1570,6 @@
           {
             "name": "Latvia",
             "value": 126409.5914
-          },
-          {
-            "name": "New Zealand"
           },
           {
             "name": "Poland",
@@ -1771,9 +1620,6 @@
         "name": "White Bream",
         "children": [
           {
-            "name": "Belarus"
-          },
-          {
             "name": "Ukraine",
             "value": 1911575.6352
           }
@@ -1822,9 +1668,6 @@
           {
             "name": "Brazil",
             "value": 128288.16
-          },
-          {
-            "name": "Panama"
           }
         ]
       }
@@ -1839,9 +1682,6 @@
           {
             "name": "Austria",
             "value": 20269116
-          },
-          {
-            "name": "Belarus"
           },
           {
             "name": "Belgium",
@@ -1896,18 +1736,12 @@
             "value": 14345.9538
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Latvia",
             "value": 1637917.719
           },
           {
             "name": "Lithuania",
             "value": 470677.5
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Macedonia",
@@ -1932,9 +1766,6 @@
           {
             "name": "Slovakia",
             "value": 717485.4
-          },
-          {
-            "name": "Slovenia"
           },
           {
             "name": "Sweden",
@@ -2144,9 +1975,6 @@
         "name": "European smelt",
         "children": [
           {
-            "name": "Denmark"
-          },
-          {
             "name": "Lithuania",
             "value": 1541280
           },
@@ -2188,19 +2016,6 @@
           {
             "name": "Switzerland",
             "value": 3944.2143
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Osteoglossidae",
-    "children": [
-      {
-        "name": "Arawana",
-        "children": [
-          {
-            "name": "Brazil"
           }
         ]
       }
@@ -2307,9 +2122,6 @@
             "value": 66913.0403
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Latvia",
             "value": 294545.8556
           },
@@ -2318,18 +2130,12 @@
             "value": 422156.25
           },
           {
-            "name": "Luxembourg"
-          },
-          {
             "name": "Macedonia",
             "value": 1757.9248
           },
           {
             "name": "Netherlands",
             "value": 355538.1365
-          },
-          {
-            "name": "New Zealand"
           },
           {
             "name": "Norway",
@@ -2450,14 +2256,8 @@
             "value": 3429293.3143
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Latvia",
             "value": 540752.1412
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Macedonia",
@@ -2486,9 +2286,6 @@
           {
             "name": "Slovakia",
             "value": 1263814.2
-          },
-          {
-            "name": "Slovenia"
           },
           {
             "name": "Sweden",
@@ -2831,9 +2628,6 @@
             "value": 14974.5882
           },
           {
-            "name": "Denmark"
-          },
-          {
             "name": "Finland",
             "value": 4907437.6
           },
@@ -2864,12 +2658,6 @@
           {
             "name": "Italy",
             "value": 40976.5824
-          },
-          {
-            "name": "Kosovo"
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Macedonia",
@@ -3013,18 +2801,12 @@
             "value": 89821.644
           },
           {
-            "name": "Denmark"
-          },
-          {
             "name": "Germany",
             "value": 79032600
           },
           {
             "name": "India",
             "value": 37677.64
-          },
-          {
-            "name": "Luxembourg"
           },
           {
             "name": "Morocco",
@@ -3076,9 +2858,6 @@
             "value": 140081226.3
           },
           {
-            "name": "Luxembourg"
-          },
-          {
             "name": "Poland",
             "value": 2034359.808
           },
@@ -3089,14 +2868,6 @@
           {
             "name": "United States of America",
             "value": 49554870.12
-          }
-        ]
-      },
-      {
-        "name": "Siberian taimen",
-        "children": [
-          {
-            "name": "Mongolia"
           }
         ]
       },
@@ -3157,9 +2928,6 @@
           {
             "name": "Finland",
             "value": 9069879.78
-          },
-          {
-            "name": "Sweden"
           }
         ]
       },
@@ -3169,9 +2937,6 @@
           {
             "name": "Czech Republic",
             "value": 4991.5294
-          },
-          {
-            "name": "Denmark"
           },
           {
             "name": "Finland",
@@ -3188,9 +2953,6 @@
           {
             "name": "Russia",
             "value": 2773113
-          },
-          {
-            "name": "Sweden"
           },
           {
             "name": "Switzerland",
@@ -3366,9 +3128,6 @@
             "value": 23554.0032
           },
           {
-            "name": "Kosovo"
-          },
-          {
             "name": "Macedonia",
             "value": 3370.8045
           },
@@ -3379,9 +3138,6 @@
           {
             "name": "Slovakia",
             "value": 716580
-          },
-          {
-            "name": "Slovenia"
           },
           {
             "name": "Switzerland",
@@ -3408,62 +3164,6 @@
           {
             "name": "South Korea",
             "value": 37361188.2124
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "children": [
-          {
-            "name": "Benin"
-          },
-          {
-            "name": "Eritrea"
-          },
-          {
-            "name": "Ghana"
-          },
-          {
-            "name": "Guinea"
-          },
-          {
-            "name": "Lebanon"
-          },
-          {
-            "name": "Liberia"
-          },
-          {
-            "name": "Madagascar"
-          },
-          {
-            "name": "Mauritania"
-          },
-          {
-            "name": "Mozambique"
-          },
-          {
-            "name": "Namibia"
-          },
-          {
-            "name": "Pakistan"
-          },
-          {
-            "name": "Senegal"
-          },
-          {
-            "name": "United Republic of Tanzania"
-          },
-          {
-            "name": "Togo"
-          },
-          {
-            "name": "Tunisia"
-          },
-          {
-            "name": "United Kingdom"
           }
         ]
       }
