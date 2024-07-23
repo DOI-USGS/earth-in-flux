@@ -12,7 +12,7 @@
             <p v-html="text.paragraph1" />
         </template>
         <template #figures>
-            <div class="chart-container" ref="chart">
+            <div class="chart-container single" ref="chart">
             </div>
         </template>
         <!-- FIGURE CAPTION -->
@@ -145,7 +145,14 @@
 
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
+    #circle-pack-svg {
+        max-width: 100%;
+        height: auto;
+    }
     .circle-packing-text {
         font-size: 1.2rem;
+        @media screen and (max-width: 600px) {
+            font-size: 2rem;
+        }
     }
 </style>
