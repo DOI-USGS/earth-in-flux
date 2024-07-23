@@ -71,10 +71,10 @@
         // Create the SVG container.
         const svg = d3.select(chart.value)
             .append("svg")
+            .attr("id", "circle-pack-svg")
             .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
             .attr("width", width)
             .attr("height", height)
-            .attr("style", `max-width: 100%; height: auto; display: block; margin: 0 -14px; background: ${color(0)}; cursor: pointer;`);
 
         // Append the nodes.
         const node = svg.append("g")
@@ -140,5 +140,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
+/* css for elements added/classed w/ d3 */
+
 </style>
