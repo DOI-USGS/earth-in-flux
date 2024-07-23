@@ -14,7 +14,7 @@ clean_input_data <- function(data_file) {
 
 build_nested_json <- function(data, focal_columns, out_file) {
   data_list <- data |>
-    filter(!is.na(focal_columns[['value']])) |>
+    filter(!is.na(!!rlang::sym(focal_columns[['value']]))) |>
     group_by(name = family) |>
     group_modify(~ {
       species_list <- .x |> 
