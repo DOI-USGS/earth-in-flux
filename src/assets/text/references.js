@@ -76,6 +76,19 @@ export default {
     {
       reference: "Reference 1.",
       num: "1",
+      authors: "Bostock, M.",
+      year: "2023",
+      title: "Zoomable circle packing",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: false,
+      link: "https://observablehq.com/@d3/zoomable-circle-packing",
+      doi: null
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
       authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., & Golden, C.D.",
       year: "2023",
       title: "Global dataset of nutritional value, economic value, and climate vulnerability for species-specific recreational fisheries harvest for consumption",
@@ -87,8 +100,8 @@ export default {
       doi: "https://doi.org/10.5066/P9WO91SZ"
     },
     {
-      reference: "Reference 2.",
-      num: "2",
+      reference: "Reference 3.",
+      num: "3",
       authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., Golden, C.D., Milardi, M., Arlinghaus, R., Baigun, C., Beard, T.D., Cooke, S.J., Cowx, I.G., Koehn, J.D., Lyach, R., Potts, W., Robertson, A.M., Schmidhuber, J., & Weyl, O.L.F.",
       year: "2024",
       title: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
