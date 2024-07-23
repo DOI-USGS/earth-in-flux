@@ -38,6 +38,9 @@
     // global variables
     const publicPath = import.meta.env.BASE_URL;
     const chart = ref(null);
+    const bodyCSS = window.getComputedStyle(document.body);
+    const lightBlue = bodyCSS.getPropertyValue('--light-blue');
+    const darkBlue = bodyCSS.getPropertyValue('--dark-blue');
     
     // Declare behavior on mounted
     // functions called here
@@ -58,7 +61,7 @@
         // Create the color scale.
         const color = d3.scaleLinear()
             .domain([0, 5])
-            .range(["#D7DCE5", "#1D3867"])
+            .range([lightBlue, darkBlue])
             .interpolate(d3.interpolateHcl);
 
         // Compute the layout.
@@ -91,7 +94,7 @@
 
         // Append the text labels.
         const label = svg.append("g")
-            .style("font", "10px sans-serif")
+            .attr("class", "circle-packing-text")
             .attr("pointer-events", "none")
             .attr("text-anchor", "middle")
             .selectAll("text")
@@ -122,7 +125,7 @@
 
             const transition = svg.transition()
                 .duration(event.altKey ? 7500 : 750)
-                .tween("zoom", d => {
+                .tween("zoom", () => {
                     const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
                     return t => zoomTo(i(t));
                 });
@@ -142,5 +145,7 @@
 
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
-
+    .circle-packing-text {
+        font-size: 1.2rem;
+    }
 </style>

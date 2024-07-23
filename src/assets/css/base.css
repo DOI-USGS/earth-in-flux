@@ -13,6 +13,8 @@
   --medium-purple: #8F00DB;
   --medium-blue: #4365A8;
   --medium-orange: #E48951;
+  --light-blue: #D7DCE5;
+  --dark-blue: #1D3867;
   --usgs-blue: #00264c;
   --usgs-green: #006F41;
 
@@ -31,10 +33,6 @@
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--medium-grey);
   --color-link: var(--medium-purple);
-  --color-bar-focal: var(--medium-blue);
-  --color-bar-default: var(--medium-grey);
-  --color-map-focal: var(--medium-orange);
-  --color-map-default: var(--white);
   --color-USGS-header-footer: var(--usgs-blue);
 }
 
