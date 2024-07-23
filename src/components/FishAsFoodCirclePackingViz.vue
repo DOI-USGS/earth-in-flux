@@ -41,7 +41,7 @@
     // functions called here
     onMounted(async () => {
         // Load the json data
-        const data = await d3.csv(publicPath + 'total_price.json');
+        const data = await d3.json(publicPath + 'total_price.json');
 
         // build chart
         buildChart(data);
