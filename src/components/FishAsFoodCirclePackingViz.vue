@@ -9,6 +9,7 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph1" />
         </template>
         <template #figures>
             <div class="chart-container" ref="chart">
@@ -19,6 +20,7 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
+            <p v-html="text.paragraph2" />
         </template>
     </VizSection>
 </template>
