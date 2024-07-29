@@ -216,9 +216,9 @@
         // update rectGroups to include new points
         leafGroups = newLeafGroups.merge(leafGroups)
 
-        // leafGroups
-        //     .transition(getUpdateTransition())
-        //     .attr("transform", d => `translate(${d.x},${d.y})`);
+        leafGroups
+            .transition(getUpdateTransition())
+            .attr("transform", d => `translate(${d.x},${d.y})`);
 
         const leafGroupCircle = leafGroups.select("circle")
 
