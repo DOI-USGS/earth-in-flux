@@ -150,4 +150,37 @@ export default {
       }
     ]
   },
+  BeaufortSeaSpecies: {
+    primaryAuthors: [
+      {
+        firstName: 'Althea',
+        lastName: 'Archer',
+        fullName: 'Althea Anne Archer',
+        initials: 'AA',
+        profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer',
+        role: 'lead author',
+        contribution: 'led the development of the data visualization, created illustrations, and wrote the narrative'
+      },
+    ],
+    additionalAuthors: [
+      {
+        firstName: 'Maggie',
+        lastName: 'Jaenicke',
+        fullName: 'Maggie Jaenicke',
+        initials: 'MJ',
+        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
+        role: 'lead developer',
+        contribution: 'co-led the design and development of the website and created illustrations'
+      },
+      {
+        firstName: 'Hayley',
+        lastName: 'Corson-Dosch',
+        fullName: 'Hayley Corson-Dosch',
+        initials: 'HCD',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        role: 'lead developer',
+        contribution: 'co-led the design and development of the website'
+      }
+    ]
+  }
 };

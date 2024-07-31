@@ -28,7 +28,15 @@ export default {
             heading: "Inland fisheries are threatened"
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect ice cores?"
+            heading: "How do USGS scientists collect ice cores?",
+            paragraph1: "Researchers traveled from Reston, Virginia to Whitefish Station, Yukon, Canada. Here, the Mackenzie River flows into the Beaufort Sea. The researchers do their sediment coring offshore, along the relatively shallow Mackenzie Shelf.",
+            paragraph2: "Researchers take a large U.S. Coast Guard ice-breaking ship to the collection site.",
+            paragraph3: "Once the researchers are at the collection site, they use a large piston-driven coring device to take samples of the sediment layers at the bottom of the ocean.",
+            paragraph4: "The sediment in the top of the core is newer sediment than sediment at the bottom. The total time span for this sample is about 2000 years!",
+            paragraph5: "Researchers then slice the core into 1-centimeter sections for testing. They measure the age of the sediment, chemistry in the sediment, and examine what species of microfossiles are present.",
+            paragraph6: "Researchers identify all the species they can, collecting data on the relative abundance of each species. These species, the chemistry of the sediment, and the age help researchers reconstruct past climates.",
+            paragraph7: "The microfossils are approximately a half-centimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
+            paragraph8: "Learn more about the focal species in XXX page."
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present climates with Arctic microfossils",

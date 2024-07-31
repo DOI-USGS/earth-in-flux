@@ -72,4 +72,45 @@ export default {
       doi: "https://doi.org/10.5066/P9DNAN1M"
     },
   ],
+  BeaufortSeaSpecies:[
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., Schwartz, V.",
+      year: "2023",
+      title: "Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea",
+      link: "http://doi.org/10.47894/mpal.69.3.04",
+      journal: true,
+      journal_name: "Micropaleontology",
+      journal_issue: " 69",
+      data_release: false,
+      doi: "http://doi.org/10.47894/mpal.69.3.04"
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Gemery, L.",
+      year: "2021",
+      title: "Data Release to Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea.",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/6197a410d34eb622f692ce0e",
+      doi: "https://doi.org/10.5066/P9SRRW6T"
+    },
+    {
+      reference: "Reference 3.",
+      num: "3",
+      authors: "Seidenstein, J.L., Cronin, T.M., Gemery, L., Keigwin, L.D., Pearce, C., Jakobsson, M., Coxall, H.K., Wei, E.A., Driscoll, N.W.",
+      year: "2018",
+      title: "Late Holocene paleoceanography in the Chukchi and Beaufort Seas, Arctic Ocean, based on benthic foraminifera and ostracodes.",
+      link: "https://link.springer.com/article/10.1007/s41063-018-0058-7",
+      journal: true,
+      journal_name: "Arktos",
+      journal_issue: " 4",
+      data_release: false,
+      doi: "https://doi.org/10.1007/s41063-018-0058-7"
+    }
+  ]
 };
