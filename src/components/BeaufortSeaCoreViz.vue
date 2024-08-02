@@ -11,7 +11,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_1.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_1.png">
                 </figure>
             </div>
         </template>
@@ -35,7 +35,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_2.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_2.png">
                 </figure>
             </div>
         </template>
@@ -59,7 +59,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_3.gif">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_3.gif">
                 </figure>
             </div>
         </template>
@@ -83,7 +83,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_4.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_4.png">
                 </figure>
             </div>
         </template>
@@ -107,7 +107,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_5.gif">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_5.gif">
                 </figure>
             </div>
         </template>
@@ -131,7 +131,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_6.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_6.png">
                 </figure>
             </div>
         </template>
@@ -155,7 +155,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_7.gif">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_7.gif">
                 </figure>
             </div>
         </template>
@@ -179,7 +179,7 @@
         <template #figures>
             <div class="single maxWidth">
                 <figure>
-                    <img src="../../beaufortSea/images/BeaufortSeaCore_8.png">
+                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_8.png">
                 </figure>
             </div>
         </template>
