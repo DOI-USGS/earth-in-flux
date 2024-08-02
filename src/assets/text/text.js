@@ -35,12 +35,12 @@ export default {
             paragraph4: "The sediment in the top of the core is newer sediment than sediment at the bottom. The total time span for this sample is about 2000 years!",
             paragraph5: "Researchers then slice the core into 1-centimeter sections for testing. They measure the age of the sediment, chemistry in the sediment, and examine what species of microfossiles are present.",
             paragraph6: "Researchers identify all the species they can, collecting data on the relative abundance of each species. These species, the chemistry of the sediment, and the age help researchers reconstruct past climates.",
-            paragraph7: "The microfossils are approximately a half-centimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
+            paragraph7: "The microfossils are approximately a half-millimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
             paragraph8: "Learn more about the focal species in XXX page."
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present climates with Arctic microfossils",
-            paragraph1: "As climate conditions change at the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Alaska, the small species of ostracodes and forams respond and the overall assemblage of species changes. Researchers have reconstructed the past climates of the Arctic using these microfossils. In particular, a couple species work as indicator species, which means we can monitor their growth (or lack thereof) to understand how healthy the local ocean climate is at a given time in the past or present.",
+            paragraph1: "As climate conditions change at the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Yukon, Canada, the small species of ostracodes and forams respond and the overall assemblage of species changes. Researchers have reconstructed the past climates of the Arctic using these microfossils. In particular, a couple species work as indicator species, which means we can monitor their growth (or lack thereof) to understand how healthy the local ocean climate is at a given time in the past or present.",
             heading2: "Meet the forams!",
             paragraph2: "Foraminifera, or 'forams', are a group of single-celled protists covered by an external shell called a 'test.' It is these tests that are found in the sedimentary fossil record and are used to identify the different species. ",
             heading2a: "<span class='scientificName'>Cassidulina reniforme</span>",
