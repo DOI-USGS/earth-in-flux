@@ -32,8 +32,9 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <button id="button-2010" @click="updateChart">2010</button>
-            <button id="button-2020" @click="updateChart">2020</button>
+            <button id="button-0" @click="updateChart">0</button>
+            <button id="button-100" @click="updateChart">100</button>
+            <button id="button-1200" @click="updateChart">1200</button>
         </template>
         <template #figures>
             <div class="chart-container single" ref="chart">
@@ -63,37 +64,40 @@
     const chart = ref(null);
     const svg = ref(null);
     const chartData = ref(null);
-    const chartYear = ref(null);
+    const chartDecade = ref(null);
     const chartWidth = 1152;
+    const simulation = ref(null)
 
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
 
         // Load the data
-        const data = await d3.csv(publicPath + 'flare.csv');
+        const data = await d3.csv(publicPath + 'beaufort_species_abundance.csv');
 
-        chartData.value = data.filter(d => d.value !== null) // just the leaves
-
-        chartYear.value = '2010'
-
-        
+        chartData.value = data
+        chartDecade.value = '500'
 
         initChart({
             width: chartWidth, // outer width, in pixels
         });
 
         // build chart
-        BubbleChart(chartData.value, {
-            label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
-            value: d => d.value,
-            id: d => d.id,
-            group: d => d.id.split(".")[1],
-            title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
-            link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
+        drawChart(chartData.value, {
             width: chartWidth,
-            year: chartYear.value
+            height: chartWidth,
+            decade: chartDecade.value
         })
+        // BubbleChart(chartData.value, {
+        //     label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
+        //     value: d => d.value,
+        //     id: d => d.id,
+        //     group: d => d.id.split(".")[1],
+        //     title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
+        //     link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
+        //     width: chartWidth,
+        //     year: chartYear.value
+        // })
     });
 
     function initChart({
@@ -115,7 +119,129 @@
             .attr("font-family", "sans-serif")
             .attr("text-anchor", "middle");
     }
+    function drawChart(data, {
+        width = 200,
+        height = 200,
+        decade = 200
+    }) {
+        
+        data = data.filter(d => d.decade === decade);
+        
+        // Set radius based on data value
+        const sizeScale = d3.scaleSqrt()
+            .domain([
+                d3.min(data, (d) => parseFloat(d.pct_abundance)),
+                d3.max(data, (d) => parseFloat(d.pct_abundance))
+            ])
+            .range([4, 200]);
 
+        const nodes = data.map((d) => ({
+            ...d,
+            radius: sizeScale(parseFloat(d.pct_abundance)),
+            x: width / 2,
+            y: height / 2
+        }));
+       
+        // set up nodes
+        let nodeGroups = svg.value.selectAll('.nodes')
+            .data(nodes, d => d.species)
+            // .enter()
+            // .append("circle")
+            // .attr("r", (d) => d.radius)
+            // .attr("cx", width / 2)
+            // .attr("cy", height / 2)
+            // .attr("fill", (d) => d.hexcode)
+            // .attr("stroke", "#000000")
+            // .attr("stroke-width", 0.5);
+        console.log(nodeGroups)
+
+        const oldNodeGroups = nodeGroups.exit()
+
+        // oldNodeGroups.selectAll("circle")
+            // .attr("r", 0); //radius to 0
+
+        // Remove old nodes
+        oldNodeGroups.transition(getExitTransition()).remove()
+
+        // Append new nodes
+        const newNodeGroups = nodeGroups.enter().append("g")
+            .attr("class", "nodes")
+            .attr("id", d => d.id)
+
+        newNodeGroups.append("circle")
+            .attr("stroke", "#000000")
+            .attr("stroke-width", 0.5)
+            .attr("fill", d => d.hexcode)
+            .attr("cx", width / 2)
+            .attr("cy", height / 2)
+            .attr("r", d => d.radius) //instantiate w/ radius = 0
+
+        // const newNodeGroups = nodeGroups
+        //     .enter()
+        //     .append("circle")
+        //     .attr("stroke", "#000000")
+        //     .attr("stroke-width", 0.5)
+        //     .attr("fill", d => d.hexcode)
+        //     .attr("cx", width / 2)
+        //     .attr("cy", height / 2)
+        //     .attr("r", 0)
+
+        //update nodeGroups to include new nodes
+        nodeGroups = newNodeGroups.merge(nodeGroups)
+
+        const nodeGroupCircle = nodeGroups.select("circle")
+        console.log(nodeGroupCircle)
+
+        nodeGroupCircle
+            .transition(getUpdateTransition())
+            .attr("r", d => d.radius)
+            // .attr("cx", (d, i) => d.x + i*10)
+            // .attr("cy", (d, i) => d.y + i*10);
+
+        // nodeGroups
+        //     .transition(getUpdateTransition())
+        //     .attr("r", d => d.radius)
+
+        // const node = svg.value
+        //     .selectAll("circle")
+        //     .data(nodes)
+        //     .enter()
+        //     .append("circle")
+        //     .attr("r", (d) => d.radius)
+        //     .attr("fill", (d) => d.color);
+
+                function ticked() {
+            nodeGroupCircle
+            // nodeGroups
+                .transition(getUpdateTransition())
+                .attr("cx", (d) => d.x)
+                .attr("cy", (d) => d.y);
+        }
+
+
+        simulation.value = d3.forceSimulation();
+        simulation.value
+            .nodes(nodes)
+            .force("x", d3.forceX(width / 2).strength(0.05))
+            .force("y", d3.forceY(height / 2).strength(0.05))
+            .force(
+                "collide",
+                d3.forceCollide()
+                    .radius((d) => d.radius + 2)
+                    .iterations(1)
+            )
+            .force('charge', d3.forceManyBody().strength(0))
+            .on("tick", ticked);
+
+
+
+        simulation.value
+            .on("tick", ticked);
+        // if (simulation) {
+        //     simulation.force("x", d3.forceX(width / 2).strength(0.1));
+        //     simulation.alpha(1).restart();
+        // }
+    }
     // Copyright 2021-2023 Observable, Inc.
     // Released under the ISC license.
     // https://observablehq.com/@d3/bubble-chart
@@ -153,6 +279,11 @@
         const I = d3.range(V.length).filter(i => V[i] > 0);
         const ID = d3.map(data, id)
 
+        const r = d3.scaleSqrt(
+            [100, 1000],
+            [1, Math.sqrt()]
+        )
+
         // Unique the groups.
         if (G && groups === undefined) groups = I.map(i => G[i]);
         groups = G && new d3.InternSet(groups);
@@ -187,6 +318,19 @@
         //     .data(root.leaves(), d => ID[d.data])
         //     .join("g")
         //     .attr("transform", d => `translate(${d.x},${d.y})`);
+        const simulation = d3.forceSimulation();
+        simulation
+            .nodes(root.leaves())
+            .force("x", d3.forceX(width / 2).strength(0.1))
+            .force("y", d3.forceY(height / 2).strength(0.1))
+            .force(
+                "collide",
+                d3
+                    .forceCollide()
+                    .radius((d) => d.r)
+                    .iterations(1)
+            )
+            .on("tick", ticked);
 
         let leafGroups = svg.value.selectAll('.leaves')
             .data(root.leaves(), d => ID[d.data])
@@ -228,6 +372,13 @@
 
         if (T) leafGroups.append("title")
             .text(d => T[d.data]);
+
+        function ticked() {
+            leafGroupCircle
+                .transition(getUpdateTransition())
+                .attr("cx", (d) => d.x)
+                .attr("cy", (d) => d.y);
+        }
 
         // if (L) {
         //     // A unique identifier for clip paths (to avoid conflicts).
@@ -281,13 +432,13 @@
         //         .text(d => d);
         // }
 
-        return Object.assign(svg.value.node(), {scales: {color}});
+        // return Object.assign(svg.value.node(), {scales: {color}});
     }
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(100)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
@@ -299,19 +450,25 @@
         console.log('clicked!')
         console.log(e.target.id.split("-")[1])
 
-        chartYear.value = e.target.id.split("-")[1]
+        chartDecade.value = e.target.id.split("-")[1]
+
+        drawChart(chartData.value, {
+            width: chartWidth,
+            height: chartWidth,
+            decade: chartDecade.value
+        })
 
         // build chart
-        BubbleChart(chartData.value , {
-            label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
-            value: d => d.value,
-            id: d => d.id,
-            group: d => d.id.split(".")[1],
-            title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
-            link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
-            width: 1152,
-            year: chartYear.value
-        })
+        // BubbleChart(chartData.value , {
+        //     label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
+        //     value: d => d.value,
+        //     id: d => d.id,
+        //     group: d => d.id.split(".")[1],
+        //     title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
+        //     link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
+        //     width: 1152,
+        //     year: chartYear.value
+        // })
     }
 </script>
 
