@@ -202,7 +202,7 @@
     >
         <!-- HEADING -->
         <template #heading>
-            <h3 v-html="text.heading4" />
+            <h2 v-html="text.heading4" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>

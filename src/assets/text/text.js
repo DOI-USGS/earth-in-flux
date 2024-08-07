@@ -28,11 +28,19 @@ export default {
             heading: "Inland fisheries are threatened"
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect ice cores?"
+            heading: "How do USGS scientists collect ice cores?",
+            paragraph1: "Researchers traveled from Reston, Virginia to Whitefish Station, Yukon, Canada. Here, the Mackenzie River flows into the Beaufort Sea. The researchers do their sediment coring offshore, along the relatively shallow Mackenzie Shelf.",
+            paragraph2: "Researchers take a large U.S. Coast Guard ice-breaking ship to the collection site.",
+            paragraph3: "Once the researchers are at the collection site, they use a large piston-driven coring device to take samples of the sediment layers at the bottom of the ocean.",
+            paragraph4: "The sediment in the top of the core is newer sediment than sediment at the bottom. The total time span for this sample is about 2000 years!",
+            paragraph5: "Researchers then slice the core into 1-centimeter sections for testing. They measure the age of the sediment, chemistry in the sediment, and examine what species of microfossiles are present.",
+            paragraph6: "Researchers identify all the species they can, collecting data on the relative abundance of each species. These species, the chemistry of the sediment, and the age help researchers reconstruct past climates.",
+            paragraph7: "The microfossils are approximately a half-millimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
+            paragraph8: "Learn more about the focal species on the <a href='/visualizations/climate-charts/beaufort-sea/beaufort-sea-species'>Beaufort Sea species</a> page."
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present climates with Arctic microfossils",
-            paragraph1: "As climate conditions change at the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Alaska, the small species of ostracodes and forams respond and the overall assemblage of species changes. Researchers have reconstructed the past climates of the Arctic using these microfossils. In particular, a couple species work as indicator species, which means we can monitor their growth (or lack thereof) to understand how healthy the local ocean climate is at a given time in the past or present.",
+            paragraph1: "As climate conditions change at the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Yukon, Canada, the small species of ostracodes and forams respond and the overall assemblage of species changes. Researchers have reconstructed the past climates of the Arctic using these microfossils. In particular, a couple species work as indicator species, which means we can monitor their growth (or lack thereof) to understand how healthy the local ocean climate is at a given time in the past or present.",
             heading2: "Meet the forams!",
             paragraph2: "Foraminifera, or 'forams', are a group of single-celled protists covered by an external shell called a 'test.' It is these tests that are found in the sedimentary fossil record and are used to identify the different species. ",
             heading2a: "<span class='scientificName'>Cassidulina reniforme</span>",
