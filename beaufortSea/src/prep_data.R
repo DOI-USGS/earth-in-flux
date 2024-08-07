@@ -63,3 +63,25 @@ decade_abundance <- function(data_in){
   
   return(pct_abundance)
 }
+
+generate_beeswarm_data <- function(data, outfile) {
+  # filter data
+  data_subset <- data |>
+    ungroup() |>
+    filter(!is.na(pct_abundance), pct_abundance > 0)
+  
+  # generate unique ID for each species
+  unique_species <- unique(data_subset$species)
+  join_df <- tibble(
+    species = unique_species
+  ) |>
+    mutate(species_id = stringr::str_glue('species_{row_number()}'))
+  
+  # export for use in site
+  data_subset <- data_subset |> 
+    select(decade, species, type, genus, name, hexcode, species_name, pct_abundance) |>
+    left_join(join_df) |>
+    readr::write_csv(outfile)
+  
+  return(outfile)
+}
