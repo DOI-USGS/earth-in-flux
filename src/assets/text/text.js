@@ -36,7 +36,7 @@ export default {
             paragraph5: "Researchers then slice the core into 1-centimeter sections for testing. They measure the age of the sediment, chemistry in the sediment, and examine what species of microfossiles are present.",
             paragraph6: "Researchers identify all the species they can, collecting data on the relative abundance of each species. These species, the chemistry of the sediment, and the age help researchers reconstruct past climates.",
             paragraph7: "The microfossils are approximately a half-millimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
-            paragraph8: "Learn more about the focal species in XXX page."
+            paragraph8: "Learn more about the focal species on the <a href='/visualizations/climate-charts/beaufort-sea/beaufort-sea-species'>Beaufort Sea species</a> page."
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present climates with Arctic microfossils",
