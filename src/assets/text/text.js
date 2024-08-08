@@ -1,22 +1,46 @@
 export default {
     pageTitle: "Earth is changing...",
+    collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources', target='_blank'>Water Resources Mission Area</a>, <a href='https://www.usgs.gov/mission-areas/ecosystems', target='_blank'>Ecosystems Mission Area</a>, and <a href='https://www.usgs.gov/programs/climate-adaptation-science-centers', target='_blank'>Climate Adaptation Science Centers</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
+    vizlab: {
+        teamText: "The USGS Vizlab...View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
+        teamData: [
+            { name: "Hayley Corson-Dosch", link: "https://www.usgs.gov/staff-profiles/hayley-corson-dosch", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/HCorson-Dosch.jpg" },
+            { name: "Maggie Jaenicke", link: "https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke", image: "" },
+            { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/cee%20nell%20resized.png?h=53fbb397&itok=I7tqKZDm" },
+            { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
+            { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/J_Kwang_staffprofilephoto.jpg?h=d834b369&itok=MInrdIz2" }
+        ]
+    },
     projects: {
         // keys must match project routes (with '-' replaced with '')
         findex: {
             title: "Findex",
-            blurb: "The Findex project..."
+            motivation: "The Findex project..."
         },
         fireinice: {
             title: "Fire in Ice",
-            blurb: "The Fire in Ice project..."
+            motivation: "The Fire in Ice project..."
         },
         fishasfood: {
             title: "Fish as Food",
-            blurb: "The Fish as Food project..."
+            motivation: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of national inland recreational consumption estimates with species specificity to identify the nutritional composition, total use value, and climate vulnerability of this recreational consumption.",
+            teamText: null,
+            teamData: [
+                { name: "Holly Embke", link: "https://www.usgs.gov/staff-profiles/holly-embke", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/embke.jpg?h=f1072bca&itok=xyG6frc8" },
+                { name: "Abigail Lynch", link: "https://www.usgs.gov/staff-profiles/abigail-lynch", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/abbyprofile.png?h=a35909eb&itok=ob1vliWk" }
+            ]
+            
         },
         beaufortsea: {
             title: "Beaufort Sea",
-            blurb: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use micro-fossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying the bottom-dwelling, microscopic arthropods (called Ostracodes) and single-celled protists (called Forams), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region."
+            motivation: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use micro-fossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying the bottom-dwelling, microscopic arthropods (called Ostracodes) and single-celled protists (called Forams), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region. For more information, visit the <a href='https://www.usgs.gov/programs/climate-research-and-development-program/science/land-sea-linkages-arctic', target='_blank'>project page</a>.",
+            teamText: "Laura Gemery is an ecologist, and Julia Seidenstein, Jason Addison and Thomas Cronin are geologists within the Climate Research and Development program of the USGS Ecosystems Mission area. Each specialize in analyzing proxies in sediment cores.",
+            teamData: [
+                { name: "Laura Gemery", link: "https://www.usgs.gov/staff-profiles/laura-gemery", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/l_Gemery mustang Oden.jpg" },
+                { name: "Julia Seidenstein", link: "https://www.usgs.gov/staff-profiles/julia-seidenstein", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/Julia Seidenstein_professional pic.jpg" },
+                { name: "Jason Addison", link: "https://www.usgs.gov/staff-profiles/jason-addison", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/Jason Addison.png" },
+                { name: "Thomas Cronin", link: "https://www.usgs.gov/staff-profiles/thomas-cronin", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/T_Cronin head shot.jpeg" }
+            ]
         }
     },
     visualizations: {

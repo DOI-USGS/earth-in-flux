@@ -10,7 +10,7 @@ export default {
       link: "https://pubs.er.usgs.gov/publication/70003325",
       journal: true,
       journal_name: "Journal of Climate",
-      journal_issue: " 23, 2293–2306",
+      journal_issue: "23, 2293–2306",
       data_release: false,
       doi: "https://doi.org/10.1175/2009JCLI2951.1"
     },
@@ -52,7 +52,7 @@ export default {
       link: "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006WR005653",
       journal: true,
       journal_name: "Water Resources Research",
-      journal_issue: " 43",
+      journal_issue: "43",
       data_release: false,
       doi: "https://doi.org/10.1029/2006WR005653"
     },
@@ -82,7 +82,7 @@ export default {
       link: "http://doi.org/10.47894/mpal.69.3.04",
       journal: true,
       journal_name: "Micropaleontology",
-      journal_issue: " 69",
+      journal_issue: "69",
       data_release: false,
       doi: "http://doi.org/10.47894/mpal.69.3.04"
     },
@@ -108,9 +108,76 @@ export default {
       link: "https://link.springer.com/article/10.1007/s41063-018-0058-7",
       journal: true,
       journal_name: "Arktos",
-      journal_issue: " 4",
+      journal_issue: "4",
       data_release: false,
       doi: "https://doi.org/10.1007/s41063-018-0058-7"
     }
-  ]
+  ],
+  fishasfood: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Embke, H.S.",
+      year: "2022",
+      title: "Global dataset of species-specific inland recreational fisheries harvest for consumption",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/62017ff8d34e622189da6573",
+      doi: "https://doi.org/10.5066/P9904C3R"
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Embke, H.S., Nyboer, E.A., Robertson, A.M., et al.",
+      year: "2022",
+      title: "Global dataset of species-specific inland recreational fisheries harvest for consumption",
+      link: "https://www.nature.com/articles/s41597-022-01604-y",
+      journal: true,
+      journal_name: "Scientific Data",
+      journal_issue: "9",
+      data_release: false,
+      doi: "https://doi.org/10.1038/s41597-022-01604-y"
+    },
+    {
+      reference: "Reference 3.",
+      num: "3",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., & Golden, C.D.",
+      year: "2023",
+      title: "Global dataset of nutritional value, economic value, and climate vulnerability for species-specific recreational fisheries harvest for consumption",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/644ae0e0d34e45f6ddccf773",
+      doi: "https://doi.org/10.5066/P9WO91SZ"
+    },
+    {
+      reference: "Reference 4.",
+      num: "4",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A. et al.",
+      year: "2024",
+      title: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
+      link: "https://www.nature.com/articles/s43016-024-00961-8",
+      journal: true,
+      journal_name: "Nature Food",
+      journal_issue: "5, 433-443",
+      data_release: false,
+      doi: "https://doi.org/10.1038/s43016-024-00961-8"
+    },
+    {
+      reference: "Reference 5.",
+      num: "5",
+      authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
+      year: "2022",
+      title: "Overturning stereotypes: The fuzzy boundary between recreational and subsistence inland fisheries",
+      link: "https://onlinelibrary.wiley.com/doi/10.1111/faf.12688",
+      journal: true,
+      journal_name: "Fish and Fisheries",
+      journal_issue: "23, 6",
+      data_release: false,
+      doi: "https://doi.org/10.1111/faf.12688"
+    }
+  ],
 };
