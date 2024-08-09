@@ -29,7 +29,7 @@
                     <p v-if="vizlabText.teamData && vizlabText.teamText" v-html="vizlabText.teamText" />
                 </template>
                 <template #figures>
-                    <AboutTheTeam v-if="vizlabText.teamData" :key="projectRoute" :data="vizlabText.teamData"/>
+                    <AboutTheTeam v-if="vizlabText.teamData" :data="vizlabText.teamData"/>
                 </template>
             </VizSection>
             <!---VizSection-->
@@ -45,10 +45,10 @@
                 </template>
                 <template #aboveExplanation>
                     <p>The current USGS climate projects highlighted in this page are the
-                    <span v-for="(project, index) in text.projects" :key="project">
-                        <RouterLink :key="project" :to="{ path: `/${project.title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ project.title }} </RouterLink> 
-                        <span v-if="Object.keys(text.projects).indexOf(index) != Object.keys(text.projects).length - 1 && Object.keys(text.projects).length > 2">, </span>
-                        <span v-if="Object.keys(text.projects).indexOf(index) == Object.keys(text.projects).length - 2"> and </span>
+                    <span v-for="projectKey in projectKeys" :key="projectKey">
+                        <RouterLink :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }}</RouterLink>
+                        <span v-if="projectKeys.indexOf(projectKey) != projectKeys.length - 1 && projectKeys.length > 2">, </span>
+                        <span v-if="projectKeys.indexOf(projectKey) == projectKeys.length - 2"> and </span>
                     </span>
                     projects.
                     </p>
@@ -60,15 +60,14 @@
 
 <script setup>
     import PreFooterCodeLinks from "@/components/PreFooterCodeLinks.vue";
-    // import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
     import AboutTheTeam from '@/components/AboutTheTeam.vue'
     import text from "@/assets/text/text.js";
     
     // global variables
-    const vizlabText = text.vizlab
+    const vizlabText = text.vizlab;
+    const projectKeys = Object.keys(text.projects).sort(); // Get alphabetical list of project keys
     const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
-    // const mobileView = isMobile;
 </script>
 
 <style scoped lang="scss">
