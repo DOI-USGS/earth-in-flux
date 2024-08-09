@@ -44,8 +44,13 @@
                     </h3>
                 </template>
                 <template #aboveExplanation>
-                    <p v-for="project in text.projects" :key="project">
-                        <RouterLink :key="project" :to="{ path: `/${project.title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ project.title }} </RouterLink>
+                    <p>The current USGS climate projects highlighted in this page are the
+                    <span v-for="(project, index) in text.projects" :key="project">
+                        <RouterLink :key="project" :to="{ path: `/${project.title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ project.title }} </RouterLink> 
+                        <span v-if="Object.keys(text.projects).indexOf(index) != Object.keys(text.projects).length - 1 && Object.keys(text.projects).length > 2">, </span>
+                        <span v-if="Object.keys(text.projects).indexOf(index) == Object.keys(text.projects).length - 2"> and </span>
+                    </span>
+                    projects.
                     </p>
                 </template>
             </VizSection>
