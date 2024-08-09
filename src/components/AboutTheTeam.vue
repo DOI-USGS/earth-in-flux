@@ -88,7 +88,6 @@ onMounted(() => {
 
     node
       .append('image')
-      .attr('class', 'profile-image')
       .attr('xlink:href', d => d.image)
       .attr('width', radius * 2.1)
       .attr('height', radius * 2.1)
@@ -194,10 +193,4 @@ onMounted(() => {
   font-size: 1rem;
 }
 
-</style>
-<style lang="scss">
-/* css for elements added/classed w/ d3 */
-.profile-image {
-  object-fit: cover;
-}
 </style>
