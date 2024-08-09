@@ -8,7 +8,7 @@
                 <!-- HEADING -->
                 <template #heading>
                     <h2>
-                        About the Climate Chart Gallery project
+                        About the climate chart gallery project
                     </h2>
                 </template>
                 <template #aboveExplanation>
