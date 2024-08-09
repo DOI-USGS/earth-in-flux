@@ -6,9 +6,9 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <h2>
-        References
-      </h2>
+      <h1 v-if="titleLevel === '1'" v-html="title" />
+      <h2 v-if="titleLevel === '2'" v-html="title" />
+      <h3 v-if="titleLevel === '3'" v-html="title" />
     </template>
     <template #aboveExplanation>
       <div>
@@ -40,7 +40,13 @@
 
   // define props
   defineProps({
-    references:{
+    title: {
+      type: String,
+    },
+    titleLevel: {
+      type: String,
+    },
+    references: {
       type: Object,
     },
   })

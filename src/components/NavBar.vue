@@ -5,10 +5,7 @@
             <div class="dropdown">
             <a href="javascript:void(0)" class="dropdown">Projects</a>
             <div class="dropdown-content">
-                <RouterLink :to="{ path: '/beaufort-sea' }">Beaufort Sea</RouterLink>
-                <RouterLink :to="{ path: '/fire-in-ice' }">Fire in Ice</RouterLink>
-                <RouterLink :to="{ path: '/findex' }">Findex</RouterLink>
-                <RouterLink :to="{ path: '/fish-as-food' }">Fish as Food</RouterLink>
+                <RouterLink v-for="projectKey in projectKeys" :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }} </RouterLink>
             </div>
         </div>
             <RouterLink :to="{ path: '/about' }">About</RouterLink>
@@ -17,6 +14,10 @@
 </template>
 
 <script setup>
+    import text from "@/assets/text/text.js";
+
+    // Get alphabetical list of project keys
+    const projectKeys = Object.keys(text.projects).sort()
 </script>
 
 <style scoped>
