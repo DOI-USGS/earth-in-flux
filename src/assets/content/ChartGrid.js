@@ -39,13 +39,13 @@ export default {
             description: 'Description or key takeaways from this Viz (Glacier/Topography D3 Cross-Section Scan)'
         },       
         {
-            title: 'Viz 5',
+            title: 'Global economic value of recreationally fished species',
             project: 'Fish as Food',
-            vizKey: 'Viz5',
-            vizRoute: 'viz-5',
-            img_src: 'Placeholder_thumbnail.PNG',
+            vizKey: 'FishAsFoodCirclePacking',
+            vizRoute: 'inland-rec-fish-value',
+            img_src: 'CirclePacking_thumbnail.png',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Viz 5)'
+            description: 'Inland recreational fishing contributes economic value'
         },
         {
             title: 'Beaufort Sea Ice Coring',

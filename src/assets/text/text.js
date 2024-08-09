@@ -90,6 +90,10 @@ export default {
             paragraph3b: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is one of the most dominant species in this Arctic fossil record. However, the overall abundance has declined at the same time that <span class='scientificName'>Kotochythere arctoborealis</span> and agglutinated forams are increasing.",
             heading4: "Learning from the past",
             paragraph4: "Taken together, these indicator species show us a living story of climate change in the Arctic. As glaciers melt, growing seasons change, and the Mackenzie River changes flow, the growth of indicator species change. Here, we see the relative decline of <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span>, and <span class='scientificName'>Paracyprideis pseudopunctillata</span> combined with the increases in agglutinated <span class='scientificName'>Spiroplectammina biformis</span> and <span class='scientificName'>Kotorachythere arctoborealis</span>, which indicates that within the last 60 years or so, this region of the Beaufort Sea has been affected by climate change, including water chemistry changes."
+        },
+        FishAsFoodCirclePacking: {
+            paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
+            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
         }
     }
 }

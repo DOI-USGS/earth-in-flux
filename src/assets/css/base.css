@@ -13,6 +13,8 @@
   --medium-purple: #8F00DB;
   --medium-blue: #4365A8;
   --medium-orange: #E48951;
+  --light-blue: #D7DCE5;
+  --dark-blue: #1D3867;
   --usgs-blue: #00264c;
   --usgs-green: #006F41;
 
@@ -31,10 +33,6 @@
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--medium-grey);
   --color-link: var(--medium-purple);
-  --color-bar-focal: var(--medium-blue);
-  --color-bar-default: var(--medium-grey);
-  --color-map-focal: var(--medium-orange);
-  --color-map-default: var(--white);
   --color-USGS-header-footer: var(--usgs-blue);
 }
 
@@ -69,11 +67,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
+  }
 }
 h1 {
   font-size: 5rem;
   font-weight: 800;
   padding: 0rem 0 1rem 0;
+  @media screen and (max-width: 600px) {
+    font-size: 3rem;
+  }
 }
 h2 {
   font-size: 2.5rem;
