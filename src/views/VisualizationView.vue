@@ -70,8 +70,7 @@
   const route = useRoute()
   const mobileView = isMobile;
   const projectRoute = ref(route.params.projectRoute)
-  const projectKey = ref(`${projectRoute.value.replace(/-/g, '')}`)
-  // const projectData = ref(null)
+  const projectKey = ref(projectRoute.value ? `${projectRoute.value.replace(/-/g, '')}` : null)
   const currentView = computed(() => {
     return projectRoute.value ? projectRoute.value : 'all'
   });
@@ -84,17 +83,12 @@
   const projectReferences = computed(() => {
     return projectRoute.value ? references[projectKey.value] : null
   })
-  const projectData = computed(() => {
-    return projectRoute.value ? text.projects[projectKey.value].teamData : null
-  })
-  console.log(projectData.value)
-  console.log(projectText.value)
   const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 
   //watches router params for changes
   watch(route, () => {
     projectRoute.value = route.params.projectRoute
-    projectKey.value = `${projectRoute.value.replace(/-/g, '')}`
+    projectKey.value = projectRoute.value ? `${projectRoute.value.replace(/-/g, '')}` : null
   })
 
 </script>
