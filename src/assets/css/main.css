@@ -16,6 +16,7 @@
 /* All content between USGS header and pre-footer code links */
 .page-content {
   margin: 5rem 0 5rem 0;
+  min-height: calc(100vh - 20.4px - 85.67px - 32px - 92.33px - 48.4px - 10rem); /* page height - USWDS banner - USGS header - prefooter code links - USGS footer - NavBar - container margin (top + bottom) */
 }
 .title {
   font-family: sans-serif; /* This is fallback font for old browsers */
