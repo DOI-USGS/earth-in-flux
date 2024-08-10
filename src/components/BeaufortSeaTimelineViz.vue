@@ -149,7 +149,7 @@
             .attr("r", 0); //radius to 0
 
         // Remove old nodes
-        oldNodeGroups.remove()
+        oldNodeGroups.transition(getExitTransition()).remove()
 
         // Append new nodes
         const newNodeGroups = nodeGroups.enter().append("g")
@@ -175,29 +175,51 @@
         function ticked() {
             nodeGroupCircle
                 // .transition(getUpdateTransition()) // BREAKS d3 force
-                .attr("r", d => d.radius)
+                // .attr("r", d => d.radius)
                 .attr("cx", (d) => d.x)
                 .attr("cy", (d) => d.y);
         }
 
         // set up d3 force simulation
-        simulation.value = d3.forceSimulation();
-        simulation.value
-            .nodes(nodes)
-            .force("x", d3.forceX(width / 2).strength(0.05))
-            .force("y", d3.forceY(height / 2).strength(0.05))
-            .force("center", d3.forceCenter(width / 2, height / 2))
-            .force(
-                "collide",
-                d3.forceCollide()
-                    .radius((d) => d.radius + 2)
-                    .iterations(1)
-            )
-            .force('charge', d3.forceManyBody().strength(0))
-            // .alphaMin(0.01)
-            // .alphaDecay(0)
-            // .velocityDecay(0.9)
-            .on("tick", ticked);
+        if (simulation.value) {
+            // simulation.value.stop()
+            simulation.value
+                .nodes(nodes)
+                .alpha(0.9)
+                .restart()
+                .force("x", d3.forceX(width / 2).strength(0.05))
+                .force("y", d3.forceY(height / 2).strength(0.05))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force(
+                    "collide",
+                    d3.forceCollide()
+                        .radius((d) => d.radius + 2)
+                        .iterations(1)
+                )
+                .force('charge', d3.forceManyBody().strength(0))
+                // .alphaMin(0.01)
+                // .alpha(0)
+                // .velocityDecay(0.9)
+                .on("tick", ticked);
+        } else {
+            simulation.value = d3.forceSimulation();
+            simulation.value
+                .nodes(nodes)
+                .force("x", d3.forceX(width / 2).strength(0.05))
+                .force("y", d3.forceY(height / 2).strength(0.05))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force(
+                    "collide",
+                    d3.forceCollide()
+                        .radius((d) => d.radius + 2)
+                        .iterations(1)
+                )
+                .force('charge', d3.forceManyBody().strength(0))
+                // .alphaMin(0.01)
+                // .alphaDecay(0)
+                // .velocityDecay(0.9)
+                .on("tick", ticked);
+        }
     }
 
     // define transitions
