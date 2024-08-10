@@ -65,7 +65,7 @@
     const svg = ref(null);
     const chartData = ref(null);
     const chartDecade = ref(null);
-    const chartWidth = 1152;
+    const chartWidth = 900;
     const simulation = ref(null)
 
 
@@ -91,16 +91,6 @@
             height: chartWidth,
             decade: chartDecade.value
         })
-        // BubbleChart(chartData.value, {
-        //     label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
-        //     value: d => d.value,
-        //     id: d => d.id,
-        //     group: d => d.id.split(".")[1],
-        //     title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
-        //     link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
-        //     width: chartWidth,
-        //     year: chartYear.value
-        // })
     });
 
     function initChart({
@@ -173,19 +163,19 @@
             .attr("fill", d => d.hexcode)
             .attr("r", 0) //instantiate w/ radius = 0
 
-
         //update nodeGroups to include new nodes
         nodeGroups = newNodeGroups.merge(nodeGroups)
 
         const nodeGroupCircle = nodeGroups.select("circle")
-        console.log('nodeGroupCircle:')
-        console.log(nodeGroupCircle)
+        
         nodeGroupCircle
+            .transition(getUpdateTransition())
             .attr("r", d => d.radius)
 
         function ticked() {
             nodeGroupCircle
                 // .transition(getUpdateTransition()) // BREAKS d3 force
+                .attr("r", d => d.radius)
                 .attr("cx", (d) => d.x)
                 .attr("cy", (d) => d.y);
         }
@@ -196,6 +186,7 @@
             .nodes(nodes)
             .force("x", d3.forceX(width / 2).strength(0.05))
             .force("y", d3.forceY(height / 2).strength(0.05))
+            .force("center", d3.forceCenter(width / 2, height / 2))
             .force(
                 "collide",
                 d3.forceCollide()
@@ -203,13 +194,16 @@
                     .iterations(1)
             )
             .force('charge', d3.forceManyBody().strength(0))
+            // .alphaMin(0.01)
+            // .alphaDecay(0)
+            // .velocityDecay(0.9)
             .on("tick", ticked);
     }
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(2000)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
