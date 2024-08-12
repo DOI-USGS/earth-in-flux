@@ -81,6 +81,11 @@ list(
   tar_target(p2_decade_abundance_long,
              decade_abundance(data_in = p2_join_abundance_long)),
   
+  tar_target(p2_decade_abundance_csv,
+             generate_beeswarm_data(data = p2_decade_abundance_long,
+                                    outfile = '../public/beaufort_species_abundance.csv'),
+             format = 'file'),
+  
   ################ PLOT DATA #########################
   
   # Create assemblage plots as grobs at select years
