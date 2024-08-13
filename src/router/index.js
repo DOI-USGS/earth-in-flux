@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import VisualizationView from '@/views/VisualizationView.vue'
 import SubPage from '@/components/SubPage.vue'
 import AboutPage from '@/components/AboutPage.vue'
@@ -8,7 +8,7 @@ function lazyLoad(view){
 }
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -26,18 +26,8 @@ const router = createRouter({
       component: VisualizationView
     },
     {
-      path: '/:projectRoute/index.html',
-      name: 'ProjectPageIndex',
-      component: VisualizationView
-    },
-    {
       path: '/:projectRoute/:vizRoute',
       name: 'SubPage',
-      component: SubPage
-    },
-    {
-      path: '/:projectRoute/:vizRoute/index.html',
-      name: 'SubPageIndex',
       component: SubPage
     },
     {
