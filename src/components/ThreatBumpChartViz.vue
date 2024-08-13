@@ -256,11 +256,21 @@
 
     function mouseoverThreat(threat, category) {
         if (activeCategories[category]) {
-            d3.selectAll('.area').style('opacity', dimOpacity);
-            d3.selectAll('.point').style('opacity', dimOpacity);
-            d3.selectAll('.label').style('opacity', dimOpacity);
-            d3.selectAll(`.${sanitizeClass(threat)}`).style('opacity', 1).style('font-weight', 'bold');
-            d3.selectAll(`.area.${sanitizeClass(threat)}`).raise();
+            d3.selectAll('.area')
+                .transition(getUpdateTransition())
+                .style('opacity', dimOpacity);
+            d3.selectAll('.point')
+                .transition(getUpdateTransition())
+                .style('opacity', dimOpacity);
+            d3.selectAll('.label')
+                .transition(getUpdateTransition())
+                .style('opacity', dimOpacity);
+            d3.selectAll(`.${sanitizeClass(threat)}`)
+                .transition(getUpdateTransition())
+                .style('opacity', 1)
+                .style('font-weight', 'bold');
+            d3.selectAll(`.area.${sanitizeClass(threat)}`)
+                .raise();
         }
     }
 
@@ -268,14 +278,23 @@
         threatCategories.value.forEach(category => {
             if (activeCategories[category]) {
                 d3.selectAll(`.area.${sanitizeClass(category)}`)
+                    .transition(getUpdateTransition())
                     .style('opacity', defaultOpacity);
                 d3.selectAll(`.point.${sanitizeClass(category)}`)
+                    .transition(getUpdateTransition())
                     .style('opacity', 1);
                 d3.selectAll(`.label.${sanitizeClass(category)}`)
+                    .transition(getUpdateTransition())
                     .style('opacity', 1)
                     .style('font-weight', 'normal');
             }
         });
+    }
+
+    function getUpdateTransition() {
+      return d3.transition()
+        .duration(200)
+        .ease(d3.easeCubicInOut)
     }
 
 </script>
