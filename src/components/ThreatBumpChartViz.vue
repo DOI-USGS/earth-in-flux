@@ -62,6 +62,11 @@
     //     activeCategories[category] = !activeCategories[category];
     // };
 
+    // Behavior on mounted - functions called here
+    onMounted(() => {
+        createBumpChart();
+    });
+
     const createBumpChart = async () => {
         // Load the CSV data
         const data = await d3.csv(publicPath + 'findex_ranked_threats.csv');
@@ -112,7 +117,7 @@
             .domain(threatCategories.value)
             .range(customColors);
 
-        const sanitizeClass = name => name ? name.replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
+        // const sanitizeClass = name => name ? name.replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
 
         const area = d3.area()
             .x(d => x(d.habitat))
@@ -147,7 +152,7 @@
                 .attr('class', d => `area ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
                 .attr('d', d => area(d.values))
                 .attr('fill', d => colorScale(d.category))
-                .attr("opacity", defaultOpacity)
+                .style("opacity", defaultOpacity)
                 .style('stroke', 'none');
 
         svg.append("g")
@@ -161,7 +166,11 @@
                 .attr('r', d => widthScale(d.AverageThreatMetric) / 2)
                 .attr('fill', 'white')
                 .attr('stroke', d => colorScale(d.category))
-                .style('stroke-width', 2);
+                .style('stroke-width', 2)
+                .on('mouseover', function (event, d) {
+                    mouseoverThreat(d.ThreatName, d.category)
+                })
+                .on('mouseout', mouseoutThreat);
 
         svg.append("g")
             .attr("id", "overlays")
@@ -172,28 +181,9 @@
                 .attr('d', d => area(d.values))
                 .attr('fill', 'transparent')
                 .on('mouseover', function (event, d) {
-                    if (activeCategories[d.category]) {
-                        d3.selectAll('.area').style('opacity', dimOpacity);
-                        d3.selectAll('.point').style('opacity', dimOpacity);
-                        d3.selectAll('.label').style('opacity', dimOpacity);
-                        d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
-                    }
+                    mouseoverThreat(d.threat, d.category)
                 })
-                .on('mouseout', function () {
-                    threatCategories.value.forEach(category => {
-                        if (activeCategories[category]) {
-                            d3.selectAll(`.area.${sanitizeClass(category)}`)
-                                .style('opacity', defaultOpacity);
-                            d3.selectAll(`.point.${sanitizeClass(category)}`)
-                                .style('opacity', 1);
-                            d3.selectAll(`.label.${sanitizeClass(category)}`)
-                                .style('opacity', 1)
-                                .style('font-weight', 'normal');
-                        }
-                    });
-                });
-
-
+                .on('mouseout', mouseoutThreat);
         
         svg.append("g")
             .attr("id", "labels")
@@ -209,27 +199,10 @@
                 .text(d => d.threat)
                 .style('font-size', '12px')
                 .style('fill', d => colorScale(d.category))
-                .on('mouseover', function (event, d) {
-                    if (activeCategories[d.category]) {
-                        d3.selectAll('.area').style('opacity', dimOpacity);
-                        d3.selectAll('.point').style('opacity', dimOpacity);
-                        d3.selectAll('.label').style('opacity', dimOpacity).style('font-weight', 'normal');
-                        d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
-                    }
+                .on("mouseover", function (event, d) {
+                    mouseoverThreat(d.threat, d.category)
                 })
-                .on('mouseout', function () {
-                    threatCategories.value.forEach(category => {
-                        if (activeCategories[category]) {
-                            d3.selectAll(`.area.${sanitizeClass(category)}`)
-                                .style('opacity', defaultOpacity);
-                            d3.selectAll(`.point.${sanitizeClass(category)}`)
-                                .style('opacity', 1);
-                            d3.selectAll(`.label.${sanitizeClass(category)}`)
-                                .style('opacity', 1)
-                                .style('font-weight', 'normal');
-                        }
-                    });
-                });
+                .on('mouseout', mouseoutThreat);
 
         const xAxis = svg.append('g')
             .attr('class', 'x-axis')
@@ -273,11 +246,38 @@
                 }
             });
         };
-};
+    };
 
-    onMounted(() => {
-        createBumpChart();
-    });
+    
+
+    function sanitizeClass(name) {
+        return name ? name.replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
+    } 
+
+    function mouseoverThreat(threat, category) {
+        if (activeCategories[category]) {
+            d3.selectAll('.area').style('opacity', dimOpacity);
+            d3.selectAll('.point').style('opacity', dimOpacity);
+            d3.selectAll('.label').style('opacity', dimOpacity);
+            d3.selectAll(`.${sanitizeClass(threat)}`).style('opacity', 1).style('font-weight', 'bold');
+            d3.selectAll(`.area.${sanitizeClass(threat)}`).raise();
+        }
+    }
+
+    function mouseoutThreat() {
+        threatCategories.value.forEach(category => {
+            if (activeCategories[category]) {
+                d3.selectAll(`.area.${sanitizeClass(category)}`)
+                    .style('opacity', defaultOpacity);
+                d3.selectAll(`.point.${sanitizeClass(category)}`)
+                    .style('opacity', 1);
+                d3.selectAll(`.label.${sanitizeClass(category)}`)
+                    .style('opacity', 1)
+                    .style('font-weight', 'normal');
+            }
+        });
+    }
+
 </script>
 
 <style scoped>
