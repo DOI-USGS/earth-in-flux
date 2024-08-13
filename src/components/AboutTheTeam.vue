@@ -116,7 +116,7 @@ onMounted(() => {
       .text(d => d.name);
 
     node
-      .on('mouseover', function (event, d) {
+      .on('mouseover', function () {
         d3.select(this).select('.overlay')
           .transition()
           .duration(200)
@@ -126,7 +126,7 @@ onMounted(() => {
           .duration(200)
           .style('opacity', 1);
       })
-      .on('mouseout', function (event, d) {
+      .on('mouseout', function () {
         d3.select(this).select('.overlay')
           .transition()
           .duration(200)
