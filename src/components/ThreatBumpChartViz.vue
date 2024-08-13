@@ -46,6 +46,8 @@
     const publicPath = import.meta.env.BASE_URL;
     const chart = ref(null);
     const threatCategories = ref([]);
+    const defaultOpacity = 0.8;
+    const dimOpacity = 0.15;
 
     // Create a reactive object to track active categories
     const activeCategories = reactive({});
@@ -62,7 +64,7 @@
 
     const createBumpChart = async () => {
         // Load the CSV data
-        const data = await d3.csv(publicPath + 'ranked_threats.csv');
+        const data = await d3.csv(publicPath + 'findex_ranked_threats.csv');
         
         // Process the data
         const nestedData = d3.group(data, d => d.Habitat, d => d.ThreatName);
@@ -81,9 +83,9 @@
         }, { deep: true });
 
         // Set up the SVG canvas dimensions
-        const margin = { top: 20, right: 20, bottom: 30, left: 50 },
+        const margin = { top: 20, right: 20, bottom: 450, left: 75 },
             width = 800 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            height = 1000 - margin.top - margin.bottom;
 
         const svg = d3.select(chart.value)
             .append('svg')
@@ -104,7 +106,7 @@
 
         const widthScale = d3.scaleLinear()
             .domain([0, d3.max(data, d => +d.AverageThreatMetric)])
-            .range([0, 20]);
+            .range([10, height / threatNames.length]);
 
         const colorScale = d3.scaleOrdinal()
             .domain(threatCategories.value)
@@ -120,15 +122,15 @@
 
         const rankData = threatNames.map(threat => {
             const ranks = habitats.map(habitat => {
-            const habitatData = nestedData.get(habitat);
-            const threatData = habitatData.get(threat)[0];
-            return {
-                habitat: habitat,
-                rank: +threatData.Rank,
-                category: threatData.ThreatCategory,
-                AverageThreatMetric: +threatData.AverageThreatMetric,
-                ThreatName: threat
-            };
+                const habitatData = nestedData.get(habitat);
+                const threatData = habitatData.get(threat)[0];
+                return {
+                    habitat: habitat,
+                    rank: +threatData.Rank,
+                    category: threatData.ThreatCategory,
+                    AverageThreatMetric: +threatData.AverageThreatMetric,
+                    ThreatName: threat
+                };
             });
             return {
                 threat: threat,
@@ -137,89 +139,138 @@
             };
         });
 
-        svg.selectAll('.area')
-            .data(rankData)
-            .enter().append('path')
-            .attr('class', d => `area ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
-            .attr('d', d => area(d.values))
-            .attr('fill', d => colorScale(d.category))
-            .attr("opacity", 0.8)
-            .style('stroke', 'none');
+        svg.append("g")
+            .attr("id", "areas")
+            .selectAll('.area')
+                .data(rankData)
+                .enter().append('path')
+                .attr('class', d => `area ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
+                .attr('d', d => area(d.values))
+                .attr('fill', d => colorScale(d.category))
+                .attr("opacity", defaultOpacity)
+                .style('stroke', 'none');
 
-        svg.selectAll('.overlay')
-            .data(rankData)
-            .enter().append('path')
-            .attr('class', d => `overlay ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
-            .attr('d', d => area(d.values))
-            .attr('fill', 'transparent')
-            .on('mouseover', function (event, d) {
-            d3.selectAll('.area').style('opacity', 0.1);
-                d3.selectAll('.point').style('opacity', 0.1);
-                d3.selectAll('.label').style('opacity', 0.1);
-                d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
-            })
-            .on('mouseout', function () {
-                d3.selectAll('.area').style('opacity', 0.8);
-                d3.selectAll('.point').style('opacity', 1);
-                d3.selectAll('.label').style('opacity', 1).style('font-weight', 'normal');
-            });
+        svg.append("g")
+            .attr("id", "points")
+            .selectAll('.point')
+                .data(rankData.flatMap(d => d.values))
+                .enter().append('circle')
+                .attr('class', d => `point ${sanitizeClass(d.ThreatName)} ${sanitizeClass(d.category)}`)
+                .attr('cx', d => x(d.habitat))
+                .attr('cy', d => y(d.rank))
+                .attr('r', d => widthScale(d.AverageThreatMetric) / 2)
+                .attr('fill', 'white')
+                .attr('stroke', d => colorScale(d.category))
+                .style('stroke-width', 2);
 
-        svg.selectAll('.point')
-            .data(rankData.flatMap(d => d.values))
-            .enter().append('circle')
-            .attr('class', d => `point ${sanitizeClass(d.ThreatName)} ${sanitizeClass(d.category)}`)
-            .attr('cx', d => x(d.habitat))
-            .attr('cy', d => y(d.rank))
-            .attr('r', d => widthScale(d.AverageThreatMetric) / 2)
-            .attr('fill', 'white')
-            .attr('stroke', d => colorScale(d.category))
-            .style('stroke-width', 2);
+        svg.append("g")
+            .attr("id", "overlays")
+            .selectAll('.overlay')
+                .data(rankData)
+                .enter().append('path')
+                .attr('class', d => `overlay ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
+                .attr('d', d => area(d.values))
+                .attr('fill', 'transparent')
+                .on('mouseover', function (event, d) {
+                    if (activeCategories[d.category]) {
+                        d3.selectAll('.area').style('opacity', dimOpacity);
+                        d3.selectAll('.point').style('opacity', dimOpacity);
+                        d3.selectAll('.label').style('opacity', dimOpacity);
+                        d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
+                    }
+                })
+                .on('mouseout', function () {
+                    threatCategories.value.forEach(category => {
+                        if (activeCategories[category]) {
+                            d3.selectAll(`.area.${sanitizeClass(category)}`)
+                                .style('opacity', defaultOpacity);
+                            d3.selectAll(`.point.${sanitizeClass(category)}`)
+                                .style('opacity', 1);
+                            d3.selectAll(`.label.${sanitizeClass(category)}`)
+                                .style('opacity', 1)
+                                .style('font-weight', 'normal');
+                        }
+                    });
+                });
 
-        svg.selectAll('.label')
-            .data(rankData)
-            .enter().append('text')
-            .attr('class', d => `label ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
-            .attr('x', 30)
-            .attr('y', d => y(d.values[0].rank))
-            .attr('dy', '.35em')
-            .attr('text-anchor', 'end')
-            .attr('id', d => `label-${sanitizeClass(d.threat)}`)
-            .text(d => d.threat)
-            .style('font-size', '12px')
-            .style('fill', d => colorScale(d.category))
-            .on('mouseover', function (event, d) {
-                d3.selectAll('.area').style('opacity', 0.1);
-                d3.selectAll('.point').style('opacity', 0.1);
-                d3.selectAll('.label').style('opacity', 0.1).style('font-weight', 'normal');
-                d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
-            })
-            .on('mouseout', function () {
-                d3.selectAll('.area').style('opacity', 0.8);
-                d3.selectAll('.point').style('opacity', 1);
-                d3.selectAll('.label').style('opacity', 1).style('font-weight', 'normal');
-            });
 
-        svg.append('g')
+        
+        svg.append("g")
+            .attr("id", "labels")
+            .selectAll('.label')
+                .data(rankData)
+                .enter().append('text')
+                .attr('class', d => `label ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
+                .attr('x', 10)
+                .attr('y', d => y(d.values[0].rank))
+                .attr('dy', '.35em')
+                .attr('text-anchor', 'end')
+                .attr('id', d => `label-${sanitizeClass(d.threat)}`)
+                .text(d => d.threat)
+                .style('font-size', '12px')
+                .style('fill', d => colorScale(d.category))
+                .on('mouseover', function (event, d) {
+                    if (activeCategories[d.category]) {
+                        d3.selectAll('.area').style('opacity', dimOpacity);
+                        d3.selectAll('.point').style('opacity', dimOpacity);
+                        d3.selectAll('.label').style('opacity', dimOpacity).style('font-weight', 'normal');
+                        d3.selectAll(`.${sanitizeClass(d.threat)}`).style('opacity', 1).style('font-weight', 'bold');
+                    }
+                })
+                .on('mouseout', function () {
+                    threatCategories.value.forEach(category => {
+                        if (activeCategories[category]) {
+                            d3.selectAll(`.area.${sanitizeClass(category)}`)
+                                .style('opacity', defaultOpacity);
+                            d3.selectAll(`.point.${sanitizeClass(category)}`)
+                                .style('opacity', 1);
+                            d3.selectAll(`.label.${sanitizeClass(category)}`)
+                                .style('opacity', 1)
+                                .style('font-weight', 'normal');
+                        }
+                    });
+                });
+
+        const xAxis = svg.append('g')
             .attr('class', 'x-axis')
-            .attr('transform', `translate(0,${height+5})`)
+            .attr('transform', `translate(0,${height + 15})`)
             .call(d3.axisBottom(x))
             .attr("stroke-width", 0)
             .attr("font-size", 16)
-            .attr('font-weight', 700);
+            .attr('font-weight', 700)
+
+        xAxis.selectAll('text')
+            .attr('text-anchor', 'end')
+            .attr('dy', '-0.5rem')
+            .attr('transform', 'rotate(270)');
 
         const updateCategoryStyles = () => {
             threatCategories.value.forEach(category => {
-            if (activeCategories[category]) {
-                d3.selectAll(`.${sanitizeClass(category)}`)
-                    .style('opacity', 1)
-                    .style('fill', colorScale(category))
-                    .style('stroke', colorScale(category));
-            } else {
-                d3.selectAll(`.${sanitizeClass(category)}`)
-                    .style('opacity', 0.3)
-                    .style('fill', 'grey20')
-                    .style('stroke', 'grey20');
-            }
+                if (activeCategories[category]) {
+                    d3.selectAll(`.overlay.${sanitizeClass(category)}`)
+                        .raise()
+                    d3.selectAll(`.area.${sanitizeClass(category)}`)
+                        .style('opacity', defaultOpacity)
+                        .style('fill', colorScale(category));
+                    d3.selectAll(`.point.${sanitizeClass(category)}`)
+                        .style('opacity', 1)
+                        .style('stroke', colorScale(category));
+                    d3.selectAll(`.label.${sanitizeClass(category)}`)
+                        .style('opacity', 1)
+                        .style('fill', colorScale(category));
+                } else {
+                    d3.selectAll(`.overlay.${sanitizeClass(category)}`)
+                        .lower()
+                    d3.selectAll(`.area.${sanitizeClass(category)}`)
+                        .style('opacity', dimOpacity)
+                        .style('fill', '#949494');
+                    d3.selectAll(`.point.${sanitizeClass(category)}`)
+                        .style('opacity', dimOpacity)
+                        .style('stroke', '#949494');
+                    d3.selectAll(`.label.${sanitizeClass(category)}`)
+                        .style('opacity', 1)
+                        .style('fill', '#6E6E6E');
+                }
             });
         };
 };
@@ -230,20 +281,6 @@
 </script>
 
 <style scoped>
-    .line {
-        fill: none;
-        stroke-width: 2px;
-    }
-    .point {
-        fill: white;
-        stroke-width: 2px;
-    }
-    .area {
-        fill-opacity: 0.7;
-    }
-    .label {
-        cursor: pointer;
-    }
     .chart-container {
         display: flex;
         flex-direction: column;
@@ -254,7 +291,6 @@
         height: auto;
         margin: auto;
         margin-top: 50px;
-        /* background-color: #f8f9fa;  */
     }
     .toggles {
         display: flex;
@@ -267,5 +303,10 @@
     }
     .toggles label {
         margin-left: 5px;
+    }
+</style>
+<style lang="scss">
+    .label {
+        cursor: pointer;
     }
 </style>
