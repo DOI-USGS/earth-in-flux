@@ -1,4 +1,4 @@
-Habitat,ThreatName,AverageThreatMetric,Threat,ThreatCategory,Rank
+Habitat,ThreatCode,AverageThreatMetric,Threat,ThreatCategory,Rank
 Large lakes,AgEff,2.1140191168258546,Agricultural effluents,Pollution,17
 Large lakes,AgUse,2.7711189221159636,Agricultural extraction,Habitat,12
 Large lakes,AqEff,2.440821778434356,Aquaculture effluents,Pollution,15
