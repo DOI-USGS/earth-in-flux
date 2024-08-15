@@ -76,6 +76,19 @@ export default {
     {
       reference: "Reference 1.",
       num: "1",
+      authors: "Crimmins, A.R., C.W. Avery, D.R. Easterling, K.E. Kunkel, B.C. Stewart, and T.K. Maycock, Eds.",
+      year: "2023",
+      title: "Fifth National Climate Assessment",
+      link: "https://nca2023.globalchange.gov/",
+      journal: true,
+      journal_name: "U.S. Global Change Research Program",
+      journal_issue: "Washington, DC, USA",
+      data_release: false,
+      doi: "https://doi.org/10.7930/NCA5.2023"
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
       authors: "Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., Schwartz, V.",
       year: "2023",
       title: "Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea",
@@ -87,8 +100,8 @@ export default {
       doi: "http://doi.org/10.47894/mpal.69.3.04"
     },
     {
-      reference: "Reference 2.",
-      num: "2",
+      reference: "Reference 3.",
+      num: "3",
       authors: "Gemery, L.",
       year: "2021",
       title: "Data Release to Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea.",
@@ -100,8 +113,8 @@ export default {
       doi: "https://doi.org/10.5066/P9SRRW6T"
     },
     {
-      reference: "Reference 3.",
-      num: "3",
+      reference: "Reference 4.",
+      num: "4",
       authors: "Seidenstein, J.L., Cronin, T.M., Gemery, L., Keigwin, L.D., Pearce, C., Jakobsson, M., Coxall, H.K., Wei, E.A., Driscoll, N.W.",
       year: "2018",
       title: "Late Holocene paleoceanography in the Chukchi and Beaufort Seas, Arctic Ocean, based on benthic foraminifera and ostracodes.",
