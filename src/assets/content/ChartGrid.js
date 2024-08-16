@@ -21,10 +21,10 @@ export default {
             description: 'Description or key takeaways from this Viz (Viz 2)'
         },       
         {
-            title: 'Viz 3',
-            project: 'Findex',
-            vizKey: 'Viz3',
-            vizRoute: 'viz-3',
+            title: 'Climate vulnerability of recreationally fished inland fish species',
+            project: 'Fish as Food',
+            vizKey: 'FishAsFoodLinkChart',
+            vizRoute: 'inland-rec-fish-climate',
             img_src: 'Placeholder_thumbnail.PNG',
             alt: '',
             description: 'Description or key takeaways from this Viz (Viz 3)'
