@@ -39,9 +39,13 @@
     const publicPath = import.meta.env.BASE_URL;
     const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
-    let chartDimensions;
-    const chartTitle = 'Title of chart';
-    let chartBounds;
+    let chartWidth = 900;
+    let bubbleChartDimensions;
+    const bubbleChartTitle = 'Title of chart';
+    let bubbleChartBounds;
+    let barChartDimensions;
+    const barChartTitle = 'Title of chart';
+    let barChartBounds;
     let chartDecades = ref(null);
     const chartDecade = ref(null);
     const simulation = ref(null)
@@ -59,11 +63,21 @@
                 
                 // initialize svg and chart bounds
                 initBubbleChart({
-                    width: 900, // outer width, in pixels
+                    width: chartWidth, // outer width, in pixels
                 });
+                initBarChart({
+                    width: chartWidth, // outer width, in pixels
+                    height: 200,
+                    marginLeft: 35, // left margin, in pixels
+                    marginTop: 10,
+                    marginBottom: 20
+                })
 
                 // build chart
                 drawBubbleChart(data.value, {
+                    decade: chartDecade.value
+                })
+                drawBarChart(data.value, {
                     decade: chartDecade.value
                 })
             } else {
@@ -103,7 +117,7 @@
         marginRight = margin // right margin, in pixels
     }) {
         // set up global chart dimensions
-        chartDimensions = {
+        bubbleChartDimensions = {
             width,
             height,
             margin: {
@@ -113,34 +127,35 @@
                 left: marginLeft
             }
         }
-        chartDimensions.boundedWidth = chartDimensions.width - chartDimensions.margin.left - chartDimensions.margin.right
-        chartDimensions.boundedHeight = chartDimensions.height - chartDimensions.margin.top - chartDimensions.margin.bottom
+        bubbleChartDimensions.boundedWidth = bubbleChartDimensions.width - bubbleChartDimensions.margin.left - bubbleChartDimensions.margin.right
+        bubbleChartDimensions.boundedHeight = bubbleChartDimensions.height - bubbleChartDimensions.margin.top - bubbleChartDimensions.margin.bottom
 
         // draw canvas for chart
         const chartSVG = d3.select("#chart-container")
             .append("svg")
-                .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
+                .attr("viewBox", [0, 0, (bubbleChartDimensions.width), (bubbleChartDimensions.height)].join(' '))
                 .attr("width", "100%")
                 .attr("height", "100%")
-                .attr("id", "chart-svg")
+                .attr("id", "bubble-chart-svg")
 
         // assign role for accessibility
         chartSVG.attr("role", "figure")
             .append("title")
-            .text(chartTitle)
+            .text(bubbleChartTitle)
 
         // Add group for bounds
-        chartBounds = chartSVG.append("g")
-            .attr("id", "chart-bounds")
+        bubbleChartBounds = chartSVG.append("g")
+            .attr("id", "bubble-chart-bounds")
             .style("transform", `translate(${
-                chartDimensions.margin.left
+                bubbleChartDimensions.margin.left
             }px, ${
-                chartDimensions.margin.top
+                bubbleChartDimensions.margin.top
             }px)`)
 
-        chartBounds.append("g")
+        bubbleChartBounds.append("g")
             .attr("class", "nodes")
     }
+
     function drawBubbleChart(data, {
         decade = 200
     }) {
@@ -152,18 +167,18 @@
             ])
             .range([4, 200]);
 
-        // filter data to current decade
-        data = data.filter(d => d.decade === decade);
+        // filter data to current decade and filter out decades where species is not present
+        data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
         
         const nodes = data.map((d) => ({
             ...d,
             radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: chartDimensions.boundedWidth / 2,
-            y: chartDimensions.boundedHeight / 2
+            x: bubbleChartDimensions.boundedWidth / 2,
+            y: bubbleChartDimensions.boundedHeight / 2
         }));
        
         // set up nodes
-        let nodeGroups = chartBounds.selectAll('.nodes')
+        let nodeGroups = bubbleChartBounds.selectAll('.nodes')
             .selectAll(".node")
             .data(nodes, d => d.species_id)
 
@@ -211,9 +226,9 @@
                 .nodes(nodes)
                 .alpha(0.9)
                 .restart()
-                .force("x", d3.forceX(chartDimensions.boundedWidth / 2).strength(0.05))
-                .force("y", d3.forceY(chartDimensions.boundedHeight / 2).strength(0.05))
-                .force("center", d3.forceCenter(chartDimensions.boundedWidth / 2, chartDimensions.boundedHeight / 2))
+                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
+                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
+                .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
                 .force(
                     "collide",
                     d3.forceCollide()
@@ -229,9 +244,9 @@
             simulation.value = d3.forceSimulation();
             simulation.value
                 .nodes(nodes)
-                .force("x", d3.forceX(chartDimensions.boundedWidth / 2).strength(0.05))
-                .force("y", d3.forceY(chartDimensions.boundedHeight / 2).strength(0.05))
-                .force("center", d3.forceCenter(chartDimensions.boundedWidth / 2, chartDimensions.boundedHeight / 2))
+                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
+                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
+                .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
                 .force(
                     "collide",
                     d3.forceCollide()
@@ -270,18 +285,150 @@
             })
 
         }
+    }
 
-        // build chart
-        // BubbleChart(data.value , {
-        //     label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
-        //     value: d => d.value,
-        //     id: d => d.id,
-        //     group: d => d.id.split(".")[1],
-        //     title: d => `${d.id}\n${d.value.toLocaleString("en")}`,
-        //     link: d => `https://github.com/prefuse/Flare/blob/master/flare/src/${d.id.replace(/\./g, "/")}.as`,
-        //     width: 1152,
-        //     year: chartYear.value
-        // })
+    function initBarChart({
+        width = 640, // outer width, in pixels
+        height = width, // outer height, in pixels
+        margin = 1, // default margins
+        marginTop = margin, // top margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin // right margin, in pixels
+    }) {
+        // set up global chart dimensions
+        barChartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            }
+        }
+        barChartDimensions.boundedWidth = barChartDimensions.width - barChartDimensions.margin.left - barChartDimensions.margin.right
+        barChartDimensions.boundedHeight = barChartDimensions.height - barChartDimensions.margin.top - barChartDimensions.margin.bottom
+
+        // draw canvas for chart
+        const chartSVG = d3.select("#chart-container")
+            .append("svg")
+                .attr("viewBox", [0, 0, (barChartDimensions.width), (barChartDimensions.height)].join(' '))
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("id", "bar-chart-svg")
+
+        // assign role for accessibility
+        chartSVG.attr("role", "figure")
+            .append("title")
+            .text(barChartTitle)
+
+        // Add group for bounds
+        barChartBounds = chartSVG.append("g")
+            .attr("id", "bar-chart-bounds")
+            .style("transform", `translate(${
+                barChartDimensions.margin.left
+            }px, ${
+                barChartDimensions.margin.top
+            }px)`)
+    }
+
+    function drawBarChart(data, {
+        decade = 200
+    }) {
+        // filter data to current decade
+        console.log(data)
+        console.log([...data].sort((a, b) => a.hexcode -b.hexcode))
+
+        // get unique species
+        const chartSpecies = d3.union(d3.map(data, d => d.species_id));
+
+        // stack data for rectangles
+        const stackedData = d3.stack()
+            .keys(chartSpecies)
+            .value(([, D], key) => D.get(key)['pct_abundance']) // get value for each series key and stack
+            .order(d3.stackOrderDescending)
+            (d3.index(data, d => d.decade, d => d.species_id));
+
+        // Set up x scale
+        const xScale = d3.scaleBand()
+            .domain(chartDecades.value)
+            .range([0, barChartDimensions.boundedWidth]);
+
+        // add x axis
+        barChartBounds.append('g')
+            .attr("transform", `translate(0,${barChartDimensions.boundedHeight})`)
+            .call(d3.axisBottom(xScale).tickSize(0));
+
+        // Set up y scale
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(stackedData, d => d3.max(d, d => d[1]))])
+            .range([barChartDimensions.boundedHeight, 0]);
+
+        // add y axis
+        barChartBounds.append('g')
+            .call(d3.axisLeft(yScale)
+                .ticks(5)
+                .tickFormat(d => d + '%'));
+
+        // set up color scale
+        let speciesColors = []
+        chartSpecies.forEach(species => {
+            const filteredData = data.filter(d => d.species_id === species)
+            speciesColors.push(filteredData[0].hexcode)
+        })
+        const colorScale = d3.scaleOrdinal()
+            .domain(chartSpecies)
+            .range(speciesColors);
+        
+        // draw chart
+        const rectGroup = barChartBounds.append("g")
+            .attr("class", "bar-group")
+        // Add subgroup for each category of data
+        const speciesRectGroups = rectGroup.selectAll('rects')
+            .data(stackedData, d => d.key)
+            .enter()
+            .append('g')
+            .attr("id", d => d.key)
+
+        // Add rectangles for each decade to each species group
+        speciesRectGroups.selectAll('rect')
+            .data(D => D.map(d => (d.key = D.key, d)))
+            .enter().append('rect')
+                .attr("class", d => d.key + ' ' + d.data[0].replace(" ", "_"))
+                .attr('x', d => xScale(d.data[0]))
+                .attr('y', d => yScale(d[1]))
+                .attr('height', d => yScale(d[0]) - yScale(d[1]))
+                .attr('width', xScale.bandwidth())
+                .style("fill", d => colorScale(d.key))
+                .style("stroke", d => colorScale(d.key));
+
+        const overlayGroup = barChartBounds.append("g")
+            .attr("class", "overlay-group")
+
+        overlayGroup.selectAll('overlays')
+            .data(chartDecades.value)
+            .enter()
+            .append('rect')
+                .attr('class', d => 'overlay decade' + d)
+                .attr('x', d => xScale(d))
+                .attr('y', 0)
+                .attr('height', barChartDimensions.boundedHeight)
+                .attr('width', xScale.bandwidth())
+                .attr('fill', 'transparent')
+                .on('mouseover', (event, d) => {
+                    d3.selectAll('.overlay')
+                        .attr('fill', 'white')
+                        .style('opacity', 0.8)
+                    d3.select('.decade' + d)
+                        .attr('fill', 'transparent')
+                    drawBubbleChart(data, {decade: d})
+                })
+                .on('mouseout', (event, d) => {
+                    d3.selectAll('.overlay')
+                        .attr('fill', 'transparent')
+                    // drawBubbleChart(data, {decade: d})
+                })
     }
 </script>
 
