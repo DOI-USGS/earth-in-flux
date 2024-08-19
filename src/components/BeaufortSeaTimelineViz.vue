@@ -5,25 +5,6 @@
         :fig-caption="false"
     >
         <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div id="chart-container"></div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
         <template #heading>
         </template>
         <!-- FIGURES -->
@@ -33,8 +14,7 @@
             </button>
         </template>
         <template #figures>
-            <div class="chart-container single" ref="chart">
-            </div>
+            <div id="chart-container"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -57,16 +37,14 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
-    const dataFile = 'beaufort_species_abundance.csv'
-    const chart = ref(null);
-    const svg = ref(null);
+    const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
+    let chartDimensions;
+    const chartTitle = 'Title of chart';
+    let chartBounds;
+    let chartDecades = ref(null);
     const chartDecade = ref(null);
-    const chartWidth = 900;
     const simulation = ref(null)
-
-
-    const chartDecades = ['0', '500', '1000', '1500', '2000']
 
     // Declare behavior on mounted
     // functions called here
@@ -74,15 +52,18 @@
         try {
             await loadDatasets(dataFile);
             if (data.value.length > 0) {
-                chartDecade.value = chartDecades[0]
-                initChart({
-                    width: chartWidth, // outer width, in pixels
+                // pull array of unique decades
+                chartDecades.value = Array.from(new Set(data.value.map(d => d.decade)))
+                // set initial decade view
+                chartDecade.value = chartDecades.value[0]
+                
+                // initialize svg and chart bounds
+                initBubbleChart({
+                    width: 900, // outer width, in pixels
                 });
 
                 // build chart
-                drawChart(data.value, {
-                    width: chartWidth,
-                    height: chartWidth,
+                drawBubbleChart(data.value, {
                     decade: chartDecade.value
                 })
             } else {
@@ -112,31 +93,55 @@
         }
     }
 
-    function initChart({
+    function initBubbleChart({
         width = 640, // outer width, in pixels
         height = width, // outer height, in pixels
         margin = 1, // default margins
         marginTop = margin, // top margin, in pixels
-        marginLeft = margin // left margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin // right margin, in pixels
     }) {
-        svg.value = d3.select(chart.value)
-            .append("svg")
-            .attr("id", "circle-pack-svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("viewBox", [-marginLeft, -marginTop, width, height])
-            .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
-            .attr("fill", "currentColor")
-            .attr("font-size", 10)
-            .attr("font-family", "sans-serif")
-            .attr("text-anchor", "middle");
+        // set up global chart dimensions
+        chartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            }
+        }
+        chartDimensions.boundedWidth = chartDimensions.width - chartDimensions.margin.left - chartDimensions.margin.right
+        chartDimensions.boundedHeight = chartDimensions.height - chartDimensions.margin.top - chartDimensions.margin.bottom
 
-        svg.value.append("g")
+        // draw canvas for chart
+        const chartSVG = d3.select("#chart-container")
+            .append("svg")
+                .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("id", "chart-svg")
+
+        // assign role for accessibility
+        chartSVG.attr("role", "figure")
+            .append("title")
+            .text(chartTitle)
+
+        // Add group for bounds
+        chartBounds = chartSVG.append("g")
+            .attr("id", "chart-bounds")
+            .style("transform", `translate(${
+                chartDimensions.margin.left
+            }px, ${
+                chartDimensions.margin.top
+            }px)`)
+
+        chartBounds.append("g")
             .attr("class", "nodes")
     }
-    function drawChart(data, {
-        width = 200,
-        height = 200,
+    function drawBubbleChart(data, {
         decade = 200
     }) {
         // Set radius based on data values across all decades
@@ -153,12 +158,12 @@
         const nodes = data.map((d) => ({
             ...d,
             radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: width / 2,
-            y: height / 2
+            x: chartDimensions.boundedWidth / 2,
+            y: chartDimensions.boundedHeight / 2
         }));
        
         // set up nodes
-        let nodeGroups = svg.value.selectAll('.nodes')
+        let nodeGroups = chartBounds.selectAll('.nodes')
             .selectAll(".node")
             .data(nodes, d => d.species_id)
 
@@ -206,9 +211,9 @@
                 .nodes(nodes)
                 .alpha(0.9)
                 .restart()
-                .force("x", d3.forceX(width / 2).strength(0.05))
-                .force("y", d3.forceY(height / 2).strength(0.05))
-                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("x", d3.forceX(chartDimensions.boundedWidth / 2).strength(0.05))
+                .force("y", d3.forceY(chartDimensions.boundedHeight / 2).strength(0.05))
+                .force("center", d3.forceCenter(chartDimensions.boundedWidth / 2, chartDimensions.boundedHeight / 2))
                 .force(
                     "collide",
                     d3.forceCollide()
@@ -224,9 +229,9 @@
             simulation.value = d3.forceSimulation();
             simulation.value
                 .nodes(nodes)
-                .force("x", d3.forceX(width / 2).strength(0.05))
-                .force("y", d3.forceY(height / 2).strength(0.05))
-                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("x", d3.forceX(chartDimensions.boundedWidth / 2).strength(0.05))
+                .force("y", d3.forceY(chartDimensions.boundedHeight / 2).strength(0.05))
+                .force("center", d3.forceCenter(chartDimensions.boundedWidth / 2, chartDimensions.boundedHeight / 2))
                 .force(
                     "collide",
                     d3.forceCollide()
@@ -260,9 +265,7 @@
 
             chartDecade.value = clickedID
 
-            drawChart(data.value, {
-                width: chartWidth,
-                height: chartWidth,
+            drawBubbleChart(data.value, {
                 decade: chartDecade.value
             })
 
