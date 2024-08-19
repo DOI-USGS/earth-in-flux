@@ -9,11 +9,7 @@
         <template #aboveExplanation>
         </template>
         <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSeaTimeline.png">
-                </figure>
-            </div>
+            <div id="chart-container"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -61,9 +57,10 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
+    const dataFile = 'beaufort_species_abundance.csv'
     const chart = ref(null);
     const svg = ref(null);
-    const chartData = ref(null);
+    const data = ref(null);
     const chartDecade = ref(null);
     const chartWidth = 900;
     const simulation = ref(null)
@@ -74,24 +71,46 @@
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
+        try {
+            await loadDatasets();
+            if (data.value.length > 0) {
+                chartDecade.value = chartDecades[0]
+                initChart({
+                    width: chartWidth, // outer width, in pixels
+                });
 
-        // Load the data
-        const data = await d3.csv(publicPath + 'beaufort_species_abundance.csv');
-
-        chartData.value = data
-        chartDecade.value = chartDecades[0]
-
-        initChart({
-            width: chartWidth, // outer width, in pixels
-        });
-
-        // build chart
-        drawChart(chartData.value, {
-            width: chartWidth,
-            height: chartWidth,
-            decade: chartDecade.value
-        })
+                // build chart
+                drawChart(data.value, {
+                    width: chartWidth,
+                    height: chartWidth,
+                    decade: chartDecade.value
+                })
+            } else {
+                console.error('Error loading data');
+            }
+        } catch (error) {
+            console.error('Error during component mounting', error);
+        }
     });
+
+    async function loadDatasets() {
+        try {
+            data.value = await loadData(dataFile);
+            console.log('data in');
+        } catch (error) {
+            console.error('Error loading datasets', error);
+        }
+    }
+
+    async function loadData(fileName) {
+        try {
+            const data = await d3.csv(publicPath + fileName);
+            return data;
+        } catch (error) {
+            console.error(`Error loading data from ${fileName}`, error);
+            return [];
+        }
+    }
 
     function initChart({
         width = 640, // outer width, in pixels
@@ -241,7 +260,7 @@
 
             chartDecade.value = clickedID
 
-            drawChart(chartData.value, {
+            drawChart(data.value, {
                 width: chartWidth,
                 height: chartWidth,
                 decade: chartDecade.value
@@ -250,7 +269,7 @@
         }
 
         // build chart
-        // BubbleChart(chartData.value , {
+        // BubbleChart(data.value , {
         //     label: d => [...d.id.split(".").pop().split(/(?=[A-Z][a-z])/g), d.value.toLocaleString("en")].join("\n"),
         //     value: d => d.value,
         //     id: d => d.id,
