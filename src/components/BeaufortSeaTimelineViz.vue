@@ -72,7 +72,7 @@
     // functions called here
     onMounted(async () => {
         try {
-            await loadDatasets();
+            await loadDatasets(dataFile);
             if (data.value.length > 0) {
                 chartDecade.value = chartDecades[0]
                 initChart({
@@ -93,9 +93,9 @@
         }
     });
 
-    async function loadDatasets() {
+    async function loadDatasets(file) {
         try {
-            data.value = await loadData(dataFile);
+            data.value = await loadData(file);
             console.log('data in');
         } catch (error) {
             console.error('Error loading datasets', error);
