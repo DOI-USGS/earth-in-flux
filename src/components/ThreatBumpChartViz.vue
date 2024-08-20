@@ -287,6 +287,8 @@
                     .style('font-weight', 'normal');
             }
         });
+        d3.selectAll('.point')
+            .raise();
     }
 
     function getUpdateTransition() {
