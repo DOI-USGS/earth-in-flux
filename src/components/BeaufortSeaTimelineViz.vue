@@ -401,6 +401,7 @@
         const overlayGroup = barChartBounds.append("g")
             .attr("class", "overlay-group")
 
+        const defaultOpacity = 0.7
         overlayGroup.selectAll('overlays')
             .data(chartDecades.value)
             .enter()
@@ -411,15 +412,15 @@
                 .attr('height', barChartDimensions.boundedHeight)
                 .attr('width', xScale.bandwidth())
                 .style('fill', bkgdColor)
-                .style("opacity", d => d === decade ? 0 : 0.8)
+                .style("opacity", d => d === decade ? 0 : defaultOpacity)
                 .style("stroke", bkgdColor)
-                .style("stroke-opacity", d => d === decade ? 0 : 0.8)
+                .style("stroke-opacity", d => d === decade ? 0 : defaultOpacity)
                 .style("stroke-width", 0.5)
                 .on('mouseover', (event, d) => {
                     // set default styling
                     d3.selectAll('.overlay')
-                        .style('opacity', 0.8)
-                        .style('stroke-opacity', 0.8)
+                        .style('opacity', defaultOpacity)
+                        .style('stroke-opacity', defaultOpacity)
                     d3.selectAll('.axis-text.y-axis')
                         .style('font-weight', '200')
                     // set styling for specific decade
