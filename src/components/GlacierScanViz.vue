@@ -37,10 +37,6 @@
         text: { type: Object }
     })
 
-    // global variables
-    const bodyCSS = window.getComputedStyle(document.body);
-    const backgroundColor = bodyCSS.getPropertyValue('--color-background');
-
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
@@ -52,7 +48,7 @@
                 svgGrid.appendChild(xml.documentElement);
                 
                 // add id to svg
-                const svg = d3.select("#cross_section-grid-container").select("svg")
+                d3.select("#cross_section-grid-container").select("svg")
                     .attr("id", "cross_section-svg")
 
                 // add interactivity
