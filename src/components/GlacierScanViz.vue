@@ -102,7 +102,7 @@
             .style("stroke", "#000000")
             .style("stroke-opacity", 1.0);
     }
-
+    
     function remove_xs(line_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 0);
@@ -137,29 +137,29 @@
 
     function mouseover(event,default_xs) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs)
+            remove_xs(default_xs);
             let line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id)
+            draw_xs(line_id);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            remove_xs(default_xs)
+            remove_xs(default_xs);
             let line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id)
+            draw_xs(line_id);
         }
     }
 
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             let line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id)
+            remove_xs(line_id);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
             let line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id)
+            remove_xs(line_id);
         }
     }
 
     function mouseenter(event,default_xs) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            remove_xs(default_xs)
+            remove_xs(default_xs);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0);
         }
@@ -167,7 +167,7 @@
 
     function mouseleave(event,default_xs) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            draw_xs(default_xs)
+            draw_xs(default_xs);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0.75);
         }
@@ -177,15 +177,15 @@
         // set viewbox for svg with loss function chart
         const cross_sectionSVG = d3.select("#cross_section-svg");
 
-        var default_xs = "188"
-        draw_xs(default_xs)
+        var default_xs = "188";
+        draw_xs(default_xs);
 
         // Add interaction to loss function chart
         cross_sectionSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event,default_xs))
             .on("mouseout", (event) => mouseout(event))
             .on("mouseenter", (event) => mouseenter(event,default_xs))
-            .on("mouseleave", (event) => mouseleave(event,default_xs))
+            .on("mouseleave", (event) => mouseleave(event,default_xs));
     }
 </script>
 
