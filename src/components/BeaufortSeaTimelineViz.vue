@@ -44,11 +44,18 @@
     let barChartDimensions;
     const barChartTitle = 'Title of chart';
     let barChartBounds;
+    let timelineChartDimensions;
+    const timelineChartTitle = 'Title of chart';
+    let timelineChartBounds;
     let chartDecades = ref(null);
     const chartDecade = ref(null);
     const simulation = ref(null);
+    const defaultRectOpacity = 0.7;
     const bodyCSS = window.getComputedStyle(document.body);
-    const bkgdColor = bodyCSS.getPropertyValue('--color-background');
+    const bkgdColor = bodyCSS.getPropertyValue('--color-background');    
+    const defaultGrey = '#CECECE';
+    const highlightFillGrey = '#969696';
+    const highlightStrokeGrey = '#6c6c6c';
 
     // Declare behavior on mounted
     // functions called here
@@ -62,13 +69,23 @@
                 chartDecade.value = chartDecades.value[0]
                 
                 // initialize svg and chart bounds
+                const bubbleChartHeight = chartHeight * 0.7;
                 initBubbleChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
-                    height: chartHeight * 0.8
+                    height: bubbleChartHeight
                 });
+                const timelineChartHeight = chartHeight * 0.075
+                initTimelineChart({
+                    width: chart.value.offsetWidth, // outer width, in pixels
+                    height: timelineChartHeight,
+                    marginLeft: 60, // left margin, in pixels
+                    marginTop: 0,
+                    marginBottom: 25
+                });
+                const barChartHeight = chartHeight - bubbleChartHeight - timelineChartHeight
                 initBarChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
-                    height: chartHeight * 0.2,
+                    height: barChartHeight,
                     marginLeft: 60, // left margin, in pixels
                     marginTop: 10,
                     marginBottom: 20
@@ -76,6 +93,9 @@
 
                 // build chart
                 drawBubbleChart(data.value, {
+                    decade: chartDecade.value
+                })
+                drawTimelineChart(data.value, {
                     decade: chartDecade.value
                 })
                 drawBarChart(data.value, {
@@ -166,7 +186,7 @@
                 d3.min(data, (d) => parseFloat(d.pct_abundance)),
                 d3.max(data, (d) => parseFloat(d.pct_abundance))
             ])
-            .range([4, chart.value.offsetWidth / 6]);
+            .range([4, chart.value.offsetWidth / 7]);
 
         // filter data to current decade and filter out decades where species is not present
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
@@ -275,6 +295,163 @@
         .ease(d3.easeCubicInOut)
     }
 
+    function initTimelineChart({
+        width = 640, // outer width, in pixels
+        height = width, // outer height, in pixels
+        margin = 1, // default margins
+        marginTop = margin, // top margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin // right margin, in pixels
+    }) {
+        // set up global chart dimensions
+        timelineChartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            }
+        }
+        timelineChartDimensions.boundedWidth = timelineChartDimensions.width - timelineChartDimensions.margin.left - timelineChartDimensions.margin.right
+        timelineChartDimensions.boundedHeight = timelineChartDimensions.height - timelineChartDimensions.margin.top - timelineChartDimensions.margin.bottom
+
+        // draw canvas for chart
+        const chartSVG = d3.select("#chart-container")
+            .append("svg")
+                .attr("viewBox", [0, 0, (timelineChartDimensions.width), (timelineChartDimensions.height)].join(' '))
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("id", "timeline-chart-svg")
+
+        // assign role for accessibility
+        chartSVG.attr("role", "figure")
+            .append("title")
+            .text(timelineChartTitle)
+
+        // Add group for bounds
+        timelineChartBounds = chartSVG.append("g")
+            .attr("id", "timeline-chart-bounds")
+            .style("transform", `translate(${
+                timelineChartDimensions.margin.left
+            }px, ${
+                timelineChartDimensions.margin.top
+            }px)`)
+    }
+
+    function drawTimelineChart(data, {
+        decade = 200
+    }) {
+
+        // Set up x scale
+        const xScale = d3.scaleBand()
+            .domain(chartDecades.value)
+            .range([0, timelineChartDimensions.boundedWidth])
+            .padding(0);
+
+        // add x axis
+        const xAxis = timelineChartBounds.append('g')
+            .attr("transform", `translate(0,${timelineChartDimensions.boundedHeight})`)
+            .call(d3.axisBottom(xScale).tickSize(0))
+            // .select(".domain").remove() // remove axis line;
+
+        xAxis.selectAll('path')
+            .attr("stroke", bkgdColor);
+
+        xAxis.selectAll('text')
+            .attr("class", d => 'axis-text x-axis label' + d)
+            .style('font-weight', d => d === decade ? '900' : '200');
+
+        // Add x axis title
+        const xAxisLabelYPosition = xAxis.select("text").attr('y')
+        const xAxisLabelDy = xAxis.select("text").attr('dy')
+        xAxis.append("text")
+            .attr("class", "x-axis axis-title")
+            .attr("x", 0)
+            .attr("y", xAxisLabelYPosition)
+            .attr("dy", xAxisLabelDy)
+            .style("text-anchor", "end")
+            .text('Year')
+       
+        // draw timeline
+        const lineGroup = timelineChartBounds.append("g")
+            .attr("id", "timeline-line-group")
+
+        lineGroup.selectAll('line')
+            .data(chartDecades.value[0])
+            .enter()
+            .append("line")
+                .attr("class", "timeline")
+                .attr("x1",  d => xScale(d) + xScale.bandwidth() / 2)
+                .attr("x2", xScale(chartDecades.value.at(-1)) + xScale.bandwidth() / 2)
+                .attr("y1", timelineChartDimensions.boundedHeight / 2)
+                .attr("y2", timelineChartDimensions.boundedHeight / 2)
+                .style("stroke", defaultGrey)
+                .style("stroke-width", 1)
+
+        // draw timeline points
+        const pointGroup = timelineChartBounds.append("g")
+            .attr("id", "timeline-points-group")
+
+        // Add point for each decade
+        pointGroup.selectAll('point')
+            .data(chartDecades.value)
+            .enter()
+            .append("circle")
+                .attr("class", d => 'point timeline' + d)
+                .attr("cx",  d => xScale(d) + xScale.bandwidth() / 2)
+                .attr("cy", timelineChartDimensions.boundedHeight / 2)
+                .attr("r", 8)
+                .style('fill', d => d === decade ? highlightFillGrey : defaultGrey)
+                .style("stroke", d => d === decade ? highlightStrokeGrey : defaultGrey)
+                .style("stroke-width", 2)
+
+        // add overlays for chart
+        const overlayTimelineGroup = timelineChartBounds.append("g")
+            .attr("id", "overlay-timeline-group")
+
+        // Add overlay rectangles over chart for interaction
+        overlayTimelineGroup.selectAll('overlays')
+            .data(chartDecades.value)
+            .enter()
+            .append('rect')
+                .attr('class', d => 'overlay decade' + d)
+                .attr('x', d => xScale(d))
+                .attr('y', - timelineChartDimensions.margin.top)
+                .attr('height', timelineChartDimensions.boundedHeight + timelineChartDimensions.margin.top)
+                .attr('width', xScale.bandwidth())
+                .style('fill', bkgdColor)
+                .style("opacity", d => d === decade ? 0 : defaultRectOpacity)
+                .style("stroke", bkgdColor)
+                .style("stroke-opacity", d => d === decade ? 0 : defaultRectOpacity)
+                .style("stroke-width", 0.5)
+                .on('mouseover', (event, d) => {
+                    mouseoverTimelineBar(d)
+                })
+
+        // add overlays for axis
+        const overlayAxisGroup = timelineChartBounds.append("g")
+            .attr("id", "overlay-axis-group")
+
+        // Add overlay rectangles over axis for interaction
+        overlayAxisGroup.selectAll('overlays')
+            .data(chartDecades.value)
+            .enter()
+            .append('rect')
+                .attr('class', d => 'overlay decade' + d)
+                .attr('x', d => xScale(d))
+                .attr('y', timelineChartDimensions.boundedHeight)
+                .attr('height', timelineChartDimensions.margin.bottom)
+                .attr('width', xScale.bandwidth())
+                .style('fill', 'transparent')
+                .style("stroke-width", 0.5)
+                .on('mouseover', (event, d) => {
+                    mouseoverTimelineBar(d)
+                })
+    }
+
     function initBarChart({
         width = 640, // outer width, in pixels
         height = width, // outer height, in pixels
@@ -343,14 +520,14 @@
             .range([0, barChartDimensions.boundedWidth])
             .padding(0);
 
-        // add x axis
-        const xAxis = barChartBounds.append('g')
-            .attr("transform", `translate(0,${barChartDimensions.boundedHeight})`)
-            .call(d3.axisBottom(xScale).tickSize(0));
+        // // add x axis
+        // const xAxis = barChartBounds.append('g')
+        //     .attr("transform", `translate(0,${barChartDimensions.boundedHeight})`)
+        //     .call(d3.axisBottom(xScale).tickSize(0));
 
-        xAxis.selectAll('text')
-            .attr("class", d => 'axis-text y-axis label' + d)
-            .style('font-weight', d => d === decade ? '900' : '200');
+        // xAxis.selectAll('text')
+        //     .attr("class", d => 'axis-text x-axis label' + d)
+        //     .style('font-weight', d => d === decade ? '900' : '200');
 
         // Set up y scale
         const yScale = d3.scaleLinear()
@@ -364,7 +541,7 @@
                 .tickFormat(d => d + '%'));
 
         yAxis.selectAll('text')
-            .attr("class", 'axis-text x-axis');
+            .attr("class", 'axis-text y-axis');
 
         // set up color scale
         let speciesColors = []
@@ -378,7 +555,7 @@
         
         // draw chart
         const rectGroup = barChartBounds.append("g")
-            .attr("class", "bar-group")
+            .attr("id", "bar-group")
         // Add subgroup for each category of data
         const speciesRectGroups = rectGroup.selectAll('rects')
             .data(stackedData, d => d.key)
@@ -400,41 +577,53 @@
                 .style("stroke-width", 0.5);
 
         const overlayGroup = barChartBounds.append("g")
-            .attr("class", "overlay-group")
+            .attr("id", "overlay-group")
 
-        const defaultOpacity = 0.7
         overlayGroup.selectAll('overlays')
             .data(chartDecades.value)
             .enter()
             .append('rect')
                 .attr('class', d => 'overlay decade' + d)
                 .attr('x', d => xScale(d))
-                .attr('y', 0)
-                .attr('height', barChartDimensions.boundedHeight)
+                .attr('y', - barChartDimensions.margin.top)
+                .attr('height', barChartDimensions.boundedHeight + barChartDimensions.margin.top)
                 .attr('width', xScale.bandwidth())
                 .style('fill', bkgdColor)
-                .style("opacity", d => d === decade ? 0 : defaultOpacity)
+                .style("opacity", d => d === decade ? 0 : defaultRectOpacity)
                 .style("stroke", bkgdColor)
-                .style("stroke-opacity", d => d === decade ? 0 : defaultOpacity)
+                .style("stroke-opacity", d => d === decade ? 0 : defaultRectOpacity)
                 .style("stroke-width", 0.5)
                 .on('mouseover', (event, d) => {
-                    // set default styling
-                    d3.selectAll('.overlay')
-                        .style('opacity', defaultOpacity)
-                        .style('stroke-opacity', defaultOpacity)
-                    d3.selectAll('.axis-text.y-axis')
-                        .style('font-weight', '200')
-                    // set styling for specific decade
-                    d3.selectAll('.decade' + d)
-                        .style('opacity', 0)
-                        .style('stroke-opacity', 0)
-                    d3.selectAll('.label' + d)
-                        .style('font-weight', '900')
-                    drawBubbleChart(data, {decade: d})
+                    mouseoverTimelineBar(d)
                 })
-                .on('mouseout', () => {
+    }
 
-                })
+    function mouseoverTimelineBar(decade) {
+        // If mousedover decade does not match current chartDecade
+        if (decade !== chartDecade.value) {
+            // Update chart decade
+            chartDecade.value = decade;
+            // set default styling for points and overlay rectangles
+            d3.selectAll('.point')
+                .style('fill', defaultGrey)
+                .style('stroke', defaultGrey)
+            d3.selectAll('.overlay')
+                .style('opacity', defaultRectOpacity)
+                .style('stroke-opacity', defaultRectOpacity)
+            d3.selectAll('.axis-text.x-axis')
+                .style('font-weight', '200')
+            // set styling for specific decade
+            d3.selectAll('.timeline' + decade)
+                .style('fill', highlightFillGrey)
+                .style('stroke', highlightStrokeGrey)
+            d3.selectAll('.decade' + decade)
+                .style('opacity', 0)
+                .style('stroke-opacity', 0)
+            d3.selectAll('.label' + decade)
+                .style('font-weight', '900')
+            // update bubble chart
+            drawBubbleChart(data.value, {decade: chartDecade.value})
+        }
     }
 </script>
 
@@ -442,5 +631,13 @@
     .axis-text {
         font-size: 1.8rem;
         font-family: var(--default-font);
+        user-select: none;
+    }
+    .axis-title {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
+        font-weight: 900;
+        fill: var(--color-text);
+        user-select: none;
     }
 </style>
