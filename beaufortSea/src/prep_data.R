@@ -86,7 +86,16 @@ generate_beeswarm_data <- function(data, outfile) {
              decade = seq(0, 2000, 100), 
              fill = list(pct_abundance = 0)) |>
     left_join(join_df) |>
-    arrange(decade) |>
+    arrange(decade) 
+  
+  # add order for bar chart
+  data_out <- data_subset |>
+    mutate(bar_order = case_when(name == "Spiroplectammina" ~ 6,
+                                 name == "Kotoracythere" ~ 5,
+                                 name %in% c("Ostracode", "Foram") ~ 4,
+                                 name == "Paracyprideis" ~ 3,
+                                 name == "Cassidulina" ~ 2,
+                                 name == "Elphidium" ~ 1)) |>
     readr::write_csv(outfile)
   
   return(outfile)

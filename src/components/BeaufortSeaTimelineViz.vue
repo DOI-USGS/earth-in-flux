@@ -50,7 +50,7 @@
     let chartDecades = ref(null);
     const chartDecade = ref(null);
     const simulation = ref(null);
-    const defaultRectOpacity = 0.7;
+    const defaultRectOpacity = 0.5;
     const bodyCSS = window.getComputedStyle(document.body);
     const bkgdColor = bodyCSS.getPropertyValue('--color-background');    
     const defaultGrey = '#CECECE';
@@ -501,8 +501,9 @@
     function drawBarChart(data, {
         decade = 200
     }) {
-        // sort data by hexcode, so species with shared color plot together
-        data.sort((a,b) => (a.hexcode > b.hexcode) ? 1 : ((b.hexcode > a.hexcode) ? -1 : 0))
+        // sort data by bar order, so species with shared color plot together
+        data.sort((a,b) => (a.bar_order > b.bar_order) ? 1 : ((b.bar_order > a.bar_order) ? -1 : 0))
+        
 
         // get unique species
         const chartSpecies = d3.union(d3.map(data, d => d.species_id));
