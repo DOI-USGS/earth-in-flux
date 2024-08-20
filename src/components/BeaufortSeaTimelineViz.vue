@@ -9,12 +9,9 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <button v-for="decade in chartDecades" :key="decade" :id="`button-${decade}`" @click="updateChart" :class="chartDecade === decade ? 'active' : 'inactive'">
-                {{ decade }}
-            </button>
         </template>
         <template #figures>
-            <div id="chart-container"></div>
+            <div id="chart-container" class="maxWidth" ref="chart"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -39,7 +36,8 @@
     const publicPath = import.meta.env.BASE_URL;
     const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
-    let chartWidth = 900;
+    const chart = ref(null);
+    let chartHeight = window.innerHeight * 0.8;
     let bubbleChartDimensions;
     const bubbleChartTitle = 'Title of chart';
     let bubbleChartBounds;
@@ -48,7 +46,9 @@
     let barChartBounds;
     let chartDecades = ref(null);
     const chartDecade = ref(null);
-    const simulation = ref(null)
+    const simulation = ref(null);
+    const bodyCSS = window.getComputedStyle(document.body);
+    const bkgdColor = bodyCSS.getPropertyValue('--color-background');
 
     // Declare behavior on mounted
     // functions called here
@@ -63,12 +63,13 @@
                 
                 // initialize svg and chart bounds
                 initBubbleChart({
-                    width: chartWidth, // outer width, in pixels
+                    width: chart.value.offsetWidth, // outer width, in pixels
+                    height: chartHeight * 0.8
                 });
                 initBarChart({
-                    width: chartWidth, // outer width, in pixels
-                    height: 200,
-                    marginLeft: 35, // left margin, in pixels
+                    width: chart.value.offsetWidth, // outer width, in pixels
+                    height: chartHeight * 0.2,
+                    marginLeft: 60, // left margin, in pixels
                     marginTop: 10,
                     marginBottom: 20
                 })
@@ -165,7 +166,7 @@
                 d3.min(data, (d) => parseFloat(d.pct_abundance)),
                 d3.max(data, (d) => parseFloat(d.pct_abundance))
             ])
-            .range([4, 200]);
+            .range([4, chart.value.offsetWidth / 6]);
 
         // filter data to current decade and filter out decades where species is not present
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
@@ -272,20 +273,6 @@
         .duration(500)
         .ease(d3.easeCubicInOut)
     }
-    function updateChart(e) {
-
-        const clickedID = e.target.id.split("-")[1]
-
-        if (clickedID != chartDecade.value) {
-
-            chartDecade.value = clickedID
-
-            drawBubbleChart(data.value, {
-                decade: chartDecade.value
-            })
-
-        }
-    }
 
     function initBarChart({
         width = 640, // outer width, in pixels
@@ -336,9 +323,8 @@
     function drawBarChart(data, {
         decade = 200
     }) {
-        // filter data to current decade
-        console.log(data)
-        console.log([...data].sort((a, b) => a.hexcode -b.hexcode))
+        // sort data by hexcode, so species with shared color plot together
+        data.sort((a,b) => (a.hexcode > b.hexcode) ? 1 : ((b.hexcode > a.hexcode) ? -1 : 0))
 
         // get unique species
         const chartSpecies = d3.union(d3.map(data, d => d.species_id));
@@ -347,18 +333,23 @@
         const stackedData = d3.stack()
             .keys(chartSpecies)
             .value(([, D], key) => D.get(key)['pct_abundance']) // get value for each series key and stack
-            .order(d3.stackOrderDescending)
+            .order(d3.stackOrderNone)
             (d3.index(data, d => d.decade, d => d.species_id));
 
         // Set up x scale
         const xScale = d3.scaleBand()
             .domain(chartDecades.value)
-            .range([0, barChartDimensions.boundedWidth]);
+            .range([0, barChartDimensions.boundedWidth])
+            .padding(0);
 
         // add x axis
-        barChartBounds.append('g')
+        const xAxis = barChartBounds.append('g')
             .attr("transform", `translate(0,${barChartDimensions.boundedHeight})`)
             .call(d3.axisBottom(xScale).tickSize(0));
+
+        xAxis.selectAll('text')
+            .attr("class", d => 'axis-text y-axis label' + d)
+            .style('font-weight', d => d === decade ? '900' : '200');
 
         // Set up y scale
         const yScale = d3.scaleLinear()
@@ -366,10 +357,13 @@
             .range([barChartDimensions.boundedHeight, 0]);
 
         // add y axis
-        barChartBounds.append('g')
+        const yAxis = barChartBounds.append('g')
             .call(d3.axisLeft(yScale)
                 .ticks(5)
                 .tickFormat(d => d + '%'));
+
+        yAxis.selectAll('text')
+            .attr("class", 'axis-text x-axis');
 
         // set up color scale
         let speciesColors = []
@@ -401,7 +395,8 @@
                 .attr('height', d => yScale(d[0]) - yScale(d[1]))
                 .attr('width', xScale.bandwidth())
                 .style("fill", d => colorScale(d.key))
-                .style("stroke", d => colorScale(d.key));
+                .style("stroke", d => colorScale(d.key))
+                .style("stroke-width", 0.5);
 
         const overlayGroup = barChartBounds.append("g")
             .attr("class", "overlay-group")
@@ -415,26 +410,35 @@
                 .attr('y', 0)
                 .attr('height', barChartDimensions.boundedHeight)
                 .attr('width', xScale.bandwidth())
-                .attr('fill', 'transparent')
+                .style('fill', bkgdColor)
+                .style("opacity", d => d === decade ? 0 : 0.8)
+                .style("stroke", bkgdColor)
+                .style("stroke-opacity", d => d === decade ? 0 : 0.8)
+                .style("stroke-width", 0.5)
                 .on('mouseover', (event, d) => {
+                    // set default styling
                     d3.selectAll('.overlay')
-                        .attr('fill', 'white')
                         .style('opacity', 0.8)
-                    d3.select('.decade' + d)
-                        .attr('fill', 'transparent')
+                        .style('stroke-opacity', 0.8)
+                    d3.selectAll('.axis-text.y-axis')
+                        .style('font-weight', '200')
+                    // set styling for specific decade
+                    d3.selectAll('.decade' + d)
+                        .style('opacity', 0)
+                        .style('stroke-opacity', 0)
+                    d3.selectAll('.label' + d)
+                        .style('font-weight', '900')
                     drawBubbleChart(data, {decade: d})
                 })
-                .on('mouseout', (event, d) => {
-                    d3.selectAll('.overlay')
-                        .attr('fill', 'transparent')
-                    // drawBubbleChart(data, {decade: d})
+                .on('mouseout', () => {
+
                 })
     }
 </script>
 
-<style>
-    .active {
-        background-color: grey;
-        color: white;
+<style lang="scss">
+    .axis-text {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
     }
 </style>
