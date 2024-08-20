@@ -83,9 +83,9 @@
         }, { deep: true });
 
         // Set up the SVG canvas dimensions
-        const margin = { top: 20, right: 20, bottom: 450, left: 200 },
-            width = 800 - margin.left - margin.right,
-            height = 1000 - margin.top - margin.bottom;
+        const margin = { top: 20, right: 20, bottom: 80, left: 200 },
+            width = 1200 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
         const svg = d3.select(chart.value)
             .append('svg')
@@ -186,7 +186,7 @@
                 .data(rankData)
                 .enter().append('text')
                 .attr('class', d => `label ${sanitizeClass(d.threatCode)} ${sanitizeClass(d.category)}`)
-                .attr('x', 10)
+                .attr('x', 50)
                 .attr('y', d => y(d.values[0].rank))
                 .attr('dy', '.35em')
                 .attr('text-anchor', 'end')
@@ -208,9 +208,11 @@
             .attr('font-weight', 700)
 
         xAxis.selectAll('text')
-            .attr('text-anchor', 'end')
-            .attr('dy', '-0.5rem')
-            .attr('transform', 'rotate(270)');
+            .attr('text-anchor', 'middle') //'end')
+            // .attr('dy', '-0.5rem')
+            // .attr('transform', 'rotate(270)');
+            // Wrap x-axis labels on mobile
+            .call(d => wrapHorizontalLabels(d, 20));
 
         const updateCategoryStyles = () => {
             threatCategories.value.forEach(category => {
@@ -295,6 +297,42 @@
       return d3.transition()
         .duration(200)
         .ease(d3.easeCubicInOut)
+    }
+
+    // function to wrap text added with d3 modified from
+    // https://stackoverflow.com/questions/24784302/wrapping-text-in-d3
+    // which is adapted from https://bl.ocks.org/mbostock/7555321
+    function wrapHorizontalLabels(text, width) {
+      text.each(function () {
+          var text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              word,
+              line = [],
+              lineNumber = 0,
+              lineHeight = 0.6,
+              x = 0,
+              y = text.attr("x"), // Use x b/c wrapping horizontal labels
+              dy = 0, //parseFloat(text.attr("dy")),
+              tspan = text.text(null)
+                          .append("tspan")
+                          .attr("x", x)
+                          .attr("y", y)
+                          .attr("dy", dy + "rem");
+          while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+                  line.pop();
+                  tspan.text(line.join(" "));
+                  line = [word];
+                  tspan = text.append("tspan")
+                              .attr("x", x)
+                              .attr("y", y)
+                              .attr("dy", ++lineNumber > 3 ? ++lineNumber * 0.3 * lineHeight + dy + "em" : ++lineNumber * 0.5 * lineHeight + dy + "em")
+                              .text(word);
+              }
+          }
+      });
     }
 
 </script>
