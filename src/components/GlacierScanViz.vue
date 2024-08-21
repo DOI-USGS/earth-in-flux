@@ -37,29 +37,19 @@
         text: { type: Object }
     })
 
-    // global variables
-    const bodyCSS = window.getComputedStyle(document.body);
-    const backgroundColor = bodyCSS.getPropertyValue('--color-background');
-
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/cross_section.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_xray.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross_section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
                 
                 // add id to svg
-                const svg = d3.select("#cross_section-grid-container").select("svg")
+                d3.select("#cross_section-grid-container").select("svg")
                     .attr("id", "cross_section-svg")
-
-                // style to match background color
-                svg.select('#patch_1').select('path')
-                    .style("fill", backgroundColor)
-                svg.select('#patch_3').select('path')
-                    .style("fill", backgroundColor)
 
                 // add interactivity
                 addInteractions();
@@ -93,11 +83,20 @@
         d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
             .style("fill-opacity", 1);
         d3.select("#xs-topo-" + line_id).selectAll("path")
-            .style("fill", "#D2B48C")
-            .style("fill-opacity", 1);
+            .style("fill", "#c49051")
+            .style("fill-opacity", 1)
+            .style("stroke", "#000000")
+            .style("stroke-opacity", 0.1);
         d3.select("#xs-ice-" + line_id).selectAll("path")
-            .style("fill", "#b9e8ea")
-            .style("fill-opacity", 1);
+            .style("fill", "#dddddd")
+            .style("fill-opacity", 1)
+            .style("stroke", "#000000")
+            .style("stroke-opacity", 0.2);
+        d3.select("#xs-c-sm-" + line_id).selectAll("path")
+            .style("fill", "#4fd437")
+            .style("fill-opacity", 1)
+            .style("stroke", "#000000")
+            .style("stroke-opacity", 1.0);
     }
     
     function remove_xs(line_id){
@@ -122,29 +121,51 @@
         d3.select("#xs-arrow2-"+ line_id).selectAll("path")
             .style("fill-opacity", 0);
         d3.select("#xs-topo-" + line_id).selectAll("path")
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
         d3.select("#xs-ice-" + line_id).selectAll("path")
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
+        d3.select("#xs-c-sm-" + line_id).selectAll("path")
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
     }   
 
     function mouseover(event,default_xs) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs)
+            remove_xs(default_xs);
             let line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id)
+            draw_xs(line_id);
+        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+            remove_xs(default_xs);
+            let line_id = event.currentTarget.id.slice(8);
+            draw_xs(line_id);
         }
     }
 
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             let line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id)
+            remove_xs(line_id);
+        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+            let line_id = event.currentTarget.id.slice(8);
+            remove_xs(line_id);
+        }
+    }
+
+    function mouseenter(event,default_xs) {
+        if (event.currentTarget.id.startsWith("figure_1")){
+            remove_xs(default_xs);
+            d3.select("#tutorial_arrow").selectAll("path")
+                .style("opacity", 0);
         }
     }
 
     function mouseleave(event,default_xs) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            draw_xs(default_xs)
+            draw_xs(default_xs);
+            d3.select("#tutorial_arrow").selectAll("path")
+                .style("opacity", 0.75);
         }
     }
 
@@ -152,14 +173,15 @@
         // set viewbox for svg with loss function chart
         const cross_sectionSVG = d3.select("#cross_section-svg");
 
-        var default_xs = "50"
-        draw_xs(default_xs)
+        var default_xs = "188";
+        draw_xs(default_xs);
 
-        // Add interaction to svg
+        // Add interaction to loss function chart
         cross_sectionSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event,default_xs))
             .on("mouseout", (event) => mouseout(event))
-            .on("mouseleave", (event) => mouseleave(event,default_xs))
+            .on("mouseenter", (event) => mouseenter(event,default_xs))
+            .on("mouseleave", (event) => mouseleave(event,default_xs));
     }
 </script>
 
@@ -178,7 +200,7 @@
     #cross_section-svg {
         grid-area: chart;
         place-self: center;
-        max-height: 80%;
-        max-width: 80%;
+        max-height: 100%;
+        max-width: 100%;
     }
 </style>

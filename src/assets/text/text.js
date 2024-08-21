@@ -15,10 +15,10 @@ export default {
         // keys must match project routes (with '-' replaced with '')
         findex: {
             title: "Findex",
-            motivation: "The Findex project...",
+            motivation: "Global freshwater biodiversity faces unprecedented loss from rapid global change. Found in less than 0.01% of available surface water, inland fishes comprise 51% of all fish species and inland fisheries provide food for billions and livelihoods for millions of people worldwide. Despite their importance, inland fishes are some of the most threatened taxa on the planet from intensifying pressures, such as hydrological alterations, riparian degradation, invasive species, and climate change. One-third of all inland fishes are threatened with extinction. However, standardized methods to monitor and assess fisheries proves elusive because inland fisheries are highly dispersed with limited market integration. Here, we present the first global metric to examine threats to inland fisheries by river basin using literature synthesis, expert elicitation, and computational modeling. The resulting standardized assessment serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. We show that most threats to inland fisheries come from outside the fishery sector, predominately from land use change. Given that inland fisheries are severely threatened and highly important with limited resources, this index can help direct, efficiently use, and mobilize limited resources for watershed management, sustainable fisheries, and ultimately human well-being.",
             teamText: null,
             teamData: [
-                { name: "Gretchen Stokes", link: "", image: "" },
+                { name: "Gretchen Stokes", link: "", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/GretchenStokes.png" },
                 { name: "Abigail Lynch", link: "https://www.usgs.gov/staff-profiles/abigail-lynch", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/abbyprofile.png?h=a35909eb&itok=ob1vliWk" }
             ]
         },
@@ -54,14 +54,14 @@ export default {
     },
     visualizations: {
         GlacierScan: {
-            heading: "Glacier MRI",
-            paragraph1: "Here is a paragraph.",
+            heading: "Glacier X-Ray",
+            paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interative visualization below to explore the the rock and ice topography.",
         },
         ThreatBumpChart: {
-            heading: "Inland fisheries are threatened"
+            heading: "Inland fisheries are threatened."
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect ice cores?",
+            heading: "How do USGS scientists collect sediment cores?",
             paragraph1: "Researchers traveled from Reston, Virginia to Whitefish Station, Yukon, Canada. Here, the Mackenzie River flows into the Beaufort Sea. The researchers do their sediment coring offshore, along the relatively shallow Mackenzie Shelf.",
             paragraph2: "Researchers take a large U.S. Coast Guard ice-breaking ship to the collection site.",
             paragraph3: "Once the researchers are at the collection site, they use a large piston-driven coring device to take samples of the sediment layers at the bottom of the ocean.",
