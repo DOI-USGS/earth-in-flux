@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref, reactive } from "vue";
+    import { onMounted, ref } from "vue"; //, reactive
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
@@ -67,9 +67,9 @@
                 // console.log(expandedFamilies)
                 initChart({
                     width: chart.value.offsetWidth,
-                    height: 1600,
+                    height: 1800,
                     margin: 20,
-                    marginBottom: 30,
+                    marginBottom: 60,
                     marginLeft: 200});
                 drawChart(data.value);
             } else {
@@ -169,14 +169,14 @@
         //     .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10))
             // .select(".domain").remove() // remove axis line
         
-        // add placeholder for x axis title (title text set in drawChart())
-        xAxis
-            .append("text")
-            .attr("class", "x-axis axis-title")
-            .attr("x", -chartDimensions.boundedWidth / 2)
-            .style("text-anchor", "middle")
-            .attr("role", "presentation")
-            .attr("aria-hidden", true)
+        // // add placeholder for x axis title (title text set in drawChart())
+        // xAxis
+        //     .append("text")
+        //     .attr("class", "x-axis axis-title")
+        //     .attr("x", -chartDimensions.boundedWidth / 2)
+        //     .style("text-anchor", "middle")
+        //     .attr("role", "presentation")
+        //     .attr("aria-hidden", true)
     }
 
     function initYScale() {
@@ -196,15 +196,15 @@
         //     .call(d3.axisLeft(yScale).tickSize(2))
             // .select(".domain").remove() // remove axis line
 
-        // add placeholder for y axis title (title text set in drawChart())
-        yAxis
-            .append("text")
-            .attr("class", "y-axis axis-title")
-            .attr("x", -chartDimensions.boundedHeight / 2)
-            .attr("transform", "rotate(-90)")
-            .style("text-anchor", "middle")
-            .attr("role", "presentation")
-            .attr("aria-hidden", true)
+        // // add placeholder for y axis title (title text set in drawChart())
+        // yAxis
+        //     .append("text")
+        //     .attr("class", "y-axis axis-title")
+        //     .attr("x", -chartDimensions.boundedHeight / 2)
+        //     .attr("transform", "rotate(-90)")
+        //     .style("text-anchor", "middle")
+        //     .attr("role", "presentation")
+        //     .attr("aria-hidden", true)
     }
 
     function initGradients() {
@@ -296,13 +296,45 @@
 
         // set domain for xScale
         xScale
-            .domain([0, 0.3]) // d3.max([d3.max(data, x0Accessor), d3.max(data, x1Accessor)])])
+            // .domain([0, 0.3]) // d3.max([d3.max(data, x0Accessor), d3.max(data, x1Accessor)])])
+            .domain([-0.4, 0.4])
+        console.log(xScale.domain())
+        
         xAxis
             .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10))
 
         xAxis
             .selectAll("text")
             .attr("class", "axis-text")
+
+        const xAxisLabelYPosition = xAxis.select("text").attr('y')
+        const xAxisLabelDy = xAxis.select("text").attr('dy')
+        xAxis.append("text")
+            .attr("class", "x-axis axis-title")
+            .attr("x", chartDimensions.boundedWidth / 2)
+            .attr("y", xAxisLabelYPosition * 4)
+            .attr("dy", xAxisLabelDy)
+            .style("text-anchor", "middle")
+            .text('Percent change in harvest-weighted climate vulnerability, 2030-2075')
+        // xAxis.append("text")
+        //     .attr("class", "x-axis axis-title")
+        //     .attr("x", 0)
+        //     .attr("y", xAxisLabelYPosition * 4)
+        //     .attr("dy", xAxisLabelDy)
+        //     .style("text-anchor", "start")
+        //     .text('Less vulnerable')
+        // xAxis.append("text")
+        //     .attr("class", "x-axis axis-title")
+        //     .attr("x", chartDimensions.boundedWidth)
+        //     .attr("y", xAxisLabelYPosition * 4)
+        //     .attr("dy", xAxisLabelDy)
+        //     .style("text-anchor", "end")
+        //     .text('More vulnerable')
+
+        // Remove axix line and labels
+        // xAxis.select(".domain").remove()
+        // xAxis.call(d3.axisBottom(xScale).tickValues([]))
+
         // set domain for yScale
         // let yDomain = []
         // families.value.map(family => expandedFamilies[family] ? yDomain.push(data.filter(d => d.family === family).map(d => d.species)) : yDomain.push(family))
@@ -318,6 +350,16 @@
             .selectAll("text")
             .attr("class", "axis-text")
 
+        const yAxisLabelXPosition = yAxis.select("text").attr('x')
+        const yAxisLabelDx = yAxis.select("text").attr('dx')
+        yAxis.append("text")
+            .attr("class", "y-axis axis-title")
+            .attr("y", 0)
+            .attr("x", yAxisLabelXPosition)
+            .attr("dx", yAxisLabelDx)
+            .style("text-anchor", "end")
+            .text('Species')
+
         // set up width scale
         const radiusPosition0 = 1
         const strokeRatio = 0.3
@@ -328,8 +370,8 @@
         // set up area function
         const area = d3.area()
             .x(d => xScale(xAccessor(d)))
-            .y0(d => yScale(yAccessor(d)) - widthScale(widthAccessor(d)))
-            .y1(d => yScale(yAccessor(d)) + widthScale(widthAccessor(d)));
+            .y0(d => yScale(yAccessor(d)) + yScale.bandwidth() / 2 - widthScale(widthAccessor(d)))
+            .y1(d => yScale(yAccessor(d)) + yScale.bandwidth() / 2+ widthScale(widthAccessor(d)));
             // .x(d => expandedFamilies[d.family] ? xScale(xAccessor(d)) : xScale(xAccessor_family(d)))
             // .y0(d => expandedFamilies[d.family] ? yScale(yAccessor(d)) - widthScale(widthAccessor(d)) : yScale(yAccessor_family(d)) - widthScale(widthAccessor(d)))
             // .y1(d => expandedFamilies[d.family] ? yScale(yAccessor(d)) + widthScale(widthAccessor(d)) : yScale(yAccessor_family(d)) + widthScale(widthAccessor(d)));
@@ -401,7 +443,7 @@
                     .attr("id", d => 'point-2030-' + identifierAccessor(d))
                     .attr("class", "point")
                     .attr("cx", d => xScale(x0Accessor(d)))
-                    .attr("cy", d => yScale(yAccessor(d)))
+                    .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
                     .attr("r", radiusPosition0)
                     .style("stroke", d => colorScale(colorAccessor(d)))
                     .style("fill", "white")
@@ -416,7 +458,7 @@
                     .attr("id", d => 'point-2075-' + identifierAccessor(d))
                     .attr("class", "point")
                     .attr("cx", d => xScale(x1Accessor(d)))
-                    .attr("cy", d => yScale(yAccessor(d)))
+                    .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
                     .attr("r", radiusPosition1 - strokeWidth1 / 2)
                     .style("stroke", d => colorScale(colorAccessor(d)))
                     .style("stroke-width", strokeWidth1)
@@ -446,6 +488,13 @@
     .axis-text {
         font-size: 1.8rem;
         font-family: var(--default-font);
+        user-select: none;
+    }
+    .axis-title {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
+        font-weight: 900;
+        fill: var(--color-text);
         user-select: none;
     }
 </style>
