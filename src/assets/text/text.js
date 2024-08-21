@@ -58,10 +58,10 @@ export default {
             paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interative visualization below to explore the the rock and ice topography.",
         },
         ThreatBumpChart: {
-            heading: "Inland fisheries are threatened"
+            heading: "Inland fisheries are threatened."
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect ice cores?",
+            heading: "How do USGS scientists collect sediment cores?",
             paragraph1: "Researchers traveled from Reston, Virginia to Whitefish Station, Yukon, Canada. Here, the Mackenzie River flows into the Beaufort Sea. The researchers do their sediment coring offshore, along the relatively shallow Mackenzie Shelf.",
             paragraph2: "Researchers take a large U.S. Coast Guard ice-breaking ship to the collection site.",
             paragraph3: "Once the researchers are at the collection site, they use a large piston-driven coring device to take samples of the sediment layers at the bottom of the ocean.",

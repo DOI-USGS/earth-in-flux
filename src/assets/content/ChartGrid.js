@@ -9,26 +9,8 @@ export default {
             vizRoute: 'inland-fish-threats',
             img_src: 'ThreatBumpChart_thumbnail.png',
             alt: '',
-            description: 'Inland fisheries are threatened'
-        },        
-        {
-            title: 'Viz 2',
-            project: 'Findex',
-            vizKey: 'Viz2',
-            vizRoute: 'viz-2',
-            img_src: 'Placeholder_thumbnail.PNG',
-            alt: '',
-            description: 'Description or key takeaways from this Viz (Viz 2)'
-        },       
-        {
-            title: 'Viz 3',
-            project: 'Findex',
-            vizKey: 'Viz3',
-            vizRoute: 'viz-3',
-            img_src: 'Placeholder_thumbnail.PNG',
-            alt: '',
-            description: 'Description or key takeaways from this Viz (Viz 3)'
-        },         
+            description: '... and inland fisheries are threatened.'
+        },          
         {
             title: 'Glacier/Topography D3 Cross-Section Scan',
             project: 'Fire in Ice',
@@ -36,7 +18,7 @@ export default {
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Glacier/Topography D3 Cross-Section Scan)'
+            description: '...and glacier ice can illustrate the effect on wildfires.'
         },       
         {
             title: 'Global economic value of recreationally fished species',
@@ -45,16 +27,16 @@ export default {
             vizRoute: 'inland-rec-fish-value',
             img_src: 'CirclePacking_thumbnail.png',
             alt: '',
-            description: 'Inland recreational fishing contributes economic value'
+            description: '...and inland recreational fishing contributes economic value.'
         },
         {
-            title: 'Beaufort Sea Ice Coring',
+            title: 'Beaufort Sea Sediment Coring',
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaCore',
             vizRoute: 'beaufort-sea-ice-coring',
             img_src: 'BeaufortSeaCore_thumbnail.PNG',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Beaufort Sea Ice Coring)'
+            description: '...and sediment cores can help build past and present climates.'
         },  
         {
             title: 'Beaufort Sea Species',
@@ -63,7 +45,7 @@ export default {
             vizRoute: 'beaufort-sea-species',
             img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Beaufort Sea Species)'
+            description: '...and microfossils can be used to indicate these changes.'
         },   
         {
             title: 'Beaufort Sea Timeline',
@@ -72,7 +54,7 @@ export default {
             vizRoute: 'beaufort-sea-timeline',
             img_src: 'BeaufortSeaTimeline_thumbnail.PNG',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Beaufort Sea Timeline)'
+            description: '...and communities of microorganisms on the sea floor are affected.'
         }   
     ]
 };
