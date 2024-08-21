@@ -18,7 +18,7 @@ export default {
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
             alt: '',
-            description: '...and glacier ice can illustrate the effect on wildfires.'
+            description: '...and researchers are studying glacial ice.'
         },       
         {
             title: 'Global economic value of recreationally fished species',
