@@ -1,265 +1,113 @@
-Habitat,ThreatName,AverageThreatMetric,Threat,ThreatCategory,Rank
-Large lakes,AgEff,2.1140191168258546,Agricultural effluents,Pollution,17
-Large lakes,AgUse,2.7711189221159636,Agricultural extraction,Habitat,12
-Large lakes,AqEff,2.440821778434356,Aquaculture effluents,Pollution,15
-Large lakes,Dams,1.7949111801459146,Dams,Habitat,21
-Large lakes,Defor,1.9737570299751332,Deforestation and associated runoff,Habitat,20
-Large lakes,Drght,2.445412074956739,Drought,Climate and weather,14
-Large lakes,OvrFsh,2.0734340826379127,Overfishing,Exploitation,18
+Habitat,ThreatCode,AverageThreatMetric,Threat,ThreatCategory,Rank
+Large lakes,Dams,1.7949111801459146,Dams,Habitat,15
+Large lakes,Defor,1.9737570299751332,Deforestation and associated runoff,Habitat,14
+Large lakes,Drght,2.445412074956739,Drought,Climate and weather,10
+Large lakes,Eff,2.41503962627927,Effluents,Pollution,11
 Large lakes,FldChg,4.163457947856302,Change in flooding,Climate and weather,3
 Large lakes,IceChg,5.353536906883928,Change in ice cover,Climate and weather,1
-Large lakes,IndEff,3.057440141165492,Industrial effluents,Pollution,9
-Large lakes,IndUse,2.5109530166181506,Industrial extraction,Habitat,13
 Large lakes,Invasv,4.570230231794904,Invasive non-native species,Invasive species,2
-Large lakes,Mining,2.8217341594034147,Mining,Pollution,10
-Large lakes,OilGas,2.8109911788668467,Oil or gas exploration,Pollution,11
-Large lakes,Pharma,3.0972582788553105,Pharmaceuticals,Pollution,8
-Large lakes,Plastic,1.4815621548359093,Plastics,Pollution,22
-Large lakes,RipDeg,2.149973141524384,Riparian degradation,Habitat,16
-Large lakes,UrbEff,2.0478774686913774,Urban wastewater,Pollution,19
-Large lakes,UrbUse,3.108620068285985,Urban extraction,Habitat,7
+Large lakes,Mining,2.8217341594034147,Mining,Pollution,7
+Large lakes,OilGas,2.8109911788668467,Oil or gas exploration,Pollution,8
+Large lakes,OvrFsh,2.0734340826379127,Overfishing,Exploitation,13
+Large lakes,Pharma,3.0972582788553105,Pharmaceuticals,Pollution,6
+Large lakes,Plastic,1.4815621548359093,Plastics,Pollution,16
+Large lakes,RipDeg,2.149973141524384,Riparian degradation,Habitat,12
 Large lakes,TmpChg,3.3464759811751614,Change in water temperature,Climate and weather,5
+Large lakes,Use,2.7968973356733664,Water use,Habitat,9
 Large lakes,WetLoss,3.429206843249385,Wetland drainage,Habitat,4
-Large lakes,WndChg,3.1467246280852903,Change in wind patterns,Climate and weather,6
-Large river deltas,AgEff,2.6620426365094825,Agricultural effluents,Pollution,13
-Large river deltas,AgUse,1.702134628459989,Agricultural extraction,Habitat,19
-Large river deltas,AqEff,4.674356972306991,Aquaculture effluents,Pollution,4
-Large river deltas,Dams,0.3689273597554484,Dams,Habitat,21
+Large river deltas,Dams,0.3689273597554484,Dams,Habitat,15
 Large river deltas,Defor,5.330165730661932,Deforestation and associated runoff,Habitat,2
-Large river deltas,Drght,3.757366897443977,Drought,Climate and weather,7
+Large river deltas,Drght,3.757366897443977,Drought,Climate and weather,5
+Large river deltas,Eff,3.7165925984345742,Effluents,Pollution,6
+Large river deltas,FldChg,3.122638800856216,Change in flooding,Climate and weather,9
+Large river deltas,IceChg,0,Change in ice cover,Climate and weather,16
+Large river deltas,Invasv,1.2774541146742235,Invasive non-native species,Invasive species,14
+Large river deltas,Mining,3.484878226135668,Mining,Pollution,7
+Large river deltas,OilGas,2.4549619786305588,Oil or gas exploration,Pollution,12
 Large river deltas,OvrFsh,6.2787582644623665,Overfishing,Exploitation,1
-Large river deltas,FldChg,3.122638800856216,Change in flooding,Climate and weather,11
-Large river deltas,IceChg,0,Change in ice cover,Climate and weather,22
-Large river deltas,IndEff,3.5276725931987687,Industrial effluents,Pollution,8
-Large river deltas,IndUse,1.969918836897318,Industrial extraction,Habitat,18
-Large river deltas,Invasv,1.2774541146742235,Invasive non-native species,Invasive species,20
-Large river deltas,Mining,3.484878226135668,Mining,Pollution,9
-Large river deltas,OilGas,2.4549619786305588,Oil or gas exploration,Pollution,15
-Large river deltas,Pharma,2.5384614860310215,Pharmaceuticals,Pollution,14
-Large river deltas,Plastic,4.543131375433414,Plastics,Pollution,5
-Large river deltas,RipDeg,3.2756889789172496,Riparian degradation,Habitat,10
-Large river deltas,UrbEff,4.002298191723055,Urban wastewater,Pollution,6
-Large river deltas,UrbUse,2.1291509839007787,Urban extraction,Habitat,17
+Large river deltas,Pharma,2.5384614860310215,Pharmaceuticals,Pollution,11
+Large river deltas,Plastic,4.543131375433414,Plastics,Pollution,4
+Large river deltas,RipDeg,3.2756889789172496,Riparian degradation,Habitat,8
 Large river deltas,TmpChg,4.903678902181309,Change in water temperature,Climate and weather,3
-Large river deltas,WetLoss,3.1126877927788974,Wetland drainage,Habitat,12
-Large river deltas,WndChg,2.172039352099891,Change in wind patterns,Climate and weather,16
-Montane freshwaters,AgEff,1.1363698736291747,Agricultural effluents,Pollution,19
-Montane freshwaters,AgUse,2.032090837235459,Agricultural extraction,Habitat,9
-Montane freshwaters,AqEff,1.3799373609706345,Aquaculture effluents,Pollution,15
-Montane freshwaters,Dams,1.9563387518549218,Dams,Habitat,10
-Montane freshwaters,Defor,1.2328801638433262,Deforestation and associated runoff,Habitat,17
+Large river deltas,Use,1.9337348164193617,Water use,Habitat,13
+Large river deltas,WetLoss,3.1126877927788974,Wetland drainage,Habitat,10
+Montane freshwaters,Dams,1.9563387518549218,Dams,Habitat,8
+Montane freshwaters,Defor,1.2328801638433262,Deforestation and associated runoff,Habitat,14
 Montane freshwaters,Drght,4.149483437832635,Drought,Climate and weather,2
-Montane freshwaters,OvrFsh,2.270724588128579,Overfishing,Exploitation,7
+Montane freshwaters,Eff,1.4335342881157658,Effluents,Pollution,11
 Montane freshwaters,FldChg,4.043208781859135,Change in flooding,Climate and weather,3
 Montane freshwaters,IceChg,4.593056591017697,Change in ice cover,Climate and weather,1
-Montane freshwaters,IndEff,1.5978794884624457,Industrial effluents,Pollution,13
-Montane freshwaters,IndUse,0.8295191497977641,Industrial extraction,Habitat,21
-Montane freshwaters,Invasv,2.140897845917023,Invasive non-native species,Invasive species,8
-Montane freshwaters,Mining,1.234453164457141,Mining,Pollution,16
-Montane freshwaters,OilGas,1.909945066010751,Oil or gas exploration,Pollution,11
+Montane freshwaters,Invasv,2.140897845917023,Invasive non-native species,Invasive species,7
+Montane freshwaters,Mining,1.234453164457141,Mining,Pollution,13
+Montane freshwaters,OilGas,1.909945066010751,Oil or gas exploration,Pollution,9
+Montane freshwaters,OvrFsh,2.270724588128579,Overfishing,Exploitation,6
 Montane freshwaters,Pharma,2.998437522412737,Pharmaceuticals,Pollution,4
-Montane freshwaters,Plastic,2.307813729605036,Plastics,Pollution,6
-Montane freshwaters,RipDeg,1.1453432828660073,Riparian degradation,Habitat,18
-Montane freshwaters,UrbEff,1.6199504294008087,Urban wastewater,Pollution,12
-Montane freshwaters,UrbUse,0.8721873772146597,Urban extraction,Habitat,20
-Montane freshwaters,TmpChg,1.444238811827908,Change in water temperature,Climate and weather,14
-Montane freshwaters,WetLoss,0.7881073630275929,Wetland drainage,Habitat,22
-Montane freshwaters,WndChg,2.9745898254773353,Change in wind patterns,Climate and weather,5
-Oceanic islands,AgEff,0.03973775545950521,Agricultural effluents,Pollution,19
-Oceanic islands,AgUse,0.2033052853202986,Agricultural extraction,Habitat,16
-Oceanic islands,AqEff,1.4285714285714286,Aquaculture effluents,Pollution,5
-Oceanic islands,Dams,0,Dams,Habitat,21
-Oceanic islands,Defor,0.7156679406645173,Deforestation and associated runoff,Habitat,12
-Oceanic islands,Drght,0.24315179945983642,Drought,Climate and weather,15
-Oceanic islands,OvrFsh,1.9572238091230074,Overfishing,Exploitation,2
-Oceanic islands,FldChg,0.9065482718479798,Change in flooding,Climate and weather,9
-Oceanic islands,IceChg,0,Change in ice cover,Climate and weather,22
-Oceanic islands,IndEff,0.6753321331824325,Industrial effluents,Pollution,13
-Oceanic islands,IndUse,1.0155507233491594,Industrial extraction,Habitat,8
+Montane freshwaters,Plastic,2.307813729605036,Plastics,Pollution,5
+Montane freshwaters,RipDeg,1.1453432828660073,Riparian degradation,Habitat,15
+Montane freshwaters,TmpChg,1.444238811827908,Change in water temperature,Climate and weather,10
+Montane freshwaters,Use,1.2445991214159609,Water use,Habitat,12
+Montane freshwaters,WetLoss,0.7881073630275929,Wetland drainage,Habitat,16
+Oceanic islands,Dams,0,Dams,Habitat,15
+Oceanic islands,Defor,0.7156679406645173,Deforestation and associated runoff,Habitat,10
+Oceanic islands,Drght,0.24315179945983642,Drought,Climate and weather,12
+Oceanic islands,Eff,0.9152916280983501,Effluents,Pollution,5
+Oceanic islands,FldChg,0.9065482718479798,Change in flooding,Climate and weather,6
+Oceanic islands,IceChg,0,Change in ice cover,Climate and weather,16
 Oceanic islands,Invasv,2.975255964543224,Invasive non-native species,Invasive species,1
-Oceanic islands,Mining,0.743502245675825,Mining,Pollution,11
-Oceanic islands,OilGas,0.6247709755273585,Oil or gas exploration,Pollution,14
-Oceanic islands,Pharma,0.014472771160354815,Pharmaceuticals,Pollution,20
-Oceanic islands,Plastic,0.8315117820082809,Plastics,Pollution,10
+Oceanic islands,Mining,0.743502245675825,Mining,Pollution,9
+Oceanic islands,OilGas,0.6247709755273585,Oil or gas exploration,Pollution,11
+Oceanic islands,OvrFsh,1.9572238091230074,Overfishing,Exploitation,2
+Oceanic islands,Pharma,0.014472771160354815,Pharmaceuticals,Pollution,14
+Oceanic islands,Plastic,0.8315117820082809,Plastics,Pollution,7
 Oceanic islands,RipDeg,1.7051454193089808,Riparian degradation,Habitat,3
-Oceanic islands,UrbEff,1.517525195180034,Urban wastewater,Pollution,4
-Oceanic islands,UrbUse,1.0441575981576408,Urban extraction,Habitat,7
-Oceanic islands,TmpChg,0.20261396088677627,Change in water temperature,Climate and weather,17
-Oceanic islands,WetLoss,1.256939549195122,Wetland drainage,Habitat,6
-Oceanic islands,WndChg,0.10162817767686572,Change in wind patterns,Climate and weather,18
-Polar freshwaters,AgEff,0.21345157867072442,Agricultural effluents,Pollution,19
-Polar freshwaters,AgUse,0.13868630981728536,Agricultural extraction,Habitat,21
-Polar freshwaters,AqEff,0.2520621169068196,Aquaculture effluents,Pollution,18
-Polar freshwaters,Dams,0.6321143917710346,Dams,Habitat,11
-Polar freshwaters,Defor,2.7294978698177883,Deforestation and associated runoff,Habitat,3
-Polar freshwaters,Drght,0.3624394208016193,Drought,Climate and weather,15
-Polar freshwaters,OvrFsh,0.6406946206254458,Overfishing,Exploitation,10
-Polar freshwaters,FldChg,0.6833596891086707,Change in flooding,Climate and weather,9
-Polar freshwaters,IceChg,2.8428100386517645,Change in ice cover,Climate and weather,2
-Polar freshwaters,IndEff,0.945608918477606,Industrial effluents,Pollution,8
-Polar freshwaters,IndUse,0.4315401985967661,Industrial extraction,Habitat,13
-Polar freshwaters,Invasv,2.085522063403857,Invasive non-native species,Invasive species,5
-Polar freshwaters,Mining,2.580386747099546,Mining,Pollution,4
-Polar freshwaters,OilGas,1.453464860629557,Oil or gas exploration,Pollution,7
-Polar freshwaters,Pharma,0.14602464144957308,Pharmaceuticals,Pollution,20
-Polar freshwaters,Plastic,0.03822161524959517,Plastics,Pollution,22
-Polar freshwaters,RipDeg,0.3449377483977404,Riparian degradation,Habitat,17
-Polar freshwaters,UrbEff,0.3604356666892447,Urban wastewater,Pollution,16
-Polar freshwaters,UrbUse,0.3836867745730908,Urban extraction,Habitat,14
-Polar freshwaters,TmpChg,0.5221662197147193,Change in water temperature,Climate and weather,12
-Polar freshwaters,WetLoss,1.4928949037414856,Wetland drainage,Habitat,6
-Polar freshwaters,WndChg,3.565663540338731,Change in wind patterns,Climate and weather,1
-Temperate coastal rivers,AgEff,3.1333281056278386,Agricultural effluents,Pollution,8
-Temperate coastal rivers,AgUse,2.1257251664270904,Agricultural extraction,Habitat,17
-Temperate coastal rivers,AqEff,2.7311628632785436,Aquaculture effluents,Pollution,12
-Temperate coastal rivers,Dams,3.2485796015427524,Dams,Habitat,7
-Temperate coastal rivers,Defor,3.2535051392379017,Deforestation and associated runoff,Habitat,6
-Temperate coastal rivers,Drght,3.490167703847081,Drought,Climate and weather,2
-Temperate coastal rivers,OvrFsh,0.49597932191571636,Overfishing,Exploitation,22
-Temperate coastal rivers,FldChg,3.0935946015428732,Change in flooding,Climate and weather,11
-Temperate coastal rivers,IceChg,3.115020290832348,Change in ice cover,Climate and weather,9
-Temperate coastal rivers,IndEff,3.37006258945219,Industrial effluents,Pollution,4
-Temperate coastal rivers,IndUse,2.5436034188260632,Industrial extraction,Habitat,14
-Temperate coastal rivers,Invasv,6.170300774898133,Invasive non-native species,Invasive species,1
-Temperate coastal rivers,Mining,2.4402244071164447,Mining,Pollution,16
-Temperate coastal rivers,OilGas,1.435591720479478,Oil or gas exploration,Pollution,20
-Temperate coastal rivers,Pharma,1.7451183479846397,Pharmaceuticals,Pollution,18
-Temperate coastal rivers,Plastic,1.1250717056332096,Plastics,Pollution,21
-Temperate coastal rivers,RipDeg,2.5385493732932964,Riparian degradation,Habitat,15
-Temperate coastal rivers,UrbEff,3.2652494559270724,Urban wastewater,Pollution,5
-Temperate coastal rivers,UrbUse,2.6346078488188778,Urban extraction,Habitat,13
-Temperate coastal rivers,TmpChg,1.5410795481597277,Change in water temperature,Climate and weather,19
-Temperate coastal rivers,WetLoss,3.1138230506438376,Wetland drainage,Habitat,10
-Temperate coastal rivers,WndChg,3.4768278393580596,Change in wind patterns,Climate and weather,3
-Temperate floodplain rivers and wetlands,AgEff,6.684684109196741,Agricultural effluents,Pollution,2
-Temperate floodplain rivers and wetlands,AgUse,3.623730913496982,Agricultural extraction,Habitat,14
-Temperate floodplain rivers and wetlands,AqEff,5.9580577262937275,Aquaculture effluents,Pollution,7
-Temperate floodplain rivers and wetlands,Dams,5.03652710213436,Dams,Habitat,10
-Temperate floodplain rivers and wetlands,Defor,2.4016869070097018,Deforestation and associated runoff,Habitat,21
-Temperate floodplain rivers and wetlands,Drght,3.0750590586988658,Drought,Climate and weather,19
-Temperate floodplain rivers and wetlands,OvrFsh,2.920191527624036,Overfishing,Exploitation,20
-Temperate floodplain rivers and wetlands,FldChg,3.08197120828391,Change in flooding,Climate and weather,18
-Temperate floodplain rivers and wetlands,IceChg,1.44721699274931,Change in ice cover,Climate and weather,22
-Temperate floodplain rivers and wetlands,IndEff,7.033111477344624,Industrial effluents,Pollution,1
-Temperate floodplain rivers and wetlands,IndUse,4.265702354673963,Industrial extraction,Habitat,11
-Temperate floodplain rivers and wetlands,Invasv,6.245078144464658,Invasive non-native species,Invasive species,6
-Temperate floodplain rivers and wetlands,Mining,3.5750026323916853,Mining,Pollution,17
-Temperate floodplain rivers and wetlands,OilGas,5.249766210192275,Oil or gas exploration,Pollution,9
-Temperate floodplain rivers and wetlands,Pharma,5.378169720983002,Pharmaceuticals,Pollution,8
-Temperate floodplain rivers and wetlands,Plastic,3.598483198783706,Plastics,Pollution,16
-Temperate floodplain rivers and wetlands,RipDeg,6.266458061397439,Riparian degradation,Habitat,5
-Temperate floodplain rivers and wetlands,UrbEff,6.280800664389642,Urban wastewater,Pollution,4
-Temperate floodplain rivers and wetlands,UrbUse,3.79256251691445,Urban extraction,Habitat,12
-Temperate floodplain rivers and wetlands,TmpChg,3.6162598874816014,Change in water temperature,Climate and weather,15
-Temperate floodplain rivers and wetlands,WetLoss,6.392704353092973,Wetland drainage,Habitat,3
-Temperate floodplain rivers and wetlands,WndChg,3.685619318359538,Change in wind patterns,Climate and weather,13
-Temperate upland rivers,AgEff,4.853383229967212,Agricultural effluents,Pollution,3
-Temperate upland rivers,AgUse,3.647535555259718,Agricultural extraction,Habitat,10
-Temperate upland rivers,AqEff,2.984983522941513,Aquaculture effluents,Pollution,18
-Temperate upland rivers,Dams,5.841443043015357,Dams,Habitat,2
-Temperate upland rivers,Defor,2.624716806011225,Deforestation and associated runoff,Habitat,19
-Temperate upland rivers,Drght,4.17234125033766,Drought,Climate and weather,7
-Temperate upland rivers,OvrFsh,0.513905363802558,Overfishing,Exploitation,22
-Temperate upland rivers,FldChg,3.4434730638968034,Change in flooding,Climate and weather,14
-Temperate upland rivers,IceChg,0.8999932455223719,Change in ice cover,Climate and weather,21
-Temperate upland rivers,IndEff,4.665029113305895,Industrial effluents,Pollution,5
-Temperate upland rivers,IndUse,3.4361792474408173,Industrial extraction,Habitat,15
-Temperate upland rivers,Invasv,4.700597921075261,Invasive non-native species,Invasive species,4
-Temperate upland rivers,Mining,4.099388920902538,Mining,Pollution,8
-Temperate upland rivers,OilGas,6.395386308174068,Oil or gas exploration,Pollution,1
-Temperate upland rivers,Pharma,3.2840731993396877,Pharmaceuticals,Pollution,16
-Temperate upland rivers,Plastic,2.3871430126217885,Plastics,Pollution,20
-Temperate upland rivers,RipDeg,3.5031062023655606,Riparian degradation,Habitat,12
-Temperate upland rivers,UrbEff,3.6534307950874227,Urban wastewater,Pollution,9
-Temperate upland rivers,UrbUse,4.185296260969341,Urban extraction,Habitat,6
-Temperate upland rivers,TmpChg,3.0453720543733813,Change in water temperature,Climate and weather,17
-Temperate upland rivers,WetLoss,3.524434585656383,Wetland drainage,Habitat,11
-Temperate upland rivers,WndChg,3.4505009121858796,Change in wind patterns,Climate and weather,13
-Tropical and subtropical coastal rivers,AgEff,3.466254769746182,Agricultural effluents,Pollution,7
-Tropical and subtropical coastal rivers,AgUse,1.8857183640371835,Agricultural extraction,Habitat,20
-Tropical and subtropical coastal rivers,AqEff,4.618020936547087,Aquaculture effluents,Pollution,2
-Tropical and subtropical coastal rivers,Dams,2.6846139874541257,Dams,Habitat,15
-Tropical and subtropical coastal rivers,Defor,5.245813838190144,Deforestation and associated runoff,Habitat,1
-Tropical and subtropical coastal rivers,Drght,3.76498493619971,Drought,Climate and weather,6
-Tropical and subtropical coastal rivers,OvrFsh,4.538152603188088,Overfishing,Exploitation,3
-Tropical and subtropical coastal rivers,FldChg,2.960766480304436,Change in flooding,Climate and weather,12
-Tropical and subtropical coastal rivers,IceChg,0,Change in ice cover,Climate and weather,22
-Tropical and subtropical coastal rivers,IndEff,2.733755529956303,Industrial effluents,Pollution,14
-Tropical and subtropical coastal rivers,IndUse,2.0881433021075466,Industrial extraction,Habitat,18
-Tropical and subtropical coastal rivers,Invasv,3.3156896666216187,Invasive non-native species,Invasive species,9
-Tropical and subtropical coastal rivers,Mining,2.7933209833703163,Mining,Pollution,13
-Tropical and subtropical coastal rivers,OilGas,3.3403548942154018,Oil or gas exploration,Pollution,8
-Tropical and subtropical coastal rivers,Pharma,3.007291560823501,Pharmaceuticals,Pollution,11
-Tropical and subtropical coastal rivers,Plastic,4.372648442468728,Plastics,Pollution,4
-Tropical and subtropical coastal rivers,RipDeg,2.4382051054503533,Riparian degradation,Habitat,16
-Tropical and subtropical coastal rivers,UrbEff,4.072960626324387,Urban wastewater,Pollution,5
-Tropical and subtropical coastal rivers,UrbUse,2.1813096585097234,Urban extraction,Habitat,17
-Tropical and subtropical coastal rivers,TmpChg,2.028828166147916,Change in water temperature,Climate and weather,19
-Tropical and subtropical coastal rivers,WetLoss,3.26793795717816,Wetland drainage,Habitat,10
-Tropical and subtropical coastal rivers,WndChg,1.3434640178730823,Change in wind patterns,Climate and weather,21
-Tropical and subtropical floodplain rivers and wetlands,AgEff,3.8234728939887446,Agricultural effluents,Pollution,9
-Tropical and subtropical floodplain rivers and wetlands,AgUse,3.347517702025192,Agricultural extraction,Habitat,12
-Tropical and subtropical floodplain rivers and wetlands,AqEff,5.017526749050679,Aquaculture effluents,Pollution,2
-Tropical and subtropical floodplain rivers and wetlands,Dams,3.829238590591149,Dams,Habitat,8
-Tropical and subtropical floodplain rivers and wetlands,Defor,2.5631771174272937,Deforestation and associated runoff,Habitat,14
-Tropical and subtropical floodplain rivers and wetlands,Drght,2.081097743244819,Drought,Climate and weather,19
-Tropical and subtropical floodplain rivers and wetlands,OvrFsh,4.907617485837768,Overfishing,Exploitation,3
-Tropical and subtropical floodplain rivers and wetlands,FldChg,2.3671804959272507,Change in flooding,Climate and weather,16
-Tropical and subtropical floodplain rivers and wetlands,IceChg,0,Change in ice cover,Climate and weather,22
-Tropical and subtropical floodplain rivers and wetlands,IndEff,3.652900765206059,Industrial effluents,Pollution,10
-Tropical and subtropical floodplain rivers and wetlands,IndUse,2.1780411705491964,Industrial extraction,Habitat,18
-Tropical and subtropical floodplain rivers and wetlands,Invasv,2.2575419455497157,Invasive non-native species,Invasive species,17
-Tropical and subtropical floodplain rivers and wetlands,Mining,1.945382927743535,Mining,Pollution,20
-Tropical and subtropical floodplain rivers and wetlands,OilGas,2.7377928955341675,Oil or gas exploration,Pollution,13
-Tropical and subtropical floodplain rivers and wetlands,Pharma,4.223139150495025,Pharmaceuticals,Pollution,4
-Tropical and subtropical floodplain rivers and wetlands,Plastic,3.432658314709762,Plastics,Pollution,11
-Tropical and subtropical floodplain rivers and wetlands,RipDeg,5.242527562152138,Riparian degradation,Habitat,1
-Tropical and subtropical floodplain rivers and wetlands,UrbEff,4.075298125510442,Urban wastewater,Pollution,6
-Tropical and subtropical floodplain rivers and wetlands,UrbUse,2.3747846605350356,Urban extraction,Habitat,15
-Tropical and subtropical floodplain rivers and wetlands,TmpChg,3.92087247456186,Change in water temperature,Climate and weather,7
-Tropical and subtropical floodplain rivers and wetlands,WetLoss,4.113553723403156,Wetland drainage,Habitat,5
-Tropical and subtropical floodplain rivers and wetlands,WndChg,1.3559521679377176,Change in wind patterns,Climate and weather,21
-Tropical and subtropical upland rivers,AgEff,2.0732914266636686,Agricultural effluents,Pollution,11
-Tropical and subtropical upland rivers,AgUse,0.5123958976686583,Agricultural extraction,Habitat,20
-Tropical and subtropical upland rivers,AqEff,3.143465001218745,Aquaculture effluents,Pollution,4
-Tropical and subtropical upland rivers,Dams,2.712202273395453,Dams,Habitat,7
-Tropical and subtropical upland rivers,Defor,5.401213946014498,Deforestation and associated runoff,Habitat,1
-Tropical and subtropical upland rivers,Drght,4.007022397289729,Drought,Climate and weather,2
-Tropical and subtropical upland rivers,OvrFsh,2.826122734422927,Overfishing,Exploitation,6
-Tropical and subtropical upland rivers,FldChg,2.2226930391927437,Change in flooding,Climate and weather,9
-Tropical and subtropical upland rivers,IceChg,0.6172957829815905,Change in ice cover,Climate and weather,19
-Tropical and subtropical upland rivers,IndEff,1.8223408344368783,Industrial effluents,Pollution,14
-Tropical and subtropical upland rivers,IndUse,0.33947495450154286,Industrial extraction,Habitat,22
-Tropical and subtropical upland rivers,Invasv,1.4760170384769375,Invasive non-native species,Invasive species,17
-Tropical and subtropical upland rivers,Mining,2.9792603918358505,Mining,Pollution,5
-Tropical and subtropical upland rivers,OilGas,1.0628816128650427,Oil or gas exploration,Pollution,18
-Tropical and subtropical upland rivers,Pharma,2.3813046272588325,Pharmaceuticals,Pollution,8
-Tropical and subtropical upland rivers,Plastic,2.180697420355674,Plastics,Pollution,10
-Tropical and subtropical upland rivers,RipDeg,1.895186878469335,Riparian degradation,Habitat,13
-Tropical and subtropical upland rivers,UrbEff,2.0252909886266557,Urban wastewater,Pollution,12
-Tropical and subtropical upland rivers,UrbUse,0.4910677003268842,Urban extraction,Habitat,21
-Tropical and subtropical upland rivers,TmpChg,3.313495759293536,Change in water temperature,Climate and weather,3
-Tropical and subtropical upland rivers,WetLoss,1.5480390910920672,Wetland drainage,Habitat,16
-Tropical and subtropical upland rivers,WndChg,1.650834705964945,Change in wind patterns,Climate and weather,15
-Xeric freshwaters and endorheic basins,AgEff,0.9824092402386734,Agricultural effluents,Pollution,19
-Xeric freshwaters and endorheic basins,AgUse,4.946126751745166,Agricultural extraction,Habitat,1
-Xeric freshwaters and endorheic basins,AqEff,0.6602113919628346,Aquaculture effluents,Pollution,21
-Xeric freshwaters and endorheic basins,Dams,1.1337659166646994,Dams,Habitat,18
-Xeric freshwaters and endorheic basins,Defor,0.34991568803315976,Deforestation and associated runoff,Habitat,22
-Xeric freshwaters and endorheic basins,Drght,2.194051552876381,Drought,Climate and weather,11
-Xeric freshwaters and endorheic basins,OvrFsh,1.6086459182566375,Overfishing,Exploitation,14
-Xeric freshwaters and endorheic basins,FldChg,2.8574892194271024,Change in flooding,Climate and weather,7
-Xeric freshwaters and endorheic basins,IceChg,2.020262910747045,Change in ice cover,Climate and weather,13
-Xeric freshwaters and endorheic basins,IndEff,1.1847959913056634,Industrial effluents,Pollution,16
-Xeric freshwaters and endorheic basins,IndUse,4.163215319925514,Industrial extraction,Habitat,3
-Xeric freshwaters and endorheic basins,Invasv,2.2761689495059025,Invasive non-native species,Invasive species,8
-Xeric freshwaters and endorheic basins,Mining,2.9012609131855087,Mining,Pollution,6
-Xeric freshwaters and endorheic basins,OilGas,2.222749265127589,Oil or gas exploration,Pollution,9
-Xeric freshwaters and endorheic basins,Pharma,3.1159134749605797,Pharmaceuticals,Pollution,5
-Xeric freshwaters and endorheic basins,Plastic,2.021435060366297,Plastics,Pollution,12
-Xeric freshwaters and endorheic basins,RipDeg,1.1757653414937825,Riparian degradation,Habitat,17
-Xeric freshwaters and endorheic basins,UrbEff,1.313486350925533,Urban wastewater,Pollution,15
-Xeric freshwaters and endorheic basins,UrbUse,4.273278028119583,Urban extraction,Habitat,2
-Xeric freshwaters and endorheic basins,TmpChg,4.127282141625606,Change in water temperature,Climate and weather,4
-Xeric freshwaters and endorheic basins,WetLoss,0.9167513511232201,Wetland drainage,Habitat,20
-Xeric freshwaters and endorheic basins,WndChg,2.218867282848971,Change in wind patterns,Climate and weather,10
+Oceanic islands,TmpChg,0.20261396088677627,Change in water temperature,Climate and weather,13
+Oceanic islands,Use,0.7543378689423663,Water use,Habitat,8
+Oceanic islands,WetLoss,1.256939549195122,Wetland drainage,Habitat,4
+Polar freshwaters,Dams,0.6321143917710346,Dams,Habitat,9
+Polar freshwaters,Defor,2.7294978698177883,Deforestation and associated runoff,Habitat,2
+Polar freshwaters,Drght,0.3624394208016193,Drought,Climate and weather,12
+Polar freshwaters,Eff,0.4428895701860987,Effluents,Pollution,11
+Polar freshwaters,FldChg,0.6833596891086707,Change in flooding,Climate and weather,7
+Polar freshwaters,IceChg,2.8428100386517645,Change in ice cover,Climate and weather,1
+Polar freshwaters,Invasv,2.085522063403857,Invasive non-native species,Invasive species,4
+Polar freshwaters,Mining,2.580386747099546,Mining,Pollution,3
+Polar freshwaters,OilGas,1.453464860629557,Oil or gas exploration,Pollution,6
+Polar freshwaters,OvrFsh,0.6406946206254458,Overfishing,Exploitation,8
+Polar freshwaters,Pharma,0.14602464144957308,Pharmaceuticals,Pollution,15
+Polar freshwaters,Plastic,0.03822161524959517,Plastics,Pollution,16
+Polar freshwaters,RipDeg,0.3449377483977404,Riparian degradation,Habitat,13
+Polar freshwaters,TmpChg,0.5221662197147193,Change in water temperature,Climate and weather,10
+Polar freshwaters,Use,0.3179710943290474,Water use,Habitat,14
+Polar freshwaters,WetLoss,1.4928949037414856,Wetland drainage,Habitat,5
+Temperate rivers,Dams,4.161171183186617,Dams,Habitat,4
+Temperate rivers,Defor,2.8725489668449673,Deforestation and associated runoff,Habitat,12
+Temperate rivers,Drght,3.392178560191139,Drought,Climate and weather,6
+Temperate rivers,Eff,4.490384713268548,Effluents,Pollution,2
+Temperate rivers,FldChg,3.1201808052118443,Change in flooding,Climate and weather,9
+Temperate rivers,IceChg,2.2291533600298976,Change in ice cover,Climate and weather,14
+Temperate rivers,Invasv,6.0682790206887205,Invasive non-native species,Invasive species,1
+Temperate rivers,Mining,3.0606303093706395,Mining,Pollution,11
+Temperate rivers,OilGas,3.331526821618613,Oil or gas exploration,Pollution,7
+Temperate rivers,OvrFsh,2.1089097216915063,Overfishing,Exploitation,16
+Temperate rivers,Pharma,3.2685797703086,Pharmaceuticals,Pollution,8
+Temperate rivers,Plastic,2.2162958939481,Plastics,Pollution,15
+Temperate rivers,RipDeg,4.049273898887935,Riparian degradation,Habitat,5
+Temperate rivers,TmpChg,2.466713742294166,Change in water temperature,Climate and weather,13
+Temperate rivers,Use,3.1070436893174924,Water use,Habitat,10
+Temperate rivers,WetLoss,4.411611182505047,Wetland drainage,Habitat,3
+Tropical rivers,Dams,3.066230274521025,Dams,Habitat,9
+Tropical rivers,Defor,4.403167569330243,Deforestation and associated runoff,Habitat,1
+Tropical rivers,Drght,3.2681666549360515,Drought,Climate and weather,5
+Tropical rivers,Eff,3.5362345008163323,Effluents,Pollution,4
+Tropical rivers,FldChg,2.6026569651658056,Change in flooding,Climate and weather,12
+Tropical rivers,IceChg,0.6172957829815905,Change in ice cover,Climate and weather,16
+Tropical rivers,Invasv,2.560876018238972,Invasive non-native species,Invasive species,14
+Tropical rivers,Mining,2.586281602040581,Mining,Pollution,13
+Tropical rivers,OilGas,2.6372215114893947,Oil or gas exploration,Pollution,11
+Tropical rivers,OvrFsh,4.317052900744602,Overfishing,Exploitation,2
+Tropical rivers,Pharma,3.2657462160191844,Pharmaceuticals,Pollution,6
+Tropical rivers,Plastic,3.58094915165575,Plastics,Pollution,3
+Tropical rivers,RipDeg,3.237039300200712,Riparian degradation,Habitat,7
+Tropical rivers,TmpChg,2.9329783099156295,Change in water temperature,Climate and weather,10
+Tropical rivers,Use,1.8854766250645492,Water use,Habitat,15
+Tropical rivers,WetLoss,3.161565763232946,Wetland drainage,Habitat,8

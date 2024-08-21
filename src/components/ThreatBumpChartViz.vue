@@ -57,11 +57,6 @@
         '#0075A2', '#FAB13C', '#6D435A', '#7FD1B9', '#EF626C'
     ];
 
-    // Not currently used
-    // const toggleCategory = (category) => {
-    //     activeCategories[category] = !activeCategories[category];
-    // };
-
     // Behavior on mounted - functions called here
     onMounted(() => {
         createBumpChart();
@@ -72,9 +67,9 @@
         const data = await d3.csv(publicPath + 'findex_ranked_threats.csv');
         
         // Process the data
-        const nestedData = d3.group(data, d => d.Habitat, d => d.ThreatName);
+        const nestedData = d3.group(data, d => d.Habitat, d => d.ThreatCode);
         const habitats = Array.from(nestedData.keys());
-        const threatNames = Array.from(new Set(data.map(d => d.ThreatName)));
+        const threatCodes = Array.from(new Set(data.map(d => d.ThreatCode)));
         threatCategories.value = Array.from(new Set(data.map(d => d.ThreatCategory)));
   
         // Initialize the activeCategories object
@@ -88,9 +83,9 @@
         }, { deep: true });
 
         // Set up the SVG canvas dimensions
-        const margin = { top: 20, right: 20, bottom: 450, left: 75 },
-            width = 800 - margin.left - margin.right,
-            height = 1000 - margin.top - margin.bottom;
+        const margin = { top: 20, right: 20, bottom: 80, left: 200 },
+            width = 1200 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
         const svg = d3.select(chart.value)
             .append('svg')
@@ -106,18 +101,16 @@
             .padding(0.5);
 
         const y = d3.scaleLinear()
-            .domain([1, threatNames.length])
+            .domain([1, threatCodes.length])
             .range([0, height]);
 
         const widthScale = d3.scaleLinear()
             .domain([0, d3.max(data, d => +d.AverageThreatMetric)])
-            .range([10, height / threatNames.length]);
+            .range([10, height / threatCodes.length]);
 
         const colorScale = d3.scaleOrdinal()
             .domain(threatCategories.value)
             .range(customColors);
-
-        // const sanitizeClass = name => name ? name.replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
 
         const area = d3.area()
             .x(d => x(d.habitat))
@@ -125,42 +118,44 @@
             .y1(d => y(d.rank) + widthScale(d.AverageThreatMetric) / 2)
             .curve(d3.curveMonotoneX);
 
-        const rankData = threatNames.map(threat => {
+        const rankData = threatCodes.map(threatCode => {
             const ranks = habitats.map(habitat => {
                 const habitatData = nestedData.get(habitat);
-                const threatData = habitatData.get(threat)[0];
+                const threatData = habitatData.get(threatCode)[0];
                 return {
                     habitat: habitat,
                     rank: +threatData.Rank,
                     category: threatData.ThreatCategory,
                     AverageThreatMetric: +threatData.AverageThreatMetric,
-                    ThreatName: threat
+                    ThreatCode: threatCode,
+                    threat: threatData.Threat
                 };
             });
             return {
-                threat: threat,
+                threatCode: threatCode,
                 values: ranks,
                 category: ranks[0].category
             };
         });
+        
+        const bumpAreasPoints = svg.append("g")
+            .attr("id", "areas-points")
 
-        svg.append("g")
-            .attr("id", "areas")
+        bumpAreasPoints
             .selectAll('.area')
                 .data(rankData)
                 .enter().append('path')
-                .attr('class', d => `area ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
+                .attr('class', d => `area ${sanitizeClass(d.threatCode)} ${sanitizeClass(d.category)}`)
                 .attr('d', d => area(d.values))
                 .attr('fill', d => colorScale(d.category))
                 .style("opacity", defaultOpacity)
                 .style('stroke', 'none');
 
-        svg.append("g")
-            .attr("id", "points")
+        bumpAreasPoints
             .selectAll('.point')
                 .data(rankData.flatMap(d => d.values))
                 .enter().append('circle')
-                .attr('class', d => `point ${sanitizeClass(d.ThreatName)} ${sanitizeClass(d.category)}`)
+                .attr('class', d => `point ${sanitizeClass(d.ThreatCode)} ${sanitizeClass(d.habitat)} ${sanitizeClass(d.category)}`)
                 .attr('cx', d => x(d.habitat))
                 .attr('cy', d => y(d.rank))
                 .attr('r', d => widthScale(d.AverageThreatMetric) / 2)
@@ -168,7 +163,7 @@
                 .attr('stroke', d => colorScale(d.category))
                 .style('stroke-width', 2)
                 .on('mouseover', function (event, d) {
-                    mouseoverThreat(d.ThreatName, d.category)
+                    mouseoverThreat(d.ThreatCode, d.category)
                 })
                 .on('mouseout', mouseoutThreat);
 
@@ -177,11 +172,11 @@
             .selectAll('.overlay')
                 .data(rankData)
                 .enter().append('path')
-                .attr('class', d => `overlay ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
+                .attr('class', d => `overlay ${sanitizeClass(d.threatCode)} ${sanitizeClass(d.category)}`)
                 .attr('d', d => area(d.values))
                 .attr('fill', 'transparent')
                 .on('mouseover', function (event, d) {
-                    mouseoverThreat(d.threat, d.category)
+                    mouseoverThreat(d.threatCode, d.category)
                 })
                 .on('mouseout', mouseoutThreat);
         
@@ -190,17 +185,17 @@
             .selectAll('.label')
                 .data(rankData)
                 .enter().append('text')
-                .attr('class', d => `label ${sanitizeClass(d.threat)} ${sanitizeClass(d.category)}`)
-                .attr('x', 10)
+                .attr('class', d => `label ${sanitizeClass(d.threatCode)} ${sanitizeClass(d.category)}`)
+                .attr('x', 50)
                 .attr('y', d => y(d.values[0].rank))
                 .attr('dy', '.35em')
                 .attr('text-anchor', 'end')
-                .attr('id', d => `label-${sanitizeClass(d.threat)}`)
-                .text(d => d.threat)
+                .attr('id', d => `label-${sanitizeClass(d.threatCode)}`)
+                .text(d => d.values[0].threat)
                 .style('font-size', '12px')
                 .style('fill', d => colorScale(d.category))
                 .on("mouseover", function (event, d) {
-                    mouseoverThreat(d.threat, d.category)
+                    mouseoverThreat(d.threatCode, d.category)
                 })
                 .on('mouseout', mouseoutThreat);
 
@@ -213,9 +208,11 @@
             .attr('font-weight', 700)
 
         xAxis.selectAll('text')
-            .attr('text-anchor', 'end')
-            .attr('dy', '-0.5rem')
-            .attr('transform', 'rotate(270)');
+            .attr('text-anchor', 'middle') //'end')
+            // .attr('dy', '-0.5rem')
+            // .attr('transform', 'rotate(270)');
+            // Wrap x-axis labels on mobile
+            .call(d => wrapHorizontalLabels(d, 20));
 
         const updateCategoryStyles = () => {
             threatCategories.value.forEach(category => {
@@ -254,22 +251,25 @@
         return name ? name.replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
     } 
 
-    function mouseoverThreat(threat, category) {
+    function mouseoverThreat(threatCode, category) {
         if (activeCategories[category]) {
             d3.selectAll('.area')
                 .transition(getUpdateTransition())
                 .style('opacity', dimOpacity);
             d3.selectAll('.point')
                 .transition(getUpdateTransition())
-                .style('opacity', dimOpacity);
+                .style('stroke-opacity', dimOpacity);
             d3.selectAll('.label')
                 .transition(getUpdateTransition())
                 .style('opacity', dimOpacity);
-            d3.selectAll(`.${sanitizeClass(threat)}`)
+            d3.selectAll(`.${sanitizeClass(threatCode)}`)
                 .transition(getUpdateTransition())
                 .style('opacity', 1)
+                .style('stroke-opacity', 1)
                 .style('font-weight', 'bold');
-            d3.selectAll(`.area.${sanitizeClass(threat)}`)
+            d3.selectAll(`.area.${sanitizeClass(threatCode)}`)
+                .raise();
+            d3.selectAll(`.point.${sanitizeClass(threatCode)}`)
                 .raise();
         }
     }
@@ -282,19 +282,57 @@
                     .style('opacity', defaultOpacity);
                 d3.selectAll(`.point.${sanitizeClass(category)}`)
                     .transition(getUpdateTransition())
-                    .style('opacity', 1);
+                    .style('stroke-opacity', 1);
                 d3.selectAll(`.label.${sanitizeClass(category)}`)
                     .transition(getUpdateTransition())
                     .style('opacity', 1)
                     .style('font-weight', 'normal');
             }
         });
+        d3.selectAll('.point')
+            .raise();
     }
 
     function getUpdateTransition() {
       return d3.transition()
         .duration(200)
         .ease(d3.easeCubicInOut)
+    }
+
+    // function to wrap text added with d3 modified from
+    // https://stackoverflow.com/questions/24784302/wrapping-text-in-d3
+    // which is adapted from https://bl.ocks.org/mbostock/7555321
+    function wrapHorizontalLabels(text, width) {
+      text.each(function () {
+          var text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              word,
+              line = [],
+              lineNumber = 0,
+              lineHeight = 0.6,
+              x = 0,
+              y = text.attr("x"), // Use x b/c wrapping horizontal labels
+              dy = 0, //parseFloat(text.attr("dy")),
+              tspan = text.text(null)
+                          .append("tspan")
+                          .attr("x", x)
+                          .attr("y", y)
+                          .attr("dy", dy + "rem");
+          while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+                  line.pop();
+                  tspan.text(line.join(" "));
+                  line = [word];
+                  tspan = text.append("tspan")
+                              .attr("x", x)
+                              .attr("y", y)
+                              .attr("dy", ++lineNumber > 3 ? ++lineNumber * 0.3 * lineHeight + dy + "em" : ++lineNumber * 0.5 * lineHeight + dy + "em")
+                              .text(word);
+              }
+          }
+      });
     }
 
 </script>
