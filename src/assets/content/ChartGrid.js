@@ -34,7 +34,7 @@ export default {
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
-            img_src: 'GlacierScan_thumbnail.png',
+            img_src: 'glacial_xray_thumbnail.png',
             alt: '',
             description: 'Description or key takeaways from this Viz (Glacier/Topography D3 Cross-Section Scan)'
         },       
