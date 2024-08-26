@@ -7,10 +7,6 @@
         <div class="project">
             <p>{{ project }}</p>
         </div>
-
-        <!--div class="overlay">
-            <p>{{ description }}</p>
-        </div-->
     </div>
 </template>
 
@@ -33,7 +29,6 @@
             default: ''
         }
     })
-
 </script>
 
 <style scoped lang="scss">
@@ -58,6 +53,10 @@
         height: $expanded-height;
         transform: scaleY(1);
     }
+    .expanded {
+        height: $expanded-height;
+        transform: scaleY(1);
+    }
     .takeaway {
         position: absolute;
         left: 0;
@@ -77,6 +76,9 @@
         transition: all 1s ease; 
     }
     .chart:hover .takeaway p {
+        opacity: 1;
+    }
+    .expanded .takeaway p {
         opacity: 1;
     }
     .chart img {
@@ -116,6 +118,9 @@
         font-weight: 400;
     }
     .chart:hover .project {
+        top: $expanded-height;
+    }
+    .expanded .project {
         top: $expanded-height;
     }
 </style>
