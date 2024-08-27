@@ -85,7 +85,7 @@
                     width: chart.value.offsetWidth,
                     height: 1800,
                     margin: 20,
-                    marginBottom: 60,
+                    marginBottom: 80,
                     marginLeft: 200});
 
                 drawChart(data.value, scalePercent.value);
@@ -359,20 +359,20 @@
             .attr("dy", xAxisLabelDy)
             .style("text-anchor", "middle")
             .text(scalePercent ? 'Percent change in harvest-weighted climate vulnerability, 2030-2075' : 'Change in harvest-weighted climate vulnerability, 2030-2075')
-        // xAxis.append("text")
-        //     .attr("class", "x-axis axis-title")
-        //     .attr("x", 0)
-        //     .attr("y", xAxisLabelYPosition * 4)
-        //     .attr("dy", xAxisLabelDy)
-        //     .style("text-anchor", "start")
-        //     .text('Less vulnerable')
-        // xAxis.append("text")
-        //     .attr("class", "x-axis axis-title")
-        //     .attr("x", chartDimensions.boundedWidth)
-        //     .attr("y", xAxisLabelYPosition * 4)
-        //     .attr("dy", xAxisLabelDy)
-        //     .style("text-anchor", "end")
-        //     .text('More vulnerable')
+        xAxis.append("text")
+            .attr("class", "x-axis axis-subtitle")
+            .attr("x", 0)
+            .attr("y", xAxisLabelYPosition * 5.5)
+            .attr("dy", xAxisLabelDy)
+            .style("text-anchor", "start")
+            .text('Less vulnerable')
+        xAxis.append("text")
+            .attr("class", "x-axis axis-subtitle")
+            .attr("x", chartDimensions.boundedWidth)
+            .attr("y", xAxisLabelYPosition * 5.5)
+            .attr("dy", xAxisLabelDy)
+            .style("text-anchor", "end")
+            .text('More vulnerable')
 
         // Remove axix line and labels
         // xAxis.select(".domain").remove()
@@ -673,6 +673,14 @@
         font-size: 1.8rem;
         font-family: var(--default-font);
         font-weight: 900;
+        fill: var(--color-text);
+        user-select: none;
+    }
+    .axis-subtitle {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
+        font-weight: 400;
+        font-style: italic;
         fill: var(--color-text);
         user-select: none;
     }
