@@ -178,6 +178,14 @@
 
         // Inititalize gradients
         initGradients()
+
+        // Add groups for visual elements
+        chartBounds.append("g")
+            .attr("class", "areas")
+        chartBounds.append("g")
+            .attr("class", "points_2030")
+        chartBounds.append("g")
+            .attr("class", "points_2075")
     }
 
     function initXScale() {
@@ -335,8 +343,7 @@
                 .nice()
         }
         
-        xAxis.transition()
-            .duration(500)
+        xAxis.transition(getUpdateTransition())
             .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10));
 
         xAxis
@@ -442,11 +449,11 @@
         })
             
         // draw chart
-        let areaGroups = chartBounds.append("g")
-            .attr("id", "areas")
+        // Enter-update-exit pattern for areas
+        let areaGroups = chartBounds.selectAll(".areas")
             .selectAll(".area")
             .data(areaData, d => d[0].species)
-
+        
         const oldAreaGroups = areaGroups.exit()
 
         oldAreaGroups.selectAll('path')
@@ -462,19 +469,19 @@
         // append paths
         newAreaGroups.append("path")
             .append('path')
-            .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
-            .attr('d', d => area(d))
+            .attr("id", d => 'area-' + identifierAccessor(d[0]))
+            .attr('d', null)
             .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
             .style("opacity", 1)
 
-        // update rectGroups to include new points
+        // update areaGroups to include new paths
         areaGroups = newAreaGroups.merge(areaGroups)
 
         const areaPaths = areaGroups.select("path")
 
-        // Update bars based on data values
+        // Update paths based on data values
         areaPaths.transition(getUpdateTransition())
-            .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
+            .attr("id", d => 'area-' + identifierAccessor(d[0]))
             .attr('d', d => area(d))
             .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
             .style("opacity", 1)
@@ -485,7 +492,7 @@
         //         .data(areaData, d => d[0].species)
         //         .enter()
         //         .append('path')
-        //             .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
+        //             .attr("id", d => 'area-' + identifierAccessor(d[0]))
         //             .attr('class', "area")
         //             .attr('d', d => area(d))
         //             .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
@@ -506,37 +513,124 @@
                     //     drawChart(data, scalePercent.value)
                     // });
 
+        // Enter-Update-Exit pattern for 2030 points
+        let pointGroups2030 = chartBounds.selectAll('.points_2030')
+            .selectAll(".point_2030")
+            .data(data, d => d.species)
+        
+        const oldPointGroups2030 = pointGroups2030.exit()
 
-        chartBounds.append("g")
-            .attr("id", "points-2030")
-            .attr("class", "points points_2030")    
-            .selectAll('points')
-                .data(data)
-                .enter()
-                .append("circle")
-                    .attr("id", d => 'point-2030-' + identifierAccessor(d))
-                    .attr("class", "point")
-                    .attr("cx", d => xScale(x0Accessor(d)))
-                    .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
-                    .attr("r", radiusPosition0)
-                    .style("stroke", d => colorScale(colorAccessor(d)))
-                    .style("fill", "white")
+        oldPointGroups2030.selectAll('circle')
+            .transition(getExitTransition())
+            .style("opacity", 0)
 
-        chartBounds.append("g")
-            .attr("id", "points-2075")
-            .attr("class", "points points_2075")    
-            .selectAll('points')
-                .data(data)
-                .enter()
-                .append("circle")
-                    .attr("id", d => 'point-2075-' + identifierAccessor(d))
-                    .attr("class", "point")
-                    .attr("cx", d => xScale(x1Accessor(d)))
-                    .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
-                    .attr("r", radiusPosition1 - strokeWidth1 / 2)
-                    .style("stroke", d => colorScale(colorAccessor(d)))
-                    .style("stroke-width", strokeWidth1)
-                    .style("fill", "white")
+        oldPointGroups2030.transition(getExitTransition()).remove()
+        
+        const newPointGroups2030 = pointGroups2030.enter().append("g")
+            .attr("class", d => "point_2030 " + d.species)
+            .attr("id", d => 'point-2030-group-' + identifierAccessor(d))
+
+        // append points
+        newPointGroups2030
+            .append("circle")
+                .attr("id", d => 'point-2030-' + identifierAccessor(d))
+                .attr("class", "point_2030")
+                .attr("cx", d => xScale(x0Accessor(d)))
+                .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+                .attr("r", radiusPosition0)
+                .style("stroke", d => colorScale(colorAccessor(d)))
+                .style("fill", "white")
+
+        // update pointGroups2030 to include new points
+        pointGroups2030 = newPointGroups2030.merge(pointGroups2030)
+
+        const allPoints2030 = pointGroups2030.select("circle")
+
+        // Update points based on data values
+        allPoints2030.transition(getUpdateTransition())
+            .attr("id", d => 'point-2030-' + identifierAccessor(d))
+            .attr("class", "point_2030")
+            .attr("cx", d => xScale(x0Accessor(d)))
+            .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+            .attr("r", radiusPosition0)
+            .style("stroke", d => colorScale(colorAccessor(d)))
+            .style("fill", "white")
+
+        // chartBounds.append("g")
+        //     .attr("id", "points-2030")
+        //     .attr("class", "points points_2030")    
+        //     .selectAll('points')
+        //         .data(data)
+        //         .enter()
+        //         .append("circle")
+        //             .attr("id", d => 'point-2030-' + identifierAccessor(d))
+        //             .attr("class", "point")
+        //             .attr("cx", d => xScale(x0Accessor(d)))
+        //             .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+        //             .attr("r", radiusPosition0)
+        //             .style("stroke", d => colorScale(colorAccessor(d)))
+        //             .style("fill", "white")
+
+        // Enter-Update-Exit pattern for 2075 points
+        let pointGroups2075 = chartBounds.selectAll('.points_2075')
+            .selectAll(".point_2075")
+            .data(data, d => d.species)
+        
+        const oldPointGroups2075 = pointGroups2075.exit()
+
+        oldPointGroups2075.selectAll('circle')
+            .transition(getExitTransition())
+            .style("opacity", 0)
+
+        oldPointGroups2075.transition(getExitTransition()).remove()
+        
+        const newPointGroups2075 = pointGroups2075.enter().append("g")
+            .attr("class", d => "point_2075 " + d.species)
+            .attr("id", d => 'point-2030-group-' + identifierAccessor(d))
+
+        // append points
+        newPointGroups2075
+            .append("circle")
+                .attr("id", d => 'point-2075-' + identifierAccessor(d))
+                .attr("class", "point_2075")
+                .attr("cx", d => xScale(x1Accessor(d)))
+                .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+                .attr("r", radiusPosition1 - strokeWidth1 / 2)
+                .style("stroke", d => colorScale(colorAccessor(d)))
+                .style("stroke-width", strokeWidth1)
+                .style("fill", "white")
+
+        // update pointGroups2075 to include new points
+        pointGroups2075 = newPointGroups2075.merge(pointGroups2075)
+
+        const allPoints2075 = pointGroups2075.select("circle")
+
+        // Update points based on data values
+        allPoints2075.transition(getUpdateTransition())
+            .attr("id", d => 'point-2075-' + identifierAccessor(d))
+            .attr("class", "point_2075")
+            .attr("cx", d => xScale(x1Accessor(d)))
+            .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+            .attr("r", radiusPosition1 - strokeWidth1 / 2)
+            .style("stroke", d => colorScale(colorAccessor(d)))
+            .style("stroke-width", strokeWidth1)
+            .style("fill", "white")
+
+        // chartBounds.append("g")
+        //     .attr("id", "points-2075")
+        //     .attr("class", "points points_2075")    
+        //     .selectAll('points')
+        //         .data(data)
+        //         .enter()
+        //         .append("circle")
+        //             .attr("id", d => 'point-2075-' + identifierAccessor(d))
+        //             .attr("class", "point")
+        //             .attr("cx", d => xScale(x1Accessor(d)))
+        //             .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
+        //             .attr("r", radiusPosition1 - strokeWidth1 / 2)
+        //             .style("stroke", d => colorScale(colorAccessor(d)))
+        //             .style("stroke-width", strokeWidth1)
+        //             .style("fill", "white")
 
         // chartBounds.append("g")
         //     .attr("id", "eyes-2075")
@@ -559,12 +653,12 @@
 
     function getUpdateTransition () {
       return d3.transition()
-        .duration(500)
+        .duration(1500)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(1500)
         .ease(d3.easeCubicInOut)
     }
 </script>
