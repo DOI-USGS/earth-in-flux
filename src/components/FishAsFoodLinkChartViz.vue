@@ -12,6 +12,14 @@
         </template>
         <template #figures>
             <div id="chart-container" class="maxWidth" ref="chart"></div>
+            <button
+                  aria-pressed="!scalePercent"
+                  class="button"
+                  :text="scaleType"
+                  @click="toggleScale"
+                >
+                  {{ scaleType }}
+            </button>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -23,7 +31,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue"; //, reactive
+    import { computed, onMounted, ref } from "vue"; //, reactive
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
@@ -37,8 +45,7 @@
     const dataFile = 'fish_as_food_climate.csv' //'fish_as_food_climate_test.csv'
     const data = ref();
     const chart = ref(null);
-    const scalePercent = ref();
-    // const families = ref();
+    const scalePercent = ref(false);
     let chartDimensions;
     const chartTitle = 'Title of chart';
     let chartSVG;
@@ -51,6 +58,11 @@
     let colorScale;
     // Create a reactive object to track expanded families
     // const expandedFamilies = reactive({});
+
+    // set up filtered chart data as computed property
+    const scaleType = computed(() => {
+        return scalePercent.value ? 'Percent change' : 'Change'
+    });
 
 
     // Behavior on mounted (functions called here)
@@ -67,7 +79,7 @@
                 // expandedFamilies["A"] = !expandedFamilies["A"]
                 // console.log(expandedFamilies)
                 // Set starting scale type
-                scalePercent.value = true;
+                // scalePercent.value = true;
 
                 initChart({
                     width: chart.value.offsetWidth,
@@ -96,12 +108,23 @@
 
     async function loadData(fileName) {
         try {
-            const data = await d3.csv(publicPath + fileName);
+            const data = await d3.csv(publicPath + fileName, d => {
+                d.cvi_2030 = +d.cvi_2030;
+                d.cvi_2075 = +d.cvi_2075;
+                d.cvi_2030_family = +d.cvi_2030_family;
+                d.cvi_2075_family = +d.cvi_2075_family;
+                return d;
+            });
             return data;
         } catch (error) {
             console.error(`Error loading data from ${fileName}`, error);
             return [];
         }
+    }
+
+    function toggleScale() {
+        scalePercent.value = !scalePercent.value
+        drawChart(data.value, scalePercent.value)
     }
 
     function initChart({
@@ -291,7 +314,7 @@
         const x1Accessor_family = d => scalePercent ? (d.cvi_2075_family - d.cvi_2030_family)/ d.cvi_2030_family : d.cvi_2075_family
         const widthAccessor = d => d.position
         const colorAccessor = d => d.thermal_guild
-        const identifierAccessor = d => d.family + '_' + d.species
+        const identifierAccessor = d => d.family + '_' + d.species.replace(/ /g,"_");
 
         // to get dynamic
         // need key for data
@@ -300,13 +323,21 @@
 
 
         // set domain for xScale
-        xScale
-            // .domain([0, 0.3]) // d3.max([d3.max(data, x0Accessor), d3.max(data, x1Accessor)])])
-            .domain([-0.4, 0.4])
-        console.log(xScale.domain())
+        if (scalePercent) {
+            const maxVal = d3.max([Math.abs(d3.max(data, x1Accessor)), Math.abs(d3.min(data, x1Accessor))])
+            xScale
+                .domain([-maxVal, maxVal])
+                .nice()
+        } else {
+            const maxVal = d3.max([d3.min(data, x0Accessor), d3.max(data, x0Accessor), d3.min(data, x1Accessor), d3.max(data, x1Accessor)])
+            xScale
+                .domain([0, Math.round(maxVal * 10) / 10])
+                .nice()
+        }
         
-        xAxis
-            .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10))
+        xAxis.transition()
+            .duration(500)
+            .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10));
 
         xAxis
             .selectAll("text")
@@ -320,7 +351,7 @@
             .attr("y", xAxisLabelYPosition * 4)
             .attr("dy", xAxisLabelDy)
             .style("text-anchor", "middle")
-            .text('Percent change in harvest-weighted climate vulnerability, 2030-2075')
+            .text(scalePercent ? 'Percent change in harvest-weighted climate vulnerability, 2030-2075' : 'Change in harvest-weighted climate vulnerability, 2030-2075')
         // xAxis.append("text")
         //     .attr("class", "x-axis axis-title")
         //     .attr("x", 0)
@@ -411,17 +442,54 @@
         })
             
         // draw chart
-        chartBounds.append("g")
+        let areaGroups = chartBounds.append("g")
             .attr("id", "areas")
-            .selectAll('.area')
-                .data(areaData)
-                .enter()
-                .append('path')
-                    .attr("id", d => 'area-2030-' + identifierAccessor(d))
-                    .attr('class', "area")
-                    .attr('d', d => area(d))
-                    .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
-                    .style("opacity", 1)
+            .selectAll(".area")
+            .data(areaData, d => d[0].species)
+
+        const oldAreaGroups = areaGroups.exit()
+
+        oldAreaGroups.selectAll('path')
+            .transition(getExitTransition())
+            .style("opacity", 0)
+
+        oldAreaGroups.transition(getExitTransition()).remove()
+        
+        const newAreaGroups = areaGroups.enter().append("g")
+            .attr("class", d => "area " + d[0].species)
+            .attr("id", d => 'area-group-' + identifierAccessor(d[0]))
+
+        // append paths
+        newAreaGroups.append("path")
+            .append('path')
+            .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
+            .attr('d', d => area(d))
+            .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
+            .style("opacity", 1)
+
+        // update rectGroups to include new points
+        areaGroups = newAreaGroups.merge(areaGroups)
+
+        const areaPaths = areaGroups.select("path")
+
+        // Update bars based on data values
+        areaPaths.transition(getUpdateTransition())
+            .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
+            .attr('d', d => area(d))
+            .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
+            .style("opacity", 1)
+        
+        // chartBounds.append("g")
+        //     .attr("id", "areas")
+        //     .selectAll('.area')
+        //         .data(areaData, d => d[0].species)
+        //         .enter()
+        //         .append('path')
+        //             .attr("id", d => 'area-2030-' + identifierAccessor(d[0]))
+        //             .attr('class', "area")
+        //             .attr('d', d => area(d))
+        //             .attr('fill', d => d[0].cvi_decreasing ? `url(#${d[0].thermal_guild}_gradient_decreasing)`: `url(#${d[0].thermal_guild}_gradient_increasing)`)//d => colorScale(colorAccessor(d[0])))
+        //             .style("opacity", 1)
                     // .on("click", function(event, d) {
                     //     const clickedFamily = d[0].family
                     //     expandedFamilies[clickedFamily] = !expandedFamilies[clickedFamily]
@@ -437,6 +505,7 @@
                     //         .call(d3.axisLeft(yScale).tickSize(2))
                     //     drawChart(data, scalePercent.value)
                     // });
+
 
         chartBounds.append("g")
             .attr("id", "points-2030")
@@ -486,6 +555,17 @@
         //             .style("stroke", 'none')
         //             .style("fill", "black")
 
+    }
+
+    function getUpdateTransition () {
+      return d3.transition()
+        .duration(500)
+        .ease(d3.easeCubicInOut)
+    }
+    function getExitTransition() {
+      return d3.transition()
+        .duration(500)
+        .ease(d3.easeCubicInOut)
     }
 </script>
 
