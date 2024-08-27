@@ -4,9 +4,9 @@
             <p>{{ description }}</p>
         </div>
         <img :src="src" :alt="alt"/>        
-        <div class="project">
+        <!--div class="project">
             <p>{{ project }}</p>
-        </div>
+        </div-->
     </div>
 </template>
 
@@ -46,7 +46,7 @@
         -webkit-transition: height 1s ease;
         -o-transition: height 1s ease;
         transition: height 1s ease;
-        background-color: rgb(255, 255, 255);
+        background-color: var(--faded-usgs-blue);
         box-shadow: 0px 0px 8px rgba(39,44,49,.07), 1px 4px 4px rgba(39,44,49,.04);
 	}
     .chart:hover {
@@ -70,6 +70,9 @@
         transition: top 1s ease;
     }
     .takeaway p {
+        font-family: sans-serif; /* This is fallback font for old browsers */
+        font-family: var(--title-font);
+        color: var(--color-title-text);
         transform: translateY(50%);
         padding: 0.2rem 2rem 0.2rem 2rem;
         opacity: 0;
