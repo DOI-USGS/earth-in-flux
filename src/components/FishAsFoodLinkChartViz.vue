@@ -37,6 +37,7 @@
     const dataFile = 'fish_as_food_climate.csv' //'fish_as_food_climate_test.csv'
     const data = ref();
     const chart = ref(null);
+    const scalePercent = ref();
     // const families = ref();
     let chartDimensions;
     const chartTitle = 'Title of chart';
@@ -65,13 +66,17 @@
                 // });
                 // expandedFamilies["A"] = !expandedFamilies["A"]
                 // console.log(expandedFamilies)
+                // Set starting scale type
+                scalePercent.value = true;
+
                 initChart({
                     width: chart.value.offsetWidth,
                     height: 1800,
                     margin: 20,
                     marginBottom: 60,
                     marginLeft: 200});
-                drawChart(data.value);
+
+                drawChart(data.value, scalePercent.value);
             } else {
                 console.error('Error loading data');
             }
@@ -274,16 +279,16 @@
         return itemColor;
     }
 
-    function drawChart(data) {
+    function drawChart(data, scalePercent) {
         // accessor functions
         const yAccessor = d => d.species
         // const yAccessor_family = d => d.family
         const xAccessor = d => d.cvi
         // const xAccessor_family = d => d.cvi_family
-        const x0Accessor = d => d.cvi_2030
-        const x1Accessor = d => d.cvi_2075
-        const x0Accessor_family = d => d.cvi_2030_family
-        const x1Accessor_family = d => d.cvi_2075_family
+        const x0Accessor = d => scalePercent ? 0 : d.cvi_2030
+        const x1Accessor = d => scalePercent ? (d.cvi_2075 - d.cvi_2030)/ d.cvi_2030 : d.cvi_2075
+        const x0Accessor_family = d => scalePercent ? 0 : d.cvi_2030_family
+        const x1Accessor_family = d => scalePercent ? (d.cvi_2075_family - d.cvi_2030_family)/ d.cvi_2030_family : d.cvi_2075_family
         const widthAccessor = d => d.position
         const colorAccessor = d => d.thermal_guild
         const identifierAccessor = d => d.family + '_' + d.species
@@ -430,7 +435,7 @@
                     //     yScale.range([chartDimensions.boundedHeight * 2, 0])
                     //     yAxis
                     //         .call(d3.axisLeft(yScale).tickSize(2))
-                    //     drawChart(data)
+                    //     drawChart(data, scalePercent.value)
                     // });
 
         chartBounds.append("g")
