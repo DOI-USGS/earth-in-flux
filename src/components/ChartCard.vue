@@ -42,16 +42,21 @@
 		position: relative;
 		width: $collapsed-height;
 		height: $collapsed-height;
-        -moz-transition: height 1s ease;
-        -webkit-transition: height 1s ease;
-        -o-transition: height 1s ease;
-        transition: height 1s ease;
+        -moz-transition: height 1s ease, border-width 1s ease, border-radius 1s ease;
+        -webkit-transition: height 1s ease, border-width 1s ease, border-radius 1s ease;
+        -o-transition: height 1s ease, border-width 1s ease, border-radius 1s ease;
+        transition: height 1s ease, border-width 1s ease, border-radius 1s ease;
         background-color: var(--faded-usgs-blue);
+        border-color: var(--faded-usgs-blue);
+        border-width: 0px;
+        border-style: solid;
         box-shadow: 0px 0px 8px rgba(39,44,49,.07), 1px 4px 4px rgba(39,44,49,.04);
 	}
     .chart:hover {
         height: $expanded-height;
         transform: scaleY(1);
+        border-width: 4px;
+        border-radius: 3px;
     }
     .expanded {
         height: $expanded-height;
@@ -89,11 +94,12 @@
         width: 100%;
         top: 0;
         background-color: white;
-        transition: all 1s ease; 
+        transition: all 1s ease;
     }
     .chart:hover img {
-        transform: translate3D(0,-0.5px,0) scale(1.05); 
-        box-shadow:  0px 0px 8px rgba(39,44,49,.07), 4px 8px 4px rgba(39,44,49,.1), 1px 4px 4px rgba(39,44,49,.07);
+        border-radius: 3px;
+        // transform: translate3D(0,-0.5px,0) scale(1.05); 
+        // box-shadow:  0px 0px 8px rgba(39,44,49,.07), 4px 8px 4px rgba(39,44,49,.1), 1px 4px 4px rgba(39,44,49,.07);
     }
     .project {
         font-family: sans-serif; /* This is fallback font for old browsers */
