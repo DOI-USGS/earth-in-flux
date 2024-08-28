@@ -419,8 +419,8 @@
             .selectAll("text")
             .attr("class", d => expandedFamilies[d] === false ? "axis-text family" : "axis-text species")
 
-        const yAxisLabelXPosition = yAxis.select("text").attr('x')
-        const yAxisLabelDx = yAxis.select("text").attr('dx')
+        // const yAxisLabelXPosition = yAxis.select("text").attr('x')
+        // const yAxisLabelDx = yAxis.select("text").attr('dx')
         // yAxis.append("text")
         //     .attr("class", "y-axis axis-title")
         //     .attr("y", 0)
