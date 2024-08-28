@@ -11,7 +11,6 @@
         <template #aboveExplanation>
         </template>
         <template #figures>
-            <div id="chart-container" class="maxWidth" ref="chart"></div>
             <button
                   aria-pressed="!scalePercent"
                   class="button"
@@ -20,6 +19,7 @@
                 >
                   {{ scaleType }}
             </button>
+            <div id="chart-container" class="maxWidth" ref="chart"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, ref } from "vue"; //, reactive
+    import { computed, onMounted, reactive, ref } from "vue"; //, reactive
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
@@ -44,6 +44,7 @@
     const publicPath = import.meta.env.BASE_URL;
     const dataFile = 'fish_as_food_climate.csv' //'fish_as_food_climate_test.csv'
     const data = ref();
+    const families = ref();
     const chart = ref(null);
     const scalePercent = ref(false);
     let chartDimensions;
@@ -51,13 +52,13 @@
     let chartSVG;
     let chartBounds;
     let xScale;
-    let xAxis;
+    let xAxisBottom;
     let yScale;
     let yAxis;
     let widthScale;
     let colorScale;
     // Create a reactive object to track expanded families
-    // const expandedFamilies = reactive({});
+    const expandedFamilies = reactive({});
 
     // set up filtered chart data as computed property
     const scaleType = computed(() => {
@@ -71,15 +72,13 @@
         try {
             await loadDatasets();
             if (data.value.length > 0) {
-                // families.value = Array.from(new Set(data.value.map(d => d.family)));
-                // // Initialize the expandedFamilies object
-                // families.value.forEach(family => {
-                //     expandedFamilies[family] = false;
-                // });
-                // expandedFamilies["A"] = !expandedFamilies["A"]
-                // console.log(expandedFamilies)
-                // Set starting scale type
-                // scalePercent.value = true;
+                families.value = Array.from(new Set(data.value.map(d => d.family)));
+                // Initialize the expandedFamilies object
+                families.value.forEach(family => {
+                    expandedFamilies[family] = false;
+                });
+                // expandedFamilies["Cyprinidae"] = !expandedFamilies["Cyprinidae"]
+                expandedFamilies["Salmonidae"] = !expandedFamilies["Salmonidae"]
 
                 initChart({
                     width: chart.value.offsetWidth,
@@ -129,7 +128,7 @@
 
     function initChart({
         width = 500, // outer width, in pixels
-        height = width, // outer height, in pixels
+        // height = width, // outer height, in pixels
         margin = 1, // default margins
         marginTop = margin, // top margin, in pixels
         marginBottom = margin, // left margin, in pixels
@@ -139,7 +138,7 @@
         // set up global chart dimensions
         chartDimensions = {
             width,
-            height,
+            //height,
             margin: {
                 top: marginTop,
                 right: marginRight,
@@ -148,12 +147,12 @@
             }
         }
         chartDimensions.boundedWidth = chartDimensions.width - chartDimensions.margin.left - chartDimensions.margin.right
-        chartDimensions.boundedHeight = chartDimensions.height - chartDimensions.margin.top - chartDimensions.margin.bottom
+        //chartDimensions.boundedHeight = chartDimensions.height - chartDimensions.margin.top - chartDimensions.margin.bottom
 
         // draw canvas for chart
         chartSVG = d3.select("#chart-container")
             .append("svg")
-                .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
+                //.attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
                 .attr("width", "100%")
                 .attr("height", "100%")
                 .attr("id", "chart-svg")
@@ -172,6 +171,10 @@
                 chartDimensions.margin.top
             }px)`)
 
+        // Initialize axes
+        initXAxis()
+        initYAxis()
+
         // Initialize scales
         initXScale()
         initYScale()
@@ -186,27 +189,30 @@
             .attr("class", "points_2030")
         chartBounds.append("g")
             .attr("class", "points_2075")
+        chartBounds.append("g")
+            .attr("class", "rects")
     }
 
     function initXScale() {
         // scale for the x axis (domain set in `drawChart()`)
         xScale = d3.scaleLinear()
             .range([0, chartDimensions.boundedWidth]);
-
+    }
+    function initXAxis() {
         // add group for x axis
-        xAxis = chartBounds.append("g")
+        xAxisBottom = chartBounds.append("g")
             .attr("id", "x-axis")
             .attr("class", "axis")
-            .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
+            //.attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
             .attr("aria-hidden", true) // hide from screen reader
 
         // generate x axis
-        // xAxis
+        // xAxisBottom
         //     .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10))
             // .select(".domain").remove() // remove axis line
         
         // // add placeholder for x axis title (title text set in drawChart())
-        // xAxis
+        // xAxisBottom
         //     .append("text")
         //     .attr("class", "x-axis axis-title")
         //     .attr("x", -chartDimensions.boundedWidth / 2)
@@ -218,9 +224,12 @@
     function initYScale() {
         // scale for y axis (domain set in `drawChart()`)
         yScale = d3.scaleBand()
-            .range([chartDimensions.boundedHeight, 0])
+            // .range([chartDimensions.boundedHeight, 0])
             .padding(0.1)
 
+
+    }
+    function initYAxis() {
         // add group for y axis
         yAxis = chartBounds.append("g")
             .attr("id", "y-axis")
@@ -312,7 +321,7 @@
 
     function drawChart(data, scalePercent) {
         // accessor functions
-        const yAccessor = d => d.species
+        const yAccessor = d => expandedFamilies[d.family] ? d.species : d.family //d.species
         // const yAccessor_family = d => d.family
         const xAccessor = d => d.cvi
         // const xAccessor_family = d => d.cvi_family
@@ -322,7 +331,7 @@
         const x1Accessor_family = d => scalePercent ? (d.cvi_2075_family - d.cvi_2030_family)/ d.cvi_2030_family : d.cvi_2075_family
         const widthAccessor = d => d.position
         const colorAccessor = d => d.thermal_guild
-        const identifierAccessor = d => d.family + '_' + d.species.replace(/ /g,"_");
+        const identifierAccessor = d => expandedFamilies[d.family] ? d.family + '_' + d.species.replace(/ /g,"_") : d.family;
 
         // to get dynamic
         // need key for data
@@ -343,65 +352,82 @@
                 .nice()
         }
         
-        xAxis.transition(getUpdateTransition())
+        xAxisBottom.transition(getUpdateTransition())
             .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10));
 
-        xAxis
+        xAxisBottom
             .selectAll("text")
             .attr("class", "axis-text")
 
-        const xAxisLabelYPosition = xAxis.select("text").attr('y')
-        const xAxisLabelDy = xAxis.select("text").attr('dy')
-        xAxis.append("text")
+        const xAxisBottomLabelYPosition = xAxisBottom.select("text").attr('y')
+        const xAxisBottomLabelDy = xAxisBottom.select("text").attr('dy')
+        xAxisBottom.append("text")
             .attr("class", "x-axis axis-title")
             .attr("x", chartDimensions.boundedWidth / 2)
-            .attr("y", xAxisLabelYPosition * 4)
-            .attr("dy", xAxisLabelDy)
+            .attr("y", xAxisBottomLabelYPosition * 4)
+            .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "middle")
             .text(scalePercent ? 'Percent change in harvest-weighted climate vulnerability, 2030-2075' : 'Change in harvest-weighted climate vulnerability, 2030-2075')
-        xAxis.append("text")
+        xAxisBottom.append("text")
             .attr("class", "x-axis axis-subtitle")
             .attr("x", 0)
-            .attr("y", xAxisLabelYPosition * 5.5)
-            .attr("dy", xAxisLabelDy)
+            .attr("y", xAxisBottomLabelYPosition * 5.5)
+            .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "start")
             .text('Less vulnerable')
-        xAxis.append("text")
+        xAxisBottom.append("text")
             .attr("class", "x-axis axis-subtitle")
             .attr("x", chartDimensions.boundedWidth)
-            .attr("y", xAxisLabelYPosition * 5.5)
-            .attr("dy", xAxisLabelDy)
+            .attr("y", xAxisBottomLabelYPosition * 5.5)
+            .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "end")
             .text('More vulnerable')
 
         // Remove axix line and labels
-        // xAxis.select(".domain").remove()
-        // xAxis.call(d3.axisBottom(xScale).tickValues([]))
+        // xAxisBottom.select(".domain").remove()
+        // xAxisBottom.call(d3.axisBottom(xScale).tickValues([]))
 
         // set domain for yScale
-        // let yDomain = []
-        // families.value.map(family => expandedFamilies[family] ? yDomain.push(data.filter(d => d.family === family).map(d => d.species)) : yDomain.push(family))
-        // yDomain = yDomain.flat()
-        // yScale
-        //     .domain(yDomain)
+        let yDomain = []
+        families.value.map(family => expandedFamilies[family] ? yDomain.push(data.filter(d => d.family === family).map(d => d.species)) : yDomain.push(family))
+        yDomain = yDomain.flat()
+        
+        const totalHeight = yDomain.length * 25;
+        chartDimensions.boundedHeight = totalHeight
+        chartDimensions.height = chartDimensions.boundedHeight + chartDimensions.margin.top + chartDimensions.margin.bottom
+        chartSVG
+            .transition(getUpdateTransition())
+            .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
+        
+        // Set range and domain for y scale
         yScale
-            .domain(d3.union(data.map(yAccessor))) //.sort(d3.ascending)))
+            .range([chartDimensions.boundedHeight, 0])
+            .domain(yDomain)
+        //yScale
+        //    .domain(d3.union(data.map(yAccessor))) //.sort(d3.ascending)))
+        
+        // set y position for xAxisBottom
+        xAxisBottom
+            .transition(getUpdateTransition())
+            .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
+
         yAxis
+            .transition(getUpdateTransition())
             .call(d3.axisLeft(yScale).tickSize(2))
         
         yAxis
             .selectAll("text")
-            .attr("class", "axis-text")
+            .attr("class", d => expandedFamilies[d] === false ? "axis-text family" : "axis-text species")
 
         const yAxisLabelXPosition = yAxis.select("text").attr('x')
         const yAxisLabelDx = yAxis.select("text").attr('dx')
-        yAxis.append("text")
-            .attr("class", "y-axis axis-title")
-            .attr("y", 0)
-            .attr("x", yAxisLabelXPosition)
-            .attr("dx", yAxisLabelDx)
-            .style("text-anchor", "end")
-            .text('Species')
+        // yAxis.append("text")
+        //     .attr("class", "y-axis axis-title")
+        //     .attr("y", 0)
+        //     .attr("x", yAxisLabelXPosition)
+        //     .attr("dx", yAxisLabelDx)
+        //     .style("text-anchor", "end")
+        //     .text('Species')
 
         // set up width scale
         const radiusPosition0 = 1
@@ -424,26 +450,33 @@
         initColorScale(colorCategories)
 
         // set up area data
-        const areaCategories = Array.from(new Set(data.map(yAccessor)))
+        const areaCategories = Array.from(new Set(data.map(d => d.species))) //Array.from(new Set(data.map(yAccessor)))
         const areaData = areaCategories.map(areaCategory => {
+            const species = areaCategory //expandedFamilies[areaCategory] === false ? null : areaCategory;
+            const family = data.filter(d => d.species === species)[0].family //expandedFamilies[areaCategory] === false ? areaCategory : data.filter(d => d.species === species)[0].family;
+            const cvi_2030 = expandedFamilies[family] ? x0Accessor(data.filter(d => d.species === species)[0]) : x0Accessor_family(data.filter(d => d.family === family)[0]) //species ? x0Accessor(data.filter(d => d.species === species)[0]) : x0Accessor_family(data.filter(d => d.family === family)[0])
+            const cvi_2075 = expandedFamilies[family] ? x1Accessor(data.filter(d => d.species === species)[0]) : x1Accessor_family(data.filter(d => d.family === family)[0])
+            const cvi_decreasing = cvi_2030 > cvi_2075
+            const thermal_guild = colorAccessor(data.filter(d => d.species === species)[0]) //species ? colorAccessor(data.filter(d => d.species === species)[0]) : colorAccessor(data.filter(d => d.family === family)[0])
+
             return [
                 {
-                    species: areaCategory,
-                    family: data.filter(d => d.species === areaCategory)[0].family,
-                    cvi: x0Accessor(data.filter(d => d.species === areaCategory)[0]),
-                    cvi_decreasing: x0Accessor(data.filter(d => d.species === areaCategory)[0]) > x1Accessor(data.filter(d => d.species === areaCategory)[0]),
-                    cvi_family: x0Accessor_family(data.filter(d => d.species === areaCategory)[0]),
+                    species: species,
+                    family: family,
+                    cvi: cvi_2030,
+                    cvi_decreasing: cvi_decreasing,
+                    // cvi_family: x0Accessor_family(data.filter(d => d.species === areaCategory)[0]),
                     position: 0,
-                    thermal_guild: colorAccessor(data.filter(d => d.species === areaCategory)[0])
+                    thermal_guild: thermal_guild
                 },
                 {
-                    species: areaCategory,
-                    family: data.filter(d => d.species === areaCategory)[0].family,
-                    cvi: x1Accessor(data.filter(d => d.species === areaCategory)[0]),
-                    cvi_decreasing: x0Accessor(data.filter(d => d.species === areaCategory)[0]) > x1Accessor(data.filter(d => d.species === areaCategory)[0]),
-                    cvi_family: x1Accessor_family(data.filter(d => d.species === areaCategory)[0]),
+                    species: species,
+                    family: family,
+                    cvi: cvi_2075,
+                    cvi_decreasing: cvi_decreasing,
+                    // cvi_family: x1Accessor_family(data.filter(d => d.species === areaCategory)[0]),
                     position: 1,
-                    thermal_guild: colorAccessor(data.filter(d => d.species === areaCategory)[0])
+                    thermal_guild: thermal_guild
                 }
             ]
         })
@@ -452,7 +485,7 @@
         // Enter-update-exit pattern for areas
         let areaGroups = chartBounds.selectAll(".areas")
             .selectAll(".area")
-            .data(areaData, d => d[0].species)
+            .data(areaData, d => d[0].species + d[0].family)
         
         const oldAreaGroups = areaGroups.exit()
 
@@ -535,7 +568,7 @@
             .append("circle")
                 .attr("id", d => 'point-2030-' + identifierAccessor(d))
                 .attr("class", "point_2030")
-                .attr("cx", d => xScale(x0Accessor(d)))
+                .attr("cx", d => expandedFamilies[d.family] ? xScale(x0Accessor(d)) : xScale(x0Accessor_family(d)))
                 .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
                 .attr("r", radiusPosition0)
                 .style("stroke", d => colorScale(colorAccessor(d)))
@@ -550,7 +583,7 @@
         allPoints2030.transition(getUpdateTransition())
             .attr("id", d => 'point-2030-' + identifierAccessor(d))
             .attr("class", "point_2030")
-            .attr("cx", d => xScale(x0Accessor(d)))
+            .attr("cx", d => expandedFamilies[d.family] ? xScale(x0Accessor(d)) : xScale(x0Accessor_family(d)))
             .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
             .attr("r", radiusPosition0)
             .style("stroke", d => colorScale(colorAccessor(d)))
@@ -593,7 +626,7 @@
             .append("circle")
                 .attr("id", d => 'point-2075-' + identifierAccessor(d))
                 .attr("class", "point_2075")
-                .attr("cx", d => xScale(x1Accessor(d)))
+                .attr("cx", d => expandedFamilies[d.family] ? xScale(x1Accessor(d)) : xScale(x1Accessor_family(d)))
                 .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
                 .attr("r", radiusPosition1 - strokeWidth1 / 2)
                 .style("stroke", d => colorScale(colorAccessor(d)))
@@ -609,7 +642,7 @@
         allPoints2075.transition(getUpdateTransition())
             .attr("id", d => 'point-2075-' + identifierAccessor(d))
             .attr("class", "point_2075")
-            .attr("cx", d => xScale(x1Accessor(d)))
+            .attr("cx", d => expandedFamilies[d.family] ? xScale(x1Accessor(d)) : xScale(x1Accessor_family(d)))
             .attr("cy", d => yScale(yAccessor(d)) + yScale.bandwidth() / 2)
             .attr("r", radiusPosition1 - strokeWidth1 / 2)
             .style("stroke", d => colorScale(colorAccessor(d)))
@@ -649,6 +682,65 @@
         //             .style("stroke", 'none')
         //             .style("fill", "black")
 
+        // Enter-Update-Exit pattern for overlay rectangles
+        let rectGroups = chartBounds.selectAll('.rects')
+            .selectAll(".rect")
+            .data(data, d => d.species)
+        
+        const oldRectGroups = rectGroups.exit()
+
+        oldRectGroups.selectAll('rect')
+            .transition(getExitTransition())
+            .style("opacity", 0)
+
+        oldRectGroups.transition(getExitTransition()).remove()
+        
+        const newRectGroups = rectGroups.enter().append("g")
+            .attr("class", d => "rect " + d.species)
+            .attr("id", d => 'rect-group-' + identifierAccessor(d))
+
+        // append points
+        newRectGroups
+            .append("rect")
+                .attr("id", d => 'rect-' + identifierAccessor(d))
+                .attr("class", "rect")
+                .attr("x", -chartDimensions.margin.left)
+                .attr("y", d => yScale(yAccessor(d)))
+                .attr("height", yScale.bandwidth())
+                .attr("width", chartDimensions.width)
+                .style("fill", "transparent")
+
+        // update pointGroups2075 to include new points
+        rectGroups = newRectGroups.merge(rectGroups)
+
+        const allRects = rectGroups.select("rect")
+
+        // Update points based on data values
+        allRects.transition(getUpdateTransition())
+            .attr("id", d => 'rect-' + identifierAccessor(d))
+            .attr("class", "rect")
+            .attr("x", -chartDimensions.margin.left)
+            .attr("y", d => yScale(yAccessor(d)))
+            .attr("height", yScale.bandwidth())
+            .attr("width", chartDimensions.width)
+            .style("fill", "transparent")
+        
+        allRects
+            .on("click", function(event, d) {
+                const clickedFamily = d.family
+                expandedFamilies[clickedFamily] = !expandedFamilies[clickedFamily]
+                // let yDomain = []
+                // families.value.map(family => expandedFamilies[family] ? yDomain.push(data.filter(d => d.family === family).map(d => d.species)) : yDomain.push(family))
+                // yDomain = yDomain.flat()
+                // const yBandwidth = yScale.bandwidth()
+                // chartDimensions.boundedHeight = yBandwidth * yDomain.length;
+                // chartDimensions.height = chartDimensions.boundedHeight + chartDimensions.margin.top + chartDimensions.margin.bottom;
+                // chartSVG.attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
+                // yScale.range([chartDimensions.boundedHeight * 2, 0])
+                // yAxis
+                //     .call(d3.axisLeft(yScale).tickSize(2))
+                drawChart(data, scalePercent)
+            });
     }
 
     function getUpdateTransition () {
@@ -668,6 +760,13 @@
         font-size: 1.8rem;
         font-family: var(--default-font);
         user-select: none;
+        
+    }
+    .species {
+        font-style: italic;
+    }
+    .family {
+        font-weight: 900;
     }
     .axis-title {
         font-size: 1.8rem;
