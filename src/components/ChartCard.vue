@@ -55,6 +55,8 @@
     .expanded {
         height: $expanded-height;
         transform: scaleY(1);
+        border-width: 4px;
+        border-radius: 3px;
     }
     .takeaway {
         position: absolute;
@@ -92,6 +94,9 @@
         transition: all 1s ease;
     }
     .chart:hover img {
+        border-radius: 3px;
+    }
+    .expanded img {
         border-radius: 3px;
     }
 </style>
