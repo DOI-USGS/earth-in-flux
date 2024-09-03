@@ -25,9 +25,9 @@ export default {
             project: 'Fish as Food',
             vizKey: 'FishAsFoodLinkChart',
             vizRoute: 'inland-rec-fish-climate',
-            img_src: 'Placeholder_thumbnail.PNG',
+            img_src: 'FishAsFoodLinkChart_thumbnail.png',
             alt: '',
-            description: 'Description or key takeaways from this Viz (Viz 3)'
+            description: '...and recreationally fished inland inland fish species are vulnerable'
         },         
         {
             title: 'Glacier/Topography D3 Cross-Section Scan',
