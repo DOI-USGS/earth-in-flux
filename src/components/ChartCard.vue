@@ -3,10 +3,7 @@
         <div class="takeaway">
             <p>{{ description }}</p>
         </div>
-        <img :src="src" :alt="alt"/>        
-        <!--div class="project">
-            <p>{{ project }}</p>
-        </div-->
+        <img :src="src" :alt="alt"/>
     </div>
 </template>
 
@@ -19,10 +16,6 @@
         alt: {
             type: String,
             default: ``
-        },
-        project: {
-            type: String,
-            default: ''
         },
         description: {
             type: String,
@@ -100,38 +93,5 @@
     }
     .chart:hover img {
         border-radius: 3px;
-        // transform: translate3D(0,-0.5px,0) scale(1.05); 
-        // box-shadow:  0px 0px 8px rgba(39,44,49,.07), 4px 8px 4px rgba(39,44,49,.1), 1px 4px 4px rgba(39,44,49,.07);
-    }
-    .project {
-        font-family: sans-serif; /* This is fallback font for old browsers */
-        font-family: var(--title-font);
-        color: var(--color-title-text);
-        position: absolute;
-        top: $collapsed-height;
-        width: auto;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -webkit-transition: top 1s ease; 
-        -moz-transition: top 1s ease; 
-        -ms-transition: top 1s ease; 
-        -o-transition: top 1s ease; 
-        transition: top 1s ease;
-        background-color: var(--faded-usgs-blue);
-        border-radius: 0.25rem 0.25rem 0 0;
-        box-shadow: 1px 4px 4px rgba(107, 107, 107, 0.1);
-    }
-    .project p {
-        font-size: 1.4rem;
-        padding: 0.9rem 1.5rem 0.9rem 1.5rem; 
-        text-align: center;
-        width: auto;
-        font-weight: 400;
-    }
-    .chart:hover .project {
-        top: $expanded-height;
-    }
-    .expanded .project {
-        top: $expanded-height;
     }
 </style>

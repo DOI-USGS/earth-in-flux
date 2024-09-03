@@ -4,7 +4,6 @@
             :id="item.vizRoute"
             :src="getThumb(item.img_src)"
             :alt="item.alt"
-            :project="item.project"
             :description="item.description"
         />
     </div>
