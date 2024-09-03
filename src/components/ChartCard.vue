@@ -50,6 +50,7 @@
         border-color: var(--faded-usgs-blue);
         border-width: 0px;
         border-style: solid;
+        border-radius: 1.5px;
         box-shadow: 0px 0px 8px rgba(39,44,49,.07), 1px 4px 4px rgba(39,44,49,.04);
 	}
     .chart:hover {
@@ -94,6 +95,7 @@
         width: 100%;
         top: 0;
         background-color: white;
+        border-radius: 1.5px;
         transition: all 1s ease;
     }
     .chart:hover img {
