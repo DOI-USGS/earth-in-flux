@@ -45,7 +45,7 @@
         if (mobileView) {
             const cards = document.querySelectorAll('.chart');
 
-            window.addEventListener('scroll', function(event) {
+            window.addEventListener('scroll', function() {
                 // add event on scroll
                 cards.forEach(element => {
                     //for each .chart
