@@ -110,5 +110,8 @@
     flex-wrap: wrap;
     width: 100%;
     max-width: 60%;
+    @media screen and (max-width: 600px) {
+        max-width: 100%;
+    }
 }
 </style>
