@@ -9,16 +9,24 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph1" />
+            <p>
+                {{ text.explainerPart1 }}
+                <span>
+                    <button
+                        aria-pressed="!scalePercent"
+                        class="button"
+                        :text="scaleType"
+                        @click="toggleScale"
+                        >
+                        {{ scaleType }}
+                    </button>
+                </span>
+                {{ text.explainerPart2 }}
+            </p>
+            <p v-html="text.prompt1" />
         </template>
         <template #figures>
-            <button
-                  aria-pressed="!scalePercent"
-                  class="button"
-                  :text="scaleType"
-                  @click="toggleScale"
-                >
-                  {{ scaleType }}
-            </button>
             <div id="chart-container" class="maxWidth" ref="chart"></div>
         </template>
         <!-- FIGURE CAPTION -->
@@ -62,7 +70,7 @@
 
     // set up filtered chart data as computed property
     const scaleType = computed(() => {
-        return scalePercent.value ? 'Percent change' : 'Change'
+        return scalePercent.value ? 'percent change' : 'change'
     });
 
 
