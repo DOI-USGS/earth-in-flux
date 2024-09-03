@@ -7,6 +7,8 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <h2 v-html="text.heading" />
+            <p v-html="text.paragraph1" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -20,7 +22,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph1" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -31,6 +32,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph2" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -44,7 +46,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph2" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -55,6 +56,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph3" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -68,7 +70,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph3" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -79,6 +80,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph4" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -92,7 +94,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph4" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -103,6 +104,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph5" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -116,7 +118,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph5" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -127,6 +128,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph6" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -140,7 +142,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph6" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -151,6 +152,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph7" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -164,7 +166,6 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph7" />
         </template>
     </VizSection>
         <!---VizSection-->
@@ -175,6 +176,7 @@
         <!-- HEADING -->
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p v-html="text.paragraph8" />
         </template>
         <template #figures>
             <div class="single maxWidth">
@@ -188,10 +190,19 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p v-html="text.paragraph8" />
         </template>
     </VizSection>
-        
+    <VizSection
+        :figures="true"
+        :fig-caption="false"
+    >
+        <!-- HEADING -->
+        <!-- FIGURES -->
+        <template #aboveExplanation>
+            <h2 v-html="text.heading2" />
+            <p v-html="text.paragraph9" />
+        </template>
+    </VizSection>
 </template>
 
 <script setup>

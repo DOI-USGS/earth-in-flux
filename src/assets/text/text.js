@@ -61,15 +61,17 @@ export default {
             heading: "Inland fisheries are threatened."
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect sediment cores?",
-            paragraph1: "Researchers traveled from Reston, Virginia to Whitefish Station, Yukon, Canada. Here, the Mackenzie River flows into the Beaufort Sea. The researchers do their sediment coring offshore, along the relatively shallow Mackenzie Shelf.",
-            paragraph2: "Researchers take a large U.S. Coast Guard ice-breaking ship to the collection site.",
-            paragraph3: "Once the researchers are at the collection site, they use a large piston-driven coring device to take samples of the sediment layers at the bottom of the ocean.",
-            paragraph4: "The sediment in the top of the core is newer sediment than sediment at the bottom. The total time span for this sample is about 2000 years!",
-            paragraph5: "Researchers then slice the core into 1-centimeter sections for testing. They measure the age of the sediment, chemistry in the sediment, and examine what species of microfossiles are present.",
-            paragraph6: "Researchers identify all the species they can, collecting data on the relative abundance of each species. These species, the chemistry of the sediment, and the age help researchers reconstruct past climates.",
-            paragraph7: "The microfossils are approximately a half-millimeter in size, which is about the size of a small pen mark! Not surprisingly, identifying the species takes a microscope and an attention for detail.",
-            paragraph8: "Learn more about the focal species on the <a href='/visualizations/climate-charts/beaufort-sea/beaufort-sea-species'>Beaufort Sea species</a> page."
+            heading: "How do USGS scientists collect ocean sediment core records?",
+            paragraph1: "USGS scientists traveled from USGS Headquarters in Reston, Virginia to Utqiagvik, Alaska. The goal was to collect samples of 'proxies' from ocean sediment cores. Proxies provide indirect but measurable responses to ocean/climate-related conditions at the time they were living or otherwise deposited. Proxies can include biological organisms, such as microfossils, or other preserved physical or chemical properties.",
+            paragraph2: "Once they arrived in Alaska, the researchers boarded the U.S. Coast Guard icebreaker Healy and traveled to the sampling locations along the Beaufort Sea continental shelf.",
+            paragraph3: "Ocean sediments are one of the best archives of past ocean and climate change throughout Earth's history. Sediment accumulates on the seafloor over time: the sediment at the top of the core is newer than sediment at the bottom.",
+            paragraph4: "Researchers can use the sediment core records to build a timeline of climate conditions through the past. The timeline is verified by measuring the Cesium and Lead radioisotopes and using radiocarbon dating.",
+            paragraph5: "Sediment cores were collected by a weighted piston-driven coring device from a platform on the stern of the ship that retrieves the soft sediments from the bottom of the ocean.",
+            paragraph6: "Back in the laboratory, researchers section the sediment core into one-centimeter-thick slices for analysis. The total time span that this sediment core represents is about 2000 years, in 5-year increments.",
+            paragraph7: "The microfossils found in these sediment cores range in size from 0.5 to 2 mm. Most of them are a little larger than the period at the end of this sentence. Learn more about the focal species on the <a href='/visualizations/climate-charts/beaufort-sea/beaufort-sea-species'>Beaufort Sea species</a> page.",
+            paragraph8: "Identifying the species requires a microscope and a damp brush to pick the shell from the sediment to a slide for identification. The microfossils examined in this study include Foraminifera and Ostracode microfossils, which are excellent proxy indicators for past environments because their presence and growth are influenced by specific climate and ocean conditions when they were alive.",
+            heading2: "Why is this important?",
+            paragraph9: "The reconstruction of past environments helps us understand the processes influencing natural climate change that lead to particular Earth system states. This allows more reliable predictions for future scenarios. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/beaufort-sea/beaufort-sea-timeline'>Beaufort Sea timeline</a> page."        
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present climates with Arctic microfossils",
