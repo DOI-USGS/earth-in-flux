@@ -805,6 +805,18 @@
     }
 </script>
 
+<style>
+    .warm {
+        color: #DB2500;
+    }
+    .cool {
+        color: #1474C2;
+    }
+    .cold {
+        color: #36648B;
+    }
+</style>
+
 <style lang="scss">
     .axis-text {
         font-size: 1.8rem;
