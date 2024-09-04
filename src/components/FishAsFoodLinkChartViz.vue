@@ -95,7 +95,7 @@
 
                 initChart({
                     width: chart.value.offsetWidth,
-                    margin: 20,
+                    margin: 25,
                     marginBottom: 95,
                     marginLeft: 350});
 
