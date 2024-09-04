@@ -1,5 +1,6 @@
 export default {
     pageTitle: "Earth is changing...",
+    pageSubTitle: "USGS scientists research climate change on the ground",
     collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources', target='_blank'>Water Resources Mission Area</a>, <a href='https://www.usgs.gov/mission-areas/ecosystems', target='_blank'>Ecosystems Mission Area</a>, and <a href='https://www.usgs.gov/programs/climate-adaptation-science-centers', target='_blank'>Climate Adaptation Science Centers</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
     vizlab: {
         teamText: "The USGS Vizlab...View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
