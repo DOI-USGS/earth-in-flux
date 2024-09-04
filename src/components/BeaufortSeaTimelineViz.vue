@@ -22,6 +22,8 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
+            <h2 v-html="text.heading2" />
+            <p v-html="text.paragraph4" />
         </template>
     </VizSection>
 </template>
