@@ -318,7 +318,7 @@
                           .attr("x", x)
                           .attr("y", y)
                           .attr("dy", dy + "rem");
-          while (word = words.pop()) {
+          while ((word = words.pop())) {
               line.push(word);
               tspan.text(line.join(" "));
               if (tspan.node().getComputedTextLength() > width) {
