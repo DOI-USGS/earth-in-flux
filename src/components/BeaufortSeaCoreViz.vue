@@ -5,9 +5,11 @@
         :fig-caption="false"
     >
         <!-- HEADING -->
+        <template #heading>
+            <h2 v-html="text.heading" />
+        </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <h2 v-html="text.heading" />
             <p v-html="text.paragraph1" />
         </template>
         <template #figures>
@@ -197,9 +199,11 @@
         :fig-caption="false"
     >
         <!-- HEADING -->
+        <template #heading>
+            <h2 v-html="text.heading2" />
+        </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <h2 v-html="text.heading2" />
             <p v-html="text.paragraph9" />
         </template>
     </VizSection>
