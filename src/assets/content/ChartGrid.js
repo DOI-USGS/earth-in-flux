@@ -9,6 +9,7 @@ export default {
             vizRoute: 'inland-fish-threats',
             img_src: 'ThreatBumpChart_thumbnail.png',
             alt: '',
+            chartOrder: 1,
             description: 'Inland fisheries are threatened.'
         },          
         {
@@ -18,6 +19,7 @@ export default {
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
             alt: '',
+            chartOrder: 1,
             description: 'Researchers are studying glacial ice.'
         },       
         {
@@ -27,6 +29,7 @@ export default {
             vizRoute: 'inland-rec-fish-value',
             img_src: 'circle-pack-thumbnail.png',
             alt: '',
+            chartOrder: 1,
             description: 'Inland recreational fishing contributes economic value.'
         },
         {
@@ -36,6 +39,7 @@ export default {
             vizRoute: 'beaufort-sea-ice-coring',
             img_src: 'BeaufortSeaCore_thumbnail.PNG',
             alt: '',
+            chartOrder: 1,
             description: 'Sediment cores can help build past and present climates.'
         },  
         {
@@ -45,6 +49,7 @@ export default {
             vizRoute: 'beaufort-sea-species',
             img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
+            chartOrder: 2,
             description: 'Microfossils can be used to indicate these changes.'
         },   
         {
@@ -54,6 +59,7 @@ export default {
             vizRoute: 'beaufort-sea-timeline',
             img_src: 'BeaufortSeaTimeline_thumbnail.PNG',
             alt: '',
+            chartOrder: 3,
             description: 'Communities of microorganisms on the sea floor are affected.'
         }   
     ]
