@@ -20,8 +20,9 @@
             <span v-html="reference.num" />. <span v-html="reference.authors" /> (<span v-html="reference.year" />). <a
               :href="reference.link"
               target="_blank"
-            ><span v-html="reference.title" /></a>
+            ><span v-html="reference.title" :class="{ report: reference.report }"/></a>
             <span v-if="reference.data_release">: U.S. Geological Survey data release</span>.
+            <span v-if="reference.publication_info"> {{ reference.publication_info }}. </span>
             <span v-if="reference.journal">
               <span v-html="reference.journal_name" class="journal-name"></span>
               <span v-if="reference.journal_issue">, {{ reference.journal_issue }}</span>.
@@ -54,6 +55,9 @@
 
 <style scoped lang="scss">
   .journal-name {
+    font-style: italic;
+  }
+  .report {
     font-style: italic;
   }
 </style>
