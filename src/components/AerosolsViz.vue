@@ -113,12 +113,6 @@
         }
     }
 
-    function mouseenter(event) {
-    }
-
-    function mouseleave(event) {
-    }
-
     function addInteractions() {
         // set viewbox for svg with loss function chart
         const aerosolsSVG = d3.select("#aerosols-svg");
@@ -127,9 +121,7 @@
         // Add interaction to loss function chart
         aerosolsSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event,coreids))
-            .on("mouseout", (event) => mouseout(event,coreids))
-            .on("mouseenter", (event) => mouseenter(event))
-            .on("mouseleave", (event) => mouseleave(event));
+            .on("mouseout", (event) => mouseout(event,coreids));
     }
 </script>
 
