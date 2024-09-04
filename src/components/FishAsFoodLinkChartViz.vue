@@ -25,6 +25,7 @@
                 {{ text.explainerPart2 }}
             </p>
             <p v-html="text.prompt1" />
+            <legendSVG />
         </template>
         <template #figures>
             <div id="chart-container" class="maxWidth" ref="chart"></div>
@@ -42,6 +43,7 @@
     import { computed, onMounted, reactive, ref } from "vue"; //, reactive
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import legendSVG from '@/assets/svgs/climate-vulnerability-legend.svg'
 
     // define props
     defineProps({
