@@ -2,16 +2,20 @@
   <section id="visualization-container">
     <div class="page-content">
       <div class="text-container" :class="{ mobile: mobileView}">
-        <div class="typewriter">
-          <h1 class="title">
-            {{ text.pageTitle }}
-          </h1>
+        <div v-if="!projectPage">
+          <div class="typewriter">
+            <h1 class="title">
+              {{ text.pageTitle }}
+            </h1>
+          </div>
+          <h2 class="subtitle">
+            {{  text.pageSubTitle }}
+          </h2>
         </div>
         <h2 v-if="projectPage" class="subtitle">
-          {{ projectText.title }} project visualizations
+          {{ projectText.title }} project
         </h2>
       </div>
-      <ChartGrid :view="currentView"/>
       <!---VizSection-->
       <VizSection
           v-if="projectPage"
@@ -20,9 +24,9 @@
       >
           <!-- HEADING -->
           <template #heading>
-              <h2>
+              <!--h2>
                 About the {{ projectText.title }} project
-              </h2>
+              </h2-->
           </template>
           <template #aboveExplanation>
               <h3>Project motivation</h3>
@@ -47,7 +51,11 @@
           <template #figures>
             <AboutTheTeam v-if="projectText.teamData" :key="projectRoute" :data="projectText.teamData"/>
           </template>
+          <template #belowExplanation>
+            <h3>Project visualizations</h3>
+          </template>
       </VizSection>
+      <ChartGrid :view="currentView"/>
       <ReferencesSection v-if="projectReferences" title="Project resources" titleLevel="3" :references="projectReferences"/>
     </div>
     <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
