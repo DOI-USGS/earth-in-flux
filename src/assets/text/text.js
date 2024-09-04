@@ -99,7 +99,7 @@ export default {
             paragraph1: 'Climate vulnerability index.',
             explainerPart1: 'Showing the ',
             explainerPart2: 'from 2030 to 2075 in harvest-weighted climate vulnerability under representative concentration pathway 4.5.',
-            prompt1: 'Click on the chart to show or hide <i>species</i> within each recreationally fished <b>family</b>'
+            prompt1: 'Click on the chart to show or hide data for <i>species</i> within each <b>family</b>'
         }
     }
 }
