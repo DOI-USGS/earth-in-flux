@@ -72,6 +72,21 @@ export default {
       doi: "https://doi.org/10.5066/P9DNAN1M"
     },
   ],
+  Aerosols: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Jasmann, J.R., Kehrwald, N.M., Dunham, M.E., Ferris, D.G., Osterburg, E.C., Kennedy, J., & Barber, L.B.",
+      year: "2020",
+      title: "Using wildland fire tracer molecules to investigate fire frequency and vegetative combustion sources archived in the Juneau Icefield of Alaska",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/5e472c3ee4b0ff554f6837bc",
+      doi: "https://doi.org/10.5066/P9DNAN1M"
+    },
+  ],
   BeaufortSeaSpecies:[
     {
       reference: "Reference 1.",

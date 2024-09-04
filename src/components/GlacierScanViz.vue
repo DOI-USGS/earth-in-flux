@@ -173,7 +173,7 @@
         // set viewbox for svg with loss function chart
         const cross_sectionSVG = d3.select("#cross_section-svg");
 
-        var default_xs = "188";
+        var default_xs = "89";
         draw_xs(default_xs);
 
         // Add interaction to loss function chart
