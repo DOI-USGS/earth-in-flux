@@ -167,6 +167,60 @@ export default {
       doi: "https://doi.org/10.1038/s43016-024-00961-8"
     },
   ],
+  FishAsFoodLinkChart: [
+    {
+      reference: "Reference 1.",
+      num: "1",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., & Golden, C.D.",
+      year: "2023",
+      title: "Global dataset of nutritional value, economic value, and climate vulnerability for species-specific recreational fisheries harvest for consumption",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://www.sciencebase.gov/catalog/item/644ae0e0d34e45f6ddccf773",
+      doi: "https://doi.org/10.5066/P9WO91SZ"
+    },
+    {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., Golden, C.D., Milardi, M., Arlinghaus, R., Baigun, C., Beard, T.D., Cooke, S.J., Cowx, I.G., Koehn, J.D., Lyach, R., Potts, W., Robertson, A.M., Schmidhuber, J., & Weyl, O.L.F.",
+      year: "2024",
+      title: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
+      link: "https://www.nature.com/articles/s43016-024-00961-8",
+      journal: true,
+      journal_name: "Nature Food",
+      journal_issue: "5",
+      data_release: false,
+      doi: "https://doi.org/10.1038/s43016-024-00961-8"
+    },
+    {
+      reference: "Reference 3.",
+      num: "3",
+      authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
+      year: "2021",
+      title: "Data for: Nyboer et al. 2021 Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
+      link: "https://osf.io/keajr/",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: false,
+      doi: "https://doi.org/10.17605/osf.io/keajr"
+    },
+    {
+      reference: "Reference 4.",
+      num: "4",
+      authors: "Nyboer, E.A.,  Lin, H., Bennett, J.R., Gabriel, J, Twardek, W., Chhor, A.D., Daly, L., Dolson, S., Guitard, E., Holder, P., Mozzon, C.M., Trahan, A., Zimmermann, D., Kesner-Reyes, K., Garilao, C., Kaschner, K., & Cooke, S.J.",
+      year: "2021",
+      title: "Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
+      link: "https://onlinelibrary.wiley.com/doi/10.1111/gcb.15768?af=R",
+      journal: true,
+      journal_name: "Global Change Biology",
+      journal_issue: "527, 19",
+      data_release: false,
+      doi: "https://doi.org/10.1111/gcb.15768"
+    }
+  ],
   fishasfood: [
     {
       reference: "Reference 1.",
