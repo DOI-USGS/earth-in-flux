@@ -65,6 +65,7 @@
     let yAxis;
     let widthScale;
     let colorScale;
+    const transitionLength = 1500;
     // Create a reactive object to track expanded families
     const expandedFamilies = reactive({});
 
@@ -92,8 +93,8 @@
                     width: chart.value.offsetWidth,
                     height: 1800,
                     margin: 20,
-                    marginBottom: 80,
-                    marginLeft: 200});
+                    marginBottom: 95,
+                    marginLeft: 350});
 
                 drawChart(data.value, scalePercent.value);
             } else {
@@ -360,8 +361,16 @@
                 .nice()
         }
         
+        const xTickFormat = scalePercent ? d3.format("+.0%") : d3.format(".2f");
         xAxisBottom.transition(getUpdateTransition())
-            .call(d3.axisBottom(xScale).tickSize(0).tickPadding(10));
+            .call(d3.axisBottom(xScale).tickSize(5).tickPadding(10).tickFormat(xTickFormat))
+            .on("start", function(){
+                xAxisBottom.select(".domain").remove()
+                // xAxisBottom.selectAll("text")
+                //     .style("opacity", 0)
+            })
+            // .selectAll("text")
+            //     .style("opacity", 1);
 
         xAxisBottom
             .selectAll("text")
@@ -369,24 +378,25 @@
 
         const xAxisBottomLabelYPosition = xAxisBottom.select("text").attr('y')
         const xAxisBottomLabelDy = xAxisBottom.select("text").attr('dy')
+        const labelOffsetFactor = 5
         xAxisBottom.append("text")
             .attr("class", "x-axis axis-title")
             .attr("x", chartDimensions.boundedWidth / 2)
-            .attr("y", xAxisBottomLabelYPosition * 4)
+            .attr("y", xAxisBottomLabelYPosition * labelOffsetFactor / 1.5)
             .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "middle")
             .text(scalePercent ? 'Percent change in harvest-weighted climate vulnerability, 2030-2075' : 'Change in harvest-weighted climate vulnerability, 2030-2075')
         xAxisBottom.append("text")
             .attr("class", "x-axis axis-subtitle")
             .attr("x", 0)
-            .attr("y", xAxisBottomLabelYPosition * 5.5)
+            .attr("y", xAxisBottomLabelYPosition * labelOffsetFactor)
             .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "start")
             .text('Less vulnerable')
         xAxisBottom.append("text")
             .attr("class", "x-axis axis-subtitle")
             .attr("x", chartDimensions.boundedWidth)
-            .attr("y", xAxisBottomLabelYPosition * 5.5)
+            .attr("y", xAxisBottomLabelYPosition * labelOffsetFactor)
             .attr("dy", xAxisBottomLabelDy)
             .style("text-anchor", "end")
             .text('More vulnerable')
@@ -409,7 +419,7 @@
         
         // Set range and domain for y scale
         yScale
-            .range([chartDimensions.boundedHeight, 0])
+            .range([0, chartDimensions.boundedHeight])
             .domain(yDomain)
         //yScale
         //    .domain(d3.union(data.map(yAccessor))) //.sort(d3.ascending)))
@@ -419,23 +429,55 @@
             .transition(getUpdateTransition())
             .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
 
+            
+        const xBuffer = 10;
         yAxis
             .transition(getUpdateTransition())
-            .call(d3.axisLeft(yScale).tickSize(2))
-        
+            .call(d3.axisLeft(yScale).tickSize(- chartDimensions.boundedWidth))
+            .on("start", function(){
+                yAxis.select(".domain").remove();
+                yAxis
+                    .selectAll("text")
+                    .attr("x", -xBuffer)
+            })
+            // repeat text position b/c of weird quirk
+            .selectAll("text")
+                .attr("x", -xBuffer)
+
         yAxis
             .selectAll("text")
-            .attr("class", d => expandedFamilies[d] === false ? "axis-text family" : "axis-text species")
+            .attr("class", d => {
+                const current_data = data.filter(item => item.species === d)[0]
+                const current_family = current_data ? current_data.family : d
+                return expandedFamilies[d] === false ? "axis-text family " + current_family : "axis-text species family" + current_family
+            })
+        
+        // Add family labels for expanded families
+        families.value.forEach(family => {
+            if (expandedFamilies[family]) {
+                setTimeout(() => {
+                    const firstLabel = yAxis.select('.family' + family);
+                    const firstLabelWidth = firstLabel.node().getComputedTextLength()
+                    const firstLabelData = data.filter(d => d.family === family)[0]
+                    const firstLabelYPosition = yScale(yAccessor(firstLabelData))
+                    const yAxisLabelDy = yAxis.select("text").attr('dy')
+                    const yAxisLabelXPosition = yAxis.select("text").attr('x')
+                    const yAxisLabelDx = yAxis.select("text").attr('dx')
+                    yAxis.append("text")
+                        .attr("class", "y-axis axis-title familyTitle" + family)
+                        .attr("y", firstLabelYPosition + yScale.bandwidth() / 2)
+                        .attr("x", yAxisLabelXPosition - firstLabelWidth - xBuffer)
+                        .attr("dy", yAxisLabelDy)
+                        .attr("dx", yAxisLabelDx)
+                        .style("text-anchor", "end")
+                        .text(family)
+                        .style("opacity", 0)
+                        .transition(getUpdateTransition())
+                        .style("opacity", 1)
+                }, transitionLength * 1.1); // give the chart a little extra time to render
+            }
+        });
 
-        // const yAxisLabelXPosition = yAxis.select("text").attr('x')
-        // const yAxisLabelDx = yAxis.select("text").attr('dx')
-        // yAxis.append("text")
-        //     .attr("class", "y-axis axis-title")
-        //     .attr("y", 0)
-        //     .attr("x", yAxisLabelXPosition)
-        //     .attr("dx", yAxisLabelDx)
-        //     .style("text-anchor", "end")
-        //     .text('Species')
 
         // set up width scale
         const radiusPosition0 = 1
@@ -753,12 +795,12 @@
 
     function getUpdateTransition () {
       return d3.transition()
-        .duration(1500)
+        .duration(transitionLength)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
       return d3.transition()
-        .duration(1500)
+        .duration(transitionLength)
         .ease(d3.easeCubicInOut)
     }
 </script>
@@ -768,7 +810,6 @@
         font-size: 1.8rem;
         font-family: var(--default-font);
         user-select: none;
-        
     }
     .species {
         font-style: italic;
@@ -790,5 +831,10 @@
         font-style: italic;
         fill: var(--color-text);
         user-select: none;
+    }
+    .tick line {
+        stroke: #0f0f0f;
+        stroke-width: 0.5px;
+        stroke-dasharray: 1, 2;
     }
 </style>
