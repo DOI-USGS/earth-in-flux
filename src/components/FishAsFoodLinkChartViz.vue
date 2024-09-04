@@ -90,8 +90,6 @@
                 families.value.forEach(family => {
                     expandedFamilies[family] = false;
                 });
-                // expandedFamilies["Cyprinidae"] = !expandedFamilies["Cyprinidae"]
-                expandedFamilies["Salmonidae"] = !expandedFamilies["Salmonidae"]
 
                 initChart({
                     width: chart.value.offsetWidth,
