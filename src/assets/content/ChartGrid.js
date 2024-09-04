@@ -34,7 +34,7 @@ export default {
             project: 'Fish as Food',
             vizKey: 'FishAsFoodCirclePacking',
             vizRoute: 'inland-rec-fish-value',
-            img_src: 'CirclePacking_thumbnail.png',
+            img_src: 'circle-pack-thumbnail.png',
             alt: '',
             description: '...and inland recreational fishing contributes economic value.'
         },
