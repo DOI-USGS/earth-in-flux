@@ -52,6 +52,7 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
+    const initialLoad = ref();
     const dataFile = 'fish_as_food_climate.csv' //'fish_as_food_climate_test.csv'
     const data = ref();
     const families = ref();
@@ -78,12 +79,13 @@
         return scalePercent.value ? 'percent change' : 'change'
     });
 
-
     // Behavior on mounted (functions called here)
     // Load data and then make chart
     onMounted(async () => {
         try {
             await loadDatasets();
+            initialLoad.value = true;
+
             if (data.value.length > 0) {
                 families.value = Array.from(new Set(data.value.map(d => d.family)));
                 // Initialize the expandedFamilies object
@@ -98,6 +100,7 @@
                     marginLeft: 350});
 
                 drawChart(data.value, scalePercent.value);
+                initialLoad.value = false;
             } else {
                 console.error('Error loading data');
             }
@@ -398,10 +401,15 @@
             .transition(getUpdateTransition())
             .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
         
-        // set y position for xAxisBottom
-        xAxisBottom
-            .transition(getUpdateTransition())
-            .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
+        // set y position for xAxisBottom, transitioning it if NOT initial load
+        if (initialLoad.value) {
+            xAxisBottom
+                .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
+        } else {
+            xAxisBottom
+                .transition(getUpdateTransition())
+                .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
+        }
 
         // Set range and domain for y scale
         yScale
