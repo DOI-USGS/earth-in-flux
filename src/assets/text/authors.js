@@ -86,34 +86,6 @@ export default {
       },
     ],
     additionalAuthors: [
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Cee',
-        lastName: 'Nell',
-        fullName: 'Cee Nell',
-        initials: 'CN',
-        profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
-        role: 'team lead',
-        contribution: 'acted in an advisory role, contributed to website development, and reviewed code'
-      }
     ]
   },
   ThreatBumpChart: {
@@ -126,28 +98,9 @@ export default {
         profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
         role: 'team lead',
         contribution: 'led the development of the data visualization'
-      },
+      }
     ],
     additionalAuthors: [
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      }
     ]
   },
   BeaufortSeaSpecies: {
@@ -161,8 +114,6 @@ export default {
         role: 'lead author',
         contribution: 'led the development of the data visualization, created illustrations, and wrote the narrative'
       },
-    ],
-    additionalAuthors: [
       {
         firstName: 'Maggie',
         lastName: 'Jaenicke',
@@ -170,17 +121,10 @@ export default {
         initials: 'MJ',
         profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
         role: 'lead developer',
-        contribution: 'co-led the design and development of the website and created illustrations'
-      },
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
+        contribution: 'created illustrations'
       }
+    ],
+    additionalAuthors: [
     ]
   },
   BeaufortSeaCore: {
@@ -189,13 +133,11 @@ export default {
         firstName: 'Althea',
         lastName: 'Archer',
         fullName: 'Althea A. Archer',
-        initials: 'AAA',
+        initials: 'AA',
         profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer',
         role: 'lead author',
-        contribution: 'led the creation of this page, created illustrations and animations, and wrote the narrative'
+        contribution: 'led the development of the data visualization, created illustrations, and wrote the narrative'
       },
-    ],
-    additionalAuthors: [
       {
         firstName: 'Maggie',
         lastName: 'Jaenicke',
@@ -203,17 +145,10 @@ export default {
         initials: 'MJ',
         profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
         role: 'lead developer',
-        contribution: 'co-led the design and development of the website and created illustrations'
-      },
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
+        contribution: 'created illustrations'
       }
+    ],
+    additionalAuthors: [
     ]
   },
   BeaufortSeaTimeline: {
@@ -227,8 +162,6 @@ export default {
         role: 'lead author',
         contribution: 'led the creation of the interactive chart and co-led the design and development of the website'
       },
-    ],
-    additionalAuthors: [
       {
         firstName: 'Althea',
         lastName: 'Archer',
@@ -238,15 +171,8 @@ export default {
         role: 'lead developer',
         contribution: 'analyzed the data, conceptualized the interactive chart, and wrote the narrative'
       },
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      }
+    ],
+    additionalAuthors: [
     ]
   },
   FishAsFoodCirclePacking: {
@@ -259,19 +185,10 @@ export default {
         profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
         
         role: 'lead developer',
-        contribution: 'built this data visualization, and also co-led the design and development of the website'
+        contribution: 'built this data visualization'
       },
     ],
     additionalAuthors: [
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      }
     ]
   },
 };

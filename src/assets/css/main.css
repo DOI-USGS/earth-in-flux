@@ -29,6 +29,7 @@
   font-family: var(--default-font);
   color: var(--color-title-text);
   text-align: center;
+  font-weight: 300;
 }
 .title-container {
   max-width: 100%;
