@@ -16,6 +16,7 @@
   --light-blue: #D7DCE5;
   --dark-blue: #1D3867;
   --usgs-blue: #00264c;
+  --faded-usgs-blue: #d8dee4;
   --usgs-green: #006F41;
 
   font-size: 62.5%;
@@ -32,7 +33,7 @@
   --color-overlay: var(--black-soft);
   --color-overlay-text: var(--white-soft);
   --color-code-links-background: var(--medium-grey);
-  --color-link: var(--medium-purple);
+  --color-link: var(--medium-blue);
   --color-USGS-header-footer: var(--usgs-blue);
 }
 
