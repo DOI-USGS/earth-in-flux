@@ -654,7 +654,6 @@
         border-radius: 10px;
         white-space: nowrap;
         font-weight: bold;
-        cursor: pointer;
         transition: all 0.1s;
     }
     #cassidulina {
