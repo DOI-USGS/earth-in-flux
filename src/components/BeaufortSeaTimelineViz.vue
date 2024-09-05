@@ -6,9 +6,13 @@
     >
         <!-- HEADING -->
         <template #heading>
+            <h2 v-html="text.heading1" />
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
+            <p class="increase-line-height" v-html="text.paragraph1" />
+            <p class="increase-line-height" v-html="text.paragraph2" />
+            <p class="increase-line-height" v-html="text.paragraph3" />
         </template>
         <template #figures>
             <div id="chart-container" class="maxWidth" ref="chart"></div>
@@ -18,6 +22,8 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
+            <h2 v-html="text.heading2" />
+            <p v-html="text.paragraph4" />
         </template>
     </VizSection>
 </template>
@@ -641,4 +647,44 @@
         fill: var(--color-text);
         user-select: none;
     }
+
+    .increase-line-height {
+        line-height: 28px;
+        @media screen and (max-width: 600px) {
+            line-height: 26px;
+        }
+    }
+    .highlight {
+        font-style:italic;
+        padding: 0.5px 5px;
+        border-radius: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        transition: all 0.1s;
+    }
+    #cassidulina {
+        color: white;
+        background-color: #3c475a; /* contrast ratio 9.37 */
+    }
+    #elphidium {
+        color: white;
+        background-color: #66768F; /* contrast ratio 4.61 */
+    }
+    #paracyprideis {
+        color: black;
+        background-color: #729C9D; /* contrast ratio 6.95 */
+    }
+    #kotorachythere {
+        color: black;
+        background-color: #c49051; /* contrast ratio 7.45 */
+    }
+    #spiroplectimmina {
+        color: black;
+        background-color: #dd605a; /* contrast ratio 5.89 */
+    }
+    #other-species {
+        color: black;
+        background-color: #e7f0e7; /* contrast ratio 5.89 */
+    }
+
 </style>

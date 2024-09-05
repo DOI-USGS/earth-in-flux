@@ -123,7 +123,7 @@ export default {
       {
         firstName: 'Althea',
         lastName: 'Archer',
-        fullName: 'Althea Anne Archer',
+        fullName: 'Althea A. Archer',
         initials: 'AA',
         profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer',
         role: 'lead author',
@@ -147,7 +147,7 @@ export default {
       {
         firstName: 'Althea',
         lastName: 'Archer',
-        fullName: 'Althea Anne Archer',
+        fullName: 'Althea A. Archer',
         initials: 'AA',
         profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer',
         role: 'lead author',
@@ -162,6 +162,30 @@ export default {
         role: 'lead developer',
         contribution: 'created illustrations'
       }
+    ],
+    additionalAuthors: [
+    ]
+  },
+  BeaufortSeaTimeline: {
+    primaryAuthors: [
+      {
+        firstName: 'Hayley',
+        lastName: 'Corson-Dosch',
+        fullName: 'Hayley Corson-Dosch',
+        initials: 'HCD',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        role: 'lead author',
+        contribution: 'led the creation of the interactive chart and co-led the design and development of the website'
+      },
+      {
+        firstName: 'Althea',
+        lastName: 'Archer',
+        fullName: 'Althea A. Archer',
+        initials: 'AAA',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        role: 'lead developer',
+        contribution: 'analyzed the data, conceptualized the interactive chart, and wrote the narrative'
+      },
     ],
     additionalAuthors: [
     ]
