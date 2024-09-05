@@ -1,197 +1,214 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_1.png">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph1" />
-        </template>
-    </VizSection>
+    <div>
         <!---VizSection-->
         <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_2.png">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph2" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <template #heading>
+                <h2 v-html="text.heading" />
+            </template>
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph1" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_1.png">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_2.png">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph3" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_3.gif">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph4" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_4.png">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph5" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_5.gif">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph6" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_6.png">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph7" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_7.gif">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
+            <!---VizSection-->
+            <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph8" />
+            </template>
+            <template #figures>
+                <div class="single maxWidth">
+                    <figure>
+                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_8.png">
+                    </figure>
+                </div>
+            </template>
+            <!-- FIGURE CAPTION -->
+            <template #figureCaption>
+            </template>
+            <!-- EXPLANATION -->
+            <template #belowExplanation>
+            </template>
+        </VizSection>
         <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_3.gif">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph3" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
-        <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_4.png">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph4" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
-        <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_5.gif">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph5" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
-        <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_6.png">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph6" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
-        <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_7.gif">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph7" />
-        </template>
-    </VizSection>
-        <!---VizSection-->
-        <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div class="single maxWidth">
-                <figure>
-                    <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_8.png">
-                </figure>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph8" />
-        </template>
-    </VizSection>
-        
+            :figures="true"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <template #heading>
+                <h2 v-html="text.heading2" />
+            </template>
+            <!-- FIGURES -->
+            <template #aboveExplanation>
+                <p v-html="text.paragraph9" />
+            </template>
+        </VizSection>
+    </div>
 </template>
 
 <script setup>
