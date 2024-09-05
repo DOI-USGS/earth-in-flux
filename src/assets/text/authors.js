@@ -166,6 +166,22 @@ export default {
     additionalAuthors: [
     ]
   },
+  FishAsFoodSankey: {
+    primaryAuthors: [
+      {
+        firstName: 'Hayley',
+        lastName: 'Corson-Dosch',
+        fullName: 'Hayley Corson-Dosch',
+        initials: 'HCD',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        
+        role: 'lead developer',
+        contribution: 'built this data visualization'
+      },
+    ],
+    additionalAuthors: [
+    ]
+  },
   FishAsFoodCirclePacking: {
     primaryAuthors: [
       {
