@@ -190,7 +190,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto 0 auto;
+        margin: 4rem auto 0 auto;
         grid-template-areas:
             "chart";
     }
