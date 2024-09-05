@@ -16,7 +16,21 @@
           {{ projectText.title }} project
         </h2>
       </div>
+      <ChartGrid v-if="!projectPage" :view="currentView"/>
       <!---VizSection-->
+      <VizSection
+          v-if="projectPage"
+          :figures="false"
+          :fig-caption="false"
+      >
+          <!-- HEADING -->
+          <template #heading>
+            <h3>Project motivation</h3>
+          </template>
+          <template #aboveExplanation>
+              <p v-html="projectText.motivation" />
+          </template>
+      </VizSection>
       <VizSection
           v-if="projectPage"
           :figures="true"
@@ -24,38 +38,28 @@
       >
           <!-- HEADING -->
           <template #heading>
-              <!--h2>
-                About the {{ projectText.title }} project
-              </h2-->
+            <h3>Project visualizations</h3>
           </template>
-          <template #aboveExplanation>
-              <h3>Project motivation</h3>
-              <p v-html="projectText.motivation" />
-              <h3 v-if="projectText.teamData">Project team</h3>
+          <template #figures>
+            <ChartGrid :view="currentView"/>
+          </template>
+      </VizSection>
+      <VizSection
+          v-if="projectPage"
+          :figures="true"
+          :fig-caption="false"
+      >
+          <!-- HEADING -->
+          <template #heading>
+            <h3 v-if="projectText.teamData">Project team</h3>
+          </template>
+          <template #aboveExplanation>              
               <p v-if="projectText.teamData && projectText.teamText" v-html="projectText.teamText" />
-              <!-- p>The {{ projectText.title }} project is led by
-                <span
-                  v-for="(author, index) in projectText.teamData" 
-                  :key="index"
-                >
-                  <a
-                    :href="author.link"
-                    target="_blank"
-                    v-text="author.name"
-                  />
-                  <span v-if="index != Object.keys(projectText.teamData).length - 1 && Object.keys(projectText.teamData).length > 2">, </span>
-                  <span v-if="index == Object.keys(projectText.teamData).length - 2"> and </span>
-                </span>.
-              </p-->
           </template>
           <template #figures>
             <AboutTheTeam v-if="projectText.teamData" :key="projectRoute" :data="projectText.teamData"/>
           </template>
-          <template #belowExplanation>
-            <h3>Project visualizations</h3>
-          </template>
       </VizSection>
-      <ChartGrid :view="currentView"/>
       <ReferencesSection v-if="projectReferences" title="Project resources" titleLevel="3" :references="projectReferences"/>
     </div>
     <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
