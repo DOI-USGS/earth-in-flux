@@ -6,9 +6,10 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <h2>
-        Authors
-      </h2>
+      <hr>
+      <h1 v-if="titleLevel === '1'" v-html="title" />
+      <h2 v-if="titleLevel === '2'" v-html="title" />
+      <h3 v-if="titleLevel === '3'" v-html="title" />
     </template>
     <template #aboveExplanation>
       <div
@@ -17,8 +18,9 @@
         class="text-content"
       >
         <p>
+          This visualization was developed by the <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>USGS Vizlab</a>
           <span id="primary-author-statment">
-            The development of this visualization was led by 
+            and led by 
             <span
               v-for="(author, index) in primaryAuthors" 
               :id="`initial-${author.initials}`"
@@ -58,7 +60,7 @@
               <span v-if="index == Object.keys(additionalAuthors).length - 2"> and </span>
             </span>
             <span>
-              also contributed to the site.
+              also contributed.
             </span>
           </span>
           <span
@@ -101,6 +103,12 @@
 
   // define props
   const props = defineProps({
+    title: {
+      type: String,
+    },
+    titleLevel: {
+      type: String,
+    },
     authors:{
       type: Object,
     },
@@ -113,7 +121,7 @@
   // If showAuthors is true, turn on or off attribution for additional authors
   const showAdditionalAuthors = ref(null);
   // If showAuthors is true, turn on or off contribution statements for ALL authors
-  const showContributionStatements = ref(true);
+  const showContributionStatements = ref(false);
   // If showAuthors is true and if showContributionStatements is true, turn on or off contribution statements for ADDITIONAL authors
   const showAdditionalContributionStatement = ref(null);
 
@@ -126,4 +134,8 @@
 </script>
 
 <style>
+  #authors {
+    font-style: italic;
+    font-weight: 300;
+  }
 </style>
