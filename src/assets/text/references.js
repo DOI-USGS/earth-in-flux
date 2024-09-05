@@ -126,21 +126,6 @@ export default {
       doi: "https://doi.org/10.1007/s41063-018-0058-7"
     }
   ],
-  FishAsFoodCirclePacking: [
-    {
-      reference: "Reference 1.",
-      num: "1",
-      authors: "Bostock, M.",
-      year: "2023",
-      title: "Zoomable circle packing",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: false,
-      link: "https://observablehq.com/@d3/zoomable-circle-packing",
-      doi: null
-    },
-  ],
   fishasfood: [
     {
       reference: "Reference 1.",
