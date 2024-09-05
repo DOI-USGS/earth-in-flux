@@ -52,6 +52,7 @@
         buildChart(data);
     });
 
+    // https://observablehq.com/@d3/zoomable-circle-packing
     function buildChart(data) {
 
         // Specify the chart’s dimensions.
