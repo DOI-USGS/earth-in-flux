@@ -30,7 +30,7 @@ export default {
             img_src: 'aerosols_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Wildfires particles are deposited on glaciers.'
+            description: 'Wildfire particles are deposited on glaciers.'
         },
         {
             title: 'Global economic value of recreationally fished species',
