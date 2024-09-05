@@ -25,7 +25,7 @@
       >
           <!-- HEADING -->
           <template #heading>
-            <h3>Project motivation</h3>
+            <h3>About the {{ projectText.title }} research</h3>
           </template>
           <template #aboveExplanation>
               <p v-html="projectText.motivation" />
@@ -38,7 +38,7 @@
       >
           <!-- HEADING -->
           <template #heading>
-            <h3>Project visualizations</h3>
+            <h3>{{ projectText.title }} visualizations</h3>
           </template>
           <template #figures>
             <ChartGrid :view="currentView"/>
@@ -51,7 +51,7 @@
       >
           <!-- HEADING -->
           <template #heading>
-            <h3 v-if="projectText.teamData">Project team</h3>
+            <h3 v-if="projectText.teamData">Meet the team</h3>
           </template>
           <template #aboveExplanation>              
               <p v-if="projectText.teamData && projectText.teamText" v-html="projectText.teamText" />
