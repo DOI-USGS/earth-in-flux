@@ -13,8 +13,8 @@
                 <p>This visualization is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
             </div>
             <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
-            <ReferencesSection v-if="vizReferences" title="References" titleLevel="2" :references="vizReferences"/>
-            <AuthorshipSection v-if="vizAuthors" :authors="vizAuthors"/>
+            <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
+            <AuthorshipSection v-if="vizAuthors" title="Authorship" titleLevel="3" :authors="vizAuthors"/>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>

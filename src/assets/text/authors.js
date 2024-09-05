@@ -86,34 +86,6 @@ export default {
       },
     ],
     additionalAuthors: [
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Cee',
-        lastName: 'Nell',
-        fullName: 'Cee Nell',
-        initials: 'CN',
-        profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
-        role: 'team lead',
-        contribution: 'acted in an advisory role, contributed to website development, and reviewed code'
-      }
     ]
   },
   ThreatBumpChart: {
@@ -126,7 +98,7 @@ export default {
         profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell',
         role: 'team lead',
         contribution: 'led the development of the data visualization'
-      },
+      }
     ],
     additionalAuthors: [
       {
@@ -135,18 +107,8 @@ export default {
         fullName: 'Hayley Corson-Dosch',
         initials: 'HCD',
         profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        
         role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      },
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
+        contribution: 'contributed to the data visualization'
       }
     ]
   },
@@ -161,8 +123,6 @@ export default {
         role: 'lead author',
         contribution: 'led the development of the data visualization, created illustrations, and wrote the narrative'
       },
-    ],
-    additionalAuthors: [
       {
         firstName: 'Maggie',
         lastName: 'Jaenicke',
@@ -170,17 +130,34 @@ export default {
         initials: 'MJ',
         profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
         role: 'lead developer',
-        contribution: 'co-led the design and development of the website and created illustrations'
+        contribution: 'created illustrations'
+      }
+    ],
+    additionalAuthors: [
+    ]
+  },
+  BeaufortSeaCore: {
+    primaryAuthors: [
+      {
+        firstName: 'Althea',
+        lastName: 'Archer',
+        fullName: 'Althea Anne Archer',
+        initials: 'AA',
+        profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer',
+        role: 'lead author',
+        contribution: 'led the development of the data visualization, created illustrations, and wrote the narrative'
       },
       {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        firstName: 'Maggie',
+        lastName: 'Jaenicke',
+        fullName: 'Maggie Jaenicke',
+        initials: 'MJ',
+        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
         role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
+        contribution: 'created illustrations'
       }
+    ],
+    additionalAuthors: [
     ]
   },
   FishAsFoodCirclePacking: {
@@ -193,19 +170,10 @@ export default {
         profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
         
         role: 'lead developer',
-        contribution: 'built this data visualization, and also co-led the design and development of the website'
+        contribution: 'built this data visualization'
       },
     ],
     additionalAuthors: [
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      }
     ]
   },
 };
