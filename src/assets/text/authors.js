@@ -88,6 +88,21 @@ export default {
     additionalAuthors: [
     ]
   },
+  Aerosols: {
+    primaryAuthors: [
+      {
+        firstName: 'Jeffrey',
+        lastName: 'Kwang',
+        fullName: 'Jeffrey Kwang',
+        initials: 'JK',
+        profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang',
+        role: 'contributor',
+        contribution: 'led the development of the data visualization'
+      },
+    ],
+    additionalAuthors: [
+    ]
+  },
   ThreatBumpChart: {
     primaryAuthors: [
       {

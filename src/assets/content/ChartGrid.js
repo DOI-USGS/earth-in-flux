@@ -18,7 +18,8 @@ export default {
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
-            alt: '',chartOrder: 1,
+            alt: '',
+            chartOrder: 1,
             description: 'Ice cores can record changes in wildfire prevalence.'
         },          
         {
@@ -28,6 +29,7 @@ export default {
             vizRoute: 'aerosol-paths',
             img_src: 'aerosols_thumbnail.png',
             alt: '',
+            chartOrder: 2,
             description: 'Wildfires particles are deposited on glaciers.'
         },
         {
