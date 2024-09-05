@@ -6,6 +6,7 @@
   >
     <!-- HEADING -->
     <template #heading>
+      <hr>
       <h1 v-if="titleLevel === '1'" v-html="title" />
       <h2 v-if="titleLevel === '2'" v-html="title" />
       <h3 v-if="titleLevel === '3'" v-html="title" />
@@ -17,8 +18,9 @@
         class="text-content"
       >
         <p>
+          This visualization was developed by the <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>USGS Vizlab</a>
           <span id="primary-author-statment">
-            The development of this visualization was led by 
+            and led by 
             <span
               v-for="(author, index) in primaryAuthors" 
               :id="`initial-${author.initials}`"
@@ -132,4 +134,8 @@
 </script>
 
 <style>
+  #authors {
+    font-style: italic;
+    font-weight: 300;
+  }
 </style>

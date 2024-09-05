@@ -101,15 +101,6 @@ export default {
       }
     ],
     additionalAuthors: [
-      {
-        firstName: 'Hayley',
-        lastName: 'Corson-Dosch',
-        fullName: 'Hayley Corson-Dosch',
-        initials: 'HCD',
-        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
-        role: 'lead developer',
-        contribution: 'contributed to the data visualization'
-      }
     ]
   },
   BeaufortSeaSpecies: {
