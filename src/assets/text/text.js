@@ -1,16 +1,20 @@
 export default {
-    pageTitle: "Earth is changing...",
-    pageSubTitle: "USGS scientists research climate change on the ground",
-    collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources', target='_blank'>Water Resources Mission Area</a>, <a href='https://www.usgs.gov/mission-areas/ecosystems', target='_blank'>Ecosystems Mission Area</a>, and <a href='https://www.usgs.gov/programs/climate-adaptation-science-centers', target='_blank'>Climate Adaptation Science Centers</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
-    vizlab: {
-        teamText: "The USGS Vizlab...View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
+    landingPage: {
+        pageTitle: "Earth is changing...",
+        pageSubTitle: "USGS scientists research climate change on the ground",
+        collaborationHeading: "The climate chart gallery project",
+        collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources', target='_blank'>Water Resources Mission Area</a>, <a href='https://www.usgs.gov/mission-areas/ecosystems', target='_blank'>Ecosystems Mission Area</a>, and <a href='https://www.usgs.gov/programs/climate-adaptation-science-centers', target='_blank'>Climate Adaptation Science Centers</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
+        teamHeading: "The USGS Vizlab team",
+        teamText: "The USGS Vizlab is a data visualization team within the USGS <a href='https://www.usgs.gov/mission-areas/water-resources', target='_blank'>Water Resources Mission Area</a>. View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
         teamData: [
             { name: "Hayley Corson-Dosch", link: "https://www.usgs.gov/staff-profiles/hayley-corson-dosch", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/HCorson-Dosch.png" },
             { name: "Maggie Jaenicke", link: "https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/MaggieJaenicke.png" },
             { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/cee%20nell%20resized.png?h=53fbb397&itok=I7tqKZDm" },
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/J_Kwang_staffprofilephoto.jpg?h=d834b369&itok=MInrdIz2" }
-        ]
+        ],
+        projectsHeading: "USGS climate projects",
+        projectsLeadIn: "The USGS climate projects currently highlighted in this page are the"
     },
     projects: {
         // keys must match project routes (with '-' replaced with '')
