@@ -26,6 +26,11 @@ p1 <- list(
       return(out_file)
     },
     format = 'file'
+  ),
+  tar_target(
+    p2_metadata_xlsx,
+    file.path('in', 'recfishfoods_families_thermal.xlsx'),
+    format = 'file'
   )
 )
 
@@ -40,6 +45,15 @@ p2 <- list(
       data = p2_data, 
       focal_columns = c('name' = 'admin', 'value' = 'total_value_species'), 
       out_file = '../public/total_price.json'
+    ),
+    format = 'file'
+  ),
+  tar_target(
+    p2_climate_csv,
+    build_climate_csv(
+      data = p2_data,
+      metadata_file = p2_metadata_xlsx,
+      out_file = '../public/fish_as_food_climate.csv'
     ),
     format = 'file'
   )

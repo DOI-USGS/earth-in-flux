@@ -11,7 +11,17 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Inland fisheries are threatened.'
-        },          
+        },     
+        {
+            title: 'Climate vulnerability of recreationally fished inland fish species',
+            project: 'Fish as Food',
+            vizKey: 'FishAsFoodLinkChart',
+            vizRoute: 'inland-rec-fish-climate',
+            img_src: 'FishAsFoodLinkChart_thumbnail.png',
+            chartOrder: 1,
+            alt: '',
+            description: 'Inland fish that are recreationally fished are vulnerable'
+        },
         {
             title: 'Glacier/Topography 3D Cross-Section Scan',
             project: 'Fire in Ice',
@@ -39,7 +49,7 @@ export default {
             vizRoute: 'inland-rec-fish-value',
             img_src: 'circle-pack-thumbnail.png',
             alt: '',
-            chartOrder: 1,
+            chartOrder: 2,
             description: 'Inland recreational fishing contributes economic value.'
         },
         {

@@ -103,6 +103,12 @@ export default {
         FishAsFoodCirclePacking: {
             paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
             paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
+        },
+        FishAsFoodLinkChart: {
+            paragraph1: 'Climate vulnerability index. Climate vulnerability varies by family and species. <span class="warm-text"><b>warm</b></span>, <span class="cool-text"><b>cool</b></span>, or <span class="cold-text"><b>cold</b></span> thermal guilds.',
+            explainerPart1: 'Showing the ',
+            explainerPart2: 'from 2030 to 2075 in harvest-weighted climate vulnerability under representative concentration pathway 4.5.',
+            prompt1: 'Click on the chart to show or hide data for <i>species</i> within each <b>family</b>'
         }
     }
 }

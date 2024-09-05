@@ -52,6 +52,7 @@ examples/pydrograph/
 *.html
 beaufortSea/images/*
 !*/images/in/*
+!fishAsFood/in/recfishfoods_families_thermal.xlsx
 # allow empty files to be committed
 !*/in/.empty
 !*/out/.empty

@@ -191,6 +191,32 @@ export default {
       journal_issue: "23, 6",
       data_release: false,
       doi: "https://doi.org/10.1111/faf.12688"
+    },
+    {
+      reference: "Reference 6.",
+      num: "6",
+      authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
+      year: "2021",
+      title: "Data for: Nyboer et al. 2021 Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
+      link: "https://osf.io/keajr/",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: false,
+      doi: "https://doi.org/10.17605/osf.io/keajr"
+    },
+    {
+      reference: "Reference 7.",
+      num: "7",
+      authors: "Nyboer, E.A.,  Lin, H., Bennett, J.R., Gabriel, J, Twardek, W., Chhor, A.D., Daly, L., Dolson, S., Guitard, E., Holder, P., Mozzon, C.M., Trahan, A., Zimmermann, D., Kesner-Reyes, K., Garilao, C., Kaschner, K., & Cooke, S.J.",
+      year: "2021",
+      title: "Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
+      link: "https://onlinelibrary.wiley.com/doi/10.1111/gcb.15768?af=R",
+      journal: true,
+      journal_name: "Global Change Biology",
+      journal_issue: "527, 19",
+      data_release: false,
+      doi: "https://doi.org/10.1111/gcb.15768"
     }
   ],
   findex: [
