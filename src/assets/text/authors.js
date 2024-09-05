@@ -177,19 +177,10 @@ export default {
         profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
         
         role: 'lead developer',
-        contribution: 'built this data visualization, and also co-led the design and development of the website'
+        contribution: 'built this data visualization'
       },
     ],
     additionalAuthors: [
-      {
-        firstName: 'Maggie',
-        lastName: 'Jaenicke',
-        fullName: 'Maggie Jaenicke',
-        initials: 'MJ',
-        profile_link: 'https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke',
-        role: 'lead developer',
-        contribution: 'co-led the design and development of the website'
-      }
     ]
   },
 };
