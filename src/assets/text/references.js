@@ -57,7 +57,7 @@ export default {
       doi: "https://doi.org/10.1029/2006WR005653"
     },
   ],
-  GlacierScan: [
+  fireinice: [
     {
       reference: "Reference 1.",
       num: "1",
@@ -72,22 +72,7 @@ export default {
       doi: "https://doi.org/10.5066/P9DNAN1M"
     },
   ],
-  Aerosols: [
-    {
-      reference: "Reference 1.",
-      num: "1",
-      authors: "Jasmann, J.R., Kehrwald, N.M., Dunham, M.E., Ferris, D.G., Osterburg, E.C., Kennedy, J., & Barber, L.B.",
-      year: "2020",
-      title: "Using wildland fire tracer molecules to investigate fire frequency and vegetative combustion sources archived in the Juneau Icefield of Alaska",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: true,
-      link: "https://www.sciencebase.gov/catalog/item/5e472c3ee4b0ff554f6837bc",
-      doi: "https://doi.org/10.5066/P9DNAN1M"
-    },
-  ],
-  BeaufortSeaSpecies:[
+  beaufortsea:[
     {
       reference: "Reference 1.",
       num: "1",
@@ -140,47 +125,6 @@ export default {
       data_release: false,
       doi: "https://doi.org/10.1007/s41063-018-0058-7"
     }
-  ],
-  FishAsFoodCirclePacking: [
-    {
-      reference: "Reference 1.",
-      num: "1",
-      authors: "Bostock, M.",
-      year: "2023",
-      title: "Zoomable circle packing",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: false,
-      link: "https://observablehq.com/@d3/zoomable-circle-packing",
-      doi: null
-    },
-    {
-      reference: "Reference 2.",
-      num: "2",
-      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., & Golden, C.D.",
-      year: "2023",
-      title: "Global dataset of nutritional value, economic value, and climate vulnerability for species-specific recreational fisheries harvest for consumption",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: true,
-      link: "https://www.sciencebase.gov/catalog/item/644ae0e0d34e45f6ddccf773",
-      doi: "https://doi.org/10.5066/P9WO91SZ"
-    },
-    {
-      reference: "Reference 3.",
-      num: "3",
-      authors: "Lynch, A.J., Embke, H.S., Nyboer, E.A., Wood, L.E., Thorpe, A., Phang, S.C., Viana, D.F., Golden, C.D., Milardi, M., Arlinghaus, R., Baigun, C., Beard, T.D., Cooke, S.J., Cowx, I.G., Koehn, J.D., Lyach, R., Potts, W., Robertson, A.M., Schmidhuber, J., & Weyl, O.L.F.",
-      year: "2024",
-      title: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
-      link: "https://www.nature.com/articles/s43016-024-00961-8",
-      journal: true,
-      journal_name: "Nature Food",
-      journal_issue: "5",
-      data_release: false,
-      doi: "https://doi.org/10.1038/s43016-024-00961-8"
-    },
   ],
   fishasfood: [
     {
