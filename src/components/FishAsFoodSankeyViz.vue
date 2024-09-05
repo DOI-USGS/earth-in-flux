@@ -221,16 +221,8 @@
 
 </script>
 
-<style lang="scss">
-/* css for elements added/classed w/ d3 */
-    #circle-pack-svg {
-        max-width: 100%;
-        height: auto;
-    }
-    .circle-packing-text {
-        font-size: 1.2rem;
-        @media screen and (max-width: 600px) {
-            font-size: 2rem;
-        }
+<style scoped lang="scss">
+    .chart-container {
+        margin-top: 4rem;
     }
 </style>
