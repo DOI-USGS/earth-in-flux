@@ -13,15 +13,25 @@ export default {
             description: 'Inland fisheries are threatened.'
         },          
         {
-            title: 'Glacier/Topography D3 Cross-Section Scan',
+            title: 'Glacier/Topography 3D Cross-Section Scan',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Researchers are studying glacial ice.'
-        },       
+            description: 'Ice cores can record changes in wildfire prevalence.'
+        },          
+        {
+            title: 'Wildfire Aerosols',
+            project: 'Fire in Ice',
+            vizKey: 'Aerosols',
+            vizRoute: 'aerosol-paths',
+            img_src: 'aerosols_thumbnail.png',
+            alt: '',
+            chartOrder: 2,
+            description: 'Wildfire particles are deposited on glaciers.'
+        },
         {
             title: 'Global economic value of recreationally fished species',
             project: 'Fish as Food',
