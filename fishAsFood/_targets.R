@@ -56,6 +56,14 @@ p2 <- list(
       out_file = '../public/fish_as_food_climate.csv'
     ),
     format = 'file'
+  ),
+  tar_target(
+    p2_harvest_csv,
+    build_harvest_csv(
+      data = p2_data,
+      out_file = '../public/fish_as_food_harvest.csv'
+    ),
+    format = 'file'
   )
 )
 
