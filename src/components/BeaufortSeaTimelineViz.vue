@@ -10,9 +10,9 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-            <p v-html="text.paragraph2" />
-            <p v-html="text.paragraph3" />
+            <p class="increase-line-height" v-html="text.paragraph1" />
+            <p class="increase-line-height" v-html="text.paragraph2" />
+            <p class="increase-line-height" v-html="text.paragraph3" />
         </template>
         <template #figures>
             <div id="chart-container" class="maxWidth" ref="chart"></div>
@@ -648,6 +648,12 @@
         user-select: none;
     }
 
+    .increase-line-height {
+        line-height: 28px;
+        @media screen and (max-width: 600px) {
+            line-height: 26px;
+        }
+    }
     .highlight {
         font-style:italic;
         padding: 0.5px 5px;
