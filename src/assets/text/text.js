@@ -64,7 +64,7 @@ export default {
         },
         Aerosols: {
             heading: "Aerosols",
-            paragraph1: "Wildfire aerosols can travel far to deposit on to glaciers.",
+            paragraph1: "Wildfire aerosols can travel far and be deposited on glaciers.",
         },
         ThreatBumpChart: {
             heading: "Inland fisheries are threatened."
