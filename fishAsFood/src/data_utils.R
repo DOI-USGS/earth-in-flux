@@ -95,13 +95,21 @@ build_climate_csv <- function(data, metadata_file, out_file) {
   return(out_file)
 }
 
-build_harvest_csv <- function(data, out_file) {
+build_harvest_csv <- function(data, out_file, n_top_families) {
   data_subset <- data |>
     filter(!is.na(species_common)) |>
     filter(uncertainty_classification < 4)
   
+  # Determine harvest by family and order most to least
+  family_summary <- data_subset |> 
+    group_by(family) |>
+    summarise(value = sum(total_biomass_harv_kg, na.rm = TRUE)) |>
+    arrange(desc(value))
   
-  focal_families <- c('Cyprinidae', 'Salmonidae', 'Percidae', 'Siluridae')
+  # select subset of highest harvest families
+  focal_families <- family_summary |>
+    head(n_top_families) |>
+    pull(family)
   
   # filter to subset of families
   data_subset <- data_subset |>

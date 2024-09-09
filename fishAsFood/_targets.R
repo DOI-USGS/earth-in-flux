@@ -61,6 +61,7 @@ p2 <- list(
     p2_harvest_csv,
     build_harvest_csv(
       data = p2_data,
+      n_top_families = 5,
       out_file = '../public/fish_as_food_harvest.csv'
     ),
     format = 'file'
