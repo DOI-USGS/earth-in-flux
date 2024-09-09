@@ -121,7 +121,7 @@ export default {
             prompt1: 'Click on the chart to show or hide data for <i>species</i> within each <b>family</b>'
         },
         FishAsFoodSankey: {
-            paragraph1: 'Explore total inland recreational harvest for four families of inland fish: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Siluridae</span> (catfishes), <span class="scientificName">Percidae</span> (perch), and <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish). Recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
+            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
         }
     }
 }
