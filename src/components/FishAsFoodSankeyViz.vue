@@ -51,9 +51,9 @@
         SankeyChart({
             links: data
         }, {
-            nodeGroup: d => d.id.split(/\W/)[0], // take first word for color
-            nodeAlign, // e.g., d3.sankeyJustify; set by input above
-            linkColor, // e.g., "source" or "target"; set by input above
+            nodeGroup: d => d.id,
+            nodeAlign, // e.g., d3.sankeyJustify
+            linkColor, // e.g., "source" or "target"
             format: (f => d => `${f(d)} kg`)(d3.format(",.0~f")),
             width: 800,
             height: 1000
