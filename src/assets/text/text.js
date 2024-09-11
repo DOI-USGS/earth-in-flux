@@ -32,7 +32,10 @@ export default {
             motivation: "The Fire in Ice project...",
             teamText: null,
             teamData: [
-                { name: "Natalie Kehrwald", link: "https://www.usgs.gov/staff-profiles/natalie-m-kehrwald", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/NatalieKehrwald_cropped.jpg?itok=oLP9Dl1H" }
+                { name: "Natalie Kehrwald", link: "https://www.usgs.gov/staff-profiles/natalie-m-kehrwald", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/NatalieKehrwald_cropped.jpg?itok=oLP9Dl1H" },
+                { name: "Jeramy R. Jasmann", link: "https://www.usgs.gov/staff-profiles/jeramy-r-jasmann", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/Jasmann_Jeramy_USGS.JPG?itok=ADC3fg6X" },
+                { name: "Michelle Leung", link: "https://www.usgs.gov/staff-profiles/michelle-leung", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/MichelleLeung.JPG?h=bcaad0e8&itok=LXDUuI9W" },
+                { name: "Morgan Schachterle", link: "https://www.linkedin.com/in/morgan-schachterle-72207618b/", image: "https://media.licdn.com/dms/image/v2/C4D03AQF4vItIY2M0Vg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1568420945959?e=2147483647&v=beta&t=FZU6bDkG_3OfehOYTFEk5_kBMOQbAg1jebXUC5viwDw" }
             ]
         },
         fishasfood: {
