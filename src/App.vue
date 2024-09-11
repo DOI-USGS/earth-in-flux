@@ -4,7 +4,7 @@
     <HeaderUSWDSBanner v-if="typeOfEnv !== '-test build-'" />
     <HeaderUSGS />
     <NavBar />
-    <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
+    <WorkInProgressWarning v-if="typeOfEnv !== ''" />
     <RouterView />
     <FooterUSGS />
   </div>
