@@ -71,6 +71,19 @@ export default {
       link: "https://www.sciencebase.gov/catalog/item/5e472c3ee4b0ff554f6837bc",
       doi: "https://doi.org/10.5066/P9DNAN1M"
     },
+    {
+      reference: "Reference 2.",
+      num: "2",
+      authors: "Nagorski, S.A., Kaspari, S.D., Hood, E., Fellman, J.B., & Skiles, S.M.",
+      year: "2019",
+      title: "Radiative forcing by dust and black carbon on the Juneau Icefield, Alaska",
+      journal: true,
+      journal_name: "Journal of Geophysical Research: Atmospheres",
+      journal_issue: "124 (7)",
+      data_release: false,
+      link: "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018JD029411",
+      doi: "https://doi.org/10.1029/2018JD029411"
+    },
   ],
   beaufortsea:[
     {
