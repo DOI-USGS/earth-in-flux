@@ -3,12 +3,11 @@
         <div class="topnav">
             <RouterLink :to="{ path: '/' }">Home</RouterLink>
             <div class="dropdown">
-            <a href="javascript:void(0)" class="dropdown">Projects</a>
-            <div class="dropdown-content">
-                <RouterLink v-for="projectKey in projectKeys" :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }} </RouterLink>
+                <a href="javascript:void(0)" class="dropdown">Projects</a>
+                <div class="dropdown-content">
+                    <RouterLink v-for="projectKey in projectKeys" :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }} </RouterLink>
+                </div>
             </div>
-        </div>
-            <RouterLink :to="{ path: '/about' }">About</RouterLink>
         </div>
     </header>
 </template>

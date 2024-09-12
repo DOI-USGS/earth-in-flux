@@ -1,6 +1,6 @@
 <template>
     <div id="chartGrid" class="padded">
-        <ChartCard @click.enter="showSubPage(item.project, item.vizRoute)" v-for="(item, index) in randomizedChartContent" :key="index"
+        <ChartCard @click.enter="showSubPage(item.project, item.vizRoute)" v-for="(item, index) in sortedChartContent" :key="index"
             :id="item.vizRoute"
             :src="getThumb(item.img_src)"
             :alt="item.alt"
@@ -31,12 +31,12 @@
 
     // set up filtered chart data as computed property
     const filteredChartContent = computed(() => {
-        return props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view)
+        return props.view == 'all' ? chartContent : chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.view).sort((a,b) => (a.chartOrder > b.chartOrder) ? 1 : ((b.chartOrder > a.chartOrder) ? -1 : 0))
     });    
-
-    // computed property for randomized chart content
-    const randomizedChartContent = computed(() => {
-        return shuffle([...filteredChartContent.value]); // clone array to avoid mutating original
+    
+    // computed property for randomized chart content - only randomized on landing view
+    const sortedChartContent = computed(() => {
+        return props.view == 'all' ? shuffle([...filteredChartContent.value]) : filteredChartContent.value; // clone array to avoid mutating original
     });
 
     // Declare behavior on mounted

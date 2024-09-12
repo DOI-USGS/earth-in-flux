@@ -9,17 +9,39 @@ export default {
             vizRoute: 'inland-fish-threats',
             img_src: 'ThreatBumpChart_thumbnail.png',
             alt: '',
-            description: '... and inland fisheries are threatened.'
-        },          
+            chartOrder: 1,
+            description: 'Inland fisheries are threatened.'
+        },     
         {
-            title: 'Glacier/Topography D3 Cross-Section Scan',
+            title: 'Climate vulnerability of recreationally fished inland fish species',
+            project: 'Fish as Food',
+            vizKey: 'FishAsFoodLinkChart',
+            vizRoute: 'inland-rec-fish-climate',
+            img_src: 'FishAsFoodLinkChart_thumbnail.png',
+            chartOrder: 1,
+            alt: '',
+            description: 'Inland fish that are recreationally fished are vulnerable'
+        },
+        {
+            title: 'Glacier/Topography 3D Cross-Section Scan',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_xray_thumbnail.png',
             alt: '',
-            description: '...and researchers are studying glacial ice.'
-        },       
+            chartOrder: 1,
+            description: 'Ice cores can record changes in wildfire prevalence.'
+        },          
+        {
+            title: 'Wildfire Aerosols',
+            project: 'Fire in Ice',
+            vizKey: 'Aerosols',
+            vizRoute: 'aerosol-paths',
+            img_src: 'aerosols_thumbnail.png',
+            alt: '',
+            chartOrder: 2,
+            description: 'Wildfire particles are deposited on glaciers.'
+        },
         {
             title: 'Global economic value of recreationally fished species',
             project: 'Fish as Food',
@@ -27,7 +49,8 @@ export default {
             vizRoute: 'inland-rec-fish-value',
             img_src: 'circle-pack-thumbnail.png',
             alt: '',
-            description: '...and inland recreational fishing contributes economic value.'
+            chartOrder: 2,
+            description: 'Inland recreational fishing contributes economic value.'
         },
         {
             title: 'Beaufort Sea Sediment Coring',
@@ -36,7 +59,8 @@ export default {
             vizRoute: 'beaufort-sea-ice-coring',
             img_src: 'BeaufortSeaCore_thumbnail.PNG',
             alt: '',
-            description: '...and sediment cores can help build past and present climates.'
+            chartOrder: 1,
+            description: 'Sediment cores can help build past and present climates.'
         },  
         {
             title: 'Beaufort Sea Species',
@@ -45,7 +69,8 @@ export default {
             vizRoute: 'beaufort-sea-species',
             img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
-            description: '...and microfossils can be used to indicate these changes.'
+            chartOrder: 2,
+            description: 'Microfossils can be used to indicate these changes.'
         },   
         {
             title: 'Beaufort Sea Timeline',
@@ -54,7 +79,8 @@ export default {
             vizRoute: 'beaufort-sea-timeline',
             img_src: 'BeaufortSeaTimeline_thumbnail.PNG',
             alt: '',
-            description: '...and communities of microorganisms on the sea floor are affected.'
+            chartOrder: 3,
+            description: 'Communities of microorganisms on the sea floor are affected.'
         }   
     ]
 };

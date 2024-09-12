@@ -29,6 +29,7 @@
   font-family: var(--default-font);
   color: var(--color-title-text);
   text-align: center;
+  font-weight: 300;
 }
 .title-container {
   max-width: 100%;
@@ -61,6 +62,7 @@ a {
 .scientificName{
   font-style:italic;
 }
+
 
 @media only screen and (max-width: 900px) {
   .title-container {
