@@ -21,6 +21,14 @@ The master file controlling viz content is `'src/assets/content/ChartGrid.js'`. 
 
 ### Data Pipelines
 Any preparatory pipeline code should be placed in subdirectories in the main repo, e.g., the snakemake pipeline for the GlacierScan viz would go in a folder in the root directory named 'GlacierScan'. Please include a README.md in that subdirectory with instructions on how to run your code. Whatever your code generates (data, images, svgs), should be uploaded to s3 in your pipeline instead of committed to the repo. Hayley can help with that step as needed.
+
+## Before release
+* [ ] Update README.md for project. Be sure that it is presentable to the public - minimally include project overview and build instructions.
+* [ ] Consult the [Vizlab website release checklist](https://doimspp.sharepoint.com/:w:/r/sites/IIDDStaff/_layouts/15/Doc2.aspx?action=edit&sourcedoc=%7B3c0899c4-cc87-4c82-a7e2-3f8e78439083%7D&wdOrigin=TEAMS-MAGLEV.teamsSdk_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1714053079214&web=1) for more development guidelines related to compliance, performance testing, analytics, and public release. Key steps that relate to template content include:
+    * [ ] To work with the template set up in `'index.html'`, the meta card image for the site must be saved as a `.webp` image to the _prod_ `S3` bucket in the following location: `visualizations/images/%VITE_APP_TITLE%_metacard.webp`, e.g., `visualizations/images/vue3-template_metacard.webp`.
+    * [ ] Once known, be sure to add the release date to `'index.html'` - the `datePublished` attribute in the metadata.
+    * [ ] Before migration to DGEC, update `'code.json'` to have `"status": "Production"` and to specify the `"version"` (e.g.,`1.0.0`) and `"metadataLastUpdated"` date.
+    * [ ] After migration to DGEC, update the `version` attribute in `'package.json'` to match the release version on _GitHub_. Re-run `npm install`, which will regenerate `'package-lock.json'`. Push the changed `'package.json'` and `'package-lock.json'` to the repo on _GitLab_ and open a MR. The changes will be mirrored to the repo on GitHub.
  
 ## General notes for development when using this template
 1. This website template uses Vue 3 and the `<script setup>` composition API syntax to build components, which requires less boilerplate. See the [`<script setup>` guide](https://vuejs.org/api/sfc-script-setup.html). Any top-level defined variables or imported components are directly available for use in the `<template>`. Components now no longer need to be explicitly named, and can be imported directly by name using the filename, e.g. `import HeaderUSWDSBanner from "@/components/HeaderUSWDSBanner.vue"`.
