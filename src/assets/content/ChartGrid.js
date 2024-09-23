@@ -18,7 +18,7 @@ export default {
             vizKey: 'FishAsFoodLinkChart',
             vizRoute: 'inland-rec-fish-climate',
             img_src: 'FishAsFoodLinkChart_thumbnail.png',
-            chartOrder: 1,
+            chartOrder: 3,
             alt: '',
             description: 'Inland fish that are recreationally fished are vulnerable'
         },
@@ -51,6 +51,16 @@ export default {
             alt: '',
             chartOrder: 2,
             description: 'Inland recreational fishing contributes economic value.'
+        },
+        {
+            title: 'Global harvest of recreationally fished species',
+            project: 'Fish as Food',
+            vizKey: 'FishAsFoodSankey',
+            vizRoute: 'inland-rec-fish-harvest',
+            img_src: 'FishAsFoodSankey_thumbnail.png',
+            alt: '',
+            chartOrder: 1,
+            description: 'Inland recreational fishing harvest is substantial.'
         },
         {
             title: 'Beaufort Sea Sediment Coring',
