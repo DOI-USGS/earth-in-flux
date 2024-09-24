@@ -73,7 +73,9 @@ export default {
             heading: "Inland fisheries are threatened."
         },
         BeaufortSeaCore: {
-            heading: "How do USGS scientists collect ocean sediment core records?",
+            heading1: "Why collect ocean sediment cores?",
+            intro: "USGS scientists use sediment cores collected from the ocean floor to reconstruct past environmental conditions. This knowledge helps us to understand processes that influence natural climate change and lead to particular Earth system states. This allows more reliable predictions for future scenarios. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",
+            heading2: "How do USGS scientists collect ocean sediment core records?",
             paragraph1: "USGS scientists traveled from USGS Headquarters in Reston, Virginia to Utqiagvik, Alaska. The goal was to collect samples of 'proxies' from ocean sediment cores. Proxies provide indirect but measurable responses to ocean/climate-related conditions at the time they were living or otherwise deposited. Proxies can include biological organisms, such as microfossils, or other preserved physical or chemical properties.",
             paragraph2: "Once they arrived in Alaska, the researchers boarded the U.S. Coast Guard icebreaker Healy and traveled to the sampling locations along the Beaufort Sea continental shelf.",
             paragraph3: "Ocean sediments are one of the best archives of past ocean and climate change throughout Earth's history. Sediment accumulates on the seafloor over time: the sediment at the top of the core is newer than sediment at the bottom.",
@@ -82,8 +84,14 @@ export default {
             paragraph6: "Back in the laboratory, researchers section the sediment core into one-centimeter-thick slices for analysis. The total time span that this sediment core represents is about 2000 years, in 5-year increments.",
             paragraph7: "The microfossils found in these sediment cores range in size from 0.5 to 2 mm. Most of them are a little larger than the period at the end of this sentence. Learn more about the focal species on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-species' target='_blank'>Beaufort Sea species</a> page.",
             paragraph8: "Identifying the species requires a microscope and a damp brush to pick the shell from the sediment to a slide for identification. The microfossils examined in this study include Foraminifera and Ostracode microfossils, which are excellent proxy indicators for past environments because their presence and growth are influenced by specific climate and ocean conditions when they were alive.",
-            heading2: "Why is this important?",
-            paragraph9: "The reconstruction of past environments helps us understand the processes influencing natural climate change that lead to particular Earth system states. This allows more reliable predictions for future scenarios. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page."        
+            alt1: "alt text 1",
+            alt2: "alt text 2",
+            alt3: "alt text 3",
+            alt4: "alt text 4",
+            alt5: "alt text 5",
+            alt6: "alt text 6",
+            alt7: "alt text 7",
+            alt8: "alt text 8"
         },
         BeaufortSeaSpecies: {
             heading1: "Reconstructing past and present ocean climates with Arctic microfossils",

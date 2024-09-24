@@ -50,6 +50,9 @@ a {
 .text-container {
   max-width: 70rem; /* 70 pixels on desktop */
   margin: 0 auto 0 auto;
+  @media only screen and (max-width: 600px) {
+    max-width: 90vw; /* 90% of view width on mobile */
+  }
 }
 .text-container.mobile {
   max-width: 90vw; /* 90% of view width on mobile */
