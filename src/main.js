@@ -6,9 +6,12 @@ import VueUswds from "vue-uswds"
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+// arrow icons
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 // social icons
 import { faSquareXTwitter, faFacebookSquare, faGithub, faFlickr, faYoutubeSquare, faInstagram } from "@fortawesome/free-brands-svg-icons";
-library.add(faSquareXTwitter, faFacebookSquare, faGithub, faFlickr, faYoutubeSquare, faInstagram);
+library.add(faArrowLeft, faArrowRight, faSquareXTwitter, faFacebookSquare, faGithub, faFlickr, faYoutubeSquare, faInstagram);
 
 import App from './App.vue'
 import router from './router'
