@@ -17,6 +17,7 @@
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
             <tabItem v-for="tab, index in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
+                <h3 class="tab-content-title" v-html="tab.tabTitle" />
                 <p v-html="tab.tabText" />
                 {{ index }}
                 <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
@@ -296,7 +297,7 @@ ul {
 }
 
 .tabs-component-panels {
-    padding: 4em 0;
+    padding: 2em 0;
 }
 
 @media (min-width: 700px) {
@@ -305,7 +306,7 @@ ul {
         border: solid 1px #ddd;
         border-radius: 0 6px 6px 6px;
         box-shadow: 0 0 10px rgba(0, 0, 0, .05);
-        padding: 4em 2em;
+        padding: 2em 2em;
     }
 }
 
@@ -354,5 +355,8 @@ ul {
 }
 .tab-content-image {
     width: 100%;
+}
+.tab-content-title {
+    padding: 0rem 0 1rem 0;
 }
 </style>
