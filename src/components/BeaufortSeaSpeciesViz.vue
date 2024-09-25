@@ -2,26 +2,17 @@
     <div>
         <!---VizSection-->
         <VizSection
-            :figures="true"
+            :figures="false"
             :fig-caption="false"
         >
-            <!-- HEADING -->
             <template #heading>
                 <h2>
                     {{ text.heading1 }}
                 </h2>
             </template>
-            <!-- FIGURES -->
-            <template #figures>
-                <div class="single maxWidth">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_1.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-                {{ text.paragraph1 }}
+            <template #aboveExplanation>
+                <p v-html="text.introParagraph1" />
+                <p v-html="text.introParagraph2" />
             </template>
         </VizSection>
         <!---VizSection 2-->
@@ -190,26 +181,6 @@
                         <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3b.png">
                     </figure>
                 </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
-        
-        <!---VizSection 4-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h2 v-html="text.heading4" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph4" />
-            </template>
-            <template #figures>
             </template>
             <!-- EXPLANATION -->
             <template #belowExplanation>
