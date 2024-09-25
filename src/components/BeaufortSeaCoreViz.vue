@@ -74,17 +74,17 @@
     #ice-coring-grid-container{
         display: grid;
         max-width: 1200px;
-        grid-template-columns: auto max-content auto;
-        grid-template-rows: max-content max-content;
+        grid-template-columns: 10% calc(80% - 4rem) 10%;
+        grid-template-rows: auto max-content;
         grid-template-areas:
             "prev image next"
             "text text text";
         margin: 2rem auto 0 auto;
+        column-gap: 2rem;
         row-gap: 3rem;
         @media only screen and (max-width: 600px) {
             width: 90vw;
-            grid-template-columns: max-content auto;
-            grid-template-rows: max-content max-content max-content;
+            grid-template-rows: auto max-content;
             grid-template-areas:
                 "image image image"
                 "prev text next";
@@ -92,22 +92,19 @@
     }
     #coring-image-container {
         grid-area: image;
-        width: auto;
-        max-height: 60vh;
         justify-self: center;
         align-self: center;
     }
     .coring-image {
-        max-width: 80vw;
-        max-height: 60vh;
+        width: 100%;
         justify-self: center;
         @media only screen and (max-width: 600px) {
-            max-width: 90vw;
+            width: 100%;
         }
     }
     #coring-text-container {
         grid-area: text;
-        height: 10vh;
+        height: 15vh;
         @media screen and (max-height: 770px) {
             height: 30vh;
         }
@@ -123,11 +120,9 @@
         border: solid 0.75px var(--medium-grey);
         cursor: pointer;
         box-shadow: 0px 0px 4px rgba(39,44,49,.3);
-        margin: 2rem;
         @media only screen and (max-width: 600px) {
             height: 3rem;
             width: 3rem;
-            margin: 1rem;
             align-self: start;
         }
     }
