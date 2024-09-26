@@ -6,13 +6,31 @@
             :fig-caption="false"
         >
             <template #heading>
-                <h2>
-                    {{ text.heading1 }}
-                </h2>
+                <h2 v-html="text.heading1" />
             </template>
             <template #aboveExplanation>
-                <p v-html="text.introParagraph1" />
-                <p v-html="text.introParagraph2" />
+                <p v-html="text.paragraph1" />
+                <p v-html="text.paragraph2" />
+            </template>
+        </VizSection>
+        <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2 v-html="text.heading2" />
+            </template>
+            <template #aboveExplanation>
+                <div class="subheading-container">
+                    <h3 class="subheading" v-html="text.subheading1" />
+                    <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
+                </div>
+                <p v-html="text.paragraph3" />
+                <div class="subheading-container">
+                    <h3 class="subheading" v-html="text.subheading2" />
+                    <img v-for="ostracode in ostracodes" class='subheading-image' :src="getPrefixImageURL(ostracode.tabPrefixImageName)" :key="ostracode.tabTitle"/>
+                </div>
+                <p v-html="text.paragraph4" />
             </template>
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
@@ -23,177 +41,6 @@
                 <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
             </tabItem>
         </tabsGroup>
-        <!---VizSection 2-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h2>
-                    {{ text.heading2 }}
-                </h2>
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-                {{ text.paragraph2 }}
-            </template>
-        </VizSection>
-        <!---VizSection2a-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h3 v-html="text.heading2a" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2a" />
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2a.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
-        <!---VizSection2b-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h3 v-html="text.heading2b" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2b" />
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2b.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
-        <!---VizSection 2c-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h3 v-html="text.heading2c" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2c" />
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_2c.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
-        <!---VizSection 3-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h2>
-                    {{ text.heading3 }}
-                </h2>
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-                <p v-html="text.paragraph3" />
-            </template>
-        </VizSection>
-        <!---VizSection 3a-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h3 v-html="text.heading3a" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph3a" />
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3a.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
-        <!---VizSection 3b-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <!-- HEADING -->
-            <template #heading>
-                <h3 v-html="text.heading3b" />
-            </template>
-            <!-- FIGURES -->
-            <template #aboveExplanation>
-                <p v-html="text.paragraph3b" />
-            </template>
-            <template #figures>
-                <div class="single narrow">
-                    <figure>
-                        <img src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_3b.png">
-                    </figure>
-                </div>
-            </template>
-            <!-- EXPLANATION -->
-            <template #belowExplanation>
-            </template>
-        </VizSection>
     </div>
 </template>
 
@@ -202,15 +49,24 @@
     import VizSection from '@/components/VizSection.vue';
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { type: Object }
     })
 
+    // global objects
+    const baseURL = "https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/"
+    const forams = props.text.tabData.filter(item => item.tabPrefixImageName.includes('F'))
+    const ostracodes = props.text.tabData.filter(item => item.tabPrefixImageName.includes('O'))
+
     function getContentImageUrl(suffix) {
-        return `https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaSpecies_${suffix}.png`
+        return baseURL + `BeaufortSeaSpecies_${suffix}.png`
+    }
+    function getPrefixImageURL(image_name) {
+        return baseURL + `${image_name}.png`
     }
     function getPrefixImageHTML(image_name) {
-        return `<img class='tab-image' src='https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/${image_name}.png'>`
+        const imgURL = getPrefixImageURL(image_name)
+        return `<img class='tab-image' src=${imgURL}>`
     }
 </script>
 
@@ -226,11 +82,42 @@
 ul {
     padding-inline-start: 0px;
 }
+li {
+    padding: 0; 
+}
 .tabs-component {
     margin: auto;
-    width: 90vw;
+    width: 90rem;
 }
-
+.tab-image {
+    max-width: 5rem;
+    max-height: 5rem;
+    margin-right: 1rem;
+}
+.subheading-container {
+    margin: 1rem 0 1rem 0;
+    height: 5rem;
+}
+.subheading-image {
+    /* max-width: 5rem; */
+    height: 5rem;
+    margin: 0 1rem 0 1rem;
+}
+.subheading {
+    padding: 0;
+    display: inline-block;
+    transform: translate(0%, -50%);
+}
+.tabs-component-tab.is-inactive img {
+    opacity: 0.5;
+}
+.tab-content-image {
+    width: 100%;
+}
+.tab-content-title {
+    padding: 0rem 0 1rem 0;
+}
+/* css modified from vue-tabs-component demo: https://tabs-component.jakubpotocky.sk/ */
 .tabs-component-tabs {
     border: solid 1px #ddd;
     border-radius: 6px;
@@ -344,19 +231,5 @@ ul {
     color: #39739d;
     border-color: #7aa7c7;
     border-bottom: solid 1px #fff;
-}
-.tab-image {
-    max-width: 5rem;
-    max-height: 5rem;
-    margin-right: 1rem;
-}
-.tabs-component-tab.is-inactive img {
-    opacity: 0.5;
-}
-.tab-content-image {
-    width: 100%;
-}
-.tab-content-title {
-    padding: 0rem 0 1rem 0;
 }
 </style>
