@@ -100,30 +100,35 @@ export default {
             tabData: [
                 {
                     tabTitle: "<span class='scientificName'>Cassidulina reniforme</span>",
+                    tabContentTitle: "<span class='highlight scientificName species-title' id='cassidulina'>Cassidulina reniforme</span>",
                     tabText: "The tests of species in the genera <span class='scientificName'>Cassidulina</span> and <span class='scientificName'>Elphidium</span> species are made of calcium carbonate, which is highly sensitive to changes in ocean pH. The abundance of calcium carbonate forams has declined very recently.",
                     tabContentImageSuffix: "2a",
                     tabPrefixImageName: "F_Cassidulina"
                 },
                 {
                     tabTitle: "<span class='scientificName'>Elphidium excavatum</span>",
+                    tabContentTitle: "<span class='highlight scientificName species-title' id='elphidium'>Elphidium excavatum</span>",
                     tabText: "As local water chemistry changes from climate change, the environment becomes less favorable to calcium carbonate tests, and the organisms such as <span class='scientificName'>Elphidium excavatum</span> that build them. <span class='scientificName'>Elphidium excavatum</span>, like <span class='scientificName'>Cassidulia reniforme</span>, has declined in abundance in this Beaufort Sea microfossil record in recent years.",
                     tabContentImageSuffix: "2b",
                     tabPrefixImageName: "F_Elphidium"
                 },
                 {
                     tabTitle: "<span class='scientificName'>Spiroplectammina biformis</span>",
+                    tabContentTitle: "<span class='highlight scientificName species-title' id='spiroplectimmina'>Spiroplectammina biformis</span>",
                     tabText: "Species within the genus <span class='scientificName'>Spiroplectammina</span> create tests that are 'agglutinated,' or formed by cementing together particles from their environment such as sand and sediment. Agglutinated species are able to withstand harsh, corrosive and turbid (cloudy) conditions. <span class='scientificName'>Spiroplectammina</span> abundance has increased significantly in the past few decades, indicating that bottom waters may be affected by permafrost melt as a consequence of climate change.",
                     tabContentImageSuffix: "2c",
                     tabPrefixImageName: "F_Spiroplectammina"
                 },
                 {
                     tabTitle: "<span class='scientificName'>Kotorachythere arctoborealis</span>",
+                    tabContentTitle: "<span class='highlight scientificName species-title' id='kotorachythere'>Kotorachythere arctoborealis</span>",
                     tabText: "<span class='scientificName'>Kotorachythere arctoborealis</span> is a species of ostracode that showed relatively low, but steady, abundance in the Beaufort Sea microfossil record until recently, when it has increased in relative abundance.",
                     tabContentImageSuffix: "3a",
                     tabPrefixImageName: "O_Kotoracythere"
                 },
                 {
                     tabTitle: "<span class='scientificName'>Paracyprideis pseudopuntillata</span>",
+                    tabContentTitle: "<span class='highlight scientificName species-title' id='paracyprideis'>Paracyprideis pseudopuntillata</span>",
                     tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is one of the most dominant species in this Arctic fossil record. However, the overall abundance has declined at the same time that <span class='scientificName'>Kotochythere arctoborealis</span> and agglutinated forams are increasing.",
                     tabContentImageSuffix: "3b",
                     tabPrefixImageName: "O_Paracyprideis"
@@ -139,7 +144,7 @@ export default {
         BeaufortSeaTimeline: {
             heading1: "2000 years of climate history from microfossil assemblages",
             paragraph1: "USGS scientists <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-ice-coring' target='_blank'>collected sediment cores</a> from the ocean floor at the Beaufort Sea continental shelf north of Yukon, Canada. From the sediment cores, they took 1-cm slices that each represent ~5 years of time to build a 2000-year history. The species of microfossils, including <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-species' target='_blank'>forams and ostracodes</a>, along with other biochemical signatures in the core samples, help the researchers understand past and present climate conditions.",
-            paragraph2: "This interactive bubble chart shows one bubble for each species of microfossil, including the indicator species in the genera <span class='highlight' id='elphidium'> Elphidium </span>, <span class='highlight' id='cassidulina'> Cassidulina </span>, and <span class='highlight' id='paracyprideis'> Paracyprideis </span>, which have declined in relative abundance lately, and <span class='highlight' id='kotorachythere'> Kotorachythere </span> and <span class='highlight' id='spiroplectimmina'> Spiroplectimmina </span>, which have increased. Additionally, <span class='highlight' id='other-species'> other species </span> of ostracodes and forams are represented in the remaining bubbles.",
+            paragraph2: "This interactive bubble chart shows one bubble for each species of microfossil, including the indicator species in the genera <span class='highlight scientificName' id='elphidium'> Elphidium </span>, <span class='highlight scientificName' id='cassidulina'> Cassidulina </span>, and <span class='highlight scientificName' id='paracyprideis'> Paracyprideis </span>, which have declined in relative abundance lately, and <span class='highlight scientificName' id='kotorachythere'> Kotorachythere </span> and <span class='highlight scientificName' id='spiroplectimmina'> Spiroplectimmina </span>, which have increased. Additionally, <span class='highlight scientificName' id='other-species'> other species </span> of ostracodes and forams are represented in the remaining bubbles.",
             paragraph3: "Paired with the bubble chart is the full timeline, with one bar chart for every 100 years from 0 A.D. to 2000 A.D. Hover over the bar chart to see the proportion of each species (height of bar), averaged over the 100 years, and the corresponding bubbles, which are scaled in size to represent relative proportion.",
             heading2: "Why is this important?",
             paragraph4: "We need paleoenvironmental records to place current anthropogenic climate warming and sea-ice loss in a long-term context. Proxy records can extend modern time series, providing baselines for pre-anthropogenic conditions. Paleoclimate research provides a deeper understanding of processes influencing natural climate variability, which enables more reliable predictions for future climate scenarios. Although climate change is a global phenomenon, it has uneven local consequences."

@@ -35,10 +35,9 @@
             </template>
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
-            <tabItem v-for="tab, index in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
-                <h3 class="tab-content-title" v-html="tab.tabTitle" />
+            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
+                <h3 class="tab-content-title" v-html="tab.tabContentTitle" />
                 <p v-html="tab.tabText" />
-                {{ index }}
                 <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
             </tabItem>
         </tabsGroup>
@@ -72,10 +71,9 @@
 </script>
 
 <style>
-.narrow{
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto 0 auto;
+
+.species-title {
+    padding: 1px 10px 2px 6px;
 }
 #species-tabs {
     margin-top: 3rem;
@@ -88,11 +86,12 @@ li {
 }
 .tabs-component {
     margin: auto;
-    width: 90rem;
+    width: 90vw;
+    max-width: 1000px;
 }
 .tab-image {
-    max-width: 5rem;
-    max-height: 5rem;
+    max-width: 2.5rem;
+    max-height: 2.5rem;
     margin-right: 1rem;
 }
 .subheading-container {
@@ -125,7 +124,7 @@ li {
     margin-bottom: 5px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 850px) {
     .tabs-component-tabs {
         border: 0;
         align-items: stretch;
@@ -159,7 +158,7 @@ li {
     cursor: not-allowed !important;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 850px) {
     .tabs-component-tab, .tabs-component-tab--custom {
         background-color: #fff;
         border: solid 1px #ddd;
@@ -167,6 +166,7 @@ li {
         margin-right: .5em;
         /* transform: translateY(4px); */
         transition: transform .3s ease;
+        font-size: 1.4rem;
     }
 
     .tabs-component-tab.is-active, .tabs-component-tab--custom.is-active {
@@ -188,7 +188,7 @@ li {
     padding: 2em 0;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 850px) {
     .tabs-component-panels {
         background-color: #fff;
         border: solid 1px #ddd;
