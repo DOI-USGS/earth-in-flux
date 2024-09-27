@@ -27,7 +27,7 @@ export default {
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
-            img_src: 'glacial_xray_thumbnail.png',
+            img_src: 'glacial_mri_thumbnail.png',
             alt: '',
             chartOrder: 1,
             description: 'Ice cores can record changes in wildfire prevalence.'

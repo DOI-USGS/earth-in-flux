@@ -16,7 +16,9 @@
             <p v-html="text.paragraph1" />
         </template>
         <template #figures>
-            <div id="cross_section-grid-container" />
+            <div id="cross_section-grid-container">
+                <img id="glacier-image" src="https://labs.waterdata.usgs.gov/visualizations/images/glacier.jpeg" alt="glacier image" />
+            </div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -28,7 +30,7 @@
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, shallowReactive } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
@@ -42,11 +44,11 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_xray.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross_section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
-                
+
                 // add id to svg
                 d3.select("#cross_section-grid-container").select("svg")
                     .attr("id", "cross_section-svg")
@@ -131,6 +133,20 @@
             .style("stroke-opacity", 0);
     }   
 
+    function draw_image(line_id){
+        if (line_id==188){
+            d3.select("#glacier-image")
+                    .style("visibility", "visible");
+        }
+    }
+
+    function remove_image(line_id){
+        if (line_id==188){
+            d3.select("#glacier-image")
+                    .style("visibility", "hidden");
+        }
+    }
+
     function mouseover(event,default_xs) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             remove_xs(default_xs);
@@ -140,6 +156,7 @@
             remove_xs(default_xs);
             let line_id = event.currentTarget.id.slice(8);
             draw_xs(line_id);
+            draw_image(line_id);
         }
     }
 
@@ -150,6 +167,7 @@
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
             let line_id = event.currentTarget.id.slice(8);
             remove_xs(line_id);
+            remove_image(line_id);
         }
     }
 
@@ -194,6 +212,7 @@
         grid-template-areas:
             "chart";
     }
+    
 </style>
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
@@ -202,5 +221,19 @@
         place-self: center;
         max-height: 100%;
         max-width: 100%;
+        z-index: 1;
+    }
+    #glacier-image {
+        grid-area: chart;
+        justify-self: end;
+        align-self: start;
+        max-height: 25%;
+        max-width: 25%;
+        visibility: hidden;
+        pointer-events: none;
+        border: 2px solid black;
+        border-radius: 15px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+        z-index: 2;
     }
 </style>
