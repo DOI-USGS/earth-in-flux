@@ -94,3 +94,44 @@ build_climate_csv <- function(data, metadata_file, out_file) {
   
   return(out_file)
 }
+
+build_harvest_csv <- function(data, out_file, n_top_families) {
+  data_subset <- data |>
+    filter(!is.na(species_common)) |>
+    filter(uncertainty_classification < 4)
+  
+  # Determine harvest by family and order most to least
+  family_summary <- data_subset |> 
+    group_by(family) |>
+    summarise(value = sum(total_biomass_harv_kg, na.rm = TRUE)) |>
+    arrange(desc(value))
+  
+  # select subset of highest harvest families
+  focal_families <- family_summary |>
+    head(n_top_families) |>
+    pull(family)
+  
+  # filter to subset of families
+  data_subset <- data_subset |>
+    filter(family %in% focal_families)
+  
+  # aggregate harvest to family level
+  family_species <- 
+    data_subset |> 
+    group_by(family, species_common) |>
+    summarise(value = sum(total_biomass_harv_kg, na.rm = TRUE)) |>
+    mutate(percent_harvest = value/sum(value) * 100) |>
+    # filter to species representing > 1% of the harvest within each family
+    filter(percent_harvest > 1) |>
+    select(source = family, target = species_common, value)
+  
+  # Pull country specific harvest for species including in family level aggregation
+  species_country <- data_subset |> 
+    filter(species_common %in% unique(pull(family_species, target))) |>
+    select(source = species_common, target = admin, value = total_biomass_harv_kg)
+  
+  bind_rows(family_species, species_country) |>
+    readr::write_csv(out_file)
+  
+  return(out_file)
+}

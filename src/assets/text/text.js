@@ -29,10 +29,13 @@ export default {
         },
         fireinice: {
             title: "Fire in Ice",
-            motivation: "The Fire in Ice project...",
+            motivation: "Glaciers and ice caps around the world are melting. Glaciers serve as water towers and store freshwater that is essential for drinking water and agriculture. Losing this freshwater to the ocean results in rising sea levels. This glacial retreat is due to increased temperatures, water collecting under glaciers and hastening their movement, alterations in atmospheric circulation, and the deposition of dark aerosols on ice. Dark aerosols absorb heat and can increase melt on glacier surfaces. Black carbon is produced by both industrial burning and from forest fires. Nagorski et al. (2019) determined that black carbon is increasing the radiative forcing of the Juneau Icefield and accelerating the melt. Specific sugars (levoglucosan, mannosan, and galactosan) are only produced by burning vegetation including smoldering grass fires which are often hard to analyze in the past. As coal contains cellulose, coal burning can also produce levoglucosan, mannosan, and galactosan. Here, we collected a series of ~10 m cores across the Juneau Icefield, AK, which encompass some of the most rapidly melting glaciers on the planet, as well as a major contributor to sea level rise. Our goal was to determine if and how wildfire aerosols are affecting the Juneau Icefield. All three sugars were present in quantifiable amounts, demonstrating that wildfires are unequivocally depositing aerosols onto the icefield. Ratios between the sugars can provide information on if hardwoods, softwoods or grasses burned in the fires. The presence of hardwood fires, coupled with satellite data of smoke transport, suggest that fires as far away as East Asia may affect the Juneau Icefield.",
             teamText: null,
             teamData: [
-                { name: "Natalie Kehrwald", link: "https://www.usgs.gov/staff-profiles/natalie-m-kehrwald", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/NatalieKehrwald_cropped.jpg?itok=oLP9Dl1H" }
+                { name: "Natalie Kehrwald", link: "https://www.usgs.gov/staff-profiles/natalie-m-kehrwald", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/NatalieKehrwald_cropped.jpg?itok=oLP9Dl1H" },
+                { name: "Jeramy R. Jasmann", link: "https://www.usgs.gov/staff-profiles/jeramy-r-jasmann", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/thumbnails/image/Jasmann_Jeramy_USGS.JPG?itok=ADC3fg6X" },
+                { name: "Michelle Leung", link: "https://www.usgs.gov/staff-profiles/michelle-leung", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/MichelleLeung.JPG?h=bcaad0e8&itok=LXDUuI9W" },
+                { name: "Morgan Schachterle", link: "https://www.usgs.gov/staff-profiles/morgan-schachterle", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/Morgan%20_Schachterle_profileImage.jpeg?itok=r244L8u8" }
             ]
         },
         fishasfood: {
@@ -119,6 +122,9 @@ export default {
             explainerPart1: 'Showing the ',
             explainerPart2: 'from 2030 to 2075 in harvest-weighted climate vulnerability under representative concentration pathway 4.5.',
             prompt1: 'Click on the chart to show or hide data for <i>species</i> within each <b>family</b>'
+        },
+        FishAsFoodSankey: {
+            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
         }
     }
 }
