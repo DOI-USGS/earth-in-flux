@@ -3,7 +3,7 @@ export default {
         pageTitle: "Earth is changing...",
         pageSubTitle: "USGS scientists research climate change on the ground",
         collaborationHeading: "The climate chart gallery project",
-        collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a>, <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a>, and <a href='https://www.usgs.gov/programs/climate-adaptation-science-centers' target='_blank'>Climate Adaptation Science Centers</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
+        collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
         teamHeading: "The USGS Vizlab team",
         teamText: "The USGS Vizlab is a data visualization team within the USGS <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a>. View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
         teamData: [
