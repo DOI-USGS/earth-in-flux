@@ -66,7 +66,7 @@ export default {
             title: 'Beaufort Sea Sediment Coring',
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaCore',
-            vizRoute: 'beaufort-sea-ice-coring',
+            vizRoute: 'beaufort-sea-sediment-coring',
             img_src: 'BeaufortSeaCore_thumbnail.PNG',
             alt: '',
             chartOrder: 1,
