@@ -11,6 +11,16 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Inland fisheries are threatened.'
+        },
+        {
+            title: 'Country climate vulnerability vs. dependence on recreational fishing',
+            project: 'Fish as Food',
+            vizKey: 'FishAsFoodClimate',
+            vizRoute: 'inland-rec-fish-country-climate',
+            img_src: 'placeholder_thumbnail.png',
+            chartOrder: 4,
+            alt: '',
+            description: 'Vulnerbility of recreational inland fishing to climate change varies by country'
         },     
         {
             title: 'Climate vulnerability of recreationally fished inland fish species',
