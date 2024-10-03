@@ -12,6 +12,13 @@
                 <p v-html="text.paragraph1" />
             </template>
         </VizSection>
+        <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
+            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
+                <h3 class="tab-content-title" v-html="tab.tabContentTitle" />
+                <p v-html="tab.tabText" />
+                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
+            </tabItem>
+        </tabsGroup>
         <VizSection
             :figures="true"
             :fig-caption="false"
@@ -34,13 +41,6 @@
                 <p v-html="text.paragraph5" />
             </template>
         </VizSection>
-        <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
-            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
-                <h3 class="tab-content-title" v-html="tab.tabContentTitle" />
-                <p v-html="tab.tabText" />
-                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
-            </tabItem>
-        </tabsGroup>
     </div>
 </template>
 
