@@ -95,6 +95,30 @@ build_climate_csv <- function(data, metadata_file, out_file) {
   return(out_file)
 }
 
+build_country_climate_csv <- function(data, out_file) {
+  # get country-level summary of harvest, consumption, and climate vulnerability
+  data_country <- data |>
+    filter(total_rec_harvest_kg > 0) |>
+    group_by(admin) |>
+    summarize(population = first(population),
+              n_fishers = first(n_fishers),
+              total_rec_harvest_kg = first(total_rec_harvest_kg),
+              total_consumable_harv_kg = sum(total_consumable_harv_kg),
+              MCDM_VUL_2075_45 = mean(MCDM_VUL_2075_45, na.rm = TRUE)) |>
+    mutate(consum_kg_person = total_consumable_harv_kg / population,
+           consum_kg_fisher = total_consumable_harv_kg / n_fishers)
+  
+  # pull in natural earth data to get region and economic classifications
+  rnaturalearth::ne_countries(returnclass = 'sf') %>%
+    dplyr::select(admin, continent, region_un, subregion, region_wb, economy, 
+                  income_grp) |>
+    sf::st_drop_geometry() |>
+    dplyr::right_join(data_country) |>
+    readr::write_csv(out_file)
+  
+  return(out_file)
+}
+
 build_harvest_csv <- function(data, out_file, n_top_families) {
   data_subset <- data |>
     filter(!is.na(species_common)) |>

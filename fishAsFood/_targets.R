@@ -3,7 +3,8 @@ library(targets)
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "readxl",
-                            "jsonlite"))
+                            "jsonlite",
+                            "rnaturalearth"))
 
 source('src/data_utils.R')
 
@@ -54,6 +55,13 @@ p2 <- list(
       data = p2_data,
       metadata_file = p2_metadata_xlsx,
       out_file = '../public/fish_as_food_climate.csv'
+    ),
+    format = 'file'
+  ),tar_target(
+    p2_country_climate_csv,
+    build_country_climate_csv(
+      data = p2_data,
+      out_file = '../public/fish_as_food_country_climate.csv'
     ),
     format = 'file'
   ),
