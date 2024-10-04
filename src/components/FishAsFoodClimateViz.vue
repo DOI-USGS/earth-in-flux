@@ -170,7 +170,7 @@
 
     function initYScale() {
         // scale for y axis (domain set in `drawChart()`)
-        yScale = d3.scaleLinear()
+        yScale = d3.scaleLog()
             .range([chartDimensions.boundedHeight, 0]);
     }
 
@@ -277,7 +277,7 @@
         tickSize = 0,
         tickPadding = 5,
         tickType = 'numeric',
-        tickFormat = ".2f",
+        tickFormat = ".0e",
         textAngle = 0,
         keepDomain = true,
     }) {
@@ -334,7 +334,7 @@
         ///////////////////////////////////////////
         // set domain for yScale
         yScale
-            .domain([0, d3.max(chartData, yAccessor)]);
+            .domain([d3.min(chartData, yAccessor), d3.max(chartData, yAccessor)]);
         drawYAxis({axisTitle: 'Per capita consumption, in kilograms'})
 
         // ///////////////////////////////////
