@@ -38,9 +38,13 @@
     let xAxis;
     let yScale;
     let yAxis;
-    // using random hex codes for now, need to add quotes when there is a space in the field
-    // const colors = {"North America": '#FF7256', "South America": '#014C8A', "Africa": '#2C7D09', "Asia": '#5F1905', "Oceania": '#67466E', "Europe": '#0F1bBC'}
-    // let colorScale;
+    let rScale;
+    const colors = {"1. High income: OECD": '#251012',
+                    "2. High income: nonOECD": '#634b51',
+                    "3. Upper middle income": '#c67b6f',
+                    "4. Lower middle income": '#cba691',
+                    "5. Low income": '#edcead'}
+    let colorScale;
 
     // Behavior on mounted (functions called here)
     // Load data and then make chart
@@ -301,6 +305,11 @@
         })
     }
 
+    function initRScale() {
+        rScale = d3.scaleLinear()
+            .range([chartDimensions.boundedWidth*0.005,chartDimensions.boundedWidth*0.05]); // from 0.5% to 5% of chart width - this seems to hardcoded.
+    }
+
     function initColorScale(data) {
         colorScale = d3.scaleOrdinal()
             .domain(data)
@@ -318,7 +327,8 @@
         ///////////////////////////////////////////
         const xAccessor = d => d.MCDM_VUL_2075_45;
         const yAccessor = d => d.consum_kg_person;
-        // const colorAccessor = d => d.continent;
+        const rAccessor = d => d.population;
+        const colorAccessor = d => d.income_grp;
         const identifierAccessor = d => d.admin.replace(/ /g,"_");
 
         ///////////////////////////////////////////
@@ -337,11 +347,19 @@
             .domain([d3.min(chartData, yAccessor), d3.max(chartData, yAccessor)]);
         drawYAxis({axisTitle: 'Per capita consumption, in kilograms'})
 
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP R SCALE    /////
+        ///////////////////////////////////////////
+        // set domain for rScale
+        initRScale()
+        rScale
+            .domain([Math.sqrt(d3.min(chartData, rAccessor)), Math.sqrt(d3.max(chartData, rAccessor))]);
+
         // ///////////////////////////////////
         // /////    SET UP COLOR SCALE   /////
         // ///////////////////////////////////
-        // const colorCategories = [... new Set(data.map(colorAccessor))];
-        // initColorScale(colorCategories)
+        const colorCategories = [... new Set(data.map(colorAccessor))];
+        initColorScale(colorCategories)
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
@@ -356,8 +374,8 @@
                     .attr("id", d => 'circle-' + identifierAccessor(d))
                     .attr("cx", d => xScale(xAccessor(d)))
                     .attr("cy", d => yScale(yAccessor(d)))
-                    .attr("r", 5)
-                    .attr('fill', '#000000');//d => colorScale(colorAccessor(d)));
+                    .attr("r", d => rScale(Math.sqrt(rAccessor(d))))
+                    .attr('fill', d => colorScale(colorAccessor(d)));
 
     }
 </script>
