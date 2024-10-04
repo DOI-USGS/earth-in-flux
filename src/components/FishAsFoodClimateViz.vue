@@ -28,7 +28,7 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
-    const dataFile = 'fish_as_food_climate.csv'
+    const dataFile = 'fish_as_food_country_climate.csv'
     const data = ref();
     const chart = ref(null);
     const chartTitle = 'Title of chart';
@@ -38,8 +38,9 @@
     let xAxis;
     let yScale;
     let yAxis;
-    const colors = {warm: '#FF7256', cool: '#5CACEE', cold: '#36648B'}
-    let colorScale;
+    // using random hex codes for now, need to add quotes when there is a space in the field
+    // const colors = {"North America": '#FF7256', "South America": '#014C8A', "Africa": '#2C7D09', "Asia": '#5F1905', "Oceania": '#67466E', "Europe": '#0F1bBC'}
+    // let colorScale;
 
     // Behavior on mounted (functions called here)
     // Load data and then make chart
@@ -57,7 +58,7 @@
                     marginLeft: 70});
 
                 // draw chart
-                drawChart(data.value, 'Percidae');
+                drawChart(data.value, 'Europe');
             } else {
                 console.error('Error loading data');
             }
@@ -78,10 +79,13 @@
     async function loadData(fileName) {
         try {
             const data = await d3.csv(publicPath + fileName, d => {
-                d.cvi_2030 = +d.cvi_2030;
-                d.cvi_2075 = +d.cvi_2075;
-                d.cvi_2030_family = +d.cvi_2030_family;
-                d.cvi_2075_family = +d.cvi_2075_family;
+                d.population = +d.population;
+                d.n_fishers = +d.n_fishers;
+                d.total_rec_harvest_kg = +d.total_rec_harvest_kg;
+                d.total_consumable_harv_kg = +d.total_consumable_harv_kg;
+                d.MCDM_VUL_2075_45 = +d.MCDM_VUL_2075_45;
+                d.consum_kg_person = +d.consum_kg_person;
+                d.consum_kg_fisher = +d.consum_kg_fisher;
                 return d;
             });
             return data;
@@ -151,9 +155,8 @@
 
     function initXScale() {
         // scale for the x axis (domain set in `drawChart()`)
-        xScale = d3.scaleBand()
+        xScale = d3.scaleLinear()
             .range([0, chartDimensions.boundedWidth])
-            .padding(0.1);
     }
 
     function initXAxis() {
@@ -304,27 +307,27 @@
             .range(data.map(item => colors[item]));
     }
 
-    function drawChart(data, family) {
+    function drawChart(data, continent) {
         //////////////////////////////
         /////    PROCESS DATA    /////
         //////////////////////////////
-        const chartData = data.filter(d => d.family === family);
+        const chartData = data //.filter(d => d.continent === continent); // May filter later
 
         ///////////////////////////////////////////
         /////    SET UP ACCESSOR FUNCTIONS    /////
         ///////////////////////////////////////////
-        const xAccessor = d => d.species;
-        const yAccessor = d => d.cvi_2030;
-        const colorAccessor = d => d.thermal_guild;
-        const identifierAccessor = d => d.family + '_' + d.species.replace(/ /g,"_");
+        const xAccessor = d => d.MCDM_VUL_2075_45;
+        const yAccessor = d => d.consum_kg_person;
+        // const colorAccessor = d => d.continent;
+        const identifierAccessor = d => d.admin.replace(/ /g,"_");
 
         ///////////////////////////////////////////
         /////    FINISH SETTING UP X SCALE    /////
         ///////////////////////////////////////////
         // set domain for xScale, based on data
         xScale
-            .domain([... new Set(chartData.map(d => xAccessor(d)))]);
-        drawXAxis({axisTitle: family, tickType: 'string'})
+            .domain([0, d3.max(chartData, xAccessor)]);
+        drawXAxis({axisTitle: 'Climate vulnerability'})
         
         ///////////////////////////////////////////
         /////    FINISH SETTING UP Y SCALE    /////
@@ -332,13 +335,13 @@
         // set domain for yScale
         yScale
             .domain([0, d3.max(chartData, yAccessor)]);
-        drawYAxis({axisTitle: 'Climate vulnerability'})
+        drawYAxis({axisTitle: 'Per capita consumption, in kilograms'})
 
-        ///////////////////////////////////
-        /////    SET UP COLOR SCALE   /////
-        ///////////////////////////////////
-        const colorCategories = [... new Set(data.map(colorAccessor))];
-        initColorScale(colorCategories)
+        // ///////////////////////////////////
+        // /////    SET UP COLOR SCALE   /////
+        // ///////////////////////////////////
+        // const colorCategories = [... new Set(data.map(colorAccessor))];
+        // initColorScale(colorCategories)
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
@@ -348,14 +351,13 @@
             .selectAll(".rect") // empty selection
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
-                .append("rect") // append a rectangle for each element
-                    .attr("class", d => "rect " + d.family)
-                    .attr("id", d => 'bar-' + identifierAccessor(d))
-                    .attr("x", d => xScale(xAccessor(d)))
-                    .attr("y", d => yScale(yAccessor(d)))
-                    .attr("width", xScale.bandwidth())
-                    .attr("height", d => chartDimensions.boundedHeight - yScale(yAccessor(d)))
-                    .style("fill", d => colorScale(colorAccessor(d)));
+                .append("circle") // append a circle for each element
+                    .attr("class", d => "circle " + d.continent)
+                    .attr("id", d => 'circle-' + identifierAccessor(d))
+                    .attr("cx", d => xScale(xAccessor(d)))
+                    .attr("cy", d => yScale(yAccessor(d)))
+                    .attr("r", 5)
+                    .attr('fill', '#000000');//d => colorScale(colorAccessor(d)));
 
     }
 </script>
