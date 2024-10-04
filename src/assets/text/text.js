@@ -100,7 +100,7 @@ export default {
             paragraph3: "In the last 25 to 50 years, there have been majors shifts in the species composition compared to the rest of the record. Here we highlight chances in the relative abundance of species within two classes of microfossils: foraminifera and ostracodes.",
             tabData: [
                 {
-                    tabTitle: "<span class='scientificName'>Cassidulina reniforme</span>",
+                    tabTitle: "Cassidulina reniforme",
                     tabContentTitle: "Cassidulina reniforme",
                     tabContentTitleID: "cassidulina",
                     tabText: "The tests of species in the genera <span class='scientificName'>Cassidulina</span> and <span class='scientificName'>Elphidium</span> species are made of calcium carbonate, which is highly sensitive to changes in ocean pH. The abundance of calcium carbonate forams has declined very recently.",
@@ -108,7 +108,7 @@ export default {
                     tabPrefixImageName: "F_Cassidulina"
                 },
                 {
-                    tabTitle: "<span class='scientificName'>Elphidium excavatum</span>",
+                    tabTitle: "Elphidium excavatum",
                     tabContentTitle: "Elphidium excavatum",
                     tabContentTitleID: "elphidium",
                     tabText: "As local water chemistry changes from climate change, the environment becomes less favorable to calcium carbonate tests, and the organisms such as <span class='scientificName'>Elphidium excavatum</span> that build them. <span class='scientificName'>Elphidium excavatum</span>, like <span class='scientificName'>Cassidulia reniforme</span>, has declined in abundance in this Beaufort Sea microfossil record in recent years.",
@@ -116,7 +116,7 @@ export default {
                     tabPrefixImageName: "F_Elphidium"
                 },
                 {
-                    tabTitle: "<span class='scientificName'>Spiroplectammina biformis</span>",
+                    tabTitle: "Spiroplectammina biformis",
                     tabContentTitle: "Spiroplectammina biformis",
                     tabContentTitleID: "spiroplectimmina",
                     tabText: "Species within the genus <span class='scientificName'>Spiroplectammina</span> create tests that are 'agglutinated,' or formed by cementing together particles from their environment such as sand and sediment. Agglutinated species are able to withstand harsh, corrosive and turbid (cloudy) conditions. <span class='scientificName'>Spiroplectammina</span> abundance has increased significantly in the past few decades, indicating that bottom waters may be affected by permafrost melt as a consequence of climate change.",
@@ -124,7 +124,7 @@ export default {
                     tabPrefixImageName: "F_Spiroplectammina"
                 },
                 {
-                    tabTitle: "<span class='scientificName'>Kotorachythere arctoborealis</span>",
+                    tabTitle: "Kotorachythere arctoborealis",
                     tabContentTitle: "Kotorachythere arctoborealis",
                     tabContentTitleID: "kotorachythere",
                     tabText: "<span class='scientificName'>Kotorachythere arctoborealis</span> is a species of ostracode that showed relatively low, but steady, abundance in the Beaufort Sea microfossil record until recently, when it has increased in relative abundance.",
@@ -132,7 +132,7 @@ export default {
                     tabPrefixImageName: "O_Kotoracythere"
                 },
                 {
-                    tabTitle: "<span class='scientificName'>Paracyprideis pseudopuntillata</span>",
+                    tabTitle: "Paracyprideis pseudopuntillata",
                     tabContentTitle: "Paracyprideis pseudopuntillata",
                     tabContentTitleID: "paracyprideis",
                     tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is one of the most dominant species in this Arctic fossil record. However, the overall abundance has declined at the same time that <span class='scientificName'>Kotochythere arctoborealis</span> and agglutinated forams are increasing.",

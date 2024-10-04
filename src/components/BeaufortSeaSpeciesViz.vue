@@ -14,7 +14,7 @@
             </template>
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
-            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
+            <tabItem v-for="tab in text.tabData" :name="`<span class='scientificName'>${tab.tabTitle}</span>`" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
                 <h3 class="tab-content-title">
                     <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
                         {{ tab.tabContentTitle }}
