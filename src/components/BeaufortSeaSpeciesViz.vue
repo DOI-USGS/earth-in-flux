@@ -10,11 +10,16 @@
             </template>
             <template #aboveExplanation>
                 <p v-html="text.paragraph1" />
+                <p v-html="text.paragraph2" />
             </template>
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
             <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
-                <h3 class="tab-content-title" v-html="tab.tabContentTitle" />
+                <h3 class="tab-content-title">
+                    <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
+                        {{ tab.tabContentTitle }}
+                    </span>
+                </h3>
                 <p v-html="tab.tabText" />
                 <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
             </tabItem>
@@ -27,18 +32,18 @@
                 <h2 v-html="text.heading2" />
             </template>
             <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
+                <p v-html="text.paragraph3" />
                 <div class="subheading-container">
                     <h3 class="subheading" v-html="text.subheading1" />
                     <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
                 </div>
-                <p v-html="text.paragraph3" />
+                <p v-html="text.paragraph4" />
                 <div class="subheading-container">
                     <h3 class="subheading" v-html="text.subheading2" />
                     <img v-for="ostracode in ostracodes" class='subheading-image' :src="getPrefixImageURL(ostracode.tabPrefixImageName)" :key="ostracode.tabTitle"/>
                 </div>
-                <p v-html="text.paragraph4" />
                 <p v-html="text.paragraph5" />
+                <p v-html="text.paragraph6" />
             </template>
         </VizSection>
     </div>
