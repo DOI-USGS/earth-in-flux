@@ -86,7 +86,6 @@
 .species-class {
   border-radius: 10px;
   padding: 1px 10px 2px 0px;
-  white-space: nowrap;
   font-weight: 300;
   font-style: italic;
 }
@@ -158,6 +157,7 @@ li {
 }
 .tab-content-title {
     padding: 0rem 0 1rem 0;
+    line-height: 2.6rem;
 }
 /* css modified from vue-tabs-component demo: https://tabs-component.jakubpotocky.sk/ */
 .tabs-component-tabs {
