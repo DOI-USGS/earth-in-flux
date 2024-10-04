@@ -348,7 +348,7 @@
         ////////////////////////////////////
         // draw chart
         chartBounds.select('.circles') // selects our group we set up to hold chart elements
-            .selectAll(".rect") // empty selection
+            .selectAll(".circle") // empty selection
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
                 .append("circle") // append a circle for each element
