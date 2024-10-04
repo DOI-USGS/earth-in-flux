@@ -16,8 +16,11 @@
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
             <tabItem v-for="tab in text.tabData" :name="`<span class='scientificName'>${tab.tabTitle}</span>`" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
                 <h3 class="tab-content-title">
-                    <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
-                        {{ tab.tabContentTitle }}
+                    <span class="species-class" :id="`species-${tab.tabContentTitleID}`">
+                        <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
+                            {{ tab.tabContentTitle }}
+                        </span>
+                        {{ tab.tabSpeciesClass }}
                     </span>
                 </h3>
                 <p v-html="tab.tabText" />
@@ -79,6 +82,28 @@
 
 .species-title {
     padding: 1px 10px 2px 6px;
+}
+.species-class {
+  border-radius: 10px;
+  padding: 1px 10px 2px 0px;
+  white-space: nowrap;
+  font-weight: 300;
+  font-style: italic;
+}
+#species-cassidulina {
+    border: 1px solid #3c475a;
+}
+#species-elphidium {
+    border: 1px solid #66768F;
+}
+#species-paracyprideis {
+    border: 1px solid #729C9D;
+}
+#species-kotorachythere {
+    border: 1px solid #c49051;
+}
+#species-spiroplectimmina {
+    border: 1px solid #dd605a;
 }
 #species-tabs {
     margin-top: 3rem;
@@ -153,7 +178,7 @@ li {
 
 .tabs-component-tab, .tabs-component-tab--custom {
     color: #999;
-    font-size: 14px;
+    font-size: 1.6rem;
     font-weight: 600;
     margin-right: 0;
     list-style: none;
