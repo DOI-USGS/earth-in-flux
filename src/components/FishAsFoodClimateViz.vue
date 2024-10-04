@@ -150,7 +150,7 @@
 
         // Add groups for visual elements
         chartBounds.append("g")
-            .attr("class", "rects");
+            .attr("class", "circles");
     }
 
     function initXScale() {
@@ -326,7 +326,7 @@
         ///////////////////////////////////////////
         // set domain for xScale, based on data
         xScale
-            .domain([0, d3.max(chartData, xAccessor)]);
+            .domain([d3.min(chartData, xAccessor), d3.max(chartData, xAccessor)]);
         drawXAxis({axisTitle: 'Climate vulnerability'})
         
         ///////////////////////////////////////////
@@ -347,7 +347,7 @@
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
         // draw chart
-        chartBounds.select('.rects') // selects our group we set up to hold chart elements
+        chartBounds.select('.circles') // selects our group we set up to hold chart elements
             .selectAll(".rect") // empty selection
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
