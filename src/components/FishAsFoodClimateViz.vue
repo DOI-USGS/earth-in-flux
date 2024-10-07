@@ -39,11 +39,13 @@
     let yScale;
     let yAxis;
     let rScale;
-    const colors = {"1. High income: OECD": '#251012',
-                    "2. High income: nonOECD": '#634b51',
-                    "3. Upper middle income": '#c67b6f',
-                    "4. Lower middle income": '#cba691',
-                    "5. Low income": '#edcead'}
+    const hex1 = "#5CB270"
+    const hex2 = "#6F4E37"
+    const colors = {"1. High income: OECD": mixHexColors(hex1,hex2,1.0),
+                    "2. High income: nonOECD": mixHexColors(hex1,hex2,0.75),
+                    "3. Upper middle income": mixHexColors(hex1,hex2,0.50),
+                    "4. Lower middle income": mixHexColors(hex1,hex2,0.25),
+                    "5. Low income": mixHexColors(hex1,hex2,0.0)}
     let colorScale;
 
     // Behavior on mounted (functions called here)
@@ -97,6 +99,35 @@
             console.error(`Error loading data from ${fileName}`, error);
             return [];
         }
+    }
+
+    function mixHexColors(hex1, hex2, ratio = 0.5) {
+        // Helper function to convert hex to RGB
+        function hexToRgb(hex) {
+            hex = hex.replace(/^#/, '');
+            let bigint = parseInt(hex, 16);
+            let r = (bigint >> 16) & 255;
+            let g = (bigint >> 8) & 255;
+            let b = bigint & 255;
+            return { r, g, b };
+        }
+
+        // Helper function to convert RGB to hex
+        function rgbToHex(r, g, b) {
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+        }
+
+        // Convert hex colors to RGB
+        const rgb1 = hexToRgb(hex1);
+        const rgb2 = hexToRgb(hex2);
+
+        // Mix the colors based on the specified ratio
+        const mixedR = Math.round(rgb1.r * (1 - ratio) + rgb2.r * ratio);
+        const mixedG = Math.round(rgb1.g * (1 - ratio) + rgb2.g * ratio);
+        const mixedB = Math.round(rgb1.b * (1 - ratio) + rgb2.b * ratio);
+
+        // Convert mixed RGB back to hex
+        return rgbToHex(mixedR, mixedG, mixedB);
     }
 
     function initChart({
@@ -281,7 +312,7 @@
         tickSize = 0,
         tickPadding = 5,
         tickType = 'numeric',
-        tickFormat = ".0e",
+        tickFormat = ".2f",
         textAngle = 0,
         keepDomain = true,
     }) {
@@ -306,8 +337,8 @@
     }
 
     function initRScale() {
-        rScale = d3.scaleLinear()
-            .range([chartDimensions.boundedWidth*0.005,chartDimensions.boundedWidth*0.05]); // from 0.5% to 5% of chart width - this seems to hardcoded.
+        rScale = d3.scaleSqrt()
+            .range([chartDimensions.boundedWidth*0.005,chartDimensions.boundedWidth*0.05]); // from 0.5% to 5% of chart width
     }
 
     function initColorScale(data) {
@@ -336,7 +367,7 @@
         ///////////////////////////////////////////
         // set domain for xScale, based on data
         xScale
-            .domain([d3.min(chartData, xAccessor), d3.max(chartData, xAccessor)]);
+            .domain(d3.extent(chartData, xAccessor));
         drawXAxis({axisTitle: 'Climate vulnerability'})
         
         ///////////////////////////////////////////
@@ -344,8 +375,8 @@
         ///////////////////////////////////////////
         // set domain for yScale
         yScale
-            .domain([d3.min(chartData, yAccessor), d3.max(chartData, yAccessor)]);
-        drawYAxis({axisTitle: 'Per capita consumption, in kilograms'})
+            .domain(d3.extent(chartData, yAccessor));
+        drawYAxis({axisTitle: 'Per capita consumption, in kilograms', tickFormat:".0e"})
 
         ///////////////////////////////////////////
         /////    FINISH SETTING UP R SCALE    /////
@@ -353,8 +384,8 @@
         // set domain for rScale
         initRScale()
         rScale
-            .domain([Math.sqrt(d3.min(chartData, rAccessor)), Math.sqrt(d3.max(chartData, rAccessor))]);
-
+            .domain(d3.extent(chartData, rAccessor));
+            
         // ///////////////////////////////////
         // /////    SET UP COLOR SCALE   /////
         // ///////////////////////////////////
@@ -374,7 +405,7 @@
                     .attr("id", d => 'circle-' + identifierAccessor(d))
                     .attr("cx", d => xScale(xAccessor(d)))
                     .attr("cy", d => yScale(yAccessor(d)))
-                    .attr("r", d => rScale(Math.sqrt(rAccessor(d))))
+                    .attr("r", d => rScale(rAccessor(d)))
                     .attr('fill', d => colorScale(colorAccessor(d)));
 
     }
