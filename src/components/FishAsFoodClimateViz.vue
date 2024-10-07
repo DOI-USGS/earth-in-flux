@@ -39,6 +39,8 @@
     let yScale;
     let yAxis;
     let rScale;
+    const r_prop_min = 0.01
+    const r_prop_max = 0.05
     const color_lower_bound = "#6F4E37" // lower end
     const color_upper_bound =  "#5CB270" // upper end
     let colorScale;
@@ -305,7 +307,7 @@
 
     function initRScale() {
         rScale = d3.scaleSqrt()
-            .range([chartDimensions.boundedWidth*0.005,chartDimensions.boundedWidth*0.05]); // from 0.5% to 5% of chart width
+            .range([chartDimensions.boundedWidth*r_prop_min,chartDimensions.boundedWidth*r_prop_max]);
     }
 
     function initColorScale() {
@@ -332,16 +334,22 @@
         /////    FINISH SETTING UP X SCALE    /////
         ///////////////////////////////////////////
         // set domain for xScale, based on data
+        const xInnerDomainRange = d3.max(chartData, xAccessor) - d3.min(chartData, xAccessor);
+        const xDomain_min = d3.min(chartData, xAccessor) - xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max); //ensures that the buffer is the max radius away from the smallest data point
+        const xDomain_max = d3.max(chartData, xAccessor) + xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max); //ensures that the buffer is the max radius away from the larger data point        
         xScale
-            .domain(d3.extent(chartData, xAccessor));
+            .domain([xDomain_min, xDomain_max]);
         drawXAxis({axisTitle: 'Climate vulnerability'})
         
         ///////////////////////////////////////////
         /////    FINISH SETTING UP Y SCALE    /////
         ///////////////////////////////////////////
         // set domain for yScale
+        const yInnerDomainRange = Math.log10(d3.max(chartData, yAccessor)) - Math.log10(d3.min(chartData, yAccessor));
+        const yDomain_min = Math.pow(10,Math.log10(d3.min(chartData, yAccessor)) - yInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max)); //ensures that the buffer is the max radius away from the smallest data point
+        const yDomain_max = Math.pow(10,Math.log10(d3.max(chartData, yAccessor)) + yInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max)); //ensures that the buffer is the max radius away from the larger data point        
         yScale
-            .domain(d3.extent(chartData, yAccessor));
+            .domain([yDomain_min, yDomain_max]);
         drawYAxis({axisTitle: 'Per capita consumption, in kilograms', tickFormat:".0e"})
 
         ///////////////////////////////////////////
@@ -373,7 +381,8 @@
                     .attr("cx", d => xScale(xAccessor(d)))
                     .attr("cy", d => yScale(yAccessor(d)))
                     .attr("r", d => rScale(rAccessor(d)))
-                    .attr('fill', d => colorScale(colorAccessor(d)));
+                    .attr('fill', d => colorScale(colorAccessor(d)))
+                    .attr('stroke', '#FFFFFF');
 
     }
 </script>
