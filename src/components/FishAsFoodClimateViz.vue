@@ -39,13 +39,8 @@
     let yScale;
     let yAxis;
     let rScale;
-    const hex1 = "#6F4E37" // lower end
-    const hex2 =  "#5CB270" // upper end
-    const colors = {"1. High income: OECD": mixHexColors(hex1,hex2,1.0),
-                    "2. High income: nonOECD": mixHexColors(hex1,hex2,0.75),
-                    "3. Upper middle income": mixHexColors(hex1,hex2,0.50),
-                    "4. Lower middle income": mixHexColors(hex1,hex2,0.25),
-                    "5. Low income": mixHexColors(hex1,hex2,0.0)}
+    const color_lower_bound = "#6F4E37" // lower end
+    const color_upper_bound =  "#5CB270" // upper end
     let colorScale;
 
     // Behavior on mounted (functions called here)
@@ -91,7 +86,8 @@
                 d.total_consumable_harv_kg = +d.total_consumable_harv_kg;
                 d.MCDM_VUL_2075_45 = +d.MCDM_VUL_2075_45;
                 d.consum_kg_person = +d.consum_kg_person;
-                d.consum_kg_fisher = +d.consum_kg_fisher;
+                d.consum_kg_fisher = +d.consum_kg_fisher;                
+                d.income_grp_level = +Array.from(d.income_grp)[0];
                 return d;
             });
             return data;
@@ -99,35 +95,6 @@
             console.error(`Error loading data from ${fileName}`, error);
             return [];
         }
-    }
-
-    function mixHexColors(hex1, hex2, ratio = 0.5) {
-        // Helper function to convert hex to RGB
-        function hexToRgb(hex) {
-            hex = hex.replace(/^#/, '');
-            let bigint = parseInt(hex, 16);
-            let r = (bigint >> 16) & 255;
-            let g = (bigint >> 8) & 255;
-            let b = bigint & 255;
-            return { r, g, b };
-        }
-
-        // Helper function to convert RGB to hex
-        function rgbToHex(r, g, b) {
-            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
-        }
-
-        // Convert hex colors to RGB
-        const rgb1 = hexToRgb(hex1);
-        const rgb2 = hexToRgb(hex2);
-
-        // Mix the colors based on the specified ratio
-        const mixedR = Math.round(rgb1.r * (1 - ratio) + rgb2.r * ratio);
-        const mixedG = Math.round(rgb1.g * (1 - ratio) + rgb2.g * ratio);
-        const mixedB = Math.round(rgb1.b * (1 - ratio) + rgb2.b * ratio);
-
-        // Convert mixed RGB back to hex
-        return rgbToHex(mixedR, mixedG, mixedB);
     }
 
     function initChart({
@@ -341,10 +308,9 @@
             .range([chartDimensions.boundedWidth*0.005,chartDimensions.boundedWidth*0.05]); // from 0.5% to 5% of chart width
     }
 
-    function initColorScale(data) {
-        colorScale = d3.scaleOrdinal()
-            .domain(data)
-            .range(data.map(item => colors[item]));
+    function initColorScale() {
+        colorScale = d3.scaleLinear()            
+            .range([color_lower_bound, color_upper_bound]);
     }
 
     function drawChart(data, continent) {
@@ -359,7 +325,7 @@
         const xAccessor = d => d.MCDM_VUL_2075_45;
         const yAccessor = d => d.consum_kg_person;
         const rAccessor = d => d.population;
-        const colorAccessor = d => d.income_grp;
+        const colorAccessor = d => d.income_grp_level;
         const identifierAccessor = d => d.admin.replace(/ /g,"_");
 
         ///////////////////////////////////////////
@@ -389,8 +355,9 @@
         // ///////////////////////////////////
         // /////    SET UP COLOR SCALE   /////
         // ///////////////////////////////////
-        const colorCategories = [... new Set(data.map(colorAccessor))];
-        initColorScale(colorCategories)
+        initColorScale()
+        colorScale
+            .domain(d3.extent(chartData, colorAccessor));
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
