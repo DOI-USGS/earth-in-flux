@@ -39,8 +39,8 @@
     let yScale;
     let yAxis;
     let rScale;
-    const hex1 = "#5CB270"
-    const hex2 = "#6F4E37"
+    const hex1 = "#6F4E37"
+    const hex2 =  "#5CB270"
     const colors = {"1. High income: OECD": mixHexColors(hex1,hex2,1.0),
                     "2. High income: nonOECD": mixHexColors(hex1,hex2,0.75),
                     "3. Upper middle income": mixHexColors(hex1,hex2,0.50),
