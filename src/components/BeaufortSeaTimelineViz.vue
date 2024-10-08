@@ -251,14 +251,26 @@
         if (!simulation.value) {
             simulation.value = d3.forceSimulation();
         }
+        // Apply boundary force: Ensure the nodes stay within the bounds of the SVG
+        function boundaryForceX(d) {
+            const minX = d.radius;  // Left edge, constrained by radius
+            const maxX = bubbleChartDimensions.boundedWidth - d.radius;  // Right edge, constrained by radius
+            return Math.max(minX, Math.min(maxX, d.x));  // Ensure x is within bounds
+        }
+
+        function boundaryForceY(d) {
+            const minY = d.radius;  // Top edge, constrained by radius
+            const maxY = bubbleChartDimensions.boundedHeight - d.radius;  // Bottom edge, constrained by radius
+            return Math.max(minY, Math.min(maxY, d.y));  // Ensure y is within bounds
+        }
 
         // Restart the simulation and reapply forces
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3))  // Pull toward center on x-axis
-            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3))  // Pull toward center on y-axis
+            .force("x", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Keep nodes within x bounds
+            .force("y", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Keep nodes within y bounds
             .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Prevent overlap
-            .force("charge", d3.forceManyBody().strength(-15))  // Slight repulsion to spread nodes slightly
+            .force("charge", d3.forceManyBody().strength(-10))  // Slight repulsion to spread nodes slightly
             .on("tick", ticked);  // Call tick function on each simulation iteration
 
         // Restart the simulation with an alpha of 0.7 to ensure proper positioning
