@@ -188,18 +188,25 @@
     function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
             .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
-            .range([2, chart.value.offsetWidth / 12]);
+            .range([3, chart.value.offsetWidth / 10]);
 
         // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
 
-        const nodes = data.map(d => ({
-            ...d,
-            radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: d.x || Math.random() * bubbleChartDimensions.boundedWidth, // Retain previous position if available
-            y: d.y || Math.random() * bubbleChartDimensions.boundedHeight
-        }));
+        // Create the nodes array
+        const nodes = data.map(d => {
+            // Try to find existing nodes by species_id to retain their prior positions
+            const existingNodeSelection = d3.select(`#group_${d.species_id}`);
+            const existingNode = existingNodeSelection.size() > 0 ? existingNodeSelection.datum() : null;
 
+            return {
+                ...d,
+                radius: sizeScale(parseFloat(d.pct_abundance)),
+                x: existingNode ? existingNode.x : Math.random() * bubbleChartDimensions.boundedWidth,  // Retain prior x if exists
+                y: existingNode ? existingNode.y : Math.random() * bubbleChartDimensions.boundedHeight  // Retain prior y if exists
+            };
+        });
+        
         // Join data to nodes, keyed by species_id
         let nodeGroups = bubbleChartBounds.selectAll(".node")
             .data(nodes, d => d.species_id);  // Ensure the key is species_id
