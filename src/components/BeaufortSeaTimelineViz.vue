@@ -203,20 +203,18 @@
         }));
        
         // set up nodes
-        let nodeGroups = bubbleChartBounds.selectAll('.nodes')
+        let nodeGroups = bubbleChartBounds
             .selectAll(".node")
             .data(nodes, d => d.species_id)
 
         const oldNodeGroups = nodeGroups.exit()
 
-        oldNodeGroups.selectAll("circle")
-            .attr("r", 0); //radius to 0
-
-        // Remove old nodes
-        oldNodeGroups.transition(getExitTransition()).remove()
+        oldNodeGroups.selectAll("circle").attr("r", 0); //radius to 0
+        oldNodeGroups.transition(getExitTransition()).remove() // Remove old nodes
 
         // Append new nodes
-        const newNodeGroups = nodeGroups.enter().append("g")
+        const newNodeGroups = nodeGroups.enter()
+            .append("g")
             .attr("class", "node")
             .attr("id", d => "group_" + d.species_id)
             .attr("transform", d => `translate(${d.x || bubbleChartDimensions.boundedWidth / 2}, ${d.y || bubbleChartDimensions.boundedHeight / 2})`);
@@ -237,7 +235,6 @@
 
         function ticked() {
             nodeGroups
-                .transition(getUpdateTransition())
                 .attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
@@ -248,9 +245,8 @@
                 .alpha(0.9)
                 .restart();
         } else {
-            simulation.value = d3.forceSimulation();
-            simulation.value
-                .nodes(nodes)
+            simulation.value = d3.forceSimulation(nodes)
+                .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
                 .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.2))
                 .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.2))
                 .force("collide", d3.forceCollide().radius(d => d.radius + 2).iterations(1))
@@ -263,7 +259,7 @@
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(2000)
+        .duration(500)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
