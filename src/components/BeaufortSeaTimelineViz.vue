@@ -134,6 +134,8 @@
         }
     }
 
+    window.addEventListener('resize', resizeChart);
+
     function initBubbleChart({
         width = 640, // outer width, in pixels
         height = width, // outer height, in pixels
@@ -263,12 +265,23 @@
         simulation.value.alpha(0.7).restart();
     }
 
+    function resizeChart() {
+        const chartWidth = chart.value.offsetWidth;
+        const chartHeight = window.innerHeight * 0.8;
 
+        bubbleChartDimensions.width = chartWidth;
+        bubbleChartDimensions.height = chartHeight;
+        bubbleChartDimensions.boundedWidth = chartWidth - bubbleChartDimensions.margin.left - bubbleChartDimensions.margin.right;
+        bubbleChartDimensions.boundedHeight = chartHeight - bubbleChartDimensions.margin.top - bubbleChartDimensions.margin.bottom;
+
+        // Redraw the chart with the new dimensions
+        drawBubbleChart(data.value, { decade: chartDecade.value });
+    }
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(700)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
