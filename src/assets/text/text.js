@@ -94,17 +94,15 @@ export default {
             alt8: "alt text 8"
         },
         BeaufortSeaSpecies: {
-            heading1: "Reconstructing past and present ocean climates with Arctic microfossils",
-            paragraph1: "At the mouth of the Mackenzie River where it spills into the Beaufort Sea north of Yukon, Canada, the sea ice, temperature, salinity, and food availability conditions are continuously changing. The species that live there shift in response and these changes are recorded in the sediment layers.",
-            paragraph2: "<a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>USGS researchers are using sediment cores </a>to analyze the relative abundance of species within each layer and considering the known ecological preferences of those species, researchers can use these microfossils as proxies of past climates and as indicators of environmental change.",
-            paragraph3: "In the last 25 to 50 years, there have been majors shifts in species composition compared to the past. Microfossils like foraminifera and ostracodes tell a unique store about how changing climates are affecting Artic species.",
+            heading1: "Arctic water chemistry is changing",
+            paragraph1: "In the last 25 to 50 years, there have been major shifts in the relative abundance of different microfossils within seafloor sediments of the Beaufort Sea. Here, we see the relative decline of <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span>, and <span class='scientificName'>Paracyprideis pseudopunctillata</span> combined with relative increases in agglutinated <span class='scientificName'>Spiroplectammina biformis</span> and <span class='scientificName'>Kotoracythere arctoborealis</span>. These shifts indicate that within the last 50 years climate change has altered water chemistry in this region of the Beaufort Sea.",
             tabData: [
                 {
                     tabTitle: "Cassidulina reniforme",
                     tabContentTitle: "Cassidulina reniforme",
                     tabContentTitleID: "cassidulina",
                     tabSpeciesClass: "Foraminifera",
-                    tabText: "The abundance of calcium carbonate forams, like <span class='scientificName'>Cassidulina reniforme</span>, have decline very recently. Calcium carbonate is highly sensitive to changes in ocean pH, making this species vulnerable to ocean acidification.",
+                    tabText: "The relative abundance of calcium carbonate forams, like <span class='scientificName'>Cassidulina reniforme</span>, have declined very recently. Calcium carbonate is highly sensitive to changes in ocean pH, making this species vulnerable to ocean acidification.",
                     tabContentImageSuffix: "2a",
                     tabPrefixImageName: "F_Cassidulina"
                 },
@@ -113,7 +111,7 @@ export default {
                     tabContentTitle: "Elphidium excavatum",
                     tabContentTitleID: "elphidium",
                     tabSpeciesClass: "Foraminifera",
-                    tabText: "Changes in local water chemistry driven by climate make the environment less favorable to calcium carbonate tests and organisms that build them for survival. Like <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span> has declined in abundance in this Beaufort Sea microfossil record in recent years.",
+                    tabText: "Changes in local water chemistry driven by climate make the environment less favorable to calcium carbonate tests and organisms that build them for survival. Like <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span> has declined in relative abundance in this Beaufort Sea microfossil record in recent years.",
                     tabContentImageSuffix: "2b",
                     tabPrefixImageName: "F_Elphidium"
                 },
@@ -122,7 +120,7 @@ export default {
                     tabContentTitle: "Spiroplectammina biformis",
                     tabContentTitleID: "spiroplectimmina",
                     tabSpeciesClass: "Foraminifera",
-                    tabText: "<span class='scientificName'>Spiroplectammina</span> abundance is higher in the past few decades than it has ever been previously recorded. Species within this genus are 'agglutinated,' meaning they cement together particles from their environment like sand and sediment to create a shell. Agglutinated species are able to withstand harsh, corrosive and turbid (cloudy) conditions. Researchers think this has allowed them to thrive in bottom ocean waters affected by melting permafrost.",
+                    tabText: "The relative abundance of <span class='scientificName'>Spiroplectammina</span> is higher in the past few decades than it has ever been previously recorded. Species within this genus are 'agglutinated,' meaning they cement together particles from their environment like sand and sediment to create a shell. Agglutinated species are able to withstand harsh, corrosive and turbid (cloudy) conditions. Researchers think this has allowed them to thrive in bottom ocean waters affected by melting permafrost.",
                     tabContentImageSuffix: "2c",
                     tabPrefixImageName: "F_Spiroplectammina"
                 },
@@ -140,17 +138,22 @@ export default {
                     tabContentTitle: "Paracyprideis pseudopuntillata",
                     tabContentTitleID: "paracyprideis",
                     tabSpeciesClass: "Ostracode",
-                    tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span>, one of the most dominant species in this Arctic fossil record, is declining. Simultaneously, other Ostracodes like <span class='scientificName'>Kotochythere arctoborealis</span> are increasing, as are agglutinated forams like <span class='scientificName'>Spiroplectammina biformis</span>.",
+                    tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span>, historically one of the most dominant species in this Arctic fossil record, is becoming less dominant. Simultaneously, other Ostracodes like <span class='scientificName'>Kotochythere arctoborealis</span> are becoming more dominant, as are agglutinated forams like <span class='scientificName'>Spiroplectammina biformis</span>.",
                     tabContentImageSuffix: "3b",
                     tabPrefixImageName: "O_Paracyprideis"
                 }
             ],
-            heading2: "Changes in species composition",
+            heading2: "What are these microfossils?",
+            paragraph2: "The species highlighted above belong to two classes of microfossils: foraminifera and ostrocodes. They are identified in sediment samples by their external shells, which can take many different forms and be composed of a variety of materials. Under the right conditions, these shells can become fossilized in sediments, creating microfossils. The presence and growth of individual species is closely tied to environmental conditions like the pH, salinity, turbidity, and temperature of ocean water, which can affect the solubility of external shells and the availability of different food sources. By considering the known ecological preferences of observed species, researchers can use microfossils as proxies of past climates and as indicators of environmental change.",
             subheading1: "Foraminifera",
             subheading2: "Ostracodes",
-            paragraph4: "Foraminifera, or 'forams', are a class of single-celled protists. Forams secrete an external shell called a 'test' that can be used by researchers to identify different species in the sedimentary fossil record using unique structures and shapes.",
-            paragraph5: "Ostracodes are a class of microscopic arthropods, most closely related to crustaceans and insects. Ostracodes have a clam-like shell that is made of chitin and calcium carbonate. Under the right conditions, these shells can become fossilized in sediments.",
-            paragraph6: "Here, we see the relative decline of <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span>, and <span class='scientificName'>Paracyprideis pseudopunctillata</span> combined with the increases in agglutinated <span class='scientificName'>Spiroplectammina biformis</span> and <span class='scientificName'>Kotoracythere arctoborealis</span>, which indicates that within the last 50 years or so, this region of the Beaufort Sea has been affected by climate change, including water chemistry changes. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page."
+            paragraph3: "Foraminifera, or 'forams', are a class of single-celled protists. Forams secrete an external shell called a 'test'. Each species create tests with distinct structures and shapes, which allows researchers to identify different species in the sedimentary fossil record. The tests are commonly composed of calcium carbonate or are 'agglutinated', meaning they are constructed from particles in the sediment.",
+            paragraph4: "Ostracodes are a class of microscopic arthropods, most closely related to crustaceans and insects. Ostracodes have a clam-like shell that is made of chitin and calcium carbonate. ",
+            heading3: "How are these data collected?",
+            paragraph5: "These data are from the mouth of the Mackenzie River where it spills into the Beaufort Sea north of Yukon, Canada. In this dynamic Arctic environment, the sea ice, temperature, salinity, and food availability conditions are continuously changing. The species that live there shift in response and these changes are recorded in the sediment layers. ",
+            paragraph6: "<a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>USGS researchers collect sediment cores</a> and analyze the relative abundance of species within each layer. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",
+
+
         },
         BeaufortSeaTimeline: {
             heading1: "2000 years of climate history from microfossil assemblages",
