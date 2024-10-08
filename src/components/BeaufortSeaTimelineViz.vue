@@ -229,60 +229,32 @@
             .attr("r", 0) //instantiate w/ radius = 0
 
         //update nodeGroups to include new nodes
-        nodeGroups = newNodeGroups.merge(nodeGroups)
+        nodeGroups = newNodeGroups.merge(nodeGroups);
 
-        const nodeGroupCircle = nodeGroups.select("circle")
-        
-        nodeGroupCircle
+        nodeGroups.select("circle")
             .transition(getUpdateTransition())
-            .attr("r", d => d.radius)
+            .attr("r", d => d.radius);
 
         function ticked() {
-            nodeGroupCircle
-                // .transition(getUpdateTransition()) // BREAKS d3 force
-                // .attr("r", d => d.radius)
-                .attr("cx", (d) => d.x)
-                .attr("cy", (d) => d.y);
+            nodeGroups
+                .transition(getUpdateTransition())
+                .attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
         // set up d3 force simulation
         if (simulation.value) {
-            // simulation.value.stop()
             simulation.value
                 .nodes(nodes)
                 .alpha(0.9)
-                .restart()
-                // .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                // .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                // .force(
-                //     "collide",
-                //     d3.forceCollide()
-                //         .radius((d) => d.radius + 2)
-                //         .iterations(1)
-                // )
-                // .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alpha(0)
-                // .alphaDecay(0.005)
-                .velocityDecay(0.9)
-                .on("tick", ticked);
+                .restart();
         } else {
             simulation.value = d3.forceSimulation();
             simulation.value
                 .nodes(nodes)
-                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                .force(
-                    "collide",
-                    d3.forceCollide()
-                        .radius((d) => d.radius + 2)
-                        .iterations(1)
-                )
-                .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alphaDecay(0.005)
+                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.2))
+                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.2))
+                .force("collide", d3.forceCollide().radius(d => d.radius + 2).iterations(1))
+                .force('charge', d3.forceManyBody().strength(-5))
                 .velocityDecay(0.9)
                 .on("tick", ticked);
         }
