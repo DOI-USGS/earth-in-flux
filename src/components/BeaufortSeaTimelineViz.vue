@@ -183,91 +183,97 @@
             .attr("class", "nodes")
     }
 
-    function drawBubbleChart(data, {
-        decade = 200
-    }) {
-        // Set radius based on data values across all decades
+    function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
-            .domain([
-                d3.min(data, (d) => parseFloat(d.pct_abundance)),
-                d3.max(data, (d) => parseFloat(d.pct_abundance))
-            ])
+            .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
             .range([4, chart.value.offsetWidth / 7]);
 
-        // filter data to current decade and filter out decades where species is not present
+        // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
-        
-        const nodes = data.map((d) => ({
+
+        const nodes = data.map(d => ({
             ...d,
-            radius: sizeScale(parseFloat(d.pct_abundance))
+            radius: sizeScale(parseFloat(d.pct_abundance)),
+            x: d.x || Math.random() * bubbleChartDimensions.boundedWidth, // Retain previous position if available
+            y: d.y || Math.random() * bubbleChartDimensions.boundedHeight
         }));
-       
-        // set up nodes
-        let nodeGroups = bubbleChartBounds
-            .selectAll(".node")
-            .data(nodes, d => d.species_id)
 
-        // Handle exit
-        nodeGroups.exit().selectAll("circle")
+        // Join data to nodes, keyed by species_id
+        let nodeGroups = bubbleChartBounds.selectAll(".node")
+            .data(nodes, d => d.species_id);  // Ensure the key is species_id
+
+        // Handle exit (hide old nodes instead of removing them)
+        nodeGroups.exit().select("circle")
             .transition(getExitTransition())
-            .attr("r", 0) //radius to 0
-            .remove() // Remove old nodes
+            .attr("r", 0)  // Shrink radius
+            .style("opacity", 0)  // Set opacity to 0 (hide)
+            .on("end", function() {
+                d3.select(this).attr("visibility", "hidden");  // Hide from view but keep in DOM
+            });
 
-        // Append new nodes
+        // Handle enter (new nodes)
         const newNodeGroups = nodeGroups.enter()
             .append("g")
             .attr("class", "node")
             .attr("id", d => "group_" + d.species_id)
-            .attr("transform", d => `translate(${d.x || bubbleChartDimensions.boundedWidth / 2}, ${d.y || bubbleChartDimensions.boundedHeight / 2})`);
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
         newNodeGroups.append("circle")
             .attr("id", d => d.species_id)
             .attr("stroke", "#000000")
             .attr("stroke-width", 0.5)
             .attr("fill", d => d.hexcode)
-            .attr("r", 0) //instantiate w/ radius = 0
-            .transition(getUpdateTransition()) // Transition to final size
+            .attr("r", 0)  // Start new circles at radius 0
+            .transition(getUpdateTransition())  // Transition to final size
             .attr("r", d => d.radius);
 
-        //update nodeGroups to include new nodes
+        // Merge enter and update selections
         nodeGroups = newNodeGroups.merge(nodeGroups);
 
+        // Handle updates (transitioning circles based on new data)
         nodeGroups.select("circle")
+            .attr("visibility", "visible")  // Make re-entered nodes visible again
             .transition(getUpdateTransition())
-            .attr("r", d => d.radius);
+            .attr("r", d => d.radius)
+            .style("opacity", 1);  // Ensure opacity is set back to 1
 
-        // Update the force simulation
+        // Update the force simulation with the full set of nodes
         updateSimulation(nodes, nodeGroups);
     }
+
     function updateSimulation(nodes, nodeGroups) {
         function ticked() {
             nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
-        if (simulation.value) {
-            // Clear forces and reset simulation for new nodes
-            simulation.value.stop();
+        if (!simulation.value) {
+            simulation.value = d3.forceSimulation();
         }
 
-        // Create a new force simulation
-        simulation.value = d3.forceSimulation(nodes)
+        // Restart the simulation and reapply forces
+        simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3)) // Pull toward the center on x-axis
-            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3)) // Pull toward the center on y-axis
-            .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Ensure no overlap
-            .force("charge", d3.forceManyBody().strength(-15))  // Weak repulsive force to spread nodes slightly
-            .velocityDecay(0.8)
-            .on("tick", ticked); // Update positions during simulation
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3))  // Pull toward center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3))  // Pull toward center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Prevent overlap
+            .force("charge", d3.forceManyBody().strength(-15))  // Slight repulsion to spread nodes slightly
+            .on("tick", ticked);  // Call tick function on each simulation iteration
+
+        // Restart the simulation with an alpha of 0.7 to ensure proper positioning
+        simulation.value.alpha(0.7).restart();
     }
+
+
+
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(700)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(700)
         .ease(d3.easeCubicInOut)
     }
 
