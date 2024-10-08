@@ -118,6 +118,11 @@ li {
     width: 90vw;
     max-width: 1000px;
 }
+@media (min-width: 850px) {
+    .tabs-component {
+        width: 70vw;
+    }
+}
 .tab-image {
     max-width: 2.5rem;
     max-height: 2.5rem;
