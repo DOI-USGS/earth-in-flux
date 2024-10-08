@@ -199,9 +199,7 @@
         
         const nodes = data.map((d) => ({
             ...d,
-            radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: bubbleChartDimensions.boundedWidth / 2,
-            y: bubbleChartDimensions.boundedHeight / 2
+            radius: sizeScale(parseFloat(d.pct_abundance))
         }));
        
         // set up nodes
@@ -221,6 +219,7 @@
         const newNodeGroups = nodeGroups.enter().append("g")
             .attr("class", "node")
             .attr("id", d => "group_" + d.species_id)
+            .attr("transform", d => `translate(${d.x || bubbleChartDimensions.boundedWidth / 2}, ${d.y || bubbleChartDimensions.boundedHeight / 2})`);
 
         newNodeGroups.append("circle")
             .attr("id", d => d.species_id)
