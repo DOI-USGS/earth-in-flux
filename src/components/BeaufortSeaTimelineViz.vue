@@ -207,10 +207,11 @@
             .selectAll(".node")
             .data(nodes, d => d.species_id)
 
-        const oldNodeGroups = nodeGroups.exit()
-
-        oldNodeGroups.selectAll("circle").attr("r", 0); //radius to 0
-        oldNodeGroups.transition(getExitTransition()).remove() // Remove old nodes
+        // Handle exit
+        nodeGroups.exit().selectAll("circle")
+            .transition(getExitTransition())
+            .attr("r", 0) //radius to 0
+            .remove() // Remove old nodes
 
         // Append new nodes
         const newNodeGroups = nodeGroups.enter()
@@ -225,6 +226,8 @@
             .attr("stroke-width", 0.5)
             .attr("fill", d => d.hexcode)
             .attr("r", 0) //instantiate w/ radius = 0
+            .transition(getUpdateTransition()) // Transition to final size
+            .attr("r", d => d.radius);
 
         //update nodeGroups to include new nodes
         nodeGroups = newNodeGroups.merge(nodeGroups);
@@ -233,29 +236,29 @@
             .transition(getUpdateTransition())
             .attr("r", d => d.radius);
 
-        function ticked() {
-            nodeGroups
-                .attr("transform", d => `translate(${d.x}, ${d.y})`);
-        }
-
-        // set up d3 force simulation
-        if (simulation.value) {
-            simulation.value
-                .nodes(nodes)
-                .alpha(0.9)
-                .restart();
-        } else {
-            simulation.value = d3.forceSimulation(nodes)
-                .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.2))
-                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.2))
-                .force("collide", d3.forceCollide().radius(d => d.radius + 2).iterations(1))
-                .force('charge', d3.forceManyBody().strength(-5))
-                .velocityDecay(0.9)
-                .on("tick", ticked);
-        }
+        // Update the force simulation
+        updateSimulation(nodes, nodeGroups);
     }
+    function updateSimulation(nodes, nodeGroups) {
+        function ticked() {
+            nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
+        }
 
+        if (simulation.value) {
+            // Clear forces and reset simulation for new nodes
+            simulation.value.stop();
+        }
+
+        // Create a new force simulation
+        simulation.value = d3.forceSimulation(nodes)
+            .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3)) // Pull toward the center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3)) // Pull toward the center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Ensure no overlap
+            .force("charge", d3.forceManyBody().strength(-15))  // Weak repulsive force to spread nodes slightly
+            .velocityDecay(0.8)
+            .on("tick", ticked); // Update positions during simulation
+    }
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
