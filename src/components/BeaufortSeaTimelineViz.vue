@@ -206,7 +206,7 @@
                 y: existingNode ? existingNode.y : Math.random() * bubbleChartDimensions.boundedHeight  // Retain prior y if exists
             };
         });
-        
+
         // Join data to nodes, keyed by species_id
         let nodeGroups = bubbleChartBounds.selectAll(".node")
             .data(nodes, d => d.species_id);  // Ensure the key is species_id
@@ -274,16 +274,18 @@
         // Restart the simulation and reapply forces
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-            .force("x", d3.forceX(d => bubbleChartDimensions.boundedWidth / 2).strength(0.5))  // Strong pull toward center on x-axis
-            .force("y", d3.forceY(d => bubbleChartDimensions.boundedHeight / 2).strength(0.5))  // Strong pull toward center on y-axis
-            .force("collide", d3.forceCollide(d => d.radius + 1).strength(1.8))  // Strong collision force for tight packing
+            .force("x", d3.forceX(d => bubbleChartDimensions.boundedWidth / 2).strength(0.1))  // Strong pull toward center on x-axis
+            .force("y", d3.forceY(d => bubbleChartDimensions.boundedHeight / 2).strength(0.1))  // Strong pull toward center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 1).strength(0.9))  // Strong collision force for tight packing
             .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
             .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
             .force("charge", d3.forceManyBody().strength(-1))  // Minimal repulsion to prevent bubbles from pushing too far apart
+            .alphaDecay(0.03)
+            .velocityDecay(0.5)
             .on("tick", ticked);
 
         // Restart the simulation to ensure proper positioning
-        simulation.value.alpha(0.05).restart();
+        simulation.value.alpha(0.7).restart();
     }
 
     function resizeChart() {
@@ -302,7 +304,7 @@
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(700)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
