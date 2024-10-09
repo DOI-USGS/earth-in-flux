@@ -80,7 +80,7 @@ export default {
             img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Microfossils can be used to indicate these changes.'
+            description: 'Microfossils show that Arctic water chemistry is changing.'
         },   
         {
             title: 'Beaufort Sea Timeline',

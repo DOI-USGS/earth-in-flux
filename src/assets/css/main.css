@@ -72,3 +72,32 @@ a {
     top: 105px;
   }
 }
+
+/* css for Beaufort species-related viz */
+.highlight {
+  padding: 0.5px 5px;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+  transition: all 0.1s;
+}
+#cassidulina {
+  color: white;
+  background-color: #3c475a; /* contrast ratio 9.37 */
+}
+#elphidium {
+  color: white;
+  background-color: #66768F; /* contrast ratio 4.61 */
+}
+#paracyprideis {
+  color: black;
+  background-color: #729C9D; /* contrast ratio 6.95 */
+}
+#kotorachythere {
+  color: black;
+  background-color: #c49051; /* contrast ratio 7.45 */
+}
+#spiroplectimmina {
+  color: black;
+  background-color: #dd605a; /* contrast ratio 5.89 */
+}
