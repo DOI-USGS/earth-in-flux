@@ -188,7 +188,7 @@
     function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
             .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
-            .range([3, chart.value.offsetWidth / 10]);
+            .range([3, bubbleChartDimensions.boundedHeight / 4]);
 
         // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
