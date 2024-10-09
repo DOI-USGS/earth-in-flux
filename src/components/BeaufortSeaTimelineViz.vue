@@ -276,7 +276,7 @@
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
             .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.1))  // Strong pull toward center on x-axis
-            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.1))  // Strong pull toward center on y-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.2))  // Strong pull toward center on y-axis
             .force("collide", d3.forceCollide(d => d.radius + 4).strength(0.9))  // Strong collision force for tight packing
             .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
             .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
