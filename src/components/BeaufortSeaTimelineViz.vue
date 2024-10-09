@@ -183,121 +183,97 @@
             .attr("class", "nodes")
     }
 
-    function drawBubbleChart(data, {
-        decade = 200
-    }) {
-        // Set radius based on data values across all decades
+    function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
-            .domain([
-                d3.min(data, (d) => parseFloat(d.pct_abundance)),
-                d3.max(data, (d) => parseFloat(d.pct_abundance))
-            ])
+            .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
             .range([4, chart.value.offsetWidth / 7]);
 
-        // filter data to current decade and filter out decades where species is not present
+        // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
-        
-        const nodes = data.map((d) => ({
+
+        const nodes = data.map(d => ({
             ...d,
             radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: bubbleChartDimensions.boundedWidth / 2,
-            y: bubbleChartDimensions.boundedHeight / 2
+            x: d.x || Math.random() * bubbleChartDimensions.boundedWidth, // Retain previous position if available
+            y: d.y || Math.random() * bubbleChartDimensions.boundedHeight
         }));
-       
-        // set up nodes
-        let nodeGroups = bubbleChartBounds.selectAll('.nodes')
-            .selectAll(".node")
-            .data(nodes, d => d.species_id)
 
-        const oldNodeGroups = nodeGroups.exit()
+        // Join data to nodes, keyed by species_id
+        let nodeGroups = bubbleChartBounds.selectAll(".node")
+            .data(nodes, d => d.species_id);  // Ensure the key is species_id
 
-        oldNodeGroups.selectAll("circle")
-            .attr("r", 0); //radius to 0
+        // Handle exit (hide old nodes instead of removing them)
+        nodeGroups.exit().select("circle")
+            .transition(getExitTransition())
+            .attr("r", 0)  // Shrink radius
+            .style("opacity", 0)  // Set opacity to 0 (hide)
+            .on("end", function() {
+                d3.select(this).attr("visibility", "hidden");  // Hide from view but keep in DOM
+            });
 
-        // Remove old nodes
-        oldNodeGroups.transition(getExitTransition()).remove()
-
-        // Append new nodes
-        const newNodeGroups = nodeGroups.enter().append("g")
+        // Handle enter (new nodes)
+        const newNodeGroups = nodeGroups.enter()
+            .append("g")
             .attr("class", "node")
             .attr("id", d => "group_" + d.species_id)
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
         newNodeGroups.append("circle")
             .attr("id", d => d.species_id)
             .attr("stroke", "#000000")
             .attr("stroke-width", 0.5)
             .attr("fill", d => d.hexcode)
-            .attr("r", 0) //instantiate w/ radius = 0
+            .attr("r", 0)  // Start new circles at radius 0
+            .transition(getUpdateTransition())  // Transition to final size
+            .attr("r", d => d.radius);
 
-        //update nodeGroups to include new nodes
-        nodeGroups = newNodeGroups.merge(nodeGroups)
+        // Merge enter and update selections
+        nodeGroups = newNodeGroups.merge(nodeGroups);
 
-        const nodeGroupCircle = nodeGroups.select("circle")
-        
-        nodeGroupCircle
+        // Handle updates (transitioning circles based on new data)
+        nodeGroups.select("circle")
+            .attr("visibility", "visible")  // Make re-entered nodes visible again
             .transition(getUpdateTransition())
             .attr("r", d => d.radius)
+            .style("opacity", 1);  // Ensure opacity is set back to 1
 
-        function ticked() {
-            nodeGroupCircle
-                // .transition(getUpdateTransition()) // BREAKS d3 force
-                // .attr("r", d => d.radius)
-                .attr("cx", (d) => d.x)
-                .attr("cy", (d) => d.y);
-        }
-
-        // set up d3 force simulation
-        if (simulation.value) {
-            // simulation.value.stop()
-            simulation.value
-                .nodes(nodes)
-                .alpha(0.9)
-                .restart()
-                // .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                // .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                // .force(
-                //     "collide",
-                //     d3.forceCollide()
-                //         .radius((d) => d.radius + 2)
-                //         .iterations(1)
-                // )
-                // .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alpha(0)
-                // .alphaDecay(0.005)
-                .velocityDecay(0.9)
-                .on("tick", ticked);
-        } else {
-            simulation.value = d3.forceSimulation();
-            simulation.value
-                .nodes(nodes)
-                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                .force(
-                    "collide",
-                    d3.forceCollide()
-                        .radius((d) => d.radius + 2)
-                        .iterations(1)
-                )
-                .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alphaDecay(0.005)
-                .velocityDecay(0.9)
-                .on("tick", ticked);
-        }
+        // Update the force simulation with the full set of nodes
+        updateSimulation(nodes, nodeGroups);
     }
+
+    function updateSimulation(nodes, nodeGroups) {
+        function ticked() {
+            nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
+        }
+
+        if (!simulation.value) {
+            simulation.value = d3.forceSimulation();
+        }
+
+        // Restart the simulation and reapply forces
+        simulation.value.nodes(nodes)
+            .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3))  // Pull toward center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3))  // Pull toward center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Prevent overlap
+            .force("charge", d3.forceManyBody().strength(-15))  // Slight repulsion to spread nodes slightly
+            .on("tick", ticked);  // Call tick function on each simulation iteration
+
+        // Restart the simulation with an alpha of 0.7 to ensure proper positioning
+        simulation.value.alpha(0.7).restart();
+    }
+
+
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(2000)
+        .duration(700)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
       return d3.transition()
-        .duration(500)
+        .duration(700)
         .ease(d3.easeCubicInOut)
     }
 
