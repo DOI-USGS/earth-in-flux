@@ -298,8 +298,18 @@
         bubbleChartDimensions.boundedWidth = chartWidth - bubbleChartDimensions.margin.left - bubbleChartDimensions.margin.right;
         bubbleChartDimensions.boundedHeight = chartHeight - bubbleChartDimensions.margin.top - bubbleChartDimensions.margin.bottom;
 
-        // Redraw the chart with the new dimensions
-        drawBubbleChart(data.value, { decade: chartDecade.value });
+         // Get the current node positions
+        const currentNodes = bubbleChartBounds.selectAll('.node').data();
+
+        // Update the force simulation with the new dimensions and re-center the nodes
+        simulation.value.force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2));
+
+        // Restart the simulation with updated dimensions
+        simulation.value.alpha(0.9).restart();
+
+        // Reapply node positions based on new dimensions
+        bubbleChartBounds.selectAll(".node")
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
     }
 
     // define transitions
