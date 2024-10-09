@@ -202,8 +202,8 @@
             return {
                 ...d,
                 radius: sizeScale(parseFloat(d.pct_abundance)),
-                x: existingNode ? existingNode.x : Math.random() * bubbleChartDimensions.boundedWidth,  // Retain prior x if exists
-                y: existingNode ? existingNode.y : Math.random() * bubbleChartDimensions.boundedHeight  // Retain prior y if exists
+                x: existingNode ? existingNode.x : bubbleChartDimensions.boundedWidth / 2 + (Math.random() - 0.5) * 10,  // Retain prior x if exists
+                y: existingNode ? existingNode.y : bubbleChartDimensions.boundedHeight / 2 + (Math.random() - 0.5) * 10  // Retain prior y if exists
             };
         });
 
@@ -255,9 +255,6 @@
             nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
-        if (!simulation.value) {
-            simulation.value = d3.forceSimulation();
-        }
         // Apply boundary force: Ensure the nodes stay within the bounds of the SVG
         function boundaryForceX(d) {
             const minX = d.radius;  // Left edge, constrained by radius
@@ -271,12 +268,16 @@
             return Math.max(minY, Math.min(maxY, d.y));  // Ensure y is within bounds
         }
 
+        if (!simulation.value) {
+            simulation.value = d3.forceSimulation();
+        }
+
         // Restart the simulation and reapply forces
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
             .force("x", d3.forceX(d => bubbleChartDimensions.boundedWidth / 2).strength(0.1))  // Strong pull toward center on x-axis
             .force("y", d3.forceY(d => bubbleChartDimensions.boundedHeight / 2).strength(0.1))  // Strong pull toward center on y-axis
-            .force("collide", d3.forceCollide(d => d.radius + 1).strength(0.9))  // Strong collision force for tight packing
+            .force("collide", d3.forceCollide(d => d.radius + 4).strength(0.9))  // Strong collision force for tight packing
             .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
             .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
             .force("charge", d3.forceManyBody().strength(-1))  // Minimal repulsion to prevent bubbles from pushing too far apart
@@ -285,7 +286,7 @@
             .on("tick", ticked);
 
         // Restart the simulation to ensure proper positioning
-        simulation.value.alpha(0.7).restart();
+        simulation.value.alpha(0.8).restart();
     }
 
     function resizeChart() {
