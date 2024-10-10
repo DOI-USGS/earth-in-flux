@@ -38,9 +38,12 @@
     let xAxis;
     let yScale;
     let yAxis;
-    // using random hex codes for now, need to add quotes when there is a space in the field
-    // const colors = {"North America": '#FF7256', "South America": '#014C8A', "Africa": '#2C7D09', "Asia": '#5F1905', "Oceania": '#67466E', "Europe": '#0F1bBC'}
-    // let colorScale;
+    let rScale;
+    const rPropMin = 0.01
+    const rPropMax = 0.05
+    const colorLowerBound = "#6F4E37" // lower end
+    const colorUpperBound =  "#5CB270" // upper end
+    let colorScale;
 
     // Behavior on mounted (functions called here)
     // Load data and then make chart
@@ -85,7 +88,8 @@
                 d.total_consumable_harv_kg = +d.total_consumable_harv_kg;
                 d.MCDM_VUL_2075_45 = +d.MCDM_VUL_2075_45;
                 d.consum_kg_person = +d.consum_kg_person;
-                d.consum_kg_fisher = +d.consum_kg_fisher;
+                d.consum_kg_fisher = +d.consum_kg_fisher;                
+                d.income_grp_level = +Array.from(d.income_grp)[0];
                 return d;
             });
             return data;
@@ -170,7 +174,7 @@
 
     function initYScale() {
         // scale for y axis (domain set in `drawChart()`)
-        yScale = d3.scaleLinear()
+        yScale = d3.scaleLog()
             .range([chartDimensions.boundedHeight, 0]);
     }
 
@@ -301,10 +305,14 @@
         })
     }
 
-    function initColorScale(data) {
-        colorScale = d3.scaleOrdinal()
-            .domain(data)
-            .range(data.map(item => colors[item]));
+    function initRScale() {
+        rScale = d3.scaleSqrt()
+            .range([Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMin,Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMax]);
+    }
+
+    function initColorScale() {
+        colorScale = d3.scaleLinear()            
+            .range([colorLowerBound, colorUpperBound]);
     }
 
     function drawChart(data, continent) {
@@ -318,37 +326,54 @@
         ///////////////////////////////////////////
         const xAccessor = d => d.MCDM_VUL_2075_45;
         const yAccessor = d => d.consum_kg_person;
-        // const colorAccessor = d => d.continent;
+        const rAccessor = d => d.population;
+        const colorAccessor = d => d.income_grp_level;
         const identifierAccessor = d => d.admin.replace(/ /g,"_");
 
         ///////////////////////////////////////////
         /////    FINISH SETTING UP X SCALE    /////
         ///////////////////////////////////////////
         // set domain for xScale, based on data
+        const xInnerDomainRange = d3.max(chartData, xAccessor) - d3.min(chartData, xAccessor);
+        const xDomain_min = d3.min(chartData, xAccessor) - xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the smallest data point
+        const xDomain_max = d3.max(chartData, xAccessor) + xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the larger data point        
         xScale
-            .domain([d3.min(chartData, xAccessor), d3.max(chartData, xAccessor)]);
+            .domain([xDomain_min, xDomain_max]);
         drawXAxis({axisTitle: 'Climate vulnerability'})
+        //console.log(r_prop_max * (xDomain_max - xDomain_max), xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max))
         
         ///////////////////////////////////////////
         /////    FINISH SETTING UP Y SCALE    /////
         ///////////////////////////////////////////
         // set domain for yScale
+        const yInnerDomainRange = Math.log10(d3.max(chartData, yAccessor)) - Math.log10(d3.min(chartData, yAccessor));
+        const yDomain_min = Math.pow(10.,Math.log10(d3.min(chartData, yAccessor)) - yInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax)); //ensures that the buffer is the max radius away from the smallest data point
+        const yDomain_max = Math.pow(10.,Math.log10(d3.max(chartData, yAccessor)) + yInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax)); //ensures that the buffer is the max radius away from the larger data point  
         yScale
-            .domain([0, d3.max(chartData, yAccessor)]);
-        drawYAxis({axisTitle: 'Per capita consumption, in kilograms'})
+            .domain([yDomain_min, yDomain_max]);
+        drawYAxis({axisTitle: 'Per capita consumption, in kilograms', tickFormat:".0e"})
 
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP R SCALE    /////
+        ///////////////////////////////////////////
+        // set domain for rScale
+        initRScale()
+        rScale
+            .domain(d3.extent(chartData, rAccessor));
+            
         // ///////////////////////////////////
         // /////    SET UP COLOR SCALE   /////
         // ///////////////////////////////////
-        // const colorCategories = [... new Set(data.map(colorAccessor))];
-        // initColorScale(colorCategories)
+        initColorScale()
+        colorScale
+            .domain(d3.extent(chartData, colorAccessor));
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
         // draw chart
         chartBounds.select('.circles') // selects our group we set up to hold chart elements
-            .selectAll(".rect") // empty selection
+            .selectAll(".circle") // empty selection
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
                 .append("circle") // append a circle for each element
@@ -356,8 +381,9 @@
                     .attr("id", d => 'circle-' + identifierAccessor(d))
                     .attr("cx", d => xScale(xAccessor(d)))
                     .attr("cy", d => yScale(yAccessor(d)))
-                    .attr("r", 5)
-                    .attr('fill', '#000000');//d => colorScale(colorAccessor(d)));
+                    .attr("r", d => rScale(rAccessor(d)))
+                    .attr('fill', d => colorScale(colorAccessor(d)))
+                    .attr('stroke', '#FFFFFF');
 
     }
 </script>
