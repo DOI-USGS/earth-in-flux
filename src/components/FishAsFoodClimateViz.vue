@@ -39,10 +39,10 @@
     let yScale;
     let yAxis;
     let rScale;
-    const r_prop_min = 0.01
-    const r_prop_max = 0.05
-    const color_lower_bound = "#6F4E37" // lower end
-    const color_upper_bound =  "#5CB270" // upper end
+    const rPropMin = 0.01
+    const rPropMax = 0.05
+    const colorLowerBound = "#6F4E37" // lower end
+    const colorUpperBound =  "#5CB270" // upper end
     let colorScale;
 
     // Behavior on mounted (functions called here)
@@ -307,12 +307,12 @@
 
     function initRScale() {
         rScale = d3.scaleSqrt()
-            .range([chartDimensions.boundedWidth*r_prop_min,chartDimensions.boundedWidth*r_prop_max]);
+            .range([Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMin,Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMax]);
     }
 
     function initColorScale() {
         colorScale = d3.scaleLinear()            
-            .range([color_lower_bound, color_upper_bound]);
+            .range([colorLowerBound, colorUpperBound]);
     }
 
     function drawChart(data, continent) {
@@ -335,19 +335,20 @@
         ///////////////////////////////////////////
         // set domain for xScale, based on data
         const xInnerDomainRange = d3.max(chartData, xAccessor) - d3.min(chartData, xAccessor);
-        const xDomain_min = d3.min(chartData, xAccessor) - xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max); //ensures that the buffer is the max radius away from the smallest data point
-        const xDomain_max = d3.max(chartData, xAccessor) + xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max); //ensures that the buffer is the max radius away from the larger data point        
+        const xDomain_min = d3.min(chartData, xAccessor) - xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the smallest data point
+        const xDomain_max = d3.max(chartData, xAccessor) + xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the larger data point        
         xScale
             .domain([xDomain_min, xDomain_max]);
         drawXAxis({axisTitle: 'Climate vulnerability'})
+        //console.log(r_prop_max * (xDomain_max - xDomain_max), xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max))
         
         ///////////////////////////////////////////
         /////    FINISH SETTING UP Y SCALE    /////
         ///////////////////////////////////////////
         // set domain for yScale
         const yInnerDomainRange = Math.log10(d3.max(chartData, yAccessor)) - Math.log10(d3.min(chartData, yAccessor));
-        const yDomain_min = Math.pow(10,Math.log10(d3.min(chartData, yAccessor)) - yInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max)); //ensures that the buffer is the max radius away from the smallest data point
-        const yDomain_max = Math.pow(10,Math.log10(d3.max(chartData, yAccessor)) + yInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max)); //ensures that the buffer is the max radius away from the larger data point        
+        const yDomain_min = Math.pow(10.,Math.log10(d3.min(chartData, yAccessor)) - yInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax)); //ensures that the buffer is the max radius away from the smallest data point
+        const yDomain_max = Math.pow(10.,Math.log10(d3.max(chartData, yAccessor)) + yInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax)); //ensures that the buffer is the max radius away from the larger data point  
         yScale
             .domain([yDomain_min, yDomain_max]);
         drawYAxis({axisTitle: 'Per capita consumption, in kilograms', tickFormat:".0e"})
