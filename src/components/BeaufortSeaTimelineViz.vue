@@ -31,6 +31,7 @@
 <script setup>
     import { onMounted, ref } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
@@ -39,6 +40,7 @@
     })
 
     // global variables
+    const mobileView = isMobile;
     const publicPath = import.meta.env.BASE_URL;
     const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
@@ -76,16 +78,20 @@
                 chartDecade.value = chartDecades.value[0]
                 
                 // initialize svg and chart bounds
+                const chartMarginRight = mobileView ? 20 : 10;
+                const chartMarginLeft = mobileView ? 45 : 60;
                 const bubbleChartHeight = laptopScreen ? chartHeight * 0.6 : chartHeight * 0.7;
                 initBubbleChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
-                    height: bubbleChartHeight
+                    height: bubbleChartHeight,
+                    marginRight: chartMarginRight
                 });
                 const timelineChartHeight = laptopScreen ? chartHeight * 0.1 : chartHeight * 0.075
                 initTimelineChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: timelineChartHeight,
-                    marginLeft: 60, // left margin, in pixels
+                    marginLeft: chartMarginLeft, // left margin, in pixels
+                    marginRight: chartMarginRight,
                     marginTop: 0,
                     marginBottom: 25
                 });
@@ -93,7 +99,8 @@
                 initBarChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: barChartHeight,
-                    marginLeft: 60, // left margin, in pixels
+                    marginLeft: chartMarginLeft, // left margin, in pixels
+                    marginRight: chartMarginRight,
                     marginTop: 10,
                     marginBottom: 20
                 })
@@ -189,7 +196,7 @@
     function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
             .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
-            .range([3, bubbleChartDimensions.boundedHeight / 4]);
+            .range([3, d3.min([bubbleChartDimensions.boundedHeight, bubbleChartDimensions.boundedWidth]) / 4]);
 
         // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
@@ -274,10 +281,12 @@
         }
 
         // Restart the simulation and reapply forces
+        const forceXStrength = mobileView ? 0.3 : 0.1;
+        const forceYStrength = mobileView ? 0.1 : 0.3;
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.1))  // Strong pull toward center on x-axis
-            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3))  // Strong pull toward center on y-axis
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(forceXStrength))  // Strong pull toward center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(forceYStrength))  // Strong pull toward center on y-axis
             .force("collide", d3.forceCollide(d => d.radius + 4).strength(0.9))  // Strong collision force for tight packing
             .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
             .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
@@ -383,6 +392,7 @@
 
         // add x axis
         const xAxis = timelineChartBounds.append('g')
+            .attr("id", "timeline-x-axis")
             .attr("transform", `translate(0,${timelineChartDimensions.boundedHeight})`)
             .call(d3.axisBottom(xScale).tickSize(0))
             // .select(".domain").remove() // remove axis line;
@@ -390,9 +400,11 @@
         xAxis.selectAll('path')
             .attr("stroke", bkgdColor);
 
+        const defaultAxisTextOpacity = mobileView ? 0 : 1
         xAxis.selectAll('text')
             .attr("class", d => 'axis-text x-axis label' + d)
-            .style('font-weight', d => d === decade ? '900' : '200');
+            .style('font-weight', d => d === decade ? '900' : '200')
+            .style('opacity', d => d === decade ? 1 :defaultAxisTextOpacity);
 
         // Add x axis title
         const xAxisLabelYPosition = xAxis.select("text").attr('y')
@@ -433,7 +445,7 @@
                 .attr("class", d => 'point timeline' + d)
                 .attr("cx",  d => xScale(d) + xScale.bandwidth() / 2)
                 .attr("cy", timelineChartDimensions.boundedHeight / 2)
-                .attr("r", 8)
+                .attr("r", mobileView ? 4 : 8)
                 .style('fill', d => d === decade ? highlightFillGrey : defaultGrey)
                 .style("stroke", d => d === decade ? highlightStrokeGrey : defaultGrey)
                 .style("stroke-width", 2)
@@ -643,6 +655,10 @@
                 .style('stroke-opacity', defaultRectOpacity)
             d3.selectAll('.axis-text.x-axis')
                 .style('font-weight', '200')
+            if (mobileView) {
+                d3.selectAll('.axis-text.x-axis')
+                    .style('opacity', 0)
+            }
             // set styling for specific decade
             d3.selectAll('.timeline' + decade)
                 .style('fill', highlightFillGrey)
@@ -652,6 +668,10 @@
                 .style('stroke-opacity', 0)
             d3.selectAll('.label' + decade)
                 .style('font-weight', '900')
+            if (mobileView) {
+                d3.selectAll('.label' + decade)
+                    .style('opacity', 1)
+            }
             // update bubble chart
             drawBubbleChart(data.value, {decade: chartDecade.value})
         }
@@ -675,6 +695,9 @@
         font-size: 1.8rem;
         font-family: var(--default-font);
         user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
     }
     .axis-title {
         font-size: 1.8rem;
@@ -682,6 +705,9 @@
         font-weight: 900;
         fill: var(--color-text);
         user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
     }
     .increase-line-height {
         line-height: 28px;

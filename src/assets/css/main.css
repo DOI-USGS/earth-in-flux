@@ -61,6 +61,9 @@ a {
 .figure-container {
   max-width: 80vw;
   margin: 0 auto 0 auto;
+  @media only screen and (max-width: 600px) {
+    max-width: 90vw; /* 90% of view width on mobile */
+  }
 }
 .scientificName {
   font-style:italic;
