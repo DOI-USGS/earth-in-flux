@@ -262,10 +262,10 @@
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
                             .text(d => d.name)
                             .style("font", "14px sans-serif")
-                        // .append("tspan")
-                        //     .attr("fill-opacity", 0.7)
-                        //     .text(d => ` ${d.value.toLocaleString()}`)
-                        //     .style("font", "14px sans-serif")
+                        .append("tspan")
+                            .attr("fill-opacity", 0.7)
+                            .text(d => ` ${d.value.toLocaleString()}`)
+                            .style("font", "14px sans-serif")
                 },
                 null,
                 exit => {
