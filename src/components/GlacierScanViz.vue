@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-    import { onMounted, shallowReactive } from "vue";
+    import { onMounted } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
