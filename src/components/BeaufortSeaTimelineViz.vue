@@ -134,6 +134,8 @@
         }
     }
 
+    window.addEventListener('resize', resizeChart);
+
     function initBubbleChart({
         width = 640, // outer width, in pixels
         height = width, // outer height, in pixels
@@ -186,17 +188,24 @@
     function drawBubbleChart(data, { decade = 200 }) {
         const sizeScale = d3.scaleSqrt()
             .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
-            .range([4, chart.value.offsetWidth / 7]);
+            .range([3, bubbleChartDimensions.boundedHeight / 4]);
 
         // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
 
-        const nodes = data.map(d => ({
-            ...d,
-            radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: d.x || Math.random() * bubbleChartDimensions.boundedWidth, // Retain previous position if available
-            y: d.y || Math.random() * bubbleChartDimensions.boundedHeight
-        }));
+        // Create the nodes array
+        const nodes = data.map(d => {
+            // Try to find existing nodes by species_id to retain their prior positions
+            const existingNodeSelection = d3.select(`#group_${d.species_id}`);
+            const existingNode = existingNodeSelection.size() > 0 ? existingNodeSelection.datum() : null;
+
+            return {
+                ...d,
+                radius: sizeScale(parseFloat(d.pct_abundance)),
+                x: existingNode ? existingNode.x : bubbleChartDimensions.boundedWidth / 2 + (Math.random() - 0.5) * 10,  // Retain prior x if exists
+                y: existingNode ? existingNode.y : bubbleChartDimensions.boundedHeight / 2 + (Math.random() - 0.5) * 10  // Retain prior y if exists
+            };
+        });
 
         // Join data to nodes, keyed by species_id
         let nodeGroups = bubbleChartBounds.selectAll(".node")
@@ -246,6 +255,19 @@
             nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
+        // Apply boundary force: Ensure the nodes stay within the bounds of the SVG
+        function boundaryForceX(d) {
+            const minX = d.radius;  // Left edge, constrained by radius
+            const maxX = bubbleChartDimensions.boundedWidth - d.radius;  // Right edge, constrained by radius
+            return Math.max(minX, Math.min(maxX, d.x));  // Ensure x is within bounds
+        }
+
+        function boundaryForceY(d) {
+            const minY = d.radius;  // Top edge, constrained by radius
+            const maxY = bubbleChartDimensions.boundedHeight - d.radius;  // Bottom edge, constrained by radius
+            return Math.max(minY, Math.min(maxY, d.y));  // Ensure y is within bounds
+        }
+
         if (!simulation.value) {
             simulation.value = d3.forceSimulation();
         }
@@ -253,27 +275,52 @@
         // Restart the simulation and reapply forces
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.3))  // Pull toward center on x-axis
-            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.3))  // Pull toward center on y-axis
-            .force("collide", d3.forceCollide(d => d.radius + 2).strength(1))  // Prevent overlap
-            .force("charge", d3.forceManyBody().strength(-15))  // Slight repulsion to spread nodes slightly
-            .on("tick", ticked);  // Call tick function on each simulation iteration
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.1))  // Strong pull toward center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.2))  // Strong pull toward center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 4).strength(0.9))  // Strong collision force for tight packing
+            .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
+            .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
+            .force("charge", d3.forceManyBody().strength(-1))  // Minimal repulsion to prevent bubbles from pushing too far apart
+            .alphaDecay(0.03)
+            .velocityDecay(0.5)
+            .on("tick", ticked);
 
-        // Restart the simulation with an alpha of 0.7 to ensure proper positioning
-        simulation.value.alpha(0.7).restart();
+        // Restart the simulation to ensure proper positioning
+        simulation.value.alpha(0.8).restart();
     }
 
+    function resizeChart() {
+        const chartWidth = chart.value.offsetWidth;
+        const chartHeight = window.innerHeight * 0.8;
 
+        bubbleChartDimensions.width = chartWidth;
+        bubbleChartDimensions.height = chartHeight;
+        bubbleChartDimensions.boundedWidth = chartWidth - bubbleChartDimensions.margin.left - bubbleChartDimensions.margin.right;
+        bubbleChartDimensions.boundedHeight = chartHeight - bubbleChartDimensions.margin.top - bubbleChartDimensions.margin.bottom;
+
+         // Get the current node positions
+        const currentNodes = bubbleChartBounds.selectAll('.node').data();
+
+        // Update the force simulation with the new dimensions and re-center the nodes
+        simulation.value.force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2));
+
+        // Restart the simulation with updated dimensions
+        simulation.value.alpha(0.9).restart();
+
+        // Reapply node positions based on new dimensions
+        bubbleChartBounds.selectAll(".node")
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
+    }
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(700)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
       return d3.transition()
-        .duration(700)
+        .duration(500)
         .ease(d3.easeCubicInOut)
     }
 
