@@ -1,0 +1,23 @@
+ThreatCategory,Threat,TotalWeightedThreatMetric,TotalWeightedThreatMetricx1000
+Pollution,Agricultural effluents,128.67580801861718,128676
+Habitat,Agricultural extraction,78.1896991736154,78190
+Pollution,Aquaculture effluents,122.52449978988517,122524
+Climate and weather,Change in flooding,75.87852953145263,75879
+Climate and weather,Change in ice cover,10.108877475127327,10109
+Climate and weather,Change in water temperature,74.62673490568979,74627
+Climate and weather,Change in wind patterns,37.52066549304884,37521
+Habitat,Dams,182.06788767464232,182068
+Habitat,Deforestation and associated runoff,162.2815069431304,162282
+Climate and weather,Drought,88.17566575133017,88176
+Pollution,Industrial effluents,118.51192366080859,118512
+Habitat,Industrial extraction,76.3498340606527,76350
+Invasive species,Invasive non-native species,134.37481040758456,134375
+Pollution,Mining,38.63527793439744,38635
+Pollution,Oil or gas exploration,67.24565719483249,67246
+Exploitation,Overfishing,49.80755274821216,49808
+Pollution,Pharmaceuticals,71.53059689170686,71531
+Pollution,Plastics,56.86499503098925,56865
+Habitat,Riparian degradation,145.06410779684242,145064
+Habitat,Urban extraction,77.35423010653012,77354
+Pollution,Urban wastewater,117.20644414400017,117206
+Habitat,Wetland drainage,164.8352374810979,164835
