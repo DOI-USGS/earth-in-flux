@@ -194,9 +194,10 @@
     }
 
     function drawBubbleChart(data, { decade = 200 }) {
+        const maxSizeDenominator = mobileView ? 5 : 4;
         const sizeScale = d3.scaleSqrt()
             .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
-            .range([3, d3.min([bubbleChartDimensions.boundedHeight, bubbleChartDimensions.boundedWidth]) / 4]);
+            .range([3, d3.min([bubbleChartDimensions.boundedHeight, bubbleChartDimensions.boundedWidth]) / maxSizeDenominator]);
 
         // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
@@ -282,7 +283,7 @@
 
         // Restart the simulation and reapply forces
         const forceXStrength = mobileView ? 0.3 : 0.1;
-        const forceYStrength = mobileView ? 0.1 : 0.3;
+        const forceYStrength = mobileView ? 0.2 : 0.3;
         simulation.value.nodes(nodes)
             .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
             .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(forceXStrength))  // Strong pull toward center on x-axis
