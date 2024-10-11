@@ -90,7 +90,7 @@ export default {
             img_src: 'BeaufortSeaTimeline_thumbnail.PNG',
             alt: '',
             chartOrder: 3,
-            description: 'Communities of microorganisms on the sea floor are affected.'
+            description: 'Microfossil records help reconstruct past climates.'
         }   
     ]
 };
