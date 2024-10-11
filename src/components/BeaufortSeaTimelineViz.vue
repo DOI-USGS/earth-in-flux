@@ -14,7 +14,7 @@
             <p class="increase-line-height" v-html="text.paragraph2" />
         </template>
         <template #figures>
-            <div id="chart-container" class="maxWidth" ref="chart"></div>
+            <div id="chart-container" ref="chart"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -43,7 +43,8 @@
     const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
     const chart = ref(null);
-    let chartHeight = window.innerHeight * 0.8;
+    let laptopScreen = window.innerHeight < 700;
+    let chartHeight = laptopScreen ? window.innerHeight * 0.9 : window.innerHeight * 0.8;
     let bubbleChartDimensions;
     const bubbleChartTitle = 'Title of chart';
     let bubbleChartBounds;
@@ -75,12 +76,12 @@
                 chartDecade.value = chartDecades.value[0]
                 
                 // initialize svg and chart bounds
-                const bubbleChartHeight = chartHeight * 0.7;
+                const bubbleChartHeight = laptopScreen ? chartHeight * 0.6 : chartHeight * 0.7;
                 initBubbleChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: bubbleChartHeight
                 });
-                const timelineChartHeight = chartHeight * 0.075
+                const timelineChartHeight = laptopScreen ? chartHeight * 0.1 : chartHeight * 0.075
                 initTimelineChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: timelineChartHeight,
@@ -657,6 +658,18 @@
     }
 </script>
 
+<style scoped lang="scss">
+    #chart-container {
+        max-width: 1000px;
+        margin: 0 auto 15px auto;
+    }
+    @media only screen and (max-height: 700px) {
+        #chart-container {
+            max-width: 900px;
+            margin: 0 auto 15px auto;
+        }
+    }
+</style>
 <style lang="scss">
     .axis-text {
         font-size: 1.8rem;
@@ -670,7 +683,6 @@
         fill: var(--color-text);
         user-select: none;
     }
-
     .increase-line-height {
         line-height: 28px;
         @media screen and (max-width: 600px) {
