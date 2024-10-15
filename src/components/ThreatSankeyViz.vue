@@ -48,11 +48,11 @@
 
     // Colors for threat categories, Needs to be updated with CSS for text legend
     const categoryColors = {
-        'Climate and weather': '#EECEB9',
-        'Exploitation':  '#939185',
-        'Habitat':  '#C8ACD6', 
-        'Invasive species':  '#80909D',
-        'Pollution': '#E8E8E3'
+        'Climate and weather': '#c29fcd',
+        'Exploitation':  '#d38884',
+        'Habitat':  '#dab589', 
+        'Invasive species':  '#729C9D',
+        'Pollution': '#899bb7'
     }; 
 
     onMounted(async () => {
