@@ -29,7 +29,6 @@
     import * as d3 from 'd3';
     import * as d3sankey from 'd3-sankey';
     import VizSection from '@/components/VizSection.vue';
-import { isYandex } from "mobile-device-detect";
 
     // define props
     defineProps({
@@ -41,7 +40,6 @@ import { isYandex } from "mobile-device-detect";
     const data = ref();
     const dataFile = 'findex_total_weighted_threats.csv'
     const chart = ref(null);
-    const chartTitle = 'Title of chart';
     let chartDimensions;
     let chartBounds;
     let nodeGroup;
@@ -91,9 +89,7 @@ import { isYandex } from "mobile-device-detect";
 
     async function loadData(fileName) {
         try {
-            const data = await d3.csv(publicPath + fileName, d => { 
-                // d.TotalWeightedThreatMetric = + d.TotalWeightedThreatMetric,
-                // d.TotalWeightedThreatMetricx1000 = + d.TotalWeightedThreatMetricx1000
+            const data = await d3.csv(publicPath + fileName, d => {
                 return d;
             });
             return data;
@@ -157,14 +153,11 @@ import { isYandex } from "mobile-device-detect";
     };
 
     function createSankey({
-        dataset,
-        containerId
+        dataset
     }) {
 
         // get unique categories and parameters
         const categoryGroups = [... new Set(dataset.map(d => d.ThreatCategory))];
-        // const categoryGroups = d3.union(d3.map(dataset, d => d.Category));
-        const habitatGroups = d3.union(d3.map(dataset, d => d.Habitat));
     
         // initialize sankey
         const sankey = d3sankey.sankey()
@@ -191,10 +184,9 @@ import { isYandex } from "mobile-device-detect";
 
         // Set up transition.
         const dur = 1000;
-        const t = d3.transition().duration(dur);
 
         // Update nodes for sankey, assigning data
-        const sankeyNodesGroups = nodeGroup.selectAll('g')
+        nodeGroup.selectAll('g')
             .data(nodes)
             .join(
                 enter => enter
@@ -217,37 +209,37 @@ import { isYandex } from "mobile-device-detect";
             });
 
         // Update links for sankey, assigning data
-        const sankeyLinksGroups = linkGroup.selectAll('g')
-        .data(links)
-        .join(
-            enter => {
-                enter 
-                    .append("path")
-                        .attr("d", d3sankey.sankeyLinkHorizontal())
-                        .attr("stroke", d => colorScale(d.names[0]))
-                        .attr("stroke-width", d => d.width)
-                        .style("mix-blend-mode", "multiply")
-                        .style('fill', "none")
-                    .append("title")
-                        .text(d => `${d.names.join(" → ")}\n${d.value.toLocaleString()}`)
-            },
+        linkGroup.selectAll('g')
+            .data(links)
+            .join(
+                enter => {
+                    enter 
+                        .append("path")
+                            .attr("d", d3sankey.sankeyLinkHorizontal())
+                            .attr("stroke", d => colorScale(d.names[0]))
+                            .attr("stroke-width", d => d.width)
+                            .style("mix-blend-mode", "multiply")
+                            .style('fill', "none")
+                        .append("title")
+                            .text(d => `${d.names.join(" → ")}\n${d.value.toLocaleString()}`)
+                },
 
-            null,
+                null,
 
-            exit => {
-                exit
-                    .transition()
-                    .duration(dur / 2)
-                    .style("fill-opacity", 0)
-                    .style("stroke-width", 0)
-                    .style("color-opacity", 0)
-                    .remove();
-            }
-      );
+                exit => {
+                    exit
+                        .transition()
+                        .duration(dur / 2)
+                        .style("fill-opacity", 0)
+                        .style("stroke-width", 0)
+                        .style("color-opacity", 0)
+                        .remove();
+                }
+            );
 
 
         // Update text for sankey, assigning data from nodes
-        const sankeyTextGroups = textGroup.selectAll('g')
+        textGroup.selectAll('g')
             .data(nodes)
             .join(
                 enter => {
