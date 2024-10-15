@@ -29,6 +29,7 @@
     import * as d3 from 'd3';
     import * as d3sankey from 'd3-sankey';
     import VizSection from '@/components/VizSection.vue';
+import { isYandex } from "mobile-device-detect";
 
     // define props
     defineProps({
@@ -182,8 +183,7 @@
         var nodesLinks = graphNodes({
         data: dataset
         });
-        // console.log(nodesLinks.nodes)
-        // console.log(nodesLinks.links)
+
         const {nodes, links} = sankey({
         nodes: nodesLinks.nodes.map(d => Object.create(d)),
         links: nodesLinks.links.map(d => Object.create(d))
@@ -192,9 +192,6 @@
         // Set up transition.
         const dur = 1000;
         const t = d3.transition().duration(dur);
-        console.log('sankey processed nodes and links')
-        console.log(nodes)
-        console.log(links)
 
         // Update nodes for sankey, assigning data
         const sankeyNodesGroups = nodeGroup.selectAll('g')
@@ -283,9 +280,6 @@
     // set up the nodes and links
     function graphNodes({data}){ //https://observablehq.com/@d3/parallel-sets?collection=@d3/d3-sankey
         let keys = data.columns.slice(0, 2); // which columns for nodes
-        // let valueField = 'TotalWeightedThreatMetricx1000'
-        // console.log('keys')
-        // console.log(keys)
 
         let index = -1;
         let nodes = [];
@@ -301,18 +295,33 @@
                 const node = {name: d[k]};
                 nodes.push(node);
                 nodeByKey.set(key, node);
-                indexByKey.set(key, ++index);
+                // Doing some custom index setting to sort the left side of the sankey
+                if (d[k] == 'Invasive species') {
+                    ++index // still need to advance index
+                    indexByKey.set(key, 3); // Would otherwise be 1
+                } else if (d[k] == 'Pollution') {
+                    ++index
+                    indexByKey.set(key, 1); // Would otherwise be 2
+                } else if (d[k] == 'Climate and weather') {
+                    ++index
+                    indexByKey.set(key, 2); // Would otherwise be 3
+                } else {
+                    indexByKey.set(key, ++index);
+                }
+                // Use below if dropping custom sorting
+                // indexByKey.set(key, ++index);
             }
         }
-        console.log('nodes after initial creation')
-        console.log(nodes)
         
+        // With custom indices, need to re-order nodes
+        // Here, taking 'Invasive species' out of slot 1 and dropping in slot 3
+        nodes.splice(3, 0, nodes.splice(1, 1)[0]);
+
         // creates links between nodes
         for (let i = 1; i < keys.length; ++i) {
             const a = keys[i - 1];
             const b = keys[i];
             const prefix = keys.slice(0, i + 1);
-            // console.log(`prefix; ${prefix}`)
             const linkByKey = new d3.InternMap([], JSON.stringify);
             for (const d of data) {
             const names = prefix.map(k => d[k]);
@@ -329,11 +338,6 @@
             linkByKey.set(names, link);
             }
         }
-        console.log('links after initial creation')
-        console.log(links)
-        // console.log(links[0].names[0])
-        // console.log(nodes)
-        // console.log(links)
         return {nodes, links};
     };
 </script>
