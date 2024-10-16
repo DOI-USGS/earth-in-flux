@@ -64,6 +64,8 @@
                     width: chart.value.offsetWidth,
                     height: window.innerHeight * 0.8,
                     margin: 10,
+                    marginLeft: 150,
+                    marginRight: 250,
                     containerId: 'threat-container'
                 });
                 createSankey({
@@ -165,7 +167,7 @@
             .linkSort(null)
             .nodeWidth(4)
             .nodePadding(11)
-            .extent([[150, 5], [chartDimensions.boundedWidth - 300, chartDimensions.boundedHeight - 0]])
+            .extent([[0, 0], [chartDimensions.boundedWidth, chartDimensions.boundedHeight]])
 
         // Set up color scale 
         const colorScale = d3.scaleOrdinal()
