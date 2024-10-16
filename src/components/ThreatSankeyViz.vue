@@ -188,7 +188,7 @@
             .nodeSort(null)
             .linkSort(null)
             .nodeWidth(4)
-            .nodePadding(mobileView ? 20 : 11)
+            .nodePadding(mobileView ? 15 : 11)
             .extent([[0, 0], [chartDimensions.boundedWidth, chartDimensions.boundedHeight]])
 
         // Set up color scale 
