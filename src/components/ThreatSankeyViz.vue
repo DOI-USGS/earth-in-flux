@@ -27,6 +27,7 @@
 
 <script setup>
     import { onMounted, ref } from "vue";
+    import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import * as d3sankey from 'd3-sankey';
     import VizSection from '@/components/VizSection.vue';
@@ -38,6 +39,7 @@
 
     // Global variables 
     const publicPath = import.meta.env.BASE_URL;
+    const mobileView = isMobile;
     const data = ref();
     const dataFile = 'findex_total_weighted_threats.csv'
     const chart = ref(null);
@@ -65,8 +67,8 @@
                     width: chart.value.offsetWidth,
                     height: window.innerHeight * 0.8,
                     margin: 10,
-                    marginLeft: 150,
-                    marginRight: 250,
+                    marginLeft: mobileView ? 80: 150,
+                    marginRight: mobileView ? 125: 250,
                     marginTop: 30,
                     containerId: 'threat-container'
                 });
@@ -158,15 +160,18 @@
         // add titles
         svg.append("text")
             .attr("class", "axis-title")
-            .attr("x", chartDimensions.margin.left)
+            .attr("x", chartDimensions.margin.left - 4) // match spacing between sankey and labels
             .attr("y", chartDimensions.margin.top / 2)
+            .attr("data-width", chartDimensions.margin.left)
             .style("text-anchor", "end")
             .text("Threat Categories")
+            .call(d => mobileView ? wrap(d) : d)
 
         svg.append("text")
             .attr("class", "axis-title")
-            .attr("x", chartDimensions.width - chartDimensions.margin.right)
+            .attr("x", chartDimensions.width - chartDimensions.margin.right + 4) // match spacing between sankey and labels
             .attr("y", chartDimensions.margin.top / 2)
+            .attr("data-width", chartDimensions.margin.right)
             .style("text-anchor", "start")
             .text("Threats")
     };
@@ -183,7 +188,7 @@
             .nodeSort(null)
             .linkSort(null)
             .nodeWidth(4)
-            .nodePadding(11)
+            .nodePadding(mobileView ? 20 : 11)
             .extent([[0, 0], [chartDimensions.boundedWidth, chartDimensions.boundedHeight]])
 
         // Set up color scale 
@@ -264,12 +269,15 @@
                 enter => {
                     enter
                         .append("text")
-                            .attr("class", "axis-text")
-                            .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 -10 : d.x0 + 10) //checks for right-most labels
+                            .attr("class", d => d.x0 < chartDimensions.boundedWidth / 2 ? "axis-text left" : "axis-text right")
+                            .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 : d.x0) //checks for right-most labels
                             .attr("y", d => (d.y1 + d.y0) / 2)
                             .attr("dy", "0.35em")
+                            .attr("dx", d => d.x0 < chartDimensions.boundedWidth / 2 ? -10 : 10)
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
+                            .attr("data-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
                             .text(d => d.name)
+                            .call(d => mobileView ? wrap(d) : d)
                         // .append("tspan")
                         //     .attr("fill-opacity", 0.7)
                         //     .text(d => ` ${d.value.toLocaleString()}`)
@@ -351,11 +359,51 @@
         }
         return {nodes, links};
     };
+
+    // https://gist.github.com/mbostock/7555321
+    function wrap(text) {
+        text.each(function() {
+            var text = d3.select(this),
+            words = text.text().split(/\s|-+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            width = text.attr("data-width"),
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            dx = parseFloat(text.attr("dx")),
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            
+            console.log(text.attr("dy"))
+
+            while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
+
+            // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+            if (lineNumber > 0) {
+                const startDy = -(lineNumber * (lineHeight / 2)) * 0.5; // *0.5 for vertically-centered labels
+                text
+                    .selectAll("tspan")
+                    .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+            }
+        }
+    )};
 </script>
 
 <style lang="scss">
     #threat-container {
-        margin-top: 5rem;
+        max-width: 1000px;
+        margin: 5rem auto 0 auto;
     }
     .axis-text {
         font-size: 1.6rem;
