@@ -11,6 +11,7 @@
         </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
+                <p v-html="text.paragraph1" />
         </template>
         <template #figures>
             <div id="threat-container" ref="chart"></div>
@@ -66,6 +67,7 @@
                     margin: 10,
                     marginLeft: 150,
                     marginRight: 250,
+                    marginTop: 30,
                     containerId: 'threat-container'
                 });
                 createSankey({
@@ -152,6 +154,21 @@
 
         textGroup = chartBounds.append('g')
             .attr('id', 'text_group')
+
+        // add titles
+        svg.append("text")
+            .attr("class", "axis-title")
+            .attr("x", chartDimensions.margin.left)
+            .attr("y", chartDimensions.margin.top / 2)
+            .style("text-anchor", "end")
+            .text("Threat Categories")
+
+        svg.append("text")
+            .attr("class", "axis-title")
+            .attr("x", chartDimensions.width - chartDimensions.margin.right)
+            .attr("y", chartDimensions.margin.top / 2)
+            .style("text-anchor", "start")
+            .text("Threats")
     };
 
     function createSankey({
@@ -176,12 +193,12 @@
         
         // set up the nodes and links
         var nodesLinks = graphNodes({
-        data: dataset
+            data: dataset
         });
 
         const {nodes, links} = sankey({
-        nodes: nodesLinks.nodes.map(d => Object.create(d)),
-        links: nodesLinks.links.map(d => Object.create(d))
+            nodes: nodesLinks.nodes.map(d => Object.create(d)),
+            links: nodesLinks.links.map(d => Object.create(d))
         });
 
         // Set up transition.
@@ -336,5 +353,18 @@
     };
 </script>
 
-<style>
+<style lang="scss">
+    #threat-container {
+        margin-top: 5rem;
+    }
+    .axis-title {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
+        font-weight: 900;
+        fill: var(--color-text);
+        user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
+    }
 </style>
