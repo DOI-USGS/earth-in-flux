@@ -14,7 +14,6 @@ tar_option_set(packages = c("tidyverse",
 source("src/fetch_data.R")
 source("src/prep_data.R")
 source("src/plot_data.R")
-source("src/compose_plot.R")
 
 # Global settings
 color_scheme = tibble(
@@ -87,30 +86,7 @@ list(
              format = 'file'),
   
   ################ PLOT DATA #########################
-  
-  # Create assemblage plots as grobs at select years
-  tar_map(
-    values = tibble(years = c(100, 500, 1000, 1500, 2000)),
-    tar_target(p3_assemblage_plots,
-               plot_assemblages(data_in = p2_decade_abundance_long, year = years)),
-    tar_target(
-      p3_assemblage_plot_pngs,
-      save_plot(plot_grob = p3_assemblage_plots,
-                save_name = sprintf("out/assemblage_%s.png", years),
-                width = 900, height = 900),
-      format = "file"
-    )),
-  tar_target(
-    p3_viz_thumbnail_png,
-    ggsave(p3_assemblage_plots_2000, file = "out/BeaufortSeaTimeline_thumbnail.PNG",
-           width = 3, height = 3)
-  ),
-  
-  # Create timeline plot as grob
-  tar_target(p3_timeline_plot,
-             plot_timeline(data_in = p2_decade_abundance_long)
-  ),
-  
+
   ## Species trend plots
   tar_map(
     values = tibble(species = focal_species$epithet,
@@ -127,20 +103,6 @@ list(
                 width = 1600, height = 900),
       format = "file"
     )
-  ),
-  
-  
-  ################ COMPOSE PLOT FOR WEBSITE #############
-  
-  tar_target(p3_visualization_png,
-             compose_timeline(timeline_grob = p3_timeline_plot,
-                              assemblage_grob_100 = p3_assemblage_plots_100,
-                              assemblage_grob_500 = p3_assemblage_plots_500,
-                              assemblage_grob_1000 = p3_assemblage_plots_1000,
-                              assemblage_grob_1500 = p3_assemblage_plots_1500,
-                              assemblage_grob_2000 = p3_assemblage_plots_2000,
-                              color_scheme = color_scheme,
-                              png_out = "out/BeaufortSeaTimeline.png"))
-  
+  )
 )
 
