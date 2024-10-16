@@ -20,7 +20,7 @@ export default {
             img_src: 'Placeholder_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Inland fisheries are threatened.'
+            description: 'Land use change is threatening inland fisheries.'
         },       
         {
             title: 'Climate vulnerability of recreationally fished inland fish species',
