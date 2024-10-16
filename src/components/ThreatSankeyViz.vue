@@ -264,12 +264,12 @@
                 enter => {
                     enter
                         .append("text")
+                            .attr("class", "axis-text")
                             .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 -10 : d.x0 + 10) //checks for right-most labels
                             .attr("y", d => (d.y1 + d.y0) / 2)
                             .attr("dy", "0.35em")
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
                             .text(d => d.name)
-                            .style("font", "14px sans-serif")
                         // .append("tspan")
                         //     .attr("fill-opacity", 0.7)
                         //     .text(d => ` ${d.value.toLocaleString()}`)
@@ -356,6 +356,14 @@
 <style lang="scss">
     #threat-container {
         margin-top: 5rem;
+    }
+    .axis-text {
+        font-size: 1.6rem;
+        font-family: var(--default-font);
+        user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.4rem;
+        }
     }
     .axis-title {
         font-size: 1.8rem;
