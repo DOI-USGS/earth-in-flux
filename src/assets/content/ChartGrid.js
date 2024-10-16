@@ -31,6 +31,16 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Ice cores can record changes in wildfire prevalence.'
+        },
+        {
+            title: 'Wildfire Aerosols',
+            project: 'Fire in Ice',
+            vizKey: 'WildfireAerosols',
+            vizRoute: 'wildfire-aerosols',
+            img_src: 'placeholder_thumbnail.png',
+            alt: '',
+            chartOrder: 2,
+            description: 'Wildfires are depositing aerosols on glaciers.'
         },          
         {
             title: 'Wildfire Aerosols',
@@ -39,7 +49,7 @@ export default {
             vizRoute: 'aerosol-paths',
             img_src: 'aerosols_thumbnail.png',
             alt: '',
-            chartOrder: 2,
+            chartOrder: 3,
             description: 'Wildfire particles are deposited on glaciers.'
         },
         {

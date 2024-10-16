@@ -88,6 +88,30 @@ export default {
     additionalAuthors: [
     ]
   },
+  WildfireAerosols: {
+    primaryAuthors: [
+      {
+        firstName: 'Hayley',
+        lastName: 'Corson-Dosch',
+        fullName: 'Hayley Corson-Dosch',
+        initials: 'HCD',
+        profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch',
+        role: 'lead author',
+        contribution: 'led the creation of the interactive chart'
+      },
+      {
+        firstName: 'Jeffrey',
+        lastName: 'Kwang',
+        fullName: 'Jeffrey Kwang',
+        initials: 'JK',
+        profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang',
+        role: 'contributor',
+        contribution: 'led the development of the data visualization'
+      },
+    ],
+    additionalAuthors: [
+    ]
+  },
   Aerosols: {
     primaryAuthors: [
       {
