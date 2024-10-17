@@ -44,11 +44,10 @@
     const chartTitle = 'Title of chart';
     let chartDimensions;
     let chartBounds;
-    let xScale;
-    let xAxis;
+    // let xScale;
+    // let xAxis;
     let yScale;
     let yAxis;
-    const colors = {warm: '#FF7256', cool: '#5CACEE', cold: '#36648B'}
     let colorScale;
 
     // Behavior on mounted (functions called here)
@@ -64,7 +63,7 @@
                     height: window.innerHeight * 0.8,
                     margin: 10,
                     marginBottom: 50,
-                    marginLeft: 60});
+                    marginLeft: 100});
 
                 // draw chart
                 drawChart(data.value);
@@ -88,6 +87,7 @@
     async function loadData(fileName) {
         try {
             const data = await d3.csv(publicPath + fileName, d => {
+                d.depth_cm = +d.depth_cm;
                 d.total = +d.total;
                 return d;
             });
@@ -155,6 +155,8 @@
         // Add groups for visual elements
         chartBounds.append("g")
             .attr("class", "rects");
+        chartBounds.append("g")
+            .attr("class", "annotations");
     }
 
     // function initXScale() {
@@ -174,9 +176,8 @@
 
     function initYScale() {
         // scale for the y axis (domain set in `drawChart()`)
-        yScale = d3.scaleBand()
-            .range([0, chartDimensions.boundedHeight])
-            .padding(0.1);
+        yScale = d3.scaleLinear()
+            .range([0, chartDimensions.boundedHeight]);
     }
 
     function initYAxis() {
@@ -202,14 +203,18 @@
         tickPadding = 5,
         tickType = "numeric",
         tickFormat = ".5f",
+        customSuffix = null,
         textAngle = 0,
         keepDomain = true,
     }) {
         // generate axis
         // if numeric ticks, include specification of format
-        if (tickType == "numeric") {
+        if (tickType == "numeric" && !customSuffix) {
             axis
                 .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d3.format(tickFormat)));
+        } else if (tickType == "numeric" && customSuffix) {
+            axis
+                .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d => d3.format(tickFormat)(d) + ' ' + customSuffix));
         } else {
             axis
                 .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding));
@@ -250,6 +255,7 @@
     //     tickPadding = 5,
     //     tickType = 'numeric',
     //     tickFormat = ".2f",
+    //     customSuffix = null,
     //     textAngle = 0, 
     //     keepDomain = true,
     // }) {
@@ -267,6 +273,7 @@
     //         tickPadding: tickPadding,
     //         tickType: tickType,
     //         tickFormat: tickFormat,
+    //         customSuffix: customSuffix,
     //         textAngle: textAngle,
     //         keepDomain: keepDomain,
     //     })
@@ -283,6 +290,7 @@
         tickPadding = 5,
         tickType = 'numeric',
         tickFormat = ".2f",
+        customSuffix = null,
         textAngle = 0,
         keepDomain = true,
     }) {
@@ -302,6 +310,7 @@
             tickType: tickType,
             textAngle: textAngle,
             tickFormat: tickFormat,
+            customSuffix: customSuffix,
             keepDomain: keepDomain,
         })
     }
@@ -329,8 +338,8 @@
         ///////////////////////////////////////////
         // set domain for yScale, based on data
         yScale
-            .domain([... new Set(data.map(d => yAccessor(d)))]);
-        drawYAxis({axisTitle: 'Depth (cm)', tickType: 'string'})
+            .domain([0, d3.max(data, yAccessor) + 10]);
+        drawYAxis({tickFormat: ".0f", customSuffix: 'cm', tickSize: 3, keepDomain: false})
         
         ///////////////////////////////////////////
         /////    FINISH SETTING UP X SCALE    /////
@@ -357,12 +366,43 @@
                 .append("rect") // append a rectangle for each element
                     .attr("class", "rect")
                     .attr("id", d => 'bar-' + identifierAccessor(d))
-                    .attr("x", 0) //d => xScale(xAccessor(d)))
+                    .attr("x", 40)
                     .attr("y", d => yScale(yAccessor(d)))
-                    .attr("height", yScale.bandwidth())
+                    .attr("height", chartDimensions.boundedHeight / data.length)
                     .attr("width", 50)
                     .style("fill", d => colorScale(colorAccessor(d)));
+        // draw year bands
+        chartBounds.select(".annotations")
+            .append("rect")
+                .attr("class", "year-bands")
+                .attr("x", 25)
+                .attr("y", 0)
+                .attr("height", yScale(372))
+                .attr("width", 3)
 
+        chartBounds.select(".annotations")
+            .append("rect")
+                .attr("class", "year-bands")
+                .attr("x", 25)
+                .attr("y", yScale(378))
+                .attr("height", chartDimensions.boundedHeight - yScale(378))
+                .attr("width", 3)
+
+        chartBounds.select(".annotations")
+            .append("text")
+                .attr("x", - yScale(372) / 2)
+                .attr("y", 20)
+                .attr("transform", "rotate(-90)")
+                .attr("text-anchor", "middle")
+                .text("2016 accumulation")
+        
+        chartBounds.select(".annotations")
+            .append("text")
+                .attr("x", - yScale(378) - ((chartDimensions.boundedHeight - yScale(378)) / 2))
+                .attr("y", 20)
+                .attr("transform", "rotate(-90)")
+                .attr("text-anchor", "middle")
+                .text("2015 accumulation")
     }
 </script>
 
@@ -382,5 +422,7 @@
         fill: var(--color-text);
         user-select: none;
     }
-
+    .year-bands {
+        fill: var(--medium-grey);
+    }
 </style>
