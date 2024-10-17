@@ -38,35 +38,87 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
-    const dataFile = 'fii_core4data.csv'
-    const data = ref();
+    const tileDataFile = 'fii_core4particulates.csv';
+    const barDataFile = 'fii_core4sugars.csv';
+    const scatterDataFile = 'fii_core4biomass.csv';
+    const tileData = ref();
+    const barData = ref();
+    const scatterData = ref();
     const chart = ref(null);
     const chartTitle = 'Title of chart';
+    const chartHeight = window.innerHeight * 0.8;
+    let chartWidth;
     let chartDimensions;
     let chartBounds;
+    let tileChartDimensions;
+    let tileChartBounds;
+    let tileColorScale;
     // let xScale;
     // let xAxis;
     let yScale;
     let yAxis;
-    let colorScale;
+    let barChartDimensions;
+    let barChartBounds;
+    let barXScale;
+    let barYScale;
+    let barXAxis;
+    const barColors = {Mannosan: '#000000', Galactosan: '#989898', Levoglucosan: '#c8c8c8'};
+    let barColorScale;
+    let scatterChartDimensions;
+    let scatterChartBounds;
+    let scatterXScale;
+    const scatterColors = {grass: '#c49051', hardwood: '#3c475a', softwood: '#729C9D'};
+    let scatterColorScale;
 
     // Behavior on mounted (functions called here)
     // Load data and then make chart
     onMounted(async () => {
         try {
-            await loadDatasets();
+            await loadDatasets({
+                dataFiles: [tileDataFile, barDataFile, scatterDataFile], 
+                dataRefs: [tileData, barData, scatterData],
+                dataNumericFields: [['depth_cm', 'total'], ['picogram_per_mL'], null]
+            });
 
-            if (data.value.length > 0) {
+            if (tileData.value.length > 0 && barData.value.length > 0) {
                 // initialize chart elements
+                chartWidth = chart.value.offsetWidth;
                 initChart({
                     width: chart.value.offsetWidth,
-                    height: window.innerHeight * 0.8,
+                    height: chartHeight,
+                    margin: 10
+                })
+
+                const tileChartWidth = chartWidth / 5
+                initTileChart({
+                    width: tileChartWidth,
+                    height: chartHeight,
                     margin: 10,
                     marginBottom: 50,
                     marginLeft: 100});
 
-                // draw chart
-                drawChart(data.value);
+                const barChartWidth = chartWidth / 3
+                initBarChart({
+                    width: barChartWidth,
+                    height: chartHeight,
+                    margin: 10,
+                    marginBottom: 50,
+                    marginLeft: 80,
+                    translateX: tileChartWidth});
+
+                const scatterChartWidth = chartWidth - tileChartWidth - barChartWidth
+                initScatterChart({
+                    width: scatterChartWidth,
+                    height: chartHeight,
+                    margin: 10,
+                    marginBottom: 50,
+                    marginLeft: 100,
+                    translateX: tileChartWidth + barChartWidth});
+
+                // draw charts
+                drawTileChart(tileData.value);
+                drawBarChart(barData.value);
+                drawScatterChart(scatterData.value)
             } else {
                 console.error('Error loading data');
             }
@@ -75,25 +127,30 @@
         }
     });
 
-    async function loadDatasets() {
+    async function loadDatasets({dataFiles, dataRefs, dataNumericFields}) {
         try {
-            data.value = await loadData(dataFile);
-            console.log('data in');
+            for (let i = 0; i < Math.min(dataFiles.length, dataRefs.length, dataNumericFields.length); i++) {
+                dataRefs[i].value = await loadData(dataFiles[i], dataNumericFields[i]);
+                console.log(`${dataFiles[i]} data in`);
+            }
         } catch (error) {
             console.error('Error loading datasets', error);
         }
     }
 
-    async function loadData(fileName) {
+    async function loadData(dataFile, dataNumericFields) {
         try {
-            const data = await d3.csv(publicPath + fileName, d => {
-                d.depth_cm = +d.depth_cm;
-                d.total = +d.total;
+            const data = await d3.csv(publicPath + dataFile, d => {
+                if (dataNumericFields) {
+                    dataNumericFields.forEach(numericField => {
+                        d[numericField] = +d[numericField]
+                    });
+                }
                 return d;
             });
             return data;
         } catch (error) {
-            console.error(`Error loading data from ${fileName}`, error);
+            console.error(`Error loading data from ${dataFile}`, error);
             return [];
         }
     }
@@ -142,47 +199,183 @@
             }px, ${
                 chartDimensions.margin.top
             }px)`);
+    }
+
+    function initTileChart({
+        width = 500, // outer width, in pixels
+        height = 500, // outer height, in pixels
+        margin = 1, // default margins
+        marginTop = margin, // top margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin // right margin, in pixels
+    }) {
+        // set up global chart dimensions, including bounded dimensions
+        tileChartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            },
+            boundedWidth: width - marginLeft - marginRight,
+            boundedHeight: height - marginTop - marginBottom
+        }
+
+        tileChartBounds = chartBounds.append("g")
+            .attr("id", "tile-chart-bounds")
+            .style("transform", `translate(${
+                tileChartDimensions.margin.left
+            }px, ${
+                tileChartDimensions.margin.top
+            }px)`);
+
 
         // Initialize scales
         // initXScale()
         initYScale()
-        initColorScale()
+        initTileColorScale()
 
         // Initialize axes
-        // initXAxis()
-        initYAxis()
+        initYAxis({bounds: tileChartBounds})
 
         // Add groups for visual elements
-        chartBounds.append("g")
+        tileChartBounds.append("g")
             .attr("class", "rects");
-        chartBounds.append("g")
+        tileChartBounds.append("g")
             .attr("class", "annotations");
     }
 
-    // function initXScale() {
-    //     // scale for x axis (domain set in `drawChart()`)
-    //     xScale = d3.scaleLinear()
-    //         .range([0, chartDimensions.boundedWidth]);
-    // }
+    function initBarChart({
+        width = 500, // outer width, in pixels
+        height = 500, // outer height, in pixels
+        margin = 1, // default margins
+        marginTop = margin, // top margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin, // right margin, in pixels
+        translateX = translateX // amount to translate in x direction
+    }) {
+        // set up global chart dimensions, including bounded dimensions
+        barChartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            },
+            boundedWidth: width - marginLeft - marginRight,
+            boundedHeight: height - marginTop - marginBottom
+        }
 
-    // function initXAxis() {
-    //     // add group for x axis
-    //     xAxis = chartBounds.append("g")
-    //         .attr("id", "x-axis")
-    //         .attr("class", "axis")
-    //         .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
-    //         .attr("aria-hidden", true); // hide from screen reader
-    // }
+        barChartBounds = chartBounds.append("g")
+            .attr("id", "bar-chart-bounds")
+            .style("transform", `translate(${
+                translateX + barChartDimensions.margin.left
+            }px, ${
+                barChartDimensions.margin.top
+            }px)`);
 
-    function initYScale() {
-        // scale for the y axis (domain set in `drawChart()`)
-        yScale = d3.scaleLinear()
-            .range([0, chartDimensions.boundedHeight]);
+
+        // Initialize scales
+        initBarXScale()
+        initBarYScale()
+
+        // Initialize axes
+        initXAxis({axis: barXAxis, bounds: barChartBounds, chartDims: barChartDimensions})
+
+        // Add groups for visual elements
+        barChartBounds.append("g")
+            .attr("class", "bars");
     }
 
-    function initYAxis() {
+    function initScatterChart({
+        width = 500, // outer width, in pixels
+        height = 500, // outer height, in pixels
+        margin = 1, // default margins
+        marginTop = margin, // top margin, in pixels
+        marginBottom = margin, // left margin, in pixels
+        marginLeft = margin, // left margin, in pixels
+        marginRight = margin, // right margin, in pixels
+        translateX = translateX // amount to translate in x direction
+    }) {
+        // set up global chart dimensions, including bounded dimensions
+        scatterChartDimensions = {
+            width,
+            height,
+            margin: {
+                top: marginTop,
+                right: marginRight,
+                bottom: marginBottom,
+                left: marginLeft
+            },
+            boundedWidth: width - marginLeft - marginRight,
+            boundedHeight: height - marginTop - marginBottom
+        }
+
+        scatterChartBounds = chartBounds.append("g")
+            .attr("id", "scatter-chart-bounds")
+            .style("transform", `translate(${
+                translateX + scatterChartDimensions.margin.left
+            }px, ${
+                scatterChartDimensions.margin.top
+            }px)`);
+
+
+        // Initialize scales
+        initScatterXScale()
+
+        // Add groups for visual elements
+        scatterChartBounds.append("g")
+            .attr("class", "points");
+    }
+
+    function initBarXScale() {
+        // scale for x axis (domain set in `drawBarChart()`)
+        barXScale = d3.scaleLinear()
+            .range([0, barChartDimensions.boundedWidth]);
+    }
+
+    function initBarYScale() {
+        // scale for the y axis (domain set in `drawBarChart()`)
+        barYScale = d3.scaleBand()
+            .range([0, tileChartDimensions.boundedHeight]);
+    }
+
+    function initScatterXScale() {
+        // scale for the x axis (domain set in `drawScatterChart()`)
+        scatterXScale = d3.scaleBand()
+            .range([0, scatterChartDimensions.boundedWidth]);
+    }
+
+    function initXAxis({
+        axis,
+        bounds,
+        chartDims
+    }) {
+        // add group for x axis
+        axis = bounds.append("g")
+            .attr("id", "x-axis")
+            .attr("class", "axis")
+            .attr("transform", `translate(0,${chartDims.boundedHeight})`)
+            .attr("aria-hidden", true); // hide from screen reader
+    }
+
+    function initYScale() {
+        // scale for the y axis (domain set in `drawTileChart()`)
+        yScale = d3.scaleLinear()
+            .range([0, tileChartDimensions.boundedHeight]);
+    }
+
+    function initYAxis({
+        bounds
+    }) {
         // add group for y axis
-        yAxis = chartBounds.append("g")
+        yAxis = bounds.append("g")
             .attr("id", "y-axis")
             .attr("class", "axis")
             .attr("aria-hidden", true);
@@ -191,11 +384,12 @@
     function drawAxis({
         axis,
         axisScale,
-        axisFxn
+        axisFxn,
+        chartDims
     }, {
         axisTitle = '',
-        titleX = -chartDimensions.boundedHeight / 2,
-        titleY = -chartDimensions.margin.left,
+        titleX = -chartDims.boundedHeight / 2,
+        titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
         titleBaseline = "text-before-edge",
         titleAngle = -90,
@@ -246,8 +440,8 @@
 
     // function drawXAxis({
     //     axisTitle = '',
-    //     titleX = chartDimensions.boundedWidth / 2,
-    //     titleY = chartDimensions.margin.bottom,
+    //     titleX = tileChartDimensions.boundedWidth / 2,
+    //     titleY = tileChartDimensions.margin.bottom,
     //     titleTextAnchor = "middle",
     //     titleBaseline = "text-after-edge",
     //     titleAngle = 0,
@@ -280,9 +474,13 @@
     // }
 
     function drawYAxis({
+        axis,
+        axisScale,
+        chartDims
+    }, {
         axisTitle = '',
-        titleX = -chartDimensions.boundedHeight / 2,
-        titleY = -chartDimensions.margin.left,
+        titleX = -chartDims.boundedHeight / 2,
+        titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
         titleBaseline = "text-before-edge",
         titleAngle = -90,
@@ -295,9 +493,10 @@
         keepDomain = true,
     }) {
         drawAxis({
-            axis: yAxis,
-            axisScale: yScale,
-            axisFxn: 'axisLeft'
+            axis: axis,
+            axisScale: axisScale,
+            axisFxn: 'axisLeft',
+            chartDims: chartDims
         }, {
             axisTitle: axisTitle,
             titleX: titleX,
@@ -315,12 +514,24 @@
         })
     }
 
-    function initColorScale() {
-        colorScale = d3.scaleSequential()           
+    function initTileColorScale() {
+        tileColorScale = d3.scaleSequential()           
             .interpolator(d3.interpolateGreys);
     }
 
-    function drawChart(data) {
+    function initBarColorScale(data) {
+        barColorScale = d3.scaleOrdinal()
+            .domain(data)
+            .range(data.map(item => barColors[item]));
+    }
+
+    function initScatterColorScale(data) {
+        scatterColorScale = d3.scaleOrdinal()
+            .domain(data)
+            .range(data.map(item => scatterColors[item]));
+    }
+
+    function drawTileChart(data) {
         //////////////////////////////
         /////    PROCESS DATA    /////
         //////////////////////////////
@@ -339,70 +550,179 @@
         // set domain for yScale, based on data
         yScale
             .domain([0, d3.max(data, yAccessor) + 10]);
-        drawYAxis({tickFormat: ".0f", customSuffix: 'cm', tickSize: 3, keepDomain: false})
-        
-        ///////////////////////////////////////////
-        /////    FINISH SETTING UP X SCALE    /////
-        ///////////////////////////////////////////
-        // // set domain for xScale
-        // xScale
-        //     .domain([0, d3.max(data, xAccessor)]);
-        // drawXAxis({axisTitle: 'Climate vulnerability'})
+        drawYAxis(
+            {axis: yAxis, axisScale: yScale, chartDims: tileChartDimensions}, 
+            {tickFormat: ".0f", customSuffix: 'cm', tickSize: 3, keepDomain: false}
+        )
 
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
         ///////////////////////////////////
-        colorScale
+        tileColorScale
             .domain(d3.extent(data, colorAccessor));
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
+        const annotationGap = 40;
+        const annotationBuffer = 5;
         // draw chart
-        chartBounds.select('.rects') // selects our group we set up to hold chart elements
+        tileChartBounds.select('.rects') // selects our group we set up to hold chart elements
             .selectAll(".rect") // empty selection
                 .data(data) // bind data
                 .enter() // instantiate chart element for each element of data
                 .append("rect") // append a rectangle for each element
                     .attr("class", "rect")
                     .attr("id", d => 'bar-' + identifierAccessor(d))
-                    .attr("x", 40)
+                    .attr("x", annotationGap)
                     .attr("y", d => yScale(yAccessor(d)))
-                    .attr("height", chartDimensions.boundedHeight / data.length)
-                    .attr("width", 50)
-                    .style("fill", d => colorScale(colorAccessor(d)));
+                    .attr("height", tileChartDimensions.boundedHeight / data.length)
+                    .attr("width", tileChartDimensions.boundedWidth - annotationGap)
+                    .style("fill", d => tileColorScale(colorAccessor(d)));
         // draw year bands
-        chartBounds.select(".annotations")
+        tileChartBounds.select(".annotations")
             .append("rect")
                 .attr("class", "year-bands")
-                .attr("x", 25)
+                .attr("x", annotationGap / 2 + annotationBuffer)
                 .attr("y", 0)
                 .attr("height", yScale(372))
                 .attr("width", 3)
 
-        chartBounds.select(".annotations")
+        tileChartBounds.select(".annotations")
             .append("rect")
                 .attr("class", "year-bands")
-                .attr("x", 25)
+                .attr("x", annotationGap / 2 + annotationBuffer)
                 .attr("y", yScale(378))
-                .attr("height", chartDimensions.boundedHeight - yScale(378))
+                .attr("height", tileChartDimensions.boundedHeight - yScale(378))
                 .attr("width", 3)
 
-        chartBounds.select(".annotations")
+        tileChartBounds.select(".annotations")
             .append("text")
                 .attr("x", - yScale(372) / 2)
-                .attr("y", 20)
+                .attr("y", annotationGap / 2)
                 .attr("transform", "rotate(-90)")
                 .attr("text-anchor", "middle")
                 .text("2016 accumulation")
         
-        chartBounds.select(".annotations")
+        tileChartBounds.select(".annotations")
             .append("text")
-                .attr("x", - yScale(378) - ((chartDimensions.boundedHeight - yScale(378)) / 2))
-                .attr("y", 20)
+                .attr("x", - yScale(378) - ((tileChartDimensions.boundedHeight - yScale(378)) / 2))
+                .attr("y", annotationGap / 2)
                 .attr("transform", "rotate(-90)")
                 .attr("text-anchor", "middle")
                 .text("2015 accumulation")
+    }
+
+    function drawBarChart(data) {
+        ///////////////////////////////////////////
+        /////    SET UP ACCESSOR FUNCTIONS    /////
+        ///////////////////////////////////////////
+        const yAccessor = d => d.depth_cm;
+        const xAccessor = d => d.picogram_per_mL;
+        const keyAccessor = d => d.sugar;
+        const colorAccessor = d => d.sugar;
+
+        //////////////////////////////
+        /////    PROCESS DATA    /////
+        //////////////////////////////
+        // sort data by bar order, so species with shared color plot together
+        data.sort((a,b) => (a.bar_order > b.bar_order) ? 1 : ((b.bar_order > a.bar_order) ? -1 : 0))
+        const series = d3.stack()
+            .keys(d3.union(data.map(d => keyAccessor(d)))) // distinct series keys, in input order
+            .value(([, D], key) => xAccessor(D.get(key))) // get value for each series key and stack
+            .order(d3.stackOrderNone)
+            (d3.index(data, d => yAccessor(d), d => keyAccessor(d)));
+
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP Y SCALE    /////
+        ///////////////////////////////////////////
+        // set domain for yScale, based on data
+        barYScale
+            .domain([... new Set(data.map(d => yAccessor(d)))]);
+        
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP X SCALE    /////
+        ///////////////////////////////////////////
+        // // set domain for xScale
+        barXScale
+            .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]);
+        // drawXAxis({axisTitle: 'Climate vulnerability'})
+        
+        ///////////////////////////////////
+        /////    SET UP COLOR SCALE   /////
+        ///////////////////////////////////
+        const colorCategories = [... new Set(data.map(colorAccessor))];
+        initBarColorScale(colorCategories)
+
+        ////////////////////////////////////
+        /////    ADD CHART ELEMENTS    /////
+        ////////////////////////////////////
+        // draw chart
+        const barGroups = barChartBounds.selectAll('.bars')
+            .selectAll(".bar") // empty selection
+            .data(series)
+            .enter()
+            .append("g")
+                .attr("class", d => d.key)
+        
+        barGroups.selectAll(".bar") //empty selection
+            .data(D => D.map(d => (d.key = D.key, d)))
+            .enter()
+            .append("rect")
+                .attr("class", d => d.key + ' depth' + d.data[0])
+                .attr("y", d => barYScale(d.data[0]))
+                .attr("x", d => barXScale(d[0]))
+                .attr("height", barYScale.bandwidth())
+                .attr("width", d => barXScale(d[1]) - barXScale(d[0]))
+                .style("fill", d => barColorScale(d.key))
+    }
+
+    function drawScatterChart(data) {
+        //////////////////////////////
+        /////    PROCESS DATA    /////
+        //////////////////////////////
+
+        ///////////////////////////////////////////
+        /////    SET UP ACCESSOR FUNCTIONS    /////
+        ///////////////////////////////////////////
+        const yAccessor = d => d.depth_cm;
+        const xAccessor = d => d.vegetation_type;
+        const colorAccessor = d => d.vegetation_type;
+        const identifierAccessor = d => 'depth-' + d.depth_cm + '-' + d.vegetation_type;
+
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP Y SCALE    /////
+        ///////////////////////////////////////////
+        // use bar chart y scale
+        
+        ///////////////////////////////////////////
+        /////    FINISH SETTING UP X SCALE    /////
+        ///////////////////////////////////////////
+        // set domain for xScale
+        scatterXScale
+            .domain([... new Set(data.map(d => xAccessor(d)))]);
+
+        ///////////////////////////////////
+        /////    SET UP COLOR SCALE   /////
+        ///////////////////////////////////
+        const colorCategories = [... new Set(data.map(colorAccessor))];
+        initScatterColorScale(colorCategories)
+
+        ////////////////////////////////////
+        /////    ADD CHART ELEMENTS    /////
+        ////////////////////////////////////
+        // draw chart
+        scatterChartBounds.select('.points') // selects our group we set up to hold chart elements
+            .selectAll(".point") // empty selection
+                .data(data) // bind data
+                .enter() // instantiate chart element for each element of data
+                .append("circle") // append a rectangle for each element
+                    .attr("class", "point")
+                    .attr("id", d => 'point-' + identifierAccessor(d))
+                    .attr("cx", d => scatterXScale(xAccessor(d)))
+                    .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
+                    .attr("r", 4)
+                    .style("fill", d => scatterColorScale(colorAccessor(d)));
     }
 </script>
 
