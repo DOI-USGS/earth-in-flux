@@ -1,5 +1,3 @@
-import WildfireAerosolsViz from "../../components/WildfireAerosolsViz.vue";
-
 export default {
     landingPage: {
         pageTitle: "Earth is changing...",
