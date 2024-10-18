@@ -10,11 +10,16 @@
                 <h1 class = 'title'>
                     {{ filteredChartContent.title }}
                 </h1>
-                <p>This visualization is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
             </div>
             <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
             <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
             <AuthorshipSection v-if="vizAuthors" title="" titleLevel="3" :authors="vizAuthors"/>
+            <div
+                class="text-container"
+                id="page-link-container"
+            >
+                <button class="project-link"><RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project</button>
+            </div>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>
@@ -56,4 +61,23 @@
 </script>
 
 <style scoped lang="scss">
+    #page-link-container {
+        text-align: center;
+    }
+    .project-link {
+        font-family: sans-serif; /* This is fallback font for old browsers */
+        font-family: var(--default-font);
+        background-color: var(--faded-usgs-blue);
+        color: var(--usgs-blue);
+        border: solid var(--faded-usgs-blue);
+        border-radius: 5px;
+        text-align: center;
+        font-weight: 300;
+        margin: 3rem auto 1rem auto;
+        padding: 0.3rem 0.5rem 0.5rem 0.5rem;
+    }
+    .project-link a {
+        text-decoration: none;
+        color: var(--usgs-blue);
+    }
 </style>
