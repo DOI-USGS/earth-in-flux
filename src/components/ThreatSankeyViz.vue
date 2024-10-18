@@ -48,6 +48,8 @@
     let nodeGroup;
     let linkGroup;
     let textGroup;
+    const nodeWidth = 4;
+    const labelBuffer = 10;
 
     // Colors for threat categories, Needs to be updated with CSS for text legend
     const categoryColors = {
@@ -160,8 +162,10 @@
         // add titles
         svg.append("text")
             .attr("class", "axis-title")
-            .attr("x", chartDimensions.margin.left - 4) // match spacing between sankey and labels
+            .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
             .attr("y", chartDimensions.margin.top / 2)
+            .attr("dx", "0em")
+            .attr("dy", "0em")
             .attr("data-width", chartDimensions.margin.left)
             .style("text-anchor", "end")
             .text("Threat Categories")
@@ -169,8 +173,10 @@
 
         svg.append("text")
             .attr("class", "axis-title")
-            .attr("x", chartDimensions.width - chartDimensions.margin.right + 4) // match spacing between sankey and labels
+            .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
             .attr("y", chartDimensions.margin.top / 2)
+            .attr("dx", "0em")
+            .attr("dy", "0em")
             .attr("data-width", chartDimensions.margin.right)
             .style("text-anchor", "start")
             .text("Threats")
@@ -187,7 +193,7 @@
         const sankey = d3sankey.sankey()
             .nodeSort(null)
             .linkSort(null)
-            .nodeWidth(4)
+            .nodeWidth(nodeWidth)
             .nodePadding(mobileView ? 15 : 11)
             .extent([[0, 0], [chartDimensions.boundedWidth, chartDimensions.boundedHeight]])
 
@@ -273,7 +279,7 @@
                             .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 : d.x0) //checks for right-most labels
                             .attr("y", d => (d.y1 + d.y0) / 2)
                             .attr("dy", "0.35em")
-                            .attr("dx", d => d.x0 < chartDimensions.boundedWidth / 2 ? -10 : 10)
+                            .attr("dx", d => d.x0 < chartDimensions.boundedWidth / 2 ? -labelBuffer : labelBuffer)
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
                             .attr("data-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
                             .text(d => d.name)
