@@ -21,7 +21,17 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
-        },       
+        },  
+        {
+            title: 'Inland fisheries are threatened',
+            project: 'Findex',
+            vizKey: 'ThreatToHabitats',
+            vizRoute: 'inland-fish-habitat-threats',
+            img_src: 'Placeholder_thumbnail.png',
+            alt: '',
+            chartOrder: 1,
+            description: 'Habitats are changing.'
+        },      
         {
             title: 'Climate vulnerability of recreationally fished inland fish species',
             project: 'Fish as Food',
