@@ -64,7 +64,7 @@
             await loadDatasets();
             
             if (data.value.length > 0) {
-                initSankey({
+                initLineChart({
                     width: chart.value.offsetWidth,
                     height: window.innerHeight * 0.8,
                     margin: 10,
@@ -73,7 +73,7 @@
                     marginTop: 30,
                     containerId: 'threat-container'
                 });
-                createSankey({
+                createLineChart({
                     dataset: data.value,
                     containerId: 'threat-container'
                 });
@@ -106,7 +106,7 @@
         }
     };
 
-    function initSankey({
+    function initLineChart({
         width,
         height,
         margin,
@@ -131,10 +131,10 @@
         }
 
 
-        // draw svg canvas for sankey
+        // draw svg canvas for LineChart
         const svg = d3.select('#' + containerId)
             .append('svg')
-            .attr('class', 'sankeySVG')
+            .attr('class', 'LineChartSVG')
             .attr('viewBox', `0 0 ${chartDimensions.width} ${chartDimensions.height}`)
             .style('width', "100%")
             .style('height', "100%");
@@ -148,37 +148,7 @@
                 chartDimensions.margin.top
             }px)`)
 
-        // Add group to chart bounds to hold all sankey path groups
-        nodeGroup = chartBounds.append('g')
-            .attr('id', 'node_group')
-        
-        linkGroup = chartBounds.append('g')
-            .attr('id', 'link_group')
 
-        textGroup = chartBounds.append('g')
-            .attr('id', 'text_group')
-
-        // add titles
-        svg.append("text")
-            .attr("class", "axis-title")
-            .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
-            .attr("dx", "0em")
-            .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.left)
-            .style("text-anchor", "end")
-            .text("Threat Categories")
-            .call(d => mobileView ? wrap(d) : d)
-
-        svg.append("text")
-            .attr("class", "axis-title")
-            .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
-            .attr("dx", "0em")
-            .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.right)
-            .style("text-anchor", "start")
-            .text("Threats")
     };
 
     function createLineChart({

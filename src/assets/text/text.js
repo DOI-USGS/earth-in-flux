@@ -72,6 +72,11 @@ export default {
         ThreatBumpChart: {
             heading: "Inland fisheries are threatened."
         },
+        ThreatToHabitats: {
+            heading: "Habitat threats",
+            paragraph1: "Habitats are where fish live. It's their home, their house, where they keep their belongings."
+
+        },
         BeaufortSeaCore: {
             heading1: "Why collect ocean sediment cores?",
             intro: "USGS scientists use sediment cores collected from the ocean floor to reconstruct past environmental conditions. This knowledge helps us to understand processes that influence natural climate change and lead to particular Earth system states. This allows more reliable predictions for future scenarios. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",
