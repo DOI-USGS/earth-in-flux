@@ -17,7 +17,16 @@
         </template>
         <template #figures>
             <div id="cross_section-grid-container">
-                <img id="glacier-image" src="https://labs.waterdata.usgs.gov/visualizations/images/glacier.jpeg" alt="glacier image" />
+                <img id="juneau-if-010" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_010.jpeg" alt="" />
+                <img id="juneau-if-018" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_018.jpeg" alt="" />
+                <img id="juneau-if-021" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_021.jpeg" alt="" />
+                <img id="juneau-if-051" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_051.jpeg" alt="" />
+                <img id="juneau-if-085" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_085.jpeg" alt="" />
+                <img id="juneau-if-138" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_138.jpeg" alt="" />
+                <img id="juneau-if-140" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_140.jpeg" alt="" />
+                <img id="juneau-if-156" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_156.jpeg" alt="" />
+                <img id="juneau-if-183" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_183.jpeg" alt="" />
+                <img id="juneau-if-203" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_203.jpeg" alt="" />
             </div>
         </template>
         <!-- FIGURE CAPTION -->
@@ -44,7 +53,7 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_photo_v3.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross_section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -61,7 +70,7 @@
         }        
     });
 
-    function draw_xs(line_id){
+    function draw_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 1.0);
         d3.select("#xs-w" + line_id).selectAll("path")
@@ -95,13 +104,18 @@
             .style("stroke", "#000000")
             .style("stroke-opacity", 0.2);
         d3.select("#xs-c-sm-" + line_id).selectAll("path")
-            .style("fill", "#4fd437")
+            .style("fill", "#1f77b4")
             .style("fill-opacity", 1)
+            .style("stroke", "#000000")
+            .style("stroke-opacity", 1.0);
+        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
+            .style("fill", "#d62728")
+            .style("fill-opacity", 0.8)
             .style("stroke", "#000000")
             .style("stroke-opacity", 1.0);
     }
     
-    function remove_xs(line_id){
+    function remove_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 0);
         d3.select("#xs-w" + line_id).selectAll("path")
@@ -131,49 +145,57 @@
         d3.select("#xs-c-sm-" + line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
+        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
     }   
 
-    function draw_image(line_id){
-        if (line_id==188){
-            d3.select("#glacier-image")
-                    .style("visibility", "visible");
-        }
+    function draw_image(photo_id){
+        d3.select("#juneau-if-"+photo_id)
+                .style("visibility", "visible");
     }
 
-    function remove_image(line_id){
-        if (line_id==188){
-            d3.select("#glacier-image")
-                    .style("visibility", "hidden");
-        }
+    function remove_image(photo_id){
+        d3.select("#juneau-if-"+photo_id)
+                .style("visibility", "hidden");
     }
 
     function mouseover(event,default_xs) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs);
+            remove_xs(default_xs,-9999);
             let line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id);
+            draw_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            remove_xs(default_xs);
+            remove_xs(default_xs,-9999);
             let line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id);
-            draw_image(line_id);
+            draw_xs(line_id,-9999);
+        } else if (event.currentTarget.id.startsWith("photo-lg-")){
+            remove_xs(default_xs,-9999);
+            let line_id = event.currentTarget.id.slice(13);
+            let photo_id = event.currentTarget.id.slice(9,12);
+            draw_xs(line_id,photo_id);
+            draw_image(photo_id);
         }
     }
 
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             let line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id);
+            remove_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
             let line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id);
-            remove_image(line_id);
+            remove_xs(line_id,-9999);
+        } else if (event.currentTarget.id.startsWith("photo-lg-")){
+            let line_id = event.currentTarget.id.slice(13);
+            let photo_id = event.currentTarget.id.slice(9,12);
+            remove_xs(line_id,photo_id);
+            remove_image(photo_id);
         }
     }
 
     function mouseenter(event,default_xs) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            remove_xs(default_xs);
+            remove_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0);
         }
@@ -181,7 +203,7 @@
 
     function mouseleave(event,default_xs) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            draw_xs(default_xs);
+            draw_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0.75);
         }
@@ -191,8 +213,8 @@
         // set viewbox for svg with loss function chart
         const cross_sectionSVG = d3.select("#cross_section-svg");
 
-        var default_xs = "89";
-        draw_xs(default_xs);
+        var default_xs = "113";
+        draw_xs(default_xs,-9999);
 
         // Add interaction to loss function chart
         cross_sectionSVG.selectAll("g")
@@ -223,17 +245,27 @@
         max-width: 100%;
         z-index: 1;
     }
-    #glacier-image {
-        grid-area: chart;
-        justify-self: end;
-        align-self: start;
-        max-height: 25%;
-        max-width: 25%;
-        visibility: hidden;
-        pointer-events: none;
-        border: 2px solid black;
-        border-radius: 15px;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
-        z-index: 2;
+    #juneau-if-010,
+    #juneau-if-018,
+    #juneau-if-021,
+    #juneau-if-051,
+    #juneau-if-085,
+    #juneau-if-138,
+    #juneau-if-140,
+    #juneau-if-156,
+    #juneau-if-183,
+    #juneau-if-203{
+    grid-area: chart;
+    justify-self: end;
+    align-self: start;
+    max-height: 25%;
+    max-width: 25%;
+    visibility: hidden;
+    pointer-events: none;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 2;
     }
+    
 </style>
