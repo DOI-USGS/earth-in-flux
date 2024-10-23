@@ -33,6 +33,7 @@
 
 <script setup>
     import { computed, onMounted, ref } from "vue";
+    import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
 
@@ -43,6 +44,7 @@
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
+    const mobileView = isMobile;
     const tileDataFile = 'fii_core4particulates.csv';
     const barDataFile = 'fii_core4sugars.csv';
     const scatterDataFile = 'fii_core4biomass.csv';
@@ -53,7 +55,7 @@
     const nIndices = 3;
     const chart = ref(null);
     const chartTitle = 'Title of chart';
-    const chartHeight = window.innerHeight * 0.8;
+    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.8;
     let chartWidth;
     let chartDimensions;
     let chartBounds;
@@ -104,33 +106,30 @@
                 initChart({
                     width: chart.value.offsetWidth,
                     height: chartHeight,
-                    margin: 10
+                    margin: mobileView ? 5 : 10
                 })
 
                 const tileChartWidth = chartWidth / 3
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
-                    margin: 10,
-                    marginBottom: 50,
-                    marginLeft: 100});
+                    margin: mobileView ? 5 : 10,
+                    marginLeft: mobileView ? 60: 100});
 
                 const barChartWidth = chartWidth / 3
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
-                    margin: 10,
-                    marginBottom: 50,
-                    marginLeft: 80,
+                    margin: mobileView ? 5 : 10,
+                    marginLeft: mobileView ? 20 : 80,
                     translateX: tileChartWidth});
 
                 const scatterChartWidth = chartWidth - tileChartWidth - barChartWidth
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
-                    margin: 10,
-                    marginBottom: 50,
-                    marginLeft: 60,
+                    margin: mobileView ? 5 : 10,
+                    marginLeft: mobileView ? 20 : 60,
                     translateX: tileChartWidth + barChartWidth});
 
                 // draw charts
@@ -751,8 +750,8 @@
         grid-template-columns: 10% calc(80% - 4rem) 10%;
         grid-template-rows: auto max-content;
         grid-template-areas:
-            "text text text"
-            "prev chart next";
+            "prev text next"
+            "chart chart chart";
         margin: 2rem auto 0 auto;
         column-gap: 2rem;
         row-gap: 3rem;
@@ -795,10 +794,12 @@
     #aerosol-prev {
         grid-area: prev;
         justify-self: end;
+        align-self: start;
     }
     #aerosol-next {
         grid-area: next;
         justify-self: start;
+        align-self: start;
     }
     button:hover:after {
         top: 0px;
