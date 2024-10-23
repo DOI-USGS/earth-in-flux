@@ -22,7 +22,7 @@
           <span id="primary-author-statment">
             and led by 
             <span
-              v-for="(author, index) in primaryAuthors" 
+              v-for="(author, index) in authors" 
               :id="`initial-${author.initials}`"
               :key="`${author.initials}-attribution`"
               :class="'author first'"
@@ -32,64 +32,9 @@
                 target="_blank"
                 v-text="author.fullName"
               />
-              <span v-if="index != Object.keys(primaryAuthors).length - 1 && Object.keys(primaryAuthors).length > 2">, </span>
-              <span v-if="index == Object.keys(primaryAuthors).length - 2"> and </span>
+              <span v-if="index != Object.keys(authors).length - 1 && Object.keys(authors).length > 2">, </span>
+              <span v-if="index == Object.keys(authors).length - 2"> and </span>
             </span>.
-          </span>
-          <span
-            v-if="showAdditionalAuthors"
-            id="additional-author-statement"
-          >
-            <span
-              v-for="(author, index) in additionalAuthors" 
-              :id="`author-${author.initials}`"
-              :key="`${author.initials}-attribution`"
-              :class="'author'"
-            >
-              <a
-                v-if="author.profile_link"
-                :href="author.profile_link"
-                target="_blank"
-                v-text="author.fullName"
-              />
-              <span
-                v-if="!author.profile_link"
-                v-text="author.fullName"
-              />
-              <span v-if="index != Object.keys(additionalAuthors).length - 1 && Object.keys(additionalAuthors).length > 2">, </span>
-              <span v-if="index == Object.keys(additionalAuthors).length - 2"> and </span>
-            </span>
-            <span>
-              also contributed.
-            </span>
-          </span>
-          <span
-            v-if="showContributionStatements"
-            id="contribution-statements"
-          >
-            <span id="primary-author-contribution">
-              <span
-                v-for="author in primaryAuthors" 
-                :id="`author-${author.initials}`"
-                :key="`${author.initials}-contribution`"
-                :class="'author'"
-              >
-                <span v-text="author.firstName" /> <span v-text="author.contribution" />. 
-              </span>
-            </span>
-            <span
-              v-if="showAdditionalContributionStatement"
-              id="additional-author-contribution"
-            >
-              <span
-                v-for="author in additionalAuthors" 
-                :id="`author-${author.initials}`"
-                :key="`${author.initials}-contribution`"
-                :class="'author'"
-              >
-                <span v-text="author.firstName" /> <span v-text="author.contribution" />. 
-              </span>
-            </span>
           </span>
         </p>
       </div>
@@ -109,26 +54,16 @@
     titleLevel: {
       type: String,
     },
-    authors:{
+    authors: {
       type: Object,
     },
   })
-  
-  const primaryAuthors = props.authors.primaryAuthors;
-  const additionalAuthors = props.authors.additionalAuthors;
+
   // Turn on or off attribution for all authors
   const showAuthors = ref(null);
-  // If showAuthors is true, turn on or off attribution for additional authors
-  const showAdditionalAuthors = ref(null);
-  // If showAuthors is true, turn on or off contribution statements for ALL authors
-  const showContributionStatements = ref(false);
-  // If showAuthors is true and if showContributionStatements is true, turn on or off contribution statements for ADDITIONAL authors
-  const showAdditionalContributionStatement = ref(null);
 
   onMounted(() => {
-    showAuthors.value = primaryAuthors.length > 0;
-    showAdditionalAuthors.value = additionalAuthors.length > 0;
-    showAdditionalContributionStatement.value = additionalAuthors.length > 0;
+    showAuthors.value = props.authors.length > 0;
   });
 
 </script>

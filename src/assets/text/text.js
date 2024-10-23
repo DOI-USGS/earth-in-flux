@@ -181,6 +181,9 @@ export default {
             paragraph2: "These aerosols can come from dust, fossil fuel combustion, or wildfires.",
             paragraph3: "What are the particles made of? These L, M, and G sugars indicate that some of the particules have been deposited by wildfires.",   
             paragraph4: "Some L/(M+G) peaks indicate that hardwoods were burned, which suggests a further source. Based on hardwood forest locations, one likely source is East Asia."
+        },
+        ThreatSankey: {
+            paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         }
     }
 }
