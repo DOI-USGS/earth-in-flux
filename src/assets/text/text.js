@@ -177,10 +177,9 @@ export default {
             paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
         },
         WildfireAerosols: {
-            paragraph1: "In the cores, we see that there is more than just ice. Particles from the air, called aerosols, have been deposited in the ice.",
-            paragraph2: "These aerosols can come from dust, fossil fuel combustion, or wildfires.",
-            paragraph3: "What are the particles made of? These L, M, and G sugars indicate that some of the particules have been deposited by wildfires.",   
-            paragraph4: "Some L/(M+G) peaks indicate that hardwoods were burned, which suggests a further source. Based on hardwood forest locations, one likely source is East Asia."
+            paragraph1: "In the cores, we see that there is more than just ice. Particles from the air, called aerosols, have been deposited in the ice. These aerosols can come from dust, fossil fuel combustion, or wildfires.",
+            paragraph2: "What are the particles made of? These L, M, and G sugars indicate that some of the particules have been deposited by wildfires.",   
+            paragraph3: "Some L/(M+G) peaks indicate that hardwoods were burned, which suggests a further source. Based on hardwood forest locations, one likely source is East Asia."
         },
         ThreatSankey: {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
