@@ -52,7 +52,7 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v2.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v7.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("aerosols-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -106,6 +106,12 @@
                     d3.select('#wildfire-label-'+fire).selectAll("text")
                         .style("opacity", 0.0);
             }
+            if (mobileView == true){
+                d3.select('#multi-path-label-mb-2').selectAll("path")
+                    .style("opacity", 0.0);
+                d3.select('#multi-path-label-mb-2').selectAll("text")
+                    .style("opacity", 0.0);
+            }
             d3.select('#multi-path-label').selectAll("text")
                 .style("opacity", 0.0);
             d3.select('#multi-path-label').selectAll("path")
@@ -138,42 +144,62 @@
 
     function mouseenter(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
+            for (let fire=0;fire<number_of_fires;fire++){
+                d3.select('#wildfire-label-'+fire).selectAll("path")
+                    .style("opacity", 0.75);
+                d3.select('#wildfire-label-'+fire).selectAll("text")
+                    .style("opacity", 1.0);
+            }
             d3.select('#single-path-label').selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#single-path-label').selectAll("text")
                 .style("opacity", 0.0);
-        if (mobileView == true){
-            d3.select('#multi-path-label-mb').selectAll("path")
-                .style("opacity", 0.0);
-            d3.select('#multi-path-label-mb').selectAll("text")
-                .style("opacity", 0.0);
-        } else{
-            d3.select('#multi-path-label-dt').selectAll("path")
-                .style("opacity", 0.0);
-            d3.select('#multi-path-label-dt').selectAll("text")
-                .style("opacity", 0.0);
-        }
+            if (mobileView == true){
+                d3.select('#multi-path-label-mb-1').selectAll("path")
+                    .style("opacity", 0.0);
+                d3.select('#multi-path-label-mb-1').selectAll("text")
+                    .style("opacity", 0.0);
+                d3.select('#multi-path-label-mb-2').selectAll("path")
+                    .style("opacity", 0.75);
+                d3.select('#multi-path-label-mb-2').selectAll("text")
+                    .style("opacity", 1.0);
+            } else{
+                d3.select('#multi-path-label-dt').selectAll("path")
+                    .style("opacity", 0.0);
+                d3.select('#multi-path-label-dt').selectAll("text")
+                    .style("opacity", 0.0);
+            }
             remove_trajectories(default_fire,default_smoke_num)
         }
     }
 
     function mouseleave(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
+            for (let fire=0;fire<number_of_fires;fire++){
+                d3.select('#wildfire-label-'+fire).selectAll("path")
+                    .style("opacity", 0.0);
+                d3.select('#wildfire-label-'+fire).selectAll("text")
+                    .style("opacity", 0.0);
+            }
             d3.select('#single-path-label').selectAll("path")
                 .style("opacity", 0.75);
             d3.select('#single-path-label').selectAll("text")
                 .style("opacity", 1.0);
-        if (mobileView == true){
-            d3.select('#multi-path-label-mb').selectAll("path")
-                .style("opacity", 0.75);
-            d3.select('#multi-path-label-mb').selectAll("text")
-                .style("opacity", 1.0);
-        } else{
-            d3.select('#multi-path-label-dt').selectAll("path")
-                .style("opacity", 0.75);
-            d3.select('#multi-path-label-dt').selectAll("text")
-                .style("opacity", 1.0);
-        }
+            if (mobileView == true){
+                d3.select('#multi-path-label-mb-1').selectAll("path")
+                    .style("opacity", 0.75);
+                d3.select('#multi-path-label-mb-1').selectAll("text")
+                    .style("opacity", 1.0);
+                d3.select('#multi-path-label-mb-2').selectAll("path")
+                    .style("opacity", 0.0);
+                d3.select('#multi-path-label-mb-2').selectAll("text")
+                    .style("opacity", 0.0);
+            } else{
+                d3.select('#multi-path-label-dt').selectAll("path")
+                    .style("opacity", 0.75);
+                d3.select('#multi-path-label-dt').selectAll("text")
+                    .style("opacity", 1.0);
+            }
             draw_trajectories(default_fire,default_smoke_num,0,1000)
         }
     }
@@ -184,12 +210,11 @@
             .attr("width", "100%")
             .attr("height", "100%");
 
-        // draw default line
         for (let fire=0;fire<number_of_fires;fire++){
             d3.select('#wildfire-label-'+fire).selectAll("path")
-                .style("opacity", 0.75);
+                .style("opacity", 0.0);
             d3.select('#wildfire-label-'+fire).selectAll("text")
-                .style("opacity", 1.0);
+                .style("opacity", 0.0);
         }
         d3.select('#JIF-label').selectAll("path")
             .style("opacity", 0.75);
@@ -199,11 +224,14 @@
             .style("opacity", 0.75);
         d3.select('#single-path-label').selectAll("text")
             .style("opacity", 1.0);
-        console.log (mobileView)
+        d3.select('#multi-path-label-mb-2').selectAll("path")
+            .style("opacity", 0.0);
+        d3.select('#multi-path-label-mb-2').selectAll("text")
+            .style("opacity", 0.0);
         if (mobileView == true){
-            d3.select('#multi-path-label-mb').selectAll("path")
+            d3.select('#multi-path-label-mb-1').selectAll("path")
                 .style("opacity", 0.75);
-            d3.select('#multi-path-label-mb').selectAll("text")
+            d3.select('#multi-path-label-mb-1').selectAll("text")
                 .style("opacity", 1.0);
             d3.select('#multi-path-label-dt').selectAll("path")
                 .style("opacity", 0.0);
@@ -214,12 +242,13 @@
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-dt').selectAll("text")
                 .style("opacity", 1.0);
-            d3.select('#multi-path-label-mb').selectAll("path")
+            d3.select('#multi-path-label-mb-1').selectAll("path")
                 .style("opacity", 0.0);
-            d3.select('#multi-path-label-mb').selectAll("text")
+            d3.select('#multi-path-label-mb-1').selectAll("text")
                 .style("opacity", 0.0);
         }
 
+        // draw default line
         draw_trajectories(default_fire,default_smoke_num,0,1000)
 
         // Add interaction to loss function chart
@@ -254,15 +283,36 @@
 
 <style>
     #wildfire-label-0 {
-        cursor: default;
+        cursor: default;       
+        @media only screen and (max-width: 600px) {            
+            transform-origin: 50% 30%;
+            transform: scale(1.2,1.2);
+        }
     }
     #wildfire-label-1 {
+        cursor: default; 
+        @media only screen and (max-width: 600px) {            
+            transform-origin: 10% 50%;
+            transform: scale(1.2,1.2);
+        }
+    }
+    #JIF-label {
         cursor: default;
+        @media only screen and (max-width: 600px) {            
+            transform-origin: 75% 85%;
+            transform: scale(1.2,1.2);
+        }
     }
     #single-path-label {
         cursor: default;
     }
-    #multi-path-label {
+    #multi-path-label-dt {
+        cursor: default;
+    }
+    #multi-path-label-mb-1 {
+        cursor: default;
+    }
+    #multi-path-label-mb-2 {
         cursor: default;
     }
 </style>
