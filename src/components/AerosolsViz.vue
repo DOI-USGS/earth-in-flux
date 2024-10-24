@@ -277,6 +277,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
+        max-height: 85vh;
         margin: 0 auto 0 auto;
         grid-template-areas:
             "chart";
