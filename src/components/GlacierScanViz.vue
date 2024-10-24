@@ -41,6 +41,7 @@
 <script setup>
     import { onMounted } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
@@ -48,12 +49,16 @@
         text: { type: Object }
     })
 
+    // global variables
+    const mobileView = isMobile;
+    const default_xs = "113";
+
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_photo_v3.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v9.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross_section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -160,19 +165,19 @@
                 .style("visibility", "hidden");
     }
 
-    function mouseover(event,default_xs) {
+    function mouseover(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             remove_xs(default_xs,-9999);
-            let line_id = event.currentTarget.id.slice(8);
+            const line_id = event.currentTarget.id.slice(8);
             draw_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
             remove_xs(default_xs,-9999);
-            let line_id = event.currentTarget.id.slice(8);
+            const line_id = event.currentTarget.id.slice(8);
             draw_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
             remove_xs(default_xs,-9999);
-            let line_id = event.currentTarget.id.slice(13);
-            let photo_id = event.currentTarget.id.slice(9,12);
+            const line_id = event.currentTarget.id.slice(13);
+            const photo_id = event.currentTarget.id.slice(9,12);
             draw_xs(line_id,photo_id);
             draw_image(photo_id);
         }
@@ -180,20 +185,20 @@
 
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            let line_id = event.currentTarget.id.slice(8);
+            const line_id = event.currentTarget.id.slice(8);
             remove_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            let line_id = event.currentTarget.id.slice(8);
+            const line_id = event.currentTarget.id.slice(8);
             remove_xs(line_id,-9999);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
-            let line_id = event.currentTarget.id.slice(13);
-            let photo_id = event.currentTarget.id.slice(9,12);
+            const line_id = event.currentTarget.id.slice(13);
+            const photo_id = event.currentTarget.id.slice(9,12);
             remove_xs(line_id,photo_id);
             remove_image(photo_id);
         }
     }
 
-    function mouseenter(event,default_xs) {
+    function mouseenter(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
             remove_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
@@ -201,7 +206,7 @@
         }
     }
 
-    function mouseleave(event,default_xs) {
+    function mouseleave(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
             draw_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
@@ -211,17 +216,54 @@
 
     function addInteractions() {
         // set viewbox for svg with loss function chart
-        const cross_sectionSVG = d3.select("#cross_section-svg");
+        const cross_sectionSVG = d3.select("#cross_section-svg")
+            .attr("width", "100%")
+            .attr("height", "100%");
 
-        var default_xs = "113";
+        if (mobileView == true){
+            d3.select('#tutorial-dt-1').selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-dt-1').selectAll("text")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-dt-2').selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-dt-2').selectAll("text")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-mb-1').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#tutorial-mb-1').selectAll("text")
+                .style("opacity", 1.0);
+            d3.select('#tutorial-mb-2').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#tutorial-mb-2').selectAll("text")
+                .style("opacity", 1.0);
+        } else{
+            d3.select('#tutorial-dt-1').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#tutorial-dt-1').selectAll("text")
+                .style("opacity", 1.0);
+            d3.select('#tutorial-dt-2').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#tutorial-dt-2').selectAll("text")
+                .style("opacity", 1.0);
+            d3.select('#tutorial-mb-1').selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-mb-1').selectAll("text")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-mb-2').selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#tutorial-mb-2').selectAll("text")
+                .style("opacity", 0.0);
+        }
+
         draw_xs(default_xs,-9999);
 
         // Add interaction to loss function chart
         cross_sectionSVG.selectAll("g")
-            .on("mouseover", (event) => mouseover(event,default_xs))
+            .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
-            .on("mouseenter", (event) => mouseenter(event,default_xs))
-            .on("mouseleave", (event) => mouseleave(event,default_xs));
+            .on("mouseenter", (event) => mouseenter(event))
+            .on("mouseleave", (event) => mouseleave(event));
     }
 </script>
 
@@ -230,6 +272,7 @@
         display: grid;
         width: 100%;
         max-width: 1200px;
+        max-height: 85vh;
         margin: 4rem auto 0 auto;
         grid-template-areas:
             "chart";
