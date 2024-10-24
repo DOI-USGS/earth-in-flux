@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, ref } from "vue";
+    import { computed, onMounted, ref, watch } from "vue";
     import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
@@ -59,6 +59,7 @@
     let chartWidth;
     let chartDimensions;
     let chartBounds;
+    let tileChartDrawn = ref(false);
     let tileChartDimensions;
     let tileChartBounds;
     let tileColorScale;
@@ -90,6 +91,10 @@
         return props.text[selectionString];
     });
 
+    watch(currentIndex, () => {
+        updateChartView(currentIndex.value)
+    })
+
     // Behavior on mounted (functions called here)
     // Load data and then make chart
     onMounted(async () => {
@@ -109,33 +114,37 @@
                     margin: mobileView ? 5 : 10
                 })
 
-                const tileChartWidth = chartWidth / 3
+                // updateChartView(currentIndex.value)
+
+                const tileChartWidth = chartDimensions.boundedWidth
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
                     margin: mobileView ? 5 : 10,
-                    marginLeft: mobileView ? 60: 100});
+                    marginLeft: mobileView ? 60: chartDimensions.boundedWidth / 3,
+                    marginRight: mobileView ? 60: chartDimensions.boundedWidth / 3
+                });
 
-                const barChartWidth = chartWidth / 3
-                initBarChart({
-                    width: barChartWidth,
-                    height: chartHeight,
-                    margin: mobileView ? 5 : 10,
-                    marginLeft: mobileView ? 20 : 80,
-                    translateX: tileChartWidth});
+                // const barChartWidth = chartWidth / 3
+                // initBarChart({
+                //     width: barChartWidth,
+                //     height: chartHeight,
+                //     margin: mobileView ? 5 : 10,
+                //     marginLeft: mobileView ? 20 : 80,
+                //     translateX: tileChartWidth});
 
-                const scatterChartWidth = chartWidth - tileChartWidth - barChartWidth
-                initScatterChart({
-                    width: scatterChartWidth,
-                    height: chartHeight,
-                    margin: mobileView ? 5 : 10,
-                    marginLeft: mobileView ? 20 : 60,
-                    translateX: tileChartWidth + barChartWidth});
+                // const scatterChartWidth = chartWidth - tileChartWidth - barChartWidth
+                // initScatterChart({
+                //     width: scatterChartWidth,
+                //     height: chartHeight,
+                //     margin: mobileView ? 5 : 10,
+                //     marginLeft: mobileView ? 20 : 60,
+                //     translateX: tileChartWidth + barChartWidth});
 
                 // draw charts
                 drawTileChart(tileData.value);
-                drawBarChart(barData.value);
-                drawScatterChart(scatterData.value)
+                // drawBarChart(barData.value);
+                // drawScatterChart(scatterData.value);
             } else {
                 console.error('Error loading data');
             }
@@ -628,6 +637,8 @@
                 .attr("transform", "rotate(-90)")
                 .attr("text-anchor", "middle")
                 .text("2015 accumulation")
+
+        tileChartDrawn.value = true;
     }
 
     function drawBarChart(data) {
@@ -740,6 +751,25 @@
                     .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
                     .attr("r", 4)
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
+    }
+
+    function updateChartView(index) {
+        if (index == 1) {
+            console.log('1');
+        } else if (index == 2) {
+            tileChartDimensions.margin.left = chartDimensions.boundedWidth / 5
+            tileChartBounds
+                .transition()
+                .duration(2000)
+                .style("transform", `translate(${
+                    tileChartDimensions.margin.left
+                }px, ${
+                    tileChartDimensions.margin.top
+                }px)`);
+            console.log(2)
+        } else if (index == 3) {
+            console.log(3)
+        }
     }
 </script>
 
