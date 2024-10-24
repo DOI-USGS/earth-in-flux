@@ -45,7 +45,7 @@
     const smoke_lines = 1;
     const number_of_fires = 2;
     const smoke_opacity = 0.6;
-    const smoke_width = 12;
+    const smoke_width = 15;
 
     // Declare behavior on mounted
     // functions called here
@@ -77,6 +77,7 @@
             
             // Animate the line
             trajectory_line.style("transition", "none")
+                .style("filter", "url(#glow)")
                 .style("stroke-dasharray", totalLength + " " + totalLength)
                 .attr("stroke-dashoffset", totalLength - 1) //minus 1 remove artifacts that show before animation.
                 .style("stroke-opacity", smoke_opacity)
@@ -209,6 +210,17 @@
         const aerosolsSVG = d3.select("#aerosols-svg")
             .attr("width", "100%")
             .attr("height", "100%");
+
+        // Container for the gradients
+        const defs = aerosolsSVG.append("defs");
+
+        // Filter for the outside glow
+        const filter = defs.append("filter")
+            .attr("id","glow");
+        // wide blur
+        filter.append("feGaussianBlur")
+            .attr("stdDeviation","1.5")
+            .attr("result","coloredBlur");
 
         for (let fire=0;fire<number_of_fires;fire++){
             d3.select('#wildfire-label-'+fire).selectAll("path")
