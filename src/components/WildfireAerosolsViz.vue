@@ -55,6 +55,7 @@
     const justClicked = ref(false);
     const nIndices = 3;
     const chart = ref(null);
+    let chartSVG;
     const chartTitle = 'Title of chart';
     const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.7;
     let chartWidth;
@@ -123,7 +124,7 @@
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = mobileView ? 100 : 110;
+                const sharedTopMargin = mobileView ? 100 : 120;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 const tileChartWidth = chartDimensions.boundedWidth / 3
@@ -138,7 +139,7 @@
                     marginRight: mobileView ? 5: 40,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
-                    translateX: tileChartTranslateX1
+                    translateX: tileChartTranslateX3
                 });
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
@@ -151,7 +152,7 @@
                     marginLeft: mobileView ? 20 : 80,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
-                    translateX: barChartTranslateX2});
+                    translateX: barChartTranslateX3});
 
                 const scatterChartWidth = chartDimensions.boundedWidth - tileChartWidth - barChartWidth
                 scatterChartTranslateX3 = tileChartWidth + barChartWidth + 50;
@@ -167,13 +168,14 @@
                 // draw charts, hiding bar and scatter charts to start
                 drawTileChart(tileData.value);
                 drawBarChart(barData.value);
-                barChartBounds
-                    .attr("display", "none");
+                // barChartBounds
+                //     .attr("display", "none");
                 drawScatterChart(scatterData.value);
-                scatterChartBounds
-                    .attr("display", "none");
+                // scatterChartBounds
+                //     .attr("display", "none");
 
                 // add legends
+                addTileLegend()
                 addBarLegend()
             } else {
                 console.error('Error loading data');
@@ -240,7 +242,7 @@
         }
 
         // draw canvas for chart
-        const chartSVG = d3.select("#chart-container")
+        chartSVG = d3.select("#chart-container")
             .append("svg")
                 .attr("viewBox", [0, 0, (chartDimensions.width), (chartDimensions.height)].join(' '))
                 .attr("width", "100%")
@@ -721,6 +723,68 @@
                 .text("2015 accumulation")
     }
 
+    function addTileLegend() {
+        // build list of posible counts (0 to 366)
+        let count_list = [];
+        for (let i = 1; i <= tileColorScale.domain()[1]; i++) {
+            count_list.push(i);
+        }
+
+        // define gradient for legend
+        chartSVG.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient-particles")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%")
+            .selectAll("stop")
+            .data(count_list)
+                .enter()
+                .append("stop")
+                .attr("offset", (d,i) => i/(count_list.length-1))
+                .attr("stop-color", d => tileColorScale(d))
+
+        const legendGroup = tileChartBounds.append("g")
+            .attr("id", "tile-chart-legend")
+
+        // append legend title
+        legendGroup.append("text")
+              .attr("class", "axis-title")
+              .attr("text-anchor", "start")
+              .attr("x", 0)
+              .attr("y", -tileChartDimensions.margin.top)
+              .attr("dominant-baseline", "text-before-edge")
+              .text("Particulate count")
+
+        // append legend text
+        
+        const xBuffer = 5;
+        legendGroup.append("text")
+              .attr("class", "axis-subtitle")
+              .attr("text-anchor", "end")
+              .attr("dominant-baseline", "central")
+              .attr("x", - xBuffer)
+              .attr("y", -tileChartDimensions.margin.top / 2)
+              .text("low")
+
+        legendGroup.append("text")
+              .attr("class", "axis-subtitle")
+              .attr("text-anchor", "start")
+              .attr("dominant-baseline", "central")
+              .attr("x", tileChartDimensions.boundedWidth / 2 + xBuffer)
+              .attr("y", -tileChartDimensions.margin.top / 2)
+              .text("high")
+        
+        // append legend rectangle
+        const rectHeight = tileChartDimensions.margin.top / 4
+        legendGroup.append("rect")
+              .attr("class", "c1p2 matrixLegend")
+              .attr("width", tileChartDimensions.boundedWidth / 2)
+              .attr("height", rectHeight)
+              .attr("fill", "url(#gradient-particles)")
+              .attr("x", 0)
+              .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
+    }
+
     function drawBarChart(data) {
         ///////////////////////////////////////////
         /////    SET UP ACCESSOR FUNCTIONS    /////
@@ -802,18 +866,13 @@
     function addBarLegend() {
         const barLegendGroup = barChartBounds.append("g")
             .attr("id", "bar-chart-legend")
-            .style("transform", `translate(${
-                0
-            }px, ${
-                -barChartDimensions.margin.top / 2
-            }px)`);
 
         // // Add legend title
         // barLegendGroup.append("text")
         //     .text('Sugars')
         //     .attr("id", "legend-title")
         //     .attr("class", "axis-title")
-        //     .attr("y", chartDimensions.margin.top / 2)
+        //     .attr("y", barChartDimensions.margin.top / 2)
         //     .attr("dominant-baseline", "central")
 
         const legendRectSize = barYScale.bandwidth();
@@ -831,7 +890,7 @@
         legendGroup.append("rect")
             .attr("class", "legend-rect")
             .attr("x", 0)
-            .attr("y", chartDimensions.margin.top / 2 - legendRectSize / 2.5)
+            .attr("y", -barChartDimensions.margin.top / 2 - legendRectSize / 2.5)
             .attr("width", legendRectSize)
             .attr("height", legendRectSize)
             .style("fill", d => barColorScale(d))
@@ -840,7 +899,7 @@
         legendGroup.append("text")
             .attr("class", "legend-text")
             .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
-            .attr("y", chartDimensions.margin.top / 2)
+            .attr("y", -barChartDimensions.margin.top / 2)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
             .text(d => d);
