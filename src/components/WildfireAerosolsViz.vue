@@ -12,10 +12,10 @@
         </template>
         <template #figures>
             <div id="wildfire-aerosols-grid-container">
-                <button id="aerosol-prev" class="flip-button" @click="currentIndex--" :disabled="isFirstImage">
+                <button id="aerosol-prev" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
                 </button>
-                <button id="aerosol-next" class="flip-button" @click="currentIndex++" :disabled="isLastImage">
+                <button id="aerosol-next" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
                 </button>
                 <div id="aerosol-text-container" class="text-container">
@@ -52,6 +52,7 @@
     const barData = ref();
     const scatterData = ref();
     const currentIndex = ref(1);
+    const justClicked = ref(false);
     const nIndices = 3;
     const chart = ref(null);
     const chartTitle = 'Title of chart';
@@ -59,7 +60,9 @@
     let chartWidth;
     let chartDimensions;
     let chartBounds;
-    let tileChartDrawn = ref(false);
+    let tileChartTranslateX1;
+    let tileChartTranslateX2;
+    let tileChartTranslateX3;
     let tileChartDimensions;
     let tileChartBounds;
     let tileColorScale;
@@ -67,6 +70,8 @@
     // let xAxis;
     let yScale;
     let yAxis;
+    let barChartTranslateX2;
+    let barChartTranslateX3;
     let barChartDimensions;
     let barChartBounds;
     let barXScale;
@@ -74,11 +79,13 @@
     let barXAxis;
     const barColors = {Mannosan: '#000000', Galactosan: '#989898', Levoglucosan: '#c8c8c8'};
     let barColorScale;
+    let scatterChartTranslateX3;
     let scatterChartDimensions;
     let scatterChartBounds;
     let scatterXScale;
     const scatterColors = {grass: '#c49051', hardwood: '#3c475a', softwood: '#729C9D'};
     let scatterColorScale;
+    const transitionLength = 2000;
 
     const isFirstImage = computed(() => {
         return currentIndex.value === 1;
@@ -109,42 +116,51 @@
                 // initialize chart elements
                 chartWidth = chart.value.offsetWidth;
                 initChart({
-                    width: chart.value.offsetWidth,
+                    width: chartWidth,
                     height: chartHeight,
                     margin: mobileView ? 5 : 10
                 })
 
-                // updateChartView(currentIndex.value)
-
-                const tileChartWidth = chartDimensions.boundedWidth
+                const tileChartWidth = chartDimensions.boundedWidth / 3
+                tileChartTranslateX1 = 350;
+                tileChartTranslateX2 = 200;
+                tileChartTranslateX3 = 80;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
                     margin: mobileView ? 5 : 10,
-                    marginLeft: mobileView ? 60: chartDimensions.boundedWidth / 3,
-                    marginRight: mobileView ? 60: chartDimensions.boundedWidth / 3
+                    marginLeft: mobileView ? 60: 80,
+                    marginRight: mobileView ? 60: 40,
+                    translateX: tileChartTranslateX1
                 });
 
-                // const barChartWidth = chartWidth / 3
-                // initBarChart({
-                //     width: barChartWidth,
-                //     height: chartHeight,
-                //     margin: mobileView ? 5 : 10,
-                //     marginLeft: mobileView ? 20 : 80,
-                //     translateX: tileChartWidth});
+                const barChartWidth = chartDimensions.boundedWidth / 3
+                barChartTranslateX2 = tileChartWidth + 150;
+                barChartTranslateX3 = tileChartWidth + 80;
+                initBarChart({
+                    width: barChartWidth,
+                    height: chartHeight,
+                    margin: mobileView ? 5 : 10,
+                    marginLeft: mobileView ? 20 : 80,
+                    translateX: barChartTranslateX2});
 
-                // const scatterChartWidth = chartWidth - tileChartWidth - barChartWidth
-                // initScatterChart({
-                //     width: scatterChartWidth,
-                //     height: chartHeight,
-                //     margin: mobileView ? 5 : 10,
-                //     marginLeft: mobileView ? 20 : 60,
-                //     translateX: tileChartWidth + barChartWidth});
+                const scatterChartWidth = chartDimensions.boundedWidth - tileChartWidth - barChartWidth
+                scatterChartTranslateX3 = tileChartWidth + barChartWidth + 50;
+                initScatterChart({
+                    width: scatterChartWidth,
+                    height: chartHeight,
+                    margin: mobileView ? 5 : 10,
+                    marginLeft: mobileView ? 20 : 60,
+                    translateX: scatterChartTranslateX3});
 
                 // draw charts
                 drawTileChart(tileData.value);
-                // drawBarChart(barData.value);
-                // drawScatterChart(scatterData.value);
+                drawBarChart(barData.value);
+                barChartBounds
+                    .attr("display", "none");
+                drawScatterChart(scatterData.value);
+                scatterChartBounds
+                    .attr("display", "none");
             } else {
                 console.error('Error loading data');
             }
@@ -179,6 +195,11 @@
             console.error(`Error loading data from ${dataFile}`, error);
             return [];
         }
+    }
+
+    function clicked() {
+        justClicked.value = true;
+        setTimeout(function(){justClicked.value = false;}, transitionLength);
     }
 
     function initChart({
@@ -234,7 +255,8 @@
         marginTop = margin, // top margin, in pixels
         marginBottom = margin, // left margin, in pixels
         marginLeft = margin, // left margin, in pixels
-        marginRight = margin // right margin, in pixels
+        marginRight = margin, // right margin, in pixels
+        translateX // starting x translation
     }) {
         // set up global chart dimensions, including bounded dimensions
         tileChartDimensions = {
@@ -253,7 +275,7 @@
         tileChartBounds = chartBounds.append("g")
             .attr("id", "tile-chart-bounds")
             .style("transform", `translate(${
-                tileChartDimensions.margin.left
+                translateX
             }px, ${
                 tileChartDimensions.margin.top
             }px)`);
@@ -605,6 +627,7 @@
                     .attr("height", tileChartDimensions.boundedHeight / data.length)
                     .attr("width", tileChartDimensions.boundedWidth - annotationGap)
                     .style("fill", d => tileColorScale(colorAccessor(d)));
+        
         // draw year bands
         tileChartBounds.select(".annotations")
             .append("rect")
@@ -637,8 +660,6 @@
                 .attr("transform", "rotate(-90)")
                 .attr("text-anchor", "middle")
                 .text("2015 accumulation")
-
-        tileChartDrawn.value = true;
     }
 
     function drawBarChart(data) {
@@ -753,22 +774,60 @@
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
     }
 
+    function showChart(hiddenChartBounds, translateX, translateY) {
+        hiddenChartBounds
+            .attr("opacity", 0)
+            .attr("display", "auto")
+            .transition()
+            .duration(transitionLength)
+            .attr("opacity", 1)
+            .style("transform", `translate(${
+                translateX
+            }px, ${
+                translateY
+            }px)`);
+    }
+
+    function hideChart(visibleChartBounds) {
+        visibleChartBounds
+            .transition()
+            .duration(transitionLength)
+            .attr("opacity", 0)
+        setTimeout(function() {
+            visibleChartBounds
+                .attr("display", "none")
+        }, transitionLength)
+    }
+
+    function moveChart(visibleChartBounds, translateX, translateY) {
+        visibleChartBounds
+            .transition()
+            .duration(transitionLength)
+            .style("transform", `translate(${
+                translateX
+            }px, ${
+                translateY
+            }px)`);
+    }
+
     function updateChartView(index) {
+        const barChartHidden = barChartBounds.node().attributes.display.value == 'none';
+        const scatterChartHidden = scatterChartBounds.node().attributes.display.value == 'none';
         if (index == 1) {
-            console.log('1');
+            moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
+            if (!barChartHidden) hideChart(barChartBounds)            
         } else if (index == 2) {
-            tileChartDimensions.margin.left = chartDimensions.boundedWidth / 5
-            tileChartBounds
-                .transition()
-                .duration(2000)
-                .style("transform", `translate(${
-                    tileChartDimensions.margin.left
-                }px, ${
-                    tileChartDimensions.margin.top
-                }px)`);
-            console.log(2)
+            moveChart(tileChartBounds, tileChartTranslateX2, tileChartDimensions.margin.top)
+            if (barChartHidden)  {
+                showChart(barChartBounds, barChartTranslateX2, barChartDimensions.margin.top)
+            } else {
+                moveChart(barChartBounds, barChartTranslateX2, barChartDimensions.margin.top)
+            }
+            if (!scatterChartHidden) hideChart(scatterChartBounds) 
         } else if (index == 3) {
-            console.log(3)
+            moveChart(tileChartBounds, tileChartTranslateX3, tileChartDimensions.margin.top)
+            moveChart(barChartBounds, barChartTranslateX3, barChartDimensions.margin.top)
+            showChart(scatterChartBounds, scatterChartTranslateX3, scatterChartDimensions.margin.top)
         }
     }
 </script>
