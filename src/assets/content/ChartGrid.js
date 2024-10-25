@@ -47,7 +47,7 @@ export default {
             project: 'Fire in Ice',
             vizKey: 'Aerosols',
             vizRoute: 'aerosol-paths',
-            img_src: 'aerosols_thumbnail.png',
+            img_src: 'aerosols_map_thumbnail.png',
             alt: '',
             chartOrder: 2,
             description: 'Wildfire particles are deposited on glaciers.'
