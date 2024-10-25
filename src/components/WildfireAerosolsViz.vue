@@ -76,6 +76,7 @@
     let barYScale;
     let barXAxis;
     const barXAxisPosition = 'top';
+    let barColorCategories;
     const barColors = {Mannosan: '#000000', Galactosan: '#989898', Levoglucosan: '#c8c8c8'};
     let barColorScale;
     let scatterChartTranslateX3;
@@ -122,27 +123,27 @@
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = 50;
-                const sharedBottomMargin = 45;
+                const sharedTopMargin = mobileView ? 100 : 110;
+                const sharedBottomMargin = mobileView ? 0 : 10;
 
                 const tileChartWidth = chartDimensions.boundedWidth / 3
-                tileChartTranslateX1 = 350;
-                tileChartTranslateX2 = 200;
-                tileChartTranslateX3 = 80;
+                tileChartTranslateX1 = mobileView ? 40 : 350;
+                tileChartTranslateX2 = mobileView ? 40 : 200;
+                tileChartTranslateX3 = mobileView ? 75 : 80;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 60: 80,
-                    marginRight: mobileView ? 60: 40,
+                    marginLeft: mobileView ? 55: 80,
+                    marginRight: mobileView ? 5: 40,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: tileChartTranslateX1
                 });
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
-                barChartTranslateX2 = tileChartWidth + 150;
-                barChartTranslateX3 = tileChartWidth + 80;
+                barChartTranslateX2 = mobileView ? tileChartWidth + 40 : tileChartWidth + 150;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 30 : tileChartWidth + 80;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -163,7 +164,7 @@
                     marginBottom: sharedBottomMargin,
                     translateX: scatterChartTranslateX3});
 
-                // draw charts
+                // draw charts, hiding bar and scatter charts to start
                 drawTileChart(tileData.value);
                 drawBarChart(barData.value);
                 barChartBounds
@@ -171,6 +172,9 @@
                 drawScatterChart(scatterData.value);
                 scatterChartBounds
                     .attr("display", "none");
+
+                // add legends
+                addBarLegend()
             } else {
                 console.error('Error loading data');
             }
@@ -452,6 +456,7 @@
         chartDims
     }, {
         axisTitle = '',
+        axisSubtitle = null,
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
@@ -490,7 +495,7 @@
             .attr("transform", `rotate(${textAngle})`);
 
         // add axis title
-        axis
+        axisTitle = axis
             .append("text")
             .attr("class", "axis-title")
             .attr("x", titleX)
@@ -501,6 +506,20 @@
             .attr("role", "presentation")
             .attr("aria-hidden", true)
             .text(axisTitle);
+
+        if (axisSubtitle) {
+            axisTitle.append("tspan")
+                .attr("class", "axis-subtitle")
+                .attr("x", titleX)
+                .attr("y", titleY)
+                .attr("dy", "1em")
+                .attr("transform", `rotate(${titleAngle})`)
+                .attr("text-anchor", titleTextAnchor)
+                .attr("dominant-baseline", titleBaseline)
+                .attr("role", "presentation")
+                .attr("aria-hidden", true)
+                .text(axisSubtitle);
+        }
     }
 
     function drawXAxis({
@@ -510,6 +529,7 @@
     }, {
         axisPosition = 'bottom',
         axisTitle = '',
+        axisSubtitle = null,
         titleX = chartDims.boundedWidth / 2,
         titleY = axisPosition === 'bottom' ? chartDims.margin.bottom : -chartDims.margin.top,
         titleTextAnchor = "middle",
@@ -530,6 +550,7 @@
             axisFxn: axisPosition === 'bottom' ? 'axisBottom' : 'axisTop'
         }, {
             axisTitle: axisTitle,
+            axisSubtitle: axisSubtitle,
             titleX: titleX,
             titleY: titleY,
             titleTextAnchor: titleTextAnchor,
@@ -552,6 +573,7 @@
         chartDims
     }, {
         axisTitle = '',
+        axisSubtitle = null,
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
@@ -573,6 +595,7 @@
             chartDims: chartDims
         }, {
             axisTitle: axisTitle,
+            axisSubtitle: axisSubtitle,
             titleX: titleX,
             titleY: titleY,
             titleTextAnchor: titleTextAnchor,
@@ -703,7 +726,7 @@
         /////    SET UP ACCESSOR FUNCTIONS    /////
         ///////////////////////////////////////////
         const yAccessor = d => d.depth_cm;
-        const xAccessor = d => d.picogram_per_mL;
+        const xAccessor = d => d.picogram_per_mL/1000; // convert to nanogram
         const keyAccessor = d => d.sugar;
         const colorAccessor = d => d.sugar;
 
@@ -739,9 +762,10 @@
             }, 
             {
                 axisPosition: barXAxisPosition, 
-                axisTitle: 'Sugar concentration (picogram/mL)', 
+                axisTitle: 'Sugar concentration', 
+                axisSubtitle: 'nanogram/mL',
                 nticks: 4,
-                tickFormat: '.1s', 
+                tickFormat: '.0f', 
                 tickSize: 3
             }
         )
@@ -749,8 +773,8 @@
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
         ///////////////////////////////////
-        const colorCategories = [... new Set(data.map(colorAccessor))];
-        initBarColorScale(colorCategories)
+        barColorCategories = [... new Set(data.map(colorAccessor))];
+        initBarColorScale(barColorCategories)
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
@@ -773,6 +797,112 @@
                 .attr("height", barYScale.bandwidth())
                 .attr("width", d => barXScale(d[1]) - barXScale(d[0]))
                 .style("fill", d => barColorScale(d.key))
+    }
+
+    function addBarLegend() {
+        const barLegendGroup = barChartBounds.append("g")
+            .attr("id", "bar-chart-legend")
+            .style("transform", `translate(${
+                0
+            }px, ${
+                -barChartDimensions.margin.top / 2
+            }px)`);
+
+        // // Add legend title
+        // barLegendGroup.append("text")
+        //     .text('Sugars')
+        //     .attr("id", "legend-title")
+        //     .attr("class", "axis-title")
+        //     .attr("y", chartDimensions.margin.top / 2)
+        //     .attr("dominant-baseline", "central")
+
+        const legendRectSize = barYScale.bandwidth();
+        const interItemSpacing = mobileView ? 15 : 10;
+        const intraItemSpacing = 6;
+
+        // Append group for each legend entry
+        const legendGroup = barLegendGroup.selectAll(".legend-item")
+            .data(barColorCategories)
+            .enter()
+            .append("g")
+            .attr("class", "legend-item")
+
+        // Add rectangles for each group
+        legendGroup.append("rect")
+            .attr("class", "legend-rect")
+            .attr("x", 0)
+            .attr("y", chartDimensions.margin.top / 2 - legendRectSize / 2.5)
+            .attr("width", legendRectSize)
+            .attr("height", legendRectSize)
+            .style("fill", d => barColorScale(d))
+        
+        // Add text for each group
+        legendGroup.append("text")
+            .attr("class", "legend-text")
+            .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
+            .attr("y", chartDimensions.margin.top / 2)
+            .attr("text-anchor", "start") // left-align text
+            .attr("dominant-baseline", "central")
+            .text(d => d);
+
+        // Position legend groups
+        // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
+        const xBuffer = 6; // set xBuffer for use in mobile row x translations
+        legendGroup
+            .attr("transform", (d, i) => {
+            // Compute total width of preceeding legend items, with spacing
+            // Start with width of legend title
+            const titleWidth = 0 //d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
+            
+            // Begin right of legend
+            let cumulativeWidth = titleWidth;
+            // if (mobileView) {
+                // On mobile, only use preceding items in same row to find cumulative width
+                // row 1: items 0 and 1
+                if (i < 2) {
+                for (let j = 0; j < i; j++) {
+                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                }
+                }
+                // row 2: items 2, 3 and 4
+                else if (i < 5) {
+                for (let j = 2; j < i; j++) {
+                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                }
+                }
+                // row 3: item 5 
+                else if (i === 5) {
+                for (let j = 2; j < i; j++) {
+                    // Actually storing width of row 2 here, to use to set selfSupplyEnd
+                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                }
+                }
+            // } else {
+                // on desktop, iterate through all preceding items to find cumulative width, since all items in 1 row
+                // for (let j = 0; j < i; j++) {
+                // cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                // }
+            // }
+
+            let yTranslation = 0;
+            // Determine x and y translation
+            // set y translation for each row
+            // adjust row starting position for 2nd and third rows by -titleWidth
+            // if (mobileView) {
+                if (i < 2) {
+                    yTranslation = 0;
+                } else if (i < 5) {
+                    yTranslation = mobileView ? legendRectSize * 4 : legendRectSize * 2;
+                    cumulativeWidth = cumulativeWidth - titleWidth;
+                } else {
+                    yTranslation = legendRectSize * 5.75
+                    cumulativeWidth = xBuffer; // for last item just translate by xBuffer
+                } 
+            // }
+
+            // translate each group by that width and height
+            return "translate(" + cumulativeWidth + "," + yTranslation + ")"
+        })
     }
 
     function drawScatterChart(data) {
@@ -879,6 +1009,44 @@
             showChart(scatterChartBounds, scatterChartTranslateX3, scatterChartDimensions.margin.top)
         }
     }
+
+    // // https://gist.github.com/mbostock/7555321
+    // function wrap(text) {
+    //     text.each(function() {
+    //         var text = d3.select(this),
+    //         words = text.text().split(/\s|-+/).reverse(),
+    //         word,
+    //         line = [],
+    //         lineNumber = 0,
+    //         lineHeight = 1.1, // ems
+    //         width = text.attr("text-width"),
+    //         x = text.attr("x"),
+    //         y = text.attr("y"),
+    //         dy = parseFloat(text.attr("dy")),
+    //         dx = parseFloat(text.attr("dx")),
+    //         tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+
+    //         while ((word = words.pop())) {
+    //         line.push(word);
+    //         tspan.text(line.join(" "));
+    //             if (tspan.node().getComputedTextLength() > width) {
+    //             line.pop();
+    //             tspan.text(line.join(" "));
+    //             line = [word];
+    //             tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+    //             }
+    //         }
+
+    //         // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+    //         if (lineNumber > 0) {
+    //             const startDy = -(lineNumber * (lineHeight / 2));
+    //             text
+    //                 .selectAll("tspan")
+    //                 .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+    //         }
+    //     }
+    // )};
+
 </script>
 
 <style scoped lang="scss">
@@ -975,8 +1143,12 @@
 /* css for elements added/classed w/ d3 */
     .axis-text {
         font-size: 1.6rem;
+        font-weight: 300;
         font-family: var(--default-font);
         user-select: none;
+        @media only screen and (max-width: 600px) {
+            font-size: 1.4rem;
+        }
     }
     .axis-title {
         font-size: 1.8rem;
@@ -984,8 +1156,29 @@
         font-weight: 900;
         fill: var(--color-text);
         user-select: none;
+        @media only screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
+    }
+    .axis-subtitle {
+        font-size: 1.8rem;
+        font-family: var(--default-font);
+        font-weight: 300;
+        fill: var(--color-text);
+        user-select: none;
+        @media only screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
     }
     .year-bands {
         fill: var(--medium-grey);
+    }
+    .legend-text {
+        font-size: 1.6rem;
+        font-family: var(--default-font);
+        user-select: none;
+        @media only screen and (max-width: 600px) {
+            font-size: 1.4rem;
+        }
     }
 </style>
