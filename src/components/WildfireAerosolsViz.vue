@@ -56,7 +56,7 @@
     const nIndices = 3;
     const chart = ref(null);
     const chartTitle = 'Title of chart';
-    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.8;
+    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.7;
     let chartWidth;
     let chartDimensions;
     let chartBounds;
@@ -66,8 +66,6 @@
     let tileChartDimensions;
     let tileChartBounds;
     let tileColorScale;
-    // let xScale;
-    // let xAxis;
     let yScale;
     let yAxis;
     let barChartTranslateX2;
@@ -77,6 +75,7 @@
     let barXScale;
     let barYScale;
     let barXAxis;
+    const barXAxisPosition = 'top';
     const barColors = {Mannosan: '#000000', Galactosan: '#989898', Levoglucosan: '#c8c8c8'};
     let barColorScale;
     let scatterChartTranslateX3;
@@ -113,13 +112,18 @@
             });
 
             if (tileData.value.length > 0 && barData.value.length > 0) {
+                
                 // initialize chart elements
                 chartWidth = chart.value.offsetWidth;
                 initChart({
                     width: chartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 10
+                    margin: 0
                 })
+
+                const defaultMargin = mobileView ? 5 : 10;
+                const sharedTopMargin = 50;
+                const sharedBottomMargin = 45;
 
                 const tileChartWidth = chartDimensions.boundedWidth / 3
                 tileChartTranslateX1 = 350;
@@ -128,9 +132,11 @@
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 10,
+                    margin: defaultMargin,
                     marginLeft: mobileView ? 60: 80,
                     marginRight: mobileView ? 60: 40,
+                    marginTop: sharedTopMargin,
+                    marginBottom: sharedBottomMargin,
                     translateX: tileChartTranslateX1
                 });
 
@@ -140,8 +146,10 @@
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 10,
+                    margin: defaultMargin,
                     marginLeft: mobileView ? 20 : 80,
+                    marginTop: sharedTopMargin,
+                    marginBottom: sharedBottomMargin,
                     translateX: barChartTranslateX2});
 
                 const scatterChartWidth = chartDimensions.boundedWidth - tileChartWidth - barChartWidth
@@ -149,8 +157,10 @@
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 10,
+                    margin: defaultMargin,
                     marginLeft: mobileView ? 20 : 60,
+                    marginTop: sharedTopMargin,
+                    marginBottom: sharedBottomMargin,
                     translateX: scatterChartTranslateX3});
 
                 // draw charts
@@ -334,7 +344,13 @@
         initBarYScale()
 
         // Initialize axes
-        initXAxis({axis: barXAxis, bounds: barChartBounds, chartDims: barChartDimensions})
+        initBarXAxis(
+            {
+                bounds: barChartBounds, 
+                chartDims: barChartDimensions,
+                axisPosition: barXAxisPosition
+            }
+        )
 
         // Add groups for visual elements
         barChartBounds.append("g")
@@ -400,16 +416,16 @@
             .range([0, scatterChartDimensions.boundedWidth]);
     }
 
-    function initXAxis({
-        axis,
+    function initBarXAxis({
         bounds,
-        chartDims
+        chartDims,
+        axisPosition = 'bottom'
     }) {
         // add group for x axis
-        axis = bounds.append("g")
+        barXAxis = bounds.append("g")
             .attr("id", "x-axis")
             .attr("class", "axis")
-            .attr("transform", `translate(0,${chartDims.boundedHeight})`)
+            .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
             .attr("aria-hidden", true); // hide from screen reader
     }
 
@@ -441,6 +457,7 @@
         titleTextAnchor = "middle",
         titleBaseline = "text-before-edge",
         titleAngle = -90,
+        nticks = null,
         tickSize = 0,
         tickPadding = 5,
         tickType = "numeric",
@@ -453,10 +470,10 @@
         // if numeric ticks, include specification of format
         if (tickType == "numeric" && !customSuffix) {
             axis
-                .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d3.format(tickFormat)));
+                .call(d3[axisFxn](axisScale).ticks(nticks).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d3.format(tickFormat)));
         } else if (tickType == "numeric" && customSuffix) {
             axis
-                .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d => d3.format(tickFormat)(d) + ' ' + customSuffix));
+                .call(d3[axisFxn](axisScale).ticks(nticks).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d => d3.format(tickFormat)(d) + ' ' + customSuffix));
         } else {
             axis
                 .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding));
@@ -486,40 +503,48 @@
             .text(axisTitle);
     }
 
-    // function drawXAxis({
-    //     axisTitle = '',
-    //     titleX = tileChartDimensions.boundedWidth / 2,
-    //     titleY = tileChartDimensions.margin.bottom,
-    //     titleTextAnchor = "middle",
-    //     titleBaseline = "text-after-edge",
-    //     titleAngle = 0,
-    //     tickSize = 0,
-    //     tickPadding = 5,
-    //     tickType = 'numeric',
-    //     tickFormat = ".2f",
-    //     customSuffix = null,
-    //     textAngle = 0, 
-    //     keepDomain = true,
-    // }) {
-    //     drawAxis({
-    //         axis: xAxis,
-    //         axisScale: xScale,
-    //         axisFxn: 'axisBottom'
-    //     }, {
-    //         axisTitle: axisTitle,
-    //         titleX: titleX,
-    //         titleY: titleY,
-    //         titleTextAnchor: titleTextAnchor,
-    //         titleBaseline: titleBaseline,
-    //         titleAngle: titleAngle,tickSize: tickSize,
-    //         tickPadding: tickPadding,
-    //         tickType: tickType,
-    //         tickFormat: tickFormat,
-    //         customSuffix: customSuffix,
-    //         textAngle: textAngle,
-    //         keepDomain: keepDomain,
-    //     })
-    // }
+    function drawXAxis({
+        axis,
+        axisScale,
+        chartDims
+    }, {
+        axisPosition = 'bottom',
+        axisTitle = '',
+        titleX = chartDims.boundedWidth / 2,
+        titleY = axisPosition === 'bottom' ? chartDims.margin.bottom : -chartDims.margin.top,
+        titleTextAnchor = "middle",
+        titleBaseline = axisPosition === 'bottom' ? "text-after-edge" : "text-before-edge",
+        titleAngle = 0,
+        nticks = null,
+        tickSize = 0,
+        tickPadding = 5,
+        tickType = 'numeric',
+        tickFormat = ".2f",
+        customSuffix = null,
+        textAngle = 0, 
+        keepDomain = true,
+    }) {
+        drawAxis({
+            axis: axis,
+            axisScale: axisScale,
+            axisFxn: axisPosition === 'bottom' ? 'axisBottom' : 'axisTop'
+        }, {
+            axisTitle: axisTitle,
+            titleX: titleX,
+            titleY: titleY,
+            titleTextAnchor: titleTextAnchor,
+            titleBaseline: titleBaseline,
+            titleAngle: titleAngle,
+            nticks: nticks,
+            tickSize: tickSize,
+            tickPadding: tickPadding,
+            tickType: tickType,
+            tickFormat: tickFormat,
+            customSuffix: customSuffix,
+            textAngle: textAngle,
+            keepDomain: keepDomain,
+        })
+    }
 
     function drawYAxis({
         axis,
@@ -532,6 +557,7 @@
         titleTextAnchor = "middle",
         titleBaseline = "text-before-edge",
         titleAngle = -90,
+        nticks = null,
         tickSize = 0,
         tickPadding = 5,
         tickType = 'numeric',
@@ -552,6 +578,7 @@
             titleTextAnchor: titleTextAnchor,
             titleBaseline: titleBaseline,
             titleAngle: titleAngle,
+            nticks: nticks,
             tickSize: tickSize,
             tickPadding: tickPadding,
             tickType: tickType,
@@ -599,8 +626,17 @@
         yScale
             .domain([0, d3.max(data, yAccessor) + 10]);
         drawYAxis(
-            {axis: yAxis, axisScale: yScale, chartDims: tileChartDimensions}, 
-            {tickFormat: ".0f", customSuffix: 'cm', tickSize: 3, keepDomain: false}
+            {
+                axis: yAxis, 
+                axisScale: yScale, 
+                chartDims: tileChartDimensions
+            }, 
+            {
+                tickFormat: ".0f", 
+                customSuffix: 'cm', 
+                tickSize: 3, 
+                keepDomain: false
+            }
         )
 
         ///////////////////////////////////
@@ -695,7 +731,20 @@
         // // set domain for xScale
         barXScale
             .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]);
-        // drawXAxis({axisTitle: 'Climate vulnerability'})
+        drawXAxis(
+            {
+                axis: barXAxis, 
+                axisScale: barXScale, 
+                chartDims: barChartDimensions
+            }, 
+            {
+                axisPosition: barXAxisPosition, 
+                axisTitle: 'Sugar concentration (picogram/mL)', 
+                nticks: 4,
+                tickFormat: '.1s', 
+                tickSize: 3
+            }
+        )
         
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
