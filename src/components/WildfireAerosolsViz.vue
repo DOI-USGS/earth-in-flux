@@ -752,20 +752,31 @@
         // append legend title
         legendGroup.append("text")
               .attr("class", "axis-title")
-              .attr("text-anchor", "start")
-              .attr("x", 0)
+              .attr("x", tileChartDimensions.boundedWidth / 2)
               .attr("y", -tileChartDimensions.margin.top)
+              .attr("text-anchor", "middle")
               .attr("dominant-baseline", "text-before-edge")
               .text("Particulate count")
 
+        // append legend rectangle
+        const rectWidth = tileChartDimensions.boundedWidth / 2;
+        const rectHeight = tileChartDimensions.margin.top / 4;
+        const rectX = tileChartDimensions.boundedWidth / 2 - rectWidth / 2;
+        legendGroup.append("rect")
+              .attr("class", "c1p2 matrixLegend")
+              .attr("width", rectWidth)
+              .attr("height", rectHeight)
+              .attr("fill", "url(#gradient-particles)")
+              .attr("x", rectX)
+              .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
+
         // append legend text
-        
         const xBuffer = 5;
         legendGroup.append("text")
               .attr("class", "axis-subtitle")
               .attr("text-anchor", "end")
               .attr("dominant-baseline", "central")
-              .attr("x", - xBuffer)
+              .attr("x", rectX - xBuffer)
               .attr("y", -tileChartDimensions.margin.top / 2)
               .text("low")
 
@@ -773,19 +784,10 @@
               .attr("class", "axis-subtitle")
               .attr("text-anchor", "start")
               .attr("dominant-baseline", "central")
-              .attr("x", tileChartDimensions.boundedWidth / 2 + xBuffer)
+              .attr("x", rectX + rectWidth + xBuffer)
               .attr("y", -tileChartDimensions.margin.top / 2)
               .text("high")
         
-        // append legend rectangle
-        const rectHeight = tileChartDimensions.margin.top / 4
-        legendGroup.append("rect")
-              .attr("class", "c1p2 matrixLegend")
-              .attr("width", tileChartDimensions.boundedWidth / 2)
-              .attr("height", rectHeight)
-              .attr("fill", "url(#gradient-particles)")
-              .attr("x", 0)
-              .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
     }
 
     function drawBarChart(data) {
