@@ -727,6 +727,7 @@
 
         tileChartBounds.select(".annotations")
             .append("text")
+                .attr("class", "axis-text")
                 .attr("x", - yScale(372) / 2)
                 .attr("y", annotationGap / 2)
                 .attr("transform", "rotate(-90)")
@@ -735,6 +736,7 @@
         
         tileChartBounds.select(".annotations")
             .append("text")
+                .attr("class", "axis-text")
                 .attr("x", - yScale(378) - ((tileChartDimensions.boundedHeight - yScale(378)) / 2))
                 .attr("y", annotationGap / 2)
                 .attr("transform", "rotate(-90)")
@@ -882,6 +884,13 @@
                 .attr("height", barYScale.bandwidth())
                 .attr("width", d => barXScale(d[1]) - barXScale(d[0]))
                 .style("fill", d => barColorScale(d.key))
+
+        barChartBounds.append("text")
+            .attr("class", "data-notation")
+            .attr("x", 0)
+            .attr("y", barYScale('400') + barYScale.bandwidth() / 2)
+            .attr("dominant-baseline", "central")
+            .text("missing data")
     }
 
     function addBarLegend() {
@@ -1407,5 +1416,13 @@
         stroke: var(--dark-grey);
         stroke-width: 0.5;
         stroke-dasharray: 1px, 2px;
+    }
+    .data-notation {
+        font-size: 1rem;
+        font-family: var(--default-font);
+        user-select: none;
+        @media only screen and (max-width: 600px) {
+            font-size: 0.8rem;
+        }
     }
 </style>
