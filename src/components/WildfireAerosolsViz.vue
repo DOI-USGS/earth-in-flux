@@ -84,9 +84,10 @@
     let scatterChartDimensions;
     let scatterChartBounds;
     let scatterXScale;
+    let scatterColorCategories;
     const scatterColors = {grass: '#c49051', hardwood: '#3c475a', softwood: '#729C9D'};
     let scatterColorScale;
-    const transitionLength = 2000;
+    const transitionLength = 20;
 
     const isFirstImage = computed(() => {
         return currentIndex.value === 1;
@@ -139,12 +140,12 @@
                     marginRight: mobileView ? 5: 40,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
-                    translateX: tileChartTranslateX3
+                    translateX: tileChartTranslateX1
                 });
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
                 barChartTranslateX2 = mobileView ? tileChartWidth + 40 : tileChartWidth + 150;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 30 : tileChartWidth + 80;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 10 : tileChartWidth + 80;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -152,15 +153,16 @@
                     marginLeft: mobileView ? 20 : 80,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
-                    translateX: barChartTranslateX3});
+                    translateX: barChartTranslateX2});
 
-                const scatterChartWidth = chartDimensions.boundedWidth - tileChartWidth - barChartWidth
-                scatterChartTranslateX3 = tileChartWidth + barChartWidth + 50;
+                const scatterChartWidth = chartDimensions.boundedWidth / 3
+                scatterChartTranslateX3 = tileChartWidth + barChartWidth + 80;
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 20 : 60,
+                    marginLeft: mobileView ? 20 : scatterChartWidth / 3,
+                    marginRight: scatterChartWidth / 3,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: scatterChartTranslateX3});
@@ -168,15 +170,16 @@
                 // draw charts, hiding bar and scatter charts to start
                 drawTileChart(tileData.value);
                 drawBarChart(barData.value);
-                // barChartBounds
-                //     .attr("display", "none");
+                barChartBounds
+                    .attr("display", "none");
                 drawScatterChart(scatterData.value);
-                // scatterChartBounds
-                //     .attr("display", "none");
+                scatterChartBounds
+                    .attr("display", "none");
 
                 // add legends
                 addTileLegend()
                 addBarLegend()
+                addScatterLegend()
             } else {
                 console.error('Error loading data');
             }
@@ -992,8 +995,8 @@
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
         ///////////////////////////////////
-        const colorCategories = [... new Set(data.map(colorAccessor))];
-        initScatterColorScale(colorCategories)
+        scatterColorCategories = [... new Set(data.map(colorAccessor))];
+        initScatterColorScale(scatterColorCategories)
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
@@ -1010,6 +1013,116 @@
                     .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
                     .attr("r", 4)
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
+    }
+
+    function addScatterLegend() {
+        const scatterLegendGroup = scatterChartBounds.append("g")
+            .attr("id", "bar-chart-legend")
+
+        // Add legend title
+        scatterLegendGroup.append("text")
+            .attr("id", "legend-title")
+            .attr("class", "axis-title")
+            .attr("x", scatterChartDimensions.boundedWidth / 2)
+            .attr("y", -scatterChartDimensions.margin.top)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "text-before-edge")
+            .attr("text-width", scatterChartDimensions.boundedWidth + (scatterChartDimensions.margin.left + scatterChartDimensions.margin.right) / 2)
+            .text('Burned vegetation type')
+            .call(d => wrap(d))
+
+        const legendPointSize = 4;
+        const interItemSpacing = mobileView ? 15 : 10;
+        const intraItemSpacing = 6;
+
+        // Append group for each legend entry
+        const legendGroup = scatterLegendGroup
+            .append("g")
+            .style("transform", `translate(${
+                -scatterChartDimensions.margin.left / 4
+            }px, 0px)`);
+
+        const legendGroups = legendGroup.selectAll(".legend-item")
+            .data(scatterColorCategories)
+            .enter()
+            .append("g")
+            .attr("class", "legend-item")
+
+        // Add rectangles for each group
+        legendGroups.append("circle")
+            .attr("class", "legend-point")
+            .attr("cx", 0)
+            .attr("cy", -scatterChartDimensions.margin.top / 2 - legendPointSize / 2.5)
+            .attr("r", legendPointSize)
+            .style("fill", d => scatterColorScale(d))
+        
+        // Add text for each group
+        legendGroups.append("text")
+            .attr("class", "legend-text")
+            .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
+            .attr("y", -scatterChartDimensions.margin.top / 2)
+            .attr("text-anchor", "start") // left-align text
+            .attr("dominant-baseline", "central")
+            .text(d => d);
+
+        // Position legend groups
+        // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
+        const xBuffer = 6; // set xBuffer for use in mobile row x translations
+        legendGroups
+            .attr("transform", (d, i) => {
+                // Compute total width of preceeding legend items, with spacing
+                // Start with width of legend title
+                const titleWidth = 0 //d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
+                
+                // Begin right of legend
+                let cumulativeWidth = titleWidth;
+                // if (mobileView) {
+                    // On mobile, only use preceding items in same row to find cumulative width
+                    // row 1: items 0 and 1
+                    if (i < 2) {
+                    for (let j = 0; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                    }
+                    }
+                    // row 2: items 2, 3 and 4
+                    else if (i < 5) {
+                    for (let j = 2; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                    }
+                    }
+                    // row 3: item 5 
+                    else if (i === 5) {
+                    for (let j = 2; j < i; j++) {
+                        // Actually storing width of row 2 here, to use to set selfSupplyEnd
+                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                    }
+                    }
+                // } else {
+                    // on desktop, iterate through all preceding items to find cumulative width, since all items in 1 row
+                    // for (let j = 0; j < i; j++) {
+                    // cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                    // }
+                // }
+
+                let yTranslation = 0;
+                // Determine x and y translation
+                // set y translation for each row
+                // adjust row starting position for 2nd and third rows by -titleWidth
+                // if (mobileView) {
+                    if (i < 2) {
+                        yTranslation = 0;
+                    } else if (i < 5) {
+                        yTranslation = mobileView ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
+                        cumulativeWidth = cumulativeWidth - titleWidth;
+                    } else {
+                        yTranslation = legendPointSize * 5.75
+                        cumulativeWidth = xBuffer; // for last item just translate by xBuffer
+                    } 
+                // }
+
+                // translate each group by that width and height
+                return "translate(" + cumulativeWidth + "," + yTranslation + ")"
+            })
     }
 
     function showChart(hiddenChartBounds, translateX, translateY) {
@@ -1069,42 +1182,54 @@
         }
     }
 
-    // // https://gist.github.com/mbostock/7555321
-    // function wrap(text) {
-    //     text.each(function() {
-    //         var text = d3.select(this),
-    //         words = text.text().split(/\s|-+/).reverse(),
-    //         word,
-    //         line = [],
-    //         lineNumber = 0,
-    //         lineHeight = 1.1, // ems
-    //         width = text.attr("text-width"),
-    //         x = text.attr("x"),
-    //         y = text.attr("y"),
-    //         dy = parseFloat(text.attr("dy")),
-    //         dx = parseFloat(text.attr("dx")),
-    //         tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+    // https://gist.github.com/mbostock/7555321
+    function wrap(text) {
+        text.each(function() {
+            var text = d3.select(this),
+            words = text.text().split(/\s|-+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            width = text.attr("text-width"),
+            baseline = text.attr("dominant-baseline"),
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            dx = parseFloat(text.attr("dx")),
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
 
-    //         while ((word = words.pop())) {
-    //         line.push(word);
-    //         tspan.text(line.join(" "));
-    //             if (tspan.node().getComputedTextLength() > width) {
-    //             line.pop();
-    //             tspan.text(line.join(" "));
-    //             line = [word];
-    //             tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-    //             }
-    //         }
+            while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
 
-    //         // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
-    //         if (lineNumber > 0) {
-    //             const startDy = -(lineNumber * (lineHeight / 2));
-    //             text
-    //                 .selectAll("tspan")
-    //                 .attr("dy", (d, i) => startDy + lineHeight * i + "em");
-    //         }
-    //     }
-    // )};
+            // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+            if (lineNumber > 0) {
+                let lineHeightFactor;
+                switch(baseline) {
+                    case 'central':
+                        lineHeightFactor = 0;
+                        break;
+                    case 'text-before-edge':
+                        lineHeightFactor = 0;
+                        break;
+                    default:
+                        lineHeightFactor = 0;
+                }
+                const startDy = -(lineNumber * (lineHeight / 2)) * lineHeightFactor;
+                text
+                    .selectAll("tspan")
+                    .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+            }
+        }
+    )};
 
 </script>
 
