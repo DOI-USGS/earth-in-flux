@@ -63,7 +63,7 @@ export default {
     visualizations: {
         GlacierScan: {
             heading: "Glacier X-Ray",
-            paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interative visualization below to explore the the rock and ice topography.",
+            paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interactive visualization below to explore the the rock and ice topography.",
         },
         Aerosols: {
             heading: "Aerosols",
