@@ -132,9 +132,9 @@
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 const tileChartWidth = chartDimensions.boundedWidth / 3
-                tileChartTranslateX1 = mobileView ? 40 : 350;
-                tileChartTranslateX2 = mobileView ? 40 : 200;
-                tileChartTranslateX3 = mobileView ? 75 : 80;
+                tileChartTranslateX1 = mobileView ? 140 : 350;
+                tileChartTranslateX2 = mobileView ? 65 : 200;
+                tileChartTranslateX3 = mobileView ? 60 : 80;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
@@ -147,8 +147,8 @@
                 });
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
-                barChartTranslateX2 = mobileView ? tileChartWidth + 40 : tileChartWidth + 150;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 10 : tileChartWidth + 50;
+                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartWidth + 150;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 30 : tileChartWidth + 50;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -159,7 +159,7 @@
                     translateX: barChartTranslateX2});
 
                 const scatterChartWidth = chartDimensions.boundedWidth / 3
-                scatterChartTranslateX3 = tileChartWidth + barChartWidth + 80;
+                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartWidth + barChartWidth + 80;
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
@@ -184,7 +184,7 @@
                     .attr("height", chartHeight)
                     .attr("fill", bkgdColor)
                     .style("transform", `translate(${
-                        -100
+                        mobileView ? -30 : -100
                     }px, 0px)`);
                 drawScatterChart(scatterData.value);
                 scatterChartBounds
@@ -1038,7 +1038,7 @@
                     .attr("id", d => 'point-' + identifierAccessor(d))
                     .attr("cx", d => scatterXScale(xAccessor(d)))
                     .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
-                    .attr("r", 4)
+                    .attr("r", mobileView ? 2 : 4)
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
     }
 
@@ -1060,7 +1060,7 @@
             .text('Burned vegetation type')
             .call(d => wrap(d))
 
-        const legendPointSize = 4;
+        const legendPointSize = mobileView ? 2 : 4;
         const interItemSpacing = mobileView ? 15 : 10;
         const intraItemSpacing = 6;
 
@@ -1199,7 +1199,7 @@
                 .duration(transitionLength)
                 .delay(transitionLength / 4)
                 .style("transform", `translate(${
-                    -100
+                    mobileView ? -30 : -100
                 }px, 0px)`);
             moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
             if (!barChartHidden) hideChart(barChartBounds)            
@@ -1207,7 +1207,7 @@
             console.log(barChartDimensions.width)
             maskingRect
                 .style("transform", `translate(${
-                    0
+                    mobileView ? barChartDimensions.width : 0
                 }px, 0px)`)
                 .transition()
                 .duration(transitionLength)
