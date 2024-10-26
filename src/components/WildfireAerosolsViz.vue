@@ -45,6 +45,8 @@
     // global variables
     const publicPath = import.meta.env.BASE_URL;
     const mobileView = isMobile;
+    const bodyCSS = window.getComputedStyle(document.body)
+    const bkgdColor = bodyCSS.getPropertyValue('--color-background');
     const tileDataFile = 'fii_core4particulates.csv';
     const barDataFile = 'fii_core4sugars.csv';
     const scatterDataFile = 'fii_core4biomass.csv';
@@ -61,6 +63,7 @@
     let chartWidth;
     let chartDimensions;
     let chartBounds;
+    let maskingRect;
     let tileChartTranslateX1;
     let tileChartTranslateX2;
     let tileChartTranslateX3;
@@ -87,7 +90,7 @@
     let scatterColorCategories;
     const scatterColors = {grass: '#c49051', hardwood: '#3c475a', softwood: '#729C9D'};
     let scatterColorScale;
-    const transitionLength = 20;
+    const transitionLength = 1000;
 
     const isFirstImage = computed(() => {
         return currentIndex.value === 1;
@@ -145,7 +148,7 @@
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
                 barChartTranslateX2 = mobileView ? tileChartWidth + 40 : tileChartWidth + 150;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 10 : tileChartWidth + 80;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 10 : tileChartWidth + 50;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -172,6 +175,17 @@
                 drawBarChart(barData.value);
                 barChartBounds
                     .attr("display", "none");
+                maskingRect = chartSVG
+                    .append("rect")
+                    .attr("id", "masking-rect")
+                    .attr("x", tileChartTranslateX1 + tileChartDimensions.width)
+                    .attr("y", 0)
+                    .attr("width", barChartDimensions.width + scatterChartDimensions.width)
+                    .attr("height", chartHeight)
+                    .attr("fill", bkgdColor)
+                    .style("transform", `translate(${
+                        -100
+                    }px, 0px)`);
                 drawScatterChart(scatterData.value);
                 scatterChartBounds
                     .attr("display", "none");
@@ -662,10 +676,12 @@
             {
                 tickFormat: ".0f", 
                 customSuffix: 'cm', 
-                tickSize: 3, 
+                tickSize: -chartDimensions.boundedWidth, 
                 keepDomain: false
             }
         )
+        tileChartBounds.selectAll(".tick line")
+            .attr("class", "tick-line")
 
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
@@ -1027,6 +1043,8 @@
             .attr("class", "axis-title")
             .attr("x", scatterChartDimensions.boundedWidth / 2)
             .attr("y", -scatterChartDimensions.margin.top)
+            .attr("dx", 0)
+            .attr("dy", 0)
             .attr("text-anchor", "middle")
             .attr("dominant-baseline", "text-before-edge")
             .attr("text-width", scatterChartDimensions.boundedWidth + (scatterChartDimensions.margin.left + scatterChartDimensions.margin.right) / 2)
@@ -1167,9 +1185,25 @@
         const barChartHidden = barChartBounds.node().attributes.display.value == 'none';
         const scatterChartHidden = scatterChartBounds.node().attributes.display.value == 'none';
         if (index == 1) {
+            maskingRect
+                .transition()
+                .duration(transitionLength)
+                .delay(transitionLength / 4)
+                .style("transform", `translate(${
+                    -100
+                }px, 0px)`);
             moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
             if (!barChartHidden) hideChart(barChartBounds)            
         } else if (index == 2) {
+            console.log(barChartDimensions.width)
+            maskingRect
+                .style("transform", `translate(${
+                    0
+                }px, 0px)`)
+                .transition()
+                .duration(transitionLength)
+                .delay(transitionLength / 4)
+                .style("opacity", "1");
             moveChart(tileChartBounds, tileChartTranslateX2, tileChartDimensions.margin.top)
             if (barChartHidden)  {
                 showChart(barChartBounds, barChartTranslateX2, barChartDimensions.margin.top)
@@ -1178,6 +1212,8 @@
             }
             if (!scatterChartHidden) hideChart(scatterChartBounds) 
         } else if (index == 3) {
+            maskingRect
+                .style("opacity", "0")
             moveChart(tileChartBounds, tileChartTranslateX3, tileChartDimensions.margin.top)
             moveChart(barChartBounds, barChartTranslateX3, barChartDimensions.margin.top)
             showChart(scatterChartBounds, scatterChartTranslateX3, scatterChartDimensions.margin.top)
@@ -1366,5 +1402,10 @@
         @media only screen and (max-width: 600px) {
             font-size: 1.4rem;
         }
+    }
+    .tick-line {
+        stroke: var(--dark-grey);
+        stroke-width: 0.5;
+        stroke-dasharray: 1px, 2px;
     }
 </style>
