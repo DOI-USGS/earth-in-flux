@@ -1297,7 +1297,7 @@
     }
     #aerosol-text-container {
         grid-area: text;
-        height: 10vh;
+        height: 15vh;
         @media screen and (max-height: 770px) {
             height: 30vh;
         }
