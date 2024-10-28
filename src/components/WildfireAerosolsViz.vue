@@ -59,7 +59,7 @@
     const chart = ref(null);
     let chartSVG;
     const chartTitle = 'Title of chart';
-    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.7;
+    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.85;
     let chartWidth;
     let chartDimensions;
     let chartBounds;
@@ -128,13 +128,13 @@
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = mobileView ? 100 : 120;
+                const sharedTopMargin = mobileView ? 120 : 120;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 const tileChartWidth = chartDimensions.boundedWidth / 3
                 tileChartTranslateX1 = mobileView ? 140 : 350;
                 tileChartTranslateX2 = mobileView ? 65 : 200;
-                tileChartTranslateX3 = mobileView ? 60 : 80;
+                tileChartTranslateX3 = mobileView ? 50 : 80;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
@@ -148,7 +148,7 @@
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
                 barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartWidth + 150;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 30 : tileChartWidth + 50;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartWidth + 50;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -778,7 +778,7 @@
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
-        const rectHeight = tileChartDimensions.margin.top / 4;
+        const rectHeight = mobileView ? tileChartDimensions.margin.top / 6 : tileChartDimensions.margin.top / 4;
         const rectX = tileChartDimensions.boundedWidth / 2 - rectWidth / 2;
         legendGroup.append("rect")
               .attr("class", "c1p2 matrixLegend")
@@ -945,39 +945,44 @@
             
             // Begin right of legend
             let cumulativeWidth = titleWidth;
-            // if (mobileView) {
-                // On mobile, only use preceding items in same row to find cumulative width
+            if (!mobileView) {
                 // row 1: items 0 and 1
                 if (i < 2) {
-                for (let j = 0; j < i; j++) {
-                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    for (let j = 0; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    }
                 }
+                // row 2: item 2
+                else if (i < 3) {
+                    for (let j = 2; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    }
                 }
-                // row 2: items 2, 3 and 4
-                else if (i < 5) {
-                for (let j = 2; j < i; j++) {
-                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+            } else {
+                if (i < 1) {
+                    for (let j = 0; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    }
                 }
+                // row 2: item 2
+                else if (i < 2) {
+                    for (let j = 2; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    }
                 }
-                // row 3: item 5 
-                else if (i === 5) {
-                for (let j = 2; j < i; j++) {
-                    // Actually storing width of row 2 here, to use to set selfSupplyEnd
-                    cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                // row 3: item 3 
+                else if (i === 3) {
+                    for (let j = 2; j < i; j++) {
+                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    }
                 }
-                }
-            // } else {
-                // on desktop, iterate through all preceding items to find cumulative width, since all items in 1 row
-                // for (let j = 0; j < i; j++) {
-                // cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                // }
-            // }
+            }
 
             let yTranslation = 0;
             // Determine x and y translation
             // set y translation for each row
             // adjust row starting position for 2nd and third rows by -titleWidth
-            // if (mobileView) {
+            if (!mobileView) {
                 if (i < 2) {
                     yTranslation = 0;
                 } else if (i < 5) {
@@ -987,7 +992,17 @@
                     yTranslation = legendRectSize * 5.75
                     cumulativeWidth = xBuffer; // for last item just translate by xBuffer
                 } 
-            // }
+            } else {
+                if (i < 1) {
+                    yTranslation = 0;
+                } else if (i < 2) {
+                    yTranslation = legendRectSize * 4;
+                    cumulativeWidth = cumulativeWidth - titleWidth;
+                } else {
+                    yTranslation = legendRectSize * 8
+                    cumulativeWidth = 0; // for last item just translate by xBuffer
+                } 
+            }
 
             // translate each group by that width and height
             return "translate(" + cumulativeWidth + "," + yTranslation + ")"
@@ -1081,7 +1096,7 @@
         legendGroups.append("circle")
             .attr("class", "legend-point")
             .attr("cx", 0)
-            .attr("cy", -scatterChartDimensions.margin.top / 2 - legendPointSize / 2.5)
+            .attr("cy", -scatterChartDimensions.margin.top / 2)
             .attr("r", legendPointSize)
             .style("fill", d => scatterColorScale(d))
         
@@ -1096,7 +1111,6 @@
 
         // Position legend groups
         // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
-        const xBuffer = 6; // set xBuffer for use in mobile row x translations
         legendGroups
             .attr("transform", (d, i) => {
                 // Compute total width of preceeding legend items, with spacing
@@ -1105,49 +1119,61 @@
                 
                 // Begin right of legend
                 let cumulativeWidth = titleWidth;
-                // if (mobileView) {
-                    // On mobile, only use preceding items in same row to find cumulative width
+                if (!mobileView) {
                     // row 1: items 0 and 1
                     if (i < 2) {
-                    for (let j = 0; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                        for (let j = 0; j < i; j++) {
+                            cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                        }
                     }
+                    // row 2: item 2
+                    else if (i < 3) {
+                        for (let j = 2; j < i; j++) {
+                            cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                        }
                     }
-                    // row 2: items 2, 3 and 4
-                    else if (i < 5) {
-                    for (let j = 2; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                } else {
+                    if (i < 1) {
+                        for (let j = 0; j < i; j++) {
+                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                        }
                     }
+                    // row 2: item 2
+                    else if (i < 2) {
+                        for (let j = 2; j < i; j++) {
+                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                        }
                     }
-                    // row 3: item 5 
-                    else if (i === 5) {
-                    for (let j = 2; j < i; j++) {
-                        // Actually storing width of row 2 here, to use to set selfSupplyEnd
-                        cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                    // row 3: item 3 
+                    else if (i === 3) {
+                        for (let j = 2; j < i; j++) {
+                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                        }
                     }
-                    }
-                // } else {
-                    // on desktop, iterate through all preceding items to find cumulative width, since all items in 1 row
-                    // for (let j = 0; j < i; j++) {
-                    // cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
-                    // }
-                // }
+                }
 
                 let yTranslation = 0;
                 // Determine x and y translation
                 // set y translation for each row
                 // adjust row starting position for 2nd and third rows by -titleWidth
-                // if (mobileView) {
+                if (!mobileView) {
                     if (i < 2) {
                         yTranslation = 0;
-                    } else if (i < 5) {
+                    } else if (i < 3) {
                         yTranslation = mobileView ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
                         cumulativeWidth = cumulativeWidth - titleWidth;
+                    }
+                } else {
+                    if (i < 1) {
+                        yTranslation = 0;
+                    } else if (i < 2) {
+                        yTranslation = barYScale.bandwidth() * 4;
+                        cumulativeWidth = cumulativeWidth - titleWidth;
                     } else {
-                        yTranslation = legendPointSize * 5.75
-                        cumulativeWidth = xBuffer; // for last item just translate by xBuffer
-                    } 
-                // }
+                        yTranslation = barYScale.bandwidth() * 8
+                        cumulativeWidth = 0; // for last item just translate by xBuffer
+                    }
+                }
 
                 // translate each group by that width and height
                 return "translate(" + cumulativeWidth + "," + yTranslation + ")"
@@ -1388,7 +1414,7 @@
         fill: var(--color-text);
         user-select: none;
         @media only screen and (max-width: 600px) {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
     }
     .axis-subtitle {
@@ -1398,7 +1424,7 @@
         fill: var(--color-text);
         user-select: none;
         @media only screen and (max-width: 600px) {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
     }
     .year-bands {
