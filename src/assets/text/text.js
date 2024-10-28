@@ -64,6 +64,16 @@ export default {
         GlacierScan: {
             heading: "Glacier X-Ray",
             paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interactive visualization below to explore the the rock and ice topography.",
+            photo010: "Clear, sunny days on the Juneau Icefield are appreciated, and people spend every possible moment outside to enjoy the spectacular scenery.",
+            photo018: "Drilling and processing ice cores involves teamwork. While a new core section is being drilled, team members determine the physical properties such as ice stratigraphy and mass of the previous core section. Processing the core in a snow pit allows shelter from the wind, and creates a stable bench for examining the cores.",
+            photo051: "Drilling an ice core on the Lemon Creek glacier to help determine past melt events affecting the glacier mass balance. The ice core drill can obtain one meter of ice at a time, where poles help extend the drill as it goes deeper into the ice. Team members record the depth and stratigraphy of ice core sections.",
+            photo085: "Sunsets on the Juneau Icefield are spectacular, with the combination of jagged peaks and glowing snow.",
+            photo138: "Traversing between camps involves a combination of skiing across glaciers and hiking over slopes. By the time that teams are ready to traverse to a new camp, they are well-practiced in safety skills such as crevasse rescue and rope management.",
+            photo140: "Natalie Kehrwald takes a break from drilling ice cores on the Taku Glacier, one of the deepest temperate alpine glaciers in the world.",
+            photo156: "After multiple days without snowfall, a ski track develops from people passing through on their way to collect scientific data and explore the landscape.",
+            photo183: "Crevasses form in glaciers where it stretches through extension or when passing over obstacles. Traveling through crevasse fields requires caution. Crevasses near glacier edges are often substantially smaller, but probing ice bridges and crevasse depth is necessary. Traveling across most crevassed terrain requires rope teams.",
+            photo203: "Glaciers scour the landscape, creating U-shaped valleys between surrounding peaks. At their terminus, glacier melt creates lakes and rivers. The relatively low elevation and coastal location of the Juneau Icefield means that glacier melt mixes with seawater to create vibrant saltwater wetlands.",
+            photo021: "The Gilkey Trench viewed from Camp 18 shows a classic example of ogives, or alternating bands of light and dark ice that are caused by compression and glacier flow."
         },
         Aerosols: {
             heading: "Aerosols",
