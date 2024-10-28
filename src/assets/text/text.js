@@ -178,7 +178,7 @@ export default {
         },
         WildfireAerosols: {
             paragraph1: "Each layer of the <a href='/visualizations/climate-charts/#/fire-in-ice/glacier-scan' target='_blank'>collected ice core</a> contains more than just ice. Particles from the air, called aerosols, that were deposited on the surface of the glacier are preserved in the ice. These aerosols can come from dust, fossil fuel combustion, or wildfires.",
-            paragraph2: "Can we tell if any of these particles came from wildfires? Three sugars — levoglucosan, mannosan, and galactosan — are only produced when vegetation burns at high temperatures. These sugars are present throughout the core, which tells us that some of the particles in the ice were deposited by wildfires.",   
+            paragraph2: "Can we tell if any of these particles came from wildfires? Three sugars — mannosan, galactosan, and levoglucosan — are only produced when vegetation burns at high temperatures. These sugars are present throughout the core, which tells us that some of the deposited particles in the ice were sourced from wildfires.",   
             paragraph3: "The ratio of levoglucosan to the sum of mannosan and galactosan can be used to distinguish between types of vegetation that burned. Alaska is dominated by softwoods, and <a href='/visualizations/climate-charts/#/fire-in-ice/regional-fires' target='_blank'>regional fires</a> likely deposit aerosols on the Juneau Ice Field that are captured in the core. But there are also markers of hardwood combustion, which suggests that aerosols are transported to the ice field from much farther afield. One possible source is wildfires in hardwood forests in East Asia."
         },
         ThreatSankey: {
