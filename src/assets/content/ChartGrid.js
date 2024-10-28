@@ -47,7 +47,7 @@ export default {
             project: 'Fire in Ice',
             vizKey: 'WildfireAerosols',
             vizRoute: 'wildfire-aerosols',
-            img_src: 'placeholder_thumbnail.png',
+            img_src: 'wildfire_aerosols_thumbnail.png',
             alt: '',
             chartOrder: 2,
             description: 'Wildfires are depositing aerosols on glaciers.'
