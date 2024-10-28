@@ -1233,7 +1233,6 @@
             moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
             if (!barChartHidden) hideChart(barChartBounds)            
         } else if (index == 2) {
-            console.log(barChartDimensions.width)
             maskingRect
                 .style("transform", `translate(${
                     tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width
