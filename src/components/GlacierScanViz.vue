@@ -1,35 +1,44 @@
 <template>
-    <!---VizSection-->
     <VizSection
         id="cross-section"
         :figures="true"
         :fig-caption="false"
     >
-        <!-- HEADING -->
         <template #heading>
             <h2>
-                {{ text.heading }}
+                {{ text.heading1 }}
             </h2>
         </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-        </template>
         <template #figures>
-            <div id="cross-section-grid-container">
-                <div id="photo-container">
-                    <img class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
-                </div>
+            <div id="cross-section-grid-container">                
                 <div id="caption-container">
+                    <p v-html="text.paragraph1" />
+                    <p v-if="!mobileView" v-html="text.promptDesktop" />
+                    <p v-if="mobileView" v-html="text.promptMobile" />
+                </div>
+                <div id="note-container" class="hide">
                     <p v-html="currentPhotoText"></p>
+                </div>
+                <div id="photo-container" class="hide">
+                    <img class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
                 </div>
             </div>
         </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
+    </VizSection>
+
+    <VizSection
+        id="cross-section-how-to"
+        :figures="false"
+        :fig-caption="false"
+    >
+        <template #heading>
+            <h2>
+                {{ text.heading2 }}
+            </h2>
         </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
+        <template #aboveExplanation>
+            <p v-html="text.paragraph2" />
+            <p v-html="text.paragraph3" />
         </template>
     </VizSection>
 </template>
@@ -63,11 +72,27 @@
                 svgGrid.appendChild(xml.documentElement);
 
                 // add id to svg
-                d3.select("#cross-section-grid-container").select("svg")
-                    .attr("id", "cross_section-svg")
+                const crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
+                    .attr("id", "cross-section-svg")
+                    .attr("width", "100%")
+                    .attr("height", "100%")
+
+                // hide some components
+                crossSectionSVG.select("#tutorial-dt-1")
+                    .attr("display", "none")
+                crossSectionSVG.select("#tutorial-dt-2")
+                    .attr("display", "none")
+                crossSectionSVG.select("#tutorial-mb-1")
+                    .attr("display", "none")
+                crossSectionSVG.select("#tutorial-mb-2")
+                    .attr("display", "none")
+                crossSectionSVG.select("#legend_1")
+                    .style("transform", "translate(-100px, 210px)")
+                crossSectionSVG.select("#legend_1").select("#patch_3")
+                    .attr("display", "none")
 
                 // add interactivity
-                addInteractions();
+                addInteractions(crossSectionSVG);
             });
         } catch (error) {
             console.error('Error during component mounting', error);
@@ -159,15 +184,23 @@
     }   
 
     function draw_image(photo_id){
-        d3.select("#image-container")
-            .style("visibility", "visible");
         currentPhotoID.value = photo_id
-        currentPhotoText.value = props.text[`photo${photo_id}`]
+        currentPhotoText.value = mobileView ? props.text[`photo${photo_id}Mobile`] : props.text[`photo${photo_id}`];
+        d3.select("#caption-container").selectAll("p")
+            .attr("class", "hide");
+        d3.select("#photo-container")
+            .attr("class", "show");
+        d3.select("#note-container")
+            .attr("class", "show");
     }
 
     function remove_image(){
-        d3.select("#image-container")
-            .style("visibility", "hidden");
+        d3.select("#caption-container").selectAll("p")
+            .attr("class", "show");
+        d3.select("#photo-container")
+            .attr("class", "hide");
+        d3.select("#note-container")
+            .attr("class", "hide");
     }
 
     function mouseover(event) {
@@ -219,11 +252,7 @@
         }
     }
 
-    function addInteractions() {
-        // set viewbox for svg with loss function chart
-        const cross_sectionSVG = d3.select("#cross_section-svg")
-            .attr("width", "100%")
-            .attr("height", "100%");
+    function addInteractions(svg) {
 
         if (mobileView == true){
             d3.select('#tutorial-dt-1').selectAll("path")
@@ -263,8 +292,8 @@
 
         draw_xs(default_xs,-9999);
 
-        // Add interaction to loss function chart
-        cross_sectionSVG.selectAll("g")
+        // Add interaction events
+        svg.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
             .on("mouseenter", (event) => mouseenter(event))
@@ -278,52 +307,99 @@
         width: 100%;
         max-width: 1200px;
         max-height: 85vh;
-        margin: 4rem auto 0 auto;
-        grid-template-columns: 20% 1fr;
-        grid-template-rows: 20% 80%;
+        margin: 4rem auto 4rem auto;
+        grid-template-columns: max-content 1fr;
+        grid-template-rows: 20vh 1fr;
+        row-gap: 2rem;
         grid-template-areas:
             "photo text"
             "chart chart";
-       row-gap: 3rem;
-       column-gap: 3rem;
         @media screen and (max-height: 770px) {
-            grid-template-columns: 30% 70%;
+            max-height: 80vh;
+            column-gap: 5rem;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 60% 40%;
             grid-template-areas:
                 "photo chart"
                 "text chart";
         }
         @media screen and (max-width: 600px) {
-            grid-template-rows: 1fr 1fr 1fr;
+            max-height: 100vh;
             grid-template-columns: 100%;
+            grid-template-rows: 20% 15% 65%;
+            row-gap: 1rem;
             grid-template-areas:
                 "photo"
                 "text"
                 "chart";
-        } 
-    }
-    
-    #photo-container {
-        grid-area: photo;
-        
-        justify-content: center;
-        align-content: start;
-    }
-    .jif-image {
-        max-height: 100%;
-        max-width: 100%;
-        pointer-events: none;
-        border: 2px solid black;
-        border-radius: 15px;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-        z-index: 2;
+        }
     }
     #caption-container {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+        background-color: var(--faded-usgs-blue);
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px rgba(57, 61, 66, 0.2);
+        align-content: center;
+        font-style: italic;
+        padding: 0 5rem 0 5rem;
+        @media screen and (max-height: 770px) {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+        @media screen and (max-width: 600px) {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            padding: 1rem 1rem 0 1rem;
+        }
+    }
+    #note-container {
         grid-area: text;
+        align-content: center;
+        font-style: italic;
+        padding: 2rem;
+        @media screen and (max-height: 770px) {
+            padding: 0 4rem 2rem 4rem;
+            align-content: start;
+        }
+        @media screen and (max-width: 600px) {
+            padding: 0 1rem 1rem 1rem;
+            align-content: start;
+        }
+    }
+    #note-container p {
+        padding: 0rem;
+    }
+    #photo-container {
+        grid-area: photo;
+        align-content: center;
+        text-align: center;
+        border-radius: 5px;
+        @media screen and (max-height: 770px) {
+            padding-top: 2rem;
+        }
+        @media screen and (max-width: 600px) {
+            padding-top: 1rem;
+        }
+    }
+    .jif-image {
+        align-items: center;
+        max-height: 100%;
+        pointer-events: none;
+        border-radius: 5px;
+    }
+    .hide {
+        opacity: 0;
+        transition: opacity ease-out 0.2s;
+    }
+    .show {
+        opacity: 1;
+        transition: opacity ease-in 0.2s;
     }
 </style>
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
-    #cross_section-svg {
+    #cross-section-svg {
         grid-area: chart;
         place-self: center;
         z-index: 1;

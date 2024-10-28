@@ -33,7 +33,7 @@ export default {
             description: 'Inland fish that are recreationally fished are vulnerable'
         },
         {
-            title: 'Glacier/Topography 3D Cross-Section Scan',
+            title: 'Explore the Juneau Ice Field',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
