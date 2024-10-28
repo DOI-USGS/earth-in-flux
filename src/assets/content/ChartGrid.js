@@ -40,17 +40,17 @@ export default {
             img_src: 'glacial_mri_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Ice cores can record changes in wildfire prevalence.'
+            description: 'Glacial ice cores can record changes in wildfire prevalence.'
         },          
         {
-            title: 'Wildfire Aerosols',
+            title: 'Regional wildfire deposition',
             project: 'Fire in Ice',
-            vizKey: 'Aerosols',
-            vizRoute: 'aerosol-paths',
+            vizKey: 'RegionalFires',
+            vizRoute: 'regional-fires',
             img_src: 'aerosols_map_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Wildfire particles are deposited on glaciers.'
+            description: 'Particles from regional wildfires are deposited on glaciers.'
         },
         {
             title: 'Global economic value of recreationally fished species',

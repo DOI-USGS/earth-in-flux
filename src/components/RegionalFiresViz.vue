@@ -5,15 +5,10 @@
         :figures="true"
         :fig-caption="false"
     >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
             <p v-html="text.paragraph1" />
+            <p v-html="text.paragraph2" />
         </template>
         <template #figures>
             <div id="aerosols-grid-container" />
