@@ -677,6 +677,7 @@
                 tickFormat: ".0f", 
                 customSuffix: 'cm', 
                 tickSize: -chartDimensions.boundedWidth - tileChartTranslateX1 - tileChartDimensions.margin.left, 
+                nticks: 20,
                 keepDomain: false
             }
         )
