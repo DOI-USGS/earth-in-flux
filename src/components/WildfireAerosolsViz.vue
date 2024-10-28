@@ -131,40 +131,40 @@
                 const sharedTopMargin = mobileView ? 120 : 120;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
-                const tileChartWidth = chartDimensions.boundedWidth / 3
-                tileChartTranslateX1 = mobileView ? 140 : 350;
-                tileChartTranslateX2 = mobileView ? 65 : 200;
+                const tileChartWidth = mobileView ? chartDimensions.boundedWidth / 3 : chartDimensions.boundedWidth / 4
+                tileChartTranslateX1 = mobileView ? 140 : (chartDimensions.boundedWidth - tileChartWidth) / 2;
+                tileChartTranslateX2 = mobileView ? 65 : 240;
                 tileChartTranslateX3 = mobileView ? 50 : 80;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 55: 80,
-                    marginRight: mobileView ? 5: 40,
+                    marginLeft: mobileView ? 55: 20,
+                    marginRight: mobileView ? 5: 20,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: tileChartTranslateX1
                 });
 
                 const barChartWidth = chartDimensions.boundedWidth / 3
-                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartWidth + 150;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartWidth + 50;
+                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartTranslateX2 + tileChartWidth;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartTranslateX3 + tileChartWidth;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 20 : 80,
+                    marginLeft: mobileView ? 20 : 60,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: barChartTranslateX2});
 
                 const scatterChartWidth = chartDimensions.boundedWidth / 3
-                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartWidth + barChartWidth + 80;
+                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartTranslateX3 + tileChartWidth + barChartWidth;
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 20 : scatterChartWidth / 3,
+                    marginLeft: mobileView ? 20 : 10,
                     marginRight: scatterChartWidth / 3,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
@@ -178,13 +178,13 @@
                 maskingRect = chartSVG
                     .append("rect")
                     .attr("id", "masking-rect")
-                    .attr("x", tileChartTranslateX1 + tileChartDimensions.width)
+                    .attr("x", 0)
                     .attr("y", 0)
                     .attr("width", barChartDimensions.width + scatterChartDimensions.width)
                     .attr("height", chartHeight)
                     .attr("fill", bkgdColor)
                     .style("transform", `translate(${
-                        mobileView ? -30 : -100
+                        tileChartTranslateX1 + tileChartDimensions.width
                     }px, 0px)`);
                 drawScatterChart(scatterData.value);
                 scatterChartBounds
@@ -676,7 +676,7 @@
             {
                 tickFormat: ".0f", 
                 customSuffix: 'cm', 
-                tickSize: -chartDimensions.boundedWidth, 
+                tickSize: -chartDimensions.boundedWidth - tileChartTranslateX1 - tileChartDimensions.margin.left, 
                 keepDomain: false
             }
         )
@@ -986,7 +986,7 @@
                 if (i < 2) {
                     yTranslation = 0;
                 } else if (i < 5) {
-                    yTranslation = mobileView ? legendRectSize * 4 : legendRectSize * 2;
+                    yTranslation = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
                     cumulativeWidth = cumulativeWidth - titleWidth;
                 } else {
                     yTranslation = legendRectSize * 5.75
@@ -1044,6 +1044,7 @@
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
         // draw chart
+        const desktopPointSize = window.innerHeight < 770 ? 2 : 4;
         scatterChartBounds.select('.points') // selects our group we set up to hold chart elements
             .selectAll(".point") // empty selection
                 .data(data) // bind data
@@ -1053,7 +1054,7 @@
                     .attr("id", d => 'point-' + identifierAccessor(d))
                     .attr("cx", d => scatterXScale(xAccessor(d)))
                     .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
-                    .attr("r", mobileView ? 2 : 4)
+                    .attr("r", mobileView ? 2 : desktopPointSize)
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
     }
 
@@ -1075,7 +1076,8 @@
             .text('Burned vegetation type')
             .call(d => wrap(d))
 
-        const legendPointSize = mobileView ? 2 : 4;
+        const desktopPointSize = window.innerHeight < 770 ? 2 : 4;
+        const legendPointSize = mobileView ? 2 : desktopPointSize;
         const interItemSpacing = mobileView ? 15 : 10;
         const intraItemSpacing = 6;
 
@@ -1160,7 +1162,7 @@
                     if (i < 2) {
                         yTranslation = 0;
                     } else if (i < 3) {
-                        yTranslation = mobileView ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
+                        yTranslation = window.innerHeight < 770 ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
                         cumulativeWidth = cumulativeWidth - titleWidth;
                     }
                 } else {
@@ -1225,7 +1227,7 @@
                 .duration(transitionLength)
                 .delay(transitionLength / 4)
                 .style("transform", `translate(${
-                    mobileView ? -30 : -100
+                    tileChartTranslateX1 + tileChartDimensions.width
                 }px, 0px)`);
             moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
             if (!barChartHidden) hideChart(barChartBounds)            
@@ -1233,7 +1235,7 @@
             console.log(barChartDimensions.width)
             maskingRect
                 .style("transform", `translate(${
-                    mobileView ? barChartDimensions.width : 0
+                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width
                 }px, 0px)`)
                 .transition()
                 .duration(transitionLength)
@@ -1309,7 +1311,7 @@
 <style scoped lang="scss">
     #wildfire-aerosols-grid-container {
         display: grid;
-        max-width: 1200px;
+        max-width: 900px;
         grid-template-columns: 10% calc(80% - 4rem) 10%;
         grid-template-rows: auto max-content;
         grid-template-areas:
@@ -1448,6 +1450,9 @@
         font-family: var(--default-font);
         user-select: none;
         @media only screen and (max-width: 600px) {
+            font-size: 0.8rem;
+        }
+        @media screen and (max-height: 770px) { 
             font-size: 0.8rem;
         }
     }
