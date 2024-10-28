@@ -43,7 +43,7 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
     },
   ],
-  Aerosols: [
+  RegionalFires: [
     {
       fullName: 'Jeffrey Kwang',
       initials: 'JK',
