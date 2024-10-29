@@ -1,46 +1,43 @@
 <template>
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #heading>
-            <h2>
-                {{ text.heading1 }}
-            </h2>
-        </template>
-        <template #figures>
-            <div id="cross-section-grid-container">                
-                <div id="caption-container">
-                    <p v-html="text.paragraph1" />
-                    <p v-if="!mobileView" v-html="text.promptDesktop" />
-                    <p v-if="mobileView" v-html="text.promptMobile" />
+    <section>
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #figures>
+                <div id="cross-section-grid-container">                
+                    <div id="caption-container" />
+                    <div id="note-container">
+                        <p v-if="!mobileView && defaultView" v-html="text.paragraph1" />
+                        <p v-if="mobileView && defaultView" v-html="text.paragraph1Mobile" />
+                        <p v-if="!mobileView && defaultView" v-html="text.promptDesktop" />
+                        <p v-if="!defaultView" v-html="currentPhotoText"></p>
+                    </div>
+                    <div id="photo-container">
+                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe.png" alt="locator map showing location of JIF in Alaska">
+                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
+                    </div>
                 </div>
-                <div id="note-container" class="hide">
-                    <p v-html="currentPhotoText"></p>
-                </div>
-                <div id="photo-container" class="hide">
-                    <img class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
-                </div>
-            </div>
-        </template>
-    </VizSection>
+            </template>
+        </VizSection>
 
-    <VizSection
-        id="cross-section-how-to"
-        :figures="false"
-        :fig-caption="false"
-    >
-        <template #heading>
-            <h2>
-                {{ text.heading2 }}
-            </h2>
-        </template>
-        <template #aboveExplanation>
-            <p v-html="text.paragraph2" />
-            <p v-html="text.paragraph3" />
-        </template>
-    </VizSection>
+        <VizSection
+            id="cross-section-how-to"
+            :figures="false"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2>
+                    {{ text.heading }}
+                </h2>
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
+                <p v-html="text.paragraph3" />
+            </template>
+        </VizSection>
+    </section>
 </template>
 
 <script setup>
@@ -59,6 +56,7 @@
     const currentPhotoID = ref(null)
     const currentPhotoAlt = ref("")
     const currentPhotoText = ref("")
+    const defaultView = ref(true)
     const default_xs = "113";
 
     // Declare behavior on mounted
@@ -82,8 +80,8 @@
                     .attr("display", "none")
                 crossSectionSVG.select("#tutorial-dt-2")
                     .attr("display", "none")
-                crossSectionSVG.select("#tutorial-mb-1")
-                    .attr("display", "none")
+                // crossSectionSVG.select("#tutorial-mb-1")
+                //     .attr("display", "none")
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
                 crossSectionSVG.select("#legend_1")
@@ -186,21 +184,12 @@
     function draw_image(photo_id){
         currentPhotoID.value = photo_id
         currentPhotoText.value = mobileView ? props.text[`photo${photo_id}Mobile`] : props.text[`photo${photo_id}`];
-        d3.select("#caption-container").selectAll("p")
-            .attr("class", "hide");
-        d3.select("#photo-container")
-            .attr("class", "show");
-        d3.select("#note-container")
-            .attr("class", "show");
+        currentPhotoAlt.value = props.text[`photo${photo_id}Alt`];
+        defaultView.value = !defaultView.value
     }
 
     function remove_image(){
-        d3.select("#caption-container").selectAll("p")
-            .attr("class", "show");
-        d3.select("#photo-container")
-            .attr("class", "hide");
-        d3.select("#note-container")
-            .attr("class", "hide");
+        defaultView.value = !defaultView.value
     }
 
     function mouseover(event) {
@@ -315,18 +304,18 @@
             "photo text"
             "chart chart";
         @media screen and (max-height: 770px) {
-            max-height: 80vh;
+            max-height: 75vh;
             column-gap: 5rem;
             grid-template-columns: 50% 50%;
-            grid-template-rows: 60% 40%;
+            grid-template-rows: 55% 45%;
             grid-template-areas:
                 "photo chart"
                 "text chart";
         }
         @media screen and (max-width: 600px) {
-            max-height: 100vh;
+            max-height: 90vh;
             grid-template-columns: 100%;
-            grid-template-rows: 20% 15% 65%;
+            grid-template-rows: 30% calc(20% - 1rem) 50%;
             row-gap: 1rem;
             grid-template-areas:
                 "photo"
@@ -360,15 +349,12 @@
         padding: 2rem;
         @media screen and (max-height: 770px) {
             padding: 0 4rem 2rem 4rem;
-            align-content: start;
+            // align-content: start;
         }
         @media screen and (max-width: 600px) {
-            padding: 0 1rem 1rem 1rem;
-            align-content: start;
+            padding: 0 1.5rem 1rem 1.5rem;
+            // align-content: start;
         }
-    }
-    #note-container p {
-        padding: 0rem;
     }
     #photo-container {
         grid-area: photo;
@@ -384,17 +370,15 @@
     }
     .jif-image {
         align-items: center;
-        max-height: 100%;
+        height: 100%;
         pointer-events: none;
         border-radius: 5px;
     }
-    .hide {
-        opacity: 0;
-        transition: opacity ease-out 0.2s;
-    }
-    .show {
-        opacity: 1;
-        transition: opacity ease-in 0.2s;
+    #globe-image {
+        height: 100%;
+        align-items: center;
+        pointer-events: none;
+        border-radius: 5px;
     }
 </style>
 <style lang="scss">
@@ -403,5 +387,6 @@
         grid-area: chart;
         place-self: center;
         z-index: 1;
+        margin-top: 1rem
     } 
 </style>
