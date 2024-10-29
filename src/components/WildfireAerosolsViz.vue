@@ -129,7 +129,7 @@
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = mobileView ? 120 : 120;
+                const sharedTopMargin = mobileView ? 135 : 130;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 const tileChartWidth = mobileView ? chartDimensions.boundedWidth / 3 : chartDimensions.boundedWidth / 4
@@ -907,7 +907,7 @@
         //     .attr("dominant-baseline", "central")
 
         const legendRectSize = barYScale.bandwidth();
-        const interItemSpacing = mobileView ? 15 : 10;
+        // const interItemSpacing = mobileView ? 15 : 10;
         const intraItemSpacing = 6;
 
         // Append group for each legend entry
@@ -921,7 +921,7 @@
         legendGroup.append("rect")
             .attr("class", "legend-rect")
             .attr("x", 0)
-            .attr("y", -barChartDimensions.margin.top / 2 - legendRectSize / 2.5)
+            .attr("y", -barChartDimensions.margin.top / 1.75 - legendRectSize / 2.5)
             .attr("width", legendRectSize)
             .attr("height", legendRectSize)
             .style("fill", d => barColorScale(d))
@@ -930,80 +930,82 @@
         legendGroup.append("text")
             .attr("class", "legend-text")
             .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
-            .attr("y", -barChartDimensions.margin.top / 2)
+            .attr("y", -barChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
             .text(d => d);
 
         // Position legend groups
         // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
-        const xBuffer = 6; // set xBuffer for use in mobile row x translations
+        // const xBuffer = 6; // set xBuffer for use in mobile row x translations
         legendGroup
             .attr("transform", (d, i) => {
             // Compute total width of preceeding legend items, with spacing
             // Start with width of legend title
-            const titleWidth = 0 //d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
+            // const d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
             
             // Begin right of legend
-            let cumulativeWidth = titleWidth;
-            if (!mobileView) {
-                // row 1: items 0 and 1
-                if (i < 2) {
-                    for (let j = 0; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                    }
-                }
-                // row 2: item 2
-                else if (i < 3) {
-                    for (let j = 2; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                    }
-                }
-            } else {
-                if (i < 1) {
-                    for (let j = 0; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                    }
-                }
-                // row 2: item 2
-                else if (i < 2) {
-                    for (let j = 2; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                    }
-                }
-                // row 3: item 3 
-                else if (i === 3) {
-                    for (let j = 2; j < i; j++) {
-                        cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                    }
-                }
-            }
+            const cumulativeWidth = 0;
+            // let cumulativeWidth = titleWidth;
+            // if (!mobileView) {
+            //     // row 1: items 0 and 1
+            //     if (i < 2) {
+            //         for (let j = 0; j < i; j++) {
+            //             cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+            //         }
+            //     }
+            //     // row 2: item 2
+            //     else if (i < 3) {
+            //         for (let j = 2; j < i; j++) {
+            //             cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+            //         }
+            //     }
+            // } else {
+                // if (i < 1) {
+                //     for (let j = 0; j < i; j++) {
+                //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                //     }
+                // }
+                // // row 2: item 2
+                // else if (i < 2) {
+                //     for (let j = 2; j < i; j++) {
+                //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                //     }
+                // }
+                // // row 3: item 3 
+                // else if (i === 3) {
+                //     for (let j = 2; j < i; j++) {
+                //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                //     }
+                // }
+            // }
 
-            let yTranslation = 0;
             // Determine x and y translation
             // set y translation for each row
-            // adjust row starting position for 2nd and third rows by -titleWidth
-            if (!mobileView) {
-                if (i < 2) {
-                    yTranslation = 0;
-                } else if (i < 5) {
-                    yTranslation = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
-                    cumulativeWidth = cumulativeWidth - titleWidth;
-                } else {
-                    yTranslation = legendRectSize * 5.75
-                    cumulativeWidth = xBuffer; // for last item just translate by xBuffer
-                } 
-            } else {
-                if (i < 1) {
-                    yTranslation = 0;
-                } else if (i < 2) {
-                    yTranslation = legendRectSize * 4;
-                    cumulativeWidth = cumulativeWidth - titleWidth;
-                } else {
-                    yTranslation = legendRectSize * 8
-                    cumulativeWidth = 0; // for last item just translate by xBuffer
-                } 
-            }
+            let rowHeight = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
+            const yTranslation = rowHeight * i;
+            // let yTranslation = 0;
+            // if (!mobileView) {
+            //     if (i < 2) {
+            //         yTranslation = 0;
+            //     } else if (i < 5) {
+            //         yTranslation = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
+            //         cumulativeWidth = cumulativeWidth - titleWidth;
+            //     } else {
+            //         yTranslation = legendRectSize * 5.75
+            //         cumulativeWidth = xBuffer; // for last item just translate by xBuffer
+            //     } 
+            // } else {
+                // if (i < 1) {
+                //     yTranslation = 0;
+                // } else if (i < 2) {
+                //     yTranslation = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
+                //     cumulativeWidth = cumulativeWidth - titleWidth;
+                // } else {
+                //     yTranslation = window.innerHeight < 770 ? legendRectSize * 8 : legendRectSize * 4;
+                //     cumulativeWidth = 0; // for last item just translate by xBuffer
+                // } 
+            // }
 
             // translate each group by that width and height
             return "translate(" + cumulativeWidth + "," + yTranslation + ")"
@@ -1079,7 +1081,7 @@
 
         const desktopPointSize = window.innerHeight < 770 ? 2 : 4;
         const legendPointSize = mobileView ? 2 : desktopPointSize;
-        const interItemSpacing = mobileView ? 15 : 10;
+        // const interItemSpacing = mobileView ? 15 : 10;
         const intraItemSpacing = 6;
 
         // Append group for each legend entry
@@ -1095,11 +1097,11 @@
             .append("g")
             .attr("class", "legend-item")
 
-        // Add rectangles for each group
+        // Add points for each group
         legendGroups.append("circle")
             .attr("class", "legend-point")
             .attr("cx", 0)
-            .attr("cy", -scatterChartDimensions.margin.top / 2)
+            .attr("cy", -scatterChartDimensions.margin.top / 1.75 + legendPointSize / 1.5)
             .attr("r", legendPointSize)
             .style("fill", d => scatterColorScale(d))
         
@@ -1107,7 +1109,7 @@
         legendGroups.append("text")
             .attr("class", "legend-text")
             .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
-            .attr("y", -scatterChartDimensions.margin.top / 2)
+            .attr("y", -scatterChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
             .text(d => d);
@@ -1118,65 +1120,67 @@
             .attr("transform", (d, i) => {
                 // Compute total width of preceeding legend items, with spacing
                 // Start with width of legend title
-                const titleWidth = 0 //d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
+                // const titleWidth = d3.select('#legend-title')._groups[0][0].getBBox().width + interItemSpacing;
                 
                 // Begin right of legend
-                let cumulativeWidth = titleWidth;
-                if (!mobileView) {
-                    // row 1: items 0 and 1
-                    if (i < 2) {
-                        for (let j = 0; j < i; j++) {
-                            cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
-                        }
-                    }
-                    // row 2: item 2
-                    else if (i < 3) {
-                        for (let j = 2; j < i; j++) {
-                            cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
-                        }
-                    }
-                } else {
-                    if (i < 1) {
-                        for (let j = 0; j < i; j++) {
-                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                        }
-                    }
-                    // row 2: item 2
-                    else if (i < 2) {
-                        for (let j = 2; j < i; j++) {
-                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                        }
-                    }
-                    // row 3: item 3 
-                    else if (i === 3) {
-                        for (let j = 2; j < i; j++) {
-                            cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
-                        }
-                    }
-                }
+                const cumulativeWidth = 0;
+                // let cumulativeWidth = titleWidth;
+                // if (!mobileView) {
+                //     // row 1: items 0 and 1
+                //     if (i < 2) {
+                //         for (let j = 0; j < i; j++) {
+                //             cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                //         }
+                //     }
+                //     // row 2: item 2
+                //     else if (i < 3) {
+                //         for (let j = 2; j < i; j++) {
+                //             cumulativeWidth = cumulativeWidth + legendGroups._groups[0][j].getBBox().width + interItemSpacing;
+                //         }
+                //     }
+                // } else {
+                    // if (i < 1) {
+                    //     for (let j = 0; j < i; j++) {
+                    //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    //     }
+                    // }
+                    // // row 2: item 2
+                    // else if (i < 2) {
+                    //     for (let j = 2; j < i; j++) {
+                    //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    //     }
+                    // }
+                    // // row 3: item 3 
+                    // else if (i === 3) {
+                    //     for (let j = 2; j < i; j++) {
+                    //         cumulativeWidth = cumulativeWidth + legendGroup._groups[0][j].getBBox().width + interItemSpacing;
+                    //     }
+                    // }
+                // }
 
-                let yTranslation = 0;
                 // Determine x and y translation
-                // set y translation for each row
-                // adjust row starting position for 2nd and third rows by -titleWidth
-                if (!mobileView) {
-                    if (i < 2) {
-                        yTranslation = 0;
-                    } else if (i < 3) {
-                        yTranslation = window.innerHeight < 770 ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
-                        cumulativeWidth = cumulativeWidth - titleWidth;
-                    }
-                } else {
-                    if (i < 1) {
-                        yTranslation = 0;
-                    } else if (i < 2) {
-                        yTranslation = barYScale.bandwidth() * 4;
-                        cumulativeWidth = cumulativeWidth - titleWidth;
-                    } else {
-                        yTranslation = barYScale.bandwidth() * 8
-                        cumulativeWidth = 0; // for last item just translate by xBuffer
-                    }
-                }
+                // set y translation for each row               
+                let rowHeight = window.innerHeight < 770 ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
+                const yTranslation = rowHeight * i;
+                // let yTranslation = 0;
+                // if (!mobileView) {
+                //     if (i < 2) {
+                //         yTranslation = 0;
+                //     } else if (i < 3) {
+                //         yTranslation = window.innerHeight < 770 ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
+                //         cumulativeWidth = cumulativeWidth - titleWidth;
+                //     }
+                // } else {
+                    // if (i < 1) {
+                    //     yTranslation = 0;
+                    // } else if (i < 2) {
+                    //     yTranslation = barYScale.bandwidth() * 4;
+                    //     cumulativeWidth = cumulativeWidth - titleWidth;
+                    // } else {
+                    //     yTranslation = barYScale.bandwidth() * 8
+                    //     cumulativeWidth = 0; // for last item just translate by xBuffer
+                    // }
+                // }
 
                 // translate each group by that width and height
                 return "translate(" + cumulativeWidth + "," + yTranslation + ")"
