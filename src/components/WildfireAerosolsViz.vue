@@ -129,21 +129,21 @@
                 initChart({
                     width: chartWidth,
                     height: chartHeight,
-                    margin: 30
+                    margin: mobileView ? 5 : 30
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
                 const sharedTopMargin = mobileView ? 135 : 130;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
-                chartGap = chartDimensions.boundedWidth / 11
+                chartGap = mobileView ? chartDimensions.boundedWidth / 9 : chartDimensions.boundedWidth / 11;
                 const tileChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
                 const barChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
                 const scatterChartWidth = mobileView ? chartGap * 2 : chartGap * 2;
 
                 tileChartTranslateX1 = mobileView ? (chartDimensions.boundedWidth - tileChartWidth) / 2: (chartDimensions.boundedWidth - tileChartWidth) / 2;
-                tileChartTranslateX2 = mobileView ? tileChartTranslateX1 - barChartWidth / 2 : tileChartTranslateX1 - barChartWidth / 2;
-                tileChartTranslateX3 = mobileView ? tileChartTranslateX2 - scatterChartWidth / 2 : tileChartTranslateX2 - scatterChartWidth / 2;
+                tileChartTranslateX2 = mobileView ? tileChartTranslateX1 - barChartWidth : tileChartTranslateX1 - barChartWidth / 1.75;
+                tileChartTranslateX3 = mobileView ? tileChartTranslateX2 - scatterChartWidth : tileChartTranslateX2 - scatterChartWidth;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
