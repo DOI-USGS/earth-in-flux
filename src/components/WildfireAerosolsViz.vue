@@ -136,14 +136,14 @@
                 const sharedTopMargin = mobileView ? 135 : 130;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
-                chartGap = mobileView ? chartDimensions.boundedWidth / 9 : chartDimensions.boundedWidth / 11;
+                chartGap = mobileView ? chartDimensions.boundedWidth / 11 : chartDimensions.boundedWidth / 11;
                 const tileChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
                 const barChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
                 const scatterChartWidth = mobileView ? chartGap * 2 : chartGap * 2;
 
                 tileChartTranslateX1 = mobileView ? (chartDimensions.boundedWidth - tileChartWidth) / 2: (chartDimensions.boundedWidth - tileChartWidth) / 2;
-                tileChartTranslateX2 = mobileView ? tileChartTranslateX1 - barChartWidth : tileChartTranslateX1 - barChartWidth / 1.75;
-                tileChartTranslateX3 = mobileView ? tileChartTranslateX2 - scatterChartWidth : tileChartTranslateX2 - scatterChartWidth;
+                tileChartTranslateX2 = mobileView ? tileChartTranslateX1 - barChartWidth / 1.75 : tileChartTranslateX1 - barChartWidth / 1.75;
+                tileChartTranslateX3 = mobileView ? tileChartTranslateX2 - scatterChartWidth + chartGap : tileChartTranslateX2 - scatterChartWidth;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
@@ -155,8 +155,8 @@
                     translateX: tileChartTranslateX1
                 });
 
-                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartTranslateX2 + tileChartWidth + chartGap;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartTranslateX3 + tileChartWidth + chartGap;
+                barChartTranslateX2 = mobileView ? tileChartTranslateX2 + tileChartWidth + chartGap : tileChartTranslateX2 + tileChartWidth + chartGap;
+                barChartTranslateX3 = mobileView ? tileChartTranslateX3 + tileChartWidth + chartGap : tileChartTranslateX3 + tileChartWidth + chartGap;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -167,7 +167,7 @@
                     marginBottom: sharedBottomMargin,
                     translateX: barChartTranslateX2});
 
-                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartTranslateX3 + tileChartWidth + barChartWidth + chartGap * 2;
+                scatterChartTranslateX3 = mobileView ? tileChartTranslateX3 + tileChartWidth + barChartWidth + chartGap * 1.5 : tileChartTranslateX3 + tileChartWidth + barChartWidth + chartGap * 2;
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
@@ -1260,14 +1260,14 @@
                 .duration(transitionLength)
                 .delay(transitionLength / 4)
                 .style("transform", `translate(${
-                    tileChartTranslateX1 + tileChartDimensions.width + chartGap * 0.5
+                    tileChartTranslateX1 + tileChartDimensions.width + chartGap
                 }px, 0px)`);
             moveChart(tileChartWrapper, tileChartTranslateX1)
             if (!barChartHidden) hideChart(barChartWrapper)            
         } else if (index == 2) {
             maskingRect
                 .style("transform", `translate(${
-                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width + chartGap * 1.5
+                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width + chartGap * 2
                 }px, 0px)`)
                 .transition()
                 .duration(transitionLength)
