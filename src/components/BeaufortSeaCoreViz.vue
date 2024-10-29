@@ -14,7 +14,7 @@
                 <h2 v-html="text.heading2" />
             </template>
         </VizSection>
-        <div id="ice-coring-grid-container">
+        <div id="sediment-coring-grid-container">
             <div id="coring-image-container">
                 <img class="coring-image" :src="currentImage" :alt="currentAltText">
             </div>
@@ -71,7 +71,7 @@
 </script>
 
 <style>
-    #ice-coring-grid-container{
+    #sediment-coring-grid-container{
         display: grid;
         max-width: 1200px;
         grid-template-columns: 10% calc(80% - 4rem) 10%;

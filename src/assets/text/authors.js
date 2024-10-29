@@ -120,5 +120,17 @@ export default {
       initials: 'HCD',
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
+  ],
+  WildfireAerosols: [
+    {
+      fullName: 'Hayley Corson-Dosch',
+      initials: 'HCD',
+      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
+    },
+    {
+      fullName: 'Jeffrey Kwang',
+      initials: 'JK',
+      profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
+    }
   ]
 };
