@@ -8,7 +8,7 @@
             <template #figures>
                 <div id="cross-section-grid-container">                
                     <div id="caption-container" >
-                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe.png" alt="locator map showing location of Juneau ice field in Alaska">
+                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in Alaska">
                         <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
                         <div v-if="!mobileView && defaultView">
                             <p v-html="text.paragraph1" />
