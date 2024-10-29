@@ -45,8 +45,6 @@
     // global variables
     const publicPath = import.meta.env.BASE_URL;
     const mobileView = isMobile;
-    const bodyCSS = window.getComputedStyle(document.body)
-    const bkgdColor = bodyCSS.getPropertyValue('--color-background');
     const tileDataFile = 'fii_core4particulates.csv';
     const barDataFile = 'fii_core4sugars.csv';
     const scatterDataFile = 'fii_core4biomass.csv';
@@ -185,7 +183,6 @@
                     .attr("y", 0)
                     .attr("width", barChartDimensions.width + scatterChartDimensions.width)
                     .attr("height", chartHeight)
-                    .attr("fill", bkgdColor)
                     .style("transform", `translate(${
                         tileChartTranslateX1 + tileChartDimensions.width
                     }px, 0px)`);
@@ -1403,6 +1400,9 @@
 </style>
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
+    #masking-rect {
+        fill: var(--color-background);
+    }
     .axis-text {
         font-size: 1.6rem;
         font-weight: 300;
