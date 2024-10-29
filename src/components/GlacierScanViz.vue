@@ -1,56 +1,61 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-        </template>
-        <template #figures>
-            <div id="cross_section-grid-container">
-                <img id="juneau-if-010" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_010.jpeg" alt="" />
-                <img id="juneau-if-018" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_018.jpeg" alt="" />
-                <img id="juneau-if-021" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_021.jpeg" alt="" />
-                <img id="juneau-if-051" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_051.jpeg" alt="" />
-                <img id="juneau-if-085" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_085.jpeg" alt="" />
-                <img id="juneau-if-138" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_138.jpeg" alt="" />
-                <img id="juneau-if-140" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_140.jpeg" alt="" />
-                <img id="juneau-if-156" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_156.jpeg" alt="" />
-                <img id="juneau-if-183" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_183.jpeg" alt="" />
-                <img id="juneau-if-203" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_203.jpeg" alt="" />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
+    <section>
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #figures>
+                <div id="cross-section-grid-container">                
+                    <div id="caption-container" >
+                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in Alaska">
+                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
+                        <div v-if="!mobileView && defaultView">
+                            <p v-html="text.paragraph1" />
+                            <p v-html="text.promptDesktop" />
+                        </div>
+                        <p v-if="mobileView && defaultView" v-html="text.paragraph1Mobile" />
+                        <p v-if="!defaultView" v-html="currentPhotoText"></p>
+                    </div>
+                </div>
+            </template>
+        </VizSection>
+
+        <VizSection
+            id="cross-section-how-to"
+            :figures="false"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2>
+                    {{ text.heading }}
+                </h2>
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
+                <p v-html="text.paragraph3" />
+            </template>
+        </VizSection>
+    </section>
 </template>
 
 <script setup>
-    import { onMounted } from "vue";
+    import { onMounted, ref } from "vue";
     import * as d3 from 'd3';
     import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { type: Object }
     })
 
     // global variables
     const mobileView = isMobile;
+    const currentPhotoID = ref(null)
+    const currentPhotoAlt = ref("")
+    const currentPhotoText = ref("")
+    const defaultView = ref(true)
     const default_xs = "113";
 
     // Declare behavior on mounted
@@ -60,20 +65,40 @@
             // Use external svg from s3
             d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v9.svg").then(function(xml) {
                 // add svg content to DOM
-                const svgGrid = document.getElementById("cross_section-grid-container")
+                const svgGrid = document.getElementById("cross-section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
 
                 // add id to svg
-                d3.select("#cross_section-grid-container").select("svg")
-                    .attr("id", "cross_section-svg")
+                const crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
+                    .attr("id", "cross-section-svg")
+                    .attr("width", "100%")
+                    .attr("height", "100%")
+
+                // hide some components
+                crossSectionSVG.select("#tutorial-dt-1")
+                    .attr("display", "none")
+                crossSectionSVG.select("#tutorial-dt-2")
+                    .attr("display", "none")
+                // crossSectionSVG.select("#tutorial-mb-1")
+                //     .attr("display", "none")
+                crossSectionSVG.select("#tutorial-mb-2")
+                    .attr("display", "none")
+                crossSectionSVG.select("#legend_1")
+                    .style("transform", "translate(-100px, 210px)")
+                crossSectionSVG.select("#legend_1").select("#patch_3")
+                    .attr("display", "none")
 
                 // add interactivity
-                addInteractions();
+                addInteractions(crossSectionSVG);
             });
         } catch (error) {
             console.error('Error during component mounting', error);
         }        
     });
+
+    function getImageSrc(photoID) {
+        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.jpeg`
+    }
 
     function draw_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
@@ -156,13 +181,14 @@
     }   
 
     function draw_image(photo_id){
-        d3.select("#juneau-if-"+photo_id)
-                .style("visibility", "visible");
+        currentPhotoID.value = photo_id
+        currentPhotoText.value = mobileView ? props.text[`photo${photo_id}Mobile`] : props.text[`photo${photo_id}`];
+        currentPhotoAlt.value = props.text[`photo${photo_id}Alt`];
+        defaultView.value = !defaultView.value
     }
 
-    function remove_image(photo_id){
-        d3.select("#juneau-if-"+photo_id)
-                .style("visibility", "hidden");
+    function remove_image(){
+        defaultView.value = !defaultView.value
     }
 
     function mouseover(event) {
@@ -194,7 +220,7 @@
             const line_id = event.currentTarget.id.slice(13);
             const photo_id = event.currentTarget.id.slice(9,12);
             remove_xs(line_id,photo_id);
-            remove_image(photo_id);
+            remove_image();
         }
     }
 
@@ -214,11 +240,7 @@
         }
     }
 
-    function addInteractions() {
-        // set viewbox for svg with loss function chart
-        const cross_sectionSVG = d3.select("#cross_section-svg")
-            .attr("width", "100%")
-            .attr("height", "100%");
+    function addInteractions(svg) {
 
         if (mobileView == true){
             d3.select('#tutorial-dt-1').selectAll("path")
@@ -258,8 +280,8 @@
 
         draw_xs(default_xs,-9999);
 
-        // Add interaction to loss function chart
-        cross_sectionSVG.selectAll("g")
+        // Add interaction events
+        svg.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
             .on("mouseenter", (event) => mouseenter(event))
@@ -268,47 +290,84 @@
 </script>
 
 <style scoped lang="scss">
-    #cross_section-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 1200px;
-        max-height: 85vh;
-        margin: 4rem auto 0 auto;
-        grid-template-areas:
-            "chart";
+    #cross-section-grid-container {
+        display: flex;
+        flex-direction: column;
+        @media screen and (max-height: 770px) {
+            flex-direction: row;
+        }
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
     }
-    
+    #caption-container {
+        height: 15vh;
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0rem 2rem 0 0rem;
+        background-color: var(--faded-usgs-blue);
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px rgba(57, 61, 66, 0.2);
+        font-style: italic;
+        @media screen and (max-height: 770px) {
+            flex-direction: column;
+            height: 80vh;
+            width: 40vw;
+            padding: 0rem 2rem 0 2rem;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+            width: 100%;
+            height: 40vh;
+            padding: 1rem 1.5rem 0 1.5rem;
+        }
+    }
+    .jif-image {
+        height: 100%;
+        pointer-events: none;
+        border-radius: 5px;
+        margin-right: 3rem;
+        @media screen and (max-height: 770px) {
+            max-width: 100%;
+            max-height: 45vh;
+            margin: 2rem 2rem 2rem 2rem;
+        }
+        @media screen and (max-width: 600px) {
+            padding-right: 0rem;
+            max-height: 22vh;
+            max-width: 100%;
+            margin: 1rem;
+        }
+    }
+    #globe-image {
+        width: 15vw;
+        align-items: center;
+        pointer-events: none;
+        border-radius: 5px;
+        @media screen and (max-height: 770px) {
+            margin: 4rem 2rem 2rem 2rem;
+        }
+        @media screen and (max-width: 600px) {
+            width: 35vw;
+            margin: 1rem;
+        }
+    }
 </style>
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
-    #cross_section-svg {
-        grid-area: chart;
-        place-self: center;
-        max-height: 100%;
-        max-width: 100%;
+    #cross-section-svg {
+        height: 50vh;
         z-index: 1;
-    }
-    #juneau-if-010,
-    #juneau-if-018,
-    #juneau-if-021,
-    #juneau-if-051,
-    #juneau-if-085,
-    #juneau-if-138,
-    #juneau-if-140,
-    #juneau-if-156,
-    #juneau-if-183,
-    #juneau-if-203{
-    grid-area: chart;
-    justify-self: end;
-    align-self: start;
-    max-height: 25%;
-    max-width: 25%;
-    visibility: hidden;
-    pointer-events: none;
-    border: 2px solid black;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    }
-    
+        margin-top: 3rem;
+        @media screen and (max-height: 770px) {
+            height: 80vh;
+        }
+        @media screen and (max-width: 600px) {
+            height: 45vh;
+        }
+    } 
 </style>
