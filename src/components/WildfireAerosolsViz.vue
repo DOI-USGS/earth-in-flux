@@ -59,7 +59,7 @@
     const chart = ref(null);
     let chartSVG;
     const chartTitle = 'Title of chart';
-    const chartHeight = mobileView ? window.innerHeight * 0.6 : window.innerHeight * 0.85;
+    let chartHeight;
     let chartWidth;
     let chartDimensions;
     let chartBounds;
@@ -120,6 +120,9 @@
             if (tileData.value.length > 0 && barData.value.length > 0) {
                 
                 // initialize chart elements
+                // on desktop, don't let chart height exceed 1200px
+                const desktopHeight = window.innerHeight < 770 ? window.innerHeight * 0.85 : Math.min(window.innerHeight * 0.75, 1000);
+                chartHeight = mobileView ? window.innerHeight * 0.6 : desktopHeight;
                 chartWidth = chart.value.offsetWidth;
                 initChart({
                     width: chartWidth,
