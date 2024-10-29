@@ -61,11 +61,13 @@
     let chartWidth;
     let chartDimensions;
     let chartBounds;
+    let chartGap;
     let maskingRect;
     let tileChartTranslateX1;
     let tileChartTranslateX2;
     let tileChartTranslateX3;
     let tileChartDimensions;
+    let tileChartWrapper;
     let tileChartBounds;
     let tileColorScale;
     let yScale;
@@ -73,6 +75,7 @@
     let barChartTranslateX2;
     let barChartTranslateX3;
     let barChartDimensions;
+    let barChartWrapper;
     let barChartBounds;
     let barXScale;
     let barYScale;
@@ -83,6 +86,7 @@
     let barColorScale;
     let scatterChartTranslateX3;
     let scatterChartDimensions;
+    let scatterChartWrapper;
     let scatterChartBounds;
     let scatterXScale;
     let scatterColorCategories;
@@ -125,48 +129,51 @@
                 initChart({
                     width: chartWidth,
                     height: chartHeight,
-                    margin: 0
+                    margin: 30
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
                 const sharedTopMargin = mobileView ? 135 : 130;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
-                const tileChartWidth = mobileView ? chartDimensions.boundedWidth / 3 : chartDimensions.boundedWidth / 4
-                tileChartTranslateX1 = mobileView ? 140 : (chartDimensions.boundedWidth - tileChartWidth) / 2;
-                tileChartTranslateX2 = mobileView ? 65 : 240;
-                tileChartTranslateX3 = mobileView ? 50 : 80;
+                chartGap = chartDimensions.boundedWidth / 11
+                const tileChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
+                const barChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
+                const scatterChartWidth = mobileView ? chartGap * 2 : chartGap * 2;
+
+                tileChartTranslateX1 = mobileView ? (chartDimensions.boundedWidth - tileChartWidth) / 2: (chartDimensions.boundedWidth - tileChartWidth) / 2;
+                tileChartTranslateX2 = mobileView ? tileChartTranslateX1 - barChartWidth / 2 : tileChartTranslateX1 - barChartWidth / 2;
+                tileChartTranslateX3 = mobileView ? tileChartTranslateX2 - scatterChartWidth / 2 : tileChartTranslateX2 - scatterChartWidth / 2;
                 initTileChart({
                     width: tileChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 55: 20,
-                    marginRight: mobileView ? 5: 20,
+                    marginLeft: mobileView ? 5: 5,
+                    marginRight: mobileView ? 5: 5,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: tileChartTranslateX1
                 });
 
-                const barChartWidth = chartDimensions.boundedWidth / 3
-                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartTranslateX2 + tileChartWidth;
-                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartTranslateX3 + tileChartWidth;
+                barChartTranslateX2 = mobileView ? tileChartWidth + 55 : tileChartTranslateX2 + tileChartWidth + chartGap;
+                barChartTranslateX3 = mobileView ? tileChartWidth + 45 : tileChartTranslateX3 + tileChartWidth + chartGap;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 20 : 60,
+                    marginLeft: mobileView ? 5 : 5,
+                    marginRight: mobileView ? 5 : 5,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: barChartTranslateX2});
 
-                const scatterChartWidth = chartDimensions.boundedWidth / 3
-                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartTranslateX3 + tileChartWidth + barChartWidth;
+                scatterChartTranslateX3 = mobileView ? tileChartWidth + barChartWidth + 50 : tileChartTranslateX3 + tileChartWidth + barChartWidth + chartGap * 2;
                 initScatterChart({
                     width: scatterChartWidth,
                     height: chartHeight,
                     margin: defaultMargin,
-                    marginLeft: mobileView ? 20 : 10,
-                    marginRight: scatterChartWidth / 3,
+                    marginLeft: mobileView ? 5 : 5,
+                    marginRight: mobileView ? 5 : 5,
                     marginTop: sharedTopMargin,
                     marginBottom: sharedBottomMargin,
                     translateX: scatterChartTranslateX3});
@@ -174,8 +181,8 @@
                 // draw charts, hiding bar and scatter charts to start
                 drawTileChart(tileData.value);
                 drawBarChart(barData.value);
-                barChartBounds
-                    .attr("display", "none");
+                barChartWrapper
+                    .attr("visibility", "hidden");
                 maskingRect = chartSVG
                     .append("rect")
                     .attr("id", "masking-rect")
@@ -184,11 +191,11 @@
                     .attr("width", barChartDimensions.width + scatterChartDimensions.width)
                     .attr("height", chartHeight)
                     .style("transform", `translate(${
-                        tileChartTranslateX1 + tileChartDimensions.width
+                        tileChartTranslateX1 + tileChartDimensions.width + chartGap * 0.5
                     }px, 0px)`);
                 drawScatterChart(scatterData.value);
-                scatterChartBounds
-                    .attr("display", "none");
+                scatterChartWrapper
+                    .attr("visibility", "hidden");
 
                 // add legends
                 addTileLegend()
@@ -305,10 +312,18 @@
             boundedHeight: height - marginTop - marginBottom
         }
 
-        tileChartBounds = chartBounds.append("g")
-            .attr("id", "tile-chart-bounds")
+        tileChartWrapper = chartBounds.append("g")
+            .attr("id", "tile-chart-wrapper")
             .style("transform", `translate(${
                 translateX
+            }px, ${
+                0
+            }px)`);
+
+        tileChartBounds = tileChartWrapper.append("g")
+            .attr("id", "tile-chart-bounds")
+            .style("transform", `translate(${
+                tileChartDimensions.margin.left
             }px, ${
                 tileChartDimensions.margin.top
             }px)`);
@@ -353,10 +368,18 @@
             boundedHeight: height - marginTop - marginBottom
         }
 
-        barChartBounds = chartBounds.append("g")
+        barChartWrapper = chartBounds.append("g")
+            .attr("id", "bar-chart-wrapper")
+            .style("transform", `translate(${
+                translateX
+            }px, ${
+                0
+            }px)`);
+
+        barChartBounds = barChartWrapper.append("g")
             .attr("id", "bar-chart-bounds")
             .style("transform", `translate(${
-                translateX + barChartDimensions.margin.left
+                barChartDimensions.margin.left
             }px, ${
                 barChartDimensions.margin.top
             }px)`);
@@ -404,10 +427,18 @@
             boundedHeight: height - marginTop - marginBottom
         }
 
-        scatterChartBounds = chartBounds.append("g")
+        scatterChartWrapper = chartBounds.append("g")
+            .attr("id", "scatter-chart-wrapper")
+            .style("transform", `translate(${
+                translateX
+            }px, ${
+                0
+            }px)`);
+
+        scatterChartBounds = scatterChartWrapper.append("g")
             .attr("id", "scatter-chart-bounds")
             .style("transform", `translate(${
-                translateX + scatterChartDimensions.margin.left
+                scatterChartDimensions.margin.left
             }px, ${
                 scatterChartDimensions.margin.top
             }px)`);
@@ -676,7 +707,7 @@
             {
                 tickFormat: ".0f", 
                 customSuffix: 'cm', 
-                tickSize: -chartDimensions.boundedWidth - tileChartTranslateX1 - tileChartDimensions.margin.left, 
+                tickSize: -(chartDimensions.boundedWidth - tileChartDimensions.margin.left), 
                 nticks: 20,
                 keepDomain: false
             }
@@ -1055,7 +1086,7 @@
                 .append("circle") // append a rectangle for each element
                     .attr("class", "point")
                     .attr("id", d => 'point-' + identifierAccessor(d))
-                    .attr("cx", d => scatterXScale(xAccessor(d)))
+                    .attr("cx", d => scatterXScale(xAccessor(d)) + scatterXScale.bandwidth()/2)
                     .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
                     .attr("r", mobileView ? 2 : desktopPointSize)
                     .style("fill", d => scatterColorScale(colorAccessor(d)));
@@ -1075,7 +1106,7 @@
             .attr("dy", 0)
             .attr("text-anchor", "middle")
             .attr("dominant-baseline", "text-before-edge")
-            .attr("text-width", scatterChartDimensions.boundedWidth + (scatterChartDimensions.margin.left + scatterChartDimensions.margin.right) / 2)
+            .attr("text-width", scatterChartDimensions.boundedWidth)
             .text('Burned vegetation type')
             .call(d => wrap(d))
 
@@ -1187,77 +1218,74 @@
             })
     }
 
-    function showChart(hiddenChartBounds, translateX, translateY) {
-        hiddenChartBounds
+    function showChart(hiddenChart, translateX) {
+        hiddenChart
             .attr("opacity", 0)
-            .attr("display", "auto")
+            .attr("visibility", "visible")
+            // .attr("display", "auto")
             .transition()
             .duration(transitionLength)
             .attr("opacity", 1)
             .style("transform", `translate(${
                 translateX
-            }px, ${
-                translateY
-            }px)`);
+            }px, 0px)`);
     }
 
-    function hideChart(visibleChartBounds) {
-        visibleChartBounds
+    function hideChart(visibleChart) {
+        visibleChart
             .transition()
             .duration(transitionLength)
             .attr("opacity", 0)
         setTimeout(function() {
-            visibleChartBounds
-                .attr("display", "none")
+            visibleChart
+                .attr("visibility", "hidden");
         }, transitionLength)
     }
 
-    function moveChart(visibleChartBounds, translateX, translateY) {
-        visibleChartBounds
+    function moveChart(visibleChart, translateX) {
+        visibleChart
             .transition()
             .duration(transitionLength)
             .style("transform", `translate(${
                 translateX
-            }px, ${
-                translateY
-            }px)`);
+            }px, 0px)`);
     }
 
     function updateChartView(index) {
-        const barChartHidden = barChartBounds.node().attributes.display.value == 'none';
-        const scatterChartHidden = scatterChartBounds.node().attributes.display.value == 'none';
+        const barChartHidden = barChartWrapper.node().attributes.visibility.value == 'hidden';
+        const scatterChartHidden = scatterChartWrapper.node().attributes.visibility.value == 'hidden';
         if (index == 1) {
             maskingRect
                 .transition()
                 .duration(transitionLength)
                 .delay(transitionLength / 4)
                 .style("transform", `translate(${
-                    tileChartTranslateX1 + tileChartDimensions.width
+                    tileChartTranslateX1 + tileChartDimensions.width + chartGap * 0.5
                 }px, 0px)`);
-            moveChart(tileChartBounds, tileChartTranslateX1, tileChartDimensions.margin.top)
-            if (!barChartHidden) hideChart(barChartBounds)            
+            moveChart(tileChartWrapper, tileChartTranslateX1)
+            if (!barChartHidden) hideChart(barChartWrapper)            
         } else if (index == 2) {
             maskingRect
                 .style("transform", `translate(${
-                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width
+                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width + chartGap * 1.5
                 }px, 0px)`)
                 .transition()
                 .duration(transitionLength)
                 .delay(transitionLength / 4)
                 .style("opacity", "1");
-            moveChart(tileChartBounds, tileChartTranslateX2, tileChartDimensions.margin.top)
+            moveChart(tileChartWrapper, tileChartTranslateX2)
             if (barChartHidden)  {
-                showChart(barChartBounds, barChartTranslateX2, barChartDimensions.margin.top)
+                showChart(barChartWrapper, barChartTranslateX2)
             } else {
-                moveChart(barChartBounds, barChartTranslateX2, barChartDimensions.margin.top)
+                moveChart(barChartWrapper, barChartTranslateX2)
             }
-            if (!scatterChartHidden) hideChart(scatterChartBounds) 
+            if (!scatterChartHidden) hideChart(scatterChartWrapper) 
         } else if (index == 3) {
             maskingRect
                 .style("opacity", "0")
-            moveChart(tileChartBounds, tileChartTranslateX3, tileChartDimensions.margin.top)
-            moveChart(barChartBounds, barChartTranslateX3, barChartDimensions.margin.top)
-            showChart(scatterChartBounds, scatterChartTranslateX3, scatterChartDimensions.margin.top)
+            moveChart(tileChartWrapper, tileChartTranslateX3)
+            moveChart(barChartWrapper, barChartTranslateX3)
+            showChart(scatterChartWrapper, scatterChartTranslateX3)
         }
     }
 
@@ -1278,14 +1306,21 @@
             dx = parseFloat(text.attr("dx")),
             tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
 
+            
+            console.log(`wrap: ${words}`)
             while ((word = words.pop())) {
             line.push(word);
             tspan.text(line.join(" "));
+                console.log(`width: ${width}`)
+                console.log(`word: ${word}`)
+                console.log(tspan.node())
+                console.log(tspan.node().getComputedTextLength())
+                console.log(tspan.node().getComputedTextLength() > width)
                 if (tspan.node().getComputedTextLength() > width) {
-                line.pop();
-                tspan.text(line.join(" "));
-                line = [word];
-                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    line.pop();
+                    tspan.text(line.join(" "));
+                    line = [word];
+                    tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
                 }
             }
 
