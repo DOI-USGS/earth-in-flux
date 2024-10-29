@@ -7,16 +7,15 @@
         >
             <template #figures>
                 <div id="cross-section-grid-container">                
-                    <div id="caption-container" />
-                    <div id="note-container">
-                        <p v-if="!mobileView && defaultView" v-html="text.paragraph1" />
-                        <p v-if="mobileView && defaultView" v-html="text.paragraph1Mobile" />
-                        <p v-if="!mobileView && defaultView" v-html="text.promptDesktop" />
-                        <p v-if="!defaultView" v-html="currentPhotoText"></p>
-                    </div>
-                    <div id="photo-container">
+                    <div id="caption-container" >
                         <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe.png" alt="locator map showing location of JIF in Alaska">
                         <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
+                        <div v-if="!mobileView && defaultView">
+                            <p v-html="text.paragraph1" />
+                            <p v-html="text.promptDesktop" />
+                        </div>
+                        <p v-if="mobileView && defaultView" v-html="text.paragraph1Mobile" />
+                        <p v-if="!defaultView" v-html="currentPhotoText"></p>
                     </div>
                 </div>
             </template>
@@ -292,101 +291,83 @@
 
 <style scoped lang="scss">
     #cross-section-grid-container {
-        display: grid;
-        width: 100%;
-        max-width: 1200px;
-        max-height: 85vh;
-        margin: 4rem auto 4rem auto;
-        grid-template-columns: max-content 1fr;
-        grid-template-rows: 20vh 1fr;
-        row-gap: 2rem;
-        grid-template-areas:
-            "photo text"
-            "chart chart";
+        display: flex;
+        flex-direction: column;
         @media screen and (max-height: 770px) {
-            max-height: 75vh;
-            column-gap: 5rem;
-            grid-template-columns: 50% 50%;
-            grid-template-rows: 55% 45%;
-            grid-template-areas:
-                "photo chart"
-                "text chart";
+            flex-direction: row;
         }
         @media screen and (max-width: 600px) {
-            max-height: 90vh;
-            grid-template-columns: 100%;
-            grid-template-rows: 30% calc(20% - 1rem) 50%;
-            row-gap: 1rem;
-            grid-template-areas:
-                "photo"
-                "text"
-                "chart";
+            flex-direction: column;
         }
     }
     #caption-container {
-        grid-column: 1 / span 2;
-        grid-row: 1;
+        height: 15vh;
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0rem 2rem 0 0rem;
         background-color: var(--faded-usgs-blue);
         border-radius: 5px;
         box-shadow: 5px 5px 10px rgba(57, 61, 66, 0.2);
-        align-content: center;
         font-style: italic;
-        padding: 0 5rem 0 5rem;
         @media screen and (max-height: 770px) {
-            grid-column: 1;
-            grid-row: 1 / span 2;
+            flex-direction: column;
+            height: 80vh;
+            width: 40vw;
+            padding: 0rem 2rem 0 2rem;
+            flex-grow: 0;
+            flex-shrink: 0;
         }
         @media screen and (max-width: 600px) {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-            padding: 1rem 1rem 0 1rem;
-        }
-    }
-    #note-container {
-        grid-area: text;
-        align-content: center;
-        font-style: italic;
-        padding: 2rem;
-        @media screen and (max-height: 770px) {
-            padding: 0 4rem 2rem 4rem;
-            // align-content: start;
-        }
-        @media screen and (max-width: 600px) {
-            padding: 0 1.5rem 1rem 1.5rem;
-            // align-content: start;
-        }
-    }
-    #photo-container {
-        grid-area: photo;
-        align-content: center;
-        text-align: center;
-        border-radius: 5px;
-        @media screen and (max-height: 770px) {
-            padding-top: 2rem;
-        }
-        @media screen and (max-width: 600px) {
-            padding-top: 1rem;
+            flex-direction: column;
+            width: 100%;
+            height: 40vh;
+            padding: 1rem 1.5rem 0 1.5rem;
         }
     }
     .jif-image {
-        align-items: center;
         height: 100%;
         pointer-events: none;
         border-radius: 5px;
+        margin-right: 3rem;
+        @media screen and (max-height: 770px) {
+            max-width: 100%;
+            max-height: 45vh;
+            margin: 2rem 2rem 2rem 2rem;
+        }
+        @media screen and (max-width: 600px) {
+            padding-right: 0rem;
+            max-height: 22vh;
+            max-width: 100%;
+            margin: 1rem;
+        }
     }
     #globe-image {
-        height: 100%;
+        width: 15vw;
         align-items: center;
         pointer-events: none;
         border-radius: 5px;
+        @media screen and (max-height: 770px) {
+            margin: 4rem 2rem 2rem 2rem;
+        }
+        @media screen and (max-width: 600px) {
+            width: 35vw;
+            margin: 1rem;
+        }
     }
 </style>
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
     #cross-section-svg {
-        grid-area: chart;
-        place-self: center;
+        height: 50vh;
         z-index: 1;
-        margin-top: 1rem
+        margin-top: 3rem;
+        @media screen and (max-height: 770px) {
+            height: 80vh;
+        }
+        @media screen and (max-width: 600px) {
+            height: 45vh;
+        }
     } 
 </style>
