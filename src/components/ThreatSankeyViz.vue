@@ -191,7 +191,7 @@
     
         // initialize sankey
         const sankey = d3sankey.sankey()
-            .nodeSort(null)
+            .nodeSort((a,b) => d3.descending(a.value, b.value))
             .linkSort(null)
             .nodeWidth(nodeWidth)
             .nodePadding(mobileView ? 15 : 11)
@@ -320,27 +320,9 @@
                 const node = {name: d[k]};
                 nodes.push(node);
                 nodeByKey.set(key, node);
-                // Doing some custom index setting to sort the left side of the sankey
-                if (d[k] == 'Invasive species') {
-                    ++index // still need to advance index
-                    indexByKey.set(key, 3); // Would otherwise be 1
-                } else if (d[k] == 'Pollution') {
-                    ++index
-                    indexByKey.set(key, 1); // Would otherwise be 2
-                } else if (d[k] == 'Climate and weather') {
-                    ++index
-                    indexByKey.set(key, 2); // Would otherwise be 3
-                } else {
-                    indexByKey.set(key, ++index);
-                }
-                // Use below if dropping custom sorting
-                // indexByKey.set(key, ++index);
+                indexByKey.set(key, ++index);
             }
         }
-        
-        // With custom indices, need to re-order nodes
-        // Here, taking 'Invasive species' out of slot 1 and dropping in slot 3
-        nodes.splice(3, 0, nodes.splice(1, 1)[0]);
 
         // creates links between nodes
         for (let i = 1; i < keys.length; ++i) {
