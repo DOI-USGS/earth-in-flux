@@ -2,6 +2,13 @@ library(targets)
 library(tarchetypes)
 library(tidyverse)
 
+###############################################################################
+#########       TO RUN PIPELINE FOR THE FIRST TIME
+#########         Download data from Sciencebase, using the code in 00_config.R
+#########         Then, run `targets::tar_make()`
+
+###############################################################################
+##########      RUN PIPELINE
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "readxl",
@@ -11,9 +18,11 @@ tar_option_set(packages = c("tidyverse",
                             "showtext",
                             "sysfonts"))
 
+
 source("src/fetch_data.R")
 source("src/prep_data.R")
 source("src/plot_data.R")
+
 
 # Global settings
 color_scheme = tibble(
@@ -32,7 +41,7 @@ color_long <- pivot_longer(color_scheme, cols = everything(), values_to = "hexco
 # Load some custom fonts and set some custom settings
 title_font <- "Lora"
 sysfonts::font_add_google(title_font)
-supporting_font <- "Source Sans Pro"
+supporting_font <- "Source Sans 3"
 sysfonts::font_add_google(supporting_font)
 annotation_font <- "Caveat"
 sysfonts::font_add_google(annotation_font)
@@ -52,20 +61,26 @@ list(
   
   ################ FETCH DATA #########################
   
-  # Read in ostracode data
-  tar_target(p1_ostracode_raw_csv,
-             "in/Data release HLY1302 IP135359.xlsx",
+  # Read in ostracode data from ScienceBase ID 6197a410d34eb622f692ce0e
+  tar_target(p1_ostracode_raw_xlsx, 
+             sb_initialize_and_download(
+               sb_id ="6197a410d34eb622f692ce0e",  #"6622aa30d34e7eb9eb7f99b5",
+               names = "Data release HLY1302 IP135359.xlsx",
+               destinations = "in/Data release HLY1302 IP135359.xlsx",
+               overwrite_fileL = FALSE
+             ),
              format = "file"),
   tar_target(p1_ostracode_raw_df,
-             read_ostracode(csv_in = p1_ostracode_raw_csv)),
+             read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
   
   
   # Read in foraminifera data
-  tar_target(p1_foram_raw_csv,
-             "in/HLY1302 faunal bin foraminifera.xlsx",
+  tar_target(p1_foram_raw_xlsx,
+             "in/41063_2018_58_MOESM1_ESM.xlsx",
              format = "file"),
-  tar_target(p1_foram_raw_df,
-             read_foram(csv_in = p1_foram_raw_csv)),
+  tar_target(p1_foram_HLY1302_GGC30_raw_df,
+             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
+                                     sheet = "HLY1302 MC29 Foram")),
   
   ################ PROCESS DATA #########################
   
