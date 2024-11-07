@@ -74,13 +74,23 @@ list(
              read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
   
   
-  # Read in foraminifera data
+  # Read in foraminifera data (downloaded from supplementary information)
   tar_target(p1_foram_raw_xlsx,
              "in/41063_2018_58_MOESM1_ESM.xlsx",
              format = "file"),
+  # one page from excel for each of the three cores
+  tar_target(p1_foram_HLY1302_MC29_raw_df,
+             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
+                                     sheet = "HLY1302 MC29 Foram",
+                                     range = "C1:AJ46")),
   tar_target(p1_foram_HLY1302_GGC30_raw_df,
              foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
-                                     sheet = "HLY1302 MC29 Foram")),
+                                     sheet = "HLY1302 GGC30 Foram ",
+                                     range = "C1:AM57")),
+  tar_target(p1_foram_HLY1302_JPC32_raw_df,
+             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
+                                     sheet = "HLY1302 JPC32 Foram",
+                                     range = "C1:AJ142")),
   
   ################ PROCESS DATA #########################
   
