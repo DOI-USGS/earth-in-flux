@@ -1,17 +1,59 @@
 <template>
     <div>
         <VizSection
-            :figures="true"
+            :figures="false"
             :fig-caption="false"
         >
             <template #heading>
                 <h2 v-html="text.heading1" />
             </template>
             <template #aboveExplanation>
-                <p v-html="text.intro" />
+                <p v-html="text.intro1" />
+                <p v-html="text.intro2" />
             </template>
-            <template #belowExplanation>
+        </VizSection>
+        <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #heading>
                 <h2 v-html="text.heading2" />
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.paragraph1" />
+            </template>
+            <template #figures>
+                <div class="group two">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_1.png" alt="">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_2.png" alt="">
+                </div>
+            </template>
+        </VizSection>
+        <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
+            </template>
+            <template #figures>
+                <div class="single">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_3.gif" alt="">
+                </div>
+            </template>
+        </VizSection>
+        <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #aboveExplanation>
+                <p v-html="text.paragraph3" />
+            </template>
+            <template #figures>
+                <div class="group two">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_4.png" alt="">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_5.gif" alt="">
+                </div>
             </template>
         </VizSection>
         <div id="sediment-coring-grid-container">
