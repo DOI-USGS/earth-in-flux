@@ -128,8 +128,14 @@ export default {
             alt8: "alt text 8"
         },
         BeaufortSeaSpecies: {
-            heading1: "Arctic water chemistry is changing",
-            paragraph1: "In the last 25 to 50 years, there have been major shifts in the relative abundance of different microfossils within seafloor sediments of the Beaufort Sea. Here, we see the relative decline of <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span>, and <span class='scientificName'>Paracyprideis pseudopunctillata</span> combined with relative increases in agglutinated <span class='scientificName'>Spiroplectammina biformis</span> and <span class='scientificName'>Kotoracythere arctoborealis</span>. These shifts indicate that within the last 50 years climate change has altered water chemistry in this region of the Beaufort Sea.",
+            heading1: "The Arctic Ocean is changing",
+            paragraph1: "In the last 25 to 50 years, major shifts have taken place in ecological communities in the Beaufort Sea, including within communities of microorganisms. Because of their sensitivity to water chemistry, microorganisms are proxies for local climatic conditions. Taken together with other climate proxies analyzed at this site, the shifts in microorganism abundance indicate that the climate has recently changed in this region of the Beaufort Sea.",
+            heading2: "What are these microfossils?",
+            paragraph2: "The species highlighted above belong to two classes of microfossils: foraminifera and ostrocodes. They are identified in sediment samples by their external shells, which can take many different forms and be composed of a variety of materials. Under the right conditions, these shells can become fossilized in sediments, creating microfossils. The presence and growth of individual species is closely tied to environmental conditions like the pH, salinity, turbidity, and temperature of ocean water, which can affect the solubility of external shells and the availability of different food sources. By considering the known ecological preferences of observed species, researchers can use microfossils as proxies of past climates and as indicators of environmental change.",
+            subheading1: "Foraminifera",
+            subheading2: "Ostracodes",
+            paragraph3: "Foraminifera, or 'forams', are a class of single-celled protists. Forams secrete an external shell called a 'test'. Each species create tests with distinct structures and shapes, which allows researchers to identify different species in the sedimentary fossil record. The tests are commonly composed of calcium carbonate or are 'agglutinated', meaning they are constructed from particles in the sediment.",
+            paragraph4: "Ostracodes are a class of microscopic arthropods, most closely related to crustaceans and insects. Ostracodes have a clam-like shell that is made of chitin and calcium carbonate.",
             tabData: [
                 {
                     tabTitle: "Cassidulina reniforme",
@@ -177,12 +183,6 @@ export default {
                     tabPrefixImageName: "O_Paracyprideis"
                 }
             ],
-            heading2: "What are these microfossils?",
-            paragraph2: "The species highlighted above belong to two classes of microfossils: foraminifera and ostrocodes. They are identified in sediment samples by their external shells, which can take many different forms and be composed of a variety of materials. Under the right conditions, these shells can become fossilized in sediments, creating microfossils. The presence and growth of individual species is closely tied to environmental conditions like the pH, salinity, turbidity, and temperature of ocean water, which can affect the solubility of external shells and the availability of different food sources. By considering the known ecological preferences of observed species, researchers can use microfossils as proxies of past climates and as indicators of environmental change.",
-            subheading1: "Foraminifera",
-            subheading2: "Ostracodes",
-            paragraph3: "Foraminifera, or 'forams', are a class of single-celled protists. Forams secrete an external shell called a 'test'. Each species create tests with distinct structures and shapes, which allows researchers to identify different species in the sedimentary fossil record. The tests are commonly composed of calcium carbonate or are 'agglutinated', meaning they are constructed from particles in the sediment.",
-            paragraph4: "Ostracodes are a class of microscopic arthropods, most closely related to crustaceans and insects. Ostracodes have a clam-like shell that is made of chitin and calcium carbonate. ",
             heading3: "How are these data collected?",
             paragraph5: "These data are from the mouth of the Mackenzie River where it spills into the Beaufort Sea north of Yukon, Canada. In this dynamic Arctic environment, the sea ice, temperature, salinity, and food availability conditions are continuously changing. The species that live there shift in response and these changes are recorded in the sediment layers. ",
             paragraph6: "<a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>USGS researchers collect sediment cores</a> and analyze the relative abundance of species within each layer. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",

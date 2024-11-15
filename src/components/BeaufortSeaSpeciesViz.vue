@@ -10,6 +10,28 @@
             </template>
             <template #aboveExplanation>
                 <p v-html="text.paragraph1" />
+                <p v-html="text.paragraph2" />
+            </template>
+        </VizSection>
+        
+        <VizSection
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2 v-html="text.heading2" />
+            </template>
+            <template #aboveExplanation>
+                <div class="subheading-container">
+                    <h3 class="subheading" v-html="text.subheading1" />
+                    <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
+                </div>
+                <p v-html="text.paragraph3" />
+                <div class="subheading-container">
+                    <h3 class="subheading" v-html="text.subheading2" />
+                    <img v-for="ostracode in ostracodes" class='subheading-image' :src="getPrefixImageURL(ostracode.tabPrefixImageName)" :key="ostracode.tabTitle"/>
+                </div>
+                <p v-html="text.paragraph4" />
             </template>
         </VizSection>
         <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
@@ -26,27 +48,6 @@
                 <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
             </tabItem>
         </tabsGroup>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading2" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
-                <div class="subheading-container">
-                    <h3 class="subheading" v-html="text.subheading1" />
-                    <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
-                </div>
-                <p v-html="text.paragraph3" />
-                <div class="subheading-container">
-                    <h3 class="subheading" v-html="text.subheading2" />
-                    <img v-for="ostracode in ostracodes" class='subheading-image' :src="getPrefixImageURL(ostracode.tabPrefixImageName)" :key="ostracode.tabTitle"/>
-                </div>
-                <p v-html="text.paragraph4" />
-            </template>
-        </VizSection>
         <VizSection
             :figures="true"
             :fig-caption="false"
