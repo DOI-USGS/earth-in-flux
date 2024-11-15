@@ -54,7 +54,7 @@ focal_species <- tribble(
   "Paracyprideis pseudo","P. pseudopunctillata","pseudopunctillata",TRUE,"O_Paracyprideis.png",0.3,100,110,"3b", 
   "Kotoracythere arctob","K. arctoborealis","arctoborealis",TRUE,"O_Kotoracythere.png",0.3,25,30,"3a",
   "C. reniforme...25","C. reniforme","reniforme",TRUE,"F_Cassidulina.png",0.2,80,90,"2a"
-  )
+)
 
 
 list(
@@ -72,6 +72,11 @@ list(
              format = "file"),
   tar_target(p1_ostracode_raw_df,
              read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
+  # read in sheet with age model information
+  tar_target(p1_age_model_data_df,
+             read_excel(path = p1_ostracode_raw_xlsx,
+                        sheet = "T4 biogenic silica",
+                        range = "C2:F82")),
   
   
   # Read in foraminifera data (downloaded from supplementary information)
@@ -80,19 +85,25 @@ list(
              format = "file"),
   # one page from excel for each of the three cores
   tar_target(p1_foram_HLY1302_MC29_raw_df,
-             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
-                                     sheet = "HLY1302 MC29 Foram",
-                                     range = "C1:AJ46")),
+             read_excel(path = p1_foram_raw_xlsx, 
+                        sheet = "HLY1302 MC29 Foram",
+                        range = "C1:AJ46")),
   tar_target(p1_foram_HLY1302_GGC30_raw_df,
-             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
-                                     sheet = "HLY1302 GGC30 Foram ",
-                                     range = "C1:AM57")),
+             read_excel(path = p1_foram_raw_xlsx, 
+                        sheet = "HLY1302 GGC30 Foram ",
+                        range = "C1:AM57")),
   tar_target(p1_foram_HLY1302_JPC32_raw_df,
-             foram_raw <- read_excel(path = p1_foram_raw_xlsx, 
-                                     sheet = "HLY1302 JPC32 Foram",
-                                     range = "C1:AJ142")),
+             read_excel(path = p1_foram_raw_xlsx, 
+                        sheet = "HLY1302 JPC32 Foram",
+                        range = "C1:AJ142")),
   
   ################ PROCESS DATA #########################
+  # Merge and clean foram data
+  tar_target(p2_foram_noAge_df,
+             merge_foram_data(GGC30_in = p1_foram_HLY1302_GGC30_raw_df, 
+                              JPC32_in = p1_foram_HLY1302_JPC32_raw_df,
+                              MC29_in = p1_foram_HLY1302_MC29_raw_df,
+                              age_data = p1_age_model_data_df)),
   
   # Join abundance data in long format
   tar_target(p2_join_abundance_long,
@@ -111,7 +122,7 @@ list(
              format = 'file'),
   
   ################ PLOT DATA #########################
-
+  
   ## Species trend plots
   tar_map(
     values = tibble(species = focal_species$epithet,

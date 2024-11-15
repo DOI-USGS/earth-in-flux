@@ -1,3 +1,50 @@
+# Function to clean up the three foram datasets and merge them
+merge_foram_data <- function(GGC30_in, JPC32_in, MC29_in, age_data){
+  # remove empty columns
+  GGC30_in <- GGC30_in |> dplyr::select(!contains("...")) |>
+    mutate(core = "GGC30")
+  
+  JPC32_in <- JPC32_in |> dplyr::select(!contains("...")) |>
+    mutate(core = "JPC32")
+  
+  # fix typo in name
+  MC29_in <- MC29_in |>
+    rename(`E. bartleti` = `E. bartletti`) |>
+    mutate(core = "MC29")
+  
+  # join rows for the three cores
+  join <- bind_rows(GGC30_in, JPC32_in, MC29_in) |>
+    # rename depths
+    rename(top = `cm (top)`,
+           bottom = `cm (base)`) |>
+    # remove unnecessary columns 
+    select(-`wet weight`, -`dry washed weight`) |>
+    # create identifier of core and depth
+    mutate(id = paste0(core, "-", top))
+  
+  # Create identifier of core and depth and rename vars
+  age_data <- age_data |>
+    rename(core = `...1`,
+           top = `top (cm)`,
+           bottom = `bottom (cm)`,
+           year = `Age calendar year`) |>
+    mutate(id = paste0(core, "-", top))
+}
+
+
+
+# Function to take in the merged foram datasets and add ages from
+# the published ostracode dataset
+age_foram_data <- function(in_df, age_model_df){
+  
+}
+
+
+
+
+
+
+
 join_abundance <- function(ostracode_in, foram_in, color_long, focal_species){
   ## Join data
   ostracodes <- ostracode_in |>
