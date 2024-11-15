@@ -116,10 +116,19 @@
     justify-self: center;
 }    
 .coring-image {
+    width: 100%;
+    justify-self: center;
+    @media only screen and (max-width: 600px) {
         width: 100%;
-        justify-self: center;
-        @media only screen and (max-width: 600px) {
-            width: 100%;
-        }
     }
+}
+#cesium-tooltip {
+    margin-left: -155px;
+}
+#lead-tooltip {
+    margin-left: -145px;
+}
+#radiocarbon-tooltip {
+    margin-left: -185px;
+}
 </style>
