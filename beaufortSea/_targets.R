@@ -49,7 +49,7 @@ sysfonts::font_add_google(annotation_font)
 # Focal species
 focal_species <- tribble(
   ~species, ~species_name, ~epithet, ~focal_L, ~image_name, ~image_size, ~image_y, ~ylim, ~fig_number,
-  "Elphidium excavatum clavatum","E. excavatum","excavatum",TRUE,"F_Elphidium.png",0.2,48,60,"2b",
+  "Elphidium excavatum clavatum","E. excavatum","excavatum",TRUE,"F_Elphidium.png",0.2,48,58,"2b",
   "Spiroplectammina biformis","S. biformis","biformis",TRUE,"F_Spiroplectammina.png",0.15,55,70,"2c",
   "Paracyprideis pseudo","P. pseudopunctillata","pseudopunctillata",TRUE,"O_Paracyprideis.png",0.3,100,110,"3b", 
   "Kotoracythere arctob","K. arctoborealis","arctoborealis",TRUE,"O_Kotoracythere.png",0.3,25,30,"3a",
