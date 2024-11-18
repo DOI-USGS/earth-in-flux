@@ -76,7 +76,8 @@ join_abundance <- function(ostracode_in, foram_in, color_long, focal_species){
     mutate(year = round(year, 0))
   
   forams <- foram_in |>
-    mutate(year = round(year, 0))
+    mutate(year = round(year, 0)) |>
+    select(-sum)
   
   join_long <- ostracodes |>
     full_join(forams, by = "year") |>
