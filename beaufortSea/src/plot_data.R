@@ -18,14 +18,17 @@ plot_species_trend <- function(data_in, species_name){
     geom_image(image = image_path, size = image_size,
                y = image_y, x = 150) +
     #ylim(c(0, ylim)) +
-    ylab("Relative Abundance (%)") +
+    ggtitle("Relative Abundance (%)") +
     xlab("Year (A.D.)") +
     scale_y_continuous(limit = c(0, ylim), 
                        breaks = c(0, 25, 50, 75, 100)) +
     #ggtitle(name) +
     theme_minimal() +
     theme(legend.position = "none",
-          axis.title = element_text(family = annotation_font))
+          axis.title.y = element_blank(),
+          plot.title = element_text(family = annotation_font, size = 20, angle = 0, hjust = -0.050),
+          #axis.title.y = element_text(family = annotation_font, size = 20, angle = 0, hjust = 0),
+          axis.title.x = element_text(family = annotation_font, size = 20))
 }
 
 save_plot <- function(plot_grob, save_name, width, height){
