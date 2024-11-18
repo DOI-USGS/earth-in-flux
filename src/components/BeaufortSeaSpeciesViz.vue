@@ -10,7 +10,6 @@
             </template>
             <template #aboveExplanation>
                 <p v-html="text.paragraph1" />
-                <p v-html="text.paragraph2" />
             </template>
         </VizSection>
         
@@ -22,6 +21,7 @@
                 <h2 v-html="text.heading2" />
             </template>
             <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
                 <div class="subheading-container">
                     <h3 class="subheading" v-html="text.subheading1" />
                     <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
