@@ -50,7 +50,7 @@ export default {
         },
         beaufortsea: {
             title: "Beaufort Sea",
-            motivation: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use microfossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying the bottom-dwelling, microscopic arthropods (called Ostracodes) and single-celled protists (called Forams), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region. Read more about this USGS science <a href='https://www.usgs.gov/programs/climate-research-and-development-program/science/land-sea-linkages-arctic' target='_blank'>here</a>.",
+            motivation: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use microfossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying bottom-dwelling microorganisms like microscopic arthropods (called Ostracodes) and single-celled protists (called Foraminifera), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region. Read more about this USGS science <a href='https://www.usgs.gov/programs/climate-research-and-development-program/science/land-sea-linkages-arctic' target='_blank'>here</a>.",
             teamText: "Laura Gemery is an ecologist, and Julia Seidenstein, Jason Addison and Thomas Cronin are geologists within the Climate Research and Development program of the USGS Ecosystems Mission area. Each specialize in analyzing proxies in sediment cores.",
             teamData: [
                 { name: "Laura Gemery", link: "https://www.usgs.gov/staff-profiles/laura-gemery", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/l_Gemery mustang Oden.png" },
@@ -174,8 +174,8 @@ export default {
                     tabPrefixImageName: "O_Kotoracythere"
                 },
                 {
-                    tabTitle: "Paracyprideis pseudopuntillata",
-                    tabContentTitle: "Paracyprideis pseudopuntillata",
+                    tabTitle: "Paracyprideis pseudopunctillata",
+                    tabContentTitle: "Paracyprideis pseudopunctillata",
                     tabContentTitleID: "paracyprideis",
                     tabSpeciesClass: "Ostracode",
                     tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is common in polar regions with bottom waters that are very cold year-round, and historically has been one of the most dominant species in the Beaufort Sea. It is becoming less dominant as warmer, more acidic conditions favor other species like <span class='scientificName'>Kotocythere arctoborealis</span> and <span class='scientificName'>Spiroplectammina biformis</span>.",
