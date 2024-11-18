@@ -26,7 +26,7 @@ plot_species_trend <- function(data_in, species_name){
     theme_minimal() +
     theme(legend.position = "none",
           axis.title.y = element_blank(),
-          plot.title = element_text(family = annotation_font, size = 20, angle = 0, hjust = -0.050),
+          plot.title = element_text(family = annotation_font, size = 20, angle = 0, hjust = -0.080),
           #axis.title.y = element_text(family = annotation_font, size = 20, angle = 0, hjust = 0),
           axis.title.x = element_text(family = annotation_font, size = 20))
 }
