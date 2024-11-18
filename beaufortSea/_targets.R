@@ -49,11 +49,11 @@ sysfonts::font_add_google(annotation_font)
 # Focal species
 focal_species <- tribble(
   ~species, ~species_name, ~epithet, ~focal_L, ~image_name, ~image_size, ~image_y, ~ylim, ~fig_number,
-  "E. excavatum clavatu","E. excavatum","excavatum",TRUE,"F_Elphidium.png",0.2,48,60,"2b",
-  "Spiroplectammina bif","S. biformis","biformis",TRUE,"F_Spiroplectammina.png",0.15,55,70,"2c",
+  "Elphidium excavatum clavatum","E. excavatum","excavatum",TRUE,"F_Elphidium.png",0.2,48,60,"2b",
+  "Spiroplectammina biformis","S. biformis","biformis",TRUE,"F_Spiroplectammina.png",0.15,55,70,"2c",
   "Paracyprideis pseudo","P. pseudopunctillata","pseudopunctillata",TRUE,"O_Paracyprideis.png",0.3,100,110,"3b", 
   "Kotoracythere arctob","K. arctoborealis","arctoborealis",TRUE,"O_Kotoracythere.png",0.3,25,30,"3a",
-  "C. reniforme...25","C. reniforme","reniforme",TRUE,"F_Cassidulina.png",0.2,80,90,"2a"
+  "Cassidulina reniforme","C. reniforme","reniforme",TRUE,"F_Cassidulina.png",0.2,80,90,"2a"
 )
 
 
@@ -64,19 +64,19 @@ list(
   # Read in ostracode data from ScienceBase ID 6197a410d34eb622f692ce0e
   tar_target(p1_ostracode_raw_xlsx, 
              sb_initialize_and_download(
-               sb_id ="6197a410d34eb622f692ce0e",  #"6622aa30d34e7eb9eb7f99b5",
+               sb_id ="6197a410d34eb622f692ce0e",  
                names = "Data release HLY1302 IP135359.xlsx",
                destinations = "in/Data release HLY1302 IP135359.xlsx",
                overwrite_fileL = FALSE
              ),
              format = "file"),
+  # Read ostracode data
   tar_target(p1_ostracode_raw_df,
              read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
   # read in sheet with age model information
   tar_target(p1_age_model_data_df,
-             read_excel(path = p1_ostracode_raw_xlsx,
-                        sheet = "T4 biogenic silica",
-                        range = "C2:F82")),
+             readr::read_csv(file = "in/temp_crosswalk.csv",
+                             show_col_types = FALSE)),
   
   
   # Read in foraminifera data (downloaded from supplementary information)
@@ -98,17 +98,23 @@ list(
                         range = "C1:AJ142")),
   
   ################ PROCESS DATA #########################
-  # Merge and clean foram data
-  tar_target(p2_foram_noAge_df,
+  # Merge foram data (raw counts)
+  tar_target(p2_foram_counts_df,
              merge_foram_data(GGC30_in = p1_foram_HLY1302_GGC30_raw_df, 
                               JPC32_in = p1_foram_HLY1302_JPC32_raw_df,
                               MC29_in = p1_foram_HLY1302_MC29_raw_df,
                               age_data = p1_age_model_data_df)),
+  # Clean foram data
+  tar_target(p2_foram_df,
+             clean_foram_data(raw_in = p2_foram_counts_df)),
+  
+  
+
   
   # Join abundance data in long format
   tar_target(p2_join_abundance_long,
              join_abundance(ostracode_in = p1_ostracode_raw_df,
-                            foram_in = p1_foram_raw_df,
+                            foram_in = p2_foram_df,
                             color_long = color_long,
                             focal_species = focal_species)),
   
