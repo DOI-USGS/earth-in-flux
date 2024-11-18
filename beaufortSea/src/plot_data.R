@@ -19,7 +19,7 @@ plot_species_trend <- function(data_in, species_name){
                y = image_y, x = 150) +
     #ylim(c(0, ylim)) +
     ggtitle("Relative Abundance (%)") +
-    xlab("Year (A.D.)") +
+    xlab("Year (CE)") +
     scale_y_continuous(limit = c(0, ylim), 
                        breaks = c(0, 25, 50, 75, 100)) +
     #ggtitle(name) +
