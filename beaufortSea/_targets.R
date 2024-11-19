@@ -79,6 +79,7 @@ list(
   
   
   # Read in foraminifera data (downloaded from supplementary information)
+  # https://link.springer.com/article/10.1007/s41063-018-0058-7#Sec17
   tar_target(p1_foram_raw_xlsx,
              "in/41063_2018_58_MOESM1_ESM.xlsx",
              format = "file"),
