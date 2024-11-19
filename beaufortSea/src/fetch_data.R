@@ -241,13 +241,19 @@ read_ostracode <- function(xlsx_in){
 }
 
 read_age_model <- function(xlsx_in){
-  ostracode_raw <- read_excel(path = xlsx_in, 
-                              sheet = "T2 Ost MC29bin5G30bin10J32bin20",
-                              skip = 1, 
-                              range = cell_cols(c(7, 70:131)))
-  # clean up column names
-  ostracode_data <- ostracode_raw[,c(1,65:123)]
-  names(ostracode_data) <- substr(names(ostracode_data), 1, 20)
   
-  return(ostracode_data)
+  age_raw <- read_excel(path = xlsx_in, 
+                        sheet = "T7 composite depths",
+                        range = "A1:H122")
+
+  # Create identifier of core and depth and rename vars
+  age_data <- age_raw |>
+    rename(core = `...2`,
+           top = `cm (top)`,
+           bottom = `cm (base)`,
+           year = `calendar yr`) |>
+    mutate(id = paste0(core, "-", top)) |>
+    select(year, id)
+  
+  return(age_data)
 }

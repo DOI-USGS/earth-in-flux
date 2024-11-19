@@ -22,14 +22,6 @@ merge_foram_data <- function(GGC30_in, JPC32_in, MC29_in, age_data){
     # create identifier of core and depth
     mutate(id = paste0(core, "-", top))
   
-  # Create identifier of core and depth and rename vars
-  age_data <- age_data |>
-    rename(top = `cm (top)`,
-           bottom = `cm (base)`,
-           year = `calendar yr`) |>
-    mutate(id = paste0(core, "-", top)) |>
-    select(year, id)
-  
   # Merge age data with raw counts
   merged <- join |> left_join(age_data, by = "id")
   

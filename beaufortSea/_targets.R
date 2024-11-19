@@ -75,8 +75,7 @@ list(
              read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
   # read in sheet with age model information
   tar_target(p1_age_model_data_df,
-             readr::read_csv(file = "in/temp_crosswalk.csv",
-                             show_col_types = FALSE)),
+             read_age_model(xlsx_in = "in/Data release HLY1302 IP135359_2024.xlsx")),
   
   
   # Read in foraminifera data (downloaded from supplementary information)
