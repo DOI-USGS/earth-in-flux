@@ -77,7 +77,6 @@ onMounted(() => {
       .attr('class', 'node')
       .on('click', function (event, d) {
         console.log('Clicked:', d.link); // Log to ensure click event is triggered
-        window.open(d.link, '_blank');
       });
 
     node
@@ -122,6 +121,19 @@ onMounted(() => {
       .attr('pointer-events', 'none')
       .style('opacity', 0)
       .text(d => d.name);
+
+    // append link
+    node    
+      .append("a")
+        .attr("href", d => d.link)
+        .attr("target", "_blank")
+        .append("svg:rect")
+          .attr("y", -radius)
+          .attr("x", -radius)
+          .attr("height", radius * 2)
+          .attr("width", radius * 2)
+          .style("fill", "transparent")
+          .attr('clip-path', (d, i) => `url(#clip-${i})`);
 
     node
       .on('mouseover', function () {
