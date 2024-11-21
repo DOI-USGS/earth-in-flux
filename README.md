@@ -1,6 +1,22 @@
-# climate-charts
+# USGS Climate Chart Gallery
 
-The climate chart gallery is a shared initiative between the USGS Water Mission Area, Ecosystems Mission Area, and Climate Adaptation Science Centers to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.
+> _A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/climate-charts/-/releases to view all releases._
+
+The climate chart gallery is a shared initiative between the USGS Water Mission Area and Ecosystems Mission Area to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.
+
+**The chart gallery can be viewed at [https://labs.waterdata.usgs.gov/visualizations/climate-charts](https://labs.waterdata.usgs.gov/visualizations/climate-charts).**
+
+## Citation
+
+Corson-Dosch, Hayley, Archer, Althea, Kwang, Jeffrey, Jaenicke, Margaret, and Nell, Cee. 2024. Climate Chart Gallery. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P1J2PMFE](https://doi.org/10.5066/P1J2PMFE)
+
+## Additional contributors
+[Laura Gemery](https://www.usgs.gov/staff-profiles/laura-gemery) and [Natalie Kerhwald](https://www.usgs.gov/staff-profiles/natalie-m-kehrwald) consulted on the development of this website as subject matter experts.
+
+## Additional information
+* We welcome contributions from the community. See the [guidelines for contributing](https://github.com/DOI-USGS/climate-charts/) to this repository on GitHub.
+* [Disclaimer](https://code.usgs.gov/wma/vizlab/climate-charts/-/blob/main/DISCLAIMER.md)
+* [License](https://code.usgs.gov/wma/vizlab/climate-charts/-/blob/main/LICENSE.md)
 
 ## To build the website locally
 Clone the repo. In the directory, run `npm install` to install the required modules. This repository requires `npm v20` to run. If you are using a later version of `npm`, you may [try using `nvm` to manage multiple versions of npm](https://betterprogramming.pub/how-to-change-node-js-version-between-projects-using-nvm-3ad2416bda7e).
