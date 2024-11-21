@@ -187,10 +187,6 @@
         defaultView.value = !defaultView.value
     }
 
-    function remove_image(){
-        defaultView.value = !defaultView.value
-    }
-
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             remove_xs(default_xs,-9999);
@@ -220,7 +216,6 @@
             const line_id = event.currentTarget.id.slice(13);
             const photo_id = event.currentTarget.id.slice(9,12);
             remove_xs(line_id,photo_id);
-            remove_image();
         }
     }
 
