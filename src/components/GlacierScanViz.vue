@@ -184,7 +184,7 @@
         currentPhotoID.value = photo_id
         currentPhotoText.value = mobileView ? props.text[`photo${photo_id}Mobile`] : props.text[`photo${photo_id}`];
         currentPhotoAlt.value = props.text[`photo${photo_id}Alt`];
-        defaultView.value = !defaultView.value
+        defaultView.value = false;//!defaultView.value
     }
 
     function mouseover(event) {
@@ -232,6 +232,7 @@
             draw_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0.75);
+            defaultView.value = true;
         }
     }
 
