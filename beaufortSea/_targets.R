@@ -65,8 +65,8 @@ list(
   tar_target(p1_ostracode_raw_xlsx, 
              sb_initialize_and_download(
                sb_id ="6197a410d34eb622f692ce0e",  
-               names = "Data release HLY1302 IP135359.xlsx",
-               destinations = "in/Data release HLY1302 IP135359.xlsx",
+               names = "Data release HLY1302.xlsx",
+               destinations = "in/Data release HLY1302.xlsx",
                overwrite_fileL = FALSE
              ),
              format = "file"),
@@ -75,7 +75,7 @@ list(
              read_ostracode(xlsx_in = p1_ostracode_raw_xlsx)),
   # read in sheet with age model information
   tar_target(p1_age_model_data_df,
-             read_age_model(xlsx_in = "in/Data release HLY1302 IP135359_2024.xlsx")),
+             read_age_model(xlsx_in = p1_ostracode_raw_xlsx)),
   
   
   # Read in foraminifera data (downloaded from supplementary information)
