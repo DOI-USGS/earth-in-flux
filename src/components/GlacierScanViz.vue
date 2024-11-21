@@ -63,7 +63,7 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v9.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v10.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross-section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
