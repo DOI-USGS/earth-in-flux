@@ -1,6 +1,10 @@
 {
   "name": "climate-charts",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Climate chart gallery highlighting key findings of USGS climate science",
+  "main": "index.html",
+  "author": "USGS Vizlab",
+  "license": "Public Domain, CC0-1.0",
   "private": true,
   "scripts": {
     "dev": "vite --mode test_tier",

@@ -3,7 +3,7 @@
     "name": "climate-charts",
     "organization": "U.S. Geological Survey",
     "description": "Climate chart gallery highlighting key findings of USGS climate science",
-    "version": "{version}",
+    "version": "0.1.0",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
