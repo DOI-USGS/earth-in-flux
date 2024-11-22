@@ -52,11 +52,13 @@
 
     // global variables
     const mobileView = isMobile;
-    const currentPhotoID = ref(null)
+    const currentXsID = ref("113");
+    const currentPhotoID = ref(-9999)
     const currentPhotoAlt = ref("")
     const currentPhotoText = ref("")
     const defaultView = ref(true)
     const default_xs = "113";
+    const defaultPhotoID = -9999;
 
     // Declare behavior on mounted
     // functions called here
@@ -236,6 +238,34 @@
         }
     }
 
+    function touchstart(event) {
+        draw_xs(default_xs, defaultPhotoID);
+        if (event.currentTarget.id.startsWith("figure_1")){
+            remove_xs(default_xs, currentPhotoID.value);
+            d3.select("#tutorial_arrow").selectAll("path")
+                .style("opacity", 0);
+        }
+        if (event.currentTarget.id.startsWith("xs-main-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(8);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(8);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("photo-lg-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(13);
+            currentXsID.value = line_id;
+            const photo_id = event.currentTarget.id.slice(9,12);
+            currentPhotoID.value = photo_id;
+            draw_xs(line_id, currentPhotoID.value);
+            draw_image(photo_id);
+        }
+    }
+
     function addInteractions(svg) {
 
         if (mobileView == true){
@@ -277,11 +307,19 @@
         draw_xs(default_xs,-9999);
 
         // Add interaction events
-        svg.selectAll("g")
-            .on("mouseover", (event) => mouseover(event))
-            .on("mouseout", (event) => mouseout(event))
-            .on("mouseenter", (event) => mouseenter(event))
-            .on("mouseleave", (event) => mouseleave(event));
+        if (mobileView) {
+            svg.selectAll("g")
+                .on("touchstart",(event) => {
+                    event.preventDefault();
+                    touchstart(event)
+                })            
+        } else {
+            svg.selectAll("g")
+                .on("mouseover", (event) => mouseover(event))
+                .on("mouseout", (event) => mouseout(event))
+                .on("mouseenter", (event) => mouseenter(event))
+                .on("mouseleave", (event) => mouseleave(event));
+        }
     }
 </script>
 
