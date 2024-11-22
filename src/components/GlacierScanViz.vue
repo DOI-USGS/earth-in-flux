@@ -308,11 +308,25 @@
 
         // Add interaction events
         if (mobileView) {
+            // add event listener to chart groups on mobile to track taps ON svg groups
+            // this covers mouseenter, mouseover, and mouseout behavior
             svg.selectAll("g")
                 .on("touchstart",(event) => {
                     event.preventDefault();
                     touchstart(event)
-                })            
+                })     
+            // add event listener to document to track tap OFF of svg
+            // this covers mouseleave behavior
+            document.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                if (!event.target.ownerSVGElement) {
+                    remove_xs(currentXsID.value, currentPhotoID.value);
+                    draw_xs(default_xs, defaultPhotoID);
+                    d3.select("#tutorial_arrow").selectAll("path")
+                        .style("opacity", 0.75);
+                    defaultView.value = true;
+                }
+            }, false);       
         } else {
             svg.selectAll("g")
                 .on("mouseover", (event) => mouseover(event))
