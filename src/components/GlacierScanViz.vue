@@ -52,18 +52,20 @@
 
     // global variables
     const mobileView = isMobile;
-    const currentPhotoID = ref(null)
+    const currentXsID = ref("113");
+    const currentPhotoID = ref(-9999)
     const currentPhotoAlt = ref("")
     const currentPhotoText = ref("")
     const defaultView = ref(true)
     const default_xs = "113";
+    const defaultPhotoID = -9999;
 
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v9.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v10.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross-section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -184,11 +186,7 @@
         currentPhotoID.value = photo_id
         currentPhotoText.value = mobileView ? props.text[`photo${photo_id}Mobile`] : props.text[`photo${photo_id}`];
         currentPhotoAlt.value = props.text[`photo${photo_id}Alt`];
-        defaultView.value = !defaultView.value
-    }
-
-    function remove_image(){
-        defaultView.value = !defaultView.value
+        defaultView.value = false;//!defaultView.value
     }
 
     function mouseover(event) {
@@ -220,7 +218,6 @@
             const line_id = event.currentTarget.id.slice(13);
             const photo_id = event.currentTarget.id.slice(9,12);
             remove_xs(line_id,photo_id);
-            remove_image();
         }
     }
 
@@ -237,6 +234,35 @@
             draw_xs(default_xs,-9999);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0.75);
+            defaultView.value = true;
+        }
+    }
+
+    function touchstart(event) {
+        draw_xs(default_xs, defaultPhotoID);
+        if (event.currentTarget.id.startsWith("figure_1")){
+            remove_xs(default_xs, currentPhotoID.value);
+            d3.select("#tutorial_arrow").selectAll("path")
+                .style("opacity", 0);
+        }
+        if (event.currentTarget.id.startsWith("xs-main-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(8);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(8);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("photo-lg-")){
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            const line_id = event.currentTarget.id.slice(13);
+            currentXsID.value = line_id;
+            const photo_id = event.currentTarget.id.slice(9,12);
+            currentPhotoID.value = photo_id;
+            draw_xs(line_id, currentPhotoID.value);
+            draw_image(photo_id);
         }
     }
 
@@ -281,11 +307,33 @@
         draw_xs(default_xs,-9999);
 
         // Add interaction events
-        svg.selectAll("g")
-            .on("mouseover", (event) => mouseover(event))
-            .on("mouseout", (event) => mouseout(event))
-            .on("mouseenter", (event) => mouseenter(event))
-            .on("mouseleave", (event) => mouseleave(event));
+        if (mobileView) {
+            // add event listener to chart groups on mobile to track taps ON svg groups
+            // this covers mouseenter, mouseover, and mouseout behavior
+            svg.selectAll("g")
+                .on("touchstart",(event) => {
+                    event.preventDefault();
+                    touchstart(event)
+                })     
+            // add event listener to document to track tap OFF of svg
+            // this covers mouseleave behavior
+            document.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                if (!event.target.ownerSVGElement) {
+                    remove_xs(currentXsID.value, currentPhotoID.value);
+                    draw_xs(default_xs, defaultPhotoID);
+                    d3.select("#tutorial_arrow").selectAll("path")
+                        .style("opacity", 0.75);
+                    defaultView.value = true;
+                }
+            }, false);       
+        } else {
+            svg.selectAll("g")
+                .on("mouseover", (event) => mouseover(event))
+                .on("mouseout", (event) => mouseout(event))
+                .on("mouseenter", (event) => mouseenter(event))
+                .on("mouseleave", (event) => mouseleave(event));
+        }
     }
 </script>
 
