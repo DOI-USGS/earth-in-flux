@@ -47,7 +47,7 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v7.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v9.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("aerosols-grid-container")
                 svgGrid.appendChild(xml.documentElement);
