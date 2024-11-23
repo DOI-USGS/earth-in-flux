@@ -18,7 +18,11 @@
                 class="text-container"
                 id="page-link-container"
             >
-                <button class="project-link"><RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project</button>
+                <hr>
+                <p id="page-link-note">See the 
+                    <button class="project-link"><RouterLink :to="`/${projectRoute}`">{{ filteredChartContent.project }} project page</RouterLink></button>
+                    for data sources and related visualizations.
+                </p>
             </div>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
@@ -62,22 +66,31 @@
 
 <style scoped lang="scss">
     #page-link-container {
-        text-align: center;
+        font-weight: 300;
+        font-style: italic;
+    }
+    #page-link-note {
+        margin-top: 2.5rem;
     }
     .project-link {
         font-family: sans-serif; /* This is fallback font for old browsers */
         font-family: var(--default-font);
+        font-style: italic;
         background-color: var(--faded-usgs-blue);
         color: var(--usgs-blue);
         border: solid var(--faded-usgs-blue);
         border-radius: 5px;
-        text-align: center;
         font-weight: 300;
-        margin: 3rem auto 1rem auto;
+        margin: 1rem 0.25rem 1rem 0.25rem;
         padding: 0.3rem 0.5rem 0.5rem 0.5rem;
+        box-shadow: 3px 3px 3px rgba(39,44,49,.2);
     }
     .project-link a {
         text-decoration: none;
         color: var(--usgs-blue);
+    }
+    .project-link:hover {
+        box-shadow: rgba(39,44,49,.7) 2px 2px 4px -2px;
+        transform: translate3d(0, 2px, 0);
     }
 </style>
