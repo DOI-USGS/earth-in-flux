@@ -14,10 +14,11 @@
       <div>
         <div
           v-for="reference in references"
+          class="reference-text"
           :key="reference.num"
         >
-          <p>
-            <span v-html="reference.num" />. <span v-html="reference.authors" /> (<span v-html="reference.year" />). <a
+          <ol>
+            <span v-html="reference.authors" /> (<span v-html="reference.year" />). <a
               :href="reference.link"
               target="_blank"
             ><span v-html="reference.title" :class="{ report: reference.report }"/></a>
@@ -29,7 +30,7 @@
             </span>
             <span v-if="reference.doi" v-html="reference.doi"></span>
             <span v-else v-html="reference.link"></span>
-          </p>
+          </ol>
         </div>
       </div>
     </template>
@@ -54,6 +55,13 @@
 </script>
 
 <style scoped lang="scss">
+  .reference-text {
+    text-indent: -4rem;
+    padding: 0 0 1rem;
+  }
+  .reference-text ol {
+    list-style-type: none;
+  }
   .journal-name {
     font-style: italic;
   }
