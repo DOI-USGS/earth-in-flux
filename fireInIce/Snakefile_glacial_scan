@@ -1,6 +1,5 @@
 HUC8s = [19010301,19010304]
 
-#sb data
 sb_id = "5e472c3ee4b0ff554f6837bc"
 
 rule all:
@@ -8,6 +7,7 @@ rule all:
         "2_visualize/out/xs_19010301and19010304.svg",
         "data_out/glacial_mri.svg"
 
+# download sb item 5e472c3ee4b0ff554f6837bc
 rule download_FI_DATA:
     params:
         sb_id = sb_id
@@ -16,6 +16,7 @@ rule download_FI_DATA:
     script:
         "0_fetch/src/download_sb.py"
 
+# unzip the sb item 5e472c3ee4b0ff554f6837bc
 rule unzip_FI_DATA:
     input:
         zipfile = "0_fetch/tmp/"+sb_id+".zip"
@@ -29,6 +30,7 @@ rule unzip_FI_DATA:
     script:
         "0_fetch/src/unzip_file.py"
 
+# get the extent, a combo of HUC 19010301 and 19010304
 rule get_wbd:
     params:
         huc_list = lambda wildcards: f"{wildcards.huc_id}".split("and")
@@ -37,6 +39,7 @@ rule get_wbd:
     script:
         "0_fetch/src/get_wbd.py"
 
+# download the dem over the extent
 rule download_dem:
     params:
         data_product = '/API/globaldem',
@@ -52,7 +55,6 @@ rule download_dem:
 
 #"0_fetch/tmp/RGI-2.zip" was downloaded from here: https://www.sedoo.fr/theia-publication-products/?uuid=55acbdd5-3982-4eac-89b2-46703557938c
 #Western Canada and USA
-
 rule unzip_ice_thickness:
     input:
         zipfile = "0_fetch/tmp/RGI-2.zip"
@@ -61,6 +63,7 @@ rule unzip_ice_thickness:
     script:
         "0_fetch/src/unzip_file.py"
 
+# regrid the ice thickness data to have the same grid as the dem
 rule regrid_ice_thickness:
     input:
         src_file = "0_fetch/tmp/RGI-2/RGI-2/THICKNESS_RGI-2.1_2021July09.tif",
@@ -70,6 +73,7 @@ rule regrid_ice_thickness:
     script:
         "1_process/src/regrid.py"
 
+# remove the NaNs and fill via interpolation
 rule remove_nans:
     params:
         convolution_window = 4.0
@@ -80,6 +84,7 @@ rule remove_nans:
     script:
         "1_process/src/remove_nans.py"
 
+# make a shapefile of the cores from the sb item 5e472c3ee4b0ff554f6837bc
 rule make_core_shpfile:
     input:
         core_data = '0_fetch/tmp/5e472c3ee4b0ff554f6837bc/Table 1 Site Locations.xlsx'
@@ -88,6 +93,7 @@ rule make_core_shpfile:
     script:
         "1_process/src/cores_to_shp.py"
 
+# Calculate bedrock by subtracting ice thickness from the surface elevation
 rule calc_bedrock:
     input:
         dem_file = "0_fetch/out/{huc_id}/dem.tif",
@@ -98,6 +104,7 @@ rule calc_bedrock:
     script:
         "1_process/src/calc_bedrock.py"
 
+# create the map vs. cross section plot
 rule create_xs:
     params:
         default_plot = 113,
@@ -115,6 +122,7 @@ rule create_xs:
     script:
         "2_visualize/src/xs_process.py"
 
+# remove the metadata from the svg and save into the data_out folder
 rule remove_metadata:
     input:
         infile = "2_visualize/out/xs_19010301and19010304.svg"
