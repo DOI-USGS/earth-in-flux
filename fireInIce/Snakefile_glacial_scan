@@ -53,7 +53,7 @@ rule download_dem:
     script:
         "0_fetch/src/download_dem.py"
 
-#"0_fetch/tmp/RGI-2.zip" was downloaded from here: https://www.sedoo.fr/theia-publication-products/?uuid=55acbdd5-3982-4eac-89b2-46703557938c
+#"0_fetch/tmp/RGI-2.zip" was downloaded from here: https://doi.org/10.6096/1007
 #Western Canada and USA
 rule unzip_ice_thickness:
     input:
@@ -105,6 +105,10 @@ rule calc_bedrock:
         "1_process/src/calc_bedrock.py"
 
 # create the map vs. cross section plot
+# renderfile is a basemap generated in Blender using the following sources:
+# DEM: https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.1
+# Ice Thickness https://doi.org/10.6096/1007
+# NHD files were downloaded using PyNHD: https://doi.org/10.21105/joss.03175
 rule create_xs:
     params:
         default_plot = 113,
