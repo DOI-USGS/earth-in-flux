@@ -118,14 +118,14 @@ export default {
             paragraph4: "Onboard the ship, researchers cut the sediment core into one- and five-centimeter-thick slices for analysis, representing ~4- and ~24-year periods, respectively. The total time span that this particular sediment core represents is about <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>2000 years</a>. The timeline of sediment deposition was established by measuring <span class='tooltip-group'><span class='tooltip-span'>Cesium (Cs)</span><span id='cesium-tooltip' class='tooltiptext'>Cesium-137 dating measures a radioactive isotope released during nuclear tests in the 1950s and 1960s, which indicates when sediment layers were deposited from the mid-20th century onward.</span></span> and <span class='tooltip-group'><span class='tooltip-span'>Lead (Pb)</span><span id='lead-tooltip' class='tooltiptext'>Lead-210, a decay product of radon originating from uranium in the soil, accumulates in sediments over time. Measuring its concentration helps estimate the age of sediment layers over the last ~150 years.</span></span> radioisotopes and by <span class='tooltip-group'><span class='tooltip-span'>radiocarbon dating</span><span id='radiocarbon-tooltip' class='tooltiptext'>Researchers use radiocarbon dating to extend the record further back in time (up to ~50,000 years). This method relies on carbon-14, which is produced in the atmosphere and absorbed by living organisms. Once an organism dies, it stops taking in Carbon-14, which then decays at a known rate.</span></span> fossilized shells down the length of the core.",
             paragraph5: "After processing the core, the researchers identified all the microfossils in each slice. The microfossils ranged in size from 0.5 to 2 millimeters. Most of them were a little larger than the period at the end of this sentence.",
             paragraph6: "Scientists used a damp brush to move the microfossils from the sediment and place them on a slide for identification under a microscope. The microfossils examined in this study include <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-species' target='_blank'>foraminifera and ostracoda</a>, which are excellent proxy indicators for past environments because their presence and growth were influenced by specific climate and ocean conditions when they were alive.",
-            alt1: "alt text 1",
-            alt2: "alt text 2",
-            alt3: "alt text 3",
-            alt4: "alt text 4",
-            alt5: "alt text 5",
-            alt6: "alt text 6",
-            alt7: "alt text 7",
-            alt8: "alt text 8"
+            alt1: "Illustrated world map showing a cartoon airplane flying from Reston, Virginia at USGS headquarters to the Beaufort Sea at the northeast corner of Alaska.",
+            alt2: "Zoomed in illustrated map of Alaska and northwest Canada. A cartoon icebreaker ship is offshore from the mouth of the Mackenzie River where it opens up into the Beaufort Sea. Text labels Alaska, Canada, Mackenzie River, and Beaufort Sea.",
+            alt3: "Animated cartoon gif showing the icebreaker ship pushing through some ice to get to the study site. The landscape shows ice-covered Beaufort Sea with a dull, cold blue-grey sky and distant clouds.",
+            alt4: "Two side-by-side photographs of the ship on the left and people on deck of the ship on the right. The images are composed in a scrapbook-style alongside a cartoon beluga whale. The ship is large and bright red with the U.S. Coast Guard label on the side. Behind the ship are mountains covered in ice. The people on the deck of the ship are watching the sediment core as it enters the ice. They're wearing bright red Coast Guard jackets to stay safe and warm.",
+            alt5: "Animated cartoon gif showing the Coast Guard ship on top of the icy sea and dropping the sediment core down into the ocean. When the core gets to the bottom, it removes a core of the ocean floor and then is returned to the ship with the sediment sample. Swimming under the sea is a cartoon beluga whale.",
+            alt6: "Three photographs of the researchers collecting the core, processing it, and then also showing the core once it is in the lab. The images are composed in a scrapbook-style alongside the cartoon Coast Guard ship.",
+            alt7: "Animated cartoon gif showing the sediment core after it's been pulled up from the ocean floor. As the animation moves forward, the core is sliced into small discs. One example disc is shown zoomed-in with lots of little specks of color, representing the microfossils. The five focal species are also shown zoomed-in near the sample to represent that they are identified from these sediment discs.",
+            alt8: "Three photographs of the researchers examining and identifying the microfossils. One image shows Laura Gemery, USGS researcher, studying microfossils through a microscope. The middle image shows a zoomed in image of a petri dish and Laura holding a small paint brush and one microfossil, which is barely visible next to the paint brush bristles. The third image shows a close-up of the microscope with some samples laid out underneath it. The scrapbook-style images are surrounded by actual scanning electron images of the different microfossil species."
         },
         BeaufortSeaSpecies: {
             heading1: "The Arctic Ocean is changing",
@@ -145,7 +145,7 @@ export default {
                     tabText: "The relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> has been higher in the past few decades than in the last 2000 years. Species within the <span class='scientificName'>Spiroplectammina</span> genus create tests that are 'agglutinated,' or formed by cementing together particles of sand and sediment. Agglutinated species are able to withstand harsher environments than other types of foraminifera. High abundances of agglutinated species often indicate corrosive (acidic) and turbid (cloudy) conditions. The recent increase in the relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> suggests that eroded permafrost carried into the Beaufort Sea by the Mackenzie River as a consequence of climate change may be making bottom ocean waters more acidic and less hospitable to other species that have carbonate shells.",
                     tabContentImageSuffix: "2c",
                     tabPrefixImageName: "F_Spiroplectammina",
-                    tabImageAlt: ""
+                    tabImageAlt: "Scatterplot of the relative abundance of Spiroplectammina biformis over the past 2000 years. The relative abundance was low until about 1000 CE, then it had some periods of being a bit higher (about 25%-40%) until about 1500 CE. In the last 100 years or so, the relative abundance has been increasing rapidly and is above 50% relative abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
                 },
                 {
                     tabTitle: "Cassidulina reniforme",
@@ -155,7 +155,7 @@ export default {
                     tabText: "The relative abundance of <span class='scientificName'>Cassidulina reniforme</span> has declined very recently. This shift may be due to the increased abundance of agglutinated species like <span class='scientificName'>Spiroplectammina biformis</span>, which can survive in more corrosive conditions.",
                     tabContentImageSuffix: "2a",
                     tabPrefixImageName: "F_Cassidulina",
-                    tabImageAlt: ""
+                    tabImageAlt: "Scatterplot of the relative abundance of Cassidulina reniforme over the past 2000 years. The relative abundance was fairly stable, oscillating around about 40% relative abundance until the last 500 years or so when the abundance has declined to a low recently near 0% abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
                 },
                 {
                     tabTitle: "Elphidium excavatum",
@@ -165,7 +165,7 @@ export default {
                     tabText: "Like <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span> has declined in relative abundance in the Beaufort Sea in recent years. As climate change (and potentially an increased sediment load in the Mackenzie River) makes local ocean water more acidic, the aquatic environment becomes less favorable to organisms that build calcium carbonate shells.",
                     tabContentImageSuffix: "2b",
                     tabPrefixImageName: "F_Elphidium",
-                    tabImageAlt: ""
+                    tabImageAlt: "Scatterplot of the relative abundance of Elphidium excavatum over the past 2000 years. The relative abundance was fairly stable, oscillating around about 25% relative abundance until the last 500 years or so when the abundance has declined to a low recently near 0% abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
                 },
                 {
                     tabTitle: "Kotoracythere arctoborealis",
@@ -175,7 +175,7 @@ export default {
                     tabText: "<span class='scientificName'>Kotoracythere arctoborealis</span> is a species of ostracode that is not as common and is less widespread than other species of ostracode in the Arctic Ocean. Its ecological preferences are more limiting, and it prefers protected areas, like bays with comparatively warmer temperatures. In the Beaufort Sea, <span class='scientificName'>Kotoracythere arctoborealis</span> has had relatively low, but steady, abundance until recently, when it increased in relative abundance. This shift is likely due to changes in ocean water salinity and warmer summer water temperatures that favor <span class='scientificName'>Kotoracythere arctoborealis</span>.",
                     tabContentImageSuffix: "3a",
                     tabPrefixImageName: "O_Kotoracythere",
-                    tabImageAlt: ""
+                    tabImageAlt: "Scatterplot of the relative abundance of Kotoracythere arctoborealis over the past 2000 years. The relative abundance was fairly stable and low (about 10% or less) over much of the timespan. In the last 500 years or so, the abundance has increased to almost 25%. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
                 },
                 {
                     tabTitle: "Paracyprideis pseudopunctillata",
@@ -185,7 +185,7 @@ export default {
                     tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is common in polar regions with bottom waters that are very cold year-round, and historically has been one of the most dominant species in the Beaufort Sea. It is becoming less dominant as conditions favor other species like <span class='scientificName'>Kotocythere arctoborealis</span> and <span class='scientificName'>Spiroplectammina biformis</span>.",
                     tabContentImageSuffix: "3b",
                     tabPrefixImageName: "O_Paracyprideis",
-                    tabImageAlt: ""
+                    tabImageAlt: "Scatterplot of the relative abundance of Paracyprideis pseudopunctillata over the past 2000 years. The relative abundance was fairly stable, oscillating around about 60% relative abundance until around 1500 CE when it declined to nearly 0%. Then, it increased again back to about 60% abundance until about 1750 CE, and it has been declining since. The relative abundance was just above 25% for this species in the last sample in 2000 CE. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
                 }
             ],
             heading3: "How are these data collected?",
