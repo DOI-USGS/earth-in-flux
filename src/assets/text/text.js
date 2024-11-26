@@ -144,7 +144,8 @@ export default {
                     tabSpeciesClass: "Foraminifera",
                     tabText: "The relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> has been higher in the past few decades than in the last 2000 years. Species within the <span class='scientificName'>Spiroplectammina</span> genus create tests that are 'agglutinated,' or formed by cementing together particles of sand and sediment. Agglutinated species are able to withstand harsher environments than other types of foraminifera. High abundances of agglutinated species often indicate corrosive (acidic) and turbid (cloudy) conditions. The recent increase in the relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> suggests that eroded permafrost carried into the Beaufort Sea by the Mackenzie River as a consequence of climate change may be making bottom ocean waters more acidic and less hospitable to other species that have carbonate shells.",
                     tabContentImageSuffix: "2c",
-                    tabPrefixImageName: "F_Spiroplectammina"
+                    tabPrefixImageName: "F_Spiroplectammina",
+                    tabImageAlt: ""
                 },
                 {
                     tabTitle: "Cassidulina reniforme",
@@ -153,7 +154,8 @@ export default {
                     tabSpeciesClass: "Foraminifera",
                     tabText: "The relative abundance of <span class='scientificName'>Cassidulina reniforme</span> has declined very recently. This shift may be due to the increased abundance of agglutinated species like <span class='scientificName'>Spiroplectammina biformis</span>, which can survive in more corrosive conditions.",
                     tabContentImageSuffix: "2a",
-                    tabPrefixImageName: "F_Cassidulina"
+                    tabPrefixImageName: "F_Cassidulina",
+                    tabImageAlt: ""
                 },
                 {
                     tabTitle: "Elphidium excavatum",
@@ -162,7 +164,8 @@ export default {
                     tabSpeciesClass: "Foraminifera",
                     tabText: "Like <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span> has declined in relative abundance in the Beaufort Sea in recent years. As climate change (and potentially an increased sediment load in the Mackenzie River) makes local ocean water more acidic, the aquatic environment becomes less favorable to organisms that build calcium carbonate shells.",
                     tabContentImageSuffix: "2b",
-                    tabPrefixImageName: "F_Elphidium"
+                    tabPrefixImageName: "F_Elphidium",
+                    tabImageAlt: ""
                 },
                 {
                     tabTitle: "Kotoracythere arctoborealis",
@@ -171,7 +174,8 @@ export default {
                     tabSpeciesClass: "Ostracode",
                     tabText: "<span class='scientificName'>Kotoracythere arctoborealis</span> is a species of ostracode that is not as common and is less widespread than other species of ostracode in the Arctic Ocean. Its ecological preferences are more limiting, and it prefers protected areas, like bays with comparatively warmer temperatures. In the Beaufort Sea, <span class='scientificName'>Kotoracythere arctoborealis</span> has had relatively low, but steady, abundance until recently, when it increased in relative abundance. This shift is likely due to changes in ocean water salinity and warmer summer water temperatures that favor <span class='scientificName'>Kotoracythere arctoborealis</span>.",
                     tabContentImageSuffix: "3a",
-                    tabPrefixImageName: "O_Kotoracythere"
+                    tabPrefixImageName: "O_Kotoracythere",
+                    tabImageAlt: ""
                 },
                 {
                     tabTitle: "Paracyprideis pseudopunctillata",
@@ -180,7 +184,8 @@ export default {
                     tabSpeciesClass: "Ostracode",
                     tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is common in polar regions with bottom waters that are very cold year-round, and historically has been one of the most dominant species in the Beaufort Sea. It is becoming less dominant as conditions favor other species like <span class='scientificName'>Kotocythere arctoborealis</span> and <span class='scientificName'>Spiroplectammina biformis</span>.",
                     tabContentImageSuffix: "3b",
-                    tabPrefixImageName: "O_Paracyprideis"
+                    tabPrefixImageName: "O_Paracyprideis",
+                    tabImageAlt: ""
                 }
             ],
             heading3: "How are these data collected?",
