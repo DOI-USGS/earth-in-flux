@@ -33,25 +33,34 @@ mpl.rcParams["font.size"] = 18
 tutorial_fontsize = 28
 north_fontsize = 21
 
-##########cross section parameters##########
+# number of cross sections
 points = 201
+
+# number of sampling points making up cross section
 xs_points = 301
+
+# starting location x space
 x_start = 538000.
+
+# ending location x space
 x_end = 550100.
+
+# width of cross section
 width = 50000.
 
+# figure dimensions
 fig_width = 8.0 
 fig_height = 8.0
-
 fig_buffer_bottom = 0.66
 fig_buffer_left = 0.6
 fig_buffer_right = 0.15
 fig_buffer_between = 0.3
 render_height = 5.
 
-map_offset_y = 0.0#5000.
+# map adjustment
+map_offset_y = 0.0
 map_offset_x = 0.0
-map_width = 110000.#125000.
+map_width = 110000.
 
 #core marker and line colors
 core_color = 'tab:blue'
@@ -64,7 +73,7 @@ ar_base = 2.0
 lower_limit = -500
 
 #scale bar parameters
-scale_bar_rel_x = 0.325#295
+scale_bar_rel_x = 0.325
 scale_bar_rel_y = 0.3
 scale_bar_length = 16000
 scale_bar_height = 1000
@@ -180,25 +189,34 @@ def main(
     y_track = np.linspace(y_start,y_end,points)
     slope = (y_end - y_start) / (x_end - x_start)
     angle = np.arctan(np.abs(slope))
+
     #get the dx and dy from the LSRL
     y_decomp = np.cos(angle) * width / 2.0
     x_decomp = -np.sin(angle) * width / 2.0
 
+    # get aspect of the rendered image
     render_aspect = render_height / (fig_width - fig_buffer_left - fig_buffer_right)
+
+    # get height of map
+    map_height = map_width * render_aspect
+
+    # get center of map
     map_center_x = 0.5 * (buff_west + buff_east)
     map_center_y = 0.5 * (buff_north + buff_south)
-    map_height = map_width * render_aspect
 
     # make figure and axis
     fig_xs = plt.figure(1,figsize=(fig_width,fig_height),facecolor='w')
+
     # axis with map
     ax_texturemap = fig_xs.add_axes([fig_buffer_left/fig_width,
                                     (fig_height - render_height)/fig_height,
                                     1.0 - (fig_buffer_left+fig_buffer_right)/fig_width,
                                     render_height/fig_height])
+    # set map bounds
     ax_texturemap.set_xlim(map_center_x - map_width * 0.5 + map_offset_x, map_center_x + map_width * 0.5 + map_offset_x)
     ax_texturemap.set_ylim(map_center_y - map_height * 0.5 + map_offset_y, map_center_y + map_height * 0.5 + map_offset_y)
     ax_texturemap.axis('off')
+
     # axis with cross-section
     ax_xs = fig_xs.add_axes([fig_buffer_left/fig_width,
                             fig_buffer_bottom/fig_height,
@@ -220,8 +238,6 @@ def main(
     x_rot_track,y_rot_track = translatexy(x_track,y_track,\
                                           0.5*(buff_east+buff_west),0.5*(buff_south+buff_north),\
                                           np.pi/2.0-angle)
-    #LSRL
-    #ax_texturemap.plot(x_rot_track,y_rot_track,color='k',zorder=2,linestyle='--',linewidth=4,alpha=0.75)
 
     #LSRL "zone"
     ax_texturemap.plot(x_rot_track - width/2.0,y_rot_track,color='k',zorder=2,linestyle='--',linewidth=1,alpha=1.0)
@@ -234,7 +250,7 @@ def main(
     # x coordinates for the cross section
     x_xs=np.linspace(0,width,xs_points)
 
-    #camera locations
+    #camera svg
     camicon = parse_path("""M521.5,170.5v289H54.5V170.5h161v.5H55v288h466V171h-160.5v-.5h161ZM216,117h144v53.5h.5v-54h-145v54h.5v-53.5ZM360,171h.5v.5h160v287H55.5V171.5h160v-.5h.5v-.5h.5v-53h143v53h.5v.5Z""")
     # Calculate the extent
     min_x = camicon.vertices[:, 0].min()
@@ -251,7 +267,9 @@ def main(
     camicon = camicon.transformed(mpl.transforms.Affine2D().rotate_deg(180))
     camicon = camicon.transformed(mpl.transforms.Affine2D().scale(-1,1))         
 
+    # drill svg
     drillicon = parse_path("""M.5,288.5V.5h72v288l-36,36.4L.5,288.9""")
+    # centered drill svg for legend
     cent_drillicon = parse_path("""M.5,288.5V.5h72v288l-36,36.4L.5,288.9""")
 
     # Calculate the extent
@@ -269,6 +287,7 @@ def main(
     drillicon = drillicon.transformed(mpl.transforms.Affine2D().rotate_deg(180))
     drillicon = drillicon.transformed(mpl.transforms.Affine2D().scale(-1,1))
 
+    # Center the icon using the extent
     cent_drillicon.vertices -= np.array([center_x, center_y])
     cent_drillicon = cent_drillicon.transformed(mpl.transforms.Affine2D().rotate_deg(180))
     cent_drillicon = cent_drillicon.transformed(mpl.transforms.Affine2D().scale(-1,1))
@@ -318,8 +337,7 @@ def main(
                 x_xs_i = np.argmin(abs(distance-x_xs))
                 ax_texturemap.scatter(core_shp_rot.geometry.x[j],core_shp_rot.geometry.y[j],facecolor=core_color,edgecolor='k',linewidth=1.0,marker=drillicon,s=3201+i/1000,alpha=0.8,zorder=1001,gid='xs-c-lg-'+str(i))
                 ax_xs.scatter(x_xs[x_xs_i],ice_layer[x_xs_i],facecolor=core_color,edgecolor='k',linewidth=1.0,marker=drillicon,s=3200+i/1000,zorder=1001,clip_on=False,gid='xs-c-sm-'+str(i),alpha=alpha_plot)
-                #ax_texturemap.text(core_shp_rot.geometry.x[j],core_shp_rot.geometry.y[j],core_shp['Core Name'][j][-17:-7],zorder=10000)
-     
+        # draw camera locations        
         for j, core_i in enumerate(photo_ids):
             if core_i == i:
                 photo_index = photo_indices[j]
@@ -329,7 +347,6 @@ def main(
                 ax_xs.scatter(x_xs[x_xs_i],ice_layer[x_xs_i],facecolor="tab:red",edgecolor='k',linewidth=1.0,marker=camicon,s=401+i/1000,zorder=1000,alpha=alpha_plot,gid='photo-sm-'+str(photo_index).zfill(3)+'-'+str(i))
      
     #legend
-    #make a dummy drill icon that's centered
     ax_texturemap.scatter(0,0,facecolor=core_color,edgecolor='k',linewidth=1.0,marker=cent_drillicon,s=802,label='Ice Core')
     ax_texturemap.scatter(0,0,facecolor="tab:red",edgecolor='k',linewidth=1.0,marker=camicon,s=402,alpha=0.8,label='Photo')
     ax_texturemap.legend(loc='right',facecolor='w',edgecolor='none',framealpha=0.75, fancybox=False,markerfirst=True)
@@ -385,8 +402,6 @@ def main(
     ax_texturemap.add_patch(tutorial_arrow)
 
     #cross section axis properties
-    # ax_xs.scatter(-10000,0,facecolor=core_color,edgecolor='k',linewidth= 0.5,marker=drillicon,s=1600,zorder=1000,label='Ice Core')
-    # ax_xs.scatter(-10000,0,facecolor='tab:red',edgecolor='k',linewidth= 0.5,marker=camicon,s=400,zorder=1000,label='Photo')
     ax_xs.fill_between([-10,10],[0,0],[1,1],alpha=1.0,zorder=0,edgecolor='none',label='Ice',facecolor="#dddddd")
     ax_xs.fill_between([-10,10],[0,0],[1,1],alpha=1.0,zorder=0,edgecolor='none',label='Rock',facecolor="#c49051")
     ax_xs.set_xlim(x_xs[-1],x_xs[0])
@@ -394,6 +409,7 @@ def main(
     ax_xs.set_yticks([0,1000,2000,3000,4000],[0,1,2,3,4])
     leg = ax_xs.legend(loc='upper right',facecolor='none',edgecolor='none',markerfirst=True,ncol=1)
     bb = leg.get_bbox_to_anchor().transformed(ax_xs.transAxes.inverted()) 
+
     # Change to location of the legend. 
     bb.y1 += 0.2
     leg.set_bbox_to_anchor(bb, transform = ax_xs.transAxes)
@@ -401,6 +417,7 @@ def main(
     ax_xs.spines["right"].set_visible(False)
     ax_xs.set_ylabel('Elevation (km)')
     ax_xs.set_xlabel('Cross-Sectional Distance (km)')
+    
     #x ticks
     x_ticks = 5
     x_tick_locs = [x_xs[-1]+float(i)/float(x_ticks)*(x_xs[0]-x_xs[-1]) for i in range(0,x_ticks+1)]
