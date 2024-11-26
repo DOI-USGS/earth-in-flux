@@ -11,12 +11,28 @@ from shapely.geometry import Point
 import matplotlib as mpl
 
 parent = os.getcwd()
+
+# add the condensed universe font
 mpl.font_manager.fontManager.addfont(parent + '/font/Univers-Condensed.otf')
 prop = mpl.font_manager.FontProperties(fname= parent + '/font/Univers-Condensed.otf')
 mpl.rcParams["font.family"] = "sans-serif"
 mpl.rcParams["font.sans-serif"] = [prop.get_name()]
 mpl.rcParams['svg.fonttype'] = 'none'
 mpl.rcParams["font.size"] = 18
+
+smoke_label_fontsize = 18
+label_fontsize = 18
+big_label_fontsize = 24
+
+# figure dimensions
+fig_width = 8.0
+fig_height = 7.0
+
+# map CRS
+map_crs = 'EPSG:3857'
+
+# axis dimensions
+ax_height = 0.9
 
 def get_shapefile_extent(shapefile):
     west, south, east, north = shapefile.geometry.total_bounds
@@ -59,16 +75,9 @@ def main(
         aerosol_mapfile,
         aerosol_svg_mapfile
     ):
-    
-    #stable parameters
-    fig_width = 8.0
-    fig_height = 7.0
-    map_crs = 'EPSG:3857'
+
+    # make figure
     fig = plt.figure(1,figsize=(fig_width,fig_height))
-    ax_height = 0.9
-    smoke_label_fontsize = 18
-    label_fontsize = 18
-    big_label_fontsize = 24
 
     #get the extent of the basemap in degrees
     west_deg, east_deg, length_deg, south_deg, north_deg, height_deg = get_shapefile_extent(gpd.read_file(extent_shpfile))
@@ -115,42 +124,35 @@ def main(
     x,y=map(x_box,y_box)
     map.plot(x, y, color='k', linewidth=1.0) 
 
-    rando_scale = 0.0
-    smoke_lines = 1
+    # draw flame icon svg
     flameicon = parse_path("""M18.61,54.89C15.7,28.8,30.94,10.45,59.52,0C42.02,22.71,74.44,47.31,76.23,70.89 c4.19-7.15,6.57-16.69,7.04-29.45c21.43,33.62,3.66,88.57-43.5,80.67c-4.33-0.72-8.5-2.09-12.3-4.13C10.27,108.8,0,88.79,0,69.68 C0,57.5,5.21,46.63,11.95,37.99C12.85,46.45,14.77,52.76,18.61,54.89L18.61,54.89z""")
-
     flameicon.vertices -= flameicon.vertices.mean(axis=0)
     flameicon = flameicon.transformed(mpl.transforms.Affine2D().rotate_deg(180))
     flameicon = flameicon.transformed(mpl.transforms.Affine2D().scale(-1,1))
 
-
+    # set default fire and trajectory that show on website load
     default_trajectory = 8
     default_fire = 1
-
-    mean_x_fire = 0
-    mean_y_fire = 0
 
     for i in range(0,fires):
         #load geo databases for the trajector data
         gdf_for_traj = load_trajectory(forward_trajectory_files[i], map_crs)
 
-        #smoke lines
-        np.random.seed(123)
-        for smoke_line in range(0,smoke_lines):
-            gray_rando = np.random.random() * 0.25 + 0.2
-            for trajectory_num in range(np.min(gdf_for_traj['trajectory_num']),np.max(gdf_for_traj['trajectory_num']+1)):
-                traj_x = gdf_for_traj[gdf_for_traj['trajectory_num']==trajectory_num].geometry.x
-                traj_y = gdf_for_traj[gdf_for_traj['trajectory_num']==trajectory_num].geometry.y
-                smokewidth = 8.0
-                ax.plot(traj_x+(np.random.random(len(traj_x))-0.5)*rando_scale,traj_y+(np.random.random(len(traj_y))-0.5)*rando_scale,\
-                    color=(gray_rando,gray_rando,gray_rando,),alpha=0.0,linewidth = smokewidth,gid='trajectory-'+str(i)+'-'+str(trajectory_num)+'-'+str(smoke_line))
+        # draw smoke lines
+        for trajectory_num in range(np.min(gdf_for_traj['trajectory_num']),np.max(gdf_for_traj['trajectory_num']+1)):
+            traj_x = gdf_for_traj[gdf_for_traj['trajectory_num']==trajectory_num].geometry.x
+            traj_y = gdf_for_traj[gdf_for_traj['trajectory_num']==trajectory_num].geometry.y
+            ax.plot(traj_x,traj_y,\
+                color=(0.375,0.375,0.375,),alpha=0.0,linewidth = 8.0,gid='trajectory-'+str(i)+'-'+str(trajectory_num)+'-0')
 
-                if trajectory_num == default_trajectory and i == default_fire:
-                    label_offset_y = 70000
-                    label_offset_x = 30000
-                    label_index = int(len(traj_x)*0.5)
-                    ax.text(label_offset_x+traj_x[traj_x.index[label_index]],label_offset_y+traj_y[traj_x.index[label_index]],"Potential Smoke Path",color='w',fontsize=smoke_label_fontsize,va='bottom',ha='center',rotation=-15,rotation_mode='anchor',gid='single-path-label',
-                        bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round',edgecolor='none', pad=0.2,linewidth=0.0),alpha=1.0)
+            # add label to default trajectory
+            if trajectory_num == default_trajectory and i == default_fire:
+                label_offset_y = 70000
+                label_offset_x = 30000
+                label_index = int(len(traj_x)*0.5)
+                ax.text(label_offset_x+traj_x[traj_x.index[label_index]],label_offset_y+traj_y[traj_x.index[label_index]],"Potential Smoke Path",color='w',fontsize=smoke_label_fontsize,va='bottom',ha='center',rotation=-15,rotation_mode='anchor',gid='single-path-label',
+                    bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round',edgecolor='none', pad=0.2,linewidth=0.0),alpha=1.0)
+       
         #fire location
         inner_flame_offset_y = -25000
         inner_flame_offset_x = 2000
@@ -158,15 +160,13 @@ def main(
         ax.scatter(gdf_for_traj.geometry.x[0]+inner_flame_offset_x,gdf_for_traj.geometry.y[0]+inner_flame_offset_y,s=400,linewidth=0.0,marker=flameicon,facecolor='tab:orange',edgecolor='k',zorder=3)
         ax.scatter(gdf_for_traj.geometry.x[0],gdf_for_traj.geometry.y[0],s=1600,alpha=0.00001,marker=flameicon,facecolor='w',edgecolor='none',zorder=4,gid='source-'+str(i))
 
-        #label location
+        #label wild fire location
         x_offset_label = -50000
         y_offset_label = -200000
         ax.text(gdf_for_traj.geometry.x[0]-x_offset_label,gdf_for_traj.geometry.y[0]+y_offset_label,fire_labels[i],color='w',fontsize=label_fontsize,va='center',ha='right',alpha=0.0,gid='wildfire-label-'+str(i),
             bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
-    
-        mean_x_fire += gdf_for_traj.geometry.x[0]
-        mean_y_fire += gdf_for_traj.geometry.y[0]
 
+    # juneau icefield symbol and label
     x_offset_ice_label = 120000
     y_offset_ice_label = 60000
     gdf_juneau_icefield = gpd.GeoDataFrame({'geometry': [Point(58.842, -134.188)], 'name': ['Sample Point']})
@@ -174,15 +174,18 @@ def main(
     ax.text(gdf_juneau_icefield.geometry.x[0]+x_offset_ice_label,gdf_juneau_icefield.geometry.y[0]+y_offset_ice_label,"Juneau\nIcefield",color='w',fontsize=label_fontsize,va='center',ha='left',alpha=1.0,gid='JIF-label',
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
+    # desktop only annotations
     ax.text((west+east)/2.0,south+0.1*(north-south),"Hover over fires to show all potential\nsmoke paths within a 10-day window",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-dt',
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
-    ax.text((west+east)/2.0,south+0.1*(north-south),"Click here to show to the major regional\nwildfires that occurred from 2015-2016",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-mb-1',
+    # mobile only annotations
+    ax.text((west+east)/2.0,south+0.1*(north-south),"Click here to show the major regional\nwildfires that occurred from 2015-2016",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-mb-1',
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
     ax.text((west+east)/2.0,south+0.1*(north-south),"Click fires to show all potential smoke\npaths within a 10-day window",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-mb-2',
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
+    # save file
     fig.savefig(aerosol_mapfile,dpi=240)
     fig.savefig(aerosol_svg_mapfile,dpi=240,transparent=True)
 

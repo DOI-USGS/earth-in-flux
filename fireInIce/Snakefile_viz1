@@ -107,7 +107,7 @@ rule create_xs:
         demfile =  "1_process/tmp/{huc_id}/bedrock.tif",
         layerfile = "1_process/tmp/{huc_id}/ice_height.tif",
         renderfile = "2_visualize/in/render_{huc_id}.png",
-        photo_locations = '2_visualize//in/photo_locations.shp',
+        photo_locations = '2_visualize/in/photo_locations.shp',
         core_shpfile =  "1_process/out/{huc_id}/core_locations.shp"
     output:
         xs_file = "2_visualize/out/xs_{huc_id}.png",
