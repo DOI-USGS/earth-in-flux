@@ -7,7 +7,7 @@ rule all:
 # HYSPLIT model's parameters were taken from https://iopscience.iop.org/article/10.1088/1748-9326/ab8fd2/pdf
 
 # This makes the svg map for the regional fires viz
-rule aerosol_map:
+rule regional_fires_map:
     params:
         fires = 2,
         fire_labels = ["Dennison Fork\n2015 Wildfire","Steamboat Creek\n2016 Wildfire"]
@@ -16,10 +16,10 @@ rule aerosol_map:
         extent_shpfile = "2_visualize/in/extent_{name}.shp",
         forward_trajectory_files = ["2_visualize/in/tdump.111986.txt","2_visualize/in/tdump.160303.txt"]
     output:
-        aerosol_mapfile = "2_visualize/out/{name}_map.png",
-        aerosol_svg_mapfile = "2_visualize/out/{name}_map.svg"
+        regional_fires_mapfile = "2_visualize/out/{name}_map.png",
+        regional_fires_svg_mapfile = "2_visualize/out/{name}_map.svg"
     script:
-        "2_visualize/src/aerosol_map.py"
+        "2_visualize/src/regional_fires_map.py"
 
 # remove the metadata from the svg and save into the data_out folder
 rule remove_metadata:

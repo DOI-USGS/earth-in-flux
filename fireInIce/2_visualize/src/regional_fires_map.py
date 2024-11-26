@@ -72,8 +72,8 @@ def main(
         renderfile,
         extent_shpfile,
         forward_trajectory_files,
-        aerosol_mapfile,
-        aerosol_svg_mapfile
+        regional_fires_mapfile,
+        regional_fires_svg_mapfile
     ):
 
     # make figure
@@ -163,13 +163,13 @@ def main(
         #label wild fire location
         x_offset_label = -50000
         y_offset_label = -200000
-        ax.text(gdf_for_traj.geometry.x[0]-x_offset_label,gdf_for_traj.geometry.y[0]+y_offset_label,fire_labels[i],color='w',fontsize=label_fontsize,va='center',ha='right',alpha=0.0,gid='wildfire-label-'+str(i),
+        ax.text(gdf_for_traj.geometry.x[0]-x_offset_label,gdf_for_traj.geometry.y[0]+y_offset_label,fire_labels[i],color='w',fontsize=label_fontsize,va='center',ha='right',alpha=1.0,gid='wildfire-label-'+str(i),
             bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
     # juneau icefield symbol and label
     x_offset_ice_label = 120000
     y_offset_ice_label = 60000
-    gdf_juneau_icefield = gpd.GeoDataFrame({'geometry': [Point(58.842, -134.188)], 'name': ['Sample Point']})
+    gdf_juneau_icefield = gpd.GeoDataFrame({'geometry': [Point(-134.188,58.842)], 'name': ['Sample Point']}, crs="EPSG:4326").to_crs(map_crs)
     ax.scatter(gdf_juneau_icefield.geometry.x[0],gdf_juneau_icefield.geometry.y[0],s=400,linewidth=1.5,marker='v',facecolor='tab:blue',edgecolor='k',zorder=3,gid='sink-'+str(i))
     ax.text(gdf_juneau_icefield.geometry.x[0]+x_offset_ice_label,gdf_juneau_icefield.geometry.y[0]+y_offset_ice_label,"Juneau\nIcefield",color='w',fontsize=label_fontsize,va='center',ha='left',alpha=1.0,gid='JIF-label',
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
@@ -179,15 +179,15 @@ def main(
         bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
     # mobile only annotations
-    ax.text((west+east)/2.0,south+0.1*(north-south),"Click here to show the major regional\nwildfires that occurred from 2015-2016",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-mb-1',
-        bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
+    ax.text((west+east)/2.0,south+0.1*(north-south),"Click here to show the major regional\nwildfires that occurred from 2015-2016",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=0.0,gid='multi-path-label-mb-1',
+        bbox=dict(facecolor=(0,0,0,0.0),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
-    ax.text((west+east)/2.0,south+0.1*(north-south),"Click fires to show all potential smoke\npaths within a 10-day window",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=1.0,gid='multi-path-label-mb-2',
-        bbox=dict(facecolor=(0,0,0,0.75),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
+    ax.text((west+east)/2.0,south+0.1*(north-south),"Click fires to show all potential smoke\npaths within a 10-day window",color='w',fontsize=big_label_fontsize,va='center',ha='center',alpha=0.0,gid='multi-path-label-mb-2',
+        bbox=dict(facecolor=(0,0,0,0.0),boxstyle='round', edgecolor='none', pad=0.2,linewidth=0.0))
 
     # save file
-    fig.savefig(aerosol_mapfile,dpi=240)
-    fig.savefig(aerosol_svg_mapfile,dpi=240,transparent=True)
+    fig.savefig(regional_fires_mapfile,dpi=240)
+    fig.savefig(regional_fires_svg_mapfile,dpi=240,transparent=True)
 
 if __name__ == "__main__":    
     fires = snakemake.params["fires"]
@@ -195,14 +195,14 @@ if __name__ == "__main__":
     renderfile = snakemake.input["renderfile"]
     extent_shpfile = snakemake.input["extent_shpfile"]
     forward_trajectory_files = snakemake.input["forward_trajectory_files"]
-    aerosol_mapfile = snakemake.output["aerosol_mapfile"]
-    aerosol_svg_mapfile = snakemake.output["aerosol_svg_mapfile"]
+    regional_fires_mapfile = snakemake.output["regional_fires_mapfile"]
+    regional_fires_svg_mapfile = snakemake.output["regional_fires_svg_mapfile"]
     main(
         fires,
         fire_labels,
         renderfile,
         extent_shpfile,
         forward_trajectory_files,
-        aerosol_mapfile,
-        aerosol_svg_mapfile
+        regional_fires_mapfile,
+        regional_fires_svg_mapfile
     )

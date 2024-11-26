@@ -349,7 +349,7 @@ def main(
     #legend
     ax_texturemap.scatter(0,0,facecolor=core_color,edgecolor='k',linewidth=1.0,marker=cent_drillicon,s=802,label='Ice Core')
     ax_texturemap.scatter(0,0,facecolor="tab:red",edgecolor='k',linewidth=1.0,marker=camicon,s=402,alpha=0.8,label='Photo')
-    ax_texturemap.legend(loc='right',facecolor='w',edgecolor='none',framealpha=0.75, fancybox=False,markerfirst=True)
+    ax_texturemap.legend(loc='right',bbox_to_anchor=(1.01, 0.5),facecolor='w',edgecolor='none',framealpha=0.75, fancybox=False,markerfirst=True)
 
     #make the scale bar
     sclx1 = buff_west + (buff_east-buff_west) * scale_bar_rel_x
@@ -390,11 +390,11 @@ def main(
 
     ax_texturemap.text(0.01,0.99,"Click to MRI\nthe glacier!",
                        transform=ax_texturemap.transAxes,fontweight='bold',va='top',ha='left',fontsize=tutorial_fontsize,zorder=6,
-                       bbox=dict(facecolor='w', alpha=0.7, edgecolor="none",pad=2.0),gid='tutorial-mb-1')
+                       bbox=dict(facecolor='w', alpha=0.0, edgecolor="none",pad=2.0),gid='tutorial-mb-1',alpha=0.0)
 
     ax_texturemap.text(0.99,0.625,"Click on\npoints of\ninterest!",
                        transform=ax_texturemap.transAxes,fontweight='bold',va='bottom',ha='right',fontsize=tutorial_fontsize,zorder=6,
-                       bbox=dict(facecolor='w', alpha=0.7, edgecolor="none",pad=2.0),gid='tutorial-mb-2')
+                       bbox=dict(facecolor='w', alpha=0.0, edgecolor="none",pad=2.0),gid='tutorial-mb-2',alpha=0.0)
 
     # tutorial arrow
     tutorial_arrow = mpl.patches.FancyArrowPatch((0.32,0.95),(0.45,0.55) , transform = ax_texturemap.transAxes, gid = "tutorial_arrow",
