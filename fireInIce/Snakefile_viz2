@@ -1,0 +1,37 @@
+rule all:
+    input:
+        "data_out/regional_fires_map.svg"
+
+# tdump files were generated with NOAA's HYSPLIT model using archive trajectories: https://www.ready.noaa.gov/hypub-bin/trajtype.pl?runtype=archive
+# forward trajectories from the two fires, dennison fork 2015 wildfire and the steamboat creek 2016 wildfire were generated
+# HYSPLIT model's parameters were taken from https://iopscience.iop.org/article/10.1088/1748-9326/ab8fd2/pdf
+
+rule aerosol_map:
+    params:
+        fires = 2,
+        fire_labels = ["Dennison Fork\n2015 Wildfire","Steamboat Creek\n2016 Wildfire"]
+    input:
+        renderfile = "2_visualize/in/render_{name}.png",
+        extent_shpfile = "2_visualize/in/extent_{name}.shp",
+        forward_trajectory_files = ["2_visualize/in/tdump.111986.txt","2_visualize/in/tdump.160303.txt"]
+    output:
+        aerosol_mapfile = "2_visualize/out/{name}_map.png",
+        aerosol_svg_mapfile = "2_visualize/out/{name}_map.svg"
+    script:
+        "2_visualize/src/aerosol_map.py"
+
+rule remove_metadata:
+    input:
+        infile = "2_visualize/out/{name}_map.svg"
+    output:
+        outfile = "data_out/{name}_map.svg"
+    script:
+        "2_visualize/src/remove_metadata.py"
+
+rule remove_metadata_:
+    input:
+        infile = "2_visualize/out/{name}_map.svg"
+    output:
+        outfile = "../testing_lab/src/assets/svgs/{name}_map.svg"
+    script:
+        "2_visualize/src/remove_metadata.py"

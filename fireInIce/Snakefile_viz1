@@ -1,0 +1,124 @@
+HUC8s = [19010301,19010304]
+
+#sb data
+sb_id = "5e472c3ee4b0ff554f6837bc"
+
+rule all:
+    input:
+        "2_visualize/out/xs_19010301and19010304.svg",
+        "data_out/glacial_mri.svg"
+
+rule download_FI_DATA:
+    params:
+        sb_id = sb_id
+    output:
+        zipfile = "0_fetch/tmp/"+sb_id+".zip"
+    script:
+        "0_fetch/src/download_sb.py"
+
+rule unzip_FI_DATA:
+    input:
+        zipfile = "0_fetch/tmp/"+sb_id+".zip"
+    output:
+        "0_fetch/tmp/"+sb_id+"/Juneau Icefield Alaska Map.jpg",
+        "0_fetch/tmp/"+sb_id+"/Metadata Juneau Icefield.xml",
+        "0_fetch/tmp/"+sb_id+"/Table 1 Site Locations.xlsx",
+        "0_fetch/tmp/"+sb_id+"/Table 2 Constituents Analyzed.xlsx",
+        "0_fetch/tmp/"+sb_id+"/Table 3 Quality Assurance.xlsx",
+        "0_fetch/tmp/"+sb_id+"/Table 4 Constituent Data.xlsx"
+    script:
+        "0_fetch/src/unzip_file.py"
+
+rule get_wbd:
+    params:
+        huc_list = lambda wildcards: f"{wildcards.huc_id}".split("and")
+    output:
+        extent_shpfile = "0_fetch/out/{huc_id}/extent.shp"
+    script:
+        "0_fetch/src/get_wbd.py"
+
+rule download_dem:
+    params:
+        data_product = '/API/globaldem',
+        dem_product = 'COP90',
+        buffer = 5.0,
+        download_mode = 'bmi'
+    input:
+        extent_shpfile = "0_fetch/out/{huc_id}/extent.shp"
+    output:
+        demfile = "0_fetch/out/{huc_id}/dem.tif"
+    script:
+        "0_fetch/src/download_dem.py"
+
+#"0_fetch/tmp/RGI-2.zip" was downloaded from here: https://www.sedoo.fr/theia-publication-products/?uuid=55acbdd5-3982-4eac-89b2-46703557938c
+#Western Canada and USA
+
+rule unzip_ice_thickness:
+    input:
+        zipfile = "0_fetch/tmp/RGI-2.zip"
+    output:
+        "0_fetch/tmp/RGI-2/RGI-2/THICKNESS_RGI-2.1_2021July09.tif"
+    script:
+        "0_fetch/src/unzip_file.py"
+
+rule regrid_ice_thickness:
+    input:
+        src_file = "0_fetch/tmp/RGI-2/RGI-2/THICKNESS_RGI-2.1_2021July09.tif",
+        match_file = "0_fetch/out/{huc_id}/dem.tif"
+    output:
+        dst_file = "1_process/tmp/{huc_id}/unfilled_ice_thickness.tif"
+    script:
+        "1_process/src/regrid.py"
+
+rule remove_nans:
+    params:
+        convolution_window = 4.0
+    input:
+        ice_thickness_file = "1_process/tmp/{huc_id}/unfilled_ice_thickness.tif"
+    output:
+        ice_thickness_file = "1_process/tmp/{huc_id}/ice_thickness.tif"
+    script:
+        "1_process/src/remove_nans.py"
+
+rule make_core_shpfile:
+    input:
+        core_data = '0_fetch/tmp/5e472c3ee4b0ff554f6837bc/Table 1 Site Locations.xlsx'
+    output:
+        core_shpfile =  "1_process/out/{huc_id}/core_locations.shp"
+    script:
+        "1_process/src/cores_to_shp.py"
+
+rule calc_bedrock:
+    input:
+        dem_file = "0_fetch/out/{huc_id}/dem.tif",
+        ice_thickness_file = "1_process/tmp/{huc_id}/ice_thickness.tif"
+    output:
+        bedrock_file = "1_process/tmp/{huc_id}/bedrock.tif",
+        ice_height_file = "1_process/tmp/{huc_id}/ice_height.tif"
+    script:
+        "1_process/src/calc_bedrock.py"
+
+rule create_xs:
+    params:
+        default_plot = 113,
+        photo_indices = [10,18,21,51,85,138,140,156,183,203]
+    input:
+        extent_shpfile = "0_fetch/out/{huc_id}/extent.shp",
+        demfile =  "1_process/tmp/{huc_id}/bedrock.tif",
+        layerfile = "1_process/tmp/{huc_id}/ice_height.tif",
+        renderfile = "2_visualize/in/render_{huc_id}.png",
+        photo_locations = '2_visualize//in/photo_locations.shp',
+        core_shpfile =  "1_process/out/{huc_id}/core_locations.shp"
+    output:
+        xs_file = "2_visualize/out/xs_{huc_id}.png",
+        xs_svg_file = "2_visualize/out/xs_{huc_id}.svg"
+    script:
+        "2_visualize/src/xs_process.py"
+
+rule remove_metadata:
+    input:
+        infile = "2_visualize/out/xs_19010301and19010304.svg"
+    output:
+        outfile = "data_out/glacial_mri.svg",
+    script:
+        "2_visualize/src/remove_metadata.py"
