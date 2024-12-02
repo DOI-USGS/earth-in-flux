@@ -112,7 +112,7 @@ rule calc_bedrock:
 rule create_xs:
     params:
         default_plot = 113,
-        photo_indices = [10,18,21,51,85,138,140,156,183,203]
+        photo_indices = [10,18,21,51,85,138,140,156,203]
     input:
         extent_shpfile = "0_fetch/out/{huc_id}/extent.shp",
         demfile =  "1_process/tmp/{huc_id}/bedrock.tif",
