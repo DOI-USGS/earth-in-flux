@@ -45,7 +45,7 @@
                     </span>
                 </h3>
                 <p v-html="tab.tabText" />
-                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
+                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)" :alt="tab.tabImageAlt">
             </tabItem>
         </tabsGroup>
         <VizSection
