@@ -78,7 +78,7 @@ export default {
             paragraph1: "The Juneau Icefield is just north of Juneau, Alaska and extends into Canada. In 2016 and 2017, researchers collected ice cores across the icefield to determine if the ice traps records of wildfires.",
             paragraph1Mobile: "The Juneau Icefield is just north of Juneau, Alaska. In 2016 and 2017, researchers collected ice cores across the icefield to determine if the ice traps records of wildfires.",
             promptDesktop: "Hover over the map to explore the topography and learn about coring a glacier.",
-            promptMobile: "Click on the map below to explore the topography and learn about coring a glacier.",
+            promptMobile: "Tap the map to explore the topography and learn about coring a glacier.",
             heading: "How are ice cores collected?",
             paragraph2: "The ideal location for drilling an ice core is the highest, flattest section of a glacier, as this region minimizes any influence from the glacier flow. Snow builds up layer by layer on a glacier surface and eventually compresses into ice. High, flat drilling locations increase the possibility that ice layers remain horizontal and decreases the possibility of melt layers.",
             paragraph3: "Once researchers have arrived at the drilling location, the first thing that they do is to create some sort of shelter for comfort and incase the weather becomes bad. For short (~10 m) ice cores that can be drilled in a day, this shelter is often a snow pit with a bench, as well as a tarp to block blowing wind. Once the pit is dug, scientists can start drilling.",

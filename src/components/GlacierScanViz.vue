@@ -14,7 +14,10 @@
                             <p v-html="text.paragraph1" />
                             <p v-html="text.promptDesktop" />
                         </div>
-                        <p v-if="mobileView && defaultView" v-html="text.paragraph1Mobile" />
+                        <div v-if="mobileView && defaultView">
+                            <p v-html="text.paragraph1Mobile" />
+                            <p v-html="text.promptMobile" />
+                        </div>
                         <p v-if="!defaultView" v-html="currentPhotoText"></p>
                     </div>
                 </div>
@@ -83,8 +86,8 @@
                     .attr("display", "none")
                 crossSectionSVG.select("#tutorial-dt-2")
                     .attr("display", "none")
-                // crossSectionSVG.select("#tutorial-mb-1")
-                //     .attr("display", "none")
+                crossSectionSVG.select("#tutorial-mb-1")
+                    .attr("display", "none")
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
                 crossSectionSVG.select("#legend_1")
@@ -342,37 +345,39 @@
 <style scoped lang="scss">
     #cross-section-grid-container {
         display: flex;
-        flex-direction: column;
-        @media screen and (max-height: 770px) {
-            flex-direction: row;
-        }
+        flex-direction: row;
+        max-width: 1500px;
+        margin: 3rem auto 4rem auto;
         @media screen and (max-width: 600px) {
             flex-direction: column;
         }
     }
     #caption-container {
-        height: 15vh;
-        margin-top: 3rem;
+        height: 100%;
+        width: 35vw;
+        max-width: 600px;
+        margin: auto 3rem auto 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        flex-grow: 0;
+        flex-shrink: 0;
         align-items: center;
-        padding: 0rem 2rem 0 0rem;
+        padding: 0rem 3rem 2rem 3rem;
         background-color: var(--faded-usgs-blue);
         border-radius: 5px;
         box-shadow: 5px 5px 10px rgba(57, 61, 66, 0.2);
         font-style: italic;
         @media screen and (max-height: 770px) {
-            flex-direction: column;
             height: 80vh;
             width: 40vw;
+            max-width: 40vw;
             padding: 0rem 2rem 0 2rem;
-            flex-grow: 0;
-            flex-shrink: 0;
         }
         @media screen and (max-width: 600px) {
             flex-direction: column;
             width: 100%;
-            height: 40vh;
+            max-width: 100%;
+            height: 55vh;
             padding: 1rem 1.5rem 0 1.5rem;
         }
     }
@@ -381,26 +386,23 @@
         pointer-events: none;
         border-radius: 5px;
         margin-right: 3rem;
-        @media screen and (max-height: 770px) {
-            max-width: 100%;
-            max-height: 45vh;
-            margin: 2rem 2rem 2rem 2rem;
-        }
+        max-width: 100%;
+        max-height: 45vh;
+        margin: 2rem 2rem 2rem 2rem;
         @media screen and (max-width: 600px) {
             padding-right: 0rem;
-            max-height: 22vh;
+            max-height: 35vh;
             max-width: 100%;
             margin: 1rem;
         }
     }
     #globe-image {
         width: 15vw;
+        max-width: 250px;
         align-items: center;
         pointer-events: none;
         border-radius: 5px;
-        @media screen and (max-height: 770px) {
-            margin: 4rem 2rem 2rem 2rem;
-        }
+        margin: 4rem 2rem 2rem 2rem;
         @media screen and (max-width: 600px) {
             width: 35vw;
             margin: 1rem;
@@ -410,7 +412,7 @@
 <style lang="scss">
 /* css for elements added/classed w/ d3 */
     #cross-section-svg {
-        height: 50vh;
+        height: 60vh;
         z-index: 1;
         margin-top: 3rem;
         @media screen and (max-height: 770px) {
