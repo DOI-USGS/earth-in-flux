@@ -15,7 +15,7 @@
     import { isMobile } from 'mobile-device-detect';
 
     import ChartCard from '@/components/ChartCard.vue';
-    import ChartGrid from '@/assets/content/ChartGrid.js';
+    import ChartGridContent from '@/assets/content/ChartGrid.js';
 
     const props = defineProps({
         view: {
@@ -27,7 +27,7 @@
     // global variables
     const router = useRouter();
     const mobileView = isMobile;
-    const chartContent = ChartGrid.chartGridItems;
+    const chartContent = ChartGridContent.chartGridItems;
 
     // set up filtered chart data as computed property
     const filteredChartContent = computed(() => {
