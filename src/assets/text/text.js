@@ -105,8 +105,6 @@ export default {
             photo156: "After multiple days without snowfall, a ski track forms from people passing through on their way to collect scientific data and explore the landscape.",
             photo156Mobile: "After multiple days without snowfall, a ski track develops from people on their way to collect scientific data and explore the landscape.",
             photo156Alt: "",
-            photo183: "Crevasses form in a glacier where it stretches through extension or passes over obstacles. Traveling through crevasse fields requires caution. Crevasses near glacier edges are often substantially smaller, but probing ice bridges and crevasse depth is necessary. Traveling across most crevassed terrain requires rope teams.",
-            photo183Mobile: "Crevasses form in a glacier where it stretches through extension or passes over obstacles. Traveling through crevasse fields requires caution.",
             photo183Alt: "",
             photo203: "Glaciers scour the landscape, creating U-shaped valleys between surrounding peaks. At their terminus, glacier melt creates lakes and rivers. The relatively low elevation and coastal location of the Juneau Icefield means that glacier melt mixes with seawater to create vibrant saltwater wetlands.",
             photo203Mobile: "Glaciers scour the landscape, creating U-shaped valleys between surrounding peaks. At their terminus, glacier melt creates lakes and rivers.",
