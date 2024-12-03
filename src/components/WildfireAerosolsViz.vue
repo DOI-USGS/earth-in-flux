@@ -133,7 +133,7 @@
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = mobileView ? 135 : 130;
+                const sharedTopMargin = mobileView ? 135 : 145;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 chartGap = mobileView ? chartDimensions.boundedWidth / 11 : chartDimensions.boundedWidth / 11;
