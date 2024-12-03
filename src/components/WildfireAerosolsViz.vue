@@ -964,7 +964,7 @@
             .attr("y", -barChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
-            .text(d => d);
+            .text(d => d.toLowerCase());
 
         // Position legend groups
         // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
