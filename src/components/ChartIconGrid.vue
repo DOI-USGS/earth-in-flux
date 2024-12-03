@@ -52,7 +52,8 @@
     width: 100%;
     max-width: 60%;
     @media screen and (max-width: 600px) {
-        max-width: 100%;
+        gap: 25px;
+        max-width: 95%;
     }
 }
 </style>
