@@ -1306,16 +1306,9 @@
             dx = parseFloat(text.attr("dx")),
             tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
 
-            
-            console.log(`wrap: ${words}`)
             while ((word = words.pop())) {
             line.push(word);
             tspan.text(line.join(" "));
-                console.log(`width: ${width}`)
-                console.log(`word: ${word}`)
-                console.log(tspan.node())
-                console.log(tspan.node().getComputedTextLength())
-                console.log(tspan.node().getComputedTextLength() > width)
                 if (tspan.node().getComputedTextLength() > width) {
                     line.pop();
                     tspan.text(line.join(" "));
