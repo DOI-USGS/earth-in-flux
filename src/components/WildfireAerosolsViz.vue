@@ -129,7 +129,7 @@
                 initChart({
                     width: chartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 30
+                    margin: mobileView ? 5 : 5
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
