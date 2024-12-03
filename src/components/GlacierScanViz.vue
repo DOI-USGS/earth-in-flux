@@ -34,6 +34,8 @@
             <template #aboveExplanation>
                 <p v-html="text.paragraph2" />
                 <p v-html="text.paragraph3" />
+                <p v-html="text.paragraph4" />
+                <p v-html="text.paragraph5" />
             </template>
         </VizSection>
     </section>
