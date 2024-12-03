@@ -664,7 +664,7 @@
 
     function initTileColorScale() {
         tileColorScale = d3.scaleSequential()           
-            .interpolator(d3.interpolateGreys);
+            .range(["#efefef" ,"#000000"]);
     }
 
     function initBarColorScale(data) {
@@ -777,7 +777,7 @@
     }
 
     function addTileLegend() {
-        // build list of posible counts (0 to 366)
+        // build list of possible total particle counts
         let count_list = [];
         for (let i = 1; i <= tileColorScale.domain()[1]; i++) {
             count_list.push(i);
