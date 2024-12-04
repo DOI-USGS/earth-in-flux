@@ -1367,6 +1367,7 @@
     #aerosol-text-container {
         grid-area: text;
         height: 15vh;
+        align-content: center;
         @media screen and (max-height: 770px) {
             height: 30vh;
         }
@@ -1391,12 +1392,10 @@
     #aerosol-prev {
         grid-area: prev;
         justify-self: end;
-        align-self: start;
     }
     #aerosol-next {
         grid-area: next;
         justify-self: start;
-        align-self: start;
     }
     button:hover:after {
         top: 0px;
