@@ -346,9 +346,9 @@
 
         // Add groups for visual elements
         tileChartBounds.append("g")
-            .attr("class", "rects");
-        tileChartBounds.append("g")
             .attr("class", "annotations");
+        tileChartBounds.append("g")
+            .attr("class", "rects");
     }
 
     function initBarChart({
@@ -781,6 +781,15 @@
                 .attr("transform", "rotate(-90)")
                 .attr("text-anchor", "middle")
                 .text("2015 accumulation")
+
+        // Add horizontal black line
+        tileChartBounds.select(".annotations")
+            .append("rect")
+                .attr("x", 0)
+                .attr("y", yScale(374.5))
+                .attr("height", 1)
+                .attr("width", chartDimensions.boundedWidth)
+                .attr("fill", "#000000")
     }
 
     function addTileLegend() {
