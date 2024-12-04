@@ -33,6 +33,7 @@
       color: var(--color-text);
       margin-left: 10px;
       text-decoration: none;
+      font-weight: 300;
     }
   }
 

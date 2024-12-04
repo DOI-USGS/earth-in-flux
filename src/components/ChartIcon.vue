@@ -1,7 +1,10 @@
 <template>
     <div class="chart" :class="{ 'active': active }">
-        <RouterLink :to="vizRoute">
-            <img :src="src" :alt="alt" />
+        <RouterLink :to="vizRoute ? vizRoute : './'">
+            <img v-if="vizRoute" :src="src" :alt="alt" />
+            <div v-if="projectRoute" id="overlay">
+                <p class='overlay-text'>Project info</p>
+            </div>
         </RouterLink>
     </div>
 </template>
@@ -16,15 +19,15 @@
             type: String,
             default: ``
         },
-        description: {
-            type: String,
-            default: ''
-        },
         active: {
             type: Boolean,
             default: false
         },
         vizRoute: {
+            type: String,
+            default: ''
+        },
+        projectRoute: {
             type: String,
             default: ''
         },
@@ -45,7 +48,7 @@
         border-style: solid;
         border-radius: 1.5px;
         box-shadow: 0px 0px 8px rgba(39,44,49,.07), 1px 4px 4px rgba(39,44,49,.04);
-        opacity: 0.4;
+        opacity: 0.5;
 	}
     .chart img {
         position: absolute;
@@ -67,5 +70,20 @@
     .chart:hover {
         opacity: 1;
         transform: scale(1.1);
+    }
+    #overlay {
+        height: $card-height;
+        background-color: var(--faded-usgs-blue);
+        border-radius: 3px;
+    }
+    .overlay-text {
+        color: var(--usgs-blue);
+        text-align: center;
+        font-weight: 300;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
     }
 </style>

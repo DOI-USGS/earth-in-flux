@@ -1,11 +1,15 @@
 <template>
-    <div id="chartGrid" class="padded">
+    <div id="chartGrid">
+        <ChartIcon 
+            :id="projectRoute"
+            :vizRoute=null
+            :projectRoute="projectRoute"
+        />
         <ChartIcon v-for="item in filteredChartContent" :key="item.vizRoute"
             :id="item.vizRoute"
             :src="getThumb(item.img_src)"
             :alt="item.alt"
-            :description="item.description"
-            :active="item.vizRoute === viz"
+            :active="item.vizRoute === vizRoute"
             :vizRoute="item.vizRoute"
         />
     </div>
@@ -18,11 +22,11 @@
     import ChartGridContent from '@/assets/content/ChartGrid.js';
 
     const props = defineProps({
-        project: {
+        projectRoute: {
             type: String,
             default: ``
         },
-        viz: {
+        vizRoute: {
             type: String,
             default: ``
         },
@@ -33,7 +37,7 @@
 
     // set up filtered chart data as computed property
     const filteredChartContent = computed(() => {
-        return chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.project).sort((a,b) => (a.chartOrder > b.chartOrder) ? 1 : ((b.chartOrder > a.chartOrder) ? -1 : 0))
+        return chartContent.filter(d => d.project.replace(/\s+/g, '-').toLowerCase() === props.projectRoute).sort((a,b) => (a.chartOrder > b.chartOrder) ? 1 : ((b.chartOrder > a.chartOrder) ? -1 : 0))
     });    
 
     function getThumb(pic) {
@@ -44,13 +48,13 @@
 
 <style>
 #chartGrid{
-    margin: 50px auto;
+    margin: 8rem auto 2rem auto;
     display: flex;
     justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 60%;
+    max-width: 70rem;
     @media screen and (max-width: 600px) {
         gap: 25px;
         max-width: 95%;
