@@ -12,16 +12,22 @@
         </template>
         <template #figures>
             <div id="wildfire-aerosols-grid-container">
-                <button id="aerosol-prev" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
                 </button>
-                <button id="aerosol-next" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
                 </button>
                 <div id="aerosol-text-container" class="text-container">
                     <p v-html="currentText" />
                 </div>
                 <div id="chart-container" ref="chart"></div>
+                <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                </button>
+                <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                </button>
             </div>
         </template>
         <template #figureCaption>
@@ -1347,8 +1353,8 @@
         grid-template-columns: 10% calc(80% - 4rem) 10%;
         grid-template-rows: auto max-content;
         grid-template-areas:
-            "prev text next"
-            "chart chart chart";
+            "prev-upper text next-upper"
+            "prev-lower chart next-lower";
         margin: 2rem auto 0 auto;
         column-gap: 2rem;
         row-gap: 3rem;
@@ -1357,7 +1363,7 @@
             grid-template-rows: auto max-content;
             grid-template-areas:
                 "chart chart chart"
-                "prev text next";
+                "prev-upper text next-upper";
         }
     }
     #chart-container {
@@ -1384,17 +1390,25 @@
         cursor: pointer;
         box-shadow: 0px 0px 4px rgba(39,44,49,.3);
         @media only screen and (max-width: 600px) {
-            height: 3rem;
-            width: 3rem;
+            height: 3.5rem;
+            width: 3.5rem;
             align-self: start;
         }
     }
-    #aerosol-prev {
-        grid-area: prev;
+    #aerosol-prev-upper {
+        grid-area: prev-upper;
         justify-self: end;
     }
-    #aerosol-next {
-        grid-area: next;
+    #aerosol-next-upper {
+        grid-area: next-upper;
+        justify-self: start;
+    }
+    #aerosol-prev-lower {
+        grid-area: prev-lower;
+        justify-self: end;
+    }
+    #aerosol-next-lower {
+        grid-area: next-lower;
         justify-self: start;
     }
     button:hover:after {
