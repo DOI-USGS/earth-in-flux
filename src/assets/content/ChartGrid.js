@@ -17,7 +17,7 @@ export default {
             project: 'Findex',
             vizKey: 'ThreatSankey',
             vizRoute: 'inland-fish-total-threats',
-            img_src: 'Placeholder_thumbnail.png',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
