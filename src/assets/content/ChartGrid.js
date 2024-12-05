@@ -21,16 +21,6 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
-        },       
-        {
-            title: 'Climate vulnerability of recreationally fished inland fish species',
-            project: 'Fish as Food',
-            vizKey: 'FishAsFoodLinkChart',
-            vizRoute: 'inland-rec-fish-climate',
-            img_src: 'FishAsFoodLinkChart_thumbnail.png',
-            chartOrder: 3,
-            alt: '',
-            description: 'Inland fish that are recreationally fished are vulnerable'
         },
         {
             title: 'Explore the Juneau Ice Field',

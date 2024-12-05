@@ -107,13 +107,6 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
   ],
-  FishAsFoodLinkChart: [
-    {
-      fullName: 'Hayley Corson-Dosch',
-      initials: 'HCD',
-      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
-    },
-  ],
   ThreatSankey: [
     {
       fullName: 'Hayley Corson-Dosch',
