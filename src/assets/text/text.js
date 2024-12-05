@@ -1,7 +1,7 @@
 export default {
     landingPage: {
         pageTitle: "Earth is changing...",
-        pageSubTitle: "USGS scientists research land change on the ground",
+        pageSubTitle: "USGS scientists research changing environments to inform natural resource management and decision making.",
         collaborationHeading: "The USGS land change chart gallery project",
         collaborationDescription: "The land change chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
         teamHeading: "The USGS Vizlab team",
