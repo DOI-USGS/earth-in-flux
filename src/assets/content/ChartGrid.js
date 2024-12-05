@@ -5,16 +5,6 @@ export default {
         {
             title: 'Inland fisheries are threatened',
             project: 'Findex',
-            vizKey: 'ThreatBumpChart',
-            vizRoute: 'inland-fish-threats',
-            img_src: 'ThreatBumpChart_thumbnail.png',
-            alt: '',
-            chartOrder: 1,
-            description: 'Inland fisheries are threatened.'
-        },
-        {
-            title: 'Inland fisheries are threatened',
-            project: 'Findex',
             vizKey: 'ThreatSankey',
             vizRoute: 'inland-fish-total-threats',
             img_src: 'Placeholder_thumbnail.png',
@@ -31,36 +21,36 @@ export default {
             alt: '',
             chartOrder: 1,
             description: 'Habitats are changing.'
-        },      
-        {
-            title: 'Climate vulnerability of recreationally fished inland fish species',
-            project: 'Fish as Food',
-            vizKey: 'FishAsFoodLinkChart',
-            vizRoute: 'inland-rec-fish-climate',
-            img_src: 'FishAsFoodLinkChart_thumbnail.png',
-            chartOrder: 3,
-            alt: '',
-            description: 'Inland fish that are recreationally fished are vulnerable'
         },
         {
-            title: 'Glacier/Topography 3D Cross-Section Scan',
+            title: 'Explore the Juneau Ice Field',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_mri_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Ice cores can record changes in wildfire prevalence.'
-        },          
+            description: 'Glacial Ice cores can record changes in wildfire prevalence.'
+        },
         {
             title: 'Wildfire Aerosols',
             project: 'Fire in Ice',
-            vizKey: 'Aerosols',
-            vizRoute: 'aerosol-paths',
-            img_src: 'aerosols_thumbnail.png',
+            vizKey: 'WildfireAerosols',
+            vizRoute: 'wildfire-aerosols',
+            img_src: 'wildfire_aerosols_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Wildfire particles are deposited on glaciers.'
+            description: 'Wildfires are depositing aerosols on glaciers.'
+        },          
+        {
+            title: 'Regional wildfire deposition',
+            project: 'Fire in Ice',
+            vizKey: 'RegionalFires',
+            vizRoute: 'regional-fires',
+            img_src: 'aerosols_map_thumbnail.png',
+            alt: '',
+            chartOrder: 2,
+            description: 'Particles from regional wildfires are deposited on glaciers.'
         },
         {
             title: 'Global economic value of recreationally fished species',
@@ -100,7 +90,7 @@ export default {
             img_src: 'BeaufortSeaSpecies_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Microfossils show that Arctic water chemistry is changing.'
+            description: 'Microfossils show that Arctic waters are changing.'
         },   
         {
             title: 'Beaufort Sea Timeline',

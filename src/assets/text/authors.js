@@ -43,19 +43,12 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
     },
   ],
-  Aerosols: [
+  RegionalFires: [
     {
       fullName: 'Jeffrey Kwang',
       initials: 'JK',
       profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
     },
-  ],
-  ThreatBumpChart: [
-    {
-      fullName: 'Cee Nell',
-      initials: 'CN',
-      profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell'
-    }
   ],
   BeaufortSeaSpecies: [
     {
@@ -107,18 +100,23 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
   ],
-  FishAsFoodLinkChart: [
-    {
-      fullName: 'Hayley Corson-Dosch',
-      initials: 'HCD',
-      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
-    },
-  ],
   ThreatSankey: [
     {
       fullName: 'Hayley Corson-Dosch',
       initials: 'HCD',
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
+  ],
+  WildfireAerosols: [
+    {
+      fullName: 'Hayley Corson-Dosch',
+      initials: 'HCD',
+      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
+    },
+    {
+      fullName: 'Jeffrey Kwang',
+      initials: 'JK',
+      profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
+    }
   ]
 };

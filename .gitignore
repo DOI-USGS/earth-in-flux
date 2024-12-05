@@ -65,3 +65,6 @@ beaufortSea/images/*
 *.shx
 # Associated Journal articles
 33670_articles_article_file_2322.pdf
+# sbtools 
+beaufortSea/.Renviron
+
