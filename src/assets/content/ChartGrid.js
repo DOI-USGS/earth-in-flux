@@ -5,32 +5,12 @@ export default {
         {
             title: 'Inland fisheries are threatened',
             project: 'Findex',
-            vizKey: 'ThreatBumpChart',
-            vizRoute: 'inland-fish-threats',
-            img_src: 'ThreatBumpChart_thumbnail.png',
-            alt: '',
-            chartOrder: 1,
-            description: 'Inland fisheries are threatened.'
-        },
-        {
-            title: 'Inland fisheries are threatened',
-            project: 'Findex',
             vizKey: 'ThreatSankey',
             vizRoute: 'inland-fish-total-threats',
             img_src: 'Placeholder_thumbnail.PNG',
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
-        },       
-        {
-            title: 'Climate vulnerability of recreationally fished inland fish species',
-            project: 'Fish as Food',
-            vizKey: 'FishAsFoodLinkChart',
-            vizRoute: 'inland-rec-fish-climate',
-            img_src: 'FishAsFoodLinkChart_thumbnail.png',
-            chartOrder: 3,
-            alt: '',
-            description: 'Inland fish that are recreationally fished are vulnerable'
         },
         {
             title: 'Explore the Juneau Ice Field',

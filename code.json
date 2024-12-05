@@ -1,23 +1,23 @@
 [
   {
-    "name": "climate-charts",
+    "name": "earth-in-flux",
     "organization": "U.S. Geological Survey",
-    "description": "Climate chart gallery highlighting key findings of USGS climate science",
-    "version": "{version}",
+    "description": "Chart gallery highlighting key findings of USGS land change science",
+    "version": "0.1.0",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/wma/vizlab/climate-charts/-/raw/main/LICENSE.md"
+          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/LICENSE.md"
         }
       ]
     },
-    "homepageURL": "https://github.com/DOI-USGS/climate-charts/",
-    "downloadURL": "https://code.usgs.gov/wma/vizlab/climate-charts/-/archive/main/climate-charts-main.zip",
-    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/climate-charts/-/raw/main/DISCLAIMER.md",
-    "repositoryURL": "https://code.usgs.gov/wma/vizlab/climate-charts.git",
+    "homepageURL": "https://github.com/DOI-USGS/earth-in-flux/",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/main/earth-in-flux-main.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
     "vcs": "git",
     "laborHours": 50,
     "tags": [

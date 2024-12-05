@@ -23,6 +23,7 @@
   font-family: var(--title-font);
   color: var(--color-title-text);
   text-align: center;
+  letter-spacing: .1em;
 }
 .subtitle {
   font-family: sans-serif; /* This is fallback font for old browsers */
