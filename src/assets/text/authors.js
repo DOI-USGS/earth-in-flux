@@ -50,13 +50,6 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
     },
   ],
-  ThreatBumpChart: [
-    {
-      fullName: 'Cee Nell',
-      initials: 'CN',
-      profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell'
-    }
-  ],
   BeaufortSeaSpecies: [
     {
       fullName: 'Althea A. Archer',

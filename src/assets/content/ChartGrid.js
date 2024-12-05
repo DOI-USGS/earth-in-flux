@@ -5,16 +5,6 @@ export default {
         {
             title: 'Inland fisheries are threatened',
             project: 'Findex',
-            vizKey: 'ThreatBumpChart',
-            vizRoute: 'inland-fish-threats',
-            img_src: 'ThreatBumpChart_thumbnail.png',
-            alt: '',
-            chartOrder: 1,
-            description: 'Inland fisheries are threatened.'
-        },
-        {
-            title: 'Inland fisheries are threatened',
-            project: 'Findex',
             vizKey: 'ThreatSankey',
             vizRoute: 'inland-fish-total-threats',
             img_src: 'Placeholder_thumbnail.png',
