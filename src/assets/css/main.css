@@ -23,6 +23,7 @@
   font-family: var(--title-font);
   color: var(--color-title-text);
   text-align: center;
+  letter-spacing: .1em;
 }
 .subtitle {
   font-family: sans-serif; /* This is fallback font for old browsers */
@@ -61,6 +62,36 @@ a {
 .figure-container {
   max-width: 80vw;
   margin: 0 auto 0 auto;
+  @media only screen and (max-width: 600px) {
+    max-width: 90vw; /* 90% of view width on mobile */
+  }
+}
+.tooltip-span {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 1px dotted rgba(54, 54, 54, 0.8);
+  font-weight: 700;
+  z-index: 10;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  margin-left: -170px;
+  margin-top: 2.3rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip-group:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 .scientificName {
   font-style:italic;
@@ -71,4 +102,37 @@ a {
   .title-container {
     top: 105px;
   }
+}
+
+/* css for Beaufort species-related viz */
+.highlight {
+  padding: 0.5px 8px 0.5px 5px;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+  transition: all 0.1s; 
+}
+#cassidulina {
+  color: white;
+  background-color: #3c475a; /* contrast ratio 9.37 */
+}
+#elphidium {
+  color: white;
+  background-color: #66768F; /* contrast ratio 4.61 */
+}
+#paracyprideis {
+  color: black;
+  background-color: #729C9D; /* contrast ratio 6.95 */
+}
+#kotorachythere {
+  color: black;
+  background-color: #c49051; /* contrast ratio 7.45 */
+}
+#spiroplectimmina {
+  color: black;
+  background-color: #dd605a; /* contrast ratio 5.89 */
+}
+#other-species {
+  color: black;
+  background-color: #e7f0e7; /* contrast ratio 5.89 */
 }

@@ -1,9 +1,9 @@
 export default {
     landingPage: {
         pageTitle: "Earth is changing...",
-        pageSubTitle: "USGS scientists research climate change on the ground",
-        collaborationHeading: "The climate chart gallery project",
-        collaborationDescription: "The climate chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS climate science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
+        pageSubTitle: "USGS scientists research changing environments to inform natural resource management and decision making.",
+        collaborationHeading: "The USGS land change chart gallery project",
+        collaborationDescription: "The land change chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
         teamHeading: "The USGS Vizlab team",
         teamText: "The USGS Vizlab is a data visualization team within the USGS <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a>. View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
         teamData: [
@@ -13,8 +13,8 @@ export default {
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" }
         ],
-        projectsHeading: "USGS climate projects",
-        projectsLeadIn: "The USGS climate projects currently highlighted in this page are the"
+        projectsHeading: "USGS land change science projects",
+        projectsLeadIn: "The USGS land chance science projects currently highlighted in this page are the"
     },
     projects: {
         // keys must match project routes (with '-' replaced with '')
@@ -50,8 +50,8 @@ export default {
         },
         beaufortsea: {
             title: "Beaufort Sea",
-            motivation: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use micro-fossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying the bottom-dwelling, microscopic arthropods (called Ostracodes) and single-celled protists (called Forams), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region. Read more about this USGS science <a href='https://www.usgs.gov/programs/climate-research-and-development-program/science/land-sea-linkages-arctic' target='_blank'>here</a>.",
-            teamText: "Laura Gemery is an ecologist, and Julia Seidenstein, Jason Addison and Thomas Cronin are geologists within the Climate Research and Development program of the USGS Ecosystems Mission area. Each specialize in analyzing proxies in sediment cores.",
+            motivation: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions. These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use microfossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years. By studying bottom-dwelling microorganisms like microscopic arthropods (called Ostracodes) and single-celled protists (called Foraminifera), the Beaufort Sea researchers can compare the historical conditions of the Arctic and better understand the effects of recent climate change in the region. Read more about this USGS science <a href='https://www.usgs.gov/programs/ecosystems-land-change-science-program/science/land-sea-linkages-arctic' target='_blank'>here</a>.",
+            teamText: "Laura Gemery is an ecologist, and Julia Seidenstein, Jason Addison and Thomas Cronin are geologists within the <a href='https://www.usgs.gov/programs/ecosystems-land-change-science-program' target='_blank'>Ecosystems Land Change Science program</a> of the USGS Ecosystems Mission area. Each specialize in analyzing proxies in sediment cores.",
             teamData: [
                 { name: "Laura Gemery", link: "https://www.usgs.gov/staff-profiles/laura-gemery", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/l_Gemery mustang Oden.png" },
                 { name: "Julia Seidenstein", link: "https://www.usgs.gov/staff-profiles/julia-seidenstein", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/Julia Seidenstein_professional pic.png" },
@@ -62,77 +62,149 @@ export default {
     },
     visualizations: {
         GlacierScan: {
-            heading: "Glacier X-Ray",
-            paragraph1: "The Juneau Icefield is located just north of Juneau Alaska and extends to the Canadian border. In 2016 and 2017, the Fire in Ice team collected ice cores across the Juneau Icefield to investigate whether ice cores can record wildfires. Use the interative visualization below to explore the the rock and ice topography.",
+            paragraph1: "The Juneau Icefield is just north of Juneau, Alaska and extends into Canada. In 2016 and 2017, researchers collected ice cores across the icefield to determine if the ice traps records of wildfires.",
+            paragraph1Mobile: "The Juneau Icefield is just north of Juneau, Alaska. In 2016 and 2017, researchers collected ice cores across the icefield to determine if the ice traps records of wildfires.",
+            promptDesktop: "Hover over the map to explore the topography and learn about coring a glacier.",
+            promptMobile: "Click on the map below to explore the topography and learn about coring a glacier.",
+            heading: "How are ice cores collected?",
+            paragraph2: "The ideal location for drilling an ice core is the highest, flattest section of a glacier, as this region minimizes any influence from the glacier flow. Snow builds up layer by layer on a glacier surface and eventually compresses into ice. High, flat drilling locations increase the possibility that ice layers remain horizontal and decreases the possibility of melt layers.",
+            paragraph3: "Once researchers have arrived at the drilling location, the first thing that they do is to create some sort of shelter for comfort and incase the weather becomes bad. For short (~10 m) ice cores that can be drilled in a day, this shelter is often a snow pit with a bench, as well as a tarp to block blowing wind. Once the pit is dug, scientists can start drilling. The ice core drill has bits called “core dogs” on the bottom that cut into the ice. The drill is a metal cylinder with threads on the outside that help grip the snow and ice. Researchers attach a handle to the top and turn the drill until the have collected a meter of ice. This meter of ice is then passed to the people in the snow pit who are processing the core. This processing entails documenting the ice stratigraphy, measuring the core, and determining its mass. On the Juneau Icefield, cores were not kept in a frozen state, and instead were homogenized and placed into clean labeled bottles. The drilling and processing continue simultaneously, with team members measuring one core section while the next section is being drilled. The ice core drill returns to the initial hole and retrieves the next meter of ice. As the drill goes deeper and deeper into the ice, metal rods are connected to the top of the drill to extend the drill length until eventually reaching ~10 m depth. Pulling up 10 m of metal extension rods, the drill, and the ice core section can be heavy, but allows for a continuous climate record.",
+            photo010: "Clear, sunny days on the Juneau Icefield are appreciated, and people spend every possible moment outside to enjoy the spectacular scenery.",
+            photo010Mobile: "Clear, sunny days on the Juneau Icefield are appreciated, and people spend every possible moment outside to enjoy the spectacular scenery.",
+            photo010Alt: "",
+            photo018: "Drilling and processing ice cores involves teamwork. While a new core section is being drilled, team members measure physical properties like ice stratigraphy and the mass of the previous core section. Processing the core in a snow pit allows shelter from the wind, and creates a stable bench for examining the cores.",
+            photo018Mobile: "While a new core section is being drilled, team members measure physical properties like ice stratigraphy and the mass of the previous section.",
+            photo018Alt: "",
+            photo051: "Drilling an ice core on the Lemon Creek glacier to help determine past melt events affecting the glacier mass balance. The ice core drill can obtain one meter of ice at a time, where poles help extend the drill as it goes deeper into the ice. Team members record the depth and stratigraphy of ice core sections.",
+            photo051Mobile: "The ice core drill can obtain one meter of ice at a time, where poles help extend the drill as it goes deeper into the ice.",
+            photo051Alt: "",
+            photo085: "Sunsets on the Juneau Icefield are spectacular, with the combination of jagged peaks and glowing snow.",
+            photo085Mobile: "Sunsets on the Juneau Icefield are spectacular, with the combination of jagged peaks and glowing snow.",
+            photo085Alt: "",
+            photo138: "Traversing between camps involves a combination of skiing across glaciers and hiking over slopes. By the time that teams are ready to traverse to a new camp, they are well-practiced in safety skills such as crevasse rescue and rope management.",
+            photo138Mobile: "Moving between camps involves skiing across glaciers and hiking over slopes. Teams practice safety skills like rope management and crevasse rescue.",
+            photo138Alt: "",
+            photo140: "Natalie Kehrwald takes a break from drilling ice cores on the Taku Glacier, one of the deepest temperate alpine glaciers in the world.",
+            photo140Mobile: "Natalie Kehrwald takes a break from drilling ice cores on the Taku Glacier, one of the deepest temperate alpine glaciers in the world.",
+            photo140Alt: "",
+            photo156: "After multiple days without snowfall, a ski track forms from people passing through on their way to collect scientific data and explore the landscape.",
+            photo156Mobile: "After multiple days without snowfall, a ski track develops from people on their way to collect scientific data and explore the landscape.",
+            photo156Alt: "",
+            photo183: "Crevasses form in a glacier where it stretches through extension or passes over obstacles. Traveling through crevasse fields requires caution. Crevasses near glacier edges are often substantially smaller, but probing ice bridges and crevasse depth is necessary. Traveling across most crevassed terrain requires rope teams.",
+            photo183Mobile: "Crevasses form in a glacier where it stretches through extension or passes over obstacles. Traveling through crevasse fields requires caution.",
+            photo183Alt: "",
+            photo203: "Glaciers scour the landscape, creating U-shaped valleys between surrounding peaks. At their terminus, glacier melt creates lakes and rivers. The relatively low elevation and coastal location of the Juneau Icefield means that glacier melt mixes with seawater to create vibrant saltwater wetlands.",
+            photo203Mobile: "Glaciers scour the landscape, creating U-shaped valleys between surrounding peaks. At their terminus, glacier melt creates lakes and rivers.",
+            photo203Alt: "",
+            photo021: "The Gilkey Trench viewed from Camp 18 shows a classic example of ogives, or alternating bands of light and dark ice that are caused by compression and glacier flow.",
+            photo021Mobile: "The Gilkey Trench shows ogives, or alternating bands of light and dark ice that are caused by compression and glacier flow.",
+            photo021Alt: ""
         },
-        Aerosols: {
-            heading: "Aerosols",
-            paragraph1: "Wildfire aerosols can travel far and be deposited on glaciers.",
-        },
-        ThreatBumpChart: {
-            heading: "Inland fisheries are threatened."
+        RegionalFires: {
+            paragraph1: "From analysis of <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>glacial ice cores</a>, we know that <a href='/visualizations/earth-in-flux/#/fire-in-ice/wildfire-aerosols' target='_blank'>wildfires burning softwoods have deposited aerosols</a> on the Juneau Ice Field. We also know that Alaska has many softwood forests, and that some have burned. But how can we tell which regional fires deposited aerosols on the glacier?",
+            paragraph2: "Researchers use an <a href='https://www.ready.noaa.gov/HYSPLIT.php' target='_blank'>atmospheric model</a> to trace the potential path of smoke particles generated by known wildfires, identifying 'candidate' fires that could be the source for aerosols deposited on the ice field during the sampled period."
         },
         BeaufortSeaCore: {
             heading1: "Why collect ocean sediment cores?",
-            intro: "USGS scientists use sediment cores collected from the ocean floor to reconstruct past environmental conditions. This knowledge helps us to understand processes that influence natural climate change and lead to particular Earth system states. This allows more reliable predictions for future scenarios. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",
+            intro1: "Ocean sediments are one of the best archives of past ocean conditions and changes to the climate throughout Earth's history.",
+            intro2: "USGS scientists collect sediment cores from the ocean floor to reconstruct past environmental conditions. This knowledge helps us to understand processes that influence natural climate variability.",
             heading2: "How do USGS scientists collect ocean sediment core records?",
-            paragraph1: "USGS scientists traveled from USGS Headquarters in Reston, Virginia to Utqiagvik, Alaska. The goal was to collect samples of 'proxies' from ocean sediment cores. Proxies provide indirect but measurable responses to ocean/climate-related conditions at the time they were living or otherwise deposited. Proxies can include biological organisms, such as microfossils, or other preserved physical or chemical properties.",
-            paragraph2: "Once they arrived in Alaska, the researchers boarded the U.S. Coast Guard icebreaker Healy and traveled to the sampling locations along the Beaufort Sea continental shelf.",
-            paragraph3: "Ocean sediments are one of the best archives of past ocean and climate change throughout Earth's history. Sediment accumulates on the seafloor over time: the sediment at the top of the core is newer than sediment at the bottom.",
-            paragraph4: "Researchers can use the sediment core records to build a timeline of climate conditions through the past. The timeline is verified by measuring the Cesium and Lead radioisotopes and using radiocarbon dating.",
-            paragraph5: "Sediment cores were collected by a weighted piston-driven coring device from a platform on the stern of the ship that retrieves the soft sediments from the bottom of the ocean.",
-            paragraph6: "Back in the laboratory, researchers section the sediment core into one-centimeter-thick slices for analysis. The total time span that this sediment core represents is about 2000 years, in 5-year increments.",
-            paragraph7: "The microfossils found in these sediment cores range in size from 0.5 to 2 mm. Most of them are a little larger than the period at the end of this sentence. Learn more about the focal species on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-species' target='_blank'>Beaufort Sea species</a> page.",
-            paragraph8: "Identifying the species requires a microscope and a damp brush to pick the shell from the sediment to a slide for identification. The microfossils examined in this study include Foraminifera and Ostracode microfossils, which are excellent proxy indicators for past environments because their presence and growth are influenced by specific climate and ocean conditions when they were alive.",
-            alt1: "alt text 1",
-            alt2: "alt text 2",
-            alt3: "alt text 3",
-            alt4: "alt text 4",
-            alt5: "alt text 5",
-            alt6: "alt text 6",
-            alt7: "alt text 7",
-            alt8: "alt text 8"
+            paragraph1: "Collecting sediment core records from the ocean floor begins with USGS scientists traveling to their study site in Utqiagvik, Alaska. At this site, scientists used recent climatological measurements and several types of climate ‘proxies’ to reconstruct the climate history of the Beaufort Sea and to better understand recent climate change in the Arctic Ocean. Climate proxies in ocean sediment cores can include preserved physical or chemical properties or biological organisms, like algae or <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>microorganisms with shells</a>. These proxies serve as indicators of ocean- and climate-related conditions at the time the sediment was deposited.",
+            paragraph2: "Once they arrived in Alaska, the researchers boarded the U.S. Coast Guard icebreaker <i>Healy</i> and traveled to sampling locations along the continental shelf, where the Mackenzie River flows into the Beaufort Sea.",
+            paragraph3: "Researchers collected sediment cores by deploying a weighted piston-driven coring device from a platform on the stern of the ship. The device retrieved a vertical core of soft sediments from the bottom of the ocean. Because sediment accumulates on the seafloor over time, the sediment at the top of the core is younger than sediment at the bottom.",
+            paragraph4: "Onboard the ship, researchers cut the sediment core into one- and five-centimeter-thick slices for analysis, representing ~4- and ~24-year periods, respectively. The total time span that this particular sediment core represents is about <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>2000 years</a>. The timeline of sediment deposition was established by measuring <span class='tooltip-group'><span class='tooltip-span'>Cesium (Cs)</span><span id='cesium-tooltip' class='tooltiptext'>Cesium-137 dating measures a radioactive isotope released during nuclear tests in the 1950s and 1960s, which indicates when sediment layers were deposited from the mid-20th century onward.</span></span> and <span class='tooltip-group'><span class='tooltip-span'>Lead (Pb)</span><span id='lead-tooltip' class='tooltiptext'>Lead-210, a decay product of radon originating from uranium in the soil, accumulates in sediments over time. Measuring its concentration helps estimate the age of sediment layers over the last ~150 years.</span></span> radioisotopes and by <span class='tooltip-group'><span class='tooltip-span'>radiocarbon dating</span><span id='radiocarbon-tooltip' class='tooltiptext'>Researchers use radiocarbon dating to extend the record further back in time (up to ~50,000 years). This method relies on carbon-14, which is produced in the atmosphere and absorbed by living organisms. Once an organism dies, it stops taking in Carbon-14, which then decays at a known rate.</span></span> fossilized shells down the length of the core.",
+            paragraph5: "After processing the core, the researchers identified all the microfossils in each slice. The microfossils ranged in size from 0.5 to 2 millimeters. Most of them were a little larger than the period at the end of this sentence.",
+            paragraph6: "Scientists used a damp brush to move the microfossils from the sediment and place them on a slide for identification under a microscope. The microfossils examined in this study include <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>foraminifera and ostracoda</a>, which are excellent proxy indicators for past environments because their presence and growth were influenced by specific climate and ocean conditions when they were alive.",
         },
         BeaufortSeaSpecies: {
-            heading1: "Reconstructing past and present ocean climates with Arctic microfossils",
-            paragraph1: "At the mouth of the Mackenzie River, where it spills into the Beaufort Sea north of Yukon, Canada, the sea ice, temperature, salinity, and food availability conditions are continuously changing. Species of ostracodes and foraminifera (forams) respond, and the overall assemblage of species changes through time. These changes are recorded in the sediment layers, which have been collected and analyzed by USGS researchers. These microfossils work as proxies of past climates, based on the species present and their known ecological preferences. The results show major changes in the faunas have occurred during the last 25-50 years compared to the rest of the record.",
-            heading2: "Meet the forams!",
-            paragraph2: "Foraminifera, or 'forams', are a group of single-celled protists that secrete an external shell called a 'test.' These tests are often preserved in the sedimentary fossil record. They each have unique structures and shapes, which is how researchers identify the different species. These are some of the species used in this study as environmental indicators.",
-            heading2a: "<span class='scientificName'>Cassidulina reniforme</span>",
-            paragraph2a: "The tests of species in the genera <span class='scientificName'>Cassidulina</span> and <span class='scientificName'>Elphidium</span> species are made of calcium carbonate, which is highly sensitive to changes in ocean pH. The abundance of calcium carbonate forams has declined very recently.",
-            heading2b: "<span class='scientificName'>Elphidium excavatum</span>",
-            paragraph2b: "As local water chemistry changes from climate change, the environment becomes less favorable to calcium carbonate tests, and the organisms such as <span class='scientificName'>Elphidium excavatum</span> that build them. <span class='scientificName'>Elphidium excavatum</span>, like <span class='scientificName'>Cassidulia reniforme</span>, has declined in abundance in this Beaufort Sea microfossil record in recent years.",
-            heading2c: "<span class='scientificName'>Spiroplectammina biformis</span>",
-            paragraph2c: "Species within the genus <span class='scientificName'>Spiroplectammina</span> create tests that are 'agglutinated,' or formed by cementing together particles from their environment such as sand and sediment. Agglutinated species are able to withstand harsh, corrosive and turbid (cloudy) conditions. <span class='scientificName'>Spiroplectammina</span> abundance has increased significantly in the past few decades, indicating that bottom waters may be affected by permafrost melt as a consequence of climate change.",
-            heading3: "Meet the ostracodes!",
-            paragraph3: "Ostracodes are a microscopic species of arthropods, distantly related to crustaceans and insects. Ostracodes secrete a bivalve-like shell that is made of chitin and calcium carbonate. Under the right conditions, these shells can become fossilized in sediments.", 
-            heading3a: "<span class='scientificName'>Kotorachythere arctoborealis</span>",
-            paragraph3a: "<span class='scientificName'>Kotorachythere arctoborealis</span> is a species of ostracode that showed relatively low, but steady, abundance in the Beaufort Sea microfossil record until recently, when it has increased in relative abundance.",
-            heading3b: "<span class='scientificName'>Paracyprideis pseudopuntillata</span>",
-            paragraph3b: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is one of the most dominant species in this Arctic fossil record. However, the overall abundance has declined at the same time that <span class='scientificName'>Kotochythere arctoborealis</span> and agglutinated forams are increasing.",
-            heading4: "Learning from the past",
-            paragraph4: "Taken together with the results of other proxies analyzed in this study, these indicator species recount the history of climate variability and change in the Arctic Ocean. As glaciers melt, growing seasons change, and the Mackenzie River changes flow, indicator species change. Here, we see the relative decline of <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span>, and <span class='scientificName'>Paracyprideis pseudopunctillata</span> combined with the increases in agglutinated <span class='scientificName'>Spiroplectammina biformis</span> and <span class='scientificName'>Kotoracythere arctoborealis</span>, which indicates that within the last 50 years or so, this region of the Beaufort Sea has been affected by climate change, including water chemistry changes. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page."
+            heading1: "The Arctic Ocean is changing",
+            paragraph1: "In the last 25 to 50 years, major shifts have taken place in ecological communities in the Beaufort Sea, including within communities of microorganisms. Because of their sensitivity to water chemistry, microorganisms are proxies for local climatic conditions. Taken together with other climate proxies analyzed at this site, the shifts in microorganism abundance indicate that the climate and ocean conditions have recently changed in this region of the Beaufort Sea.",
+            heading2: "What can microorganisms tell us about change in the Arctic Ocean?",
+            paragraph2: "Ocean floor <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> provide a record of changes in microorganism communities. Microorganisms like foraminifera and ostracodes are identified in the sediment by their shells, which can take many different forms. These organisms build their shells using calcium carbonate and other elements taken directly from ocean water. Under the right conditions, these shells can become fossilized in sediments, creating microfossils and preserving a long-term record of past ocean conditions. Ocean water pH, salinity, turbidity, and temperature affect the sturdiness of the shells and the availability of different food sources. As a result, the presence and abundance of individual species is closely tied to environmental conditions. Because of the known ecological preferences of each species, microfossils act as proxies of past ocean conditions and as indicators of environmental change in the Arctic Ocean.",
+            subheading1: "Foraminifera",
+            paragraph3: "Foraminifera are single-celled protists. Foraminifera secrete a shell called a 'test' made of calcium carbonate. Because each species creates tests with unique structures and shapes, researchers can identify individual species in the sedimentary fossil record.",
+            subheading2: "Ostracodes",
+            paragraph4: "Ostracodes are crustaceans that secrete calcium carbonate to form a bivalve shell (like that of a clam).",
+            tabData: [
+                {
+                    tabTitle: "Spiroplectammina biformis",
+                    tabContentTitle: "Spiroplectammina biformis",
+                    tabContentTitleID: "spiroplectimmina",
+                    tabSpeciesClass: "Foraminifera",
+                    tabText: "The relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> has been higher in the past few decades than in the last 2000 years. Species within the <span class='scientificName'>Spiroplectammina</span> genus create tests that are 'agglutinated,' or formed by cementing together particles of sand and sediment. Agglutinated species are able to withstand harsher environments than other types of foraminifera. High abundances of agglutinated species often indicate corrosive (acidic) and turbid (cloudy) conditions. The recent increase in the relative abundance of <span class='scientificName'>Spiroplectammina biformis</span> suggests that eroded permafrost carried into the Beaufort Sea by the Mackenzie River as a consequence of climate change may be making bottom ocean waters more acidic and less hospitable to other species that have carbonate shells.",
+                    tabContentImageSuffix: "2c",
+                    tabPrefixImageName: "F_Spiroplectammina",
+                    tabImageAlt: "Scatterplot of the relative abundance of Spiroplectammina biformis over the past 2000 years. The relative abundance was low until about 1000 C.E., then it had some periods of being a bit higher (about 25% to 40%) until about 1500 C.E.. In the last 100 years or so, the relative abundance has been increasing rapidly and is above 50% relative abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
+                },
+                {
+                    tabTitle: "Cassidulina reniforme",
+                    tabContentTitle: "Cassidulina reniforme",
+                    tabContentTitleID: "cassidulina",
+                    tabSpeciesClass: "Foraminifera",
+                    tabText: "The relative abundance of <span class='scientificName'>Cassidulina reniforme</span> has declined very recently. This shift may be due to the increased abundance of agglutinated species like <span class='scientificName'>Spiroplectammina biformis</span>, which can survive in more corrosive conditions.",
+                    tabContentImageSuffix: "2a",
+                    tabPrefixImageName: "F_Cassidulina",
+                    tabImageAlt: "Scatterplot of the relative abundance of Cassidulina reniforme over the past 2000 years. The relative abundance was fairly stable, oscillating around about 40% relative abundance until the last 500 years or so when the abundance has declined to a low recently near 0% abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
+                },
+                {
+                    tabTitle: "Elphidium excavatum",
+                    tabContentTitle: "Elphidium excavatum",
+                    tabContentTitleID: "elphidium",
+                    tabSpeciesClass: "Foraminifera",
+                    tabText: "Like <span class='scientificName'>Cassidulina reniforme</span>, <span class='scientificName'>Elphidium excavatum</span> has declined in relative abundance in the Beaufort Sea in recent years. As climate change (and potentially an increased sediment load in the Mackenzie River) makes local ocean water more acidic, the aquatic environment becomes less favorable to organisms that build calcium carbonate shells.",
+                    tabContentImageSuffix: "2b",
+                    tabPrefixImageName: "F_Elphidium",
+                    tabImageAlt: "Scatterplot of the relative abundance of Elphidium excavatum over the past 2000 years. The relative abundance was fairly stable, oscillating around about 25% relative abundance until the last 500 years or so when the abundance has declined to a low recently near 0% abundance. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
+                },
+                {
+                    tabTitle: "Kotoracythere arctoborealis",
+                    tabContentTitle: "Kotoracythere arctoborealis",
+                    tabContentTitleID: "kotorachythere",
+                    tabSpeciesClass: "Ostracode",
+                    tabText: "<span class='scientificName'>Kotoracythere arctoborealis</span> is a species of ostracode that is not as common and is less widespread than other species of ostracode in the Arctic Ocean. Its ecological preferences are more limiting, and it prefers protected areas, like bays with comparatively warmer temperatures. In the Beaufort Sea, <span class='scientificName'>Kotoracythere arctoborealis</span> has had relatively low, but steady, abundance until recently, when it increased in relative abundance. This shift is likely due to changes in ocean water salinity and warmer summer water temperatures that favor <span class='scientificName'>Kotoracythere arctoborealis</span>.",
+                    tabContentImageSuffix: "3a",
+                    tabPrefixImageName: "O_Kotoracythere",
+                    tabImageAlt: "Scatterplot of the relative abundance of Kotoracythere arctoborealis over the past 2000 years. The relative abundance was fairly stable and low (about 10% or less) over much of the timespan. In the last 500 years or so, the abundance has increased to almost 25%. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
+                },
+                {
+                    tabTitle: "Paracyprideis pseudopunctillata",
+                    tabContentTitle: "Paracyprideis pseudopunctillata",
+                    tabContentTitleID: "paracyprideis",
+                    tabSpeciesClass: "Ostracode",
+                    tabText: "<span class='scientificName'>Paracyprideis pseudopunctillata</span> is common in polar regions with bottom waters that are very cold year-round, and historically has been one of the most dominant species in the Beaufort Sea. It is becoming less dominant as conditions favor other species like <span class='scientificName'>Kotocythere arctoborealis</span> and <span class='scientificName'>Spiroplectammina biformis</span>.",
+                    tabContentImageSuffix: "3b",
+                    tabPrefixImageName: "O_Paracyprideis",
+                    tabImageAlt: "Scatterplot of the relative abundance of Paracyprideis pseudopunctillata over the past 2000 years. The relative abundance was fairly stable, oscillating around about 60% relative abundance until around 1500 C.E. when it declined to nearly 0%. Then, it increased again back to about 60% abundance until about 1750 C.E., and it has been declining since. The relative abundance was just above 25% for this species in the last sample in 2000 C.E. A cartoon image of the microfossil is overlaid in the upper left side of the plot."
+                }
+            ],
+            heading3: "How are these data collected?",
+            paragraph5: "These data are from the mouth of the Mackenzie River where it spills into the Beaufort Sea north of Yukon, Canada. In this dynamic Arctic environment, sea ice extent, ocean water temperature and salinity, and the availability of food can change spatially and temporally. The species living in bottom ocean waters shift in response to these variable conditions. These changes are recorded in the sediment when the microorganisms are preserved as microfossils.",
+            paragraph6: "USGS researchers collect <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> and analyze the relative abundance of species within each sediment layer. See the full 2000-year timeline of microfossil composition on the <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-timeline' target='_blank'>Beaufort Sea timeline</a> page.",
         },
         BeaufortSeaTimeline: {
-            heading1: "2000 years of climate history from microfossil assemblages",
-            paragraph1: "USGS scientists <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-ice-coring' target='_blank'>collected sediment cores</a> from the ocean floor at the Beaufort Sea continental shelf north of Yukon, Canada. From the sediment cores, they took 1-cm slices that each represent ~5 years of time to build a 2000-year history. The species of microfossils, including <a href='/visualizations/climate-charts/#/beaufort-sea/beaufort-sea-species' target='_blank'>forams and ostracodes</a>, along with other biochemical signatures in the core samples, help the researchers understand past and present climate conditions.",
-            paragraph2: "This interactive bubble chart shows one bubble for each species of microfossil, including the indicator species in the genera <span class='highlight' id='elphidium'> Elphidium </span>, <span class='highlight' id='cassidulina'> Cassidulina </span>, and <span class='highlight' id='paracyprideis'> Paracyprideis </span>, which have declined in relative abundance lately, and <span class='highlight' id='kotorachythere'> Kotorachythere </span> and <span class='highlight' id='spiroplectimmina'> Spiroplectimmina </span>, which have increased. Additionally, <span class='highlight' id='other-species'> other species </span> of ostracodes and forams are represented in the remaining bubbles.",
-            paragraph3: "Paired with the bubble chart is the full timeline, with one bar chart for every 100 years from 0 A.D. to 2000 A.D. Hover over the bar chart to see the proportion of each species (height of bar), averaged over the 100 years, and the corresponding bubbles, which are scaled in size to represent relative proportion.",
-            heading2: "Why is this important?",
-            paragraph4: "We need paleoenvironmental records to place current anthropogenic climate warming and sea-ice loss in a long-term context. Proxy records can extend modern time series, providing baselines for pre-anthropogenic conditions. Paleoclimate research provides a deeper understanding of processes influencing natural climate variability, which enables more reliable predictions for future climate scenarios. Although climate change is a global phenomenon, it has uneven local consequences."
+            heading1: "Microfossils help reconstruct climate records",
+            paragraph1: "Although climate change is a global phenomenon, it has uneven local consequences. Research into the history of the Earth’s climate provides a deeper understanding of processes that influence natural climate variability. Reconstructed climate records, built using indicators like <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>microfossils</a> in ocean floor <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a>, can extend modern information back in time. These records provide baselines for natural conditions before humans began modifying Earth processes. In the Arctic, records of past environmental conditions can place current anthropogenic climate warming and sea-ice loss in a long-term context.",
+            paragraph2: "The sediment record captures microfossil species assemblages in the Beaufort Sea over the past 2000 years. The size of each bubble in the chart below is scaled to represent the relative abundance of an individual species of microfossil, including indicator species in the genera <span class='highlight scientificName' id='elphidium'>Elphidium</span>, <span class='highlight scientificName' id='cassidulina'>Cassidulina</span>, <span class='highlight scientificName' id='paracyprideis'>Paracyprideis</span>, <span class='highlight  scientificName' id='kotorachythere'>Kotoracythere</span> and <span class='highlight scientificName' id='spiroplectimmina'>Spiroplectimmina</span> and <span class='highlight scientificName' id='other-species'>other species</span> of ostracodes and foraminifera. The bubble chart shows species assemblages over the 2000-year record. Hover over the bar chart to look at relative abundances of the species within each 100-year window.",
+            heading2: "What does this record tell us?",
+            paragraph3: "This sedimentary record recounts the history of climate variability and change in the Arctic Ocean over the past 2000 years. Shifts in microorganism abundance, alongside chemical markers like biogenic silica and ratios of carbon and oxygen isotopes (not shown), reflect variability in the salinity and temperature of ocean water, ecological productivity, and the delivery of terrestrial sediment from the Mackenzie River. The record shows summer warming oscillations during the Medieval Climate Anomaly (beginning around 950 CE), and a colder more variable climate from ~1250 to 1900 CE. In the last 60 years, the record reflects larger-scale changes in the Beaufort Sea. Loss of sea ice has led to longer periods of open water. Permafrost melt has increased inflow from the Mackenzie River and made that inflow more acidic. Near the sea floor, conditions are cloudier, and productivity has increased.",
+            paragraph4: "Even though shallow continental shelves make up half of the Arctic Ocean, sediment records from high-latitude continental shelves are rare. With this record of climate variability and ecosystem change, scientists can better understand and model climate change in coastal regions of the Arctic.",
+            heading3: "How was this record reconstructed?",
+            paragraph5: "USGS scientists reconstructed this record using <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> collected from the ocean floor on the Beaufort Sea continental shelf, north of Yukon, Canada. After cutting the sediment cores into slices representing ~4 to 24 years of time, researchers used a microscope to identify the <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>species of microfossils</a> in each slice.",
         },
         FishAsFoodCirclePacking: {
             paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
             paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
         },
-        FishAsFoodLinkChart: {
-            paragraph1: 'Climate vulnerability index. Climate vulnerability varies by family and species. <span class="warm-text"><b>warm</b></span>, <span class="cool-text"><b>cool</b></span>, or <span class="cold-text"><b>cold</b></span> thermal guilds.',
-            explainerPart1: 'Showing the ',
-            explainerPart2: 'from 2030 to 2075 in harvest-weighted climate vulnerability under representative concentration pathway 4.5.',
-            prompt1: 'Click on the chart to show or hide data for <i>species</i> within each <b>family</b>'
-        },
         FishAsFoodSankey: {
             paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
+        },
+        WildfireAerosols: {
+            paragraph1: "Each layer of the <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected ice core</a> contains more than just ice. Particles from the air, called aerosols, deposit on the surface of the glacier. These aerosols can come from dust, fossil fuel combustion, or wildfires. When snow buries the deposited particles, they are preserved in the ice.",
+            paragraph2: "Can we tell if any of these particles came from wildfires? Three sugars — mannosan, galactosan, and levoglucosan — are only produced when vegetation burns. These sugars are present throughout the core, which tells us that some of the deposited particles in the ice were sourced from wildfires.",   
+            paragraph3: "Scientists use the ratio of levoglucosan to the sum of mannosan and galactosan to distinguish between types of vegetation that burned. Alaska's forests are dominated by softwoods, and <a href='/visualizations/earth-in-flux/#/fire-in-ice/regional-fires' target='_blank'>regional fires</a> likely deposit aerosols on the Juneau Ice Field that are captured in the core. However, there are also markers of hardwood combustion, which suggests that aerosols are transported to the ice field from much farther afield. One possible source is wildfires in hardwood forests in East Asia."
+        },
+        ThreatSankey: {
+            paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         }
     }
 }

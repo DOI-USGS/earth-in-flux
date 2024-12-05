@@ -39,62 +39,6 @@ build_nested_json <- function(data, focal_columns, out_file) {
   return(out_file)
 }
 
-build_climate_csv <- function(data, metadata_file, out_file) {
-  # read in metadata
-  metadata <- read_xlsx(metadata_file)
-  
-  # filter out missing and uncertain data
-  data_subset <- data |>
-    filter(!is.na(species_common), !is.na(MCDM_VUL_2030_45)) |>
-    left_join(metadata) |>
-    filter(uncertainty_classification < 4)
-  
-  # get subset of better represented families with >2 species
-  focal_families <- data_subset |>
-    group_by(family, species_common) |>
-    count() |>
-    group_by(family) |>
-    count() |>
-    filter(n > 2) |>
-    pull(family)
-  
-  # filter to subset of families
-  data_subset <- data_subset |>
-    filter(family %in% focal_families)
-  
-  # aggregate to species level
-  data_species <- data_subset |>
-    group_by(family, species_common, thermal_guild, popular_y) |>
-    summarize(across(starts_with('MCDM'), 
-                     ~ first(.x)),
-              across(starts_with('weighted_MCDM'), 
-                     ~ mean(.x, na.rm = TRUE)))
-  
-  # sort aggregated data
-  subset_species <- pull(data_species, species_common) |> sort(decreasing = TRUE)
-  data_species <- mutate(data_species, species_common = 
-                           factor(species_common, levels = subset_species))
-  
-  # aggregate to family level
-  data_family <- data_subset |>
-    group_by(family, thermal_guild, popular_y) |>
-    summarize(across(starts_with('MCDM'), 
-                     ~ first(.x)),
-              across(starts_with('weighted_MCDM'), 
-                     ~ mean(.x, na.rm = TRUE)))
-  
-  data_species |>
-    select(family, thermal_guild, species = species_common, 
-           cvi_2030 = weighted_MCDM_VUL_2030_45, 
-           cvi_2075 = weighted_MCDM_VUL_2075_45) |>
-    left_join(select(data_family, family, thermal_guild, 
-                     cvi_2030_family = weighted_MCDM_VUL_2030_45,
-                     cvi_2075_family = weighted_MCDM_VUL_2075_45))|>
-    readr::write_csv(out_file)
-  
-  return(out_file)
-}
-
 build_country_climate_csv <- function(data, out_file) {
   # get country-level summary of harvest, consumption, and climate vulnerability
   data_country <- data |>

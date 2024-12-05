@@ -10,11 +10,20 @@
                 <h1 class = 'title'>
                     {{ filteredChartContent.title }}
                 </h1>
-                <p>This visualization is associated with the <RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project.</p>
             </div>
             <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
             <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
             <AuthorshipSection v-if="vizAuthors" title="" titleLevel="3" :authors="vizAuthors"/>
+            <div
+                class="text-container"
+                id="page-link-container"
+            >
+                <hr>
+                <p id="page-link-note">See the 
+                    <button class="project-link"><RouterLink :to="`/${projectRoute}`">{{ filteredChartContent.project }} project page</RouterLink></button>
+                    for data sources and related visualizations.
+                </p>
+            </div>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>
@@ -56,4 +65,32 @@
 </script>
 
 <style scoped lang="scss">
+    #page-link-container {
+        font-weight: 300;
+        font-style: italic;
+    }
+    #page-link-note {
+        margin-top: 2.5rem;
+    }
+    .project-link {
+        font-family: sans-serif; /* This is fallback font for old browsers */
+        font-family: var(--default-font);
+        font-style: italic;
+        background-color: var(--faded-usgs-blue);
+        color: var(--usgs-blue);
+        border: solid var(--faded-usgs-blue);
+        border-radius: 5px;
+        font-weight: 300;
+        margin: 1rem 0.25rem 1rem 0.25rem;
+        padding: 0.3rem 0.5rem 0.5rem 0.5rem;
+        box-shadow: 3px 3px 3px rgba(39,44,49,.2);
+    }
+    .project-link a {
+        text-decoration: none;
+        color: var(--usgs-blue);
+    }
+    .project-link:hover {
+        box-shadow: rgba(39,44,49,.7) 2px 2px 4px -2px;
+        transform: translate3d(0, 2px, 0);
+    }
 </style>

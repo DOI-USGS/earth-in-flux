@@ -12,10 +12,9 @@
         <template #aboveExplanation>
             <p class="increase-line-height" v-html="text.paragraph1" />
             <p class="increase-line-height" v-html="text.paragraph2" />
-            <p class="increase-line-height" v-html="text.paragraph3" />
         </template>
         <template #figures>
-            <div id="chart-container" class="maxWidth" ref="chart"></div>
+            <div id="chart-container" ref="chart"></div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -23,7 +22,10 @@
         <!-- EXPLANATION -->
         <template #belowExplanation>
             <h2 v-html="text.heading2" />
+            <p v-html="text.paragraph3" />
             <p v-html="text.paragraph4" />
+            <h2 v-html="text.heading3" />
+            <p v-html="text.paragraph5" />
         </template>
     </VizSection>
 </template>
@@ -31,6 +33,7 @@
 <script setup>
     import { onMounted, ref } from "vue";
     import * as d3 from 'd3';
+    import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
@@ -39,19 +42,21 @@
     })
 
     // global variables
+    const mobileView = isMobile;
     const publicPath = import.meta.env.BASE_URL;
     const dataFile = 'beaufort_species_abundance.csv';
     const data = ref(null);
     const chart = ref(null);
-    let chartHeight = window.innerHeight * 0.8;
+    let laptopScreen = window.innerHeight < 700;
+    let chartHeight = laptopScreen ? window.innerHeight * 0.9 : window.innerHeight * 0.8;
     let bubbleChartDimensions;
-    const bubbleChartTitle = 'Title of chart';
+    const bubbleChartTitle = 'Bubble chart showing the relative abundance of microfossil species';
     let bubbleChartBounds;
     let barChartDimensions;
-    const barChartTitle = 'Title of chart';
+    const barChartTitle = 'Bar chart of species assemblages from 0 CE to 2000 CE';
     let barChartBounds;
     let timelineChartDimensions;
-    const timelineChartTitle = 'Title of chart';
+    const timelineChartTitle = 'Timeline of the 2000-year sediment record';
     let timelineChartBounds;
     let chartDecades = ref(null);
     const chartDecade = ref(null);
@@ -75,16 +80,20 @@
                 chartDecade.value = chartDecades.value[0]
                 
                 // initialize svg and chart bounds
-                const bubbleChartHeight = chartHeight * 0.7;
+                const chartMarginRight = mobileView ? 20 : 10;
+                const chartMarginLeft = mobileView ? 65 : 75;
+                const bubbleChartHeight = laptopScreen ? chartHeight * 0.6 : chartHeight * 0.7;
                 initBubbleChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
-                    height: bubbleChartHeight
+                    height: bubbleChartHeight,
+                    marginRight: chartMarginRight
                 });
-                const timelineChartHeight = chartHeight * 0.075
+                const timelineChartHeight = laptopScreen ? chartHeight * 0.1 : chartHeight * 0.075
                 initTimelineChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: timelineChartHeight,
-                    marginLeft: 60, // left margin, in pixels
+                    marginLeft: chartMarginLeft, // left margin, in pixels
+                    marginRight: chartMarginRight,
                     marginTop: 0,
                     marginBottom: 25
                 });
@@ -92,7 +101,8 @@
                 initBarChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
                     height: barChartHeight,
-                    marginLeft: 60, // left margin, in pixels
+                    marginLeft: chartMarginLeft, // left margin, in pixels
+                    marginRight: chartMarginRight,
                     marginTop: 10,
                     marginBottom: 20
                 })
@@ -133,6 +143,8 @@
             return [];
         }
     }
+
+    window.addEventListener('resize', resizeChart);
 
     function initBubbleChart({
         width = 640, // outer width, in pixels
@@ -183,116 +195,140 @@
             .attr("class", "nodes")
     }
 
-    function drawBubbleChart(data, {
-        decade = 200
-    }) {
-        // Set radius based on data values across all decades
+    function drawBubbleChart(data, { decade = 200 }) {
+        const maxSizeDenominator = mobileView ? 5 : 4;
         const sizeScale = d3.scaleSqrt()
-            .domain([
-                d3.min(data, (d) => parseFloat(d.pct_abundance)),
-                d3.max(data, (d) => parseFloat(d.pct_abundance))
-            ])
-            .range([4, chart.value.offsetWidth / 7]);
+            .domain([d3.min(data, d => parseFloat(d.pct_abundance)), d3.max(data, d => parseFloat(d.pct_abundance))])
+            .range([3, d3.min([bubbleChartDimensions.boundedHeight, bubbleChartDimensions.boundedWidth]) / maxSizeDenominator]);
 
-        // filter data to current decade and filter out decades where species is not present
+        // Filter data for the selected decade
         data = data.filter(d => d.decade === decade && d.pct_abundance > 0);
-        
-        const nodes = data.map((d) => ({
-            ...d,
-            radius: sizeScale(parseFloat(d.pct_abundance)),
-            x: bubbleChartDimensions.boundedWidth / 2,
-            y: bubbleChartDimensions.boundedHeight / 2
-        }));
-       
-        // set up nodes
-        let nodeGroups = bubbleChartBounds.selectAll('.nodes')
-            .selectAll(".node")
-            .data(nodes, d => d.species_id)
 
-        const oldNodeGroups = nodeGroups.exit()
+        // Create the nodes array
+        const nodes = data.map(d => {
+            // Try to find existing nodes by species_id to retain their prior positions
+            const existingNodeSelection = d3.select(`#group_${d.species_id}`);
+            const existingNode = existingNodeSelection.size() > 0 ? existingNodeSelection.datum() : null;
 
-        oldNodeGroups.selectAll("circle")
-            .attr("r", 0); //radius to 0
+            return {
+                ...d,
+                radius: sizeScale(parseFloat(d.pct_abundance)),
+                x: existingNode ? existingNode.x : bubbleChartDimensions.boundedWidth / 2 + (Math.random() - 0.5) * 10,  // Retain prior x if exists
+                y: existingNode ? existingNode.y : bubbleChartDimensions.boundedHeight / 2 + (Math.random() - 0.5) * 10  // Retain prior y if exists
+            };
+        });
 
-        // Remove old nodes
-        oldNodeGroups.transition(getExitTransition()).remove()
+        // Join data to nodes, keyed by species_id
+        let nodeGroups = bubbleChartBounds.selectAll(".node")
+            .data(nodes, d => d.species_id);  // Ensure the key is species_id
 
-        // Append new nodes
-        const newNodeGroups = nodeGroups.enter().append("g")
+        // Handle exit (hide old nodes instead of removing them)
+        nodeGroups.exit().select("circle")
+            .transition(getExitTransition())
+            .attr("r", 0)  // Shrink radius
+            .style("opacity", 0)  // Set opacity to 0 (hide)
+            .on("end", function() {
+                d3.select(this).attr("visibility", "hidden");  // Hide from view but keep in DOM
+            });
+
+        // Handle enter (new nodes)
+        const newNodeGroups = nodeGroups.enter()
+            .append("g")
             .attr("class", "node")
             .attr("id", d => "group_" + d.species_id)
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
         newNodeGroups.append("circle")
             .attr("id", d => d.species_id)
             .attr("stroke", "#000000")
             .attr("stroke-width", 0.5)
             .attr("fill", d => d.hexcode)
-            .attr("r", 0) //instantiate w/ radius = 0
+            .attr("r", 0)  // Start new circles at radius 0
+            .transition(getUpdateTransition())  // Transition to final size
+            .attr("r", d => d.radius);
 
-        //update nodeGroups to include new nodes
-        nodeGroups = newNodeGroups.merge(nodeGroups)
+        // Merge enter and update selections
+        nodeGroups = newNodeGroups.merge(nodeGroups);
 
-        const nodeGroupCircle = nodeGroups.select("circle")
-        
-        nodeGroupCircle
+        // Handle updates (transitioning circles based on new data)
+        nodeGroups.select("circle")
+            .attr("visibility", "visible")  // Make re-entered nodes visible again
             .transition(getUpdateTransition())
             .attr("r", d => d.radius)
+            .style("opacity", 1);  // Ensure opacity is set back to 1
 
+        // Update the force simulation with the full set of nodes
+        updateSimulation(nodes, nodeGroups);
+    }
+
+    function updateSimulation(nodes, nodeGroups) {
         function ticked() {
-            nodeGroupCircle
-                // .transition(getUpdateTransition()) // BREAKS d3 force
-                // .attr("r", d => d.radius)
-                .attr("cx", (d) => d.x)
-                .attr("cy", (d) => d.y);
+            nodeGroups.attr("transform", d => `translate(${d.x}, ${d.y})`);
         }
 
-        // set up d3 force simulation
-        if (simulation.value) {
-            // simulation.value.stop()
-            simulation.value
-                .nodes(nodes)
-                .alpha(0.9)
-                .restart()
-                // .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                // .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                // .force(
-                //     "collide",
-                //     d3.forceCollide()
-                //         .radius((d) => d.radius + 2)
-                //         .iterations(1)
-                // )
-                // .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alpha(0)
-                // .alphaDecay(0.005)
-                .velocityDecay(0.9)
-                .on("tick", ticked);
-        } else {
-            simulation.value = d3.forceSimulation();
-            simulation.value
-                .nodes(nodes)
-                .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(0.05))
-                .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(0.05))
-                // .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
-                .force(
-                    "collide",
-                    d3.forceCollide()
-                        .radius((d) => d.radius + 2)
-                        .iterations(1)
-                )
-                .force('charge', d3.forceManyBody().strength(0.01))
-                // .alphaMin(0.01)
-                // .alphaDecay(0.005)
-                .velocityDecay(0.9)
-                .on("tick", ticked);
+        // Apply boundary force: Ensure the nodes stay within the bounds of the SVG
+        function boundaryForceX(d) {
+            const minX = d.radius;  // Left edge, constrained by radius
+            const maxX = bubbleChartDimensions.boundedWidth - d.radius;  // Right edge, constrained by radius
+            return Math.max(minX, Math.min(maxX, d.x));  // Ensure x is within bounds
         }
+
+        function boundaryForceY(d) {
+            const minY = d.radius;  // Top edge, constrained by radius
+            const maxY = bubbleChartDimensions.boundedHeight - d.radius;  // Bottom edge, constrained by radius
+            return Math.max(minY, Math.min(maxY, d.y));  // Ensure y is within bounds
+        }
+
+        if (!simulation.value) {
+            simulation.value = d3.forceSimulation();
+        }
+
+        // Restart the simulation and reapply forces
+        const forceXStrength = mobileView ? 0.3 : 0.1;
+        const forceYStrength = mobileView ? 0.2 : 0.3;
+        simulation.value.nodes(nodes)
+            .force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2))
+            .force("x", d3.forceX(bubbleChartDimensions.boundedWidth / 2).strength(forceXStrength))  // Strong pull toward center on x-axis
+            .force("y", d3.forceY(bubbleChartDimensions.boundedHeight / 2).strength(forceYStrength))  // Strong pull toward center on y-axis
+            .force("collide", d3.forceCollide(d => d.radius + 4).strength(0.9))  // Strong collision force for tight packing
+            .force("boundaryX", d3.forceX(d => boundaryForceX(d)).strength(0.2))  // Weaker force to keep circles in x-bounds
+            .force("boundaryY", d3.forceY(d => boundaryForceY(d)).strength(0.2))  // Weaker force to keep circles in y-bounds
+            .force("charge", d3.forceManyBody().strength(-1))  // Minimal repulsion to prevent bubbles from pushing too far apart
+            .alphaDecay(0.03)
+            .velocityDecay(0.5)
+            .on("tick", ticked);
+
+        // Restart the simulation to ensure proper positioning
+        simulation.value.alpha(0.8).restart();
+    }
+
+    function resizeChart() {
+        const chartWidth = chart.value.offsetWidth;
+        const chartHeight = window.innerHeight * 0.8;
+
+        bubbleChartDimensions.width = chartWidth;
+        bubbleChartDimensions.height = chartHeight;
+        bubbleChartDimensions.boundedWidth = chartWidth - bubbleChartDimensions.margin.left - bubbleChartDimensions.margin.right;
+        bubbleChartDimensions.boundedHeight = chartHeight - bubbleChartDimensions.margin.top - bubbleChartDimensions.margin.bottom;
+
+        //  // Get the current node positions
+        // const currentNodes = bubbleChartBounds.selectAll('.node').data();
+
+        // Update the force simulation with the new dimensions and re-center the nodes
+        simulation.value.force("center", d3.forceCenter(bubbleChartDimensions.boundedWidth / 2, bubbleChartDimensions.boundedHeight / 2));
+
+        // Restart the simulation with updated dimensions
+        simulation.value.alpha(0.9).restart();
+
+        // Reapply node positions based on new dimensions
+        bubbleChartBounds.selectAll(".node")
+            .attr("transform", d => `translate(${d.x}, ${d.y})`);
     }
 
     // define transitions
     function getUpdateTransition() {
       return d3.transition()
-        .duration(2000)
+        .duration(1000)
         .ease(d3.easeCubicInOut)
     }
     function getExitTransition() {
@@ -359,6 +395,7 @@
 
         // add x axis
         const xAxis = timelineChartBounds.append('g')
+            .attr("id", "timeline-x-axis")
             .attr("transform", `translate(0,${timelineChartDimensions.boundedHeight})`)
             .call(d3.axisBottom(xScale).tickSize(0))
             // .select(".domain").remove() // remove axis line;
@@ -366,9 +403,11 @@
         xAxis.selectAll('path')
             .attr("stroke", bkgdColor);
 
+        const defaultAxisTextOpacity = mobileView ? 0 : 1
         xAxis.selectAll('text')
             .attr("class", d => 'axis-text x-axis label' + d)
-            .style('font-weight', d => d === decade ? '900' : '200');
+            .style('font-weight', d => d === decade ? '900' : '200')
+            .style('opacity', d => d === decade ? 1 :defaultAxisTextOpacity);
 
         // Add x axis title
         const xAxisLabelYPosition = xAxis.select("text").attr('y')
@@ -377,9 +416,13 @@
             .attr("class", "x-axis axis-title")
             .attr("x", 0)
             .attr("y", xAxisLabelYPosition)
+            .attr("dx", mobileView ? -xScale.bandwidth() / 2 : 0)
             .attr("dy", xAxisLabelDy)
+            .attr("data-width", timelineChartDimensions.margin.left)
             .style("text-anchor", "end")
-            .text('Year')
+            .style("dominant-baseline", mobileView ? "central" : "auto")
+            .text('Year CE')
+            .call(d => mobileView ? wrap(d) : d)
        
         // draw timeline
         const lineGroup = timelineChartBounds.append("g")
@@ -409,7 +452,7 @@
                 .attr("class", d => 'point timeline' + d)
                 .attr("cx",  d => xScale(d) + xScale.bandwidth() / 2)
                 .attr("cy", timelineChartDimensions.boundedHeight / 2)
-                .attr("r", 8)
+                .attr("r", mobileView ? 4 : 8)
                 .style('fill', d => d === decade ? highlightFillGrey : defaultGrey)
                 .style("stroke", d => d === decade ? highlightStrokeGrey : defaultGrey)
                 .style("stroke-width", 2)
@@ -550,6 +593,19 @@
         yAxis.selectAll('text')
             .attr("class", 'axis-text y-axis');
 
+        // add axis title
+        yAxis
+            .append("text")
+            .attr("class", "axis-title")
+            .attr("x", -barChartDimensions.boundedHeight / 2)
+            .attr("y", -barChartDimensions.margin.left)
+            .attr("transform", `rotate(-90)`)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "text-before-edge")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
+            .text("% Abundance");
+
         // set up color scale
         let speciesColors = []
         chartSpecies.forEach(species => {
@@ -619,6 +675,10 @@
                 .style('stroke-opacity', defaultRectOpacity)
             d3.selectAll('.axis-text.x-axis')
                 .style('font-weight', '200')
+            if (mobileView) {
+                d3.selectAll('.axis-text.x-axis')
+                    .style('opacity', 0)
+            }
             // set styling for specific decade
             d3.selectAll('.timeline' + decade)
                 .style('fill', highlightFillGrey)
@@ -628,17 +688,75 @@
                 .style('stroke-opacity', 0)
             d3.selectAll('.label' + decade)
                 .style('font-weight', '900')
+            if (mobileView) {
+                d3.selectAll('.label' + decade)
+                    .style('opacity', 1)
+            }
             // update bubble chart
             drawBubbleChart(data.value, {decade: chartDecade.value})
         }
     }
+
+    // https://gist.github.com/mbostock/7555321
+    function wrap(text) {
+        text.each(function() {
+            var text = d3.select(this),
+            words = text.text().split(/\s|-+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            width = text.attr("data-width"),
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            dx = parseFloat(text.attr("dx")),
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            
+            console.log(text.attr("dy"))
+
+            while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
+
+            // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+            if (lineNumber > 0) {
+                const startDy = -(lineNumber * (lineHeight / 2)) * 0.5; // *0.5 for vertically-centered labels
+                text
+                    .selectAll("tspan")
+                    .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+            }
+        }
+    )};
 </script>
 
+<style scoped lang="scss">
+    #chart-container {
+        max-width: 1000px;
+        margin: 0 auto 15px auto;
+    }
+    @media only screen and (max-height: 700px) {
+        #chart-container {
+            max-width: 900px;
+            margin: 0 auto 15px auto;
+        }
+    }
+</style>
 <style lang="scss">
     .axis-text {
         font-size: 1.8rem;
         font-family: var(--default-font);
         user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
     }
     .axis-title {
         font-size: 1.8rem;
@@ -646,45 +764,14 @@
         font-weight: 900;
         fill: var(--color-text);
         user-select: none;
+        @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+        }
     }
-
     .increase-line-height {
         line-height: 28px;
         @media screen and (max-width: 600px) {
             line-height: 26px;
         }
     }
-    .highlight {
-        font-style:italic;
-        padding: 0.5px 5px;
-        border-radius: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-        transition: all 0.1s;
-    }
-    #cassidulina {
-        color: white;
-        background-color: #3c475a; /* contrast ratio 9.37 */
-    }
-    #elphidium {
-        color: white;
-        background-color: #66768F; /* contrast ratio 4.61 */
-    }
-    #paracyprideis {
-        color: black;
-        background-color: #729C9D; /* contrast ratio 6.95 */
-    }
-    #kotorachythere {
-        color: black;
-        background-color: #c49051; /* contrast ratio 7.45 */
-    }
-    #spiroplectimmina {
-        color: black;
-        background-color: #dd605a; /* contrast ratio 5.89 */
-    }
-    #other-species {
-        color: black;
-        background-color: #e7f0e7; /* contrast ratio 5.89 */
-    }
-
 </style>

@@ -1,3 +1,66 @@
+# Function to clean up the three foram datasets and merge them
+merge_foram_data <- function(GGC30_in, JPC32_in, MC29_in, age_data){
+  # remove empty columns
+  GGC30_temp <- GGC30_in |> dplyr::select(!contains("...")) |>
+    mutate(core = "GGC30")
+  
+  JPC32_temp <- JPC32_in |> dplyr::select(!contains("...")) |>
+    mutate(core = "JPC 32")
+  
+  # fix typo in name
+  MC29_temp <- MC29_in |>
+    rename(`E. bartleti` = `E. bartletti`) |>
+    mutate(core = "MC-29A")
+  
+  # join rows for the three cores
+  join <- bind_rows(GGC30_temp, JPC32_temp, MC29_temp) |>
+    # rename depths
+    rename(top = `cm (top)`,
+           bottom = `cm (base)`) |>
+    # remove unnecessary columns 
+    select(-`wet weight`, -`dry washed weight`) |>
+    # create identifier of core and depth
+    mutate(id = paste0(core, "-", top))
+  
+  # Merge age data with raw counts
+  merged <- join |> left_join(age_data, by = "id")
+  
+  return(merged)
+}
+
+# clean foram data (from raw counts to % abundance)
+clean_foram_data <- function(raw_in){
+  # fix taxonomic name from I. teretis to Cassidulina teretis re: "T1 Taxonomic Note" in
+  # the sciencebase data release table
+  renamed <- raw_in |>
+    rename(`Cassidulina teretis` = `I. teretis`) |>
+    # Plus, spell out all abbreviated genera
+    rename(`Cassidulina reniforme` = `C. reniforme`,
+           `Elphidium incertum`  = `E. incertum`,
+           `Elphidium excavatum clavatum`  = `E. excavatum clavatum`,
+           `Elphidium bartletti` = `E. bartleti`) 
+  
+  # prep to calculate % abundance
+  counts <- renamed |>
+    select(-top, -bottom, -core, -id) |>
+    # NAs should be zeros
+    mutate(across(!year, ~replace_na(.x, 0))) |>
+    # calculate total count 
+    mutate(sum = rowSums(across(!year)))
+  
+  # calculate percent abundance
+  percents <- counts |>
+    mutate(across(!year & !sum, ~ (.x/sum)*100))
+  
+  # take out -6 year
+  out_df <- percents |>
+    filter(year >= 0)
+  
+  return(out_df)
+  
+}
+
+
 join_abundance <- function(ostracode_in, foram_in, color_long, focal_species){
   ## Join data
   ostracodes <- ostracode_in |>
@@ -5,8 +68,8 @@ join_abundance <- function(ostracode_in, foram_in, color_long, focal_species){
     mutate(year = round(year, 0))
   
   forams <- foram_in |>
-    rename(year = 'calendar yr') |>
-    mutate(year = round(year, 0))
+    mutate(year = round(year, 0)) |>
+    select(-sum)
   
   join_long <- ostracodes |>
     full_join(forams, by = "year") |>
