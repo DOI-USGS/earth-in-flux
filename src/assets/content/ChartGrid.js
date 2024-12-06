@@ -20,7 +20,7 @@ export default {
             img_src: 'glacial_mri_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Glacial ice records change.'
+            description: 'Glacier ice records change.'
         },
         {
             title: 'Wildfire Aerosols',
