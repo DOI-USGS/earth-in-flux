@@ -51,7 +51,7 @@ p2 <- list(
     export_particulates_data(
       data = p2_data_core,
       outfile = 
-        sprintf("fii_core%sparticulates.csv", p2_focal_core[['site']])
+        sprintf("../public/fii_core%sparticulates.csv", p2_focal_core[['site']])
     ),
     format = 'file'
   ),
@@ -66,7 +66,7 @@ p2 <- list(
     export_sugars_data(
       data = p2_core_sugars,
       outfile = 
-        sprintf("fii_core%ssugars.csv", p2_focal_core[['site']])
+        sprintf("../public/fii_core%ssugars.csv", p2_focal_core[['site']])
     ),
     format = 'file'
   ),
@@ -74,9 +74,9 @@ p2 <- list(
     p2_core_biomass_csv,
     export_biomass_data(
       sugars_data = p2_core_sugars,
-      exclude_grass = TRUE,
+      exclude_grass = FALSE,
       outfile = 
-        sprintf("fii_core%sbiomass.csv", p2_focal_core[['site']])
+        sprintf("../public/fii_core%sbiomass.csv", p2_focal_core[['site']])
     ),
     format = 'file'
   )
