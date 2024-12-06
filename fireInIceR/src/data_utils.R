@@ -1,6 +1,6 @@
 clean_input_data <- function(data_file) {
   data <- read_xlsx(data_file, na = c("<MDL", '--'))
-  names(data)<-make.names(names(data),unique = TRUE)
+  names(data) <- make.names(names(data),unique = TRUE)
   
   data <- data |>
     replace_na(list(Levoglucosan.in.picogram.per.milliliter..unfiltered. = 0, 
