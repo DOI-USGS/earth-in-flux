@@ -368,16 +368,16 @@
         box-shadow: 5px 5px 10px rgba(57, 61, 66, 0.2);
         font-style: italic;
         @media screen and (max-height: 770px) {
-            height: 80vh;
+            height: 100%;
             width: 40vw;
             max-width: 40vw;
-            padding: 0rem 2rem 0 2rem;
+            padding: 0rem 2rem 1rem 2rem;
         }
         @media screen and (max-width: 600px) {
             flex-direction: column;
             width: 100%;
             max-width: 100%;
-            height: 55vh;
+            height: 100%;
             padding: 1rem 1.5rem 0 1.5rem;
         }
     }
