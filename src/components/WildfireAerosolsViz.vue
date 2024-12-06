@@ -5,11 +5,6 @@
         :figures="true"
         :fig-caption="false"
     >
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
         <template #figures>
             <div id="wildfire-aerosols-grid-container">
                 <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
@@ -30,9 +25,20 @@
                 </button>
             </div>
         </template>
-        <template #figureCaption>
+    </VizSection>
+    <VizSection
+        id="cross-section"
+        :figures="true"
+        :fig-caption="false"
+    >
+        <template #heading>
+            <h2>
+                {{ text.heading }}
+            </h2>
         </template>
-        <template #belowExplanation>
+        <template #aboveExplanation>
+            <p v-html="text.explanation1" />
+            <p v-html="text.explanation2" />
         </template>
     </VizSection>
 </template>
@@ -1407,7 +1413,7 @@
         grid-template-areas:
             "prev-upper text next-upper"
             "prev-lower chart next-lower";
-        margin: 2rem auto 0 auto;
+        margin: 2rem auto 4rem auto;
         column-gap: 2rem;
         row-gap: 3rem;
         @media only screen and (max-width: 600px) {
