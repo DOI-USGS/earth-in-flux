@@ -5,28 +5,40 @@
         :figures="true"
         :fig-caption="false"
     >
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
         <template #figures>
             <div id="wildfire-aerosols-grid-container">
-                <button id="aerosol-prev" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
                 </button>
-                <button id="aerosol-next" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
                     <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
                 </button>
                 <div id="aerosol-text-container" class="text-container">
                     <p v-html="currentText" />
                 </div>
                 <div id="chart-container" ref="chart"></div>
+                <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                </button>
+                <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                </button>
             </div>
         </template>
-        <template #figureCaption>
+    </VizSection>
+    <VizSection
+        id="cross-section"
+        :figures="true"
+        :fig-caption="false"
+    >
+        <template #heading>
+            <h2>
+                {{ text.heading }}
+            </h2>
         </template>
-        <template #belowExplanation>
+        <template #aboveExplanation>
+            <p v-html="text.explanation1" />
+            <p v-html="text.explanation2" />
         </template>
     </VizSection>
 </template>
@@ -53,16 +65,17 @@
     const scatterData = ref();
     const currentIndex = ref(1);
     const justClicked = ref(false);
-    const nIndices = 3;
+    const nIndices = 4;
     const chart = ref(null);
     let chartSVG;
-    const chartTitle = 'Title of chart';
+    const chartTitle = 'Series of charts depicting particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core';
     let chartHeight;
     let chartWidth;
     let chartDimensions;
     let chartBounds;
     let chartGap;
     let maskingRect;
+    let annotationGap;
     let tileChartTranslateX1;
     let tileChartTranslateX2;
     let tileChartTranslateX3;
@@ -90,7 +103,7 @@
     let scatterChartBounds;
     let scatterXScale;
     let scatterColorCategories;
-    const scatterColors = {grass: '#c49051', hardwood: '#3c475a', softwood: '#729C9D'};
+    const scatterColors = {hardwood: '#c49051', softwood: '#729C9D'};
     let scatterColorScale;
     const transitionLength = 1000;
 
@@ -123,21 +136,22 @@
                 
                 // initialize chart elements
                 // on desktop, don't let chart height exceed 800px
-                const desktopHeight = window.innerHeight < 770 ? window.innerHeight * 0.85 : Math.min(window.innerHeight * 0.75, 800);
+                const desktopHeight = window.innerHeight < 770 ? window.innerHeight * 1.05 : Math.min(window.innerHeight * 0.75, 800);
                 chartHeight = mobileView ? window.innerHeight * 0.6 : desktopHeight;
                 chartWidth = chart.value.offsetWidth;
                 initChart({
                     width: chartWidth,
                     height: chartHeight,
-                    margin: mobileView ? 5 : 30
+                    margin: mobileView ? 5 : 5,
+                    marginLeft: mobileView ? 5 : 30
                 })
 
                 const defaultMargin = mobileView ? 5 : 10;
-                const sharedTopMargin = mobileView ? 135 : 130;
+                const sharedTopMargin = mobileView ? 135 : 165;
                 const sharedBottomMargin = mobileView ? 0 : 10;
 
                 chartGap = mobileView ? chartDimensions.boundedWidth / 11 : chartDimensions.boundedWidth / 11;
-                const tileChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
+                const tileChartWidth = mobileView ? chartGap * 3 : chartGap * 2.5;
                 const barChartWidth = mobileView ? chartGap * 3 : chartGap * 3;
                 const scatterChartWidth = mobileView ? chartGap * 2 : chartGap * 2;
 
@@ -156,7 +170,7 @@
                 });
 
                 barChartTranslateX2 = mobileView ? tileChartTranslateX2 + tileChartWidth + chartGap : tileChartTranslateX2 + tileChartWidth + chartGap;
-                barChartTranslateX3 = mobileView ? tileChartTranslateX3 + tileChartWidth + chartGap : tileChartTranslateX3 + tileChartWidth + chartGap;
+                barChartTranslateX3 = mobileView ? tileChartTranslateX3 + tileChartWidth + chartGap * 0.75 : tileChartTranslateX3 + tileChartWidth + chartGap;
                 initBarChart({
                     width: barChartWidth,
                     height: chartHeight,
@@ -191,9 +205,9 @@
                     .attr("width", barChartDimensions.width + scatterChartDimensions.width)
                     .attr("height", chartHeight)
                     .style("transform", `translate(${
-                        tileChartTranslateX1 + tileChartDimensions.width + chartGap * 0.5
+                        tileChartTranslateX1 + tileChartDimensions.width + chartGap
                     }px, 0px)`);
-                drawScatterChart(scatterData.value);
+                drawScatterChart(scatterData.value, 'softwood');
                 scatterChartWrapper
                     .attr("visibility", "hidden");
 
@@ -339,9 +353,9 @@
 
         // Add groups for visual elements
         tileChartBounds.append("g")
-            .attr("class", "rects");
-        tileChartBounds.append("g")
             .attr("class", "annotations");
+        tileChartBounds.append("g")
+            .attr("class", "rects");
     }
 
     function initBarChart({
@@ -664,7 +678,7 @@
 
     function initTileColorScale() {
         tileColorScale = d3.scaleSequential()           
-            .interpolator(d3.interpolateGreys);
+            .range(["#efefef" ,"#000000"]);
     }
 
     function initBarColorScale(data) {
@@ -724,8 +738,7 @@
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
-        const annotationGap = tileChartDimensions.boundedWidth * 0.5;
-        const annotationBuffer = annotationGap * 0.2;
+        annotationGap = tileChartDimensions.boundedWidth * 0.5;
         // draw chart
         tileChartBounds.select('.rects') // selects our group we set up to hold chart elements
             .selectAll(".rect") // empty selection
@@ -740,44 +753,39 @@
                     .attr("width", tileChartDimensions.boundedWidth - annotationGap)
                     .style("fill", d => tileColorScale(colorAccessor(d)));
         
-        // draw year bands
+        // Add horizontal black line to differentiate years
         tileChartBounds.select(".annotations")
-            .append("rect")
-                .attr("class", "year-bands")
-                .attr("x", annotationGap / 2 + annotationBuffer)
-                .attr("y", 0)
-                .attr("height", yScale(372))
-                .attr("width", 3)
+            .append("line")
+                .attr("x1", 0)
+                .attr("x2", chartDimensions.boundedWidth)
+                .attr("y1", yScale(370))
+                .attr("y2", yScale(370))
+                .style("stroke", "#000000")
+                .style("stroke-width", 1)
+                .style("stroke-dasharray", ("2, 5"));
 
+        // Add year labels
         tileChartBounds.select(".annotations")
-            .append("rect")
-                .attr("class", "year-bands")
-                .attr("x", annotationGap / 2 + annotationBuffer)
-                .attr("y", yScale(378))
-                .attr("height", tileChartDimensions.boundedHeight - yScale(378))
-                .attr("width", 3)
+            .append("text")
+                .attr("class", "axis-title")
+                .attr("y", yScale(365))
+                .attr("x", annotationGap / 2)
+                .attr("text-anchor", "middle")
+                .attr("dominant-baseline", "text-after-edge")
+                .text("2016")
 
         tileChartBounds.select(".annotations")
             .append("text")
-                .attr("class", "axis-text")
-                .attr("x", - yScale(372) / 2)
-                .attr("y", annotationGap / 2)
-                .attr("transform", "rotate(-90)")
+                .attr("class", "axis-title")
+                .attr("y", yScale(375))
+                .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
-                .text("2016 accumulation")
-        
-        tileChartBounds.select(".annotations")
-            .append("text")
-                .attr("class", "axis-text")
-                .attr("x", - yScale(378) - ((tileChartDimensions.boundedHeight - yScale(378)) / 2))
-                .attr("y", annotationGap / 2)
-                .attr("transform", "rotate(-90)")
-                .attr("text-anchor", "middle")
-                .text("2015 accumulation")
+                .attr("dominant-baseline", "text-before-edge")
+                .text("2015")
     }
 
     function addTileLegend() {
-        // build list of posible counts (0 to 366)
+        // build list of possible total particle counts
         let count_list = [];
         for (let i = 1; i <= tileColorScale.domain()[1]; i++) {
             count_list.push(i);
@@ -804,13 +812,17 @@
               .attr("class", "axis-title")
               .attr("x", tileChartDimensions.boundedWidth / 2)
               .attr("y", -tileChartDimensions.margin.top)
+              .attr("dx", 0)
+                .attr("dy", 0)
               .attr("text-anchor", "middle")
               .attr("dominant-baseline", "text-before-edge")
+              .attr("text-width", tileChartDimensions.boundedWidth)
               .text("Particulate count")
+              .call(d => wrap(d))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
-        const rectHeight = mobileView ? tileChartDimensions.margin.top / 6 : tileChartDimensions.margin.top / 4;
+        const rectHeight = mobileView ? tileChartDimensions.margin.top / 8 : tileChartDimensions.margin.top / 6;
         const rectX = tileChartDimensions.boundedWidth / 2 - rectWidth / 2;
         legendGroup.append("rect")
               .attr("class", "c1p2 matrixLegend")
@@ -964,7 +976,7 @@
             .attr("y", -barChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
-            .text(d => d);
+            .text(d => d.toLowerCase());
 
         // Position legend groups
         // https://stackoverflow.com/questions/20224611/d3-position-text-element-dependent-on-length-of-element-before
@@ -1013,7 +1025,8 @@
 
             // Determine x and y translation
             // set y translation for each row
-            let rowHeight = window.innerHeight < 770 ? legendRectSize * 4 : legendRectSize * 2;
+            let rowHeight = window.innerHeight < 600 ? legendRectSize * 4.5 : legendRectSize * 3;
+            rowHeight =  mobileView ? legendRectSize * 4.5 : rowHeight;
             const yTranslation = rowHeight * i;
             // let yTranslation = 0;
             // if (!mobileView) {
@@ -1043,10 +1056,11 @@
         })
     }
 
-    function drawScatterChart(data) {
+    function drawScatterChart(data, type) {
         //////////////////////////////
         /////    PROCESS DATA    /////
         //////////////////////////////
+        const filteredData = data.filter(d => d.vegetation_type == type)
 
         ///////////////////////////////////////////
         /////    SET UP ACCESSOR FUNCTIONS    /////
@@ -1066,7 +1080,7 @@
         ///////////////////////////////////////////
         // set domain for xScale
         scatterXScale
-            .domain([... new Set(data.map(d => xAccessor(d)))]);
+            .domain([... new Set(filteredData.map(d => xAccessor(d)))]);
 
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
@@ -1078,18 +1092,64 @@
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
         // draw chart
-        const desktopPointSize = window.innerHeight < 770 ? 2 : 4;
         scatterChartBounds.select('.points') // selects our group we set up to hold chart elements
             .selectAll(".point") // empty selection
-                .data(data) // bind data
-                .enter() // instantiate chart element for each element of data
-                .append("circle") // append a rectangle for each element
-                    .attr("class", "point")
-                    .attr("id", d => 'point-' + identifierAccessor(d))
-                    .attr("cx", d => scatterXScale(xAccessor(d)) + scatterXScale.bandwidth()/2)
-                    .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
-                    .attr("r", mobileView ? 2 : desktopPointSize)
-                    .style("fill", d => scatterColorScale(colorAccessor(d)));
+                .data(filteredData, d => d.vegetation_type) // bind data
+                .join(
+                    enter => enter
+                    .append("circle")
+                        .attr("class", "point")
+                        .attr("id", d => 'point-' + identifierAccessor(d))
+                        .attr("cx", d => scatterXScale(xAccessor(d)) + scatterXScale.bandwidth()/2)
+                        .attr("cy", d => barYScale(yAccessor(d)) + barYScale.bandwidth()/2)
+                        .attr("r", barYScale.bandwidth() / 2 * 0.95)
+                        .style("fill", d => scatterColorScale(colorAccessor(d)))
+                        .style("fill-opacity", 0)
+                        .transition()
+                        .duration(transitionLength)
+                        .style("fill-opacity", 1),
+
+                    null, // no update function
+
+                    exit => {
+                        exit
+                        .transition()
+                        .duration(transitionLength)
+                        .style("fill-opacity", 0)
+                        .remove();
+                    }
+                );
+
+        const baseWidth = mobileView ? scatterChartTranslateX3 - scatterChartDimensions.boundedWidth + (barYScale.bandwidth() / 2 * 0.95 * 2) : scatterChartTranslateX3 - scatterChartDimensions.boundedWidth / 2 + (barYScale.bandwidth() / 2 * 0.95 * 2);
+        scatterChartBounds.select('.points') // selects our group we set up to hold chart elements
+            .selectAll(".rect") // empty selection
+                .data(filteredData, d => d.vegetation_type) // bind data
+                .join(
+                    enter => enter
+                    .append("rect")
+                        .attr("class", "rect")
+                        .attr("id", d => 'point-' + identifierAccessor(d))
+                        .attr("x", d => scatterXScale(xAccessor(d)) + scatterXScale.bandwidth()/2)
+                        .attr("y", d => barYScale(yAccessor(d)))
+                        .attr("height", barYScale.bandwidth())
+                        .attr("width", d => scatterXScale(xAccessor(d)) + baseWidth) //(chartDimensions.boundedWidth - scatterChartDimensions.boundedWidth - chartGap)
+                        .attr("transform", d => "translate(" + - (baseWidth + scatterXScale(xAccessor(d))) + ", 0)")
+                        .style("fill", d => scatterColorScale(colorAccessor(d)))
+                        .style("opacity", 0)
+                        .transition()
+                        .duration(transitionLength)
+                        .style("opacity", 0.5),
+
+                    null, // no update function
+
+                    exit => {
+                        exit
+                        .transition()
+                        .duration(transitionLength)
+                        .style("fill-opacity", 0)
+                        .remove();
+                    }
+                );
     }
 
     function addScatterLegend() {
@@ -1110,8 +1170,7 @@
             .text('Burned vegetation type')
             .call(d => wrap(d))
 
-        const desktopPointSize = window.innerHeight < 770 ? 2 : 4;
-        const legendPointSize = mobileView ? 2 : desktopPointSize;
+        const legendPointSize = barYScale.bandwidth() / 2 * 0.95;
         // const interItemSpacing = mobileView ? 15 : 10;
         const intraItemSpacing = 6;
 
@@ -1132,7 +1191,7 @@
         legendGroups.append("circle")
             .attr("class", "legend-point")
             .attr("cx", 0)
-            .attr("cy", -scatterChartDimensions.margin.top / 1.75 + legendPointSize / 1.5)
+            .attr("cy", -scatterChartDimensions.margin.top / 2 + legendPointSize / 1.5)
             .attr("r", legendPointSize)
             .style("fill", d => scatterColorScale(d))
         
@@ -1140,7 +1199,7 @@
         legendGroups.append("text")
             .attr("class", "legend-text")
             .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
-            .attr("y", -scatterChartDimensions.margin.top / 1.75)
+            .attr("y", -scatterChartDimensions.margin.top / 2)
             .attr("text-anchor", "start") // left-align text
             .attr("dominant-baseline", "central")
             .text(d => d);
@@ -1191,8 +1250,8 @@
 
                 // Determine x and y translation
                 // set y translation for each row               
-                let rowHeight = window.innerHeight < 770 ? barYScale.bandwidth() * 4 : barYScale.bandwidth() * 2;
-                const yTranslation = rowHeight * i;
+                let rowHeight = window.innerHeight < 600 ? barYScale.bandwidth() * 4.5 : barYScale.bandwidth() * 3;                const yTranslation = rowHeight * i;
+                rowHeight =  mobileView ? barYScale.bandwidth() * 4.5 : rowHeight;
                 // let yTranslation = 0;
                 // if (!mobileView) {
                 //     if (i < 2) {
@@ -1267,7 +1326,7 @@
         } else if (index == 2) {
             maskingRect
                 .style("transform", `translate(${
-                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width + chartGap * 2
+                    tileChartTranslateX2 + tileChartDimensions.width + barChartDimensions.width + chartGap * 2.25
                 }px, 0px)`)
                 .transition()
                 .duration(transitionLength)
@@ -1281,11 +1340,18 @@
             }
             if (!scatterChartHidden) hideChart(scatterChartWrapper) 
         } else if (index == 3) {
+            drawScatterChart(scatterData.value, 'softwood')
             maskingRect
                 .style("opacity", "0")
             moveChart(tileChartWrapper, tileChartTranslateX3)
             moveChart(barChartWrapper, barChartTranslateX3)
-            showChart(scatterChartWrapper, scatterChartTranslateX3)
+            if (scatterChartHidden)  {
+                showChart(scatterChartWrapper, scatterChartTranslateX3)
+            }
+        } else if (index == 4) {
+            maskingRect
+                .style("opacity", "0")
+            drawScatterChart(scatterData.value, 'hardwood')
         }
     }
 
@@ -1306,16 +1372,9 @@
             dx = parseFloat(text.attr("dx")),
             tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
 
-            
-            console.log(`wrap: ${words}`)
             while ((word = words.pop())) {
             line.push(word);
             tspan.text(line.join(" "));
-                console.log(`width: ${width}`)
-                console.log(`word: ${word}`)
-                console.log(tspan.node())
-                console.log(tspan.node().getComputedTextLength())
-                console.log(tspan.node().getComputedTextLength() > width)
                 if (tspan.node().getComputedTextLength() > width) {
                     line.pop();
                     tspan.text(line.join(" "));
@@ -1354,9 +1413,9 @@
         grid-template-columns: 10% calc(80% - 4rem) 10%;
         grid-template-rows: auto max-content;
         grid-template-areas:
-            "prev text next"
-            "chart chart chart";
-        margin: 2rem auto 0 auto;
+            "prev-upper text next-upper"
+            "prev-lower chart next-lower";
+        margin: 2rem auto 4rem auto;
         column-gap: 2rem;
         row-gap: 3rem;
         @media only screen and (max-width: 600px) {
@@ -1364,7 +1423,7 @@
             grid-template-rows: auto max-content;
             grid-template-areas:
                 "chart chart chart"
-                "prev text next";
+                "prev-upper text next-upper";
         }
     }
     #chart-container {
@@ -1373,7 +1432,8 @@
     }
     #aerosol-text-container {
         grid-area: text;
-        height: 15vh;
+        height: 19vh;
+        align-content: center;
         @media screen and (max-height: 770px) {
             height: 30vh;
         }
@@ -1390,20 +1450,26 @@
         cursor: pointer;
         box-shadow: 0px 0px 4px rgba(39,44,49,.3);
         @media only screen and (max-width: 600px) {
-            height: 3rem;
-            width: 3rem;
+            height: 3.5rem;
+            width: 3.5rem;
             align-self: start;
         }
     }
-    #aerosol-prev {
-        grid-area: prev;
+    #aerosol-prev-upper {
+        grid-area: prev-upper;
         justify-self: end;
-        align-self: start;
     }
-    #aerosol-next {
-        grid-area: next;
+    #aerosol-next-upper {
+        grid-area: next-upper;
         justify-self: start;
-        align-self: start;
+    }
+    #aerosol-prev-lower {
+        grid-area: prev-lower;
+        justify-self: end;
+    }
+    #aerosol-next-lower {
+        grid-area: next-lower;
+        justify-self: start;
     }
     button:hover:after {
         top: 0px;
@@ -1438,7 +1504,13 @@
     }
 </style>
 <style lang="scss">
-/* css for elements added/classed w/ d3 */
+    #softwoods-tooltip {
+        margin-left: -145px;
+    }
+    #hardwoods-tooltip {
+        margin-left: -145px;
+    }
+    /* css for elements added/classed w/ d3 */
     #masking-rect {
         fill: var(--color-background);
     }

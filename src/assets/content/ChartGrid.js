@@ -7,20 +7,20 @@ export default {
             project: 'Findex',
             vizKey: 'ThreatSankey',
             vizRoute: 'inland-fish-total-threats',
-            img_src: 'Placeholder_thumbnail.png',
+            img_src: 'Placeholder_thumbnail.PNG',
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
         },
         {
-            title: 'Explore the Juneau Ice Field',
+            title: 'Explore the Juneau Icefield',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_mri_thumbnail.png',
             alt: '',
             chartOrder: 1,
-            description: 'Glacial Ice cores can record changes in wildfire prevalence.'
+            description: 'Glacier ice records change.'
         },
         {
             title: 'Wildfire Aerosols',
@@ -30,7 +30,7 @@ export default {
             img_src: 'wildfire_aerosols_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Wildfires are depositing aerosols on glaciers.'
+            description: 'Wildfire aerosols are preserved in glaciers.'
         },          
         {
             title: 'Regional wildfire deposition',
@@ -40,7 +40,7 @@ export default {
             img_src: 'aerosols_map_thumbnail.png',
             alt: '',
             chartOrder: 2,
-            description: 'Particles from regional wildfires are deposited on glaciers.'
+            description: 'Smoke plumes from regional wildfires affect glaciers.'
         },
         {
             title: 'Global economic value of recreationally fished species',
