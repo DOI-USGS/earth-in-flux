@@ -80,9 +80,7 @@
             <h3>About the {{ pageText.title }} research</h3>
           </template>
           <template #aboveExplanation>
-            <div v-for="paragraph, item in pageText.motivation" :key="item">
-              <p v-html="paragraph" />
-            </div>
+            <p v-for="paragraph, item in pageText.motivation" :key="item" v-html="paragraph" />
           </template>
         </VizSection>
         <VizSection
