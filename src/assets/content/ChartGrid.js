@@ -13,7 +13,7 @@ export default {
             description: 'Land use change is threatening inland fisheries.'
         },
         {
-            title: 'Explore the Juneau Ice Field',
+            title: 'Explore the Juneau Icefield',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
