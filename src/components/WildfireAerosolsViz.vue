@@ -68,7 +68,7 @@
     const nIndices = 4;
     const chart = ref(null);
     let chartSVG;
-    const chartTitle = 'Title of chart';
+    const chartTitle = 'Series of charts depicting particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core';
     let chartHeight;
     let chartWidth;
     let chartDimensions;
@@ -818,7 +818,7 @@
               .attr("dominant-baseline", "text-before-edge")
               .attr("text-width", tileChartDimensions.boundedWidth)
               .text("Particulate count")
-              .call(d => mobileView ? wrap(d) : d)
+              .call(d => wrap(d))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
@@ -1026,6 +1026,7 @@
             // Determine x and y translation
             // set y translation for each row
             let rowHeight = window.innerHeight < 600 ? legendRectSize * 4.5 : legendRectSize * 3;
+            rowHeight =  mobileView ? legendRectSize * 4.5 : rowHeight;
             const yTranslation = rowHeight * i;
             // let yTranslation = 0;
             // if (!mobileView) {
@@ -1119,7 +1120,7 @@
                     }
                 );
 
-        const baseWidth = mobileView ? scatterChartTranslateX3 - scatterChartDimensions.boundedWidth - barYScale.bandwidth() / 2 : scatterChartTranslateX3 - scatterChartDimensions.boundedWidth / 2 + barYScale.bandwidth();
+        const baseWidth = mobileView ? scatterChartTranslateX3 - scatterChartDimensions.boundedWidth + (barYScale.bandwidth() / 2 * 0.95 * 2) : scatterChartTranslateX3 - scatterChartDimensions.boundedWidth / 2 + (barYScale.bandwidth() / 2 * 0.95 * 2);
         scatterChartBounds.select('.points') // selects our group we set up to hold chart elements
             .selectAll(".rect") // empty selection
                 .data(filteredData, d => d.vegetation_type) // bind data
@@ -1250,6 +1251,7 @@
                 // Determine x and y translation
                 // set y translation for each row               
                 let rowHeight = window.innerHeight < 600 ? barYScale.bandwidth() * 4.5 : barYScale.bandwidth() * 3;                const yTranslation = rowHeight * i;
+                rowHeight =  mobileView ? barYScale.bandwidth() * 4.5 : rowHeight;
                 // let yTranslation = 0;
                 // if (!mobileView) {
                 //     if (i < 2) {
@@ -1430,7 +1432,7 @@
     }
     #aerosol-text-container {
         grid-area: text;
-        height: 15vh;
+        height: 19vh;
         align-content: center;
         @media screen and (max-height: 770px) {
             height: 30vh;
@@ -1502,7 +1504,13 @@
     }
 </style>
 <style lang="scss">
-/* css for elements added/classed w/ d3 */
+    #softwoods-tooltip {
+        margin-left: -145px;
+    }
+    #hardwoods-tooltip {
+        margin-left: -145px;
+    }
+    /* css for elements added/classed w/ d3 */
     #masking-rect {
         fill: var(--color-background);
     }
