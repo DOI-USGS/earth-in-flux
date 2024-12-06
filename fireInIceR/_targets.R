@@ -2,7 +2,7 @@ library(targets)
 
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
-                            "readxl"))
+                            "readxl", "readr"))
 
 source('src/data_utils.R')
 
