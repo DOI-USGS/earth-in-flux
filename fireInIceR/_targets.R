@@ -74,7 +74,7 @@ p2 <- list(
     p2_core_biomass_csv,
     export_biomass_data(
       sugars_data = p2_core_sugars,
-      exclude_grass = FALSE,
+      exclude_grass = TRUE,
       outfile = 
         sprintf("../public/fii_core%sbiomass.csv", p2_focal_core[['site']])
     ),
