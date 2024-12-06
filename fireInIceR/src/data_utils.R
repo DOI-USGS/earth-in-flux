@@ -81,7 +81,7 @@ export_biomass_data <- function(sugars_data, exclude_grass, outfile) {
            hardwood = (L_MG >= 1.5 & L_MG <= 17.6),
            grass = (L_MG >= 1.7 & L_MG <= 2.5)) |>
     select(-L_MG, -Levoglucosan, -Mannosan, -Galactosan) |>
-    pivot_longer(cols = -c(depth_cm, year, site), names_to = "vegetation_type",
+    pivot_longer(cols = c(softwood, hardwood, grass), names_to = "vegetation_type",
                  values_to = 'burned') |>
     filter(burned) |>
     mutate(vegetation_type = factor(vegetation_type, 
