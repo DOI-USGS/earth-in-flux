@@ -1,46 +1,48 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #figures>
-            <div id="wildfire-aerosols-grid-container">
-                <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                </button>
-                <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                </button>
-                <div id="aerosol-text-container" class="text-container">
-                    <p v-html="currentText" />
+    <section>
+        <!---VizSection-->
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #figures>
+                <div id="wildfire-aerosols-grid-container">
+                    <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                    </button>
+                    <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
+                    <div id="aerosol-text-container" class="text-container">
+                        <p v-html="currentText" />
+                    </div>
+                    <div id="chart-container" ref="chart"></div>
+                    <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                    </button>
+                    <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
                 </div>
-                <div id="chart-container" ref="chart"></div>
-                <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                </button>
-                <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                </button>
-            </div>
-        </template>
-    </VizSection>
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <template #aboveExplanation>
-            <p v-html="text.explanation1" />
-            <p v-html="text.explanation2" />
-        </template>
-    </VizSection>
+            </template>
+        </VizSection>
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2>
+                    {{ text.heading }}
+                </h2>
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.explanation1" />
+                <p v-html="text.explanation2" />
+            </template>
+        </VizSection>
+    </section>
 </template>
 
 <script setup>
