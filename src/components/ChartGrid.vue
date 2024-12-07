@@ -1,7 +1,9 @@
 <template>
     <div id="chartGrid" class="padded">
-        <ChartCard @click.enter="showSubPage(item.project, item.vizRoute)" v-for="(item, index) in sortedChartContent" :key="index"
+        <ChartCard v-for="(item, index) in sortedChartContent" :key="index"
             :id="item.vizRoute"
+            :projectRoute="item.project.replace(/\s+/g, '-').toLowerCase()"
+            :vizRoute="item.vizRoute"
             :src="getThumb(item.img_src)"
             :alt="item.alt"
             :description="item.description"
@@ -10,7 +12,6 @@
 </template>
 
 <script setup>
-    import { useRouter } from 'vue-router';
     import { computed, onMounted } from 'vue';
     import { isMobile } from 'mobile-device-detect';
 
@@ -25,7 +26,6 @@
     })
     
     // global variables
-    const router = useRouter();
     const mobileView = isMobile;
     const chartContent = ChartGridContent.chartGridItems;
 
@@ -78,11 +78,6 @@
         }
 
         return array;
-    }
-
-    function showSubPage(project, vizRoute) {
-        const projectRoute = project.replace(/\s+/g, '-').toLowerCase();
-        router.push({ name: 'SubPage', params: { projectRoute, vizRoute } })
     }
 
     function getThumb(pic) {

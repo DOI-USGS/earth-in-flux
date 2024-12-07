@@ -1,8 +1,8 @@
 <template>
     <div class="chart" :class="{ 'active': active }">
-        <RouterLink :to="vizRoute ? vizRoute : './'">
+        <RouterLink :to="vizRoute ? { name: 'SubPage', params: { projectRoute, vizRoute } } : { name: 'ProjectPage', params: { projectRoute } }">
             <img v-if="vizRoute" :src="src" :alt="alt" />
-            <div v-if="projectRoute" id="overlay">
+            <div v-if="!vizRoute" id="overlay">
                 <p class='overlay-text'>Project info</p>
             </div>
         </RouterLink>
