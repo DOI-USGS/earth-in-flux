@@ -90,6 +90,8 @@
                     .attr("display", "none")
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
+                crossSectionSVG.select("#tutorial_arrow")
+                    .attr("display", "none")
                 crossSectionSVG.select("#legend_1")
                     .style("transform", "translate(-100px, 210px)")
                 crossSectionSVG.select("#legend_1").select("#patch_3")
