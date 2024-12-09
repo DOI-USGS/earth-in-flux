@@ -118,7 +118,7 @@
     });
 
     function getImageSrc(photoID) {
-        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.jpeg`
+        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.webp`
     }
 
     function draw_xs(line_id,photo_id){
