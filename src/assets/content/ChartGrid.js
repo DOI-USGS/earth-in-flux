@@ -23,7 +23,7 @@ export default {
             description: 'Glacier ice records change.'
         },
         {
-            title: 'Wildfire Aerosols',
+            title: 'Wildfire aerosols',
             project: 'Fire in Ice',
             vizKey: 'WildfireAerosols',
             vizRoute: 'wildfire-aerosols',
@@ -63,7 +63,7 @@ export default {
             description: 'Inland recreational fishing harvest is substantial.'
         },
         {
-            title: 'Beaufort Sea Sediment Coring',
+            title: 'Beaufort Sea sediment coring',
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaCore',
             vizRoute: 'beaufort-sea-sediment-coring',
@@ -73,7 +73,7 @@ export default {
             description: 'Sediment cores can help build past and present climates.'
         },  
         {
-            title: 'Beaufort Sea Species',
+            title: 'Beaufort Sea species',
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
@@ -83,7 +83,7 @@ export default {
             description: 'Microfossils show that Arctic waters are changing.'
         },   
         {
-            title: 'Beaufort Sea Timeline',
+            title: 'Beaufort Sea timeline',
             project: 'Beaufort Sea',
             vizKey: 'BeaufortSeaTimeline',
             vizRoute: 'beaufort-sea-timeline',
