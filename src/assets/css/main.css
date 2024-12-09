@@ -66,6 +66,10 @@ a {
     max-width: 90vw; /* 90% of view width on mobile */
   }
 }
+.image-narrow {
+  max-width: 70rem;
+  justify-self: center;
+}    
 .tooltip-span {
   position: relative;
   cursor: pointer;

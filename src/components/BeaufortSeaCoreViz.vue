@@ -142,10 +142,6 @@
 .coring-image-container {
     margin: 3rem auto 4rem auto;
 }
-.image-narrow {
-    max-width: 70rem;
-    justify-self: center;
-}    
 .coring-image {
     width: 100%;
     justify-self: center;
