@@ -232,11 +232,15 @@
         d3.select('#single-path-label').selectAll("text")
             .style("opacity", 1.0);
         d3.select('#multi-path-label-mb-2').selectAll("path")
+            .style("fill", "#151515")
+            .style("fill-opacity", 0.75)
             .style("opacity", 0.0);
         d3.select('#multi-path-label-mb-2').selectAll("text")
             .style("opacity", 0.0);
         if (mobileView == true){
             d3.select('#multi-path-label-mb-1').selectAll("path")
+                .style("fill", "#151515")
+                .style("fill-opacity", 0.75)
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-mb-1').selectAll("text")
                 .style("opacity", 1.0);
