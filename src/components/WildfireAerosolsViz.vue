@@ -1136,7 +1136,7 @@
             {
                 axisPosition: scatterXAxisPosition, 
                 axisTitle: 'Burned vegetation type',
-                wrapTitle: true,
+                wrapTitle: false,
                 tickType: 'string',
                 keepDomain: false,
                 keepLabels: false
