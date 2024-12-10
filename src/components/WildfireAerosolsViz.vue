@@ -526,7 +526,7 @@
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
-        titleBaseline = "text-before-edge",
+        titleBaseline = "hanging",
         titleAngle = -90,
         nticks = null,
         tickSize = 0,
@@ -599,7 +599,7 @@
         titleX = chartDims.boundedWidth / 2,
         titleY = axisPosition === 'bottom' ? chartDims.margin.bottom : -chartDims.margin.top,
         titleTextAnchor = "middle",
-        titleBaseline = axisPosition === 'bottom' ? "text-after-edge" : "text-before-edge",
+        titleBaseline = axisPosition === 'bottom' ? "ideographic" : "hanging",
         titleAngle = 0,
         nticks = null,
         tickSize = 0,
@@ -643,7 +643,7 @@
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
-        titleBaseline = "text-before-edge",
+        titleBaseline = "hanging",
         titleAngle = -90,
         nticks = null,
         tickSize = 0,
@@ -773,7 +773,7 @@
                 .attr("y", yScale(365))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
-                .attr("dominant-baseline", "text-after-edge")
+                .attr("dominant-baseline", "ideographic")
                 .text("2016")
 
         tileChartBounds.select(".annotations")
@@ -782,7 +782,7 @@
                 .attr("y", yScale(375))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
-                .attr("dominant-baseline", "text-before-edge")
+                .attr("dominant-baseline", "hanging")
                 .text("2015")
     }
 
@@ -811,46 +811,46 @@
 
         // append legend title
         legendGroup.append("text")
-              .attr("class", "axis-title")
-              .attr("x", tileChartDimensions.boundedWidth / 2)
-              .attr("y", -tileChartDimensions.margin.top)
-              .attr("dx", 0)
-                .attr("dy", 0)
-              .attr("text-anchor", "middle")
-              .attr("dominant-baseline", "text-before-edge")
-              .attr("text-width", tileChartDimensions.boundedWidth)
-              .text("Particulate count")
-              .call(d => wrap(d))
+            .attr("class", "axis-title")
+            .attr("x", tileChartDimensions.boundedWidth / 2)
+            .attr("y", -tileChartDimensions.margin.top)
+            .attr("dx", 0)
+            .attr("dy", 0)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", tileChartDimensions.boundedWidth)
+            .text("Particulate count")
+            .call(d => wrap(d))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
         const rectHeight = mobileView ? tileChartDimensions.margin.top / 8 : tileChartDimensions.margin.top / 6;
         const rectX = tileChartDimensions.boundedWidth / 2 - rectWidth / 2;
         legendGroup.append("rect")
-              .attr("class", "c1p2 matrixLegend")
-              .attr("width", rectWidth)
-              .attr("height", rectHeight)
-              .attr("fill", "url(#gradient-particles)")
-              .attr("x", rectX)
-              .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
+            .attr("class", "c1p2 matrixLegend")
+            .attr("width", rectWidth)
+            .attr("height", rectHeight)
+            .attr("fill", "url(#gradient-particles)")
+            .attr("x", rectX)
+            .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
 
         // append legend text
         const xBuffer = 5;
         legendGroup.append("text")
-              .attr("class", "axis-subtitle")
-              .attr("text-anchor", "end")
-              .attr("dominant-baseline", "central")
-              .attr("x", rectX - xBuffer)
-              .attr("y", -tileChartDimensions.margin.top / 2)
-              .text("low")
+            .attr("class", "axis-subtitle")
+            .attr("text-anchor", "end")
+            .attr("dominant-baseline", "central")
+            .attr("x", rectX - xBuffer)
+            .attr("y", -tileChartDimensions.margin.top / 2)
+            .text("low")
 
         legendGroup.append("text")
-              .attr("class", "axis-subtitle")
-              .attr("text-anchor", "start")
-              .attr("dominant-baseline", "central")
-              .attr("x", rectX + rectWidth + xBuffer)
-              .attr("y", -tileChartDimensions.margin.top / 2)
-              .text("high")
+            .attr("class", "axis-subtitle")
+            .attr("text-anchor", "start")
+            .attr("dominant-baseline", "central")
+            .attr("x", rectX + rectWidth + xBuffer)
+            .attr("y", -tileChartDimensions.margin.top / 2)
+            .text("high")
         
     }
 
@@ -1165,9 +1165,9 @@
             .attr("x", scatterChartDimensions.boundedWidth / 2)
             .attr("y", -scatterChartDimensions.margin.top)
             .attr("dx", 0)
-            .attr("dy", 0)
+            .attr("dy", "1em")
             .attr("text-anchor", "middle")
-            .attr("dominant-baseline", "text-before-edge")
+            .attr("dominant-baseline", "hanging")
             .attr("text-width", scatterChartDimensions.boundedWidth)
             .text('Burned vegetation type')
             .call(d => wrap(d))
@@ -1392,7 +1392,7 @@
                     case 'central':
                         lineHeightFactor = 0;
                         break;
-                    case 'text-before-edge':
+                    case 'hanging':
                         lineHeightFactor = 0;
                         break;
                     default:
