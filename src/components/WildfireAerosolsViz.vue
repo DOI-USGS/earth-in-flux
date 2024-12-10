@@ -104,6 +104,8 @@
     let scatterChartWrapper;
     let scatterChartBounds;
     let scatterXScale;
+    let scatterXAxis;
+    const scatterXAxisPosition = 'top';
     let scatterColorCategories;
     const scatterColors = {hardwood: '#c49051', softwood: '#729C9D'};
     let scatterColorScale;
@@ -463,6 +465,15 @@
         // Initialize scales
         initScatterXScale()
 
+        // Initialize axes
+        initScatterXAxis(
+            {
+                bounds: scatterChartBounds, 
+                chartDims: scatterChartDimensions,
+                axisPosition: scatterXAxisPosition
+            }
+        )
+
         // Add groups for visual elements
         scatterChartBounds.append("g")
             .attr("class", "points");
@@ -499,6 +510,19 @@
             .attr("aria-hidden", true); // hide from screen reader
     }
 
+    function initScatterXAxis({
+        bounds,
+        chartDims,
+        axisPosition = 'bottom'
+    }) {
+        // add group for x axis
+        scatterXAxis = bounds.append("g")
+            .attr("id", "x-axis")
+            .attr("class", "axis")
+            .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("aria-hidden", true); // hide from screen reader
+    }
+
     function initYScale() {
         // scale for the y axis (domain set in `drawTileChart()`)
         yScale = d3.scaleLinear()
@@ -528,6 +552,8 @@
         titleTextAnchor = "middle",
         titleBaseline = "hanging",
         titleAngle = -90,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -536,6 +562,7 @@
         customSuffix = null,
         textAngle = 0,
         keepDomain = true,
+        keepLabels = true
     }) {
         // generate axis
         // if numeric ticks, include specification of format
@@ -545,6 +572,9 @@
         } else if (tickType == "numeric" && customSuffix) {
             axis
                 .call(d3[axisFxn](axisScale).ticks(nticks).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d => d3.format(tickFormat)(d) + ' ' + customSuffix));
+        } else if (!keepLabels) {
+            axis
+                .call(d3[axisFxn](axisScale).tickValues([]));
         } else {
             axis
                 .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding));
@@ -569,9 +599,11 @@
             .attr("transform", `rotate(${titleAngle})`)
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
+            .attr("text-width", titleWidth)
             .attr("role", "presentation")
             .attr("aria-hidden", true)
-            .text(axisTitle);
+            .text(axisTitle)
+            .call(d => wrapTitle ? wrap(d) : d);
 
         if (axisSubtitle) {
             axisTitle.append("tspan")
@@ -601,6 +633,8 @@
         titleTextAnchor = "middle",
         titleBaseline = axisPosition === 'bottom' ? "ideographic" : "hanging",
         titleAngle = 0,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -609,6 +643,7 @@
         customSuffix = null,
         textAngle = 0, 
         keepDomain = true,
+        keepLabels = true
     }) {
         drawAxis({
             axis: axis,
@@ -622,6 +657,8 @@
             titleTextAnchor: titleTextAnchor,
             titleBaseline: titleBaseline,
             titleAngle: titleAngle,
+            titleWidth: titleWidth,
+            wrapTitle: wrapTitle,
             nticks: nticks,
             tickSize: tickSize,
             tickPadding: tickPadding,
@@ -630,6 +667,7 @@
             customSuffix: customSuffix,
             textAngle: textAngle,
             keepDomain: keepDomain,
+            keepLabels: keepLabels
         })
     }
 
@@ -645,6 +683,8 @@
         titleTextAnchor = "middle",
         titleBaseline = "hanging",
         titleAngle = -90,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -653,6 +693,7 @@
         customSuffix = null,
         textAngle = 0,
         keepDomain = true,
+        keepLabels = true
     }) {
         drawAxis({
             axis: axis,
@@ -667,6 +708,8 @@
             titleTextAnchor: titleTextAnchor,
             titleBaseline: titleBaseline,
             titleAngle: titleAngle,
+            titleWidth: titleWidth,
+            wrapTitle: wrapTitle,
             nticks: nticks,
             tickSize: tickSize,
             tickPadding: tickPadding,
@@ -675,6 +718,7 @@
             tickFormat: tickFormat,
             customSuffix: customSuffix,
             keepDomain: keepDomain,
+            keepLabels: keepLabels
         })
     }
 
@@ -1083,6 +1127,21 @@
         // set domain for xScale
         scatterXScale
             .domain([... new Set(filteredData.map(d => xAccessor(d)))]);
+        drawXAxis(
+            {
+                axis: scatterXAxis, 
+                axisScale: scatterXScale, 
+                chartDims: scatterChartDimensions
+            }, 
+            {
+                axisPosition: scatterXAxisPosition, 
+                axisTitle: 'Burned vegetation type',
+                wrapTitle: true,
+                tickType: 'string',
+                keepDomain: false,
+                keepLabels: false
+            }
+        )
 
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
@@ -1159,18 +1218,19 @@
             .attr("id", "bar-chart-legend")
 
         // Add legend title
-        scatterLegendGroup.append("text")
-            .attr("id", "legend-title")
-            .attr("class", "axis-title")
-            .attr("x", scatterChartDimensions.boundedWidth / 2)
-            .attr("y", -scatterChartDimensions.margin.top)
-            .attr("dx", 0)
-            .attr("dy", 0)
-            .attr("text-anchor", "middle")
-            .attr("dominant-baseline", "hanging")
-            .attr("text-width", scatterChartDimensions.boundedWidth)
-            .text('Burned vegetation type')
-            .call(d => wrap(d))
+         // add axis title
+        // scatterLegendGroup.append("text")
+        //     .attr("id", "legend-title")
+        //     .attr("class", "axis-title")
+        //     .attr("x", scatterChartDimensions.boundedWidth / 2)
+        //     .attr("y", -scatterChartDimensions.margin.top + 10)
+        //     .attr("dx", 0)
+        //     .attr("dy", 0)
+        //     .attr("text-anchor", "middle")
+        //     .attr("dominant-baseline", "hanging")
+        //     .attr("text-width", scatterChartDimensions.boundedWidth)
+        //     .text('Burned vegetation type')
+        //     .call(d => wrap(d))
 
         const legendPointSize = barYScale.bandwidth() / 2 * 0.95;
         // const interItemSpacing = mobileView ? 15 : 10;
