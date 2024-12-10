@@ -1165,7 +1165,7 @@
             .attr("x", scatterChartDimensions.boundedWidth / 2)
             .attr("y", -scatterChartDimensions.margin.top)
             .attr("dx", 0)
-            .attr("dy", "1em")
+            .attr("dy", 0)
             .attr("text-anchor", "middle")
             .attr("dominant-baseline", "hanging")
             .attr("text-width", scatterChartDimensions.boundedWidth)
