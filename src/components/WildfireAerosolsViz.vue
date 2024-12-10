@@ -864,7 +864,7 @@
             .attr("dominant-baseline", "hanging")
             .attr("text-width", tileChartDimensions.boundedWidth)
             .text("Particulate count")
-            .call(d => wrap(d))
+            // .call(d => wrap(d))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
@@ -1136,7 +1136,7 @@
             {
                 axisPosition: scatterXAxisPosition, 
                 axisTitle: 'Burned vegetation type',
-                wrapTitle: false,
+                wrapTitle: true,
                 tickType: 'string',
                 keepDomain: false,
                 keepLabels: false
