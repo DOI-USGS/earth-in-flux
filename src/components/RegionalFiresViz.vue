@@ -289,7 +289,7 @@
         grid-area: chart;
         place-self: center;
         height: 100%;
-        max-height: 85vh;
+        max-height: calc(min(85vh, 700px));
         max-width: 100%;
     }
 </style>
