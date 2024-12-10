@@ -596,6 +596,8 @@
             .attr("class", "axis-title")
             .attr("x", titleX)
             .attr("y", titleY)
+            .attr("dx", 0)
+            .attr("dy", 0)
             .attr("transform", `rotate(${titleAngle})`)
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
@@ -603,7 +605,7 @@
             .attr("role", "presentation")
             .attr("aria-hidden", true)
             .text(axisTitle)
-            .call(d => wrapTitle ? wrap(d) : d);
+            .call(d => wrapTitle ? wrap(d, {shift: false}) : d);
 
         if (axisSubtitle) {
             axisTitle.append("tspan")
@@ -864,7 +866,7 @@
             .attr("dominant-baseline", "hanging")
             .attr("text-width", tileChartDimensions.boundedWidth)
             .text("Particulate count")
-            // .call(d => wrap(d))
+            .call(d => wrap(d, {shift: false}))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
@@ -1230,7 +1232,7 @@
         //     .attr("dominant-baseline", "hanging")
         //     .attr("text-width", scatterChartDimensions.boundedWidth)
         //     .text('Burned vegetation type')
-        //     .call(d => wrap(d))
+        //     .call(d => wrap(d, {shift: false}))
 
         const legendPointSize = barYScale.bandwidth() / 2 * 0.95;
         // const interItemSpacing = mobileView ? 15 : 10;
@@ -1418,7 +1420,9 @@
     }
 
     // https://gist.github.com/mbostock/7555321
-    function wrap(text) {
+    function wrap(text, {
+        shift = false
+    }) {
         text.each(function() {
             var text = d3.select(this),
             words = text.text().split(/\s|-+/).reverse(),
@@ -1427,7 +1431,6 @@
             lineNumber = 0,
             lineHeight = 1.1, // ems
             width = text.attr("text-width"),
-            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
@@ -1446,19 +1449,9 @@
             }
 
             // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
-            if (lineNumber > 0) {
-                let lineHeightFactor;
-                switch(baseline) {
-                    case 'central':
-                        lineHeightFactor = 0;
-                        break;
-                    case 'hanging':
-                        lineHeightFactor = 0;
-                        break;
-                    default:
-                        lineHeightFactor = 0;
-                }
-                const startDy = -(lineNumber * (lineHeight / 2)) * lineHeightFactor;
+            // Likely only want to shift if dominant-baseline = central
+            if (lineNumber > 0 && shift) {
+                const startDy = -(lineNumber * (lineHeight / 2));
                 text
                     .selectAll("tspan")
                     .attr("dy", (d, i) => startDy + lineHeight * i + "em");
