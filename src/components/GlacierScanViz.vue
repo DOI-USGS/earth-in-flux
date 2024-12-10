@@ -51,6 +51,8 @@
             <template #belowExplanation>
                 <p v-html="text.paragraph5" />
                 <p v-html="text.paragraph6" />
+                <br>
+                <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government</i></p>
             </template>
         </VizSection>
     </section>
