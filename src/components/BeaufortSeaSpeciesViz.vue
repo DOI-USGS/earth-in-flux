@@ -87,10 +87,10 @@
     const ostracodes = props.text.tabData.filter(item => item.tabPrefixImageName.includes('O'))
 
     function getContentImageUrl(suffix) {
-        return baseURL + `BeaufortSeaSpecies_${suffix}.png`
+        return baseURL + `BeaufortSeaSpecies_${suffix}.webp`
     }
     function getPrefixImageURL(image_name) {
-        return baseURL + `${image_name}.png`
+        return baseURL + `${image_name}.webp`
     }
     function getPrefixImageHTML(image_name) {
         const imgURL = getPrefixImageURL(image_name)

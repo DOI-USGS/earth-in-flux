@@ -1,46 +1,48 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #figures>
-            <div id="wildfire-aerosols-grid-container">
-                <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                </button>
-                <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                </button>
-                <div id="aerosol-text-container" class="text-container">
-                    <p v-html="currentText" />
+    <section>
+        <!---VizSection-->
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #figures>
+                <div id="wildfire-aerosols-grid-container">
+                    <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                    </button>
+                    <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
+                    <div id="aerosol-text-container" class="text-container">
+                        <p v-html="currentText" />
+                    </div>
+                    <div id="chart-container" ref="chart"></div>
+                    <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
+                    </button>
+                    <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
                 </div>
-                <div id="chart-container" ref="chart"></div>
-                <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                </button>
-                <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
-                    <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                </button>
-            </div>
-        </template>
-    </VizSection>
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #heading>
-            <h2>
-                {{ text.heading }}
-            </h2>
-        </template>
-        <template #aboveExplanation>
-            <p v-html="text.explanation1" />
-            <p v-html="text.explanation2" />
-        </template>
-    </VizSection>
+            </template>
+        </VizSection>
+        <VizSection
+            id="cross-section"
+            :figures="true"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2>
+                    {{ text.heading }}
+                </h2>
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.explanation1" />
+                <p v-html="text.explanation2" />
+            </template>
+        </VizSection>
+    </section>
 </template>
 
 <script setup>
@@ -102,6 +104,8 @@
     let scatterChartWrapper;
     let scatterChartBounds;
     let scatterXScale;
+    let scatterXAxis;
+    const scatterXAxisPosition = 'top';
     let scatterColorCategories;
     const scatterColors = {hardwood: '#c49051', softwood: '#729C9D'};
     let scatterColorScale;
@@ -461,6 +465,15 @@
         // Initialize scales
         initScatterXScale()
 
+        // Initialize axes
+        initScatterXAxis(
+            {
+                bounds: scatterChartBounds, 
+                chartDims: scatterChartDimensions,
+                axisPosition: scatterXAxisPosition
+            }
+        )
+
         // Add groups for visual elements
         scatterChartBounds.append("g")
             .attr("class", "points");
@@ -497,6 +510,19 @@
             .attr("aria-hidden", true); // hide from screen reader
     }
 
+    function initScatterXAxis({
+        bounds,
+        chartDims,
+        axisPosition = 'bottom'
+    }) {
+        // add group for x axis
+        scatterXAxis = bounds.append("g")
+            .attr("id", "x-axis")
+            .attr("class", "axis")
+            .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("aria-hidden", true); // hide from screen reader
+    }
+
     function initYScale() {
         // scale for the y axis (domain set in `drawTileChart()`)
         yScale = d3.scaleLinear()
@@ -524,8 +550,10 @@
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
-        titleBaseline = "text-before-edge",
+        titleBaseline = "hanging",
         titleAngle = -90,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -534,6 +562,7 @@
         customSuffix = null,
         textAngle = 0,
         keepDomain = true,
+        keepLabels = true
     }) {
         // generate axis
         // if numeric ticks, include specification of format
@@ -543,6 +572,9 @@
         } else if (tickType == "numeric" && customSuffix) {
             axis
                 .call(d3[axisFxn](axisScale).ticks(nticks).tickSize(tickSize).tickPadding(tickPadding).tickFormat(d => d3.format(tickFormat)(d) + ' ' + customSuffix));
+        } else if (!keepLabels) {
+            axis
+                .call(d3[axisFxn](axisScale).tickValues([]));
         } else {
             axis
                 .call(d3[axisFxn](axisScale).tickSize(tickSize).tickPadding(tickPadding));
@@ -564,12 +596,16 @@
             .attr("class", "axis-title")
             .attr("x", titleX)
             .attr("y", titleY)
+            .attr("dx", 0)
+            .attr("dy", 0)
             .attr("transform", `rotate(${titleAngle})`)
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
+            .attr("text-width", titleWidth)
             .attr("role", "presentation")
             .attr("aria-hidden", true)
-            .text(axisTitle);
+            .text(axisTitle)
+            .call(d => wrapTitle ? wrap(d, {shift: false}) : d);
 
         if (axisSubtitle) {
             axisTitle.append("tspan")
@@ -597,8 +633,10 @@
         titleX = chartDims.boundedWidth / 2,
         titleY = axisPosition === 'bottom' ? chartDims.margin.bottom : -chartDims.margin.top,
         titleTextAnchor = "middle",
-        titleBaseline = axisPosition === 'bottom' ? "text-after-edge" : "text-before-edge",
+        titleBaseline = axisPosition === 'bottom' ? "ideographic" : "hanging",
         titleAngle = 0,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -607,6 +645,7 @@
         customSuffix = null,
         textAngle = 0, 
         keepDomain = true,
+        keepLabels = true
     }) {
         drawAxis({
             axis: axis,
@@ -620,6 +659,8 @@
             titleTextAnchor: titleTextAnchor,
             titleBaseline: titleBaseline,
             titleAngle: titleAngle,
+            titleWidth: titleWidth,
+            wrapTitle: wrapTitle,
             nticks: nticks,
             tickSize: tickSize,
             tickPadding: tickPadding,
@@ -628,6 +669,7 @@
             customSuffix: customSuffix,
             textAngle: textAngle,
             keepDomain: keepDomain,
+            keepLabels: keepLabels
         })
     }
 
@@ -641,8 +683,10 @@
         titleX = -chartDims.boundedHeight / 2,
         titleY = -chartDims.margin.left,
         titleTextAnchor = "middle",
-        titleBaseline = "text-before-edge",
+        titleBaseline = "hanging",
         titleAngle = -90,
+        titleWidth = chartDims.boundedWidth,
+        wrapTitle = false,
         nticks = null,
         tickSize = 0,
         tickPadding = 5,
@@ -651,6 +695,7 @@
         customSuffix = null,
         textAngle = 0,
         keepDomain = true,
+        keepLabels = true
     }) {
         drawAxis({
             axis: axis,
@@ -665,6 +710,8 @@
             titleTextAnchor: titleTextAnchor,
             titleBaseline: titleBaseline,
             titleAngle: titleAngle,
+            titleWidth: titleWidth,
+            wrapTitle: wrapTitle,
             nticks: nticks,
             tickSize: tickSize,
             tickPadding: tickPadding,
@@ -673,6 +720,7 @@
             tickFormat: tickFormat,
             customSuffix: customSuffix,
             keepDomain: keepDomain,
+            keepLabels: keepLabels
         })
     }
 
@@ -771,7 +819,7 @@
                 .attr("y", yScale(365))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
-                .attr("dominant-baseline", "text-after-edge")
+                .attr("dominant-baseline", "ideographic")
                 .text("2016")
 
         tileChartBounds.select(".annotations")
@@ -780,7 +828,7 @@
                 .attr("y", yScale(375))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
-                .attr("dominant-baseline", "text-before-edge")
+                .attr("dominant-baseline", "hanging")
                 .text("2015")
     }
 
@@ -809,46 +857,46 @@
 
         // append legend title
         legendGroup.append("text")
-              .attr("class", "axis-title")
-              .attr("x", tileChartDimensions.boundedWidth / 2)
-              .attr("y", -tileChartDimensions.margin.top)
-              .attr("dx", 0)
-                .attr("dy", 0)
-              .attr("text-anchor", "middle")
-              .attr("dominant-baseline", "text-before-edge")
-              .attr("text-width", tileChartDimensions.boundedWidth)
-              .text("Particulate count")
-              .call(d => wrap(d))
+            .attr("class", "axis-title")
+            .attr("x", tileChartDimensions.boundedWidth / 2)
+            .attr("y", -tileChartDimensions.margin.top)
+            .attr("dx", 0)
+            .attr("dy", 0)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", tileChartDimensions.boundedWidth)
+            .text("Particulate count")
+            .call(d => wrap(d, {shift: false}))
 
         // append legend rectangle
         const rectWidth = tileChartDimensions.boundedWidth / 2;
         const rectHeight = mobileView ? tileChartDimensions.margin.top / 8 : tileChartDimensions.margin.top / 6;
         const rectX = tileChartDimensions.boundedWidth / 2 - rectWidth / 2;
         legendGroup.append("rect")
-              .attr("class", "c1p2 matrixLegend")
-              .attr("width", rectWidth)
-              .attr("height", rectHeight)
-              .attr("fill", "url(#gradient-particles)")
-              .attr("x", rectX)
-              .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
+            .attr("class", "c1p2 matrixLegend")
+            .attr("width", rectWidth)
+            .attr("height", rectHeight)
+            .attr("fill", "url(#gradient-particles)")
+            .attr("x", rectX)
+            .attr("y", -tileChartDimensions.margin.top / 2 - rectHeight / 2)
 
         // append legend text
         const xBuffer = 5;
         legendGroup.append("text")
-              .attr("class", "axis-subtitle")
-              .attr("text-anchor", "end")
-              .attr("dominant-baseline", "central")
-              .attr("x", rectX - xBuffer)
-              .attr("y", -tileChartDimensions.margin.top / 2)
-              .text("low")
+            .attr("class", "axis-subtitle")
+            .attr("text-anchor", "end")
+            .attr("dominant-baseline", "central")
+            .attr("x", rectX - xBuffer)
+            .attr("y", -tileChartDimensions.margin.top / 2)
+            .text("low")
 
         legendGroup.append("text")
-              .attr("class", "axis-subtitle")
-              .attr("text-anchor", "start")
-              .attr("dominant-baseline", "central")
-              .attr("x", rectX + rectWidth + xBuffer)
-              .attr("y", -tileChartDimensions.margin.top / 2)
-              .text("high")
+            .attr("class", "axis-subtitle")
+            .attr("text-anchor", "start")
+            .attr("dominant-baseline", "central")
+            .attr("x", rectX + rectWidth + xBuffer)
+            .attr("y", -tileChartDimensions.margin.top / 2)
+            .text("high")
         
     }
 
@@ -1081,6 +1129,21 @@
         // set domain for xScale
         scatterXScale
             .domain([... new Set(filteredData.map(d => xAccessor(d)))]);
+        drawXAxis(
+            {
+                axis: scatterXAxis, 
+                axisScale: scatterXScale, 
+                chartDims: scatterChartDimensions
+            }, 
+            {
+                axisPosition: scatterXAxisPosition, 
+                axisTitle: 'Burned vegetation type',
+                wrapTitle: true,
+                tickType: 'string',
+                keepDomain: false,
+                keepLabels: false
+            }
+        )
 
         ///////////////////////////////////
         /////    SET UP COLOR SCALE   /////
@@ -1157,18 +1220,19 @@
             .attr("id", "bar-chart-legend")
 
         // Add legend title
-        scatterLegendGroup.append("text")
-            .attr("id", "legend-title")
-            .attr("class", "axis-title")
-            .attr("x", scatterChartDimensions.boundedWidth / 2)
-            .attr("y", -scatterChartDimensions.margin.top)
-            .attr("dx", 0)
-            .attr("dy", 0)
-            .attr("text-anchor", "middle")
-            .attr("dominant-baseline", "text-before-edge")
-            .attr("text-width", scatterChartDimensions.boundedWidth)
-            .text('Burned vegetation type')
-            .call(d => wrap(d))
+         // add axis title
+        // scatterLegendGroup.append("text")
+        //     .attr("id", "legend-title")
+        //     .attr("class", "axis-title")
+        //     .attr("x", scatterChartDimensions.boundedWidth / 2)
+        //     .attr("y", -scatterChartDimensions.margin.top + 10)
+        //     .attr("dx", 0)
+        //     .attr("dy", 0)
+        //     .attr("text-anchor", "middle")
+        //     .attr("dominant-baseline", "hanging")
+        //     .attr("text-width", scatterChartDimensions.boundedWidth)
+        //     .text('Burned vegetation type')
+        //     .call(d => wrap(d, {shift: false}))
 
         const legendPointSize = barYScale.bandwidth() / 2 * 0.95;
         // const interItemSpacing = mobileView ? 15 : 10;
@@ -1356,7 +1420,9 @@
     }
 
     // https://gist.github.com/mbostock/7555321
-    function wrap(text) {
+    function wrap(text, {
+        shift = false
+    }) {
         text.each(function() {
             var text = d3.select(this),
             words = text.text().split(/\s|-+/).reverse(),
@@ -1365,7 +1431,6 @@
             lineNumber = 0,
             lineHeight = 1.1, // ems
             width = text.attr("text-width"),
-            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
@@ -1384,19 +1449,9 @@
             }
 
             // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
-            if (lineNumber > 0) {
-                let lineHeightFactor;
-                switch(baseline) {
-                    case 'central':
-                        lineHeightFactor = 0;
-                        break;
-                    case 'text-before-edge':
-                        lineHeightFactor = 0;
-                        break;
-                    default:
-                        lineHeightFactor = 0;
-                }
-                const startDy = -(lineNumber * (lineHeight / 2)) * lineHeightFactor;
+            // Likely only want to shift if dominant-baseline = central
+            if (lineNumber > 0 && shift) {
+                const startDy = -(lineNumber * (lineHeight / 2));
                 text
                     .selectAll("tspan")
                     .attr("dy", (d, i) => startDy + lineHeight * i + "em");

@@ -26,7 +26,7 @@
 
         <VizSection
             id="cross-section-how-to"
-            :figures="false"
+            :figures="true"
             :fig-caption="false"
         >
             <template #heading>
@@ -38,7 +38,19 @@
                 <p v-html="text.paragraph2" />
                 <p v-html="text.paragraph3" />
                 <p v-html="text.paragraph4" />
+            </template>
+            <template #figures>
+                <div class="coring-image-container-top image-narrow">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7547.webp" :alt="text.corerAlt1">
+                </div>
+                <div class="coring-image-container-bottom image-narrow group two">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7553_v2.webp" :alt="text.corerAlt2">
+                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7554_v2.webp" :alt="text.corerAlt3">
+                </div>
+            </template>
+            <template #belowExplanation>
                 <p v-html="text.paragraph5" />
+                <p v-html="text.paragraph6" />
             </template>
         </VizSection>
     </section>
@@ -90,6 +102,8 @@
                     .attr("display", "none")
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
+                crossSectionSVG.select("#tutorial_arrow")
+                    .attr("display", "none")
                 crossSectionSVG.select("#legend_1")
                     .style("transform", "translate(-100px, 210px)")
                 crossSectionSVG.select("#legend_1").select("#patch_3")
@@ -104,7 +118,7 @@
     });
 
     function getImageSrc(photoID) {
-        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.jpeg`
+        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.webp`
     }
 
     function draw_xs(line_id,photo_id){
@@ -406,6 +420,19 @@
         @media screen and (max-width: 600px) {
             width: 35vw;
             margin: 1rem;
+        }
+    }
+    .coring-image-container-top {
+        margin: 3rem auto 0 auto;
+    }
+    .coring-image-container-bottom {
+        margin: 12px auto 4rem auto;
+    }
+    .coring-image {
+        width: 100%;
+        justify-self: center;
+        @media only screen and (max-width: 600px) {
+            width: 100%;
         }
     }
 </style>

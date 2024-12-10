@@ -11,6 +11,7 @@
             :alt="item.alt"
             :active="item.vizRoute === vizRoute"
             :vizRoute="item.vizRoute"
+            :projectRoute="projectRoute"
         />
     </div>
 </template>
