@@ -12,6 +12,9 @@
         </template>
         <template #figures>
             <div id="aerosols-grid-container" />
+            <div class="text-container">
+                <button id="reset-button" @click="resetViz">Reset map</button>
+            </div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -117,6 +120,10 @@
             d3.select('#multi-path-label').selectAll("path")
                 .style("opacity", 0.0);
             const fire = event.currentTarget.id.slice(7);
+            let otherFire = fire === '1' ? '0' : '1';
+            for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+                remove_trajectories(otherFire,trajectory_num);
+            }
             for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
                 draw_trajectories(fire,trajectory_num,0.0,2700);//300*(trajectory_num-1),2700);
             }
@@ -149,6 +156,9 @@
                     .style("opacity", 0.75);
                 d3.select('#wildfire-label-'+fire).selectAll("text")
                     .style("opacity", 1.0);
+                for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+                    remove_trajectories(fire, trajectory_num);
+                }
             }
             d3.select('#single-path-label').selectAll("path")
                 .style("opacity", 0.0);
@@ -275,19 +285,113 @@
         // Hide axis labels from screen reader
         const idsToHide = [...Array(10).keys()].slice(1, 10);
         idsToHide.forEach(id => {
-            aerosolsSVG.select(`#text_${id}`)
+            const idGroup = aerosolsSVG.select(`#text_${id}`)
+
+            idGroup
                 .attr("aria-hidden", true);
+
+            idGroup.selectAll('text').selectAll('tspan')
+                .attr("class", "chart-text")
+
         })
+
+        // add tab-index selection and keypress events for fire markers
+        for (let i=0; i < 2; i++) {
+            d3.select(`#source-${i}`)
+            .attr('tabindex', 0)
+            .on("keypress", function(event) {
+                if(event.key == 'Enter'){
+                    keypressFire(event)
+                }
+            })
+        }
 
         // draw default line
         draw_trajectories(default_fire,default_smoke_num,0,1000)
 
-        // Add interaction to loss function chart
+        // Add interaction
         aerosolsSVG.selectAll("g")
             .on("mouseover", (event) => mouseover(event))
             .on("mouseout", (event) => mouseout(event))
             .on("mouseenter", (event) => mouseenter(event))
             .on("mouseleave", (event) => mouseleave(event));
+    }
+
+    function keypressFire(event) {
+        const fire = event.currentTarget.id.slice(7);
+        let otherFire = fire === '1' ? '0' : '1';
+        for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+            remove_trajectories(otherFire,trajectory_num);
+        }
+        for (let fire=0;fire<number_of_fires;fire++){
+            d3.select('#wildfire-label-'+fire).selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#wildfire-label-'+fire).selectAll("text")
+                .style("opacity", 1.0);
+        }
+        d3.select('#single-path-label').selectAll("path")
+            .style("opacity", 0.0);
+        d3.select('#single-path-label').selectAll("text")
+            .style("opacity", 0.0);
+        d3.select('#multi-path-label-dt').selectAll("path")
+            .style("opacity", 0.0);
+        d3.select('#multi-path-label-dt').selectAll("text")
+            .style("opacity", 0.0);
+        remove_trajectories(default_fire,default_smoke_num)
+
+        d3.select('#multi-path-label').selectAll("text")
+            .style("opacity", 0.0);
+        d3.select('#multi-path-label').selectAll("path")
+            .style("opacity", 0.0);
+
+        for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+            draw_trajectories(fire,trajectory_num,0.0,2700);
+        }
+    }
+
+    function resetViz() {
+        for (let fire=0;fire<number_of_fires;fire++){
+                d3.select('#wildfire-label-'+fire).selectAll("path")
+                    .style("opacity", 0.75);
+                d3.select('#wildfire-label-'+fire).selectAll("text")
+                    .style("opacity", 1.0);
+        }
+        d3.select('#multi-path-label').selectAll("path")
+            .style("opacity", 0.75);
+        d3.select('#multi-path-label').selectAll("text")
+            .style("opacity", 1.0);
+        for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+            remove_trajectories(0,trajectory_num);
+        }
+        for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
+            remove_trajectories(1,trajectory_num);
+        }
+        for (let fire=0;fire<number_of_fires;fire++){
+            d3.select('#wildfire-label-'+fire).selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#wildfire-label-'+fire).selectAll("text")
+                .style("opacity", 0.0);
+        }
+        d3.select('#single-path-label').selectAll("path")
+            .style("opacity", 0.75);
+        d3.select('#single-path-label').selectAll("text")
+            .style("opacity", 1.0);
+        if (mobileView == true){
+            d3.select('#multi-path-label-mb-1').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#multi-path-label-mb-1').selectAll("text")
+                .style("opacity", 1.0);
+            d3.select('#multi-path-label-mb-2').selectAll("path")
+                .style("opacity", 0.0);
+            d3.select('#multi-path-label-mb-2').selectAll("text")
+                .style("opacity", 0.0);
+        } else{
+            d3.select('#multi-path-label-dt').selectAll("path")
+                .style("opacity", 0.75);
+            d3.select('#multi-path-label-dt').selectAll("text")
+                .style("opacity", 1.0);
+        }
+        draw_trajectories(default_fire,default_smoke_num,0,1000)
     }
 </script>
 
@@ -301,6 +405,9 @@
         grid-template-areas:
             "chart";
     }
+    #reset-button {
+        margin: 4rem 0 2rem 0;
+    }
 </style>
 
 <style lang="scss">
@@ -311,6 +418,9 @@
         height: 100%;
         max-height: calc(min(85vh, 700px));
         max-width: 100%;
+    }
+    .chart-text {
+        font-family: var(--chart-font) !important;
     }
 </style>
 
