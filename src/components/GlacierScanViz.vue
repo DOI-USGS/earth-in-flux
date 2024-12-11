@@ -72,12 +72,12 @@
     // global variables
     const mobileView = isMobile;
     const currentXsID = ref("113");
-    const currentPhotoID = ref(-9999)
+    const currentPhotoID = ref(null)
     const currentPhotoAlt = ref("")
     const currentPhotoText = ref("")
     const defaultView = ref(true)
     const default_xs = "113";
-    const defaultPhotoID = -9999;
+    const defaultPhotoID = null;
 
     // Declare behavior on mounted
     // functions called here
@@ -149,26 +149,26 @@
     function draw_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 1.0);
-        d3.select("#xs-w" + line_id).selectAll("path")
-            .style("stroke-opacity", 1.0);
-        d3.select("#xs-label1-"+ line_id).selectAll("text")
-            .style("opacity", 1)
-            .style("font-weight", 10);
-        d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-            .style("opacity", 1)
-            .style("font-weight", 1000);
-        d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-label2-"+ line_id).selectAll("text")
-            .style("opacity", 1);
-        d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-            .style("opacity", 1);
-        d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
+        // d3.select("#xs-w" + line_id).selectAll("path")
+        //     .style("stroke-opacity", 1.0);
+        // d3.select("#xs-label1-"+ line_id).selectAll("text")
+        //     .style("opacity", 1)
+        //     .style("font-weight", 10);
+        // d3.select("#xs-w-label1-"+ line_id).selectAll("text")
+        //     .style("opacity", 1)
+        //     .style("font-weight", 1000);
+        // d3.select("#xs-arrow1-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 1);
+        // d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 1);
+        // d3.select("#xs-label2-"+ line_id).selectAll("text")
+        //     .style("opacity", 1);
+        // d3.select("#xs-w-label2-"+ line_id).selectAll("text")
+        //     .style("opacity", 1);
+        // d3.select("#xs-arrow2-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 1);
+        // d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 1);
         d3.select("#xs-topo-" + line_id).selectAll("path")
             .style("fill", "#c49051")
             .style("fill-opacity", 1)
@@ -194,24 +194,24 @@
     function remove_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 0);
-        d3.select("#xs-w" + line_id).selectAll("path")
-            .style("stroke-opacity", 0);
-        d3.select("#xs-label1-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-label2-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
+        // d3.select("#xs-w" + line_id).selectAll("path")
+        //     .style("stroke-opacity", 0);
+        // d3.select("#xs-label1-"+ line_id).selectAll("text")
+        //     .style("opacity", 0);
+        // d3.select("#xs-w-label1-"+ line_id).selectAll("text")
+        //     .style("opacity", 0);
+        // d3.select("#xs-arrow1-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 0);
+        // d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 0);
+        // d3.select("#xs-label2-"+ line_id).selectAll("text")
+        //     .style("opacity", 0);
+        // d3.select("#xs-w-label2-"+ line_id).selectAll("text")
+        //     .style("opacity", 0);
+        // d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 0);
+        // d3.select("#xs-arrow2-"+ line_id).selectAll("path")
+        //     .style("fill-opacity", 0);
         d3.select("#xs-topo-" + line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
@@ -234,40 +234,59 @@
     }
 
     function mouseover(event) {
+        // if (event.currentTarget.id.startsWith("xs-main-")){
+        //     remove_xs(default_xs,defaultPhotoID);
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     draw_xs(line_id,defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+        //     remove_xs(default_xs,defaultPhotoID);
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     draw_xs(line_id,defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
+        //     remove_xs(default_xs,defaultPhotoID);
+        //     const line_id = event.currentTarget.id.slice(13);
+        //     const photo_id = event.currentTarget.id.slice(9,12);
+        //     draw_xs(line_id,photo_id);
+        //     draw_image(photo_id);
+        // }
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(currentXsID.value, currentPhotoID.value);
             const line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id,-9999);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(currentXsID.value, currentPhotoID.value);
             const line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id,-9999);
+            currentXsID.value = line_id;
+            draw_xs(line_id, defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(currentXsID.value, currentPhotoID.value);
             const line_id = event.currentTarget.id.slice(13);
+            currentXsID.value = line_id;
             const photo_id = event.currentTarget.id.slice(9,12);
-            draw_xs(line_id,photo_id);
+            currentPhotoID.value = photo_id;
+            draw_xs(line_id, currentPhotoID.value);
             draw_image(photo_id);
         }
     }
 
     function mouseout(event) {
-        if (event.currentTarget.id.startsWith("xs-main-")){
-            const line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id,-9999);
-        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            const line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id,-9999);
-        } else if (event.currentTarget.id.startsWith("photo-lg-")){
-            const line_id = event.currentTarget.id.slice(13);
-            const photo_id = event.currentTarget.id.slice(9,12);
-            remove_xs(line_id,photo_id);
-        }
+        // if (event.currentTarget.id.startsWith("xs-main-")){
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     remove_xs(line_id,defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     remove_xs(line_id,defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
+        //     const line_id = event.currentTarget.id.slice(13);
+        //     const photo_id = event.currentTarget.id.slice(9,12);
+        //     remove_xs(line_id,photo_id);
+        // }
     }
 
     function mouseenter(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            remove_xs(default_xs,-9999);
+            remove_xs(default_xs,defaultPhotoID);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0);
         }
@@ -275,7 +294,8 @@
 
     function mouseleave(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            draw_xs(default_xs,-9999);
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            draw_xs(default_xs,defaultPhotoID);
             d3.select("#tutorial_arrow").selectAll("path")
                 .style("opacity", 0.75);
             defaultView.value = true;
@@ -283,11 +303,8 @@
     }
 
     function touchstart(event) {
-        draw_xs(default_xs, defaultPhotoID);
         if (event.currentTarget.id.startsWith("figure_1")){
             remove_xs(default_xs, currentPhotoID.value);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0);
         }
         if (event.currentTarget.id.startsWith("xs-main-")){
             remove_xs(currentXsID.value, currentPhotoID.value);
@@ -348,7 +365,7 @@
                 .style("opacity", 0.0);
         }
 
-        draw_xs(default_xs,-9999);
+        draw_xs(default_xs,defaultPhotoID);
 
         // Add interaction events
         if (mobileView) {
