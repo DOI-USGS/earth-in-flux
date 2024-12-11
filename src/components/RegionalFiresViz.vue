@@ -53,8 +53,12 @@
                 svgGrid.appendChild(xml.documentElement);
                 
                 // add id to svg
-                d3.select("#aerosols-grid-container").select("svg")
+                const aerosolsSVG = d3.select("#aerosols-grid-container").select("svg")
                     .attr("id", "aerosols-svg")
+
+                aerosolsSVG
+                    .append("title")
+                    .text("A shaded-relief map of southeastern Alaska, showing the location of the Juneau Icefield. The map also shows the location of the 2015 Dennison Fork wildfire and the 2016 Steamboat Creek wildfire, both northwest of the icefield. Transparent grey lines branching out from each wildfire location show modeled paths of smoke transport from these fires. Some of the potential smoke paths pass over the Juneau Icefield, suggesting that aerosols from these fires may have been deposited on the icefield.");
 
                 // add interactivity
                 addInteractions();
@@ -217,47 +221,63 @@
             .attr("stdDeviation","1.5")
             .attr("result","coloredBlur");
 
+        // Set display of all labels, and hide from screen reader
         for (let fire=0;fire<number_of_fires;fire++){
             d3.select('#wildfire-label-'+fire).selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#wildfire-label-'+fire).selectAll("text")
-                .style("opacity", 0.0);
+                .style("opacity", 0.0)
+                .attr("aria-hidden", true);
         }
         d3.select('#JIF-label').selectAll("path")
             .style("opacity", 0.75);
         d3.select('#JIF-label').selectAll("text")
-            .style("opacity", 1.0);
+            .style("opacity", 1.0)
+            .attr("aria-hidden", true);
         d3.select('#single-path-label').selectAll("path")
             .style("opacity", 0.75);
         d3.select('#single-path-label').selectAll("text")
-            .style("opacity", 1.0);
+            .style("opacity", 1.0)
+            .attr("aria-hidden", true);
         d3.select('#multi-path-label-mb-2').selectAll("path")
             .style("fill", "#151515")
             .style("fill-opacity", 0.75)
             .style("opacity", 0.0);
         d3.select('#multi-path-label-mb-2').selectAll("text")
-            .style("opacity", 0.0);
+            .style("opacity", 0.0)
+            .attr("aria-hidden", true);
         if (mobileView == true){
             d3.select('#multi-path-label-mb-1').selectAll("path")
                 .style("fill", "#151515")
                 .style("fill-opacity", 0.75)
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-mb-1').selectAll("text")
-                .style("opacity", 1.0);
+                .style("opacity", 1.0)
+                .attr("aria-hidden", true);
             d3.select('#multi-path-label-dt').selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#multi-path-label-dt').selectAll("text")
-                .style("opacity", 0.0);
+                .style("opacity", 0.0)
+                .attr("aria-hidden", true);
         } else{
             d3.select('#multi-path-label-dt').selectAll("path")
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-dt').selectAll("text")
-                .style("opacity", 1.0);
+                .style("opacity", 1.0)
+                .attr("aria-hidden", true);
             d3.select('#multi-path-label-mb-1').selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#multi-path-label-mb-1').selectAll("text")
-                .style("opacity", 0.0);
+                .style("opacity", 0.0)
+                .attr("aria-hidden", true);
         }
+
+        // Hide axis labels from screen reader
+        const idsToHide = [...Array(10).keys()].slice(1, 10);
+        idsToHide.forEach(id => {
+            aerosolsSVG.select(`#text_${id}`)
+                .attr("aria-hidden", true);
+        })
 
         // draw default line
         draw_trajectories(default_fire,default_smoke_num,0,1000)
