@@ -8,7 +8,7 @@
             <template #figures>
                 <div id="cross-section-grid-container">                
                     <div id="caption-container" >
-                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in Alaska">
+                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in southeastern Alaska">
                         <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
                         <div v-if="!mobileView && defaultView">
                             <p v-html="text.paragraph1" />
@@ -93,23 +93,46 @@
                 const crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
                     .attr("id", "cross-section-svg")
                     .attr("width", "100%")
-                    .attr("height", "100%")
+                    .attr("height", "100%");
 
-                // hide some components
+                crossSectionSVG
+                    .append("title")
+                    .text("A shaded-reliefe map of the Juneau Ice Field, with markers indicating the location of ice cores and field photos. Beneath the map is a cross-section of the icefield, showing how the ice field covers the terrain. In places, the ice field is close to a kilometer thick.");
+
+                // hide some components from view and from screen reader
                 crossSectionSVG.select("#tutorial-dt-1")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-dt-2")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-mb-1")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial_arrow")
                     .attr("display", "none")
-                crossSectionSVG.select("#legend_1")
-                    .style("transform", "translate(-100px, 210px)")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#legend_1").select("#patch_3")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
+
+                // hide other components from screen reader
+                const idsToHide = [...Array(20).keys()].slice(3, 20);
+                idsToHide.forEach(id => {
+                    crossSectionSVG.select(`#text_${id}`)
+                        .attr("aria-hidden", true);
+                })
+                crossSectionSVG.select("#legend_1")
+                    .attr("aria-hidden", true);
+                crossSectionSVG.select("#legend_2")
+                    .attr("aria-hidden", true);
+
+                // Move part of legend
+                crossSectionSVG.select("#legend_1")
+                    .style("transform", "translate(-100px, 210px)")
 
                 // add interactivity
                 addInteractions(crossSectionSVG);
