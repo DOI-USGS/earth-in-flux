@@ -303,6 +303,8 @@
 
     function addInteractions(svg) {
 
+        
+        const photoIDs = ['051', '085', '138', '203', '140', '010', '156', '021', '018']
         const xsIDs = [...Array(201).keys()];
             xsIDs.forEach(id => {
                 crossSectionSVG.select(`#xs-main-${id}`).selectAll("path")
@@ -316,12 +318,11 @@
 
                 crossSectionSVG.select(`#xs-c-sm-${id}`).selectAll("path")
                     .attr("class", `xs xs-c-sm xs-${id}`)
-
-        // d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
-        //     .style("fill", "#d62728")
-        //     .style("fill-opacity", 0.8)
-        //     .style("stroke", "#000000")
-        //     .style("stroke-opacity", 1.0);
+                
+                photoIDs.forEach(photo_id => {
+                    crossSectionSVG.select(`#photo-sm-${photo_id}-${id}`).selectAll("path")
+                        .attr("class", `xs photo-sm xs-${id}`)
+                })
             })
 
         if (mobileView == true){
