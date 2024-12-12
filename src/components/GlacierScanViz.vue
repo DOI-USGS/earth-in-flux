@@ -221,16 +221,16 @@
         //     .style("fill-opacity", 0);
         // d3.select("#xs-arrow2-"+ line_id).selectAll("path")
         //     .style("fill-opacity", 0);
-        d3.select("#xs-topo-" + line_id).selectAll("path")
+        d3.select("#xs-topo-" + line_id).selectAll("defs").selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#xs-ice-" + line_id).selectAll("path")
+        d3.select("#xs-ice-" + line_id).selectAll("defs").selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#xs-c-sm-" + line_id).selectAll("path")
+        d3.select("#xs-c-sm-" + line_id).selectAll("defs").selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
+        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("defs").selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
     }   
