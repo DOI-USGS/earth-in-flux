@@ -52,7 +52,7 @@
                 <p v-html="text.paragraph5" />
                 <p v-html="text.paragraph6" />
                 <br>
-                <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government</i></p>
+                <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.</i></p>
             </template>
         </VizSection>
     </section>
@@ -234,40 +234,40 @@
     }
 
     function mouseover(event) {
-        // if (event.currentTarget.id.startsWith("xs-main-")){
-        //     remove_xs(default_xs,defaultPhotoID);
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     draw_xs(line_id,defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-        //     remove_xs(default_xs,defaultPhotoID);
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     draw_xs(line_id,defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
-        //     remove_xs(default_xs,defaultPhotoID);
-        //     const line_id = event.currentTarget.id.slice(13);
-        //     const photo_id = event.currentTarget.id.slice(9,12);
-        //     draw_xs(line_id,photo_id);
-        //     draw_image(photo_id);
-        // }
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(currentXsID.value, currentPhotoID.value);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
-            currentXsID.value = line_id;
-            draw_xs(line_id, defaultPhotoID);
+            draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            remove_xs(currentXsID.value, currentPhotoID.value);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
-            currentXsID.value = line_id;
-            draw_xs(line_id, defaultPhotoID);
+            draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
-            remove_xs(currentXsID.value, currentPhotoID.value);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(13);
-            currentXsID.value = line_id;
             const photo_id = event.currentTarget.id.slice(9,12);
-            currentPhotoID.value = photo_id;
-            draw_xs(line_id, currentPhotoID.value);
+            draw_xs(line_id,photo_id);
             draw_image(photo_id);
         }
+        // if (event.currentTarget.id.startsWith("xs-main-")){
+        //     remove_xs(currentXsID.value, currentPhotoID.value);
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     currentXsID.value = line_id;
+        //     draw_xs(line_id, defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+        //     remove_xs(currentXsID.value, currentPhotoID.value);
+        //     const line_id = event.currentTarget.id.slice(8);
+        //     currentXsID.value = line_id;
+        //     draw_xs(line_id, defaultPhotoID);
+        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
+        //     remove_xs(currentXsID.value, currentPhotoID.value);
+        //     const line_id = event.currentTarget.id.slice(13);
+        //     currentXsID.value = line_id;
+        //     const photo_id = event.currentTarget.id.slice(9,12);
+        //     currentPhotoID.value = photo_id;
+        //     draw_xs(line_id, currentPhotoID.value);
+        //     draw_image(photo_id);
+        // }
     }
 
     function mouseout(event) {
