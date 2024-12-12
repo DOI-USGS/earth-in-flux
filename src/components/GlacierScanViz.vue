@@ -22,6 +22,11 @@
                     </div>
                 </div>
             </template>
+            <template #belowExplanation>
+                <div class="text-container">
+                    <button id="reset-button" @click="resetViz">Reset map</button>
+                </div>
+            </template>
         </VizSection>
 
         <VizSection
@@ -322,6 +327,17 @@
                 photoIDs.forEach(photo_id => {
                     crossSectionSVG.select(`#photo-sm-${photo_id}-${id}`).selectAll("path")
                         .attr("class", `xs photo-sm xs-${id}`)
+                    crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`).selectAll("path")
+                        .attr("tabindex", 0)
+                        .on("keypress", function(event) {
+                            if(event.key == 'Enter'){
+                                draw_image(photo_id)
+                                d3.selectAll(".xs")
+                                    .style("fill-opacity", 0)
+                                    .style("stroke-opacity", 0);
+                                draw_xs(id, photo_id);
+                            }
+                        })
                 })
             })
 
@@ -389,6 +405,14 @@
                 .on("mouseenter", (event) => mouseenter(event))
                 .on("mouseleave", (event) => mouseleave(event));
         }
+    }
+
+    function resetViz() {
+        defaultView.value = true;
+        d3.selectAll(".xs")
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
+        draw_xs(default_xs, defaultPhotoID);
     }
 </script>
 
