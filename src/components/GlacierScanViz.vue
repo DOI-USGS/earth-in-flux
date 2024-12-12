@@ -70,6 +70,7 @@
     })
 
     // global variables
+    let crossSectionSVG;
     const mobileView = isMobile;
     const currentXsID = ref("113");
     const currentPhotoID = ref(null)
@@ -90,7 +91,7 @@
                 svgGrid.appendChild(xml.documentElement);
 
                 // add id to svg
-                const crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
+                crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
                     .attr("id", "cross-section-svg")
                     .attr("width", "100%")
                     .attr("height", "100%");
@@ -206,7 +207,10 @@
 
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs,defaultPhotoID);
+            d3.selectAll(".xs")
+                .style("fill-opacity", 0)
+                .style("stroke-opacity", 0);
+            // remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
             draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
@@ -242,6 +246,9 @@
     }
 
     function mouseout(event) {
+        d3.selectAll(".xs")
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
         // if (event.currentTarget.id.startsWith("xs-main-")){
         //     const line_id = event.currentTarget.id.slice(8);
         //     remove_xs(line_id,defaultPhotoID);
@@ -295,6 +302,27 @@
     }
 
     function addInteractions(svg) {
+
+        const xsIDs = [...Array(201).keys()];
+            xsIDs.forEach(id => {
+                crossSectionSVG.select(`#xs-main-${id}`).selectAll("path")
+                    .attr("class", `xs xs-main xs-${id}`)
+
+                crossSectionSVG.select(`#xs-topo-${id}`).selectAll("path")
+                    .attr("class", `xs xs-topo xs-${id}`)
+
+                crossSectionSVG.select(`#xs-ice-${id}`).selectAll("path")
+                    .attr("class", `xs xs-ice xs-${id}`)
+
+                crossSectionSVG.select(`#xs-c-sm-${id}`).selectAll("path")
+                    .attr("class", `xs xs-c-sm xs-${id}`)
+
+        // d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
+        //     .style("fill", "#d62728")
+        //     .style("fill-opacity", 0.8)
+        //     .style("stroke", "#000000")
+        //     .style("stroke-opacity", 1.0);
+            })
 
         if (mobileView == true){
             d3.select('#tutorial-dt-1').selectAll("path")
