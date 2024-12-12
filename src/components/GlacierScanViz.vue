@@ -122,13 +122,22 @@
                 // hide other components from screen reader
                 const idsToHide = [...Array(20).keys()].slice(3, 20);
                 idsToHide.forEach(id => {
-                    crossSectionSVG.select(`#text_${id}`)
+                    const idGroup = crossSectionSVG.select(`#text_${id}`)
+
+                    idGroup
                         .attr("aria-hidden", true);
+
+                    idGroup.selectAll('text')
+                        .attr("class", "chart-text")
                 })
-                crossSectionSVG.select("#legend_1")
+                const legend1 = crossSectionSVG.select("#legend_1")
                     .attr("aria-hidden", true);
-                crossSectionSVG.select("#legend_2")
+                legend1.selectAll('text')
+                    .attr("class", "chart-text");
+                const legend2 = crossSectionSVG.select("#legend_2")
                     .attr("aria-hidden", true);
+                legend2.selectAll('text')
+                    .attr("class", "chart-text");
 
                 // Move part of legend
                 crossSectionSVG.select("#legend_1")

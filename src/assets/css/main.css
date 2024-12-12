@@ -107,6 +107,11 @@ a {
     top: 105px;
   }
 }
+/* css for Fire in ice viz */
+.chart-text {
+  font-family: var(--chart-font) !important;
+  font-weight: 400 !important;
+}
 
 /* css for Beaufort species-related viz */
 .highlight {

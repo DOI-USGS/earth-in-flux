@@ -413,10 +413,6 @@
         max-height: calc(min(85vh, 700px));
         max-width: 100%;
     }
-    .chart-text {
-        font-family: var(--chart-font) !important;
-        font-weight: 400 !important;
-    }
 </style>
 
 <style>
