@@ -115,10 +115,7 @@
                 d3.select('#multi-path-label-mb-2').selectAll("text")
                     .style("opacity", 0.0);
             }
-            d3.select('#multi-path-label').selectAll("text")
-                .style("opacity", 0.0);
-            d3.select('#multi-path-label').selectAll("path")
-                .style("opacity", 0.0);
+
             const fire = event.currentTarget.id.slice(7);
             let otherFire = fire === '1' ? '0' : '1';
             for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
@@ -138,10 +135,7 @@
                     d3.select('#wildfire-label-'+fire).selectAll("text")
                         .style("opacity", 1.0);
             }
-            d3.select('#multi-path-label').selectAll("path")
-                .style("opacity", 0.75);
-            d3.select('#multi-path-label').selectAll("text")
-                .style("opacity", 1.0);
+
             const fire = event.currentTarget.id.slice(7);
             for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
                 remove_trajectories(fire,trajectory_num);
@@ -236,17 +230,20 @@
             d3.select('#wildfire-label-'+fire).selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#wildfire-label-'+fire).selectAll("text")
+                .attr("class", "chart-text")
                 .style("opacity", 0.0)
                 .attr("aria-hidden", true);
         }
         d3.select('#JIF-label').selectAll("path")
             .style("opacity", 0.75);
         d3.select('#JIF-label').selectAll("text")
+            .attr("class", "chart-text")
             .style("opacity", 1.0)
             .attr("aria-hidden", true);
         d3.select('#single-path-label').selectAll("path")
             .style("opacity", 0.75);
         d3.select('#single-path-label').selectAll("text")
+            .attr("class", "chart-text")
             .style("opacity", 1.0)
             .attr("aria-hidden", true);
         d3.select('#multi-path-label-mb-2').selectAll("path")
@@ -254,6 +251,7 @@
             .style("fill-opacity", 0.75)
             .style("opacity", 0.0);
         d3.select('#multi-path-label-mb-2').selectAll("text")
+            .attr("class", "chart-text")
             .style("opacity", 0.0)
             .attr("aria-hidden", true);
         if (mobileView == true){
@@ -262,27 +260,31 @@
                 .style("fill-opacity", 0.75)
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-mb-1').selectAll("text")
+                .attr("class", "chart-text")
                 .style("opacity", 1.0)
                 .attr("aria-hidden", true);
             d3.select('#multi-path-label-dt').selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#multi-path-label-dt').selectAll("text")
+                .attr("class", "chart-text")
                 .style("opacity", 0.0)
                 .attr("aria-hidden", true);
         } else{
             d3.select('#multi-path-label-dt').selectAll("path")
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-dt').selectAll("text")
+                .attr("class", "chart-text")
                 .style("opacity", 1.0)
                 .attr("aria-hidden", true);
             d3.select('#multi-path-label-mb-1').selectAll("path")
                 .style("opacity", 0.0);
             d3.select('#multi-path-label-mb-1').selectAll("text")
+                .attr("class", "chart-text")
                 .style("opacity", 0.0)
                 .attr("aria-hidden", true);
         }
 
-        // Hide axis labels from screen reader
+        // Hide axis labels from screen reader and assign class for styling
         const idsToHide = [...Array(10).keys()].slice(1, 10);
         idsToHide.forEach(id => {
             const idGroup = aerosolsSVG.select(`#text_${id}`)
@@ -339,11 +341,6 @@
             .style("opacity", 0.0);
         remove_trajectories(default_fire,default_smoke_num)
 
-        d3.select('#multi-path-label').selectAll("text")
-            .style("opacity", 0.0);
-        d3.select('#multi-path-label').selectAll("path")
-            .style("opacity", 0.0);
-
         for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
             draw_trajectories(fire,trajectory_num,0.0,2700);
         }
@@ -356,10 +353,7 @@
                 d3.select('#wildfire-label-'+fire).selectAll("text")
                     .style("opacity", 1.0);
         }
-        d3.select('#multi-path-label').selectAll("path")
-            .style("opacity", 0.75);
-        d3.select('#multi-path-label').selectAll("text")
-            .style("opacity", 1.0);
+
         for(let trajectory_num=1;trajectory_num<=24;trajectory_num++){
             remove_trajectories(0,trajectory_num);
         }
@@ -421,6 +415,7 @@
     }
     .chart-text {
         font-family: var(--chart-font) !important;
+        font-weight: 400 !important;
     }
 </style>
 
