@@ -158,26 +158,6 @@
     function draw_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 1.0);
-        // d3.select("#xs-w" + line_id).selectAll("path")
-        //     .style("stroke-opacity", 1.0);
-        // d3.select("#xs-label1-"+ line_id).selectAll("text")
-        //     .style("opacity", 1)
-        //     .style("font-weight", 10);
-        // d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-        //     .style("opacity", 1)
-        //     .style("font-weight", 1000);
-        // d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 1);
-        // d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 1);
-        // d3.select("#xs-label2-"+ line_id).selectAll("text")
-        //     .style("opacity", 1);
-        // d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-        //     .style("opacity", 1);
-        // d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 1);
-        // d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 1);
         d3.select("#xs-topo-" + line_id).selectAll("path")
             .style("fill", "#c49051")
             .style("fill-opacity", 1)
@@ -203,34 +183,16 @@
     function remove_xs(line_id,photo_id){
         d3.select("#xs-main-" + line_id).selectAll("path")
             .style("stroke-opacity", 0);
-        // d3.select("#xs-w" + line_id).selectAll("path")
-        //     .style("stroke-opacity", 0);
-        // d3.select("#xs-label1-"+ line_id).selectAll("text")
-        //     .style("opacity", 0);
-        // d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-        //     .style("opacity", 0);
-        // d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 0);
-        // d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 0);
-        // d3.select("#xs-label2-"+ line_id).selectAll("text")
-        //     .style("opacity", 0);
-        // d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-        //     .style("opacity", 0);
-        // d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 0);
-        // d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-        //     .style("fill-opacity", 0);
-        d3.select("#xs-topo-" + line_id).selectAll("defs").selectAll("path")
+        d3.select("#xs-topo-" + line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#xs-ice-" + line_id).selectAll("defs").selectAll("path")
+        d3.select("#xs-ice-" + line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#xs-c-sm-" + line_id).selectAll("defs").selectAll("path")
+        d3.select("#xs-c-sm-" + line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
-        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("defs").selectAll("path")
+        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0);
     }   
