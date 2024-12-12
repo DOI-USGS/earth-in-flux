@@ -296,8 +296,6 @@
     function mouseenter(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
             remove_xs(default_xs,defaultPhotoID);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0);
         }
     }
 
@@ -305,8 +303,6 @@
         if (event.currentTarget.id.startsWith("figure_1")){
             remove_xs(currentXsID.value, currentPhotoID.value);
             draw_xs(default_xs,defaultPhotoID);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0.75);
             defaultView.value = true;
         }
     }
@@ -392,8 +388,6 @@
                 if (!event.target.ownerSVGElement) {
                     remove_xs(currentXsID.value, currentPhotoID.value);
                     draw_xs(default_xs, defaultPhotoID);
-                    d3.select("#tutorial_arrow").selectAll("path")
-                        .style("opacity", 0.75);
                     defaultView.value = true;
                 }
             }, false);       
