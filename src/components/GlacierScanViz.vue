@@ -329,8 +329,10 @@
                         .attr("class", `xs photo-sm xs-${id}`)
                     crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`).selectAll("path")
                         .attr("tabindex", 0)
-                        .on("keypress", function(event) {
-                            if(event.key == 'Enter'){
+                        .attr("role", "button")
+                        .attr("aria-label", 'field photo') 
+                        .on("keydown", function(event) {
+                            if(event.code == 'Enter' | event.code == 'Space'){
                                 draw_image(photo_id)
                                 d3.selectAll(".xs")
                                     .style("fill-opacity", 0)
