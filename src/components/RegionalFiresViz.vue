@@ -300,12 +300,14 @@
         // add tab-index selection and keypress events for fire markers
         for (let i=0; i < 2; i++) {
             d3.select(`#source-${i}`)
-            .attr('tabindex', 0)
-            .on("keypress", function(event) {
-                if(event.key == 'Enter'){
-                    keypressFire(event)
-                }
-            })
+                .attr('tabindex', 0)
+                .attr("role", "button")
+                .attr("aria-label", i == 0 ? 'Dennison Fork 2015 wildfire' : 'Steamboat Creek 2016 wildfire') 
+                .on("keydown", function(event) {
+                    if(event.code == 'Enter' | event.code == 'Space'){
+                        keypressFire(event)
+                    }
+                })
         }
 
         // draw default line
