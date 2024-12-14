@@ -9,7 +9,7 @@
                 <div id="cross-section-grid-container">                
                     <div id="caption-container" >
                         <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in southeastern Alaska">
-                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
+                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) :alt="currentPhotoAlt">
                         <div v-if="!mobileView && defaultView">
                             <p v-html="text.paragraph1" />
                             <p v-html="text.promptDesktop" />
@@ -327,7 +327,7 @@
                 photoIDs.forEach(photo_id => {
                     crossSectionSVG.select(`#photo-sm-${photo_id}-${id}`).selectAll("path")
                         .attr("class", `xs photo-sm xs-${id}`)
-                    crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`).selectAll("path")
+                    crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`)
                         .attr("tabindex", 0)
                         .attr("role", "button")
                         .attr("aria-label", 'field photo') 
