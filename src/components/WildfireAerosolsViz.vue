@@ -594,6 +594,7 @@
         axisTitle = axis
             .append("text")
             .attr("class", "axis-title")
+            .attr("aria-hidden", true)
             .attr("x", titleX)
             .attr("y", titleY)
             .attr("dx", 0)
@@ -602,22 +603,19 @@
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
             .attr("text-width", titleWidth)
-            .attr("role", "presentation")
-            .attr("aria-hidden", true)
             .text(axisTitle)
             .call(d => wrapTitle ? wrap(d, {shift: false}) : d);
 
         if (axisSubtitle) {
             axisTitle.append("tspan")
                 .attr("class", "axis-subtitle")
+                .attr("aria-hidden", true)
                 .attr("x", titleX)
                 .attr("y", titleY)
                 .attr("dy", "1em")
                 .attr("transform", `rotate(${titleAngle})`)
                 .attr("text-anchor", titleTextAnchor)
                 .attr("dominant-baseline", titleBaseline)
-                .attr("role", "presentation")
-                .attr("aria-hidden", true)
                 .text(axisSubtitle);
         }
     }
@@ -816,6 +814,7 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("aria-hidden", true)
                 .attr("y", yScale(365))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
@@ -825,6 +824,7 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("aria-hidden", true)
                 .attr("y", yScale(375))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
@@ -858,6 +858,7 @@
         // append legend title
         legendGroup.append("text")
             .attr("class", "axis-title")
+            .attr("aria-hidden", true)
             .attr("x", tileChartDimensions.boundedWidth / 2)
             .attr("y", -tileChartDimensions.margin.top)
             .attr("dx", 0)
@@ -884,6 +885,7 @@
         const xBuffer = 5;
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("aria-hidden", true)
             .attr("text-anchor", "end")
             .attr("dominant-baseline", "central")
             .attr("x", rectX - xBuffer)
@@ -892,6 +894,7 @@
 
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("aria-hidden", true)
             .attr("text-anchor", "start")
             .attr("dominant-baseline", "central")
             .attr("x", rectX + rectWidth + xBuffer)
@@ -979,6 +982,7 @@
 
         barChartBounds.append("text")
             .attr("class", "data-notation")
+            .attr("aria-hidden", true)
             .attr("x", 0)
             .attr("y", barYScale('400') + barYScale.bandwidth() / 2)
             .attr("dominant-baseline", "central")
@@ -994,6 +998,7 @@
         //     .text('Sugars')
         //     .attr("id", "legend-title")
         //     .attr("class", "axis-title")
+        //     .attr("aria-hidden", true)
         //     .attr("y", barChartDimensions.margin.top / 2)
         //     .attr("dominant-baseline", "central")
 
@@ -1020,6 +1025,7 @@
         // Add text for each group
         legendGroup.append("text")
             .attr("class", "legend-text")
+            .attr("aria-hidden", true)
             .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -barChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
@@ -1219,11 +1225,12 @@
         const scatterLegendGroup = scatterChartBounds.append("g")
             .attr("id", "bar-chart-legend")
 
-        // Add legend title
-         // add axis title
+        // // Add legend title
+        // //  add axis title
         // scatterLegendGroup.append("text")
         //     .attr("id", "legend-title")
         //     .attr("class", "axis-title")
+        //     .attr("aria-hidden", true)
         //     .attr("x", scatterChartDimensions.boundedWidth / 2)
         //     .attr("y", -scatterChartDimensions.margin.top + 10)
         //     .attr("dx", 0)
@@ -1262,6 +1269,7 @@
         // Add text for each group
         legendGroups.append("text")
             .attr("class", "legend-text")
+            .attr("aria-hidden", true)
             .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -scatterChartDimensions.margin.top / 2)
             .attr("text-anchor", "start") // left-align text
