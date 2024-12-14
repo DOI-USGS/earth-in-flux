@@ -330,7 +330,7 @@
                     crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`)
                         .attr("tabindex", 0)
                         .attr("role", "button")
-                        .attr("aria-label", 'field photo') 
+                        .attr("aria-label", 'button to show field photo and descriptive text') 
                         .on("keydown", function(event) {
                             if(event.code == 'Enter' | event.code == 'Space'){
                                 draw_image(photo_id)
