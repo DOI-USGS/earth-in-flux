@@ -17,7 +17,7 @@ export default {
             project: 'Fish as Food',
             vizKey: 'FishAsFoodClimate',
             vizRoute: 'inland-rec-fish-country-climate',
-            img_src: 'placeholder_thumbnail.png',
+            img_src: 'Placeholder_thumbnail.webp',
             chartOrder: 4,
             alt: '',
             description: 'Vulnerbility of recreational inland fishing to climate change varies by country'
