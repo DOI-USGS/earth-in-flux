@@ -458,7 +458,6 @@
         }
     }
     .jif-image {
-        height: 100%;
         pointer-events: none;
         border-radius: 5px;
         margin-right: 3rem;
