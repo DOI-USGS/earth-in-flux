@@ -11,19 +11,10 @@
                     {{ filteredChartContent.title }}
                 </h1>
             </div>
-            <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
+            <VizComponent :id="`${vizRoute}-viz`" :text="vizText" :key="$route.fullPath"/>
+            <ChartIconGrid :projectRoute="projectRoute" :vizRoute="vizRoute" :key="vizRoute"/>
             <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
             <AuthorshipSection v-if="vizAuthors" title="" titleLevel="3" :authors="vizAuthors"/>
-            <div
-                class="text-container"
-                id="page-link-container"
-            >
-                <hr>
-                <p id="page-link-note">See the 
-                    <button class="project-link"><RouterLink :to="`/${projectRoute}`">{{ filteredChartContent.project }} project page</RouterLink></button>
-                    for data sources and related visualizations.
-                </p>
-            </div>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>
@@ -32,9 +23,9 @@
 <script setup>
     import { useRoute } from 'vue-router'
     import { isMobile } from 'mobile-device-detect';
-    import { defineAsyncComponent } from 'vue'
-
-    import ChartGrid from '@/assets/content/ChartGrid.js';
+    import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
+    import ChartIconGrid from '@/components/ChartIconGrid.vue';
+    import ChartGridContent from '@/assets/content/ChartGrid.js';
     import text from "@/assets/text/text.js";
     import ReferencesSection from '@/components/ReferencesSection.vue';
     import references from "@/assets/text/references";
@@ -44,53 +35,60 @@
 
     // global variables
     const route = useRoute()
-    const vizRoute = route.params.vizRoute
-    const projectRoute = route.params.projectRoute
+    const vizRoute = ref(route.params.vizRoute);
+    const projectRoute = ref(route.params.projectRoute);
     const mobileView = isMobile;
-    const chartContent = ChartGrid.chartGridItems;
-	const filteredChartContent = chartContent.filter(d => d.vizRoute === vizRoute)[0]
-    const vizKey = filteredChartContent.vizKey
-    const vizText = text.visualizations[`${filteredChartContent.vizKey}`]
-    const vizReferences = references[`${filteredChartContent.vizKey}`]
-    const vizAuthors = authors[`${filteredChartContent.vizKey}`]
+    const VizComponent = shallowRef(
+        defineAsyncComponent(() =>
+            //Use convention of adding Viz at end of component names to ensure are two words
+            //Plus, also allows us to specify a filename pattern here, per:
+            //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
+            import(`./${vizKey.value}Viz.vue`) //
+        )
+    );
+    const chartContent = ChartGridContent.chartGridItems;
     const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
-    const vizGitHubRepositoryLink = `${gitHubRepositoryLink}/blob/main/src/components/${vizKey}Viz.vue` //Use convention of adding Viz at end of component names to ensure are two words
     
-    const VizComponent = defineAsyncComponent(() =>
-        //Use convention of adding Viz at end of component names to ensure are two words
-        //Plus, also allows us to specify a filename pattern here, per:
-        //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
-        import(`./${vizKey}Viz.vue`) //
-    )
+    // set up computed properties based on ref values
+    const filteredChartContent = computed(() => {
+        return chartContent.filter(d => d.vizRoute === vizRoute.value)[0];
+    }); 
+
+    const vizKey = computed(() => {
+        return filteredChartContent.value.vizKey;
+    }); 
+
+    const vizText = computed(() => {
+        return text.visualizations[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizReferences = computed(() => {
+        return references[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizAuthors = computed(() => {
+        return authors[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizGitHubRepositoryLink = computed(() => {
+        return `${gitHubRepositoryLink}/blob/main/src/components/${vizKey.value}Viz.vue` //Use convention of adding Viz at end of component names to ensure are two words
+    }); 
+
+    //watches router params for changes
+    watch(route, () => {
+        // update project route
+        projectRoute.value = route.params.projectRoute;
+        // update viz route
+        vizRoute.value = route.params.vizRoute;
+        // update dynamic component
+        VizComponent.value = defineAsyncComponent(() =>
+            //Use convention of adding Viz at end of component names to ensure are two words
+            //Plus, also allows us to specify a filename pattern here, per:
+            //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
+            import(`./${vizKey.value}Viz.vue`) //
+        )
+    })
 </script>
 
 <style scoped lang="scss">
-    #page-link-container {
-        font-weight: 300;
-        font-style: italic;
-    }
-    #page-link-note {
-        margin-top: 2.5rem;
-    }
-    .project-link {
-        font-family: sans-serif; /* This is fallback font for old browsers */
-        font-family: var(--default-font);
-        font-style: italic;
-        background-color: var(--faded-usgs-blue);
-        color: var(--usgs-blue);
-        border: solid var(--faded-usgs-blue);
-        border-radius: 5px;
-        font-weight: 300;
-        margin: 1rem 0.25rem 1rem 0.25rem;
-        padding: 0.3rem 0.5rem 0.5rem 0.5rem;
-        box-shadow: 3px 3px 3px rgba(39,44,49,.2);
-    }
-    .project-link a {
-        text-decoration: none;
-        color: var(--usgs-blue);
-    }
-    .project-link:hover {
-        box-shadow: rgba(39,44,49,.7) 2px 2px 4px -2px;
-        transform: translate3d(0, 2px, 0);
-    }
 </style>
