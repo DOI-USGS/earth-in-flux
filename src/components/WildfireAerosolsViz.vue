@@ -8,21 +8,21 @@
         >
             <template #figures>
                 <div id="wildfire-aerosols-grid-container">
-                    <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                    </button>
-                    <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                    </button>
                     <div id="aerosol-text-container" class="text-container">
                         <p v-html="currentText" />
                     </div>
-                    <div id="chart-container" ref="chart"></div>
-                    <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked">
+                    <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked" aria-label="Upper button to see next slide">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
+                    <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked" aria-label="Upper button to see previous slide">
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
                     </button>
-                    <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked">
+                    <div id="chart-container" ref="chart"></div>
+                    <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked" aria-label="Lower button to see next slide">
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
+                    </button>
+                    <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked" aria-label="Lower button to see previous slide">
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
                     </button>
                 </div>
             </template>
@@ -70,7 +70,8 @@
     const nIndices = 4;
     const chart = ref(null);
     let chartSVG;
-    const chartTitle = 'Series of charts depicting particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core';
+    const chartTitle = 'Series of vertical charts representing a snow core.';
+    const chartDesc = 'The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core. Markers of softwood and hardwood combustion are present throughout the core.'
     let chartHeight;
     let chartWidth;
     let chartDimensions;
@@ -292,9 +293,16 @@
                 .attr("id", "wrapper");
 
         // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(chartTitle);
+        chartSVG.attr("role", "img")
+            .attr("aria-labelledby", "chart-title chart-desc")
+        
+        chartSVG.append("title")
+                .attr("id", "chart-title")
+                .text(chartTitle)
+        
+        chartSVG.append("desc")
+                .attr("id", "chart-desc")
+                .text(chartDesc);
 
         // Add group for bounds
         chartBounds = chartSVG.append("g")
@@ -507,6 +515,7 @@
             .attr("id", "x-axis")
             .attr("class", "axis")
             .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("role", "presentation")
             .attr("aria-hidden", true); // hide from screen reader
     }
 
@@ -520,6 +529,7 @@
             .attr("id", "x-axis")
             .attr("class", "axis")
             .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("role", "presentation")
             .attr("aria-hidden", true); // hide from screen reader
     }
 
@@ -536,6 +546,7 @@
         yAxis = bounds.append("g")
             .attr("id", "y-axis")
             .attr("class", "axis")
+            .attr("role", "presentation")
             .attr("aria-hidden", true);
     }
 
@@ -594,6 +605,8 @@
         axisTitle = axis
             .append("text")
             .attr("class", "axis-title")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("x", titleX)
             .attr("y", titleY)
             .attr("dx", 0)
@@ -602,22 +615,20 @@
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
             .attr("text-width", titleWidth)
-            .attr("role", "presentation")
-            .attr("aria-hidden", true)
             .text(axisTitle)
             .call(d => wrapTitle ? wrap(d, {shift: false}) : d);
 
         if (axisSubtitle) {
             axisTitle.append("tspan")
                 .attr("class", "axis-subtitle")
+                .attr("role", "presentation")
+                .attr("aria-hidden", true)
                 .attr("x", titleX)
                 .attr("y", titleY)
                 .attr("dy", "1em")
                 .attr("transform", `rotate(${titleAngle})`)
                 .attr("text-anchor", titleTextAnchor)
                 .attr("dominant-baseline", titleBaseline)
-                .attr("role", "presentation")
-                .attr("aria-hidden", true)
                 .text(axisSubtitle);
         }
     }
@@ -816,6 +827,8 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("role", "presentation")
+                .attr("aria-hidden", true)
                 .attr("y", yScale(365))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
@@ -825,6 +838,8 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("role", "presentation")
+                .attr("aria-hidden", true)
                 .attr("y", yScale(375))
                 .attr("x", annotationGap / 2)
                 .attr("text-anchor", "middle")
@@ -858,6 +873,8 @@
         // append legend title
         legendGroup.append("text")
             .attr("class", "axis-title")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("x", tileChartDimensions.boundedWidth / 2)
             .attr("y", -tileChartDimensions.margin.top)
             .attr("dx", 0)
@@ -884,6 +901,8 @@
         const xBuffer = 5;
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("text-anchor", "end")
             .attr("dominant-baseline", "central")
             .attr("x", rectX - xBuffer)
@@ -892,6 +911,8 @@
 
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("text-anchor", "start")
             .attr("dominant-baseline", "central")
             .attr("x", rectX + rectWidth + xBuffer)
@@ -979,6 +1000,8 @@
 
         barChartBounds.append("text")
             .attr("class", "data-notation")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("x", 0)
             .attr("y", barYScale('400') + barYScale.bandwidth() / 2)
             .attr("dominant-baseline", "central")
@@ -993,7 +1016,9 @@
         // barLegendGroup.append("text")
         //     .text('Sugars')
         //     .attr("id", "legend-title")
-        //     .attr("class", "axis-title")
+            // .attr("class", "axis-title")
+            // .attr("role", "presentation")
+            // .attr("aria-hidden", true)
         //     .attr("y", barChartDimensions.margin.top / 2)
         //     .attr("dominant-baseline", "central")
 
@@ -1020,6 +1045,8 @@
         // Add text for each group
         legendGroup.append("text")
             .attr("class", "legend-text")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -barChartDimensions.margin.top / 1.75)
             .attr("text-anchor", "start") // left-align text
@@ -1219,11 +1246,13 @@
         const scatterLegendGroup = scatterChartBounds.append("g")
             .attr("id", "bar-chart-legend")
 
-        // Add legend title
-         // add axis title
+        // // Add legend title
+        // //  add axis title
         // scatterLegendGroup.append("text")
         //     .attr("id", "legend-title")
         //     .attr("class", "axis-title")
+            // .attr("role", "presentation")
+            // .attr("aria-hidden", true)
         //     .attr("x", scatterChartDimensions.boundedWidth / 2)
         //     .attr("y", -scatterChartDimensions.margin.top + 10)
         //     .attr("dx", 0)
@@ -1262,6 +1291,8 @@
         // Add text for each group
         legendGroups.append("text")
             .attr("class", "legend-text")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
             .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -scatterChartDimensions.margin.top / 2)
             .attr("text-anchor", "start") // left-align text
@@ -1431,11 +1462,12 @@
             lineNumber = 0,
             lineHeight = 1.1, // ems
             width = text.attr("text-width"),
+            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
-            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);
 
             while ((word = words.pop())) {
             line.push(word);
@@ -1444,7 +1476,7 @@
                     line.pop();
                     tspan.text(line.join(" "));
                     line = [word];
-                    tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").attr("dominant-baseline", baseline).text(word);
                 }
             }
 
