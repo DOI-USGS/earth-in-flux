@@ -8,8 +8,8 @@
             <template #figures>
                 <div id="cross-section-grid-container">                
                     <div id="caption-container" >
-                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in Alaska">
-                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) alt="currentPhotoAlt">
+                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in southeastern Alaska">
+                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) :alt="currentPhotoAlt">
                         <div v-if="!mobileView && defaultView">
                             <p v-html="text.paragraph1" />
                             <p v-html="text.promptDesktop" />
@@ -20,6 +20,11 @@
                         </div>
                         <p v-if="!defaultView" v-html="currentPhotoText"></p>
                     </div>
+                </div>
+            </template>
+            <template #belowExplanation>
+                <div class="text-container">
+                    <button id="reset-button" @click="resetViz">Reset map</button>
                 </div>
             </template>
         </VizSection>
@@ -51,6 +56,8 @@
             <template #belowExplanation>
                 <p v-html="text.paragraph5" />
                 <p v-html="text.paragraph6" />
+                <br>
+                <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.</i></p>
             </template>
         </VizSection>
     </section>
@@ -68,14 +75,15 @@
     })
 
     // global variables
+    let crossSectionSVG;
     const mobileView = isMobile;
     const currentXsID = ref("113");
-    const currentPhotoID = ref(-9999)
+    const currentPhotoID = ref(null)
     const currentPhotoAlt = ref("")
     const currentPhotoText = ref("")
     const defaultView = ref(true)
     const default_xs = "113";
-    const defaultPhotoID = -9999;
+    const defaultPhotoID = null;
 
     // Declare behavior on mounted
     // functions called here
@@ -88,26 +96,58 @@
                 svgGrid.appendChild(xml.documentElement);
 
                 // add id to svg
-                const crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
+                crossSectionSVG = d3.select("#cross-section-grid-container").select("svg")
                     .attr("id", "cross-section-svg")
                     .attr("width", "100%")
-                    .attr("height", "100%")
+                    .attr("height", "100%");
 
-                // hide some components
+                crossSectionSVG
+                    .append("title")
+                    .text("A shaded-relief map of the Juneau Ice Field, with markers indicating the location of ice cores and field photos. Beneath the map is a cross-section of the icefield, showing how the ice field covers the terrain. In places, the ice field is close to a kilometer thick.");
+
+                // hide some components from view and from screen reader
                 crossSectionSVG.select("#tutorial-dt-1")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-dt-2")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-mb-1")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial-mb-2")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#tutorial_arrow")
                     .attr("display", "none")
-                crossSectionSVG.select("#legend_1")
-                    .style("transform", "translate(-100px, 210px)")
+                    .attr("aria-hidden", true);
                 crossSectionSVG.select("#legend_1").select("#patch_3")
                     .attr("display", "none")
+                    .attr("aria-hidden", true);
+
+                // hide other components from screen reader
+                const idsToHide = [...Array(20).keys()].slice(3, 20);
+                idsToHide.forEach(id => {
+                    const idGroup = crossSectionSVG.select(`#text_${id}`)
+
+                    idGroup
+                        .attr("aria-hidden", true);
+
+                    idGroup.selectAll('text')
+                        .attr("class", "chart-text")
+                })
+                const legend1 = crossSectionSVG.select("#legend_1")
+                    .attr("aria-hidden", true);
+                legend1.selectAll('text')
+                    .attr("class", "chart-text");
+                const legend2 = crossSectionSVG.select("#legend_2")
+                    .attr("aria-hidden", true);
+                legend2.selectAll('text')
+                    .attr("class", "chart-text");
+
+                // Move part of legend
+                crossSectionSVG.select("#legend_1")
+                    .style("transform", "translate(-100px, 210px)")
 
                 // add interactivity
                 addInteractions(crossSectionSVG);
@@ -122,34 +162,14 @@
     }
 
     function draw_xs(line_id,photo_id){
-        d3.select("#xs-main-" + line_id).selectAll("path")
+        d3.select(".xs-main.xs-" + line_id)
             .style("stroke-opacity", 1.0);
-        d3.select("#xs-w" + line_id).selectAll("path")
-            .style("stroke-opacity", 1.0);
-        d3.select("#xs-label1-"+ line_id).selectAll("text")
-            .style("opacity", 1)
-            .style("font-weight", 10);
-        d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-            .style("opacity", 1)
-            .style("font-weight", 1000);
-        d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-label2-"+ line_id).selectAll("text")
-            .style("opacity", 1);
-        d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-            .style("opacity", 1);
-        d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 1);
-        d3.select("#xs-topo-" + line_id).selectAll("path")
+        d3.select(".xs-topo.xs-" + line_id)
             .style("fill", "#c49051")
             .style("fill-opacity", 1)
             .style("stroke", "#000000")
             .style("stroke-opacity", 0.1);
-        d3.select("#xs-ice-" + line_id).selectAll("path")
+        d3.select(".xs-ice.xs-" + line_id)
             .style("fill", "#dddddd")
             .style("fill-opacity", 1)
             .style("stroke", "#000000")
@@ -166,39 +186,10 @@
             .style("stroke-opacity", 1.0);
     }
     
-    function remove_xs(line_id,photo_id){
-        d3.select("#xs-main-" + line_id).selectAll("path")
-            .style("stroke-opacity", 0);
-        d3.select("#xs-w" + line_id).selectAll("path")
-            .style("stroke-opacity", 0);
-        d3.select("#xs-label1-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-label1-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-w-arrow1-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-label2-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-label2-"+ line_id).selectAll("text")
-            .style("opacity", 0);
-        d3.select("#xs-w-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-arrow2-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0);
-        d3.select("#xs-topo-" + line_id).selectAll("path")
+    function remove_xs(line_id){
+        d3.selectAll(".xs-" + line_id)
             .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#xs-ice-" + line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#xs-c-sm-" + line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
+            .style("stroke-opacity", 0)
     }   
 
     function draw_image(photo_id){
@@ -210,15 +201,15 @@
 
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id,-9999);
+            draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
-            draw_xs(line_id,-9999);
+            draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
-            remove_xs(default_xs,-9999);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(13);
             const photo_id = event.currentTarget.id.slice(9,12);
             draw_xs(line_id,photo_id);
@@ -229,10 +220,10 @@
     function mouseout(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
             const line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id,-9999);
+            remove_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
             const line_id = event.currentTarget.id.slice(8);
-            remove_xs(line_id,-9999);
+            remove_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("photo-lg-")){
             const line_id = event.currentTarget.id.slice(13);
             const photo_id = event.currentTarget.id.slice(9,12);
@@ -242,27 +233,21 @@
 
     function mouseenter(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            remove_xs(default_xs,-9999);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0);
+            remove_xs(default_xs,defaultPhotoID);
         }
     }
 
     function mouseleave(event) {
         if (event.currentTarget.id.startsWith("figure_1")){
-            draw_xs(default_xs,-9999);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0.75);
+            remove_xs(currentXsID.value, currentPhotoID.value);
+            draw_xs(default_xs,defaultPhotoID);
             defaultView.value = true;
         }
     }
 
     function touchstart(event) {
-        draw_xs(default_xs, defaultPhotoID);
         if (event.currentTarget.id.startsWith("figure_1")){
             remove_xs(default_xs, currentPhotoID.value);
-            d3.select("#tutorial_arrow").selectAll("path")
-                .style("opacity", 0);
         }
         if (event.currentTarget.id.startsWith("xs-main-")){
             remove_xs(currentXsID.value, currentPhotoID.value);
@@ -286,6 +271,47 @@
     }
 
     function addInteractions(svg) {
+
+        
+        const photoIDs = ['051', '085', '138', '203', '140', '010', '156', '021', '018']
+        const xsIDs = [...Array(201).keys()];
+            xsIDs.forEach(id => {
+                crossSectionSVG.select(`#xs-main-${id}`).selectAll("path")
+                    .attr("class", `xs xs-main xs-${id}`)
+
+                crossSectionSVG.select(`#xs-topo-${id}`).selectAll("use")
+                    .attr("class", `xs xs-topo xs-${id}`)
+
+                crossSectionSVG.select(`#xs-ice-${id}`).selectAll("use")
+                    .attr("class", `xs xs-ice xs-${id}`)
+
+                crossSectionSVG.select(`#xs-c-sm-${id}`).selectAll("path")
+                    .attr("class", `xs xs-c-sm xs-${id}`)
+                
+                photoIDs.forEach(photo_id => {
+                    crossSectionSVG.select(`#photo-sm-${photo_id}-${id}`).selectAll("path")
+                        .attr("class", `xs photo-sm xs-${id}`)
+                    crossSectionSVG.select(`#photo-lg-${photo_id}-${id}`)
+                        .attr("tabindex", 0)
+                        .attr("role", "button")
+                        .attr("aria-label", 'button to show field photo and descriptive text') 
+                        .on("keydown", function(event) {
+                            if(event.code == 'Enter' | event.code == 'Space'){
+                                draw_image(photo_id)
+                                d3.selectAll(".xs")
+                                    .style("fill-opacity", 0)
+                                    .style("stroke-opacity", 0);
+                                draw_xs(id, photo_id);
+                            }
+                        })
+                })
+            })
+
+        // remove initial stroke styling for default_xs
+        d3.select("#xs-topo-" + default_xs).selectAll("path")
+            .style("stroke-opacity", 0)
+        d3.select("#xs-ice-" + default_xs).selectAll("path")
+            .style("stroke-opacity", 0)
 
         if (mobileView == true){
             d3.select('#tutorial-dt-1').selectAll("path")
@@ -323,7 +349,7 @@
                 .style("opacity", 0.0);
         }
 
-        draw_xs(default_xs,-9999);
+        draw_xs(default_xs,defaultPhotoID);
 
         // Add interaction events
         if (mobileView) {
@@ -341,8 +367,6 @@
                 if (!event.target.ownerSVGElement) {
                     remove_xs(currentXsID.value, currentPhotoID.value);
                     draw_xs(default_xs, defaultPhotoID);
-                    d3.select("#tutorial_arrow").selectAll("path")
-                        .style("opacity", 0.75);
                     defaultView.value = true;
                 }
             }, false);       
@@ -353,6 +377,14 @@
                 .on("mouseenter", (event) => mouseenter(event))
                 .on("mouseleave", (event) => mouseleave(event));
         }
+    }
+
+    function resetViz() {
+        defaultView.value = true;
+        d3.selectAll(".xs")
+            .style("fill-opacity", 0)
+            .style("stroke-opacity", 0);
+        draw_xs(default_xs, defaultPhotoID);
     }
 </script>
 
@@ -396,7 +428,6 @@
         }
     }
     .jif-image {
-        height: 100%;
         pointer-events: none;
         border-radius: 5px;
         margin-right: 3rem;
