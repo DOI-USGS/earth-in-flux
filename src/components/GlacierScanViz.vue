@@ -186,7 +186,7 @@
             .style("stroke-opacity", 1.0);
     }
     
-    function remove_xs(line_id,photo_id){
+    function remove_xs(line_id){
         d3.selectAll(".xs-" + line_id)
             .style("fill-opacity", 0)
             .style("stroke-opacity", 0)
@@ -215,42 +215,20 @@
             draw_xs(line_id,photo_id);
             draw_image(photo_id);
         }
-        // if (event.currentTarget.id.startsWith("xs-main-")){
-        //     remove_xs(currentXsID.value, currentPhotoID.value);
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     currentXsID.value = line_id;
-        //     draw_xs(line_id, defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-        //     remove_xs(currentXsID.value, currentPhotoID.value);
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     currentXsID.value = line_id;
-        //     draw_xs(line_id, defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
-        //     remove_xs(currentXsID.value, currentPhotoID.value);
-        //     const line_id = event.currentTarget.id.slice(13);
-        //     currentXsID.value = line_id;
-        //     const photo_id = event.currentTarget.id.slice(9,12);
-        //     currentPhotoID.value = photo_id;
-        //     draw_xs(line_id, currentPhotoID.value);
-        //     draw_image(photo_id);
-        // }
     }
 
     function mouseout(event) {
-        d3.selectAll(".xs")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        // if (event.currentTarget.id.startsWith("xs-main-")){
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     remove_xs(line_id,defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
-        //     const line_id = event.currentTarget.id.slice(8);
-        //     remove_xs(line_id,defaultPhotoID);
-        // } else if (event.currentTarget.id.startsWith("photo-lg-")){
-        //     const line_id = event.currentTarget.id.slice(13);
-        //     const photo_id = event.currentTarget.id.slice(9,12);
-        //     remove_xs(line_id,photo_id);
-        // }
+        if (event.currentTarget.id.startsWith("xs-main-")){
+            const line_id = event.currentTarget.id.slice(8);
+            remove_xs(line_id,defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
+            const line_id = event.currentTarget.id.slice(8);
+            remove_xs(line_id,defaultPhotoID);
+        } else if (event.currentTarget.id.startsWith("photo-lg-")){
+            const line_id = event.currentTarget.id.slice(13);
+            const photo_id = event.currentTarget.id.slice(9,12);
+            remove_xs(line_id,photo_id);
+        }
     }
 
     function mouseenter(event) {
