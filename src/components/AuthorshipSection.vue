@@ -6,7 +6,7 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <hr>
+      <hr role="presentation" aria-hidden="true">
       <h1 v-if="titleLevel === '1'" v-html="title" />
       <h2 v-if="titleLevel === '2'" v-html="title" />
       <h3 v-if="titleLevel === '3'" v-html="title" />
