@@ -162,14 +162,14 @@
     }
 
     function draw_xs(line_id,photo_id){
-        d3.select("#xs-main-" + line_id).selectAll("path")
+        d3.select(".xs-main.xs-" + line_id)
             .style("stroke-opacity", 1.0);
-        d3.select("#xs-topo-" + line_id).selectAll("path")
+        d3.select(".xs-topo.xs-" + line_id)
             .style("fill", "#c49051")
             .style("fill-opacity", 1)
             .style("stroke", "#000000")
             .style("stroke-opacity", 0.1);
-        d3.select("#xs-ice-" + line_id).selectAll("path")
+        d3.select(".xs-ice.xs-" + line_id)
             .style("fill", "#dddddd")
             .style("fill-opacity", 1)
             .style("stroke", "#000000")
@@ -187,20 +187,9 @@
     }
     
     function remove_xs(line_id,photo_id){
-        d3.select("#xs-main-" + line_id).selectAll("path")
-            .style("stroke-opacity", 0);
-        d3.select("#xs-topo-" + line_id).selectAll("path")
+        d3.selectAll(".xs-" + line_id)
             .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#xs-ice-" + line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#xs-c-sm-" + line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
-        d3.select("#photo-sm-"+photo_id +"-"+ line_id).selectAll("path")
-            .style("fill-opacity", 0)
-            .style("stroke-opacity", 0);
+            .style("stroke-opacity", 0)
     }   
 
     function draw_image(photo_id){
@@ -212,10 +201,7 @@
 
     function mouseover(event) {
         if (event.currentTarget.id.startsWith("xs-main-")){
-            d3.selectAll(".xs")
-                .style("fill-opacity", 0)
-                .style("stroke-opacity", 0);
-            // remove_xs(default_xs,defaultPhotoID);
+            remove_xs(default_xs,defaultPhotoID);
             const line_id = event.currentTarget.id.slice(8);
             draw_xs(line_id,defaultPhotoID);
         } else if (event.currentTarget.id.startsWith("xs-c-lg-")){
@@ -315,10 +301,10 @@
                 crossSectionSVG.select(`#xs-main-${id}`).selectAll("path")
                     .attr("class", `xs xs-main xs-${id}`)
 
-                crossSectionSVG.select(`#xs-topo-${id}`).selectAll("path")
+                crossSectionSVG.select(`#xs-topo-${id}`).selectAll("use")
                     .attr("class", `xs xs-topo xs-${id}`)
 
-                crossSectionSVG.select(`#xs-ice-${id}`).selectAll("path")
+                crossSectionSVG.select(`#xs-ice-${id}`).selectAll("use")
                     .attr("class", `xs xs-ice xs-${id}`)
 
                 crossSectionSVG.select(`#xs-c-sm-${id}`).selectAll("path")
@@ -342,6 +328,12 @@
                         })
                 })
             })
+
+        // remove initial stroke styling for default_xs
+        d3.select("#xs-topo-" + default_xs).selectAll("path")
+            .style("stroke-opacity", 0)
+        d3.select("#xs-ice-" + default_xs).selectAll("path")
+            .style("stroke-opacity", 0)
 
         if (mobileView == true){
             d3.select('#tutorial-dt-1').selectAll("path")
