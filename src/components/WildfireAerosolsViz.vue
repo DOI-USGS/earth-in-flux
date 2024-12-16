@@ -1462,11 +1462,12 @@
             lineNumber = 0,
             lineHeight = 1.1, // ems
             width = text.attr("text-width"),
+            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
-            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);
 
             while ((word = words.pop())) {
             line.push(word);
@@ -1475,7 +1476,7 @@
                     line.pop();
                     tspan.text(line.join(" "));
                     line = [word];
-                    tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").attr("dominant-baseline", baseline).text(word);
                 }
             }
 
