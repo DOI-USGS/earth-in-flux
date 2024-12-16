@@ -47,7 +47,7 @@
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v9.svg").then(function(xml) {
+            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v10.svg").then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("aerosols-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -201,7 +201,7 @@
     }
 
     function addInteractions() {
-        // set viewbox for svg with loss function chart
+        // set width and height of svg
         const aerosolsSVG = d3.select("#aerosols-svg")
             .attr("width", "100%")
             .attr("height", "100%");
@@ -232,11 +232,15 @@
         d3.select('#single-path-label').selectAll("text")
             .style("opacity", 1.0);
         d3.select('#multi-path-label-mb-2').selectAll("path")
+            .style("fill", "#151515")
+            .style("fill-opacity", 0.75)
             .style("opacity", 0.0);
         d3.select('#multi-path-label-mb-2').selectAll("text")
             .style("opacity", 0.0);
         if (mobileView == true){
             d3.select('#multi-path-label-mb-1').selectAll("path")
+                .style("fill", "#151515")
+                .style("fill-opacity", 0.75)
                 .style("opacity", 0.75);
             d3.select('#multi-path-label-mb-1').selectAll("text")
                 .style("opacity", 1.0);
@@ -284,7 +288,8 @@
     #aerosols-svg {
         grid-area: chart;
         place-self: center;
-        max-height: 100%;
+        height: 100%;
+        max-height: calc(min(85vh, 700px));
         max-width: 100%;
     }
 </style>

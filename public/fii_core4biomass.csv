@@ -1,7 +1,4 @@
 depth_cm,year,site,vegetation_type,burned
-420,2016,4,grass,TRUE
-600,2016,4,grass,TRUE
-710,2016,4,grass,TRUE
 0,2016,4,softwood,TRUE
 10,2016,4,softwood,TRUE
 20,2016,4,softwood,TRUE
