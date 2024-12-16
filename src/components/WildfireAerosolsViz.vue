@@ -71,7 +71,7 @@
     const chart = ref(null);
     let chartSVG;
     const chartTitle = 'Series of vertical charts representing a snow core.';
-    const chartDesc = 'The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core.'
+    const chartDesc = 'The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core. Markers of softwood and hardwood combustion are present throughout the core.'
     let chartHeight;
     let chartWidth;
     let chartDimensions;
