@@ -70,7 +70,8 @@
     const nIndices = 4;
     const chart = ref(null);
     let chartSVG;
-    const chartTitle = 'Series of charts depicting particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core';
+    const chartTitle = 'Series of vertical charts representing a snow core.';
+    const chartDesc = 'The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core.'
     let chartHeight;
     let chartWidth;
     let chartDimensions;
@@ -292,9 +293,16 @@
                 .attr("id", "wrapper");
 
         // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(chartTitle);
+        chartSVG.attr("role", "img")
+            .attr("aria-labelledby", "chart-title chart-desc")
+        
+        chartSVG.append("title")
+                .attr("id", "chart-title")
+                .text(chartTitle)
+        
+        chartSVG.append("desc")
+                .attr("id", "chart-desc")
+                .text(chartDesc);
 
         // Add group for bounds
         chartBounds = chartSVG.append("g")
@@ -507,6 +515,7 @@
             .attr("id", "x-axis")
             .attr("class", "axis")
             .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("role", "presentation")
             .attr("aria-hidden", true); // hide from screen reader
     }
 
@@ -520,6 +529,7 @@
             .attr("id", "x-axis")
             .attr("class", "axis")
             .attr("transform", `translate(0,${axisPosition === 'bottom' ? chartDims.boundedHeight : 0})`)
+            .attr("role", "presentation")
             .attr("aria-hidden", true); // hide from screen reader
     }
 
@@ -536,6 +546,7 @@
         yAxis = bounds.append("g")
             .attr("id", "y-axis")
             .attr("class", "axis")
+            .attr("role", "presentation")
             .attr("aria-hidden", true);
     }
 
@@ -594,6 +605,7 @@
         axisTitle = axis
             .append("text")
             .attr("class", "axis-title")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("x", titleX)
             .attr("y", titleY)
@@ -609,6 +621,7 @@
         if (axisSubtitle) {
             axisTitle.append("tspan")
                 .attr("class", "axis-subtitle")
+                .attr("role", "presentation")
                 .attr("aria-hidden", true)
                 .attr("x", titleX)
                 .attr("y", titleY)
@@ -814,6 +827,7 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("role", "presentation")
                 .attr("aria-hidden", true)
                 .attr("y", yScale(365))
                 .attr("x", annotationGap / 2)
@@ -824,6 +838,7 @@
         tileChartBounds.select(".annotations")
             .append("text")
                 .attr("class", "axis-title")
+                .attr("role", "presentation")
                 .attr("aria-hidden", true)
                 .attr("y", yScale(375))
                 .attr("x", annotationGap / 2)
@@ -858,6 +873,7 @@
         // append legend title
         legendGroup.append("text")
             .attr("class", "axis-title")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("x", tileChartDimensions.boundedWidth / 2)
             .attr("y", -tileChartDimensions.margin.top)
@@ -885,6 +901,7 @@
         const xBuffer = 5;
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("text-anchor", "end")
             .attr("dominant-baseline", "central")
@@ -894,6 +911,7 @@
 
         legendGroup.append("text")
             .attr("class", "axis-subtitle")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("text-anchor", "start")
             .attr("dominant-baseline", "central")
@@ -982,6 +1000,7 @@
 
         barChartBounds.append("text")
             .attr("class", "data-notation")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("x", 0)
             .attr("y", barYScale('400') + barYScale.bandwidth() / 2)
@@ -997,8 +1016,9 @@
         // barLegendGroup.append("text")
         //     .text('Sugars')
         //     .attr("id", "legend-title")
-        //     .attr("class", "axis-title")
-        //     .attr("aria-hidden", true)
+            // .attr("class", "axis-title")
+            // .attr("role", "presentation")
+            // .attr("aria-hidden", true)
         //     .attr("y", barChartDimensions.margin.top / 2)
         //     .attr("dominant-baseline", "central")
 
@@ -1025,6 +1045,7 @@
         // Add text for each group
         legendGroup.append("text")
             .attr("class", "legend-text")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("x", legendRectSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -barChartDimensions.margin.top / 1.75)
@@ -1230,7 +1251,8 @@
         // scatterLegendGroup.append("text")
         //     .attr("id", "legend-title")
         //     .attr("class", "axis-title")
-        //     .attr("aria-hidden", true)
+            // .attr("role", "presentation")
+            // .attr("aria-hidden", true)
         //     .attr("x", scatterChartDimensions.boundedWidth / 2)
         //     .attr("y", -scatterChartDimensions.margin.top + 10)
         //     .attr("dx", 0)
@@ -1269,6 +1291,7 @@
         // Add text for each group
         legendGroups.append("text")
             .attr("class", "legend-text")
+            .attr("role", "presentation")
             .attr("aria-hidden", true)
             .attr("x", legendPointSize + intraItemSpacing) // put text to the right of the rectangle
             .attr("y", -scatterChartDimensions.margin.top / 2)
