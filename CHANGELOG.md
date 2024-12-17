@@ -6,25 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ## [Unreleased]
  
-Here we track upcoming changes.
- 
 ### Added
-- Added a change log
+- Added draft visualizations for the Findex and Fish as Food USGS projects.
  
-### Changed
- 
-### Fixed
- 
-## [1.0.0] - 2024-11-07
+## [1.0.0] - 2024-12-16
  
 ### Added
 
-- Description of new feature
- 
-### Changed
-  
-- Description of change
- 
-### Fixed
- 
-- Description of fix
+- Released the USGS Land Change Chart Gallery featuring visualizations associated with the Beaufort Sea and Fire in Ice USGS projects.
