@@ -3,7 +3,7 @@
     "name": "earth-in-flux",
     "organization": "U.S. Geological Survey",
     "description": "Chart gallery highlighting key findings of USGS land change science",
-    "version": "0.1.0",
+    "version": "1.1.0",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
@@ -14,18 +14,19 @@
         }
       ]
     },
-    "homepageURL": "https://github.com/DOI-USGS/earth-in-flux/",
+    "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
     "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/main/earth-in-flux-main.zip",
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
     "vcs": "git",
-    "laborHours": 50,
+    "laborHours": 500,
     "tags": [
       "R",
       "USGS"
     ],
     "languages": [
       "R",
+      "Python",
       "Vue",
       "JavaScript"
     ],
@@ -34,7 +35,46 @@
       "email": "hcorson-dosch@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2024-09-11"
+      "metadataLastUpdated": "2024-12-16"
+    }
+  },
+  {
+    "name": "earth-in-flux",
+    "organization": "U.S. Geological Survey",
+    "description": "Chart gallery highlighting key findings of USGS land change science",
+    "version": "1.0.0",
+    "status": "Production",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/1.0.0/earth-in-flux-1.0.0.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
+    "vcs": "git",
+    "laborHours": 500,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R",
+      "Python",
+      "Vue",
+      "JavaScript"
+    ],
+    "contact": {
+      "name": "Hayley Corson-Dosch",
+      "email": "hcorson-dosch@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2024-12-16"
     }
   }
 ]

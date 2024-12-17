@@ -360,16 +360,16 @@
                     event.preventDefault();
                     touchstart(event)
                 })     
-            // add event listener to document to track tap OFF of svg
-            // this covers mouseleave behavior
-            document.addEventListener('touchstart', function(event) {
-                event.preventDefault();
-                if (!event.target.ownerSVGElement) {
-                    remove_xs(currentXsID.value, currentPhotoID.value);
-                    draw_xs(default_xs, defaultPhotoID);
-                    defaultView.value = true;
-                }
-            }, false);       
+            // // add event listener to document to track tap OFF of svg
+            // // this covers mouseleave behavior
+            // document.addEventListener('touchstart', function(event) {
+            //     event.preventDefault();
+            //     if (!event.target.ownerSVGElement) {
+            //         remove_xs(currentXsID.value, currentPhotoID.value);
+            //         draw_xs(default_xs, defaultPhotoID);
+            //         defaultView.value = true;
+            //     }
+            // }, false);       
         } else {
             svg.selectAll("g")
                 .on("mouseover", (event) => mouseover(event))
