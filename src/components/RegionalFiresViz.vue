@@ -5,6 +5,9 @@
         :figures="true"
         :fig-caption="false"
     >
+        <template #heading>
+            <h2 />
+        </template>
         <!-- FIGURES -->
         <template #aboveExplanation>
             <p v-html="text.paragraph1" />
