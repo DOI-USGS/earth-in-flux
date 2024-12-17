@@ -86,27 +86,6 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer'
     },
   ],
-  FishAsFoodSankey: [
-    {
-      fullName: 'Hayley Corson-Dosch',
-      initials: 'HCD',
-      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
-    },
-  ],
-  FishAsFoodCirclePacking: [
-    {
-      fullName: 'Hayley Corson-Dosch',
-      initials: 'HCD',
-      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
-    },
-  ],
-  ThreatSankey: [
-    {
-      fullName: 'Hayley Corson-Dosch',
-      initials: 'HCD',
-      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
-    },
-  ],
   WildfireAerosols: [
     {
       fullName: 'Hayley Corson-Dosch',
