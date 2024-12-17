@@ -18,17 +18,6 @@ export default {
     },
     projects: {
         // keys must match project routes (with '-' replaced with '')
-        findex: {
-            title: "Findex",
-            motivation: {
-                paragraph1: "Global freshwater biodiversity faces unprecedented loss from rapid global change. Found in less than 0.01% of available surface water, inland fishes comprise 51% of all fish species and inland fisheries provide food for billions and livelihoods for millions of people worldwide. Despite their importance, inland fishes are some of the most threatened taxa on the planet from intensifying pressures, such as hydrological alterations, riparian degradation, invasive species, and climate change. One-third of all inland fishes are threatened with extinction. However, standardized methods to monitor and assess fisheries proves elusive because inland fisheries are highly dispersed with limited market integration. Here, we present the first global metric to examine threats to inland fisheries by river basin using literature synthesis, expert elicitation, and computational modeling. The resulting standardized assessment serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. We show that most threats to inland fisheries come from outside the fishery sector, predominately from land use change. Given that inland fisheries are severely threatened and highly important with limited resources, this index can help direct, efficiently use, and mobilize limited resources for watershed management, sustainable fisheries, and ultimately human well-being."
-            },
-            teamText: null,
-            teamData: [
-                { name: "Gretchen Stokes", link: "", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/GretchenStokes.png" },
-                { name: "Abigail Lynch", link: "https://www.usgs.gov/staff-profiles/abigail-lynch", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/abbyprofile.png?h=a35909eb&itok=ob1vliWk" }
-            ]
-        },
         fireinice: {
             title: "Fire in Ice",
             motivation: {
@@ -45,18 +34,6 @@ export default {
                 { name: "Michelle Leung", link: "https://www.usgs.gov/staff-profiles/michelle-leung", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/MichelleLeung.JPG?h=bcaad0e8&itok=LXDUuI9W" },
                 { name: "Morgan Schachterle", link: "https://www.usgs.gov/staff-profiles/morgan-schachterle", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/Morgan%20_Schachterle_profileImage.jpeg?itok=r244L8u8" }
             ]
-        },
-        fishasfood: {
-            title: "Fish as Food",
-            motivation: {
-                paragraph1: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of national inland recreational consumption estimates with species specificity to identify the nutritional composition, total use value, and climate vulnerability of this recreational consumption."
-            },
-            teamText: null,
-            teamData: [
-                { name: "Holly Embke", link: "https://www.usgs.gov/staff-profiles/holly-embke", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/embke.jpg?h=f1072bca&itok=xyG6frc8" },
-                { name: "Abigail Lynch", link: "https://www.usgs.gov/staff-profiles/abigail-lynch", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/abbyprofile.png?h=a35909eb&itok=ob1vliWk" }
-            ]
-            
         },
         beaufortsea: {
             title: "Beaufort Sea",
@@ -216,13 +193,6 @@ export default {
             heading3: "How was this record reconstructed?",
             paragraph5: "USGS scientists reconstructed this record using <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> collected from the ocean floor on the Beaufort Sea continental shelf, north of Yukon, Canada. After cutting the sediment cores into slices representing ~4 to 24 years of time, researchers used a microscope to identify the <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>species of microfossils</a> in each slice.",
         },
-        FishAsFoodCirclePacking: {
-            paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
-            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
-        },
-        FishAsFoodSankey: {
-            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
-        },
         WildfireAerosols: {
             paragraph1: "Each layer of the <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected snow core</a> contains more than just packed snow. Particulates from the air, like dust, deposit on the surface of the glacier, along with tiny airborne particles called aerosols. Over time, the deposited particulates and aerosols are preserved in the glacier. If the aerosols are dark in color, the glacier absorbs more heat and melts more quickly. These dark aerosols include black carbon, or soot, that is generated when vehicles and industrial activities burn fossil fuels or when wildfires burn vegetation.",   
             paragraph2: "Can we tell if any of the dark aerosols in the snow core came from wildfires? While black carbon does not have a chemical signature, three sugars—mannnosan, galactosan, and levoglucosan—are only produced when vegetation burns. While these sugars are not dark aerosols themselves, they travel in smoke plumes with the dark aerosols and are deposited alongside them. These sugars are present throughout the core, which tells us that some of the deposited material in the snow came from wildfires.",   
@@ -231,9 +201,6 @@ export default {
             heading: "What am I looking at?",
             explanation1: "As scientists <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected the snow core</a>, they carefully stored each ten-centimeter section for transport off the Juneau Icefield. The retrieved samples were analyzed in a laboratory for particle counts, major ions, stable isotopes of oxygen and hydrogen, and the three sugars that are markers of biomass combustion—mannosan, galactosan, and levoglucosan.",
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
-        },
-        ThreatSankey: {
-            paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         }
     }
 }
