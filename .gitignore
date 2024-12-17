@@ -43,7 +43,7 @@ coverage
 *.ai
 *.psd
 *.nc
-examples/pydrograph/
+
 # Subdirectory specific files
 # IF NEED TO COMMIT SPECIFIC INPUT FILES,
 # ADD AS USERS SUBMIT CODE IN SUBDIRECTORIES
@@ -52,7 +52,7 @@ examples/pydrograph/
 *.html
 beaufortSea/images/*
 !*/images/in/*
-!fishAsFood/in/recfishfoods_families_thermal.xlsx
+
 # allow empty files to be committed
 !*/in/.empty
 !*/out/.empty
@@ -63,8 +63,7 @@ beaufortSea/images/*
 *.prj
 *.shp
 *.shx
-# Associated Journal articles
-33670_articles_article_file_2322.pdf
+
 # sbtools 
 beaufortSea/.Renviron
 
