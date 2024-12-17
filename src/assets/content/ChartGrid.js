@@ -3,16 +3,6 @@ export default {
         //we'll be replacing these img_src with paths to location on s3
         //vizRoutes will direct to appropriate subpage
         {
-            title: 'Inland fisheries are threatened',
-            project: 'Findex',
-            vizKey: 'ThreatSankey',
-            vizRoute: 'inland-fish-total-threats',
-            img_src: 'Placeholder_thumbnail.webp',
-            alt: '',
-            chartOrder: 1,
-            description: 'Land use change is threatening inland fisheries.'
-        },
-        {
             title: 'Explore the Juneau Icefield',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
@@ -41,26 +31,6 @@ export default {
             alt: '',
             chartOrder: 2,
             description: 'Smoke plumes from regional wildfires affect glaciers.'
-        },
-        {
-            title: 'Global economic value of recreationally fished species',
-            project: 'Fish as Food',
-            vizKey: 'FishAsFoodCirclePacking',
-            vizRoute: 'inland-rec-fish-value',
-            img_src: 'circle-pack-thumbnail.webp',
-            alt: '',
-            chartOrder: 2,
-            description: 'Inland recreational fishing contributes economic value.'
-        },
-        {
-            title: 'Global harvest of recreationally fished species',
-            project: 'Fish as Food',
-            vizKey: 'FishAsFoodSankey',
-            vizRoute: 'inland-rec-fish-harvest',
-            img_src: 'FishAsFoodSankey_thumbnail.webp',
-            alt: '',
-            chartOrder: 1,
-            description: 'Inland recreational fishing harvest is substantial.'
         },
         {
             title: 'Beaufort Sea sediment coring',
