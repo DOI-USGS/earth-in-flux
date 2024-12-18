@@ -73,4 +73,7 @@
     font-style: italic;
     font-weight: 300;
   }
+  #authors a {
+    font-weight: 400;
+  }
 </style>

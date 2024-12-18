@@ -1,14 +1,14 @@
-# USGS Land Change Chart Gallery
+# Earth in Flux chart gallery
 
 > _A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/earth-in-flux/-/releases to view all releases._
 
-The land change chart gallery is a shared initiative between the USGS Water Mission Area and Ecosystems Mission Area to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.
+The Earth in Flux chart gallery is a shared initiative between the USGS Water Mission Area and Ecosystems Mission Area to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.
 
 **The chart gallery can be viewed at [https://labs.waterdata.usgs.gov/visualizations/earth-in-flux](https://labs.waterdata.usgs.gov/visualizations/earth-in-flux).**
 
 ## Citation
 
-Corson-Dosch, Hayley, Archer, Althea, Kwang, Jeffrey, Jaenicke, Margaret, and Nell, Cee. 2024. USGS Land Change Chart Gallery. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P1J2PMFE](https://doi.org/10.5066/P1J2PMFE)
+Corson-Dosch, Hayley, Archer, Althea, Kwang, Jeffrey, Jaenicke, Margaret, and Nell, Cee. 2024. Earth in Flux chart gallery. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P1J2PMFE](https://doi.org/10.5066/P1J2PMFE)
 
 ## Additional contributors
 [Laura Gemery](https://www.usgs.gov/staff-profiles/laura-gemery) and [Natalie Kerhwald](https://www.usgs.gov/staff-profiles/natalie-m-kehrwald) consulted on the development of this website as subject matter experts.

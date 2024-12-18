@@ -29,23 +29,23 @@
 }
 
 .topnav {
-    background-color: #6b7c94;
+    background-color: #65778B;
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
 
 .topnav a {
-    color: #f2f2f2;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-weight: 400;
 }
 
 .topnav a:hover {
-    background-color: #d2e9ff;
-    color: var(--dodger-blue);
+    background-color: var(--faded-usgs-blue);
+    color: var(--usgs-blue);
 }
 
 .dropdown {
@@ -65,8 +65,8 @@
 }
 
 .dropdown-content a:hover {
-    background-color: #d2e9ff;
-    color: var(--dodger-blue)
+    background-color: var(--faded-usgs-blue);
+    color: var(--usgs-blue);
 }
 
 .dropdown:hover .dropdown-content {
@@ -77,7 +77,7 @@
     display: none;
     position: absolute;
     top: 48px;
-    background-color: #f9f9f9;
+    background-color: var(--color-background);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
