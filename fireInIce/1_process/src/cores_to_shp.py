@@ -2,8 +2,8 @@ import pandas as pd
 import geopandas as gpd
 def main(core_data,core_shpfile):
     cd = pd.read_excel(core_data)
-    cd['Latitude'][2] = "58° 51’ 16.1” N" #datafix 2016, C3
-    cd['Longitude'][2] = "134° 10’ 31.1” W" #datafix 2016, C3
+    cd.loc[2, 'Latitude'] = "58° 51’ 16.1” N" #datafix 2016, C3
+    cd.loc[2, 'Longitude'] = "134° 10’ 31.1” W" #datafix 2016, C3
     
     core_name = []
     Lat = []

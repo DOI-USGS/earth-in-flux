@@ -157,15 +157,6 @@ def main(
     buff_west, buff_east, buff_south, buff_north = buffer_shapefile(
         west, east, length, south, north, height, 25.0
     )
-    domain_geom = Polygon(
-        zip(
-            [buff_west, buff_west, buff_east, buff_east],
-            [buff_north, buff_south, buff_south, buff_north],
-        )
-    )
-    domain_polygon = gpd.GeoDataFrame(index=[0], crs=utm_crs, geometry=[domain_geom])
-    buff_length = buff_west - buff_east
-    buff_height = buff_north - buff_south
 
     # build interpolators to sampling data from dem and ice field
     extent = list(get_raster_extent(proj_ds))
