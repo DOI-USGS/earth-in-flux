@@ -14,7 +14,7 @@ export default {
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" }
         ],
         projectsHeading: "USGS land change science projects",
-        projectsLeadIn: "The USGS land chance science projects currently highlighted in this page are the"
+        projectsLeadIn: "The USGS land change science projects currently highlighted in this page are the"
     },
     projects: {
         // keys must match project routes (with '-' replaced with '')
