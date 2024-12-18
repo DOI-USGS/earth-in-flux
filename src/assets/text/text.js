@@ -1,9 +1,9 @@
 export default {
     landingPage: {
-        pageTitle: "Earth is changing...",
+        pageTitle: "Earth is in flux...",
         pageSubTitle: "USGS scientists research changing environments to inform natural resource management and decision making.",
-        collaborationHeading: "The USGS land change chart gallery project",
-        collaborationDescription: "The land change chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
+        collaborationHeading: "The Earth in Flux chart gallery project",
+        collaborationDescription: "The Earth in Flux chart gallery is a shared initiative between the U.S. Geological Survey (USGS) <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a> and <a href='https://www.usgs.gov/mission-areas/ecosystems' target='_blank'>Ecosystems Mission Area</a> to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.",
         teamHeading: "The USGS Vizlab team",
         teamText: "The USGS Vizlab is a data visualization team within the USGS <a href='https://www.usgs.gov/mission-areas/water-resources' target='_blank'>Water Resources Mission Area</a>. View the Vizlab <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>portfolio</a>.",
         teamData: [
@@ -14,7 +14,7 @@ export default {
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" }
         ],
         projectsHeading: "USGS land change science projects",
-        projectsLeadIn: "The USGS land chance science projects currently highlighted in this page are the"
+        projectsLeadIn: "The USGS land change science projects currently highlighted in this page are the"
     },
     projects: {
         // keys must match project routes (with '-' replaced with '')

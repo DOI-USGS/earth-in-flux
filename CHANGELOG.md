@@ -13,4 +13,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ### Added
 
-- Released the USGS Land Change Chart Gallery featuring visualizations associated with the Beaufort Sea and Fire in Ice USGS projects.
+- Released the Earth in Flux chart gallery featuring visualizations associated with the Beaufort Sea and Fire in Ice USGS projects.
