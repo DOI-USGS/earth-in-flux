@@ -84,6 +84,7 @@
         font-family: sans-serif; /* This is fallback font for old browsers */
         font-family: var(--title-font);
         color: var(--color-title-text);
+        font-weight: 400;
         transform: translateY(50%);
         padding: 0.2rem 2rem 0.2rem 2rem;
         opacity: 0;
