@@ -3,20 +3,20 @@
     "name": "earth-in-flux",
     "organization": "U.S. Geological Survey",
     "description": "Chart gallery highlighting key findings of USGS land change science",
-    "version": "1.1.0",
-    "status": "Development",
+    "version": "1.0.0",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/LICENSE.md"
+          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/LICENSE.md"
         }
       ]
     },
     "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
-    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/main/earth-in-flux-main.zip",
-    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/DISCLAIMER.md",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/1.0.0/earth-in-flux-1.0.0.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
     "vcs": "git",
     "laborHours": 500,
@@ -42,20 +42,20 @@
     "name": "earth-in-flux",
     "organization": "U.S. Geological Survey",
     "description": "Chart gallery highlighting key findings of USGS land change science",
-    "version": "1.0.0",
-    "status": "Production",
+    "version": "1.1.0",
+    "status": "Development",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/LICENSE.md"
+          "URL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/LICENSE.md"
         }
       ]
     },
     "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
-    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/1.0.0/earth-in-flux-1.0.0.zip",
-    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/DISCLAIMER.md",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/main/earth-in-flux-main.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
     "vcs": "git",
     "laborHours": 500,
