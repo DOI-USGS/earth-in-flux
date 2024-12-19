@@ -70,8 +70,7 @@
     const nIndices = 4;
     const chart = ref(null);
     let chartSVG;
-    const chartTitle = 'Series of vertical charts representing a snow core.';
-    const chartDesc = 'The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core. Markers of softwood and hardwood combustion are present throughout the core.'
+    const chartTitle = 'Series of vertical charts representing a snow core. The charts depict particulate counts and the presence of wildfire biomarkers in layers of a 780-centimeter snow core. Markers of softwood and hardwood combustion are present throughout the core.'
     let chartHeight;
     let chartWidth;
     let chartDimensions;
@@ -292,17 +291,9 @@
                 .attr("height", "100%")
                 .attr("id", "wrapper");
 
-        // assign role for accessibility
-        chartSVG.attr("role", "img")
-            .attr("aria-labelledby", "chart-title chart-desc")
-        
-        chartSVG.append("title")
-                .attr("id", "chart-title")
-                .text(chartTitle)
-        
-        chartSVG.append("desc")
-                .attr("id", "chart-desc")
-                .text(chartDesc);
+        // assign aria-label for accessibility        
+        chartSVG
+            .attr("aria-label", chartTitle)
 
         // Add group for bounds
         chartBounds = chartSVG.append("g")
