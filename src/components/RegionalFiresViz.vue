@@ -62,9 +62,9 @@
                 const aerosolsSVG = d3.select("#aerosols-grid-container").select("svg")
                     .attr("id", "aerosols-svg")
 
+                // assign aria-label for accessibility 
                 aerosolsSVG
-                    .append("title")
-                    .text("A shaded-relief map of southeastern Alaska, showing the location of the Juneau Icefield. The map also shows the location of the 2015 Dennison Fork wildfire and the 2016 Steamboat Creek wildfire, both northwest of the icefield. Transparent grey lines branching out from each wildfire location show modeled paths of smoke transport from these fires. Some of the potential smoke paths pass over the Juneau Icefield, suggesting that aerosols from these fires may have been deposited on the icefield.");
+                    .attr("aria-label", "A shaded-relief map of southeastern Alaska, showing the location of the Juneau Icefield. The map also shows the location of the 2015 Dennison Fork wildfire and the 2016 Steamboat Creek wildfire, both northwest of the icefield. Transparent grey lines branching out from each wildfire location show modeled paths of smoke transport from these fires. Some of the potential smoke paths pass over the Juneau Icefield, suggesting that aerosols from these fires may have been deposited on the icefield.");
 
                 // add interactivity
                 addInteractions();
