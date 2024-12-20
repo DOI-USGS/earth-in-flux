@@ -177,10 +177,9 @@
                 .attr("height", "100%")
                 .attr("id", "bubble-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(bubbleChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", bubbleChartTitle)
 
         // Add group for bounds
         bubbleChartBounds = chartSVG.append("g")
@@ -368,10 +367,9 @@
                 .attr("height", "100%")
                 .attr("id", "timeline-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(timelineChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", timelineChartTitle)
 
         // Add group for bounds
         timelineChartBounds = chartSVG.append("g")
@@ -398,6 +396,7 @@
             .attr("id", "timeline-x-axis")
             .attr("transform", `translate(0,${timelineChartDimensions.boundedHeight})`)
             .call(d3.axisBottom(xScale).tickSize(0))
+            .attr("aria-hidden", true); // hide from screen reader
             // .select(".domain").remove() // remove axis line;
 
         xAxis.selectAll('path')
@@ -490,6 +489,9 @@
             .enter()
             .append('rect')
                 .attr('class', d => 'overlay decade' + d)
+                .attr('tabindex', 0)
+                .attr("role", "button")
+                .attr("aria-label", d => `Year ${d} CE`)
                 .attr('x', d => xScale(d))
                 .attr('y', timelineChartDimensions.boundedHeight)
                 .attr('height', timelineChartDimensions.margin.bottom)
@@ -498,6 +500,11 @@
                 .style("stroke-width", 0.5)
                 .on('mouseover', (event, d) => {
                     mouseoverTimelineBar(d)
+                })
+                .on("keydown", function(event, d) {
+                    if (event.code == 'Enter' | event.code == 'Space') {
+                        mouseoverTimelineBar(d)
+                    }
                 })
     }
 
@@ -532,10 +539,9 @@
                 .attr("height", "100%")
                 .attr("id", "bar-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(barChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", barChartTitle)
 
         // Add group for bounds
         barChartBounds = chartSVG.append("g")
@@ -588,7 +594,8 @@
         const yAxis = barChartBounds.append('g')
             .call(d3.axisLeft(yScale)
                 .ticks(5)
-                .tickFormat(d => d + '%'));
+                .tickFormat(d => d + '%'))
+            .attr("aria-hidden", true); // hide from screen reader
 
         yAxis.selectAll('text')
             .attr("class", 'axis-text y-axis');

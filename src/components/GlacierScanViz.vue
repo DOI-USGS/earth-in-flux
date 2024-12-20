@@ -101,9 +101,9 @@
                     .attr("width", "100%")
                     .attr("height", "100%");
 
+                // assign aria-label for accessibility 
                 crossSectionSVG
-                    .append("title")
-                    .text("A shaded-relief map of the Juneau Ice Field, with markers indicating the location of ice cores and field photos. Beneath the map is a cross-section of the icefield, showing how the ice field covers the terrain. In places, the ice field is close to a kilometer thick.");
+                    .attr("aria-label", "A shaded-relief map of the Juneau Ice Field, with markers indicating the location of ice cores and field photos. Beneath the map is a cross-section of the icefield, showing how the ice field covers the terrain. In places, the ice field is close to a kilometer thick.");
 
                 // hide some components from view and from screen reader
                 crossSectionSVG.select("#tutorial-dt-1")
