@@ -42,7 +42,7 @@
     "name": "earth-in-flux",
     "organization": "U.S. Geological Survey",
     "description": "Chart gallery highlighting key findings of USGS land change science",
-    "version": "1.1.0",
+    "version": "main",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
