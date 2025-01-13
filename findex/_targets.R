@@ -86,11 +86,11 @@ p2 <- list(
 p3 <- list(
   tar_target(p3_color_pal,
              tibble(
-               Habitat_pal = list(c("#A07138", "#C08B4B", "#CDA371", "#E1C8AA")),
+               Habitat_pal = list(c("#7A562B", "#C7985F", "#E1C8AA")), #A07138
                Pollution_pal = list(c("#002D5E", "#B2C0CE")),
-               Exploitation_pal = list(c("#B74F49", "#cd8480", "#E2B8B6")),
-               Invasive_pal = list(c("#4E6D6E", "#6f9899", "#9CB8B9", "#C9D8D9")),
-               Climate_pal = list(c("#9D6AAC", "#bd9bc7", "#DDCCE2"))
+               Exploitation_pal = list(c("#B74F49", "#E2B8B6")),
+               Invasive_pal = list(c("#4E6D6E", "#C9D8D9")),
+               Climate_pal = list(c("#835192", "#DDCCE2")) #9D6AAC
              )),
   tar_map(
     values = tibble::tibble(threat_cat = c("Habitat", "Exploitation", 
