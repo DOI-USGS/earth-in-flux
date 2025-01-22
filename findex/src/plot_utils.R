@@ -1,7 +1,11 @@
-threat_map <- function(in_dat, threat_category, threat_pal, out_file){
+threat_map <- function(in_dat, threat_category, threat_pal){
 
 filtered_df <- st_as_sf(in_dat) |> 
-  dplyr::filter(ThreatCategory == threat_category)
+  dplyr::filter(ThreatCategory == threat_category) |> 
+  # remove visual bug with robinson reprojection
+  st_wrap_dateline()
+
+proj_df <- st_transform(filtered_df, crs = st_crs("ESRI:54030"))
 
 if(threat_category == "Habitat"){
   pal <- threat_pal$Habitat_pal
@@ -16,14 +20,14 @@ if(threat_category == "Habitat"){
 }
 
 threat_map <- ggplot()+
-  geom_sf(data = filtered_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric, color = MeanWeightedThreatMetric))+
+  geom_sf(data = proj_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric, color = MeanWeightedThreatMetric))+
   scale_fill_gradientn(
     colors = colorRampPalette(c(rev(unlist(pal))))(100),
-    limits = c(0, max(filtered_df$MeanWeightedThreatMetric, na.rm = T)),
+    limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
     na.value = "gray80",
-    breaks = c(0 + max(filtered_df$MeanWeightedThreatMetric, na.rm = T)/10, 
+    breaks = c(0 + max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10, 
                #max(habitat_data$MeanWeightedThreatMetric)/2, 
-               max(filtered_df$MeanWeightedThreatMetric, na.rm = T) - max(filtered_df$MeanWeightedThreatMetric, na.rm = T)/10),
+               max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10),
     labels = c("Lower", "Higher")
   )+
   scale_color_gradientn(
@@ -38,10 +42,10 @@ threat_map <- ggplot()+
                                barheight = 1))+
   theme_void()+
   theme(
-    legend.position = c(0.1, 0.21),
+    #legend.position = c(0.1, 0.21),
     legend.ticks = element_blank()
   )
 
-ggsave(out_file, height = 6, width = 10, dpi = 300) 
+return(threat_map)
 
 }

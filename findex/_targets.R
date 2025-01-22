@@ -4,7 +4,8 @@ library(tarchetypes)
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "sf",
-                            "readxl"))
+                            "readxl",
+                            "cowplot"))
 
 source("src/data_utils.R")
 source("src/plot_utils.R")
@@ -96,14 +97,37 @@ p3 <- list(
     values = tibble::tibble(threat_cat = c("Habitat", "Exploitation", 
                                            "Invasive species", "Pollution", 
                                            "Climate and weather")),
-  tar_target(
-    p3_threat_map,
-    threat_map(in_dat = p2_mean_weighted_threats, 
-                   threat_category = threat_cat, 
-                   threat_pal = p3_color_pal, 
-                   out_file = paste0("out/", str_replace_all(threat_cat, " ", "_"), "_map.png")),
-    format = "file"
-  ))
+    tar_target( 
+      # change all out file paths to the earth in flux directroy: src/assets/images
+      p3_threat_map,
+      threat_map(in_dat = p2_mean_weighted_threats, 
+                 threat_category = threat_cat, 
+                 threat_pal = p3_color_pal 
+      )
+    ),
+    tar_target(
+      p3_threat_map_png,
+      {
+        final_plot <- p3_threat_map + 
+          theme(legend.position = "none")
+        
+        ggsave(paste0("out/", str_replace_all(threat_cat, " ", "_"), "_map.png"), 
+               final_plot, height = 6, width = 10, dpi = 300)
+      },
+      format = "file"
+    ),
+    tar_target(
+      p3_legend_png,
+      {
+        plot_legend <- get_plot_component(p3_threat_map, "guide-box-right", return_all = T)
+        
+        out_file <- paste0("out/", str_replace_all(threat_cat, " ", "_"), "_legend.png")
+        
+        ggsave(out_file, 
+               plot_legend, dpi = 300, bg = "transparent")
+        knitr::plot_crop(out_file)
+      }
+    ))
 )
 
 c(p1, p2, p3)
