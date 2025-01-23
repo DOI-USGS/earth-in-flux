@@ -73,14 +73,39 @@ p2 <- list(
   ),
   #### processing for threat maps ####
   tar_target(
-    p2_mean_weighted_threats, # take _csv ending off if not saving to a csv
+    p2_mean_weighted_threats, 
     compute_mean_weighted_threats(
       threat_data = p2_threats, 
       threat_weights = p2_weights, 
-      hybas_habitat_types = p2_hybas_habitat_types_sf#,
-      #outfile = "out/findex_mean_weighted_threats.csv"
-    )#,
-    #format = "file"
+      hybas_habitat_types = p2_hybas_habitat_types_sf
+    )
+  ),
+  tar_target( 
+    p2_mean_weighted_subThreats, 
+    compute_mean_weighted_subThreats(
+      threat_data = p2_threats, 
+      threat_weights = p2_weights, 
+      hybas_habitat_types = p2_hybas_habitat_types_sf
+      #sub_threat = subThreat_cat
+    )
+  ),
+  tar_target(
+    p2_habitat_subthreats,
+    c("Dams", "Wetland drainage", "Deforestation and associated runoff",
+      "Riparian degradation", "Agricultural extraction", "Urban extraction", 
+      "Industrial extraction")
+  ),
+  tar_target(
+    p2_pollution_subthreats,
+    c("Agricultural effluents", "Urban wastewater", 
+      "Industrial effluents", "Aquaculture effluents",
+      "Pharmaceuticals", "Oil or gas exploration",
+      "Plastics", "Mining")
+  ),
+  tar_target(
+    p2_climate_subthreats,
+    c("Change in water temperature", "Drought", "Change in flooding", 
+      "Change in wind patterns", "Change in ice cover")
   )
 )
 
@@ -93,6 +118,7 @@ p3 <- list(
                Invasive_pal = list(c("#4E6D6E", "#C9D8D9")),
                Climate_pal = list(c("#835192", "#DDCCE2")) #9D6AAC
              )),
+  #### major threat category maps ####
   tar_map(
     values = tibble::tibble(threat_cat = c("Habitat", "Exploitation", 
                                            "Invasive species", "Pollution", 
@@ -105,13 +131,15 @@ p3 <- list(
                  threat_pal = p3_color_pal 
       )
     ),
-    tar_target(
+    tar_target( 
       p3_threat_map_png,
       {
         final_plot <- p3_threat_map + 
           theme(legend.position = "none")
         
-        ggsave(paste0("out/", str_replace_all(threat_cat, " ", "_"), "_map.png"), 
+        out_file <- paste0("../src/assets/images/", str_replace_all(threat_cat, " ", "_"), "_map.png")
+        
+        ggsave(out_file, 
                final_plot, height = 6, width = 10, dpi = 300)
       },
       format = "file"
@@ -121,13 +149,75 @@ p3 <- list(
       {
         plot_legend <- get_plot_component(p3_threat_map, "guide-box-right", return_all = T)
         
-        out_file <- paste0("out/", str_replace_all(threat_cat, " ", "_"), "_legend.png")
+        out_file <- paste0("../src/assets/images/", str_replace_all(threat_cat, " ", "_"), "_legend.png")
+        
+        ggsave(out_file, 
+               plot_legend, dpi = 300, bg = "transparent")
+        knitr::plot_crop(out_file)
+      }
+    )),
+  #### subcategory threat maps ####
+  tar_map(
+    values = tibble::tibble(sub_threat_cat = c("Dams", "Wetland drainage", "Deforestation and associated runoff",
+                                               "Riparian degradation", "Agricultural effluents", "Agricultural extraction",
+                                               "Aquaculture effluents", "Industrial effluents", "Industrial extraction",
+                                               "Urban extraction", "Urban wastewater", "Overfishing",
+                                               "Invasive non-native species", "Change in water temperature", "Drought",
+                                               "Change in flooding", "Pharmaceuticals", "Plastics",
+                                               "Oil or gas exploration", "Mining", "Change in wind patterns",
+                                               "Change in ice cover")),
+    tar_target(
+      p3_sub_threat_map,
+      subThreat_map(in_dat = p2_mean_weighted_subThreats, 
+                    threat_category = sub_threat_cat, 
+                    threat_pal = p3_color_pal)
+    ),
+    tar_target(
+      p3_sub_threat_map_png,
+      {
+        final_plot <- p3_sub_threat_map + 
+          theme(legend.position = "none")
+        
+        if(sub_threat_cat %in% p2_habitat_subthreats){
+          out_file <- paste0("../src/assets/images/H_", str_replace_all(sub_threat_cat, " ", "_"), "_map.png")
+        } else if(sub_threat_cat %in% p2_pollution_subthreats){
+          out_file <- paste0("../src/assets/images/P_", str_replace_all(sub_threat_cat, " ", "_"), "_map.png")
+        } else if(sub_threat_cat == "Overfishing"){
+          out_file <- paste0("../src/assets/images/E_", str_replace_all(sub_threat_cat, " ", "_"), "_map.png")
+        } else if(sub_threat_cat == "Invasive non-native species"){
+          out_file <- paste0("../src/assets/images/IS_", str_replace_all(sub_threat_cat, " ", "_"), "_map.png")
+        } else if(sub_threat_cat %in% p2_climate_subthreats){
+          out_file <- paste0("../src/assets/images/CW_", str_replace_all(sub_threat_cat, " ", "_"), "_map.png")
+        }
+        
+        ggsave(out_file, 
+               final_plot, height = 6, width = 10, dpi = 300)
+      },
+      format = "file"
+    ),
+    tar_target(
+      p3_sub_threat_legend_png,
+      {
+        plot_legend <- get_plot_component(p3_sub_threat_map, "guide-box-right", return_all = T)
+        
+        if(sub_threat_cat %in% p2_habitat_subthreats){
+          out_file <- paste0("../src/assets/images/H_", str_replace_all(sub_threat_cat, " ", "_"), "_legend.png")
+        } else if(sub_threat_cat %in% p2_pollution_subthreats){
+          out_file <- paste0("../src/assets/images/P_", str_replace_all(sub_threat_cat, " ", "_"), "_legend.png")
+        } else if(sub_threat_cat == "Overfishing"){
+          out_file <- paste0("../src/assets/images/E_", str_replace_all(sub_threat_cat, " ", "_"), "_legend.png")
+        } else if(sub_threat_cat == "Invasive non-native species"){
+          out_file <- paste0("../src/assets/images/IS_", str_replace_all(sub_threat_cat, " ", "_"), "_legend.png")
+        } else if(sub_threat_cat %in% p2_climate_subthreats){
+          out_file <- paste0("../src/assets/images/CW_", str_replace_all(sub_threat_cat, " ", "_"), "_legend.png")
+        }
         
         ggsave(out_file, 
                plot_legend, dpi = 300, bg = "transparent")
         knitr::plot_crop(out_file)
       }
     ))
-)
+  )
+
 
 c(p1, p2, p3)
