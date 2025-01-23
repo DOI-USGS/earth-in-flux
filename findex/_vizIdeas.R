@@ -112,3 +112,6 @@ ggplot() +
 
 table(hybas_04_sf$N_threats)
 1342-23
+
+## What are the most common co-occurring threats?
+
