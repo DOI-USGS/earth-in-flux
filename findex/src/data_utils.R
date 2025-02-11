@@ -74,6 +74,7 @@ compute_mean_weighted_subThreats <- function(threat_data, threat_weights,
     mutate(MeanWeightedThreatMetric = mean(weightedThreatMetric, na.rm = TRUE)) |>
     ungroup() |> 
     select(HYBAS_ID, ThreatCategory, Threat, MeanWeightedThreatMetric, Shape) |>
+    rename(MajorCat = ThreatCategory, ThreatCategory = Threat) |> 
     unique() |> 
     arrange(desc(MeanWeightedThreatMetric))
 }
