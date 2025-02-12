@@ -1,6 +1,8 @@
-threat_map <- function(in_dat, threat_category, threat_pal, proj){
-
-filtered_df <- st_as_sf(in_dat) |> 
+threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
+# hybas_habitat_types = p2_hybas_habitat_types_sf
+filtered_df <- in_dat |> 
+  left_join(hybas_habitat_types) |> 
+  st_as_sf() |> 
   dplyr::filter(ThreatCategory == threat_category) |> 
   # remove visual bug with robinson projection
   st_wrap_dateline()
@@ -52,9 +54,11 @@ return(threat_map)
 
 }
 
-subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, subcat_pollution, subcat_climate, proj){
+subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, subcat_pollution, subcat_climate, proj, hybas_habitat_types){
   
-  filtered_df <- st_as_sf(in_dat) |> 
+  filtered_df <- in_dat |> 
+    left_join(hybas_habitat_types) |> 
+    st_as_sf() |> 
     dplyr::filter(ThreatCategory == threat_category) |> 
     # remove visual bug with robinson projection
     st_wrap_dateline()
@@ -114,8 +118,8 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file){
   threat_df <- in_dat |> 
     filter(ThreatCategory == threat_category)
   
-  min_val <- min(threat_df$MeanWeightedThreatMetric, na.rm = T)
-  max_val <- max(threat_df$MeanWeightedThreatMetric, na.rm = T)
+  min_val <- round(min(threat_df$MeanWeightedThreatMetric, na.rm = T), digits = 2)
+  max_val <- round(max(threat_df$MeanWeightedThreatMetric, na.rm = T), digits = 2)
   
   # Define colors
   background_color = NA

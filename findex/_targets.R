@@ -66,11 +66,17 @@ p2 <- list(
     )
   ),
   tar_target(
-    p2_total_weighted_threats_csv,
-    compute_total_weighted_threats(
+    p2_weighted_threats,
+    compute_weighted_threats(
       threat_data = p2_threats,
       threat_weights = p2_weights,
-      hybas_habitat_types = p2_hybas_habitat_types_sf,
+      hybas_habitat_types = p2_hybas_habitat_types_sf
+    )
+  ),
+  tar_target(
+    p2_total_weighted_threats_csv,
+    compute_total_weighted_threats(
+      in_dat = p2_weighted_threats,
       outfile = "../public/findex_total_weighted_threats.csv"
     ),
     format = "file"
@@ -79,18 +85,13 @@ p2 <- list(
   tar_target(
     p2_mean_weighted_threats, 
     compute_mean_weighted_threats(
-      threat_data = p2_threats, 
-      threat_weights = p2_weights, 
-      hybas_habitat_types = p2_hybas_habitat_types_sf
+      in_dat = p2_weighted_threats
     )
   ),
   tar_target( 
     p2_mean_weighted_subThreats, 
     compute_mean_weighted_subThreats(
-      threat_data = p2_threats, 
-      threat_weights = p2_weights, 
-      hybas_habitat_types = p2_hybas_habitat_types_sf
-      #sub_threat = subThreat_cat
+      in_dat = p2_weighted_threats
     )
   ),
   
@@ -146,6 +147,7 @@ p3 <- list(
         final_plot <- threat_map(in_dat = p2_mean_weighted_threats, 
                                  threat_category = p2_threat_categories, 
                                  threat_pal = p3_color_pal,
+                                 hybas_habitat_types = p2_hybas_habitat_types_sf,
                                  proj = p1_proj) + 
           theme(legend.position = "none")
         
@@ -163,15 +165,20 @@ p3 <- list(
         final_plot <- threat_map(in_dat = p2_mean_weighted_threats, 
                                  threat_category = p2_threat_categories, 
                                  threat_pal = p3_color_pal,
-                                 proj = p1_proj)
+                                 proj = p1_proj,
+                                 hybas_habitat_types = p2_hybas_habitat_types_sf)
         
         plot_legend <- get_plot_component(final_plot, "guide-box-right", return_all = T)
         
-        out_file <- paste0("../src/assets/images/", str_replace_all(p2_threat_categories, " ", "_"), "_legend.png")
+        out_file <- paste0("out/", str_replace_all(p2_threat_categories, " ", "_"), "_legend_raw.png")
         
         ggsave(out_file, 
                plot_legend, dpi = 300, bg = "transparent")
         knitr::plot_crop(out_file)
+        
+        out_file_final <- paste0("../src/assets/images/", str_replace_all(p2_threat_categories, " ", "_"), "_legend.png")
+        
+        cowplot_legend(in_dat = p2_mean_weighted_threats, legend_png = out_file, threat_category = p2_threat_categories, out_file = out_file_final)
       },
       pattern = p2_threat_categories
     ),
@@ -184,7 +191,8 @@ p3 <- list(
                       subcat_pollution = p2_pollution_subthreats,
                       subcat_climate = p2_climate_subthreats,
                       threat_pal = p3_color_pal,
-                      proj = p1_proj) + 
+                      proj = p1_proj,
+                      hybas_habitat_types = p2_hybas_habitat_types_sf) + 
           theme(legend.position = "none")
         
         if(p2_threat_subcategories %in% p2_habitat_subthreats){
@@ -214,7 +222,8 @@ p3 <- list(
                                     subcat_pollution = p2_pollution_subthreats,
                                     subcat_climate = p2_climate_subthreats,
                                     threat_pal = p3_color_pal,
-                                    proj = p1_proj)
+                                    proj = p1_proj,
+                                    hybas_habitat_types = p2_hybas_habitat_types_sf)
         
         plot_legend <- get_plot_component(final_plot, "guide-box-right", return_all = T)
         
