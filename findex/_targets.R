@@ -189,8 +189,8 @@ p3 <- list(
                  subcat_habitat = NA, 
                  subcat_pollution = NA, 
                  subcat_climate = NA,
-                 config_df = p2_viz_config
-        )
+                 config_df = p2_viz_config,
+                 height = 6, width = 10, dpi = 300)
       },
       format = "file",
       pattern = p2_threat_categories
@@ -210,7 +210,8 @@ p3 <- list(
                     subcat_pollution = NA, 
                     subcat_climate = NA, 
                     in_dat = p2_mean_weighted_threats,
-                    config_df = p2_viz_config)
+                    config_df = p2_viz_config, 
+                    height = 176, width = 429, unit = "px", dpi = 300)
       },
       pattern = p2_threat_categories
     ),
@@ -229,7 +230,8 @@ p3 <- list(
                  subcat_habitat = p2_habitat_subthreats,
                  subcat_pollution = p2_pollution_subthreats,
                  subcat_climate = p2_climate_subthreats,
-                 config_df = p2_viz_config)
+                 config_df = p2_viz_config,
+                 height = 6, width = 10, dpi = 300)
       },
       format = "file",
       pattern = p2_threat_subcategories
@@ -249,7 +251,8 @@ p3 <- list(
                     subcat_pollution = p2_pollution_subthreats,
                     subcat_climate = p2_climate_subthreats,
                     in_dat = p2_mean_weighted_subThreats,
-                    config_df = p2_viz_config)
+                    config_df = p2_viz_config,
+                    height = 176, width = 429, unit = "px", dpi = 300)
       },
       format = "file",
       pattern = p2_threat_subcategories

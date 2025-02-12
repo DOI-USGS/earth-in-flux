@@ -70,7 +70,7 @@ subThreat_map <- function(in_dat, threat_category, threat_pal, proj, hybas_habit
   
 }
 
-cowplot_legend <- function(in_dat, legend_png, threat_category, out_file){
+cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height, width, unit, dpi){
   
   threat_df <- in_dat |> 
     filter(ThreatCategory == threat_category)
@@ -126,11 +126,11 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file){
                color = "gray50",
                size = 9) 
   #429x176
-  ggsave(out_file, final_legend, height = 176, width = 429, units = "px", dpi = 300, bg = "transparent")
+  ggsave(out_file, final_legend, height = height, width = width, units = unit, dpi = dpi, bg = "transparent")
 }
 
-# plot = final_plot, in_dat = p2_mean_weighted_threats
-save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, in_dat, config_df){
+# height = 176, width = 429, unit = "px", dpi = 300
+save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, in_dat, config_df, height, width, unit, dpi){
   
   if(type == "threat"){
     name_conv <- config_df |> 
@@ -141,12 +141,13 @@ save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_poll
     out_file <- sprintf(unique(name_conv$threat_legend_raw), str_replace_all(threat_category, " ", "_"))
     
     ggsave(out_file, 
-           plot_legend, dpi = 300, bg = "transparent")
+           plot_legend, dpi = dpi, bg = "transparent")
     knitr::plot_crop(out_file)
     
     out_file_final <- sprintf(unique(name_conv$threat_legend), str_replace_all(threat_category, " ", "_"))
     
-    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, out_file = out_file_final)
+    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, 
+                   out_file = out_file_final, height = height, width = width, unit = unit, dpi = dpi)
     
     return(out_file_final)
     
@@ -159,19 +160,20 @@ save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_poll
     out_file <- sprintf(unique(name_conv$subThreat_legend_raw), str_replace_all(threat_category, " ", "_"))
     
     ggsave(out_file, 
-           plot_legend, dpi = 300, bg = "transparent")
+           plot_legend, dpi = dpi, bg = "transparent")
     knitr::plot_crop(out_file)
     
     out_file_final <- sprintf(unique(name_conv$subThreat_legend), str_replace_all(threat_category, " ", "_"))
     
-    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, out_file = out_file_final)
+    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, 
+                   out_file = out_file_final, height = 176, width = 429, unit = "px", dpi = dpi)
     
     return(out_file_final)
     
   }
 }
 
-save_map <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, config_df){
+save_map <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, config_df, height, width, dpi){
   
   if(type == "threat"){
     name_conv <- config_df |> 
@@ -180,7 +182,7 @@ save_map <- function(type, plot, threat_category, subcat_habitat, subcat_polluti
     out_file <-  sprintf(unique(name_conv$threat_map), str_replace_all(threat_category, " ", "_"))
     
     ggsave(out_file, 
-           plot, height = 6, width = 10, dpi = 300)
+           plot, height = height, width = width, dpi = dpi)
     
   } else if(type == "subThreat"){
     name_conv <- config_df |> 
@@ -189,7 +191,7 @@ save_map <- function(type, plot, threat_category, subcat_habitat, subcat_polluti
     out_file <- sprintf(unique(name_conv$subThreat_map), str_replace_all(threat_category, " ", "_"))
     
     ggsave(out_file, 
-           plot, height = 6, width = 10, dpi = 300)
+           plot, height = height, width = width, dpi = dpi)
     
   }
 }
