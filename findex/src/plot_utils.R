@@ -1,3 +1,10 @@
+
+#' @description establish ggplot code to create threat maps
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_category list of target threat categories
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
+#' @param proj character string with map projection definition
 general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
   filtered_df <- in_dat |> 
     left_join(hybas_habitat_types) |> 
@@ -15,7 +22,6 @@ general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habita
       limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
       na.value = "gray80",
       breaks = c(0 + max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10, 
-                 #max(habitat_data$MeanWeightedThreatMetric)/2, 
                  max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10),
       labels = c("Lower", "Higher")
     )+
@@ -40,6 +46,12 @@ general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habita
   return(threat_map)
 }
 
+#' @description filter data to target major threat and apply to established ggplot function
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_category list of target threat categories
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
+#' @param proj character string with map projection definition
 threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
   
     pal <- threat_pal |> 
@@ -55,6 +67,12 @@ threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types,
 
 }
 
+#' @description filter data to target sub threat and apply to established ggplot function
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_category list of target threat categories
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
+#' @param proj character string with map projection definition
 subThreat_map <- function(in_dat, threat_category, threat_pal, proj, hybas_habitat_types){ 
   
   pal <- threat_pal |> 
@@ -70,6 +88,15 @@ subThreat_map <- function(in_dat, threat_category, threat_pal, proj, hybas_habit
   
 }
 
+#' @description cowplot code to style the legend
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param legend_png character string of raw extracted legend file location
+#' @param threat_category list of target threat categories
+#' @param out_file character string of file name and location to save final legend
+#' @param height png height
+#' @param width png width
+#' @param unit png height and width units
+#' @param dpi png dpi
 cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height, width, unit, dpi){
   
   threat_df <- in_dat |> 
@@ -80,7 +107,6 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
   
   # Define colors
   background_color = NA
-  font_color = "#ffffff"
   
   # The background canvas for your viz (DO NOT EDIT)
   canvas <- grid::rectGrob(
@@ -89,10 +115,7 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
     gp = grid::gpar(fill = background_color, alpha = 1, col = background_color)
   )
   
-  # margin for plotting (DO NOT EDIT)
-  margin = 0.04
-  
-  # Load in USGS logo (also a black logo available)
+  # Load raw legend png
   legend <- magick::image_read(legend_png) 
   
   final_legend <- ggdraw(ylim = c(0,1), # 0-1 scale makes it easy to place viz items on canvas
@@ -125,15 +148,24 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
                lineheight = 0.75,
                color = "gray50",
                size = 9) 
-  #429x176
+
   ggsave(out_file, final_legend, height = height, width = width, units = unit, dpi = dpi, bg = "transparent")
 }
 
-# height = 176, width = 429, unit = "px", dpi = 300
-save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, in_dat, config_df, height, width, unit, dpi){
+#' @description cowplot code to style the legend
+#' @param type "threat" or "subThreat"
+#' @param plot ggplot map with legend to be saved
+#' @param threat_category list of target threat categories
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param height png height
+#' @param width png width
+#' @param unit png height and width units
+#' @param dpi png dpi
+save_legend <- function(type, plot, threat_category, in_dat, threat_pal, height, width, unit, dpi){
   
   if(type == "threat"){
-    name_conv <- config_df |> 
+    name_conv <- threat_pal |> 
       filter(MajorCat == threat_category)
     
     plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
@@ -152,7 +184,7 @@ save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_poll
     return(out_file_final)
     
   } else if(type == "subThreat"){
-    name_conv <- config_df |> 
+    name_conv <- threat_pal |> 
       filter(ThreatCategory == threat_category)
     
     plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
@@ -173,10 +205,19 @@ save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_poll
   }
 }
 
-save_map <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, config_df, height, width, dpi){
+#' @description cowplot code to style the legend
+#' @param type "threat" or "subThreat"
+#' @param plot ggplot map to be saved
+#' @param threat_category list of target threat categories
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param height png height
+#' @param width png width
+#' @param unit png height and width units
+#' @param dpi png dpi
+save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi){
   
   if(type == "threat"){
-    name_conv <- config_df |> 
+    name_conv <- threat_pal |> 
       filter(MajorCat == threat_category)
     
     out_file <-  sprintf(unique(name_conv$threat_map), str_replace_all(threat_category, " ", "_"))
@@ -185,7 +226,7 @@ save_map <- function(type, plot, threat_category, subcat_habitat, subcat_polluti
            plot, height = height, width = width, dpi = dpi)
     
   } else if(type == "subThreat"){
-    name_conv <- config_df |> 
+    name_conv <- threat_pal |> 
       filter(ThreatCategory == threat_category)
     
     out_file <- sprintf(unique(name_conv$subThreat_map), str_replace_all(threat_category, " ", "_"))
