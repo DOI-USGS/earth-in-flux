@@ -1,61 +1,4 @@
-threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
-# hybas_habitat_types = p2_hybas_habitat_types_sf
-filtered_df <- in_dat |> 
-  left_join(hybas_habitat_types) |> 
-  st_as_sf() |> 
-  dplyr::filter(ThreatCategory == threat_category) |> 
-  # remove visual bug with robinson projection
-  st_wrap_dateline()
-
-proj_df <- st_transform(filtered_df, crs = st_crs(proj))
-
-if(threat_category == "Habitat"){
-  pal <- threat_pal$Habitat_pal
-} else if(threat_category == "Pollution"){
-  pal <- threat_pal$Pollution_pal
-} else if(threat_category == "Exploitation"){
-  pal <- threat_pal$Exploitation_pal
-} else if(threat_category == "Invasive species"){
-  pal <- threat_pal$Invasive_pal
-} else if(threat_category == "Climate and weather"){
-  pal <- threat_pal$Climate_pal
-}
-
-threat_map <- ggplot()+
-  geom_sf(data = proj_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric, color = MeanWeightedThreatMetric))+
-  scale_fill_gradientn(
-    colors = colorRampPalette(c(rev(unlist(pal))))(100),
-    limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
-    na.value = "gray80",
-    breaks = c(0 + max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10, 
-               #max(habitat_data$MeanWeightedThreatMetric)/2, 
-               max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10),
-    labels = c("Lower", "Higher")
-  )+
-  scale_color_gradientn(
-    colors = colorRampPalette(c(rev(unlist(pal))))(100), 
-    na.value= "gray80"
-  )+
-  guides(color = "none")+
-  guides(fill = guide_colorbar(title = "Mean Threat",
-                               title.position = "top",
-                               direction = "horizontal",
-                               barwidth = 7,
-                               barheight = 1))+
-  theme_void()+
-  theme(
-    #legend.position = c(0.1, 0.21),
-    legend.ticks = element_blank(),
-    legend.title = element_text(face = "bold"),
-    legend.text = element_text(size = 11)
-  )
-
-return(threat_map)
-
-}
-
-subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, subcat_pollution, subcat_climate, proj, hybas_habitat_types){
-  
+general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
   filtered_df <- in_dat |> 
     left_join(hybas_habitat_types) |> 
     st_as_sf() |> 
@@ -65,22 +8,10 @@ subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, s
   
   proj_df <- st_transform(filtered_df, crs = st_crs(proj))
   
-  if(threat_category %in% subcat_habitat){
-    pal <- threat_pal$Habitat_pal
-  } else if(threat_category %in% subcat_pollution){
-    pal <- threat_pal$Pollution_pal
-  } else if(threat_category == "Overfishing"){
-    pal <- threat_pal$Exploitation_pal
-  } else if(threat_category == "Invasive non-native species"){
-    pal <- threat_pal$Invasive_pal
-  } else if(threat_category %in% subcat_climate){
-    pal <- threat_pal$Climate_pal
-  }
-  
   threat_map <- ggplot()+
     geom_sf(data = proj_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric, color = MeanWeightedThreatMetric))+
     scale_fill_gradientn(
-      colors = colorRampPalette(c(rev(unlist(pal))))(100),
+      colors = colorRampPalette(c(rev(unlist(threat_pal))))(100),
       limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
       na.value = "gray80",
       breaks = c(0 + max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10, 
@@ -89,7 +20,7 @@ subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, s
       labels = c("Lower", "Higher")
     )+
     scale_color_gradientn(
-      colors = colorRampPalette(c(rev(unlist(pal))))(100), 
+      colors = colorRampPalette(c(rev(unlist(threat_pal))))(100), 
       na.value= "gray80"
     )+
     guides(color = "none")+
@@ -107,12 +38,53 @@ subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, s
     )
   
   return(threat_map)
+}
+
+threat_map <- function(in_dat, threat_category, threat_pal, hybas_habitat_types, proj){
+  
+  if(threat_category == "Habitat"){
+    pal <- threat_pal$Habitat_pal
+  } else if(threat_category == "Pollution"){
+    pal <- threat_pal$Pollution_pal
+  } else if(threat_category == "Exploitation"){
+    pal <- threat_pal$Exploitation_pal
+  } else if(threat_category == "Invasive species"){
+    pal <- threat_pal$Invasive_pal
+  } else if(threat_category == "Climate and weather"){
+    pal <- threat_pal$Climate_pal
+  }
+  
+  final_plot <- general_threat_map(in_dat = in_dat, 
+                                   threat_category = threat_category, 
+                                   threat_pal = pal,
+                                   hybas_habitat_types = hybas_habitat_types,
+                                   proj = proj)
+
+}
+
+subThreat_map <- function(in_dat, threat_category, threat_pal, subcat_habitat, subcat_pollution, subcat_climate, proj, hybas_habitat_types){
+  
+  # establish palette
+  if(threat_category %in% subcat_habitat){
+    pal <- threat_pal$Habitat_pal
+  } else if(threat_category %in% subcat_pollution){
+    pal <- threat_pal$Pollution_pal
+  } else if(threat_category == "Overfishing"){
+    pal <- threat_pal$Exploitation_pal
+  } else if(threat_category == "Invasive non-native species"){
+    pal <- threat_pal$Invasive_pal
+  } else if(threat_category %in% subcat_climate){
+    pal <- threat_pal$Climate_pal
+  }
+  
+  final_plot <- general_threat_map(in_dat = in_dat, 
+                                   threat_category = threat_category, 
+                                   threat_pal = pal,
+                                   hybas_habitat_types = hybas_habitat_types,
+                                   proj = proj)
   
 }
-# in_dat = p2_mean_weighted_threats, legend_png = p3_legend_png, threat_category = threat_cat
-## note about out_file - need to find a way to save the cowplot version of the legend without crowding the images folder
-## maybe by saving the initial legend png in the findex out folder and then saving 
-## the cowplot version to the earth-in-flux parent directory "src/assets/images/" folder
+
 cowplot_legend <- function(in_dat, legend_png, threat_category, out_file){
   
   threat_df <- in_dat |> 
@@ -170,4 +142,91 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file){
                size = 9) 
   #429x176
   ggsave(out_file, final_legend, height = 176, width = 429, units = "px", dpi = 300, bg = "transparent")
+}
+
+# plot = final_plot, in_dat = p2_mean_weighted_threats
+save_legend <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate, in_dat){
+  
+  if(type == "threat"){
+    
+    plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
+    
+    out_file <- paste0("out/", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    
+    ggsave(out_file, 
+           plot_legend, dpi = 300, bg = "transparent")
+    knitr::plot_crop(out_file)
+    
+    out_file_final <- paste0("../src/assets/images/", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    
+    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, out_file = out_file_final)
+    
+    return(out_file_final)
+    
+  } else if(type == "subThreat"){
+    
+    plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
+    
+    if(threat_category %in% subcat_habitat){
+      out_file <- paste0("out/H_", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    } else if(threat_category %in% subcat_pollution){
+      out_file <- paste0("out/P_", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    } else if(threat_category == "Overfishing"){
+      out_file <- paste0("out/E_", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    } else if(threat_category == "Invasive non-native species"){
+      out_file <- paste0("out/IS_", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    } else if(threat_category %in% subcat_climate){
+      out_file <- paste0("out/CW_", str_replace_all(threat_category, " ", "_"), "_legend_raw.png")
+    }
+    
+    ggsave(out_file, 
+           plot_legend, dpi = 300, bg = "transparent")
+    knitr::plot_crop(out_file)
+    
+    if(threat_category %in% subcat_habitat){
+      out_file_final <- paste0("../src/assets/images/H_", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    } else if(threat_category %in% subcat_pollution){
+      out_file_final <- paste0("../src/assets/images/P_", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    } else if(threat_category == "Overfishing"){
+      out_file_final <- paste0("../src/assets/images/E_", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    } else if(threat_category == "Invasive non-native species"){
+      out_file_final <- paste0("../src/assets/images/IS_", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    } else if(threat_category %in% subcat_climate){
+      out_file_final <- paste0("../src/assets/images/CW_", str_replace_all(threat_category, " ", "_"), "_legend.png")
+    }
+    
+    cowplot_legend(in_dat = in_dat, legend_png = out_file, threat_category = threat_category, out_file = out_file_final)
+    
+    return(out_file_final)
+    
+  }
+}
+
+save_map <- function(type, plot, threat_category, subcat_habitat, subcat_pollution, subcat_climate){
+  
+  if(type == "threat"){
+    
+    out_file <-  paste0("../src/assets/images/", str_replace_all(threat_category, " ", "_"), "_map.png")
+    
+    ggsave(out_file, 
+           plot, height = 6, width = 10, dpi = 300)
+    
+  } else if(type == "subThreat"){
+    
+    if(threat_category %in% subcat_habitat){
+      out_file <- paste0("../src/assets/images/H_", str_replace_all(threat_category, " ", "_"), "_map.png")
+    } else if(threat_category %in% subcat_pollution){
+      out_file <- paste0("../src/assets/images/P_", str_replace_all(threat_category, " ", "_"), "_map.png")
+    } else if(threat_category == "Overfishing"){
+      out_file <- paste0("../src/assets/images/E_", str_replace_all(threat_category, " ", "_"), "_map.png")
+    } else if(threat_category == "Invasive non-native species"){
+      out_file <- paste0("../src/assets/images/IS_", str_replace_all(threat_category, " ", "_"), "_map.png")
+    } else if(threat_category %in% subcat_climate){
+      out_file <- paste0("../src/assets/images/CW_", str_replace_all(threat_category, " ", "_"), "_map.png")
+    }
+    
+    ggsave(out_file, 
+           plot, height = 6, width = 10, dpi = 300)
+    
+  }
 }

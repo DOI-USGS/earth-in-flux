@@ -145,21 +145,23 @@ p3 <- list(
       p3_threat_map_png,
       {
         final_plot <- threat_map(in_dat = p2_mean_weighted_threats, 
-                                 threat_category = p2_threat_categories, 
-                                 threat_pal = p3_color_pal,
-                                 hybas_habitat_types = p2_hybas_habitat_types_sf,
-                                 proj = p1_proj) + 
+                          threat_category = p2_threat_categories, 
+                          threat_pal = p3_color_pal,
+                          hybas_habitat_types = p2_hybas_habitat_types_sf,
+                          proj = p1_proj)  + 
           theme(legend.position = "none")
         
-        out_file <- paste0("../src/assets/images/", str_replace_all(p2_threat_categories, " ", "_"), "_map.png")
-        
-        ggsave(out_file, 
-               final_plot, height = 6, width = 10, dpi = 300)
+        save_map(type = "threat", plot = final_plot, 
+                    threat_category = p2_threat_categories, 
+                    subcat_habitat = NA, 
+                    subcat_pollution = NA, 
+                    subcat_climate = NA 
+                 )
       },
       format = "file",
       pattern = p2_threat_categories
     ),
-    tar_target(
+    tar_target( # will turn this into a function
       p3_legend_png,
       {
         final_plot <- threat_map(in_dat = p2_mean_weighted_threats, 
@@ -168,21 +170,16 @@ p3 <- list(
                                  proj = p1_proj,
                                  hybas_habitat_types = p2_hybas_habitat_types_sf)
         
-        plot_legend <- get_plot_component(final_plot, "guide-box-right", return_all = T)
-        
-        out_file <- paste0("out/", str_replace_all(p2_threat_categories, " ", "_"), "_legend_raw.png")
-        
-        ggsave(out_file, 
-               plot_legend, dpi = 300, bg = "transparent")
-        knitr::plot_crop(out_file)
-        
-        out_file_final <- paste0("../src/assets/images/", str_replace_all(p2_threat_categories, " ", "_"), "_legend.png")
-        
-        cowplot_legend(in_dat = p2_mean_weighted_threats, legend_png = out_file, threat_category = p2_threat_categories, out_file = out_file_final)
+        save_legend(type = "threat", plot = final_plot, 
+                    threat_category = p2_threat_categories, 
+                    subcat_habitat = NA, 
+                    subcat_pollution = NA, 
+                    subcat_climate = NA, 
+                    in_dat = p2_mean_weighted_threats)
       },
       pattern = p2_threat_categories
     ),
-    tar_target( # will turn this into a function
+    tar_target( 
       p3_sub_threat_map_png,
       {
         final_plot <- subThreat_map(in_dat = p2_mean_weighted_subThreats, 
@@ -195,20 +192,11 @@ p3 <- list(
                       hybas_habitat_types = p2_hybas_habitat_types_sf) + 
           theme(legend.position = "none")
         
-        if(p2_threat_subcategories %in% p2_habitat_subthreats){
-          out_file <- paste0("../src/assets/images/H_", str_replace_all(p2_threat_subcategories, " ", "_"), "_map.png")
-        } else if(p2_threat_subcategories %in% p2_pollution_subthreats){
-          out_file <- paste0("../src/assets/images/P_", str_replace_all(p2_threat_subcategories, " ", "_"), "_map.png")
-        } else if(p2_threat_subcategories == "Overfishing"){
-          out_file <- paste0("../src/assets/images/E_", str_replace_all(p2_threat_subcategories, " ", "_"), "_map.png")
-        } else if(p2_threat_subcategories == "Invasive non-native species"){
-          out_file <- paste0("../src/assets/images/IS_", str_replace_all(p2_threat_subcategories, " ", "_"), "_map.png")
-        } else if(p2_threat_subcategories %in% p2_climate_subthreats){
-          out_file <- paste0("../src/assets/images/CW_", str_replace_all(p2_threat_subcategories, " ", "_"), "_map.png")
-        }
-        
-        ggsave(out_file, 
-               final_plot, height = 6, width = 10, dpi = 300)
+        save_map(type = "threat", plot = final_plot, 
+                    threat_category = p2_threat_subcategories, 
+                    subcat_habitat = p2_habitat_subthreats,
+                    subcat_pollution = p2_pollution_subthreats,
+                    subcat_climate = p2_climate_subthreats)
       },
       format = "file",
       pattern = p2_threat_subcategories
@@ -225,37 +213,12 @@ p3 <- list(
                                     proj = p1_proj,
                                     hybas_habitat_types = p2_hybas_habitat_types_sf)
         
-        plot_legend <- get_plot_component(final_plot, "guide-box-right", return_all = T)
-        
-        if(p2_threat_subcategories %in% p2_habitat_subthreats){
-          out_file <- paste0("out/H_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend_raw.png")
-        } else if(p2_threat_subcategories %in% p2_pollution_subthreats){
-          out_file <- paste0("out/P_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend_raw.png")
-        } else if(p2_threat_subcategories == "Overfishing"){
-          out_file <- paste0("out/E_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend_raw.png")
-        } else if(p2_threat_subcategories == "Invasive non-native species"){
-          out_file <- paste0("out/IS_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend_raw.png")
-        } else if(p2_threat_subcategories %in% p2_climate_subthreats){
-          out_file <- paste0("out/CW_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend_raw.png")
-        }
-        
-        ggsave(out_file, 
-               plot_legend, dpi = 300, bg = "transparent")
-        knitr::plot_crop(out_file)
-        
-        if(p2_threat_subcategories %in% p2_habitat_subthreats){
-          out_file_final <- paste0("../src/assets/images/H_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend.png")
-        } else if(p2_threat_subcategories %in% p2_pollution_subthreats){
-          out_file_final <- paste0("../src/assets/images/P_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend.png")
-        } else if(p2_threat_subcategories == "Overfishing"){
-          out_file_final <- paste0("../src/assets/images/E_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend.png")
-        } else if(p2_threat_subcategories == "Invasive non-native species"){
-          out_file_final <- paste0("../src/assets/images/IS_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend.png")
-        } else if(p2_threat_subcategories %in% p2_climate_subthreats){
-          out_file_final <- paste0("../src/assets/images/CW_", str_replace_all(p2_threat_subcategories, " ", "_"), "_legend.png")
-        }
-        
-        cowplot_legend(in_dat = p2_mean_weighted_subThreats, legend_png = out_file, threat_category = p2_threat_subcategories, out_file = out_file_final)
+        save_legend(type = "subThreat", plot = final_plot, 
+                    threat_category = p2_threat_subcategories, 
+                    subcat_habitat = p2_habitat_subthreats,
+                    subcat_pollution = p2_pollution_subthreats,
+                    subcat_climate = p2_climate_subthreats,
+                    in_dat = p2_mean_weighted_subThreats)
       },
       format = "file",
       pattern = p2_threat_subcategories
