@@ -16,7 +16,7 @@ general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habita
   proj_df <- st_transform(filtered_df, crs = st_crs(proj))
   
   threat_map <- ggplot()+
-    geom_sf(data = proj_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric, color = MeanWeightedThreatMetric))+
+    geom_sf(data = proj_df, aes(geometry = Shape, fill = MeanWeightedThreatMetric), color = NA)+
     scale_fill_gradientn(
       colors = colorRampPalette(c(rev(unlist(threat_pal))))(100),
       limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
@@ -25,11 +25,11 @@ general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habita
                  max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10),
       labels = c("Lower", "Higher")
     )+
-    scale_color_gradientn(
-      colors = colorRampPalette(c(rev(unlist(threat_pal))))(100), 
-      na.value= "gray80"
-    )+
-    guides(color = "none")+
+   # scale_color_gradientn(
+  #    colors = colorRampPalette(c(rev(unlist(threat_pal))))(100), 
+  #    na.value= "gray80"
+  #  )+
+   # guides(color = "none")+
     guides(fill = guide_colorbar(title = "Mean Threat",
                                  title.position = "top",
                                  direction = "horizontal",
