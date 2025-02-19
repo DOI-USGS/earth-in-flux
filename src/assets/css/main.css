@@ -123,11 +123,11 @@ a:hover {
 
 /* css for Beaufort species-related viz */
 .highlight {
-  padding: 0.5px 8px 0.5px 5px;
+  padding: 0.05rem 0.8rem 0.15rem 0.5rem;
   border-radius: 10px;
   white-space: nowrap;
   font-weight: bold;
-  transition: all 0.1s; 
+  /* transition: all 0.1s;  */
 }
 #cassidulina {
   color: white;

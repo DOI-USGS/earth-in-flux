@@ -5,12 +5,22 @@ export default {
         {
             title: 'Inland fisheries are threatened',
             project: 'Findex',
-            vizKey: 'ThreatSankey',
+            vizKey: 'FindexThreatSankey',
             vizRoute: 'inland-fish-total-threats',
             img_src: 'Placeholder_thumbnail.webp',
             alt: '',
             chartOrder: 1,
             description: 'Land use change is threatening inland fisheries.'
+        },
+        {
+            title: 'Threats to inland fisheries vary across the globe',
+            project: 'Findex',
+            vizKey: 'FindexGlobalThreats',
+            vizRoute: 'inland-fish-global-threats',
+            img_src: 'Placeholder_thumbnail.webp',
+            alt: '',
+            chartOrder: 2,
+            description: 'Inland fisheries are threatened globally.'
         },
         {
             title: 'Explore the Juneau Icefield',

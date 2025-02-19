@@ -232,8 +232,63 @@ export default {
             explanation1: "As scientists <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected the snow core</a>, they carefully stored each ten-centimeter section for transport off the Juneau Icefield. The retrieved samples were analyzed in a laboratory for particle counts, major ions, stable isotopes of oxygen and hydrogen, and the three sugars that are markers of biomass combustion—mannosan, galactosan, and levoglucosan.",
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
-        ThreatSankey: {
+        FindexThreatSankey: {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
+        },
+        FindexGlobalThreats: {
+            paragraph1: 'Threats to inland fisheries.',
+            tabData: [
+                {
+                    tabTitle: "Habitat",
+                    tabContentTitle: "Habitat",
+                    tabContentTitleID: "habitat",
+                    tabIcon: "noun-canal-29572-7A562B",
+                    tabText: "Habitat text.",
+                    tabImageAlt: "Habitat alt.",
+                    subThreatPrefix: "H_",
+                    subThreatData: ["Dams", "Wetland drainage", "Deforestation and associated runoff", "Riparian degradation", "Agricultural extraction", "Urban extraction", "Industrial Extraction"]
+                },
+                {
+                    tabTitle: "Pollution",
+                    tabContentTitle: "Pollution",
+                    tabContentTitleID: "pollution",
+                    tabIcon: "noun-drain-7131918-002D5E",
+                    tabText: "Pollution text.",
+                    tabImageAlt: "Pollution alt.",
+                    subThreatPrefix: "P_",
+                    subThreatData: ["Agricultural effluents", "Urban wastewater", "Industrial effluents", "Aquaculture effluents", "Pharmaceuticals", "Oil or gas exploration", "Plastics", "Mining"]
+                },
+                {
+                    tabTitle: "Climate and Weather",
+                    tabContentTitle: "Climate and Weather",
+                    tabContentTitleID: "climate-and-weather",
+                    tabIcon: "noun-rain-1760091-835192",
+                    tabText: "Climate and Weather text.",
+                    tabImageAlt: "Climate and Weather alt.",
+                    subThreatPrefix: "CW_",
+                    subThreatData: ["Change in water temperature", "Drought", "Change in flooding", "Change in wind patterns", "Change in ice cover"]
+                },
+                {
+                    tabTitle: "Invasive species",
+                    tabContentTitle: "Invasive species",
+                    tabContentTitleID: "invasive-species",
+                    tabIcon: "noun-competition-1371235-4E6D6E",
+                    tabText: "Invasive species text.",
+                    tabImageAlt: "Invasive species alt.",
+                    subThreatPrefix: "IS_",
+                    subThreatData: []
+                },
+                {
+                    tabTitle: "Exploitation",
+                    tabContentTitle: "Exploitation",
+                    tabContentTitleID: "exploitation",
+                    tabIcon: "noun-fishing-1545130-B74F49",
+                    tabText: "Exploitation text.",
+                    tabImageAlt: "Exploitation alt.",
+                    subThreatPrefix: "E_",
+                    subThreatData: []
+                }
+            ],
         }
     }
 }
