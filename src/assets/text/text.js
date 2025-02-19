@@ -247,7 +247,36 @@ export default {
                     tabMapImageAlt: "Habitat alt.",
                     tabLegendImageAlt: "Legend",
                     subThreatPrefix: "H",
-                    subThreatData: ["Dams", "Wetland drainage", "Deforestation and associated runoff", "Riparian degradation", "Agricultural extraction", "Urban extraction", "Industrial Extraction"]
+                    subThreatData: [
+                        {
+                            subThreat: "Dams",
+                            subThreatText: "Dams text"
+                        },
+                        {
+                            subThreat: "Wetland drainage",
+                            subThreatText: "Wetland drainage text"
+                        },
+                        {
+                            subThreat: "Deforestation and associated runoff",
+                            subThreatText: "Deforestation and associated runoff text"
+                        },
+                        {
+                            subThreat: "Riparian degradation",
+                            subThreatText: "Riparian degradation text"
+                        },
+                        {
+                            subThreat: "Agricultural extraction",
+                            subThreatText: "Agricultural extraction text"
+                        },
+                        {
+                            subThreat: "Urban extraction",
+                            subThreatText: "Urban extraction text"
+                        },
+                        {
+                            subThreat: "Industrial Extraction",
+                            subThreatText: "Industrial Extraction text"
+                        }
+                    ]
                 },
                 {
                     tabTitle: "Pollution",
@@ -258,7 +287,40 @@ export default {
                     tabMapImageAlt: "Pollution alt.",
                     tabLegendImageAlt: "Legend",
                     subThreatPrefix: "P",
-                    subThreatData: ["Agricultural effluents", "Urban wastewater", "Industrial effluents", "Aquaculture effluents", "Pharmaceuticals", "Oil or gas exploration", "Plastics", "Mining"]
+                    subThreatData: [
+                        {
+                            subThreat: "Agricultural effluents",
+                            subThreatText: "Agricultural effluents text"
+                        },
+                        {
+                            subThreat: "Urban wastewater",
+                            subThreatText: "Urban wastewater text"
+                        },
+                        {
+                            subThreat: "Industrial effluents",
+                            subThreatText: "Industrial effluents text"
+                        },
+                        {
+                            subThreat: "Aquaculture effluents",
+                            subThreatText: "Aquaculture effluents text"
+                        },
+                        {
+                            subThreat: "Pharmaceuticals",
+                            subThreatText: "Pharmaceuticals text"
+                        },
+                        {
+                            subThreat: "Oil or gas exploration",
+                            subThreatText: "Oil or gas exploration text"
+                        },
+                        {
+                            subThreat: "Plastics",
+                            subThreatText: "Plastics text"
+                        },
+                        {
+                            subThreat: "Mining",
+                            subThreatText: "Mining text"
+                        }
+                    ]
                 },
                 {
                     tabTitle: "Climate and Weather",
@@ -269,7 +331,28 @@ export default {
                     tabMapImageAlt: "Climate and Weather alt.",
                     tabLegendImageAlt: "Legend",
                     subThreatPrefix: "CW",
-                    subThreatData: ["Change in water temperature", "Drought", "Change in flooding", "Change in wind patterns", "Change in ice cover"]
+                    subThreatData: [
+                        {
+                            subThreat: "Change in water temperature",
+                            subThreatText: "Change in water temperature text"
+                        },
+                        {
+                            subThreat: "Drought",
+                            subThreatText: "Drought text"
+                        },
+                        {
+                            subThreat: "Change in flooding",
+                            subThreatText: "Change in flooding text"
+                        },
+                        {
+                            subThreat: "Change in wind patterns",
+                            subThreatText: "Change in wind patterns text"
+                        },
+                        {
+                            subThreat: "Change in ice cover",
+                            subThreatText: "Change in ice cover text"
+                        }
+                    ]
                 },
                 {
                     tabTitle: "Invasive species",

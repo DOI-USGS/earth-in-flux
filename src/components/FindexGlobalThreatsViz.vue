@@ -22,13 +22,14 @@
                     </h3>
                     <div id="button-container">
                         <h4 v-if="tab.subThreatData.length > 1">Subthreat categories:
-                            <span v-for="subThreat, index in tab.subThreatData" :key="subThreat">
-                                <button @click="switchToSubCategory(subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreat }]" v-html="subThreat" class="category-button sub"></button>
+                            <span v-for="subThreatCategory, index in tab.subThreatData" :key="subThreatCategory.subThreat">
+                                <button @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]" v-html="subThreatCategory.subThreat" class="category-button sub"></button>
                                 <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator"> &#x2022; </span>
                             </span>
                         </h4>
                     </div>
-                    <p v-html="tab.tabText" />
+                    <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
+                    <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
                     <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
                     <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 </tabItem>
@@ -61,6 +62,7 @@
     let currentCategorySubThreatPrefix = ref(null);
     let legendSource = ref(null);
     let mapSource = ref(null);
+    let subThreatText = ref("sub threat text")
 
     // Declare behavior on mounted
     // functions called here
