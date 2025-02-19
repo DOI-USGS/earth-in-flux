@@ -244,8 +244,9 @@ export default {
                     tabContentTitleID: "habitat",
                     tabIcon: "noun-canal-29572-7A562B",
                     tabText: "Habitat text.",
-                    tabImageAlt: "Habitat alt.",
-                    subThreatPrefix: "H_",
+                    tabMapImageAlt: "Habitat alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "H",
                     subThreatData: ["Dams", "Wetland drainage", "Deforestation and associated runoff", "Riparian degradation", "Agricultural extraction", "Urban extraction", "Industrial Extraction"]
                 },
                 {
@@ -254,8 +255,9 @@ export default {
                     tabContentTitleID: "pollution",
                     tabIcon: "noun-drain-7131918-002D5E",
                     tabText: "Pollution text.",
-                    tabImageAlt: "Pollution alt.",
-                    subThreatPrefix: "P_",
+                    tabMapImageAlt: "Pollution alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "P",
                     subThreatData: ["Agricultural effluents", "Urban wastewater", "Industrial effluents", "Aquaculture effluents", "Pharmaceuticals", "Oil or gas exploration", "Plastics", "Mining"]
                 },
                 {
@@ -264,8 +266,9 @@ export default {
                     tabContentTitleID: "climate-and-weather",
                     tabIcon: "noun-rain-1760091-835192",
                     tabText: "Climate and Weather text.",
-                    tabImageAlt: "Climate and Weather alt.",
-                    subThreatPrefix: "CW_",
+                    tabMapImageAlt: "Climate and Weather alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "CW",
                     subThreatData: ["Change in water temperature", "Drought", "Change in flooding", "Change in wind patterns", "Change in ice cover"]
                 },
                 {
@@ -274,8 +277,9 @@ export default {
                     tabContentTitleID: "invasive-species",
                     tabIcon: "noun-competition-1371235-4E6D6E",
                     tabText: "Invasive species text.",
-                    tabImageAlt: "Invasive species alt.",
-                    subThreatPrefix: "IS_",
+                    tabMapImageAlt: "Invasive species alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "IS",
                     subThreatData: []
                 },
                 {
@@ -284,8 +288,9 @@ export default {
                     tabContentTitleID: "exploitation",
                     tabIcon: "noun-fishing-1545130-B74F49",
                     tabText: "Exploitation text.",
-                    tabImageAlt: "Exploitation alt.",
-                    subThreatPrefix: "E_",
+                    tabMapImageAlt: "Exploitation alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "E",
                     subThreatData: []
                 }
             ],
