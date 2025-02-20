@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-    import { nextTick, onMounted, ref } from "vue";
+    import { computed, nextTick, onMounted, ref } from "vue";
     // import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
@@ -62,7 +62,13 @@
     let currentCategorySubThreatPrefix = ref(null);
     let legendSource = ref(null);
     let mapSource = ref(null);
-    let subThreatText = ref("sub threat text")
+
+    // Set up computed variables that depend on ref values
+    const subThreatText = computed(() => {
+        const primaryCategoryText = props.text.tabData.filter(d => d.subThreatPrefix == currentCategorySubThreatPrefix.value)[0]
+        const subCategoryText = primaryCategoryText.subThreatData.filter(d => d.subThreat == currentCategory.value)[0]
+        return subCategoryText.subThreatText;
+    });
 
     // Declare behavior on mounted
     // functions called here
@@ -93,7 +99,7 @@
         const currentData = props.text.tabData.filter(d => d.tabContentTitle == currentCategory.value)
         currentCategorySubThreatPrefix.value = currentData.subThreatPrefix
 
-        // update map
+        // update map - always show primary category on page load
         switchToPrimaryCategory(currentCategory.value, currentCategorySubThreatPrefix.value)
     }
     function getPrefixImageURL(filename) {
@@ -110,19 +116,19 @@
             return `src/assets/images/${category_prefix}_${title.replace(/ /g, "_")}_${content_type}.png`
         }        
     }
-    function switchToSubCategory(category, prefix) {
-        primaryCategorySelected.value = false;
+    function updateTabContent(category, prefix) {
         currentCategory.value = category
         currentCategorySubThreatPrefix.value = prefix
         mapSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "map")
         legendSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "legend")
     }
+    function switchToSubCategory(category, prefix) {
+        primaryCategorySelected.value = false;
+        updateTabContent(category, prefix);
+    }
     function switchToPrimaryCategory(category, prefix) {
         primaryCategorySelected.value = true;
-        currentCategory.value = category
-        currentCategorySubThreatPrefix.value = prefix
-        mapSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "map")
-        legendSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "legend")
+        updateTabContent(category, prefix);
     }
 
 </script>
