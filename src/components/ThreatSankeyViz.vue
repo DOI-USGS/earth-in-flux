@@ -70,7 +70,7 @@
                     height: window.innerHeight * 0.8,
                     margin: 10,
                     marginLeft: mobileView ? 80: 150,
-                    marginRight: mobileView ? 125: 250,
+                    marginRight: mobileView ? 135: 250,
                     marginTop: mobileView ? 60 : 50,
                     containerId: 'threat-container'
                 });
@@ -425,8 +425,11 @@
 
 <style lang="scss">
     #threat-container {
-        max-width: 1000px;
+        max-width: min(1000px, 60vw);
         margin: 5rem auto 0 auto;
+        @media screen and (max-width: 600px) {
+            max-width: 100%;
+        }
     }
     .axis-text {
         font-size: 1.6rem;
