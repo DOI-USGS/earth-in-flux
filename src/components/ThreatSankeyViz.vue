@@ -71,7 +71,7 @@
                     margin: 10,
                     marginLeft: mobileView ? 80: 150,
                     marginRight: mobileView ? 125: 250,
-                    marginTop: 30,
+                    marginTop: mobileView ? 60 : 50,
                     containerId: 'threat-container'
                 });
                 createSankey({
@@ -160,26 +160,57 @@
             .attr('id', 'text_group')
 
         // add titles
-        svg.append("text")
+        const subtitle = mobileView ? "High to low" : "Ranked high to low"
+        const leftTitle = svg.append("text")
             .attr("class", "axis-title")
             .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
+            .attr("y", 0)
             .attr("dx", "0em")
             .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.left)
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.left)
             .style("text-anchor", "end")
             .text("Threat Categories")
-            .call(d => mobileView ? wrap(d) : d)
+            .call(d => mobileView ? wrap(d, {shift: false}) : d)
+
+        const leftTitleLength = leftTitle.node().getComputedTextLength()
 
         svg.append("text")
+            .attr("class", "axis-text axis-value axis-notation")
+            .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
+            .attr("y", 0)
+            .attr("dx", "0em")
+            .attr("dy", leftTitleLength > chartDimensions.margin.left ? "2.8em" : "1.5em")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.left)
+            .attr("text-anchor", "end")
+            .text(subtitle)
+            .call(d => wrap(d, {shift: false}))
+
+        const rightTitle = svg.append("text")
             .attr("class", "axis-title")
             .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
+            .attr("y", 0)
             .attr("dx", "0em")
             .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.right)
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.right)
             .style("text-anchor", "start")
             .text("Threats")
+
+        const rightTitleLength = rightTitle.node().getComputedTextLength()
+
+        svg.append("text")
+            .attr("class", "axis-text axis-value axis-notation")
+            .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
+            .attr("y", 0)
+            .attr("dx", "0em")
+            .attr("dy", rightTitleLength > chartDimensions.margin.right ? "2.8em" : "1.5em")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.right)
+            .attr("text-anchor", "start")
+            .text(subtitle)
+            .call(d => wrap(d, {shift: false}))
     };
 
     function createSankey({
@@ -278,12 +309,13 @@
                             .attr("class", d => d.x0 < chartDimensions.boundedWidth / 2 ? "axis-text left" : "axis-text right")
                             .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 : d.x0) //checks for right-most labels
                             .attr("y", d => (d.y1 + d.y0) / 2)
-                            .attr("dy", "0.35em")
+                            .attr("dy", "0em")
                             .attr("dx", d => d.x0 < chartDimensions.boundedWidth / 2 ? -labelBuffer : labelBuffer)
+                            .attr("dominant-baseline", "central")
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
-                            .attr("data-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
+                            .attr("text-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
                             .text(d => d.name)
-                            .call(d => mobileView ? wrap(d) : d)
+                            .call(d => mobileView ? wrap(d, {shift: true}) : d)
                         // .append("tspan")
                         //     .attr("fill-opacity", 0.7)
                         //     .text(d => ` ${d.value.toLocaleString()}`)
@@ -349,7 +381,9 @@
     };
 
     // https://gist.github.com/mbostock/7555321
-    function wrap(text) {
+    function wrap(text, {
+        shift = false
+    }) {
         text.each(function() {
             var text = d3.select(this),
             words = text.text().split(/\s|-+/).reverse(),
@@ -357,12 +391,13 @@
             line = [],
             lineNumber = 0,
             lineHeight = 1.1, // ems
-            width = text.attr("data-width"),
+            width = text.attr("text-width"),
+            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
-            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);;
             
             console.log(text.attr("dy"))
 
@@ -373,13 +408,13 @@
                 line.pop();
                 tspan.text(line.join(" "));
                 line = [word];
-                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").attr("dominant-baseline", baseline).text(word);
                 }
             }
 
             // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
-            if (lineNumber > 0) {
-                const startDy = -(lineNumber * (lineHeight / 2)) * 0.5; // *0.5 for vertically-centered labels
+            if (lineNumber > 0  && shift) {
+                const startDy = -(lineNumber * (lineHeight / 2));
                 text
                     .selectAll("tspan")
                     .attr("dy", (d, i) => startDy + lineHeight * i + "em");
@@ -410,5 +445,8 @@
         @media screen and (max-width: 600px) {
             font-size: 1.6rem;
         }
+    }
+    .axis-notation {
+        font-style: italic;
     }
 </style>
