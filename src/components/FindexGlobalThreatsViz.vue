@@ -30,8 +30,10 @@
                     </div>
                     <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
                     <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
-                    <img class="tab-icon-image tab-image" :src="iconSource" alt="">
-                    <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
+                    <div id="icon-legend-container">
+                        <img class="tab-icon-image" :src="iconSource" alt="">
+                        <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
+                    </div>
                     <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 </tabItem>
             </tabsGroup>
@@ -164,10 +166,26 @@ $exploitation: #B74F49;
 #button-container {
     margin-bottom: 2rem;
 }
+#icon-legend-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.tab-icon-image {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 1rem;
+    height: auto;
+    width: auto;
+    @media only screen and (max-width: 600px) {
+        max-width: 40px;
+        max-height: 40px;
+    }
+}
 .tab-legend-image {
     width: 230px;
     @media only screen and (max-width: 600px) {
-        width: 100%;
+        width: min(190px, 100vw);
     }
 }
 .tab-map-image {
