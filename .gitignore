@@ -65,3 +65,25 @@ beaufortSea/images/*
 *.shx
 # Associated Journal articles
 33670_articles_article_file_2322.pdf
+# sbtools 
+beaufortSea/.Renviron
+
+
+#fire and ice
+fireInIce/*/out
+fireInIce/*/tmp
+fireInIce/*/src/__pycache__
+
+#remove cache and dataout
+fireInIce/cache
+fireInIce/data_out
+
+#remove snakemake files
+fireInIce/.snakemake
+
+#exceptions Spatial
+!fireInIce/2_visualize/in/*.cpg
+!fireInIce/2_visualize/in/*.dbf
+!fireInIce/2_visualize/in/*.prj
+!fireInIce/2_visualize/in/*.shp
+!fireInIce/2_visualize/in/*.shx

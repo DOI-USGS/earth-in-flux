@@ -1,0 +1,30 @@
+name: climate-chart
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python
+  - pip
+  - mamba
+  - snakemake
+  - pandas
+  - numpy
+  - py7zr
+  - matplotlib
+  - gdal
+  - geopandas
+  - py3dep
+  - pynhd
+  - pygeohydro
+  - earthengine-api
+  - basemap
+  - rasterio
+  - astropy
+  - utm
+  - openpyxl
+  - opencv
+  - svgpath2mpl
+  - pip:
+    - sciencebasepy
+    - git+https://github.com/jeffskwang/bmi-topography-usgs.git
+    - exif

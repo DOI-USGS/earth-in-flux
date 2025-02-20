@@ -1,9 +1,11 @@
 <template>
     <div class="chart">
-        <div class="takeaway">
-            <p>{{ description }}</p>
-        </div>
-        <img :src="src" :alt="alt"/>
+        <RouterLink :to="{ name: 'SubPage', params: { projectRoute, vizRoute } }">
+            <div class="takeaway">
+                <p>{{ description }}</p>
+            </div>
+            <img :src="src" :alt="alt"/>
+        </RouterLink>
     </div>
 </template>
 
@@ -12,6 +14,14 @@
         src: {
             type: String,
             default: ``
+        },
+        projectRoute: {
+            type: String,
+            default: ''
+        },
+        vizRoute: {
+            type: String,
+            default: ''
         },
         alt: {
             type: String,
@@ -74,6 +84,7 @@
         font-family: sans-serif; /* This is fallback font for old browsers */
         font-family: var(--title-font);
         color: var(--color-title-text);
+        font-weight: 400;
         transform: translateY(50%);
         padding: 0.2rem 2rem 0.2rem 2rem;
         opacity: 0;

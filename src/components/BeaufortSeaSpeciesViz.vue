@@ -12,20 +12,7 @@
                 <p v-html="text.paragraph1" />
             </template>
         </VizSection>
-        <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
-            <tabItem v-for="tab in text.tabData" :name="`<span class='scientificName'>${tab.tabTitle}</span>`" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
-                <h3 class="tab-content-title">
-                    <span class="species-class" :id="`species-${tab.tabContentTitleID}`">
-                        <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
-                            {{ tab.tabContentTitle }}
-                        </span>
-                        {{ tab.tabSpeciesClass }}
-                    </span>
-                </h3>
-                <p v-html="tab.tabText" />
-                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)">
-            </tabItem>
-        </tabsGroup>
+        
         <VizSection
             :figures="true"
             :fig-caption="false"
@@ -47,6 +34,28 @@
                 <p v-html="text.paragraph4" />
             </template>
         </VizSection>
+        <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
+            <tabItem v-for="tab in text.tabData" :name="`<span class='scientificName'>${tab.tabTitle}</span>`" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
+                <h3 class="tab-content-title">
+                    <span v-if="!mobileView" class="species-class" :id="`species-${tab.tabContentTitleID}`">
+                        <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
+                            {{ tab.tabContentTitle }}
+                        </span>
+                        {{ tab.tabSpeciesClass }}
+                    </span>
+                    <span v-if="mobileView" class="scientificName highlight species-title" :id="tab.tabContentTitleID">
+                        {{ tab.tabContentTitle }}
+                    </span>
+                </h3>
+                <h3 v-if="mobileView" class="tab-content-title">
+                    <span class="species-class mobile" :id="`species-${tab.tabContentTitleID}`">
+                        {{ tab.tabSpeciesClass }}
+                    </span>
+                </h3>
+                <p v-html="tab.tabText" />
+                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)" :alt="tab.tabImageAlt">
+            </tabItem>
+        </tabsGroup>
         <VizSection
             :figures="true"
             :fig-caption="false"
@@ -63,7 +72,7 @@
 </template>
 
 <script setup>
-    // import {Tabs, Tab} from 'vue3-tabs-component';
+    import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
@@ -72,15 +81,16 @@
     })
 
     // global objects
+    const mobileView = isMobile;
     const baseURL = "https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/"
     const forams = props.text.tabData.filter(item => item.tabPrefixImageName.includes('F'))
     const ostracodes = props.text.tabData.filter(item => item.tabPrefixImageName.includes('O'))
 
     function getContentImageUrl(suffix) {
-        return baseURL + `BeaufortSeaSpecies_${suffix}.png`
+        return baseURL + `BeaufortSeaSpecies_${suffix}.webp`
     }
     function getPrefixImageURL(image_name) {
-        return baseURL + `${image_name}.png`
+        return baseURL + `${image_name}.webp`
     }
     function getPrefixImageHTML(image_name) {
         const imgURL = getPrefixImageURL(image_name)
@@ -98,6 +108,9 @@
     padding: 1px 10px 2px 0px;
     font-weight: 300;
     font-style: italic;
+}
+.species-class.mobile {
+    padding: 1px 10px 2px 6px;
 }
 #species-cassidulina {
     border: 1px solid #3c475a;
@@ -128,7 +141,7 @@ li {
     width: 90vw;
     max-width: 1000px;
 }
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tabs-component {
         width: 70vw;
     }
@@ -141,7 +154,7 @@ li {
     width: auto;
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tab-image {
         max-width: fit-content;
         max-height: 5rem;
@@ -181,7 +194,7 @@ li {
     margin-bottom: 5px;
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tabs-component-tabs {
         border: 0;
         align-items: stretch;
@@ -215,7 +228,7 @@ li {
     cursor: not-allowed !important;
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tabs-component-tab, .tabs-component-tab--custom {
         background-color: #fff;
         border: solid 1px #ddd;
@@ -234,7 +247,7 @@ li {
     }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tabs-component-tab-a, .tabs-component-tab-a--custom {
         align-items: center;
         color: inherit;
@@ -254,10 +267,14 @@ li {
 }
 
 .tabs-component-panels {
-    padding: 2em 0;
+    padding: 2em 1em;
+    background-color: #fff;
+    border: solid 1px #ddd;
+    border-radius: 0 6px 6px 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
 }
 
-@media (min-width: 850px) {
+@media (min-width: 1000px) {
     .tabs-component-panels {
         background-color: #fff;
         border: solid 1px #ddd;

@@ -23,6 +23,7 @@
   font-family: var(--title-font);
   color: var(--color-title-text);
   text-align: center;
+  letter-spacing: .1em;
 }
 .subtitle {
   font-family: sans-serif; /* This is fallback font for old browsers */
@@ -45,6 +46,14 @@
 /* set color of links throughout */
 a {
   color: var(--color-link);
+  font-weight: 700;
+  text-decoration: none;
+  @media only screen and (max-width: 600px) {
+    text-decoration: underline;
+  }
+}
+a:hover {
+  text-decoration: underline;
 }
 /* sets width of text column throughout components */
 .text-container {
@@ -65,6 +74,37 @@ a {
     max-width: 90vw; /* 90% of view width on mobile */
   }
 }
+.image-narrow {
+  max-width: 70rem;
+  justify-self: center;
+}    
+.tooltip-span {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  border-bottom: 1px dotted rgba(54, 54, 54, 0.8);
+  font-weight: 700;
+  z-index: 10;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.9rem 0.65rem;
+  position: absolute;
+  z-index: 1;
+  margin-left: -170px;
+  margin-top: 2.3rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip-group:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 .scientificName {
   font-style:italic;
 }
@@ -75,17 +115,19 @@ a {
     top: 105px;
   }
 }
+/* css for Fire in ice viz */
+.chart-text {
+  font-family: var(--chart-font) !important;
+  font-weight: 400 !important;
+}
 
 /* css for Beaufort species-related viz */
 .highlight {
-  padding: 0.5px 5px;
+  padding: 0.5px 8px 0.5px 5px;
   border-radius: 10px;
   white-space: nowrap;
   font-weight: bold;
   transition: all 0.1s; 
-}
-.central {
-  margin-right: 5px;
 }
 #cassidulina {
   color: white;

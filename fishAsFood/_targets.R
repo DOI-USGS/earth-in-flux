@@ -49,15 +49,6 @@ p2 <- list(
     format = 'file'
   ),
   tar_target(
-    p2_climate_csv,
-    build_climate_csv(
-      data = p2_data,
-      metadata_file = p2_metadata_xlsx,
-      out_file = '../public/fish_as_food_climate.csv'
-    ),
-    format = 'file'
-  ),
-  tar_target(
     p2_harvest_csv,
     build_harvest_csv(
       data = p2_data,

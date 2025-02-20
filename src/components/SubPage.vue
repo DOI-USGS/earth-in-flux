@@ -11,15 +11,10 @@
                     {{ filteredChartContent.title }}
                 </h1>
             </div>
-            <VizComponent :id="`${vizRoute}-viz`" :text="vizText"/>
+            <VizComponent :id="`${vizRoute}-viz`" :text="vizText" :key="$route.fullPath"/>
+            <ChartIconGrid :projectRoute="projectRoute" :vizRoute="vizRoute" :key="vizRoute"/>
             <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
             <AuthorshipSection v-if="vizAuthors" title="" titleLevel="3" :authors="vizAuthors"/>
-            <div
-                class="text-container"
-                id="page-link-container"
-            >
-                <button class="project-link"><RouterLink :to="`/${projectRoute}`"> {{ filteredChartContent.project }}</RouterLink> project</button>
-            </div>
         </div>
         <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
     </section>
@@ -28,9 +23,9 @@
 <script setup>
     import { useRoute } from 'vue-router'
     import { isMobile } from 'mobile-device-detect';
-    import { defineAsyncComponent } from 'vue'
-
-    import ChartGrid from '@/assets/content/ChartGrid.js';
+    import { computed, defineAsyncComponent, ref, shallowRef, watch } from 'vue'
+    import ChartIconGrid from '@/components/ChartIconGrid.vue';
+    import ChartGridContent from '@/assets/content/ChartGrid.js';
     import text from "@/assets/text/text.js";
     import ReferencesSection from '@/components/ReferencesSection.vue';
     import references from "@/assets/text/references";
@@ -40,44 +35,60 @@
 
     // global variables
     const route = useRoute()
-    const vizRoute = route.params.vizRoute
-    const projectRoute = route.params.projectRoute
+    const vizRoute = ref(route.params.vizRoute);
+    const projectRoute = ref(route.params.projectRoute);
     const mobileView = isMobile;
-    const chartContent = ChartGrid.chartGridItems;
-	const filteredChartContent = chartContent.filter(d => d.vizRoute === vizRoute)[0]
-    const vizKey = filteredChartContent.vizKey
-    const vizText = text.visualizations[`${filteredChartContent.vizKey}`]
-    const vizReferences = references[`${filteredChartContent.vizKey}`]
-    const vizAuthors = authors[`${filteredChartContent.vizKey}`]
+    const VizComponent = shallowRef(
+        defineAsyncComponent(() =>
+            //Use convention of adding Viz at end of component names to ensure are two words
+            //Plus, also allows us to specify a filename pattern here, per:
+            //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
+            import(`./${vizKey.value}Viz.vue`) //
+        )
+    );
+    const chartContent = ChartGridContent.chartGridItems;
     const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
-    const vizGitHubRepositoryLink = `${gitHubRepositoryLink}/blob/main/src/components/${vizKey}Viz.vue` //Use convention of adding Viz at end of component names to ensure are two words
     
-    const VizComponent = defineAsyncComponent(() =>
-        //Use convention of adding Viz at end of component names to ensure are two words
-        //Plus, also allows us to specify a filename pattern here, per:
-        //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
-        import(`./${vizKey}Viz.vue`) //
-    )
+    // set up computed properties based on ref values
+    const filteredChartContent = computed(() => {
+        return chartContent.filter(d => d.vizRoute === vizRoute.value)[0];
+    }); 
+
+    const vizKey = computed(() => {
+        return filteredChartContent.value.vizKey;
+    }); 
+
+    const vizText = computed(() => {
+        return text.visualizations[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizReferences = computed(() => {
+        return references[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizAuthors = computed(() => {
+        return authors[`${filteredChartContent.value.vizKey}`]
+    }); 
+
+    const vizGitHubRepositoryLink = computed(() => {
+        return `${gitHubRepositoryLink}/blob/main/src/components/${vizKey.value}Viz.vue` //Use convention of adding Viz at end of component names to ensure are two words
+    }); 
+
+    //watches router params for changes
+    watch(route, () => {
+        // update project route
+        projectRoute.value = route.params.projectRoute;
+        // update viz route
+        vizRoute.value = route.params.vizRoute;
+        // update dynamic component
+        VizComponent.value = defineAsyncComponent(() =>
+            //Use convention of adding Viz at end of component names to ensure are two words
+            //Plus, also allows us to specify a filename pattern here, per:
+            //https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#imports-to-your-own-directory-must-specify-a-filename-pattern
+            import(`./${vizKey.value}Viz.vue`) //
+        )
+    })
 </script>
 
 <style scoped lang="scss">
-    #page-link-container {
-        text-align: center;
-    }
-    .project-link {
-        font-family: sans-serif; /* This is fallback font for old browsers */
-        font-family: var(--default-font);
-        background-color: var(--faded-usgs-blue);
-        color: var(--usgs-blue);
-        border: solid var(--faded-usgs-blue);
-        border-radius: 5px;
-        text-align: center;
-        font-weight: 300;
-        margin: 3rem auto 1rem auto;
-        padding: 0.3rem 0.5rem 0.5rem 0.5rem;
-    }
-    .project-link a {
-        text-decoration: none;
-        color: var(--usgs-blue);
-    }
 </style>

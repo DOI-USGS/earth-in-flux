@@ -29,8 +29,7 @@ onMounted(() => {
 
   function createChart() {
     const container = chart.value;
-    const data = shuffleArray([...props.data]); // Randomize data order
-    
+    const data = [...props.data]; //shuffleArray([...props.data]); // Randomize data order
     // Clear any existing SVG elements
     d3.select(container).selectAll('*').remove();
 
@@ -55,9 +54,18 @@ onMounted(() => {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    // Build array to use to position elements based on indices
+    let xCenter = [];
+    for (let i = 0; i <= data.length - 1; i++) {
+      xCenter.push(i * 100)
+    }
     d3.forceSimulation(data)
-      .force("center", d3.forceCenter(width / 2, (height - margin.top - margin.bottom) / 2))
+      .force("x", d3.forceX((d, i) => {
+          return xCenter[i];
+      }).strength(1))
+      .force("center", d3.forceCenter(width / 2, (height - margin.top - margin.bottom) / 2).strength(1))
       .force("charge", d3.forceManyBody().strength(30))
+
       .force("collision", d3.forceCollide().radius(radius + padding))
       .on("tick", ticked);
 
@@ -69,7 +77,6 @@ onMounted(() => {
       .attr('class', 'node')
       .on('click', function (event, d) {
         console.log('Clicked:', d.link); // Log to ensure click event is triggered
-        window.open(d.link, '_blank');
       });
 
     node
@@ -115,6 +122,19 @@ onMounted(() => {
       .style('opacity', 0)
       .text(d => d.name);
 
+    // append link
+    node    
+      .append("a")
+        .attr("href", d => d.link)
+        .attr("target", "_blank")
+        .append("svg:rect")
+          .attr("y", -radius)
+          .attr("x", -radius)
+          .attr("height", radius * 2)
+          .attr("width", radius * 2)
+          .style("fill", "transparent")
+          .attr('clip-path', (d, i) => `url(#clip-${i})`);
+
     node
       .on('mouseover', function () {
         d3.select(this).select('.overlay')
@@ -150,13 +170,13 @@ onMounted(() => {
     }
   }
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
+  // function shuffleArray(array) {
+  //   for (let i = array.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     [array[i], array[j]] = [array[j], array[i]];
+  //   }
+  //   return array;
+  // }
 });
 </script>
 

@@ -21,9 +21,11 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
-            <p class="increase-line-height" v-html="text.paragraph3" />
             <h2 v-html="text.heading2" />
+            <p v-html="text.paragraph3" />
             <p v-html="text.paragraph4" />
+            <h2 v-html="text.heading3" />
+            <p v-html="text.paragraph5" />
         </template>
     </VizSection>
 </template>
@@ -48,13 +50,13 @@
     let laptopScreen = window.innerHeight < 700;
     let chartHeight = laptopScreen ? window.innerHeight * 0.9 : window.innerHeight * 0.8;
     let bubbleChartDimensions;
-    const bubbleChartTitle = 'Title of chart';
+    const bubbleChartTitle = 'Bubble chart showing the relative abundance of microfossil species';
     let bubbleChartBounds;
     let barChartDimensions;
-    const barChartTitle = 'Title of chart';
+    const barChartTitle = 'Bar chart of species assemblages from 0 CE to 2000 CE';
     let barChartBounds;
     let timelineChartDimensions;
-    const timelineChartTitle = 'Title of chart';
+    const timelineChartTitle = 'Timeline of the 2000-year sediment record';
     let timelineChartBounds;
     let chartDecades = ref(null);
     const chartDecade = ref(null);
@@ -79,7 +81,7 @@
                 
                 // initialize svg and chart bounds
                 const chartMarginRight = mobileView ? 20 : 10;
-                const chartMarginLeft = mobileView ? 45 : 60;
+                const chartMarginLeft = mobileView ? 65 : 75;
                 const bubbleChartHeight = laptopScreen ? chartHeight * 0.6 : chartHeight * 0.7;
                 initBubbleChart({
                     width: chart.value.offsetWidth, // outer width, in pixels
@@ -175,10 +177,9 @@
                 .attr("height", "100%")
                 .attr("id", "bubble-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(bubbleChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", bubbleChartTitle)
 
         // Add group for bounds
         bubbleChartBounds = chartSVG.append("g")
@@ -366,10 +367,9 @@
                 .attr("height", "100%")
                 .attr("id", "timeline-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(timelineChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", timelineChartTitle)
 
         // Add group for bounds
         timelineChartBounds = chartSVG.append("g")
@@ -396,6 +396,7 @@
             .attr("id", "timeline-x-axis")
             .attr("transform", `translate(0,${timelineChartDimensions.boundedHeight})`)
             .call(d3.axisBottom(xScale).tickSize(0))
+            .attr("aria-hidden", true); // hide from screen reader
             // .select(".domain").remove() // remove axis line;
 
         xAxis.selectAll('path')
@@ -414,9 +415,13 @@
             .attr("class", "x-axis axis-title")
             .attr("x", 0)
             .attr("y", xAxisLabelYPosition)
+            .attr("dx", mobileView ? -xScale.bandwidth() / 2 : 0)
             .attr("dy", xAxisLabelDy)
+            .attr("data-width", timelineChartDimensions.margin.left)
             .style("text-anchor", "end")
-            .text('Year')
+            .style("dominant-baseline", mobileView ? "central" : "auto")
+            .text('Year CE')
+            .call(d => mobileView ? wrap(d) : d)
        
         // draw timeline
         const lineGroup = timelineChartBounds.append("g")
@@ -484,6 +489,9 @@
             .enter()
             .append('rect')
                 .attr('class', d => 'overlay decade' + d)
+                .attr('tabindex', 0)
+                .attr("role", "button")
+                .attr("aria-label", d => `Year ${d} CE`)
                 .attr('x', d => xScale(d))
                 .attr('y', timelineChartDimensions.boundedHeight)
                 .attr('height', timelineChartDimensions.margin.bottom)
@@ -492,6 +500,11 @@
                 .style("stroke-width", 0.5)
                 .on('mouseover', (event, d) => {
                     mouseoverTimelineBar(d)
+                })
+                .on("keydown", function(event, d) {
+                    if (event.code == 'Enter' | event.code == 'Space') {
+                        mouseoverTimelineBar(d)
+                    }
                 })
     }
 
@@ -526,10 +539,9 @@
                 .attr("height", "100%")
                 .attr("id", "bar-chart-svg")
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(barChartTitle)
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", barChartTitle)
 
         // Add group for bounds
         barChartBounds = chartSVG.append("g")
@@ -582,10 +594,24 @@
         const yAxis = barChartBounds.append('g')
             .call(d3.axisLeft(yScale)
                 .ticks(5)
-                .tickFormat(d => d + '%'));
+                .tickFormat(d => d + '%'))
+            .attr("aria-hidden", true); // hide from screen reader
 
         yAxis.selectAll('text')
             .attr("class", 'axis-text y-axis');
+
+        // add axis title
+        yAxis
+            .append("text")
+            .attr("class", "axis-title")
+            .attr("x", -barChartDimensions.boundedHeight / 2)
+            .attr("y", -barChartDimensions.margin.left)
+            .attr("transform", `rotate(-90)`)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "text-before-edge")
+            .attr("role", "presentation")
+            .attr("aria-hidden", true)
+            .text("% Abundance");
 
         // set up color scale
         let speciesColors = []
@@ -677,6 +703,45 @@
             drawBubbleChart(data.value, {decade: chartDecade.value})
         }
     }
+
+    // https://gist.github.com/mbostock/7555321
+    function wrap(text) {
+        text.each(function() {
+            var text = d3.select(this),
+            words = text.text().split(/\s|-+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            width = text.attr("data-width"),
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            dx = parseFloat(text.attr("dx")),
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            
+            console.log(text.attr("dy"))
+
+            while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
+
+            // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+            if (lineNumber > 0) {
+                const startDy = -(lineNumber * (lineHeight / 2)) * 0.5; // *0.5 for vertically-centered labels
+                text
+                    .selectAll("tspan")
+                    .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+            }
+        }
+    )};
 </script>
 
 <style scoped lang="scss">

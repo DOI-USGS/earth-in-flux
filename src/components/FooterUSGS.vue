@@ -81,6 +81,9 @@
 footer p, text, li {
   padding: 0;
 }
+footer a {
+  font-weight: 400;
+}
 .fa {
   color:#fff;
 	font-size: 24px;
