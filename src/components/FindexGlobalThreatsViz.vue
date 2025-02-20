@@ -232,26 +232,25 @@ $exploitation: #B74F49;
     text-decoration: none;
     color: white;
 }
-.category-button:hover {
-    color: var(--color-text);
-}
-.category-button:hover.habitat {
-    background-color: $habitat-faded;
-    color: $habitat-dark;
-}
-.category-button:hover.pollution {
-    background-color: $pollution-faded;
-    color: $pollution-dark;
-}
-.category-button:hover.climate-and-weather {
-    background-color: $climate-and-weather-faded;
-    color: $climate-and-weather-dark;
-}
-.category-button:hover.invasive-species {
-    color: white;
-}
-.category-button:hover.exploitation {
-    color: white;
+@media (hover: hover) {
+    .category-button.habitat:hover {
+        background-color: $habitat-faded;
+        color: $habitat-dark;
+    }
+    .category-button.pollution:hover {
+        background-color: $pollution-faded;
+        color: $pollution-dark;
+    }
+    .category-button.climate-and-weather:hover {
+        background-color: $climate-and-weather-faded;
+        color: $climate-and-weather-dark;
+    }
+    .category-button.invasive-species:hover {
+        color: white;
+    }
+    .category-button.exploitation:hover {
+        color: white;
+    }
 }
 .habitat {
     text-decoration: underline solid $habitat-faded;
