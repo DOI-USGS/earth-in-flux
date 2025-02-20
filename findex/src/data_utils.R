@@ -26,7 +26,9 @@ compute_weighted_threats <- function(threat_data, threat_weights,
     #                        "No Data")) |>
     left_join(select(threat_weights, ThreatCode = Threat_Code, Threat, 
                      ThreatCategory = Threat_Category, everything())) |>
-    mutate(weightedThreatMetric = ThreatMetric * Final_Weight)
+    mutate(weightedThreatMetric = ThreatMetric * Final_Weight) |> 
+    mutate(ThreatCategory = case_when(ThreatCategory == "Exploitation" ~ "Fishing pressure", 
+                                      .default = as.character(ThreatCategory)))
 }
 
 #' @description sum weighted threat scores by threat type
