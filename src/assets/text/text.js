@@ -250,31 +250,38 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Dams",
-                            subThreatText: "Dams text"
+                            subThreatText: "Dams text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Wetland drainage",
-                            subThreatText: "Wetland drainage text"
+                            subThreatText: "Wetland drainage text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
-                            subThreatText: "Deforestation and associated runoff text"
+                            subThreatText: "Deforestation and associated runoff text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Riparian degradation",
-                            subThreatText: "Riparian degradation text"
+                            subThreatText: "Riparian degradation text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Agricultural extraction",
-                            subThreatText: "Agricultural extraction text"
+                            subThreatText: "Agricultural extraction text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Urban extraction",
-                            subThreatText: "Urban extraction text"
+                            subThreatText: "Urban extraction text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         },
                         {
                             subThreat: "Industrial Extraction",
-                            subThreatText: "Industrial Extraction text"
+                            subThreatText: "Industrial Extraction text",
+                            subThreatIcon: "noun-canal-29572-7A562B"
                         }
                     ]
                 },
@@ -290,35 +297,43 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Agricultural effluents",
-                            subThreatText: "Agricultural effluents text"
+                            subThreatText: "Agricultural effluents text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Urban wastewater",
-                            subThreatText: "Urban wastewater text"
+                            subThreatText: "Urban wastewater text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Industrial effluents",
-                            subThreatText: "Industrial effluents text"
+                            subThreatText: "Industrial effluents text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Aquaculture effluents",
-                            subThreatText: "Aquaculture effluents text"
+                            subThreatText: "Aquaculture effluents text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Pharmaceuticals",
-                            subThreatText: "Pharmaceuticals text"
+                            subThreatText: "Pharmaceuticals text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Oil or gas exploration",
-                            subThreatText: "Oil or gas exploration text"
+                            subThreatText: "Oil or gas exploration text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Plastics",
-                            subThreatText: "Plastics text"
+                            subThreatText: "Plastics text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         },
                         {
                             subThreat: "Mining",
-                            subThreatText: "Mining text"
+                            subThreatText: "Mining text",
+                            subThreatIcon: "noun-drain-7131918-002D5E"
                         }
                     ]
                 },
@@ -334,23 +349,28 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
-                            subThreatText: "Change in water temperature text"
+                            subThreatText: "Change in water temperature text",
+                            subThreatIcon: "noun-rain-1760091-835192"
                         },
                         {
                             subThreat: "Drought",
-                            subThreatText: "Drought text"
+                            subThreatText: "Drought text",
+                            subThreatIcon: "noun-rain-1760091-835192"
                         },
                         {
                             subThreat: "Change in flooding",
-                            subThreatText: "Change in flooding text"
+                            subThreatText: "Change in flooding text",
+                            subThreatIcon: "noun-rain-1760091-835192"
                         },
                         {
                             subThreat: "Change in wind patterns",
-                            subThreatText: "Change in wind patterns text"
+                            subThreatText: "Change in wind patterns text",
+                            subThreatIcon: "noun-rain-1760091-835192"
                         },
                         {
                             subThreat: "Change in ice cover",
-                            subThreatText: "Change in ice cover text"
+                            subThreatText: "Change in ice cover text",
+                            subThreatIcon: "noun-rain-1760091-835192"
                         }
                     ]
                 },

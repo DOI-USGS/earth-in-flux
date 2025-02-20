@@ -30,6 +30,7 @@
                     </div>
                     <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
                     <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
+                    <img class="tab-icon-image tab-image" :src="iconSource" alt="">
                     <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
                     <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 </tabItem>
@@ -46,7 +47,6 @@
 
 <script setup>
     import { computed, nextTick, onMounted, ref } from "vue";
-    // import { isMobile } from 'mobile-device-detect';
     import VizSection from '@/components/VizSection.vue';
 
     // define props
@@ -55,19 +55,23 @@
     })
 
     // Global variables 
-    // const publicPath = import.meta.env.BASE_URL;
-    // const mobileView = isMobile;
     let primaryCategorySelected = ref(true);
     let currentCategory = ref(null);
     let currentCategorySubThreatPrefix = ref(null);
     let legendSource = ref(null);
     let mapSource = ref(null);
+    let iconSource = ref(null);
 
     // Set up computed variables that depend on ref values
+    const primaryCategoryData = computed(() => {
+        return props.text.tabData.filter(d => d.subThreatPrefix == currentCategorySubThreatPrefix.value)[0]
+    })
+    // undefined if primaryCategorySelected
+    const subCategoryData = computed(() => {
+        return primaryCategoryData.value.subThreatData.filter(d => d.subThreat == currentCategory.value)[0]
+    })
     const subThreatText = computed(() => {
-        const primaryCategoryText = props.text.tabData.filter(d => d.subThreatPrefix == currentCategorySubThreatPrefix.value)[0]
-        const subCategoryText = primaryCategoryText.subThreatData.filter(d => d.subThreat == currentCategory.value)[0]
-        return subCategoryText.subThreatText;
+        return subCategoryData.value.subThreatText;
     });
 
     // Declare behavior on mounted
@@ -96,7 +100,7 @@
         
         // pull category information
         currentCategory.value = activeTab[0].text
-        const currentData = props.text.tabData.filter(d => d.tabContentTitle == currentCategory.value)
+        const currentData = props.text.tabData.filter(d => d.tabContentTitle == currentCategory.value)[0]
         currentCategorySubThreatPrefix.value = currentData.subThreatPrefix
 
         // update map - always show primary category on page load
@@ -122,13 +126,22 @@
         mapSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "map")
         legendSource.value = getContentImageUrl(currentCategory.value, currentCategorySubThreatPrefix.value, "legend")
     }
+    function updateIcon() {
+        if (primaryCategorySelected.value) {
+            iconSource.value = getPrefixImageURL(primaryCategoryData.value.tabIcon)
+        } else {
+            iconSource.value = getPrefixImageURL(subCategoryData.value.subThreatIcon)
+        } 
+    }
     function switchToSubCategory(category, prefix) {
         primaryCategorySelected.value = false;
         updateTabContent(category, prefix);
+        updateIcon();
     }
     function switchToPrimaryCategory(category, prefix) {
         primaryCategorySelected.value = true;
         updateTabContent(category, prefix);
+        updateIcon();
     }
 
 </script>
