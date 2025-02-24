@@ -123,10 +123,10 @@ p2 <- list(
           # color ramps
           pal = case_when(
             MajorCat == "Habitat" ~ list(c("#4E6D6E", "#C9D8D9")),#), 
-            MajorCat == "Fishing pressure" ~ list(c("#002D5E", "#B2C0CE")), 
+            MajorCat == "Fishing pressure" ~ list(c("#835192", "#DDCCE2")), 
             MajorCat == "Invasive species" ~ list(c("#B74F49", "#E2B8B6")), 
             MajorCat == "Pollution" ~ list(c("#7A562B", "#C7985F", "#E1C8AA")), 
-            MajorCat == "Climate and weather" ~ list(c("#835192", "#DDCCE2"))
+            MajorCat == "Climate and weather" ~ list(c("#002D5E", "#B2C0CE"))
           ),
           # file name templates
           threat_legend_raw = "out/%s_legend_raw.png",
