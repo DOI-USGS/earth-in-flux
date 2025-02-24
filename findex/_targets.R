@@ -101,8 +101,8 @@ p2 <- list(
   
   tar_target(
     p2_threat_categories,
-    p2_weights |>
-      pull(Threat_Category) |> 
+    p2_mean_weighted_threats |>
+      pull(ThreatCategory) |> 
       unique()
   ),
   tar_target(
@@ -122,11 +122,11 @@ p2 <- list(
         mutate(
           # color ramps
           pal = case_when(
-            MajorCat == "Habitat" ~ list(c("#7A562B", "#C7985F", "#E1C8AA")), 
-            MajorCat == "Exploitation" ~ list(c("#B74F49", "#E2B8B6")), 
-            MajorCat == "Invasive species" ~ list(c("#4E6D6E", "#C9D8D9")), 
-            MajorCat == "Pollution" ~ list(c("#002D5E", "#B2C0CE")), 
-            MajorCat == "Climate and weather" ~ list(c("#835192", "#DDCCE2"))
+            MajorCat == "Habitat" ~ list(c("#4E6D6E", "#C9D8D9")),#), 
+            MajorCat == "Fishing pressure" ~ list(c("#835192", "#DDCCE2")), 
+            MajorCat == "Invasive species" ~ list(c("#B74F49", "#E2B8B6")), 
+            MajorCat == "Pollution" ~ list(c("#7A562B", "#C7985F", "#E1C8AA")), 
+            MajorCat == "Climate and weather" ~ list(c("#002D5E", "#B2C0CE"))
           ),
           # file name templates
           threat_legend_raw = "out/%s_legend_raw.png",
@@ -134,21 +134,21 @@ p2 <- list(
           threat_map = "../src/assets/images/%s_map.png",
           subThreat_legend_raw = case_when(
             MajorCat %in% "Habitat" ~ "out/H_%s_legend_raw.png",
-            MajorCat %in% "Exploitation" ~ "out/E_%s_legend_raw.png",
+            MajorCat %in% "Fishing pressure" ~ "out/FP_%s_legend_raw.png",
             MajorCat %in% "Invasive species" ~ "out/IS_%s_legend_raw.png",
             MajorCat %in% "Pollution" ~ "out/P_%s_legend_raw.png",
             MajorCat %in% "Climate and weather" ~ "out/CW_%s_legend_raw.png"
           ),
           subThreat_legend = case_when(
             MajorCat %in% "Habitat" ~ "../src/assets/images/H_%s_legend.png",
-            MajorCat %in% "Exploitation" ~ "../src/assets/images/E_%s_legend.png",
+            MajorCat %in% "Fishing pressure" ~ "../src/assets/images/FP_%s_legend.png",
             MajorCat %in% "Invasive species" ~ "../src/assets/images/IS_%s_legend.png",
             MajorCat %in% "Pollution" ~ "../src/assets/images/P_%s_legend.png",
             MajorCat %in% "Climate and weather" ~ "../src/assets/images/CW_%s_legend.png"
           ),
           subThreat_map = case_when(
             MajorCat %in% "Habitat" ~ "../src/assets/images/H_%s_map.png",
-            MajorCat %in% "Exploitation" ~ "../src/assets/images/E_%s_map.png",
+            MajorCat %in% "Fishing pressure" ~ "../src/assets/images/FP_%s_map.png",
             MajorCat %in% "Invasive species" ~ "../src/assets/images/IS_%s_map.png",
             MajorCat %in% "Pollution" ~ "../src/assets/images/P_%s_map.png",
             MajorCat %in% "Climate and weather" ~ "../src/assets/images/CW_%s_map.png"
