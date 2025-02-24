@@ -149,17 +149,17 @@
 </script>
 
 <style lang="scss">
-$habitat: #7A562B;
-$habitat-faded: #E1C8AA;
-$habitat-dark: #5B401F;
-$pollution: #002D5E;
-$pollution-faded: #B2C0CE;
-$pollution-dark: #002D5E;
-$climate-and-weather: #835192;
-$climate-and-weather-faded: #DDCCE2;
-$climate-and-weather-dark: #613A69;
-$invasive-species: #4E6D6E;
-$exploitation: #B74F49;
+$habitat: #4E6D6E; 
+$habitat-faded: #C9D8D9;
+$habitat-dark: #405959;
+$pollution: #7A562B;
+$pollution-faded: #E1C8AA;
+$pollution-dark: #5B401F;
+$climate-and-weather: #002D5E;
+$climate-and-weather-faded: #B2C0CE;
+$climate-and-weather-dark: #002D5E;
+$invasive-species: #B74F49;
+$fishing-pressure: #835192;
 #map-tabs {
     margin-top: 3rem;
 }
@@ -203,8 +203,8 @@ $exploitation: #B74F49;
 .invasive-species {
     color: $invasive-species;
 }
-.exploitation {
-    color: $exploitation;
+.fishing-pressure {
+    color: $fishing-pressure;
 }
 .highlight.habitat {
     background-color: $habitat;
@@ -218,8 +218,8 @@ $exploitation: #B74F49;
 .highlight.invasive-species {
     background-color: $invasive-species;
 }
-.highlight.exploitation {
-    background-color: $exploitation;
+.highlight.fishing-pressure {
+    background-color: $fishing-pressure;
 }
 .category-button {
     background-color: transparent;
@@ -248,7 +248,7 @@ $exploitation: #B74F49;
     .category-button.invasive-species:hover {
         color: white;
     }
-    .category-button.exploitation:hover {
+    .category-button.fishing-pressure:hover {
         color: white;
     }
 }
