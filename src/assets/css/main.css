@@ -206,6 +206,7 @@ li {
       transition: transform .3s ease;
       font-size: 1.6rem;
       text-align: center;
+      flex-grow: 1;
   }
 
   .tabs-component-tab.is-active, .tabs-component-tab--custom.is-active {
