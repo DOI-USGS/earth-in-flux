@@ -24,7 +24,9 @@
                         <h4 v-if="tab.subThreatData.length > 1">Subthreat categories:
                             <span v-for="subThreatCategory, index in tab.subThreatData" :key="subThreatCategory.subThreat">
                                 <button @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]" v-html="subThreatCategory.subThreat" class="category-button sub"></button>
-                                <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator"> &#x2022; </span>
+                                <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator">
+                                    <FishIcon id="findex-fish" :class="tab.tabContentTitleID"/>
+                                </span>
                             </span>
                         </h4>
                     </div>
@@ -50,6 +52,7 @@
 <script setup>
     import { computed, nextTick, onMounted, ref } from "vue";
     import VizSection from '@/components/VizSection.vue';
+    import FishIcon from '@/assets/svgs/noun-fish-7471722.svg';
 
     // define props
     const props = defineProps({
@@ -166,6 +169,11 @@ $fishing-pressure: #835192;
 #button-container {
     margin-bottom: 2rem;
 }
+#findex-fish {
+    width: 20px;
+    height: 20px;
+    transform: translate(0, 4px);
+}
 #icon-legend-container{
     display: flex;
     flex-direction: row;
@@ -192,19 +200,24 @@ $fishing-pressure: #835192;
     width: 100%;
 }
 .habitat {
-    color: $habitat
+    color: $habitat;
+    fill: $habitat;
 }
 .pollution {
     color: $pollution;
+    fill: $pollution;
 }
 .climate-and-weather {
     color: $climate-and-weather;
+    fill: $climate-and-weather;
 }
 .invasive-species {
     color: $invasive-species;
+    fill: $invasive-species;
 }
 .fishing-pressure {
     color: $fishing-pressure;
+    fill: $fishing-pressure;
 }
 .highlight.habitat {
     background-color: $habitat;
