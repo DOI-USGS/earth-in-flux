@@ -1,52 +1,45 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
+    <section>
+        <!---VizSection-->
+        <VizSection
+            :figures="false"
+            :fig-caption="false"
+        >
+            <!-- HEADING -->
+            <template #heading>
+                <h2 v-html="text.heading1" />
+            </template>
+            <!-- FIGURES -->
+            <template #aboveExplanation>
                 <p v-html="text.paragraph1" />
-        </template>
-        <template #figures>
-            <tabsGroup id="map-tabs" :options="{ useUrlFragment: false }" >
-                <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabIcon)">
-                    <h3>
-                        Threat category:
-                        <button v-html="tab.tabContentTitle" @click = "switchToPrimaryCategory(tab.tabContentTitle, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == tab.tabContentTitle }]" :id="tab.tabContentTitleID" class="category-button primary" />
-                    </h3>
-                    <div id="button-container">
-                        <h4 v-if="tab.subThreatData.length > 1">Subthreat categories:
-                            <span v-for="subThreatCategory, index in tab.subThreatData" :key="subThreatCategory.subThreat">
-                                <button @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]" v-html="subThreatCategory.subThreat" class="category-button sub"></button>
-                                <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator">
-                                    <FishIcon id="findex-fish" :class="tab.tabContentTitleID"/>
-                                </span>
+            </template>
+        </VizSection>
+        <tabsGroup id="map-tabs" :options="{ useUrlFragment: false }" >
+            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabIcon)">
+                <h3>
+                    Threat category:
+                    <button v-html="tab.tabContentTitle" @click = "switchToPrimaryCategory(tab.tabContentTitle, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == tab.tabContentTitle }]" :id="tab.tabContentTitleID" class="category-button primary" />
+                </h3>
+                <div id="button-container">
+                    <h4 v-if="tab.subThreatData.length > 1">Subthreat categories:
+                        <span v-for="subThreatCategory, index in tab.subThreatData" :key="subThreatCategory.subThreat">
+                            <button @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]" v-html="subThreatCategory.subThreat" class="category-button sub"></button>
+                            <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator">
+                                <FishIcon id="findex-fish" :class="tab.tabContentTitleID"/>
                             </span>
-                        </h4>
-                    </div>
-                    <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                    <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
-                    <div id="icon-legend-container">
-                        <img class="tab-icon-image" :src="iconSource" alt="">
-                        <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
-                    </div>
-                    <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
-                </tabItem>
-            </tabsGroup>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
+                        </span>
+                    </h4>
+                </div>
+                <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
+                <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
+                <div id="icon-legend-container">
+                    <img class="tab-icon-image" :src="iconSource" alt="">
+                    <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
+                </div>
+                <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
+            </tabItem>
+        </tabsGroup>
+    </section>
 </template>
 
 <script setup>
