@@ -105,7 +105,7 @@
         switchToPrimaryCategory(currentCategory.value, currentCategorySubThreatPrefix.value)
     }
     function getPrefixImageURL(filename) {
-        return `src/assets/images/${filename}.png`
+        return `src/assets/svgs/${filename}.svg`
     }
     function getPrefixImageHTML(filename) {
         const imgURL = getPrefixImageURL(filename)

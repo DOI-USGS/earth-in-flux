@@ -342,7 +342,7 @@ export default {
                     tabTitle: "Climate and Weather",
                     tabContentTitle: "Climate and Weather",
                     tabContentTitleID: "climate-and-weather",
-                    tabIcon: "ppt-climate-and-weather-002D5E",
+                    tabIcon: "noun-drain-7131918-7A562B",
                     tabText: "Climate and Weather text.",
                     tabMapImageAlt: "Climate and Weather alt.",
                     tabLegendImageAlt: "Legend",
@@ -351,27 +351,27 @@ export default {
                         {
                             subThreat: "Change in water temperature",
                             subThreatText: "Change in water temperature text",
-                            subThreatIcon: "ppt-climate-and-weather-002D5E"
+                            subThreatIcon: "noun-drain-7131918-7A562B"
                         },
                         {
                             subThreat: "Drought",
                             subThreatText: "Drought text",
-                            subThreatIcon: "ppt-climate-and-weather-002D5E"
+                            subThreatIcon: "noun-drain-7131918-7A562B"
                         },
                         {
                             subThreat: "Change in flooding",
                             subThreatText: "Change in flooding text",
-                            subThreatIcon: "ppt-climate-and-weather-002D5E"
+                            subThreatIcon: "noun-drain-7131918-7A562B"
                         },
                         {
                             subThreat: "Change in wind patterns",
                             subThreatText: "Change in wind patterns text",
-                            subThreatIcon: "ppt-climate-and-weather-002D5E"
+                            subThreatIcon: "noun-drain-7131918-7A562B"
                         },
                         {
                             subThreat: "Change in ice cover",
                             subThreatText: "Change in ice cover text",
-                            subThreatIcon: "ppt-climate-and-weather-002D5E"
+                            subThreatIcon: "noun-drain-7131918-7A562B"
                         }
                     ]
                 },
@@ -379,7 +379,7 @@ export default {
                     tabTitle: "Invasive species",
                     tabContentTitle: "Invasive species",
                     tabContentTitleID: "invasive-species",
-                    tabIcon: "ppt-invasive-species-B74F49",
+                    tabIcon: "noun-drain-7131918-7A562B",
                     tabText: "Invasive species text.",
                     tabMapImageAlt: "Invasive species alt.",
                     tabLegendImageAlt: "Legend",
@@ -390,7 +390,7 @@ export default {
                     tabTitle: "Fishing pressure",
                     tabContentTitle: "Fishing pressure",
                     tabContentTitleID: "fishing-pressure",
-                    tabIcon: "ppt-fishing-pressure-835192",
+                    tabIcon: "noun-drain-7131918-7A562B",
                     tabText: "Fishing pressure text.",
                     tabMapImageAlt: "Fishing pressure alt.",
                     tabLegendImageAlt: "Legend",
