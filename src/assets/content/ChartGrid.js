@@ -13,7 +13,7 @@ export default {
             description: 'Land use change is threatening inland fisheries.'
         },
         {
-            title: 'Threats to inland fisheries vary across the globe',
+            title: 'A global view of threats',
             project: 'Findex',
             vizKey: 'FindexGlobalThreats',
             vizRoute: 'inland-fish-global-threats',

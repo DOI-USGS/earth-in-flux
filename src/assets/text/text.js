@@ -236,6 +236,7 @@ export default {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         },
         FindexGlobalThreats: {
+            heading1:"Global variability of threats",
             paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the severity of threats varies globally.",
             tabData: [
                 {
