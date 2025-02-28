@@ -232,8 +232,172 @@ export default {
             explanation1: "As scientists <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected the snow core</a>, they carefully stored each ten-centimeter section for transport off the Juneau Icefield. The retrieved samples were analyzed in a laboratory for particle counts, major ions, stable isotopes of oxygen and hydrogen, and the three sugars that are markers of biomass combustion—mannosan, galactosan, and levoglucosan.",
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
-        ThreatSankey: {
+        FindexThreatSankey: {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
+        },
+        FindexGlobalThreats: {
+            heading1:"Global variability of threats",
+            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the severity of threats varies globally.",
+            tabData: [
+                {
+                    tabTitle: "Habitat",
+                    tabContentTitle: "Habitat",
+                    tabContentTitleID: "habitat",
+                    tabIcon: "noun-canal-29572-4E6D6E",
+                    tabText: "Habitat text.",
+                    tabMapImageAlt: "Habitat alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "H",
+                    subThreatData: [
+                        {
+                            subThreat: "Dams",
+                            subThreatText: "Dams text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Wetland drainage",
+                            subThreatText: "Wetland drainage text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Deforestation and associated runoff",
+                            subThreatText: "Deforestation and associated runoff text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Riparian degradation",
+                            subThreatText: "Riparian degradation text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Agricultural extraction",
+                            subThreatText: "Agricultural extraction text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Urban extraction",
+                            subThreatText: "Urban extraction text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        },
+                        {
+                            subThreat: "Industrial Extraction",
+                            subThreatText: "Industrial Extraction text",
+                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                        }
+                    ]
+                },
+                {
+                    tabTitle: "Pollution",
+                    tabContentTitle: "Pollution",
+                    tabContentTitleID: "pollution",
+                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabText: "Pollution text.",
+                    tabMapImageAlt: "Pollution alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "P",
+                    subThreatData: [
+                        {
+                            subThreat: "Agricultural effluents",
+                            subThreatText: "Agricultural effluents text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Urban wastewater",
+                            subThreatText: "Urban wastewater text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Industrial effluents",
+                            subThreatText: "Industrial effluents text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Aquaculture effluents",
+                            subThreatText: "Aquaculture effluents text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Pharmaceuticals",
+                            subThreatText: "Pharmaceuticals text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Oil or gas exploration",
+                            subThreatText: "Oil or gas exploration text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Plastics",
+                            subThreatText: "Plastics text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Mining",
+                            subThreatText: "Mining text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        }
+                    ]
+                },
+                {
+                    tabTitle: "Climate and Weather",
+                    tabContentTitle: "Climate and Weather",
+                    tabContentTitleID: "climate-and-weather",
+                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabText: "Climate and Weather text.",
+                    tabMapImageAlt: "Climate and Weather alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "CW",
+                    subThreatData: [
+                        {
+                            subThreat: "Change in water temperature",
+                            subThreatText: "Change in water temperature text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Drought",
+                            subThreatText: "Drought text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Change in flooding",
+                            subThreatText: "Change in flooding text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Change in wind patterns",
+                            subThreatText: "Change in wind patterns text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        },
+                        {
+                            subThreat: "Change in ice cover",
+                            subThreatText: "Change in ice cover text",
+                            subThreatIcon: "noun-drain-7131918-7A562B"
+                        }
+                    ]
+                },
+                {
+                    tabTitle: "Invasive species",
+                    tabContentTitle: "Invasive species",
+                    tabContentTitleID: "invasive-species",
+                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabText: "Invasive species text.",
+                    tabMapImageAlt: "Invasive species alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "IS",
+                    subThreatData: []
+                },
+                {
+                    tabTitle: "Fishing pressure",
+                    tabContentTitle: "Fishing pressure",
+                    tabContentTitleID: "fishing-pressure",
+                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabText: "Fishing pressure text.",
+                    tabMapImageAlt: "Fishing pressure alt.",
+                    tabLegendImageAlt: "Legend",
+                    subThreatPrefix: "E",
+                    subThreatData: []
+                }
+            ],
         }
     }
 }

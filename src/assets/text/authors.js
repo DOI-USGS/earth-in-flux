@@ -100,7 +100,19 @@ export default {
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
   ],
-  ThreatSankey: [
+  FindexThreatSankey: [
+    {
+      fullName: 'Hayley Corson-Dosch',
+      initials: 'HCD',
+      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
+    },
+  ],
+  FindexGlobalThreats: [
+    {
+      fullName: 'Kaysa Vaarre-Lamoureux',
+      initials: 'KVL',
+      profile_link: null
+    },
     {
       fullName: 'Hayley Corson-Dosch',
       initials: 'HCD',
