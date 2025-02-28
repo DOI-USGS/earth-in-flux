@@ -171,7 +171,6 @@ $fishing-pressure: #835192;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
 }
 .tab-icon-image {
     max-width: 50px;
