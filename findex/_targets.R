@@ -187,7 +187,8 @@ p3 <- list(
                                threat_category = p2_threat_categories, 
                                threat_pal = p2_viz_config,
                                proj = p1_proj,
-                               hybas_habitat_types = p2_hybas_habitat_types_sf)
+                               hybas_habitat_types = p2_hybas_habitat_types_sf)+
+        theme(legend.text = element_blank())
       
       save_legend(type = "threat", plot = final_plot, 
                   threat_category = p2_threat_categories, 
