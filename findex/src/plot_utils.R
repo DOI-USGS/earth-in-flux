@@ -256,3 +256,54 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
     
   }
 }
+
+#in_dat = p2_mean_weighted_threats, threat_pal = p2_viz_config hybas_habitat_types = p2_hybas_habitat_types_sf, proj = p1_proj
+top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj){
+  
+  processed_df <- in_dat |> 
+    group_by(HYBAS_ID) |> 
+    filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
+  
+  processed_sf <- processed_df |> 
+    left_join(hybas_habitat_types) |> 
+    st_as_sf() |> 
+    # remove visual bug with robinson projection
+    st_wrap_dateline()
+  
+  proj_sf <- st_transform(processed_sf, crs = st_crs(proj))
+  
+  pal <- threat_pal |> 
+    select(MajorCat, pal) |> 
+    rowwise() |> 
+    mutate(pal = first(pal)) |> 
+    unique() |> 
+    mutate(pal = case_when(pal == "#4E6D6E" ~ "#598586",
+                           pal == "#7A562B" ~ "#A97639",
+                           pal == "#835192" ~ "#995EAB",
+                           pal == "#B74F49" ~ "#963C36",
+                           pal == "#002D5E" ~ "#002D5E"))
+  
+  threat_map <- ggplot()+
+    geom_sf(data = proj_sf, aes(geometry = Shape, fill = ThreatCategory), color = NA)+
+    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat)+
+    guides(fill = guide_legend(nrow = 2,)) +
+    theme_void()+
+    theme(
+      legend.ticks = element_blank(),
+      legend.title = element_text(face = "bold"),
+      legend.title.position = "top",
+      legend.text = element_text(size = 11),
+      legend.direction = "horizontal"
+    )
+}
+
+#plot = final_plot, dpi = 300, out_file = "test_out/threat_by_basin_legend.png"
+save_top_threat_legend <- function(plot, dpi, out_file){
+  
+  plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
+  
+  ggsave(out_file, 
+         plot_legend, dpi = dpi, bg = "transparent")
+  
+  knitr::plot_crop(out_file)
+}

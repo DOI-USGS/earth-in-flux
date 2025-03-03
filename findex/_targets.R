@@ -237,6 +237,40 @@ p3 <- list(
     },
     format = "file",
     pattern = p2_threat_subcategories
+  ),
+  # top threat in each basin globally
+  tar_target(
+    p3_top_threat_map_png,
+    {
+      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
+                                    threat_pal = p2_viz_config, 
+                                    hybas_habitat_types = p2_hybas_habitat_types_sf, 
+                                    proj = p1_proj)  + 
+        theme(legend.position = "none")
+      
+      # change to actual directory once design is finalized --------------------
+      ggsave("test_out/threat_by_basin.png", 
+             final_plot, height = 6, width = 10, dpi = 300)
+      
+      # change to actual directory once design is finalized --------------------
+      knitr::plot_crop("test_out/threat_by_basin.png")
+    },
+    format = "file"
+  ),
+  tar_target(
+    p3_top_threat_legend_png,
+    {
+      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
+                                    threat_pal = p2_viz_config, 
+                                    hybas_habitat_types = p2_hybas_habitat_types_sf, 
+                                    proj = p1_proj)
+      
+      save_top_threat_legend(plot = final_plot, 
+                             dpi = 300, 
+                             # change to actual directory once design is finalized
+                             out_file = "test_out/threat_by_basin_legend.png")
+    },
+    format = "file"
   )
 )
 
