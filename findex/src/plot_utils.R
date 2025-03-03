@@ -22,8 +22,7 @@ general_threat_map <- function(in_dat, threat_category, threat_pal, hybas_habita
       limits = c(0, max(proj_df$MeanWeightedThreatMetric, na.rm = T)),
       na.value = "gray80",
       breaks = c(0 + max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10, 
-                 max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10),
-      labels = c("Lower", "Higher")
+                 max(proj_df$MeanWeightedThreatMetric, na.rm = T) - max(proj_df$MeanWeightedThreatMetric, na.rm = T)/10)
     )+
    # scale_color_gradientn(
   #    colors = colorRampPalette(c(rev(unlist(threat_pal))))(100), 
@@ -126,28 +125,45 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
               height = 9, width = 16,
               hjust = 0, vjust = 1) +
     draw_image(legend, 
-               x = 0.08,
-               y = 0.08,
-               width = 0.77, 
+               x = 0.079,
+               y = 0.35,
+               width = 0.74, 
                hjust = 0, vjust = 0, 
                halign = 0, valign = 0)+
     # min max values
     draw_label(as.character(min_val),
                x = 0.02,
-               y = 0.54,
+               y = 0.55,
                hjust = 0,
                vjust = 1,
                lineheight = 0.75,
                color = "gray50",
-               size = 9) +
+               size = 8) +
     draw_label(as.character(max_val),
-               x = 1,
-               y = 0.54,
+               x = 0.99,
+               y = 0.55,
                hjust = 1,
                vjust = 1,
                lineheight = 0.75,
                color = "gray50",
-               size = 9) 
+               size = 8) +
+    # higher lower labels
+    draw_label("Lower",
+               x = 0.05,
+               y = 0.11,
+               hjust = 0,
+               vjust = 0,
+               lineheight = 0.75,
+               color = "black",
+               size = 8) +
+    draw_label("Higher",
+               x = 0.86,
+               y = 0.11,
+               hjust = 1,
+               vjust = 0,
+               lineheight = 0.75,
+               color = "black",
+               size = 8)
 
   ggsave(out_file, final_legend, height = height, width = width, units = unit, dpi = dpi, bg = "transparent")
 }
@@ -225,6 +241,8 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
     ggsave(out_file, 
            plot, height = height, width = width, dpi = dpi)
     
+    knitr::plot_crop(out_file)
+    
   } else if(type == "subThreat"){
     name_conv <- threat_pal |> 
       filter(ThreatCategory == threat_category)
@@ -233,6 +251,8 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
     
     ggsave(out_file, 
            plot, height = height, width = width, dpi = dpi)
+    
+    knitr::plot_crop(out_file)
     
   }
 }
