@@ -225,6 +225,8 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
     ggsave(out_file, 
            plot, height = height, width = width, dpi = dpi)
     
+    knitr::plot_crop(out_file)
+    
   } else if(type == "subThreat"){
     name_conv <- threat_pal |> 
       filter(ThreatCategory == threat_category)
@@ -233,6 +235,8 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
     
     ggsave(out_file, 
            plot, height = height, width = width, dpi = dpi)
+    
+    knitr::plot_crop(out_file)
     
   }
 }
