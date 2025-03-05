@@ -245,33 +245,55 @@ p3 <- list(
       final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
                                     threat_pal = p2_viz_config, 
                                     hybas_habitat_types = p2_hybas_habitat_types_sf, 
-                                    proj = p1_proj)  + 
+                                    proj = p1_proj,
+                                    threat_category = p2_threat_categories)  + 
         theme(legend.position = "none")
       
       # change to actual directory once design is finalized --------------------
-      ggsave("test_out/threat_by_basin.png", 
+      ggsave(sprintf("../src/assets/images/%s_threat_by_basin.png", p2_threat_categories), 
              final_plot, height = 6, width = 10, dpi = 300)
       
       # change to actual directory once design is finalized --------------------
-      knitr::plot_crop("test_out/threat_by_basin.png")
+      knitr::plot_crop(sprintf("../src/assets/images/%s_threat_by_basin.png", p2_threat_categories))
     },
-    format = "file"
+    format = "file",
+    pattern = p2_threat_categories
   ),
   tar_target(
-    p3_top_threat_legend_png,
+    p3_all_top_threat_map_png,
     {
       final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
                                     threat_pal = p2_viz_config, 
                                     hybas_habitat_types = p2_hybas_habitat_types_sf, 
-                                    proj = p1_proj)
+                                    proj = p1_proj,
+                                    threat_category = "none")  + 
+        theme(legend.position = "none")
       
-      save_top_threat_legend(plot = final_plot, 
-                             dpi = 300, 
-                             # change to actual directory once design is finalized
-                             out_file = "test_out/threat_by_basin_legend.png")
+      # change to actual directory once design is finalized --------------------
+      ggsave("../src/assets/images/all_threat_by_basin.png", 
+             final_plot, height = 6, width = 10, dpi = 300)
+      
+      # change to actual directory once design is finalized --------------------
+      knitr::plot_crop("../src/assets/images/all_threat_by_basin.png")
     },
     format = "file"
   )
+#  tar_target(
+#    p3_top_threat_legend_png,
+#    {
+#      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
+#                                    threat_pal = p2_viz_config, 
+#                                    hybas_habitat_types = p2_hybas_habitat_types_sf, 
+#                                    proj = p1_proj,
+#                                    threat_category = "none")
+#      
+#      save_top_threat_legend(plot = final_plot, 
+#                             dpi = 300, 
+#                             # change to actual directory once design is finalized
+#                             out_file = "../src/assets/images/threat_by_basin_legend.png")
+#    },
+#    format = "file"
+#  )
 )
 
 

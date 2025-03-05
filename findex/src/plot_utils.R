@@ -258,7 +258,7 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
 }
 
 #in_dat = p2_mean_weighted_threats, threat_pal = p2_viz_config hybas_habitat_types = p2_hybas_habitat_types_sf, proj = p1_proj
-top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj){
+top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category){
   
   processed_df <- in_dat |> 
     group_by(HYBAS_ID) |> 
@@ -272,6 +272,12 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj){
   
   proj_sf <- st_transform(processed_sf, crs = st_crs(proj))
   
+  # make non-target threat category values NA so they are not plotted
+  if(threat_category != "none"){
+    proj_sf <- proj_sf |> 
+      mutate(ThreatCategory = case_when(ThreatCategory != threat_category ~ NA, .default = as.character(ThreatCategory)))
+  }
+  
   pal <- threat_pal |> 
     select(MajorCat, pal) |> 
     rowwise() |> 
@@ -281,11 +287,11 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj){
                            pal == "#7A562B" ~ "#A97639",
                            pal == "#835192" ~ "#995EAB",
                            pal == "#B74F49" ~ "#963C36",
-                           pal == "#002D5E" ~ "#002D5E"))
+                           pal == "#002D5E" ~ "#002D5E")) 
   
   threat_map <- ggplot()+
     geom_sf(data = proj_sf, aes(geometry = Shape, fill = ThreatCategory), color = NA)+
-    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat)+
+    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat, na.value = "gray80")+
     guides(fill = guide_legend(nrow = 2,)) +
     theme_void()+
     theme(
