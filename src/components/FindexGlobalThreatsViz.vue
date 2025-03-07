@@ -105,7 +105,7 @@
         switchToPrimaryCategory(currentCategory.value, currentCategorySubThreatPrefix.value)
     }
     function getPrefixImageURL(filename) {
-        return `src/assets/svgs/${filename}.svg`
+        return new URL(`../assets/svgs/${filename}.svg`, import.meta.url).href
     }
     function getPrefixImageHTML(filename) {
         const imgURL = getPrefixImageURL(filename)
@@ -113,9 +113,9 @@
     }
     function getContentImageUrl(title, category_prefix, content_type) {
         if (primaryCategorySelected.value) {
-            return `src/assets/images/${title.replace(/ /g, "_")}_${content_type}.png`
+            return new URL(`../assets/images/${title.replace(/ /g, "_")}_${content_type}.png`, import.meta.url).href
         } else {
-            return `src/assets/images/${category_prefix}_${title.replace(/ /g, "_")}_${content_type}.png`
+            return new URL(`../assets/images/${category_prefix}_${title.replace(/ /g, "_")}_${content_type}.png`, import.meta.url).href
         }        
     }
     function updateTabContent(category, prefix) {

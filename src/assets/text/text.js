@@ -280,7 +280,7 @@ export default {
                             subThreatIcon: "noun-canal-29572-4E6D6E"
                         },
                         {
-                            subThreat: "Industrial Extraction",
+                            subThreat: "Industrial extraction",
                             subThreatText: "Industrial Extraction text",
                             subThreatIcon: "noun-canal-29572-4E6D6E"
                         }
@@ -339,12 +339,12 @@ export default {
                     ]
                 },
                 {
-                    tabTitle: "Climate and Weather",
-                    tabContentTitle: "Climate and Weather",
+                    tabTitle: "Climate and weather",
+                    tabContentTitle: "Climate and weather",
                     tabContentTitleID: "climate-and-weather",
                     tabIcon: "noun-drain-7131918-7A562B",
-                    tabText: "Climate and Weather text.",
-                    tabMapImageAlt: "Climate and Weather alt.",
+                    tabText: "Climate and weather text.",
+                    tabMapImageAlt: "Climate and weather alt.",
                     tabLegendImageAlt: "Legend",
                     subThreatPrefix: "CW",
                     subThreatData: [
