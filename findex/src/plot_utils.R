@@ -313,3 +313,42 @@ save_top_threat_legend <- function(plot, dpi, out_file){
   
   knitr::plot_crop(out_file)
 }
+
+top_threat_thumbnail <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category, height, width, dpi, out_file){
+  
+  # these coordinates are NAD83 coordinates that correspond to "EPSG:4269", so will only work with the other data if they are also in "EPSG:4269"
+  bbox <- st_bbox(c(xmin = -25, xmax = 60, ymin = -35, ymax = 40))
+
+  # get bbox of projected area of interest
+  if (!(proj == "EPSG:4269")) {
+    bbox <- sf::st_as_sfc(bbox) |> 
+      st_as_sf(crs = "EPSG:4269") |>
+      sf::st_transform(crs = proj) |>
+      sf::st_bbox()
+  }
+  
+  # call custom plotting function
+  threat_map <- top_threat_plot(in_dat = in_dat, 
+                                threat_pal = threat_pal, 
+                                hybas_habitat_types = hybas_habitat_types, 
+                                proj = proj,
+                                threat_category = threat_category)  + 
+    # crop for thumbnail
+    coord_sf(xlim = c(bbox['xmin'], bbox['xmax']), 
+             ylim = c(bbox['ymin'], bbox['ymax']), 
+             expand = F) +
+    # white background and add margin
+    theme(legend.position = "none",
+          plot.background = element_rect(fill = "white", color = NA),
+          panel.background = element_rect(fill = "white", color = NA),
+          plot.margin = margin(t = 2,
+                               r = 2,
+                               b = 2,
+                               l = 2,
+                               unit = "cm")) 
+  
+  # save in square ratio
+  ggsave(out_file, 
+         threat_map, height = height, width = width, dpi = dpi)
+  
+}

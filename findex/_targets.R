@@ -277,6 +277,19 @@ p3 <- list(
       knitr::plot_crop("../src/assets/images/all_threat_by_basin.png")
     },
     format = "file"
+  ),
+  tar_target(
+    p3_top_threat_thumbnail,
+    top_threat_thumbnail(in_dat = p2_mean_weighted_threats, 
+                         threat_pal = p2_viz_config, 
+                         hybas_habitat_types = p2_hybas_habitat_types_sf, 
+                         proj = p1_proj,
+                         threat_category = "none",
+                         height = 6,
+                         width = 6,
+                         dpi = 300,
+                         out_file = "../src/assets/images/threat_by_basin_thumbnail.png"),
+    format = "file"
   )
 #  tar_target(
 #    p3_top_threat_legend_png,
