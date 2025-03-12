@@ -257,7 +257,12 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
   }
 }
 
-#in_dat = p2_mean_weighted_threats, threat_pal = p2_viz_config hybas_habitat_types = p2_hybas_habitat_types_sf, proj = p1_proj
+#' @description create top threats by basin global map
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
+#' @param proj character string with map projection definition
+#' @param threat_category list of target threat categories
 top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category){
   
   processed_df <- in_dat |> 
@@ -303,7 +308,10 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
     )
 }
 
-#plot = final_plot, dpi = 300, out_file = "test_out/threat_by_basin_legend.png"
+#' @description save the legend for top threat by basin global map
+#' @param plot ggplot map to be saved
+#' @param dpi png dpi
+#' @param out_file file path to save the legend to
 save_top_threat_legend <- function(plot, dpi, out_file){
   
   plot_legend <- get_plot_component(plot, "guide-box-right", return_all = T)
@@ -314,6 +322,16 @@ save_top_threat_legend <- function(plot, dpi, out_file){
   knitr::plot_crop(out_file)
 }
 
+#' @description create and save a thumbnail for the findex global maps page
+#' @param threat_category list of target threat categories
+#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param threat_pal dataframe with color palettes and file name templates by threat type
+#' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
+#' @param proj character string with map projection definition
+#' @param height png height
+#' @param width png width
+#' @param unit png height and width units
+#' @param dpi png dpi
 top_threat_thumbnail <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category, height, width, dpi, out_file){
   
   # these coordinates are NAD83 coordinates that correspond to "EPSG:4269", so will only work with the other data if they are also in "EPSG:4269"
