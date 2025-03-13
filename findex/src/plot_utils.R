@@ -140,16 +140,16 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
                color = "gray50",
                size = 8) +
     draw_label(as.character(max_val),
-               x = 0.99,
+               x = 0.84,
                y = 0.55,
-               hjust = 1,
+               hjust = 0,
                vjust = 1,
                lineheight = 0.75,
                color = "gray50",
                size = 8) +
     # higher lower labels
     draw_label("Lower",
-               x = 0.05,
+               x = 0.075,
                y = 0.11,
                hjust = 0,
                vjust = 0,
@@ -157,7 +157,7 @@ cowplot_legend <- function(in_dat, legend_png, threat_category, out_file, height
                color = "black",
                size = 8) +
     draw_label("Higher",
-               x = 0.86,
+               x = 0.815,
                y = 0.11,
                hjust = 1,
                vjust = 0,
