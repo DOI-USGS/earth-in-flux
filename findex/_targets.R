@@ -249,11 +249,9 @@ p3 <- list(
                                     threat_category = p2_threat_categories)  + 
         theme(legend.position = "none")
       
-      # change to actual directory once design is finalized --------------------
       ggsave(sprintf("../src/assets/images/%s_threat_by_basin.png", str_replace_all(p2_threat_categories, " ", "_")), 
              final_plot, height = 6, width = 10, dpi = 300)
       
-      # change to actual directory once design is finalized --------------------
       knitr::plot_crop(sprintf("../src/assets/images/%s_threat_by_basin.png", str_replace_all(p2_threat_categories, " ", "_")))
     },
     format = "file",
@@ -269,11 +267,9 @@ p3 <- list(
                                     threat_category = "none")  + 
         theme(legend.position = "none")
       
-      # change to actual directory once design is finalized --------------------
       ggsave("../src/assets/images/all_threat_by_basin.png", 
              final_plot, height = 6, width = 10, dpi = 300)
       
-      # change to actual directory once design is finalized --------------------
       knitr::plot_crop("../src/assets/images/all_threat_by_basin.png")
     },
     format = "file"
