@@ -243,7 +243,7 @@ export default {
                     tabTitle: "Habitat",
                     tabContentTitle: "Habitat",
                     tabContentTitleID: "habitat",
-                    tabIcon: "noun-canal-29572-4E6D6E",
+                    tabIcon: "habitat-29572",
                     tabText: "Habitat text.",
                     tabMapImageAlt: "Habitat alt.",
                     tabLegendImageAlt: "Legend",
@@ -252,37 +252,37 @@ export default {
                         {
                             subThreat: "Dams",
                             subThreatText: "Dams text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-dams-3916913"
                         },
                         {
                             subThreat: "Wetland drainage",
                             subThreatText: "Wetland drainage text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-wetland-drainage-34007"
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
                             subThreatText: "Deforestation and associated runoff text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-deforestation-4811548"
                         },
                         {
                             subThreat: "Riparian degradation",
                             subThreatText: "Riparian degradation text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-riparian-6291"
                         },
                         {
                             subThreat: "Agricultural extraction",
                             subThreatText: "Agricultural extraction text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-agriculture-5491228"
                         },
                         {
                             subThreat: "Urban extraction",
                             subThreatText: "Urban extraction text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-urban-7019973"
                         },
                         {
                             subThreat: "Industrial extraction",
                             subThreatText: "Industrial Extraction text",
-                            subThreatIcon: "noun-canal-29572-4E6D6E"
+                            subThreatIcon: "H-industrial-659077"
                         }
                     ]
                 },
@@ -290,7 +290,7 @@ export default {
                     tabTitle: "Pollution",
                     tabContentTitle: "Pollution",
                     tabContentTitleID: "pollution",
-                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabIcon: "pollution-6278",
                     tabText: "Pollution text.",
                     tabMapImageAlt: "Pollution alt.",
                     tabLegendImageAlt: "Legend",
@@ -299,42 +299,42 @@ export default {
                         {
                             subThreat: "Agricultural effluents",
                             subThreatText: "Agricultural effluents text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-agriculture-3634692"
                         },
                         {
                             subThreat: "Urban wastewater",
                             subThreatText: "Urban wastewater text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-urban-waste-25100"
                         },
                         {
                             subThreat: "Industrial effluents",
                             subThreatText: "Industrial effluents text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-industrial-200223"
                         },
                         {
                             subThreat: "Aquaculture effluents",
                             subThreatText: "Aquaculture effluents text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-aquaculture-23815"
                         },
                         {
                             subThreat: "Pharmaceuticals",
                             subThreatText: "Pharmaceuticals text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-pharmaceuticals-164439"
                         },
                         {
                             subThreat: "Oil or gas exploration",
                             subThreatText: "Oil or gas exploration text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-oil-gas-3723255"
                         },
                         {
                             subThreat: "Plastics",
                             subThreatText: "Plastics text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-plastics-2484814"
                         },
                         {
                             subThreat: "Mining",
                             subThreatText: "Mining text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "P-mining-7248907"
                         }
                     ]
                 },
@@ -342,36 +342,36 @@ export default {
                     tabTitle: "Climate and weather",
                     tabContentTitle: "Climate and weather",
                     tabContentTitleID: "climate-and-weather",
-                    tabIcon: "noun-drain-7131918-7A562B",
-                    tabText: "Climate and weather text.",
-                    tabMapImageAlt: "Climate and weather alt.",
+                    tabIcon: "climate-6795675",
+                    tabText: "Climate and Weather text.",
+                    tabMapImageAlt: "Climate and Weather alt.",
                     tabLegendImageAlt: "Legend",
                     subThreatPrefix: "CW",
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
                             subThreatText: "Change in water temperature text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "CW-temperature-1979336"
                         },
                         {
                             subThreat: "Drought",
                             subThreatText: "Drought text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "CW-drought-002D5E"
                         },
                         {
                             subThreat: "Change in flooding",
                             subThreatText: "Change in flooding text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "CW-flooding-1760091"
                         },
                         {
                             subThreat: "Change in wind patterns",
                             subThreatText: "Change in wind patterns text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "CW-wind-7479181"
                         },
                         {
                             subThreat: "Change in ice cover",
                             subThreatText: "Change in ice cover text",
-                            subThreatIcon: "noun-drain-7131918-7A562B"
+                            subThreatIcon: "CW-ice-cover-5314745"
                         }
                     ]
                 },
@@ -379,7 +379,7 @@ export default {
                     tabTitle: "Invasive species",
                     tabContentTitle: "Invasive species",
                     tabContentTitleID: "invasive-species",
-                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabIcon: "invasive-species-973991",
                     tabText: "Invasive species text.",
                     tabMapImageAlt: "Invasive species alt.",
                     tabLegendImageAlt: "Legend",
@@ -390,7 +390,7 @@ export default {
                     tabTitle: "Fishing pressure",
                     tabContentTitle: "Fishing pressure",
                     tabContentTitleID: "fishing-pressure",
-                    tabIcon: "noun-drain-7131918-7A562B",
+                    tabIcon: "fishing-pressure-4847095",
                     tabText: "Fishing pressure text.",
                     tabMapImageAlt: "Fishing pressure alt.",
                     tabLegendImageAlt: "Legend",

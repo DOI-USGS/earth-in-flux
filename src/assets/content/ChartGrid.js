@@ -17,7 +17,7 @@ export default {
             project: 'Findex',
             vizKey: 'FindexGlobalThreats',
             vizRoute: 'inland-fish-global-threats',
-            img_src: 'Placeholder_thumbnail.webp',
+            img_src: 'threat_by_basin_thumbnail.webp',
             alt: '',
             chartOrder: 2,
             description: 'Inland fisheries are threatened globally.'
