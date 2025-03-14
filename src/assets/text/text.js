@@ -280,7 +280,7 @@ export default {
                             subThreatIcon: "H-urban-7019973"
                         },
                         {
-                            subThreat: "Industrial Extraction",
+                            subThreat: "Industrial extraction",
                             subThreatText: "Industrial Extraction text",
                             subThreatIcon: "H-industrial-659077"
                         }
@@ -339,8 +339,8 @@ export default {
                     ]
                 },
                 {
-                    tabTitle: "Climate and Weather",
-                    tabContentTitle: "Climate and Weather",
+                    tabTitle: "Climate and weather",
+                    tabContentTitle: "Climate and weather",
                     tabContentTitleID: "climate-and-weather",
                     tabIcon: "climate-6795675",
                     tabText: "Climate and Weather text.",

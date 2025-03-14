@@ -53,11 +53,11 @@
 
     // Colors for threat categories, Needs to be updated with CSS for text legend
     const categoryColors = {
-        'Climate and weather': '#c29fcd',
-        'Exploitation':  '#d38884',
-        'Habitat':  '#dab589', 
-        'Invasive species':  '#729C9D',
-        'Pollution': '#899bb7'
+        'Climate and weather': '#899bb7',
+        'Fishing pressure': '#c29fcd',
+        'Habitat': '#729C9D', 
+        'Invasive species': '#d38884',
+        'Pollution': '#dab589'
     }; 
 
     onMounted(async () => {
@@ -70,8 +70,8 @@
                     height: window.innerHeight * 0.8,
                     margin: 10,
                     marginLeft: mobileView ? 80: 150,
-                    marginRight: mobileView ? 125: 250,
-                    marginTop: 30,
+                    marginRight: mobileView ? 135: 250,
+                    marginTop: mobileView ? 60 : 50,
                     containerId: 'threat-container'
                 });
                 createSankey({
@@ -160,26 +160,57 @@
             .attr('id', 'text_group')
 
         // add titles
-        svg.append("text")
+        const subtitle = mobileView ? "High to low" : "Ranked high to low"
+        const leftTitle = svg.append("text")
             .attr("class", "axis-title")
             .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
+            .attr("y", 0)
             .attr("dx", "0em")
             .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.left)
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.left)
             .style("text-anchor", "end")
             .text("Threat Categories")
-            .call(d => mobileView ? wrap(d) : d)
+            .call(d => mobileView ? wrap(d, {shift: false}) : d)
+
+        const leftTitleLength = leftTitle.node().getComputedTextLength()
 
         svg.append("text")
+            .attr("class", "axis-text axis-value axis-notation")
+            .attr("x", chartDimensions.margin.left - labelBuffer + nodeWidth) // match spacing between sankey and labels
+            .attr("y", 0)
+            .attr("dx", "0em")
+            .attr("dy", leftTitleLength > chartDimensions.margin.left ? "2.8em" : "1.5em")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.left)
+            .attr("text-anchor", "end")
+            .text(subtitle)
+            .call(d => wrap(d, {shift: false}))
+
+        const rightTitle = svg.append("text")
             .attr("class", "axis-title")
             .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
-            .attr("y", chartDimensions.margin.top / 2)
+            .attr("y", 0)
             .attr("dx", "0em")
             .attr("dy", "0em")
-            .attr("data-width", chartDimensions.margin.right)
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.right)
             .style("text-anchor", "start")
             .text("Threats")
+
+        const rightTitleLength = rightTitle.node().getComputedTextLength()
+
+        svg.append("text")
+            .attr("class", "axis-text axis-value axis-notation")
+            .attr("x", chartDimensions.width - chartDimensions.margin.right + labelBuffer - nodeWidth) // match spacing between sankey and labels
+            .attr("y", 0)
+            .attr("dx", "0em")
+            .attr("dy", rightTitleLength > chartDimensions.margin.right ? "2.8em" : "1.5em")
+            .attr("dominant-baseline", "hanging")
+            .attr("text-width", chartDimensions.margin.right)
+            .attr("text-anchor", "start")
+            .text(subtitle)
+            .call(d => wrap(d, {shift: false}))
     };
 
     function createSankey({
@@ -191,7 +222,7 @@
     
         // initialize sankey
         const sankey = d3sankey.sankey()
-            .nodeSort(null)
+            .nodeSort((a,b) => d3.descending(a.value, b.value))
             .linkSort(null)
             .nodeWidth(nodeWidth)
             .nodePadding(mobileView ? 15 : 11)
@@ -278,12 +309,13 @@
                             .attr("class", d => d.x0 < chartDimensions.boundedWidth / 2 ? "axis-text left" : "axis-text right")
                             .attr("x", d => d.x0 < chartDimensions.boundedWidth / 2 ? d.x1 : d.x0) //checks for right-most labels
                             .attr("y", d => (d.y1 + d.y0) / 2)
-                            .attr("dy", "0.35em")
+                            .attr("dy", "0em")
                             .attr("dx", d => d.x0 < chartDimensions.boundedWidth / 2 ? -labelBuffer : labelBuffer)
+                            .attr("dominant-baseline", "central")
                             .attr("text-anchor", d => d.x0 < chartDimensions.boundedWidth / 2 ? "end" : "start") //checks for right-most labels
-                            .attr("data-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
+                            .attr("text-width", d => d.x0 < chartDimensions.boundedWidth / 2 ? chartDimensions.margin.left : chartDimensions.margin.right)
                             .text(d => d.name)
-                            .call(d => mobileView ? wrap(d) : d)
+                            .call(d => mobileView ? wrap(d, {shift: true}) : d)
                         // .append("tspan")
                         //     .attr("fill-opacity", 0.7)
                         //     .text(d => ` ${d.value.toLocaleString()}`)
@@ -320,27 +352,9 @@
                 const node = {name: d[k]};
                 nodes.push(node);
                 nodeByKey.set(key, node);
-                // Doing some custom index setting to sort the left side of the sankey
-                if (d[k] == 'Invasive species') {
-                    ++index // still need to advance index
-                    indexByKey.set(key, 3); // Would otherwise be 1
-                } else if (d[k] == 'Pollution') {
-                    ++index
-                    indexByKey.set(key, 1); // Would otherwise be 2
-                } else if (d[k] == 'Climate and weather') {
-                    ++index
-                    indexByKey.set(key, 2); // Would otherwise be 3
-                } else {
-                    indexByKey.set(key, ++index);
-                }
-                // Use below if dropping custom sorting
-                // indexByKey.set(key, ++index);
+                indexByKey.set(key, ++index);
             }
         }
-        
-        // With custom indices, need to re-order nodes
-        // Here, taking 'Invasive species' out of slot 1 and dropping in slot 3
-        nodes.splice(3, 0, nodes.splice(1, 1)[0]);
 
         // creates links between nodes
         for (let i = 1; i < keys.length; ++i) {
@@ -367,7 +381,9 @@
     };
 
     // https://gist.github.com/mbostock/7555321
-    function wrap(text) {
+    function wrap(text, {
+        shift = false
+    }) {
         text.each(function() {
             var text = d3.select(this),
             words = text.text().split(/\s|-+/).reverse(),
@@ -375,12 +391,13 @@
             line = [],
             lineNumber = 0,
             lineHeight = 1.1, // ems
-            width = text.attr("data-width"),
+            width = text.attr("text-width"),
+            baseline = text.attr("dominant-baseline"),
             x = text.attr("x"),
             y = text.attr("y"),
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
-            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
+            tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);;
             
             console.log(text.attr("dy"))
 
@@ -391,13 +408,13 @@
                 line.pop();
                 tspan.text(line.join(" "));
                 line = [word];
-                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").attr("dominant-baseline", baseline).text(word);
                 }
             }
 
             // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
-            if (lineNumber > 0) {
-                const startDy = -(lineNumber * (lineHeight / 2)) * 0.5; // *0.5 for vertically-centered labels
+            if (lineNumber > 0  && shift) {
+                const startDy = -(lineNumber * (lineHeight / 2));
                 text
                     .selectAll("tspan")
                     .attr("dy", (d, i) => startDy + lineHeight * i + "em");
@@ -408,8 +425,11 @@
 
 <style lang="scss">
     #threat-container {
-        max-width: 1000px;
+        max-width: min(1000px, 60vw);
         margin: 5rem auto 0 auto;
+        @media screen and (max-width: 600px) {
+            max-width: 100%;
+        }
     }
     .axis-text {
         font-size: 1.6rem;
@@ -428,5 +448,8 @@
         @media screen and (max-width: 600px) {
             font-size: 1.6rem;
         }
+    }
+    .axis-notation {
+        font-style: italic;
     }
 </style>
