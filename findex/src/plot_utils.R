@@ -288,11 +288,11 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
     rowwise() |> 
     mutate(pal = first(pal)) |> 
     unique() |> 
-    mutate(pal = case_when(pal == "#4E6D6E" ~ "#598586",
-                           pal == "#7A562B" ~ "#A97639",
-                           pal == "#835192" ~ "#995EAB",
-                           pal == "#B74F49" ~ "#963C36",
-                           pal == "#002D5E" ~ "#002D5E")) 
+    mutate(pal = case_when(pal == "#4E6D6E" ~ "#648E8E",
+                           pal == "#7A562B" ~ "#a27846",
+                           pal == "#835192" ~ "#845c93",
+                           pal == "#B74F49" ~ "#b24d4b",
+                           pal == "#002D5E" ~ "#265079"))
   
   threat_map <- ggplot()+
     geom_sf(data = proj_sf, aes(geometry = Shape, fill = ThreatCategory), color = NA)+
