@@ -236,8 +236,47 @@ export default {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         },
         FindexGlobalThreats: {
-            heading1:"Global variability of threats",
-            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the severity of threats varies globally.",
+            heading1:"What are the top threats to inland fisheries?",
+            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the top threat for each river basin varies globally.",
+            mapData: {
+                habitat: {
+                    visible: true,
+                    path: 'Habitat_threat_by_basin.png',
+                    color: 'var(--color-habitat-top)',
+                    order: 1,
+                    label: "Habitat"
+                },
+                pollution: {
+                    visible: true,
+                    path: 'Pollution_threat_by_basin.png',
+                    color: 'var(--color-pollution-top)',
+                    order: 2,
+                    label: "Pollution"
+                },
+                climate_and_weather: {
+                    visible: true,
+                    path: 'Climate_and_weather_threat_by_basin.png',
+                    color: 'var(--color-climate-and-weather-top)',
+                    order: 3,
+                    label: "Climate and weather"
+                },
+                invasive_species: {
+                    visible: true,
+                    path: 'Invasive_species_threat_by_basin.png',
+                    color: 'var(--color-invasive-species-top)',
+                    order: 4,
+                    label: "Invasive species"
+                },
+                fishing_pressure: {
+                    visible: true,
+                    path: 'Fishing_pressure_threat_by_basin.png',
+                    color: 'var(--color-fishing-pressure-top)',
+                    order: 5,
+                    label: "Fishing pressure"
+                },
+            },
+            heading2:"Where are threats higher and lower?",
+            paragraph2: "Similarly, the severity of threats varies globally.",
             tabData: [
                 {
                     tabTitle: "Habitat",

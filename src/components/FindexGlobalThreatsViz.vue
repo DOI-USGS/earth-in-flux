@@ -2,16 +2,53 @@
     <section>
         <!---VizSection-->
         <VizSection
-            :figures="false"
+            :figures="true"
             :fig-caption="false"
         >
-            <!-- HEADING -->
             <template #heading>
                 <h2 v-html="text.heading1" />
             </template>
-            <!-- FIGURES -->
             <template #aboveExplanation>
                 <p v-html="text.paragraph1" />
+            <div class="toggle-group">
+                <p id="toggle-title">Toggle map layers:</p> 
+                <ToggleSwitch 
+                    v-for="layer in layers"
+                    :key="layer.order"
+                    v-model="layer.visible" 
+                    :label="layer.label"
+                    :rightColor="layer.color"
+                />
+            </div>
+            </template>
+            <template #figures>    
+                <div id="top-threat-map-container">
+                    <figure
+                        class="base-image"
+                    >
+                        <img class="map-image" :src="getImageURL('base_threat_by_basin.png')" alt="">
+                    </figure>
+                    <figure 
+                        v-for="layer in layers"
+                        :key="layer.order"
+                        v-show="layer.visible"
+                        class="overlay-image"
+                    >
+                        <img class="map-image" :src="getImageURL(layer.path)" alt="">
+                    </figure>
+                </div>
+            </template>
+        </VizSection>
+        <!---VizSection-->
+        <VizSection
+            :figures="false"
+            :fig-caption="false"
+        >
+            <template #heading>
+                <h2 v-html="text.heading2" />
+            </template>
+            <template #aboveExplanation>
+                <p v-html="text.paragraph2" />
             </template>
         </VizSection>
         <tabsGroup id="map-tabs" :options="{ useUrlFragment: false }" >
@@ -43,8 +80,9 @@
 </template>
 
 <script setup>
-    import { computed, nextTick, onMounted, ref } from "vue";
+    import { computed, nextTick, onMounted, reactive, ref } from "vue";
     import VizSection from '@/components/VizSection.vue';
+    import ToggleSwitch from '@/components/ToggleSwitch.vue';
     import FishIcon from '@/assets/svgs/noun-fish-7471722.svg';
 
     // define props
@@ -71,6 +109,9 @@
     const subThreatText = computed(() => {
         return subCategoryData.value.subThreatText;
     });
+
+    // set up reactive layers object
+    const layers = reactive(props.text.mapData)
 
     // Declare behavior on mounted
     // functions called here
@@ -142,20 +183,35 @@
         updateIcon();
     }
 
+    function getImageURL(file) {
+        return new URL(`../assets/images/${file}`, import.meta.url).href
+    }
+
 </script>
 
 <style lang="scss">
-$habitat: #4E6D6E; 
-$habitat-faded: #C9D8D9;
-$habitat-dark: #405959;
-$pollution: #7A562B;
-$pollution-faded: #E1C8AA;
-$pollution-dark: #5B401F;
-$climate-and-weather: #002D5E;
-$climate-and-weather-faded: #B2C0CE;
-$climate-and-weather-dark: #002D5E;
-$invasive-species: #B74F49;
-$fishing-pressure: #835192;
+#toggle-title {
+    font-weight: 700;
+}
+#top-threat-map-container {
+    position: relative;
+    margin-top: 3rem;
+}
+.base-image {
+    position: relative;
+}
+.overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.map-image {
+    width: 100%;
+    justify-self: center;
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+    }
+}
 #map-tabs {
     margin-top: 3rem;
 }
@@ -193,39 +249,39 @@ $fishing-pressure: #835192;
     width: 100%;
 }
 .habitat {
-    color: $habitat;
-    fill: $habitat;
+    color: var(--color-habitat);
+    fill: var(--color-habitat);
 }
 .pollution {
-    color: $pollution;
-    fill: $pollution;
+    color: var(--color-pollution);
+    fill: var(--color-pollution);
 }
 .climate-and-weather {
-    color: $climate-and-weather;
-    fill: $climate-and-weather;
+    color: var(--color-climate-and-weather);
+    fill: var(--color-climate-and-weather);
 }
 .invasive-species {
-    color: $invasive-species;
-    fill: $invasive-species;
+    color: var(--color-invasive-species);
+    fill: var(--color-invasive-species);
 }
 .fishing-pressure {
-    color: $fishing-pressure;
-    fill: $fishing-pressure;
+    color: var(--color-fishing-pressure);
+    fill: var(--color-fishing-pressure);
 }
 .highlight.habitat {
-    background-color: $habitat;
+    background-color: var(--color-habitat);
 }
 .highlight.pollution {
-    background-color: $pollution;
+    background-color: var(--color-pollution);
 }
 .highlight.climate-and-weather {
-    background-color: $climate-and-weather;
+    background-color: var(--color-climate-and-weather);
 }
 .highlight.invasive-species {
-    background-color: $invasive-species;
+    background-color: var(--color-invasive-species);
 }
 .highlight.fishing-pressure {
-    background-color: $fishing-pressure;
+    background-color: var(--color-fishing-pressure);
 }
 .category-button {
     background-color: transparent;
@@ -240,16 +296,16 @@ $fishing-pressure: #835192;
 }
 @media (hover: hover) {
     .category-button.habitat:hover {
-        background-color: $habitat-faded;
-        color: $habitat-dark;
+        background-color: var(--color-habitat-faded);
+        color: var(--color-habitat-dark);
     }
     .category-button.pollution:hover {
-        background-color: $pollution-faded;
-        color: $pollution-dark;
+        background-color: var(--color-pollution-faded);
+        color: var(--color-pollution-dark);
     }
     .category-button.climate-and-weather:hover {
-        background-color: $climate-and-weather-faded;
-        color: $climate-and-weather-dark;
+        background-color: var(--color-climate-and-weather-faded);
+        color: var(--color-climate-and-weather-dark);
     }
     .category-button.invasive-species:hover {
         color: white;
@@ -259,13 +315,13 @@ $fishing-pressure: #835192;
     }
 }
 .habitat {
-    text-decoration: underline solid $habitat-faded;
+    text-decoration: underline solid var(--color-habitat-faded);
 }
 .pollution {
-    text-decoration: underline solid $pollution-faded;
+    text-decoration: underline solid var(--color-pollution-faded);
 } 
 .climate-and-weather {
-    text-decoration: underline solid $climate-and-weather-faded;
+    text-decoration: underline solid var(--color-climate-and-weather-faded);
 } 
 .separator {
     background-color: transparent;
