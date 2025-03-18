@@ -67,13 +67,26 @@
                         </span>
                     </h4>
                 </div>
-                <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                <p v-html="subThreatText" v-if="!primaryCategorySelected"/>
                 <div id="icon-legend-container">
                     <img class="tab-icon-image" :src="iconSource" alt="">
                     <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
                 </div>
                 <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
+                <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
+                <div v-if="!primaryCategorySelected">
+                    <h4 v-html="text.subThreatHeading1"/>
+                    <p v-html="subCategoryData.subThreatDrivers"></p>
+                    <h4 v-html="text.subThreatHeading2"/>
+                    <p v-html="subCategoryData.subThreatImpacts"></p>
+                </div>
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                        <h4 v-html="text.subThreatHeading3"></h4><span class="symbol">+</span>
+                    </button>
+                    <div class="panel">
+                        <p>panel text</p>
+                    </div>
+                </div>
             </tabItem>
         </tabsGroup>
     </section>
@@ -106,9 +119,6 @@
     const subCategoryData = computed(() => {
         return primaryCategoryData.value.subThreatData.filter(d => d.subThreat == currentCategory.value)[0]
     })
-    const subThreatText = computed(() => {
-        return subCategoryData.value.subThreatText;
-    });
 
     // set up reactive layers object
     const layers = reactive(props.text.mapData)
@@ -130,7 +140,24 @@
             })
         } catch (error) {
             console.error('Error during component mounting', error);
-        }        
+        } 
+        
+        // set up accordions
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            const panel = this.nextElementSibling;
+            const symbol = this.querySelector('.symbol');
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+                symbol.textContent = "+";
+            } else {
+                panel.style.display = "block";
+                symbol.textContent = "-";
+            }
+            });
+        }
     });
     function updateTab() {
         // identify active tab
@@ -282,6 +309,22 @@
 }
 .highlight.fishing-pressure {
     background-color: var(--color-fishing-pressure);
+}
+.accordion-container {
+    border-left: 5px solid;
+    border-radius: .25rem;
+    overflow-wrap: break-word;
+}
+.habitat-accordion {
+    border-left-color: var(--color-habitat);
+    color: var(--color-habitat-dark)
+}
+.habitat-bkgd {
+    background-color: var(--color-habitat-faded);
+}
+.habitat-bkgd:hover {
+    background-color: var(--color-habitat);
+
 }
 .category-button {
     background-color: transparent;
