@@ -73,18 +73,44 @@
                 </div>
                 <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                <div v-if="!primaryCategorySelected">
-                    <h4 v-html="text.subThreatHeading1"/>
-                    <p v-html="subCategoryData.subThreatDrivers"></p>
-                    <h4 v-html="text.subThreatHeading2"/>
-                    <p v-html="subCategoryData.subThreatImpacts"></p>
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
+                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`">
+                        <h4 v-html="text.subThreatHeading1"></h4><span class="symbol"></span>
+                    </button>
+                    <div class="panel active">
+                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText1" />
+                    </div>
                 </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
+                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`">
+                        <h4 v-html="text.subThreatHeading2"></h4><span class="symbol"></span>
+                    </button>
+                    <div class="panel active">
+                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText2" />
+                    </div>
+                </div>
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
                     <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
-                        <h4 v-html="text.subThreatHeading3"></h4><span class="symbol">+</span>
+                        <h4 v-html="text.subThreatHeading3"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel">
-                        <p>panel text</p>
+                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText3" />
+                    </div>
+                </div>
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                        <h4 v-html="text.subThreatHeading4"></h4><span class="symbol"></span>
+                    </button>
+                    <div class="panel">
+                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText4" />
+                    </div>
+                </div>
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                        <h4 v-html="text.subThreatHeading5"></h4><span class="symbol"></span>
+                    </button>
+                    <div class="panel">
+                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText5" />
                     </div>
                 </div>
             </tabItem>
@@ -148,14 +174,12 @@
             acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
             const panel = this.nextElementSibling;
-            const symbol = this.querySelector('.symbol');
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-                symbol.textContent = "+";
-            } else {
-                panel.style.display = "block";
-                symbol.textContent = "-";
-            }
+            panel.classList.toggle("active");
+            // if (panel.style.display === "block") {
+            //     panel.style.display = "none";
+            // } else {
+            //     panel.style.display = "block";
+            // }
             });
         }
     });
@@ -310,21 +334,14 @@
 .highlight.fishing-pressure {
     background-color: var(--color-fishing-pressure);
 }
-.accordion-container {
-    border-left: 5px solid;
-    border-radius: .25rem;
-    overflow-wrap: break-word;
-}
 .habitat-accordion {
     border-left-color: var(--color-habitat);
-    color: var(--color-habitat-dark)
 }
-.habitat-bkgd {
-    background-color: var(--color-habitat-faded);
+.pollution-accordion {
+    border-left-color: var(--color-pollution);
 }
-.habitat-bkgd:hover {
-    background-color: var(--color-habitat);
-
+.climate-and-weather-accordion {
+    border-left-color: var(--color-climate-and-weather);
 }
 .category-button {
     background-color: transparent;

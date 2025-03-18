@@ -295,44 +295,65 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Dams",
-                            subThreatDrivers: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
-                            subThreatImpacts: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
+                            subThreatText1: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
+                            subThreatText2: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
+                            subThreatText3: "Dams sectors",
+                            subThreatText4: "Dams mitigation",
+                            subThreatText5: "Dams measurement",
                             subThreatIcon: "H-dams-3916913"
                         },
                         {
                             subThreat: "Wetland drainage",
-                            subThreatDrivers: "Wetland drainage text",
-                            subThreatImpacts: "Wetland drainage impact",
+                            subThreatText1: "Wetland drainage text",
+                            subThreatText2: "Wetland drainage impact",
+                            subThreatText3: "Wetland drainage sectors",
+                            subThreatText4: "Wetland drainage mitigation",
+                            subThreatText5: "Wetland drainage measurement",
                             subThreatIcon: "H-wetland-drainage-34007"
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
-                            subThreatDrivers: "Deforestation and associated runoff text",
-                            subThreatImpacts: "Deforestation and associated runoff impact",
+                            subThreatText1: "Deforestation and associated runoff text",
+                            subThreatText2: "Deforestation and associated runoff impact",
+                            subThreatText3: "Deforestation and associated runoff sectors",
+                            subThreatText4: "Deforestation and associated runoff mitigation",
+                            subThreatText5: "Deforestation and associated runoff measurement",
                             subThreatIcon: "H-deforestation-4811548"
                         },
                         {
                             subThreat: "Riparian degradation",
-                            subThreatDrivers: "Riparian degradation text",
-                            subThreatImpacts: "Riparian degradation impact",
+                            subThreatText1: "Riparian degradation text",
+                            subThreatText2: "Riparian degradation impact",
+                            subThreatText3: "Riparian degradation sectors",
+                            subThreatText4: "Riparian degradation mitigation",
+                            subThreatText5: "Riparian degradation measurement",
                             subThreatIcon: "H-riparian-6291"
                         },
                         {
                             subThreat: "Agricultural extraction",
-                            subThreatDrivers: "Agricultural extraction text",
-                            subThreatImpacts: "Agricultural extraction impact",
+                            subThreatText1: "Agricultural extraction text",
+                            subThreatText2: "Agricultural extraction impact",
+                            subThreatText3: "Agricultural extraction sectors",
+                            subThreatText4: "Agricultural extraction mitigation",
+                            subThreatText5: "Agricultural extraction measurement",
                             subThreatIcon: "H-agriculture-5491228"
                         },
                         {
                             subThreat: "Urban extraction",
-                            subThreatDrivers: "Urban extraction text",
-                            subThreatImpacts: "Urban extraction impact",
+                            subThreatText1: "Urban extraction text",
+                            subThreatText2: "Urban extraction impact",
+                            subThreatText3: "Urban extraction sectors",
+                            subThreatText4: "Urban extraction mitigation",
+                            subThreatText5: "Urban extraction measurement",
                             subThreatIcon: "H-urban-7019973"
                         },
                         {
                             subThreat: "Industrial extraction",
-                            subThreatDrivers: "Industrial Extraction text",
-                            subThreatImpacts: "Industrial Extraction impact",
+                            subThreatText1: "Industrial Extraction text",
+                            subThreatText2: "Industrial Extraction impact",
+                            subThreatText3: "Industrial sectors",
+                            subThreatText4: "Industrial mitigation",
+                            subThreatText5: "Industrial measurement",
                             subThreatIcon: "H-industrial-659077"
                         }
                     ]
@@ -349,50 +370,74 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Agricultural effluents",
-                            subThreatDrivers: "Agricultural effluents text",
-                            subThreatImpacts: "Agricultural effluents impact",
+                            subThreatText1: "Agricultural effluents text",
+                            subThreatText2: "Agricultural effluents impact",
+                            subThreatText3: "Agricultural effluents sectors",
+                            subThreatText4: "Agricultural effluents mitigation",
+                            subThreatText5: "Agricultural effluents measurement",
                             subThreatIcon: "P-agriculture-3634692"
                         },
                         {
                             subThreat: "Urban wastewater",
-                            subThreatDrivers: "Urban wastewater text",
-                            subThreatImpacts: "Urban wastewater impact",
+                            subThreatText1: "Urban wastewater text",
+                            subThreatText2: "Urban wastewater impact",
+                            subThreatText3: "Urban wastewater sectors",
+                            subThreatText4: "Urban wastewater mitigation",
+                            subThreatText5: "Urban wastewater measurement",
                             subThreatIcon: "P-urban-waste-25100"
                         },
                         {
                             subThreat: "Industrial effluents",
-                            subThreatDrivers: "Industrial effluents text",
-                            subThreatImpacts: "Industrial effluents impact",
+                            subThreatText1: "Industrial effluents text",
+                            subThreatText2: "Industrial effluents impact",
+                            subThreatText3: "Industrial effluents sectors",
+                            subThreatText4: "Industrial effluents mitigation",
+                            subThreatText5: "Industrial effluents measurement",
                             subThreatIcon: "P-industrial-200223"
                         },
                         {
                             subThreat: "Aquaculture effluents",
-                            subThreatDrivers: "Aquaculture effluents text",
-                            subThreatImpacts: "Aquaculture effluents impact",
+                            subThreatText1: "Aquaculture effluents text",
+                            subThreatText2: "Aquaculture effluents impact",
+                            subThreatText3: "Aquaculture effluents sectors",
+                            subThreatText4: "Aquaculture effluents mitigation",
+                            subThreatText5: "Aquaculture effluents measurement",
                             subThreatIcon: "P-aquaculture-23815"
                         },
                         {
                             subThreat: "Pharmaceuticals",
-                            subThreatDrivers: "Pharmaceuticals text",
-                            subThreatImpacts: "Pharmaceuticals impact",
+                            subThreatText1: "Pharmaceuticals text",
+                            subThreatText2: "Pharmaceuticals impact",
+                            subThreatText3: "Pharmaceuticals sectors",
+                            subThreatText4: "Pharmaceuticals mitigation",
+                            subThreatText5: "Pharmaceuticals measurement",
                             subThreatIcon: "P-pharmaceuticals-164439"
                         },
                         {
                             subThreat: "Oil or gas exploration",
-                            subThreatDrivers: "Oil or gas exploration text",
-                            subThreatImpacts: "Oil or gas exploration impact",
+                            subThreatText1: "Oil or gas exploration text",
+                            subThreatText2: "Oil or gas exploration impact",
+                            subThreatText3: "Oil or gas exploration sectors",
+                            subThreatText4: "Oil or gas exploration mitigation",
+                            subThreatText5: "Oil or gas exploration measurement",
                             subThreatIcon: "P-oil-gas-3723255"
                         },
                         {
                             subThreat: "Plastics",
-                            subThreatDrivers: "Plastics text",
-                            subThreatImpacts: "Plastics impact",
+                            subThreatText1: "Plastics text",
+                            subThreatText2: "Plastics impact",
+                            subThreatText3: "Plastics sectors",
+                            subThreatText4: "Plastics mitigation",
+                            subThreatText5: "Plastics measurement",
                             subThreatIcon: "P-plastics-2484814"
                         },
                         {
                             subThreat: "Mining",
-                            subThreatDrivers: "Mining text",
-                            subThreatImpacts: "Mining impact",
+                            subThreatText1: "Mining text",
+                            subThreatText2: "Mining impact",
+                            subThreatText3: "Mining sectors",
+                            subThreatText4: "Mining mitigation",
+                            subThreatText5: "Mining measurement",
                             subThreatIcon: "P-mining-7248907"
                         }
                     ]
@@ -409,32 +454,47 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
-                            subThreatDrivers: "Change in water temperature text",
-                            subThreatImpacts: "Change in water temperature impact",
+                            subThreatText1: "Change in water temperature text",
+                            subThreatText2: "Change in water temperature impact",
+                            subThreatText3: "Change in water temperature sectors",
+                            subThreatText4: "Change in water temperature mitigation",
+                            subThreatText5: "Change in water temperature measurement",
                             subThreatIcon: "CW-temperature-1979336"
                         },
                         {
                             subThreat: "Drought",
-                            subThreatDrivers: "Drought text",
-                            subThreatImpacts: "Drought impact",
+                            subThreatText1: "Drought text",
+                            subThreatText2: "Drought impact",
+                            subThreatText3: "Drought impact sectors",
+                            subThreatText4: "Drought impact mitigation",
+                            subThreatText5: "Drought impact measurement",
                             subThreatIcon: "CW-drought-002D5E"
                         },
                         {
                             subThreat: "Change in flooding",
-                            subThreatDrivers: "Change in flooding text",
-                            subThreatImpacts: "Change in flooding impact",
+                            subThreatText1: "Change in flooding text",
+                            subThreatText2: "Change in flooding impact",
+                            subThreatText3: "Change in flooding sectors",
+                            subThreatText4: "Change in flooding mitigation",
+                            subThreatText5: "Change in flooding measurement",
                             subThreatIcon: "CW-flooding-1760091"
                         },
                         {
                             subThreat: "Change in wind patterns",
-                            subThreatDrivers: "Change in wind patterns text",
-                            subThreatImpacts: "Change in wind patterns impact",
+                            subThreatText1: "Change in wind patterns text",
+                            subThreatText2: "Change in wind patterns impact",
+                            subThreatText3: "Change in wind patterns sectors",
+                            subThreatText4: "Change in wind patterns mitigation",
+                            subThreatText5: "Change in wind patterns measurement",
                             subThreatIcon: "CW-wind-7479181"
                         },
                         {
                             subThreat: "Change in ice cover",
-                            subThreatDrivers: "Change in ice cover text",
-                            subThreatImpacts: "Change in ice cover impact",
+                            subThreatText1: "Change in ice cover text",
+                            subThreatText2: "Change in ice cover impact",
+                            subThreatText3: "Change in ice cover sectors",
+                            subThreatText4: "Change in ice cover mitigation",
+                            subThreatText5: "Change in ice cover measurement",
                             subThreatIcon: "CW-ice-cover-5314745"
                         }
                     ]

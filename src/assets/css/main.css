@@ -120,12 +120,24 @@ a:hover {
 }
 
 /* css for accordions */
+
+.accordion-container {
+  border-left: 5px solid;  
+  border-right: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  border-radius: .25rem;
+  overflow-wrap: break-word;
+  margin: 10px -12.5px 10px -12.5px;
+  overflow: hidden;
+}
+
 .accordion {
   background-color: var(--color-background);
   color: var(--soft-black);
   cursor: pointer;
   padding: 5px;
-  padding-bottom: 0;
+  padding-left: 7.5px;
   width: 100%;
   border: none;
   text-align: left;
@@ -135,10 +147,10 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  border-bottom: 2px solid var(--usgs-blue);
+  border-radius: 0 .25rem .25rem 0;
 }
 
-.accordion::before {
+.accordion::before{
   content: "";
   position: absolute;
   top: -2px;
@@ -150,29 +162,39 @@ a:hover {
   transition: border-color 0.3s;
 }
 
+.accordion span::before {
+  content: "\1F7A1";
+}
+
+.accordion.active span::before {
+  display: block;
+  content: "\1F7A1";
+  transform: rotate(45deg);
+}
+
 .accordion:hover::before, .accordion.active::before {
   border-color: var(--usgs-blue);
 }
 
 .active, .accordion:hover {
-  background-color: var(--medium-grey); 
   color: black;
 }
+
 .accordion:hover {
-  color: white;
+  background-color: var(--medium-light-grey);
 }
 
 .panel {
   display: none; 
-  overflow: visible;
-  background-color: white;
-  margin-bottom: -15px;
-  margin-top: -15px;
+}
+
+.panel.active {
+  display: block; 
 }
 
 .panel p {
-  margin-top: 15px;
-  padding: 5px;
+  margin: 10px 0 10px 0;
+  padding: 7.5px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -183,6 +205,7 @@ a:hover {
 .symbol {
   font-size: 3rem;
   font-weight: bold;
+  padding-right: 5px;
 }
 
 /* css for tab components */
