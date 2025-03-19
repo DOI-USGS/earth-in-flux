@@ -238,7 +238,7 @@ export default {
         },
         FindexGlobalThreats: {
             heading1:"What are the top threats to inland fisheries?",
-            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the top threat for each river basin varies globally.",
+            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the top threat for each river basin varies globally. The map below shows the top threat to inland fisheries in each river basin.",
             mapData: {
                 habitat: {
                     visible: true,
@@ -277,7 +277,7 @@ export default {
                 },
             },
             heading2:"Where are threats higher and lower?",
-            paragraph2: "Similarly, the severity of threats varies globally.",
+            paragraph2: "Similarly, the severity of threats varies globally. Explore the tabs below to learn more.",
             subThreatHeading1: "Drivers",
             subThreatHeading2: "Potential impacts",
             subThreatHeading3: "Sectors involved",
