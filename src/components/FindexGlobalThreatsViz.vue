@@ -75,40 +75,40 @@
                     <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 </div>
                 <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
-                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
+                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
                         <h4 v-html="text.subThreatHeading1"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel active">
                         <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText1" />
                     </div>
                 </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
-                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
+                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
                         <h4 v-html="text.subThreatHeading2"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel active">
                         <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText2" />
                     </div>
                 </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
                         <h4 v-html="text.subThreatHeading3"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel">
                         <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText3" />
                     </div>
                 </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
                         <h4 v-html="text.subThreatHeading4"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel">
                         <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText4" />
                     </div>
                 </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`">
+                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
+                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
                         <h4 v-html="text.subThreatHeading5"></h4><span class="symbol"></span>
                     </button>
                     <div class="panel">
@@ -169,21 +169,6 @@
         } catch (error) {
             console.error('Error during component mounting', error);
         } 
-        
-        // set up accordions
-        const acc = document.getElementsByClassName("accordion");
-        for (let i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            const panel = this.nextElementSibling;
-            panel.classList.toggle("active");
-            // if (panel.style.display === "block") {
-            //     panel.style.display = "none";
-            // } else {
-            //     panel.style.display = "block";
-            // }
-            });
-        }
     });
     function updateTab() {
         // identify active tab
@@ -235,9 +220,13 @@
         updateTabContent(category, prefix);
         updateIcon();
     }
-
     function getImageURL(file) {
         return new URL(`../assets/images/${file}`, import.meta.url).href
+    }
+    function accordionClick(event) {
+        event.target.classList.toggle("active");
+        const panel = event.target.nextElementSibling;
+        panel.classList.toggle("active");
     }
 
 </script>
