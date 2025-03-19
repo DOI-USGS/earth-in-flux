@@ -75,44 +75,14 @@
                     <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
                 </div>
                 <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
-                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
-                        <h4 v-html="text.subThreatHeading1"></h4><span class="symbol"></span>
-                    </button>
-                    <div class="panel active">
-                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText1" />
-                    </div>
-                </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
-                    <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
-                        <h4 v-html="text.subThreatHeading2"></h4><span class="symbol"></span>
-                    </button>
-                    <div class="panel active">
-                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText2" />
-                    </div>
-                </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
-                        <h4 v-html="text.subThreatHeading3"></h4><span class="symbol"></span>
-                    </button>
-                    <div class="panel">
-                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText3" />
-                    </div>
-                </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
-                        <h4 v-html="text.subThreatHeading4"></h4><span class="symbol"></span>
-                    </button>
-                    <div class="panel">
-                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText4" />
-                    </div>
-                </div>
-                <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-if="!primaryCategorySelected">
-                    <button class="accordion" :class="`${tab.tabContentTitleID}-bkgd`" @click="accordionClick">
-                        <h4 v-html="text.subThreatHeading5"></h4><span class="symbol"></span>
-                    </button>
-                    <div class="panel">
-                        <p v-if="!primaryCategorySelected" v-html="subCategoryData.subThreatText5" />
+                <div v-if="!primaryCategorySelected">
+                    <div v-for="item, index in subCategoryData.subThreatText" :key="index" class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`">
+                        <button class="accordion" :class="[`${tab.tabContentTitleID}-bkgd`, { 'active': item.activeOnLoad }]" @click="accordionClick">
+                            <h4 v-html="item.heading"></h4><span class="symbol"></span>
+                        </button>
+                        <div class="panel" :class="[{ 'active': item.activeOnLoad }]">
+                            <p v-if="!primaryCategorySelected" v-html="item.text" />
+                        </div>
                     </div>
                 </div>
             </tabItem>

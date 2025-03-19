@@ -296,66 +296,220 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Dams",
-                            subThreatText1: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
-                            subThreatText2: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
-                            subThreatText3: "Dams sectors",
-                            subThreatText4: "Dams mitigation",
-                            subThreatText5: "Dams measurement",
-                            subThreatIcon: "H-dams-3916913"
+                            subThreatIcon: "H-dams-3916913",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Dams sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Dams mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Dams measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Wetland drainage",
-                            subThreatText1: "Wetland drainage text",
-                            subThreatText2: "Wetland drainage impact",
-                            subThreatText3: "Wetland drainage sectors",
-                            subThreatText4: "Wetland drainage mitigation",
-                            subThreatText5: "Wetland drainage measurement",
-                            subThreatIcon: "H-wetland-drainage-34007"
+                            subThreatIcon: "H-wetland-drainage-34007",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Wetland drainage text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Wetland drainage impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Wetland drainage sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Wetland drainage mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Wetland drainage measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
-                            subThreatText1: "Deforestation and associated runoff text",
-                            subThreatText2: "Deforestation and associated runoff impact",
-                            subThreatText3: "Deforestation and associated runoff sectors",
-                            subThreatText4: "Deforestation and associated runoff mitigation",
-                            subThreatText5: "Deforestation and associated runoff measurement",
-                            subThreatIcon: "H-deforestation-4811548"
+                            subThreatIcon: "H-deforestation-4811548",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Deforestation and associated runoff text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Deforestation and associated runoff impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Deforestation and associated runoff sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Deforestation and associated runoff mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Deforestation and associated runoff measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Riparian degradation",
-                            subThreatText1: "Riparian degradation text",
-                            subThreatText2: "Riparian degradation impact",
-                            subThreatText3: "Riparian degradation sectors",
-                            subThreatText4: "Riparian degradation mitigation",
-                            subThreatText5: "Riparian degradation measurement",
-                            subThreatIcon: "H-riparian-6291"
+                            subThreatIcon: "H-riparian-6291",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Riparian degradation text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Riparian degradation impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Riparian degradation sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Riparian degradation mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Riparian degradation measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Agricultural extraction",
-                            subThreatText1: "Agricultural extraction text",
-                            subThreatText2: "Agricultural extraction impact",
-                            subThreatText3: "Agricultural extraction sectors",
-                            subThreatText4: "Agricultural extraction mitigation",
-                            subThreatText5: "Agricultural extraction measurement",
-                            subThreatIcon: "H-agriculture-5491228"
+                            subThreatIcon: "H-agriculture-5491228",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Agricultural extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Agricultural extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Agricultural extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Agricultural extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Agricultural extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Urban extraction",
-                            subThreatText1: "Urban extraction text",
-                            subThreatText2: "Urban extraction impact",
-                            subThreatText3: "Urban extraction sectors",
-                            subThreatText4: "Urban extraction mitigation",
-                            subThreatText5: "Urban extraction measurement",
-                            subThreatIcon: "H-urban-7019973"
+                            subThreatIcon: "H-urban-7019973",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Urban extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Urban extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Urban extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Urban extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Urban extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Industrial extraction",
-                            subThreatText1: "Industrial Extraction text",
-                            subThreatText2: "Industrial Extraction impact",
-                            subThreatText3: "Industrial sectors",
-                            subThreatText4: "Industrial mitigation",
-                            subThreatText5: "Industrial measurement",
-                            subThreatIcon: "H-industrial-659077"
+                            subThreatIcon: "H-industrial-659077",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Industrial extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Industrial extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Industrial extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Industrial extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Industrial extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -371,75 +525,251 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Agricultural effluents",
-                            subThreatText1: "Agricultural effluents text",
-                            subThreatText2: "Agricultural effluents impact",
-                            subThreatText3: "Agricultural effluents sectors",
-                            subThreatText4: "Agricultural effluents mitigation",
-                            subThreatText5: "Agricultural effluents measurement",
-                            subThreatIcon: "P-agriculture-3634692"
+                            subThreatIcon: "P-agriculture-3634692",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Agricultural effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Agricultural effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Agricultural effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Agricultural effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Agricultural effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Urban wastewater",
-                            subThreatText1: "Urban wastewater text",
-                            subThreatText2: "Urban wastewater impact",
-                            subThreatText3: "Urban wastewater sectors",
-                            subThreatText4: "Urban wastewater mitigation",
-                            subThreatText5: "Urban wastewater measurement",
-                            subThreatIcon: "P-urban-waste-25100"
+                            subThreatIcon: "P-urban-waste-25100",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Urban wastewater text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Urban wastewater impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Urban wastewater sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Urban wastewater mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Urban wastewater measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Industrial effluents",
-                            subThreatText1: "Industrial effluents text",
-                            subThreatText2: "Industrial effluents impact",
-                            subThreatText3: "Industrial effluents sectors",
-                            subThreatText4: "Industrial effluents mitigation",
-                            subThreatText5: "Industrial effluents measurement",
-                            subThreatIcon: "P-industrial-200223"
+                            subThreatIcon: "P-industrial-200223",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Industrial effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Industrial effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Industrial effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Industrial effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Industrial effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Aquaculture effluents",
-                            subThreatText1: "Aquaculture effluents text",
-                            subThreatText2: "Aquaculture effluents impact",
-                            subThreatText3: "Aquaculture effluents sectors",
-                            subThreatText4: "Aquaculture effluents mitigation",
-                            subThreatText5: "Aquaculture effluents measurement",
-                            subThreatIcon: "P-aquaculture-23815"
+                            subThreatIcon: "P-aquaculture-23815",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Aquaculture effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Aquaculture effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Aquaculture effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Aquaculture effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Aquaculture effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Pharmaceuticals",
-                            subThreatText1: "Pharmaceuticals text",
-                            subThreatText2: "Pharmaceuticals impact",
-                            subThreatText3: "Pharmaceuticals sectors",
-                            subThreatText4: "Pharmaceuticals mitigation",
-                            subThreatText5: "Pharmaceuticals measurement",
-                            subThreatIcon: "P-pharmaceuticals-164439"
+                            subThreatIcon: "P-pharmaceuticals-164439",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Pharmaceuticals text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Pharmaceuticals impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Pharmaceuticals sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Pharmaceuticals mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Pharmaceuticals measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Oil or gas exploration",
-                            subThreatText1: "Oil or gas exploration text",
-                            subThreatText2: "Oil or gas exploration impact",
-                            subThreatText3: "Oil or gas exploration sectors",
-                            subThreatText4: "Oil or gas exploration mitigation",
-                            subThreatText5: "Oil or gas exploration measurement",
-                            subThreatIcon: "P-oil-gas-3723255"
+                            subThreatIcon: "P-oil-gas-3723255",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Oil or gas exploration text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Oil or gas exploration impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Oil or gas exploration sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Oil or gas exploration mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Oil or gas exploration measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Plastics",
-                            subThreatText1: "Plastics text",
-                            subThreatText2: "Plastics impact",
-                            subThreatText3: "Plastics sectors",
-                            subThreatText4: "Plastics mitigation",
-                            subThreatText5: "Plastics measurement",
-                            subThreatIcon: "P-plastics-2484814"
+                            subThreatIcon: "P-plastics-2484814",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Plastics text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Plastics impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Plastics sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Plastics mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Plastics measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Mining",
-                            subThreatText1: "Mining text",
-                            subThreatText2: "Mining impact",
-                            subThreatText3: "Mining sectors",
-                            subThreatText4: "Mining mitigation",
-                            subThreatText5: "Mining measurement",
-                            subThreatIcon: "P-mining-7248907"
+                            subThreatIcon: "P-mining-7248907",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Mining text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Mining impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Mining sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Mining mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Mining measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -455,48 +785,158 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
-                            subThreatText1: "Change in water temperature text",
-                            subThreatText2: "Change in water temperature impact",
-                            subThreatText3: "Change in water temperature sectors",
-                            subThreatText4: "Change in water temperature mitigation",
-                            subThreatText5: "Change in water temperature measurement",
-                            subThreatIcon: "CW-temperature-1979336"
+                            subThreatIcon: "CW-temperature-1979336",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in water temperature text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in water temperature impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in water temperature sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in water temperature mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in water temperature measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Drought",
-                            subThreatText1: "Drought text",
-                            subThreatText2: "Drought impact",
-                            subThreatText3: "Drought impact sectors",
-                            subThreatText4: "Drought impact mitigation",
-                            subThreatText5: "Drought impact measurement",
-                            subThreatIcon: "CW-drought-002D5E"
+                            subThreatIcon: "CW-drought-002D5E",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Drought text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Drought impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Drought sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Drought mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Drought measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in flooding",
-                            subThreatText1: "Change in flooding text",
-                            subThreatText2: "Change in flooding impact",
-                            subThreatText3: "Change in flooding sectors",
-                            subThreatText4: "Change in flooding mitigation",
-                            subThreatText5: "Change in flooding measurement",
-                            subThreatIcon: "CW-flooding-1760091"
+                            subThreatIcon: "CW-flooding-1760091",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in flooding text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in flooding impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in flooding sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in flooding mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in flooding measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in wind patterns",
-                            subThreatText1: "Change in wind patterns text",
-                            subThreatText2: "Change in wind patterns impact",
-                            subThreatText3: "Change in wind patterns sectors",
-                            subThreatText4: "Change in wind patterns mitigation",
-                            subThreatText5: "Change in wind patterns measurement",
-                            subThreatIcon: "CW-wind-7479181"
+                            subThreatIcon: "CW-wind-7479181",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in wind patterns text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in wind patterns impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in wind patterns sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in wind patterns mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in wind patterns measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in ice cover",
-                            subThreatText1: "Change in ice cover text",
-                            subThreatText2: "Change in ice cover impact",
-                            subThreatText3: "Change in ice cover sectors",
-                            subThreatText4: "Change in ice cover mitigation",
-                            subThreatText5: "Change in ice cover measurement",
-                            subThreatIcon: "CW-ice-cover-5314745"
+                            subThreatIcon: "CW-ice-cover-5314745",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in ice cover text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in ice cover impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in ice cover sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in ice cover mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in ice cover measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },
