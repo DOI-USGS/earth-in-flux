@@ -71,7 +71,9 @@
                     <img class="tab-icon-image" :src="iconSource" alt="">
                     <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
                 </div>
-                <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
+                <div id="threat-map-container">
+                    <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
+                </div>
                 <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
                 <div class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`" v-show="!primaryCategorySelected">
                     <button class="accordion active" :class="`${tab.tabContentTitleID}-bkgd`">
@@ -246,7 +248,7 @@
 }
 #top-threat-map-container {
     position: relative;
-    margin-top: 3rem;
+    margin: 4rem 0 3rem 0;
 }
 .base-image {
     position: relative;
@@ -295,6 +297,9 @@
     @media only screen and (max-width: 600px) {
         width: min(190px, 100vw);
     }
+}
+#threat-map-container {
+    margin: 4rem 0 5rem 0;
 }
 .tab-map-image {
     width: 100%;
