@@ -78,7 +78,7 @@
                 <div v-if="!primaryCategorySelected">
                     <div v-for="item, index in subCategoryData.subThreatText" :key="index" class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`">
                         <button class="accordion" :class="[`${tab.tabContentTitleID}-bkgd`, { 'active': item.activeOnLoad }]" @click="accordionClick">
-                            <h4 v-html="item.heading"></h4><span class="symbol"></span>
+                            <h4 class="accordion-button-text" v-html="item.heading"></h4><span class="symbol"></span>
                         </button>
                         <div class="panel" :class="[{ 'active': item.activeOnLoad }]">
                             <p v-if="!primaryCategorySelected" v-html="item.text" />
@@ -194,8 +194,13 @@
         return new URL(`../assets/images/${file}`, import.meta.url).href
     }
     function accordionClick(event) {
-        event.target.classList.toggle("active");
-        const panel = event.target.nextElementSibling;
+        // Pull class associated with target
+        const targetClass = event.target.classList.value
+        // If the target is the button text, target the parent button element
+        // Otherwise if the target is the button, target it directly
+        const accordion = targetClass == 'accordion-button-text' ? event.target.parentElement : event.target
+        accordion.classList.toggle("active");
+        const panel = accordion.nextElementSibling;
         panel.classList.toggle("active");
     }
 
