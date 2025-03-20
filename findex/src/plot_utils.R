@@ -277,11 +277,14 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
   
   proj_sf <- st_transform(processed_sf, crs = st_crs(proj))
   
+  bbox <- sf::st_bbox(proj_sf)
+  
   # make non-target threat category values NA so they are not plotted
   if(threat_category != "none"){
     proj_sf <- proj_sf |> 
       mutate(ThreatCategory = case_when(ThreatCategory != threat_category ~ NA, .default = as.character(ThreatCategory)))
   }
+  na_color <- ifelse(threat_category == "base", "gray80", NA)
   
   pal <- threat_pal |> 
     select(MajorCat, pal) |> 
@@ -296,9 +299,12 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
   
   threat_map <- ggplot()+
     geom_sf(data = proj_sf, aes(geometry = Shape, fill = ThreatCategory), color = NA)+
-    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat, na.value = "gray80")+
+    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat, na.value = na_color)+
     guides(fill = guide_legend(nrow = 2,)) +
     theme_void()+
+    coord_sf(xlim = c(bbox[["xmin"]], bbox[["xmax"]]),
+             ylim = c(bbox[["ymin"]], bbox[["ymax"]]),
+             expand = FALSE) +
     theme(
       legend.ticks = element_blank(),
       legend.title = element_text(face = "bold"),

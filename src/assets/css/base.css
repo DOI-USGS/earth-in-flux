@@ -8,6 +8,7 @@
   --white: #ffffff;
   --white-soft: #F0F0F0;
   --light-grey: #F8F8F8;
+  --medium-light-grey: #e8e8e8;
   --black-soft: #151515;
   --dodger-blue: #1e90ff;
   --medium-grey: #B5B5B5;
@@ -20,6 +21,22 @@
   --usgs-blue: #00264c;
   --faded-usgs-blue: #d8dee4;
   --usgs-green: #006F41;
+  --mid-teal: #648E8E;
+  --mid-brown: #a27846;
+  --mid-blue: #265079;
+  --mid-red: #b24d4b;
+  --mid-purple: #845c93;
+  --teal: #4E6D6E;
+  --brown: #7A562B;
+  --blue: #002D5E;
+  --red: #B74F49;
+  --purple: #835192;
+  --faded-teal: #C9D8D9;;
+  --faded-brown: #E1C8AA;
+  --faded-blue: #B2C0CE;
+  --darker-teal: #405959;
+  --darker-brown: #5B401F;
+  --darker-blue: #002D5E;
 
   font-size: 62.5%;
 
@@ -38,6 +55,22 @@
   --color-code-links-background: var(--medium-grey);
   --color-link: var(--medium-blue);
   --color-USGS-header-footer: var(--usgs-blue);
+  --color-habitat-top: var(--mid-teal);
+  --color-pollution-top: var(--mid-brown);
+  --color-climate-and-weather-top: var(--mid-blue);
+  --color-invasive-species-top: var(--mid-red);
+  --color-fishing-pressure-top: var(--mid-purple);
+  --color-habitat: var(--teal);
+  --color-pollution: var(--brown);
+  --color-climate-and-weather: var(--blue);
+  --color-invasive-species: var(--red);
+  --color-fishing-pressure: var(--purple);
+  --color-habitat-faded: var(--faded-teal);
+  --color-pollution-faded: var(--faded-brown);
+  --color-climate-and-weather-faded: var(--faded-blue);
+  --color-habitat-dark: var(--darker-teal);
+  --color-pollution-dark: var(--darker-brown);
+  --color-climate-and-dark-faded: var(--darker-blue);
 }
 
 /* @media (prefers-color-scheme: dark) {
