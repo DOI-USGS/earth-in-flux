@@ -103,7 +103,14 @@
             .join("text")
                 .style("fill-opacity", d => d.parent === root ? 1 : 0)
                 .style("display", d => d.parent === root ? "inline" : "none")
+                .style("font-size", "1.2rem")
+                .style("stroke", "white")          // white outline
+                .style("stroke-width", "2px")      
+                .style("paint-order", "stroke")    
+                .style("stroke-linejoin", "round") 
+                .style("fill", "black")            
                 .text(d => [d.data.name, d3.format("$.1s")(d.value).replace("G","B")].join("\n"));
+
 
         // Create the zoom behavior and zoom immediately in to the initial focus node.
         svg.on("click", (event) => zoom(event, root));
