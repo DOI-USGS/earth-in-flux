@@ -8,12 +8,15 @@
         <template #heading>
         </template>
         <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
+        <<template #aboveExplanation>
+        <p v-html="text.paragraph1" />
+        <FamilyInfoBox :activeFamily="activeFamily" />
         </template>
+
         <template #figures>
             <div class="chart-container single" ref="chart">
             </div>
+            
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -29,6 +32,8 @@
     import { onMounted, ref } from "vue";
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import FamilyInfoBox from '@/components/FamilyInfoBox.vue';
+    
 
     // define props
     defineProps({
@@ -41,6 +46,28 @@
     const bodyCSS = window.getComputedStyle(document.body);
     const lightBlue = bodyCSS.getPropertyValue('--light-blue');
     const darkBlue = bodyCSS.getPropertyValue('--dark-blue');
+
+    const familyInfo = {
+        "Cyprinidae": {
+            image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
+            text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... "
+        },
+        "Salmonidae": {
+            image: "https://labs.waterdata.usgs.gov/visualizations/images/pink-salmon.jpeg",
+            text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere..."
+        },
+        "Centrarchidae": {
+            image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
+            text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... "
+        }
+        };
+
+    const defaultFamily = {
+            image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg", 
+            text: "Click on a fish family in the chart to learn more about its importance and characteristics."
+        };
+
+const activeFamily = ref(defaultFamily); // start with placeholder
     
     // Declare behavior on mounted
     // functions called here
@@ -91,7 +118,13 @@
                 .attr("pointer-events", d => !d.children ? "none" : null)
                 .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
                 .on("mouseout", function() { d3.select(this).attr("stroke", null); })
-                .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
+                .on("click", (event, d) => {
+                    if (focus !== d) {
+                        zoom(event, d);
+                        event.stopPropagation();
+                    }
+                    });
+
 
         // Append the text labels.
         const label = svg.append("g")
@@ -113,7 +146,19 @@
 
 
         // Create the zoom behavior and zoom immediately in to the initial focus node.
-        svg.on("click", (event) => zoom(event, root));
+        svg.on("click", (event, d) => {
+            if (focus !== d) {
+                zoom(event, d);
+                event.stopPropagation();
+                }
+            });
+
+        //  zoom-out on background click
+        d3.select(chart.value).select("svg").on("click", (event) => {
+            activeFamily.value = defaultFamily;
+            zoom(event, root);
+        });
+
         let focus = root;
         let view;
         zoomTo([focus.x, focus.y, focus.r * 2]);
@@ -129,22 +174,47 @@
         }
 
         function zoom(event, d) {
-            focus = d;
+                focus = d;
 
-            const transition = svg.transition()
-                .duration(event.altKey ? 7500 : 750)
-                .tween("zoom", () => {
+                const transition = svg.transition()
+                    .duration(event.altKey ? 7500 : 750)
+                    .tween("zoom", () => {
                     const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
                     return t => zoomTo(i(t));
-                });
+                    });
 
-            label
-                .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-                .transition(transition)
-                .style("fill-opacity", d => d.parent === focus ? 1 : 0)
-                .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-                .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
-        }
+                label
+                    .filter(function (d) {
+                    return d.parent === focus || this.style.display === "inline";
+                    })
+                    .transition(transition)
+                    .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+                    .on("start", function (d) {
+                    if (d.parent === focus) this.style.display = "inline";
+                    })
+                    .on("end", function (d) {
+                    if (d.parent !== focus) this.style.display = "none";
+                    });
+
+                    let current = d;
+                    let foundFamily = null;
+
+                    while (current) {
+                    const name = current.data?.name;
+                    if (name && familyInfo[name]) {
+                        foundFamily = name;
+                        break;
+                    }
+                    current = current.parent;
+                    }
+
+                    if (foundFamily) {
+                    activeFamily.value = familyInfo[foundFamily];
+                    } else {
+                    activeFamily.value = defaultFamily;
+                    }
+
+            }
 
         return svg.node();
     }
