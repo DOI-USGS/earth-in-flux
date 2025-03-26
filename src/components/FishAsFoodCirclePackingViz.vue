@@ -49,22 +49,26 @@
 
     const familyInfo = {
         "Cyprinidae": {
-            image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
-            text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... "
+            image: "https://labs.waterdata.usgs.gov/visualizations/images/common-carp.jpeg",
+            text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... ",
+            caption: "Common carp <em>(Cyprinus carpio)</em>"
         },
         "Salmonidae": {
             image: "https://labs.waterdata.usgs.gov/visualizations/images/pink-salmon.jpeg",
-            text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere..."
+            text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere...",
+            caption: "Pink salmon <em>(Oncorhynchus gorbuscha)</em>"
         },
         "Centrarchidae": {
             image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
-            text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... "
+            text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... ",
+            caption: "Black crappie <em>(Pomoxis nigromaculatus)</em>"
         }
         };
 
     const defaultFamily = {
             image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg", 
-            text: "Click on a fish family in the chart to learn more about its importance and characteristics."
+            text: "Click on a fish family in the chart to learn more about its importance and characteristics.",
+            caption: "Brown trout <em>(Salmo trutta)</em>"
         };
 
 const activeFamily = ref(defaultFamily); // start with placeholder

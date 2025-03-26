@@ -1,10 +1,13 @@
 <template>
-    <div class="info-box" :class="{ placeholder: isPlaceholder }">
+  <div class="info-box">
+    <figure v-if="activeFamily">
       <img :src="activeFamily.image" alt="Family illustration" />
-      <p>{{ activeFamily.text }}</p>
-    </div>
-  </template>
-  
+      <figcaption v-html="activeFamily.caption"></figcaption>
+    </figure>
+    <p>{{ activeFamily.text }}</p>
+  </div>
+</template>
+
   <script setup>
   import { computed } from "vue";
 
@@ -38,10 +41,19 @@
   height: auto;    
   object-fit: contain; 
   border-radius: 8px;
-}
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.2;
+    max-width: 350px;
+    text-align: center;
+  }
   
   p {
-    margin: 0;
+    margin: 0 ;
     font-size: 1.25rem;
     line-height: 1.4;
   }
