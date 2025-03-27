@@ -183,7 +183,7 @@ const activeFamily = ref(defaultFamily); // start with placeholder
                 const transition = svg.transition()
                     .duration(event.altKey ? 7500 : 750)
                     .tween("zoom", () => {
-                    const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+                    const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2.2]);
                     return t => zoomTo(i(t));
                     });
 
