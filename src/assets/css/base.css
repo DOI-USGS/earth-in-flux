@@ -71,6 +71,8 @@
   --color-habitat-dark: var(--darker-teal);
   --color-pollution-dark: var(--darker-brown);
   --color-climate-and-dark-faded: var(--darker-blue);
+  --inactive-grey: #CCCCCC;
+  --inactive-text-grey: #757575;
 }
 
 /* @media (prefers-color-scheme: dark) {
