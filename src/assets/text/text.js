@@ -219,8 +219,30 @@ export default {
         },
         FishAsFoodCirclePacking: {
             paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
-            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
-        },
+            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of biomass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
+            familyInfo: {
+                "Cyprinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/common-carp.jpeg",
+                    text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... ",
+                    caption: "Common carp <em>(Cyprinus carpio)</em>"
+                },
+                "Salmonidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/pink-salmon.jpeg",
+                    text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere...",
+                    caption: "Pink salmon <em>(Oncorhynchus gorbuscha)</em>"
+                },
+                "Centrarchidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
+                    text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... ",
+                    caption: "Black crappie <em>(Pomoxis nigromaculatus)</em>"
+                }
+            },
+            defaultFamily: {
+                image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg",
+                text: "Click on a fish family in the chart to learn more about its importance and characteristics.",
+                caption: "Brown trout <em>(Salmo trutta)</em>"
+            }
+        },        
         FishAsFoodSankey: {
             paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
         },
