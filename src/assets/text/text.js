@@ -235,6 +235,51 @@ export default {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
                     text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... ",
                     caption: "Black crappie <em>(Pomoxis nigromaculatus)</em>"
+                },
+                "Anguillidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-eel.jpeg",
+                    text: "The Anguillidae are a family of ray-finned fish that contains the freshwater eels. All the extant species and six subspecies in this family are in the genus Anguilla, and are elongated fish of snake-like bodies, with long dorsal, caudal and anal fins forming a continuous fringe. They are catadromous, spending their adult lives in freshwater, but migrating to the ocean to spawn...",
+                    caption: "European eel <em>(Anguilla anguilla)</em>"
+                },
+                "Anostomidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/boga.jpeg",
+                    text: "The Anostomidae are a family of ray-finned fishes that belong to the order Characiformes. Closely related to the Chilodontidae and formerly included with them, the Anostomidae contain about 150 described species. Commonly known as anostomids, they are found in freshwater habitats from the Río Atrato in northernmost South America to warm-temperate central Argentina; they are of Amazon origin, with few found west of the Andes...",
+                    caption: "Boga <em>(Megaleporinus obtusidens)</em>"
+                },
+                "Atherinopsidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/silverside.jpeg",
+                    text: "The neotropical silversides are a family, Atherinopsidae, of fishes in the order Atheriniformes. About 112 species in 13 genera are distributed throughout the tropical and temperate waters of the New World, including both marine and freshwater habitats. The familiar grunions and Atlantic silverside belong to this family...",
+                    caption: "Argentinian silverside <em>(Odontesthes bonariensis)</em>"
+                },
+                "Channidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/snakehead.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older...",
+                    caption: "Northern snakehead <em>(Channa argus)</em>"
+                },
+                "Characidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/hemibrycon.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older..",
+                    caption: "Hemibrycon <em>(Hemibrycon boquiae)</em>"
+                },
+                "Cichlidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/x.jpeg",
+                    text: "Cichlids are a large, diverse, and widespread family of percomorph fish in the family Cichlidae, order Cichliformes. At least 1,760 species have been scientifically described, making it one of the largest vertebrate families, with only the Cyprinidae being more speciose.[3] New species are discovered annually, and many species remain undescribed...",
+                    caption: "X <em>(X)</em>"
+                },
+                "Esocidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/northern-pike.jpeg",
+                    text: "Esocidae is a family of ray-finned fish in the order Salmoniformes, which contains pike, pickerel, and mudminnows. While the family traditionally only contained the genus Esox, recent genetic and paleontological research have recovered Novumbra and Dallia as members of the family Esocidae, being closer related to Esox than Umbra....",
+                    caption: "Northern pike <em>(Esox lucius)</em>"
+                },
+                "Percidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/walleye.jpeg",
+                    text: "The Percidae are a family of ray-finned fish, part of the order Perciformes, which are found in fresh and brackish waters of the Northern Hemisphere. The majority are Nearctic, but there are also Palearctic species. The family contains more than 200 species in 11 genera...",
+                    caption: "Walleye <em>(Sander vitreus)</em>"
+                },
+                "Siluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-catfish.jpeg",
+                    text: "Siluridae is the nominate family of catfishes in the order Siluriformes. About 105 living species of silurids are placed in 12 or 14 genera. Although silurids occur across much of Europe and Asia, they are most diverse in Southeast Asia, beyond which their diversity decreases in temperate East Asia, the Indian subcontinent, Southwest Asia, and Europe...",
+                    caption: "European catfish <em>(Silurus glanis)</em>"
                 }
             },
             defaultFamily: {
