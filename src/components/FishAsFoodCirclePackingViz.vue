@@ -166,7 +166,7 @@ const activeFamily = ref(defaultFamily); // start with placeholder
 
         let focus = root;
         let view;
-        zoomTo([focus.x, focus.y, focus.r * 2]);
+        zoomTo([focus.x, focus.y, focus.r * 2.2]);
 
         function zoomTo(v) {
             const k = width / v[2];
