@@ -141,7 +141,7 @@ defineEmits(['update:modelValue']);
   background-color: white;
   border-radius: 50%;
   top: 1.5px;
-  left: 1%;
+  left: 1.5px;
   transition: transform 0.3s ease;
   border: 1px solid var(--black-soft); 
 }
