@@ -11,7 +11,9 @@ export default {
             { name: "Maggie Jaenicke", link: "https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/MaggieJaenicke.png" },
             { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/cee%20nell%20resized.png?h=53fbb397&itok=I7tqKZDm" },
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
-            { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" }
+            { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" },
+            { name: "Kaysa Vaarre-Lamoureux", link: "", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/kaysa_squarepic.png" },
+            { name: "Elmera Azadpour", link: "https://www.usgs.gov/staff-profiles/elmera-azadpour", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/elmera_azadpourSquare.jpg" }
         ],
         projectsHeading: "USGS land change science projects",
         projectsLeadIn: "The USGS land change science projects currently highlighted in this page are the"

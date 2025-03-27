@@ -103,7 +103,7 @@ defineEmits(['update:modelValue']);
 /* text styles */
 .toggle-text {
   transition: color 0.3s ease;
-  color: var(--inactive-grey);
+  color: var(--inactive-text-grey);
 }
 
 .toggle-text.tactive {
@@ -140,8 +140,8 @@ defineEmits(['update:modelValue']);
   height: 16px;
   background-color: white;
   border-radius: 50%;
-  top: 1px;
-  left: 1%;
+  top: 1.5px;
+  left: 1.5px;
   transition: transform 0.3s ease;
   border: 1px solid var(--black-soft); 
 }
