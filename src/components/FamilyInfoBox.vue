@@ -25,7 +25,8 @@
     background-color: #f8f9fa;
     padding: 2rem;
     border-radius: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     display: flex;
     gap: 4rem;
     align-items: center;
@@ -41,7 +42,7 @@
 
   figcaption {
     margin-top: 0.5rem;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     color: #666;
     line-height: 1.2;
     max-width: 350px;
@@ -50,7 +51,7 @@
   
   p {
     margin: 0 ;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     line-height: 1.4;
   }
   </style>
