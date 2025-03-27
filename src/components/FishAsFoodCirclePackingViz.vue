@@ -36,7 +36,7 @@
     
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { type: Object }
     })
 
