@@ -180,6 +180,23 @@
                     .on("end", function (d) {
                     if (d.parent !== focus) this.style.display = "none";
                     });
+                    // format species level label 
+                    function formatEconomicValue(val) {
+                    const suffixes = [
+                        { value: 1e9, symbol: "B" },
+                        { value: 1e6, symbol: "M" }
+                    ];
+
+                    for (let i = 0; i < suffixes.length; i++) {
+                        if (val >= suffixes[i].value) {
+                        return `$${(val / suffixes[i].value).toFixed(1)}${suffixes[i].symbol}`;
+                        }
+                    }
+
+                    // fallback for small values
+                    return d3.format("$,")(val);
+                    }
+
 
                     let current = d;
                     let infoObj = null;
@@ -206,7 +223,7 @@
                         name: d.data.name,
                         family: familyName,
                         image: silhouette,
-                        economicValue: d3.format("$.1s")(d.value).replace("G", "B"),
+                        economicValue: formatEconomicValue(d.value),
                         countryCount: d.children ? d.children.length : 0
                     };
                     }
