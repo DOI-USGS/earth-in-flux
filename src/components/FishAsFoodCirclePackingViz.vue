@@ -140,6 +140,7 @@ const activeFamily = ref(defaultFamily); // start with placeholder
             .join("text")
                 .attr("class", "fish-title")
                     .style("fill-opacity", d => d.parent === root ? 1 : 0)
+                    .style("stroke-opacity", d => d.parent === root ? 1 : 0)
                     .style("display", d => d.parent === root ? "inline" : "none")
                     .style("font-size", "1.2rem")
                     .style("stroke", "white")          // white outline
@@ -194,6 +195,7 @@ const activeFamily = ref(defaultFamily); // start with placeholder
                     })
                     .transition(transition)
                     .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+                    .style("stroke-opacity", d => d.parent === focus ? 1 : 0)
                     .on("start", function (d) {
                     if (d.parent === focus) this.style.display = "inline";
                     })
