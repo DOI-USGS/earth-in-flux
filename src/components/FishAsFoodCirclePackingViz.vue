@@ -48,7 +48,7 @@
     const darkBlue = bodyCSS.getPropertyValue('--dark-blue');
     const familyInfo = props.text.familyInfo;
     const defaultFamily = props.text.defaultFamily;
-    const activeFamily = ref(defaultFamily); 
+    const activeFamily = ref(props.text.defaultFamily);
     
     // Declare behavior on mounted
     // functions called here
@@ -182,22 +182,37 @@
                     });
 
                     let current = d;
-                    let foundFamily = null;
+                    let infoObj = null;
+                    let level = d.depth;
 
-                    while (current) {
-                    const name = current.data?.name;
-                    if (name && familyInfo[name]) {
-                        foundFamily = name;
-                        break;
-                    }
-                    current = current.parent;
+                    if (level === 1 && familyInfo[d.data.name]) {
+                    // family level
+                    const familyData = familyInfo[d.data.name];
+                    infoObj = {
+                        type: "family",
+                        name: d.data.name,
+                        image: familyData.image,
+                        text: familyData.text,
+                        caption: familyData.caption,
+                        economicValue: d3.format("$.1s")(d.value).replace("G", "B"),
+                        speciesCount: d.children ? d.children.length : 0
+                    };
+                    } else if (level === 2) {
+                    // species level
+                    const familyName = d.parent?.data?.name;
+                    const silhouette = familyInfo[familyName]?.image;
+                    infoObj = {
+                        type: "species",
+                        name: d.data.name,
+                        family: familyName,
+                        image: silhouette,
+                        economicValue: d3.format("$.1s")(d.value).replace("G", "B"),
+                        countryCount: d.children ? d.children.length : 0
+                    };
                     }
 
-                    if (foundFamily) {
-                    activeFamily.value = familyInfo[foundFamily];
-                    } else {
-                    activeFamily.value = defaultFamily;
-                    }
+                    activeFamily.value = infoObj || defaultFamily;
+
 
             }
 
