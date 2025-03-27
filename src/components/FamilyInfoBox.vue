@@ -18,10 +18,6 @@
     }
     });
 
-  const isPlaceholder = computed(() =>
-    props.activeFamily.text?.includes("Click on a fish family")
-  );
-
   </script>
   
   <style scoped>
@@ -57,11 +53,5 @@
     font-size: 1.25rem;
     line-height: 1.4;
   }
-
-  .placeholder {
-  opacity: 0.8;
-  font-style: italic;
-  }
-
   </style>
   
