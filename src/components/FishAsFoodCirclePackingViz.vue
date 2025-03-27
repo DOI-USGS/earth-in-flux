@@ -139,16 +139,17 @@ const activeFamily = ref(defaultFamily); // start with placeholder
             .data(root.descendants())
             .join("text")
                 .attr("class", "fish-title")
-                    .style("fill-opacity", d => d.parent === root ? 1 : 0)
-                    .style("stroke-opacity", d => d.parent === root ? 1 : 0)
-                    .style("display", d => d.parent === root ? "inline" : "none")
-                    .style("font-size", "1.2rem")
-                    .style("stroke", "white")          // white outline
-                    .style("stroke-width", "2px")      
-                    .style("paint-order", "stroke")    
-                    .style("stroke-linejoin", "round") 
-                    .style("fill", "black")            
-                    .text(d => [d.data.name, d3.format("$.1s")(d.value).replace("G","B")].join("\n"));
+                .style("fill-opacity", d => d.parent === root ? 1 : 0)
+                .style("stroke-opacity", d => d.parent === root ? 1 : 0)
+                .style("display", d => d.parent === root ? "inline" : "none")        
+                .text(d => d.data.name)
+
+        label.append("tspan")
+            .attr("class", "fish-value")
+            .attr("dy", "0rem") 
+            .attr("dx", "0.3rem")  // drop if dy set to 1rem
+            // .attr("x", 0)    (if set dy to 1rem)
+            .text(d => d3.format("$.1s")(d.value).replace("G","B"))
 
 
         // Create the zoom behavior and zoom immediately in to the initial focus node.
@@ -240,4 +241,11 @@ const activeFamily = ref(defaultFamily); // start with placeholder
             font-size: 2rem;
         }
     }
+    .fish-title {
+        font-weight: 700;
+    }
+    .fish-value {
+        font-weight: 400;
+    }
+
 </style>
