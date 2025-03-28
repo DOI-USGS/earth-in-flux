@@ -280,6 +280,36 @@ export default {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/european-catfish.jpeg",
                     text: "Siluridae is the nominate family of catfishes in the order Siluriformes. About 105 living species of silurids are placed in 12 or 14 genera. Although silurids occur across much of Europe and Asia, they are most diverse in Southeast Asia, beyond which their diversity decreases in temperate East Asia, the Indian subcontinent, Southwest Asia, and Europe...",
                     caption: "European catfish <em>(Silurus glanis)</em>"
+                },
+                "Ictaluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/catfish.jpeg",
+                    text: "The Ictaluridae, sometimes called ictalurids, are a family of catfish native to North America, where they are an important food source and sometimes fished for sport. The family includes about 51 species, some commonly known as bullheads, madtoms, channel catfish, and blue catfish....",
+                    caption: "Catfish <em>(Ictalurus punctatus)</em>"
+                },
+                "Latidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/nile-perch.jpeg",
+                    text: "The Latidae, known as the lates perches, are a family of perch-like fish found in Africa, Asia, and the Indian and western Pacific Oceans. Including about 13 species, the family, previously classified subfamily Latinae in family Centropomidae, was raised to family status in 2004 after a cladistic analysis showed the original Centropomidae were paraphyletic...",
+                    caption: "Nile perch <em>(Lates niloticus)</em>"
+                },
+                "Erythrinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/trahira.jpeg",
+                    text: "The Erythrinidae are a family of fishes found in rivers and other freshwater habitats from Costa Rica south as far as Argentina. They are common and are caught with hooks by fishermen, partially because of their voracious behaviour. They are sometimes called trahiras (also spelled trairas) or tarariras...",
+                    caption: "Trahira <em>(Hoplias malabaricus)</em>"
+                },
+                "Lotidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/burbot.jpeg",
+                    text: "The Lotidae are a family of cod-like fishes commonly known as lings or rocklings. They are found in the Arctic, Atlantic, and Pacific Oceans. Except for a few species of Gaidropsarus, all are restricted to the Northern Hemisphere. All species are marine, except for the burbot, Lota lota, found in rivers and lakes in northern Europe, Siberia, and North America. They are important commercial and game fish species...",
+                    caption: "Burbot <em>(Lota lota)</em>"
+                },
+                "Osmeridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-smelt.jpeg",
+                    text: "Smelts are a family of small fish, the Osmeridae, found in the North Atlantic and North Pacific oceans, as well as rivers, streams and lakes in Europe, North America and Northeast Asia. They are also known as freshwater smelts or typical smelts to distinguish them from the related Argentinidae (herring smelts or argentines), Bathylagidae (deep-sea smelts), and Retropinnidae (Australian and New Zealand smelts)...",
+                    caption: "European smelt <em>(Osmerus eperlanus)</em>"
+                },
+                "Percichthyidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/murray-cod.jpeg",
+                    text: "Percichthyidae, the temperate perches, are a family of freshwater ray-finned fish found in Australia and southern South America. Formerly placed in the order Perciformes, they are now placed in the order Centrarchiformes...",
+                    caption: "Murray cod <em>(Maccullochella peelii)</em>"
                 }
             },
             defaultFamily: {
