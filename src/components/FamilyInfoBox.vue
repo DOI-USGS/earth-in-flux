@@ -9,6 +9,7 @@
       </figure>
       <div class="family-text">
         <h2 v-if="activeFamily.name">{{ activeFamily.name }}</h2>
+        <p v-if="activeFamily.type === 'family'" class="species-subtitle">Family</p>
         <p v-if="activeFamily.economicValue"><strong>{{ activeFamily.economicValue }}</strong> in total economic value</p>
         <p v-if="activeFamily.speciesCount"><strong>{{ activeFamily.speciesCount }}</strong> species that are recreationally fished</p>
         <p>{{ activeFamily.text }}</p>
@@ -31,9 +32,8 @@
 </template>
 
   <script setup>
-  import { computed } from "vue";
 
-  const props = defineProps({
+  defineProps({
     activeFamily: {
       type: Object,
       required: true
@@ -97,12 +97,14 @@ figcaption {
 .family-label {
   font-size: 1.4rem;
   color: #333;
+  font-weight: 700;
 }
 
 .species-subtitle {
   font-size: 1.4rem;
   color: #666;
   margin-bottom: 0.5rem;
+  margin-top: -1rem;
 }
 
 .species-content hr {

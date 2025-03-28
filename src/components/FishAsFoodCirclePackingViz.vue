@@ -8,7 +8,7 @@
         <template #heading>
         </template>
         <!-- FIGURES -->
-        <<template #aboveExplanation>
+        <template #aboveExplanation>
         <p v-html="text.paragraph1" />
         <FamilyInfoBox :activeFamily="activeFamily" />
         </template>
@@ -198,7 +198,6 @@
                     }
 
 
-                    let current = d;
                     let infoObj = null;
                     let level = d.depth;
 
@@ -246,6 +245,10 @@
     }
     .circle-packing-text {
         font-size: 1.2rem;
+        stroke: white;
+        stroke-width: 2px;      
+        paint-order: stroke;    
+        stroke-linejoin: round;
         @media screen and (max-width: 600px) {
             font-size: 2rem;
         }
