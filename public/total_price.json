@@ -1,74 +1,6 @@
 {
  "name": "fish", "children":[
   {
-    "name": "Acipenseridae",
-    "children": [
-      {
-        "name": "Russian sturgeon",
-        "children": [
-          {
-            "name": "Bulgaria",
-            "value": 97608
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Alestidae",
-    "children": [
-      {
-        "name": "Big-scale tetra",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 40741.9592
-          }
-        ]
-      },
-      {
-        "name": "Nurse tetra",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 40741.9592
-          }
-        ]
-      },
-      {
-        "name": "Tigerfish",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 211858.1881
-          },
-          {
-            "name": "Zambia",
-            "value": 384455.8694
-          },
-          {
-            "name": "Zimbabwe",
-            "value": 531851.8837
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Anabantidae",
-    "children": [
-      {
-        "name": "Koi",
-        "children": [
-          {
-            "name": "Bangladesh",
-            "value": 186610.392
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Anguillidae",
     "children": [
       {
@@ -160,20 +92,6 @@
     ]
   },
   {
-    "name": "Atherinidae",
-    "children": [
-      {
-        "name": "Sand smelt",
-        "children": [
-          {
-            "name": "Greece",
-            "value": 430560.462
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Atherinopsidae",
     "children": [
       {
@@ -182,29 +100,6 @@
           {
             "name": "Argentina",
             "value": 49481250
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Auchenipteridae",
-    "children": [
-      {
-        "name": "Chancleto",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 192797.2595
-          }
-        ]
-      },
-      {
-        "name": "Doncella",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 193657.9615
           }
         ]
       }
@@ -550,7 +445,7 @@
         ]
       },
       {
-        "name": "Speckled pavon, speckled peacock bass (percid)",
+        "name": "Speckled pavon",
         "children": [
           {
             "name": "Brazil",
@@ -577,98 +472,6 @@
           {
             "name": "Colombia",
             "value": 253907.1051
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Clariidae",
-    "children": [
-      {
-        "name": "African catfish",
-        "children": [
-          {
-            "name": "India",
-            "value": 1317.94
-          }
-        ]
-      },
-      {
-        "name": "African sharptooth catfish",
-        "children": [
-          {
-            "name": "South Africa",
-            "value": 619836
-          }
-        ]
-      },
-      {
-        "name": "Catfish",
-        "children": [
-          {
-            "name": "Uganda",
-            "value": 2580.81
-          }
-        ]
-      },
-      {
-        "name": "North African catfish",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 46645.1885
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Claroteidae",
-    "children": [
-      {
-        "name": "Bagrid catfish",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 1381239.5154
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Clupeidae",
-    "children": [
-      {
-        "name": "Agone",
-        "children": [
-          {
-            "name": "Switzerland",
-            "value": 22727.7785
-          }
-        ]
-      },
-      {
-        "name": "Pontic shad",
-        "children": [
-          {
-            "name": "Romania",
-            "value": 252532.8
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Cynodontidae",
-    "children": [
-      {
-        "name": "Payara",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 231528.8518
           }
         ]
       }
@@ -1628,34 +1431,6 @@
     ]
   },
   {
-    "name": "Danionidae",
-    "children": [
-      {
-        "name": "Burmese trout",
-        "children": [
-          {
-            "name": "Myanmar",
-            "value": 66838.2
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Doradidae",
-    "children": [
-      {
-        "name": "Catfish",
-        "children": [
-          {
-            "name": "Argentina",
-            "value": 967875
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Erythrinidae",
     "children": [
       {
@@ -1801,62 +1576,6 @@
     ]
   },
   {
-    "name": "Haemulidae",
-    "children": [
-      {
-        "name": "Jojorro",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 297802.9097
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Hepsetidae",
-    "children": [
-      {
-        "name": "African pike",
-        "children": [
-          {
-            "name": "Nigeria",
-            "value": 314709.861
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Herorotidinae",
-    "children": [
-      {
-        "name": "Pirarucu, Paiche, Arapaima",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 551710.0148
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Heteropneustidae",
-    "children": [
-      {
-        "name": "Shingi",
-        "children": [
-          {
-            "name": "Bangladesh",
-            "value": 450228.321
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Ictaluridae",
     "children": [
       {
@@ -1941,34 +1660,6 @@
     ]
   },
   {
-    "name": "Mormyridae",
-    "children": [
-      {
-        "name": "Cornish Jack",
-        "children": [
-          {
-            "name": "Zambia",
-            "value": 68876.5956
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Mugilidae",
-    "children": [
-      {
-        "name": "Thinlip mullet",
-        "children": [
-          {
-            "name": "Portugal",
-            "value": 139449.2
-          }
-        ]
-      }
-    ]
-  },
-  {
     "name": "Osmeridae",
     "children": [
       {
@@ -2016,24 +1707,6 @@
           {
             "name": "Switzerland",
             "value": 3944.2143
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Pangasiidae",
-    "children": [
-      {
-        "name": "Pangas",
-        "children": [
-          {
-            "name": "Bangladesh",
-            "value": 710473.479
-          },
-          {
-            "name": "India",
-            "value": 11977.225
           }
         ]
       }
@@ -2404,20 +2077,20 @@
         ]
       },
       {
-        "name": "Dorado",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 419161.8989
-          }
-        ]
-      },
-      {
         "name": "Flatwhiskered catfish",
         "children": [
           {
             "name": "Brazil",
             "value": 102912.48
+          }
+        ]
+      },
+      {
+        "name": "Gilded catfish",
+        "children": [
+          {
+            "name": "Colombia",
+            "value": 419161.8989
           }
         ]
       },
@@ -2522,20 +2195,6 @@
           {
             "name": "Japan",
             "value": 27045720
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Prochilodontidae",
-    "children": [
-      {
-        "name": "Pataló, Jetón",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 231528.8518
           }
         ]
       }
@@ -2957,43 +2616,6 @@
           {
             "name": "Switzerland",
             "value": 1404402.6852
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Schilbeidae",
-    "children": [
-      {
-        "name": "Silund",
-        "children": [
-          {
-            "name": "India",
-            "value": 6713.46
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Sciaenidae",
-    "children": [
-      {
-        "name": "Curvinata, Burra",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 258210.6154
-          }
-        ]
-      },
-      {
-        "name": "Curvinata, Pácora",
-        "children": [
-          {
-            "name": "Colombia",
-            "value": 297802.9097
           }
         ]
       }

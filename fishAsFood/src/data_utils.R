@@ -16,28 +16,45 @@ clean_input_data <- function(data_file) {
     )
 }
 
-build_nested_json <- function(data, focal_columns, out_file) {
-  data_list <- data |>
-    filter(!is.na(focal_columns[['value']])) |>
+build_nested_json <- function(data, focal_columns, out_file, n_top_families = 25) {
+  
+  value_col <- focal_columns[['value']]
+  data_subset <- data |> 
+    filter(!is.na(.data[[value_col]]))
+  
+  # get top families
+  top_families <- data_subset |> 
+    group_by(family) |>
+    summarise(total_value = sum(.data[[value_col]], na.rm = TRUE)) |> 
+    arrange(desc(total_value)) |> 
+    slice_head(n = n_top_families) |> 
+    pull(family)
+  
+  data_subset <- data_subset |> 
+    filter(family %in% top_families)
+  
+  data_list <- data_subset |>
     group_by(name = family) |>
     group_modify(~ {
-      species_list <- .x |> 
+      species_list <- .x |>
         group_by(name = species_common) |>
         group_modify(~ {
           country_list <- .x |>
             select(!!focal_columns) |>
-            split(nrow(.x))
-          return(tibble('children' = country_list))
+            split(nrow(.x)) 
+          tibble(children = country_list)
         })
-      return(tibble('children' = list(species_list)))
+      tibble(children = list(species_list))
     })
   
   json_data <- jsonlite::toJSON(data_list, auto_unbox = TRUE, pretty = TRUE)
   json_data <- paste0('{\n "name": "fish", "children":', json_data, '\n}')
+  
   write(json_data, file = out_file)
   
   return(out_file)
 }
+
 
 build_harvest_csv <- function(data, out_file, n_top_families) {
   data_subset <- data |>

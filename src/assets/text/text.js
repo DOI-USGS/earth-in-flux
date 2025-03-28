@@ -221,8 +221,105 @@ export default {
         },
         FishAsFoodCirclePacking: {
             paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
-            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
-        },
+            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of biomass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
+            familyInfo: {
+                "Cyprinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/common-carp.jpeg",
+                    text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... ",
+                    caption: "Common carp <em>(Cyprinus carpio)</em>"
+                },
+                "Salmonidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/pink-salmon.jpeg",
+                    text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere...",
+                    caption: "Pink salmon <em>(Oncorhynchus gorbuscha)</em>"
+                },
+                "Centrarchidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
+                    text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... ",
+                    caption: "Black crappie <em>(Pomoxis nigromaculatus)</em>"
+                },
+                "Anguillidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-eel.jpeg",
+                    text: "The Anguillidae are a family of ray-finned fish that contains the freshwater eels. All the extant species and six subspecies in this family are in the genus Anguilla, and are elongated fish of snake-like bodies, with long dorsal, caudal and anal fins forming a continuous fringe. They are catadromous, spending their adult lives in freshwater, but migrating to the ocean to spawn...",
+                    caption: "European eel <em>(Anguilla anguilla)</em>"
+                },
+                "Anostomidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/boga.jpeg",
+                    text: "The Anostomidae are a family of ray-finned fishes that belong to the order Characiformes. Closely related to the Chilodontidae and formerly included with them, the Anostomidae contain about 150 described species. Commonly known as anostomids, they are found in freshwater habitats from the Río Atrato in northernmost South America to warm-temperate central Argentina; they are of Amazon origin, with few found west of the Andes...",
+                    caption: "Boga <em>(Megaleporinus obtusidens)</em>"
+                },
+                "Atherinopsidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/silverside.jpeg",
+                    text: "The neotropical silversides are a family, Atherinopsidae, of fishes in the order Atheriniformes. About 112 species in 13 genera are distributed throughout the tropical and temperate waters of the New World, including both marine and freshwater habitats. The familiar grunions and Atlantic silverside belong to this family...",
+                    caption: "Argentinian silverside <em>(Odontesthes bonariensis)</em>"
+                },
+                "Channidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/snakehead.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older...",
+                    caption: "Northern snakehead <em>(Channa argus)</em>"
+                },
+                "Characidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/hemibrycon.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older..",
+                    caption: "Hemibrycon <em>(Hemibrycon boquiae)</em>"
+                },
+                "Cichlidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/x.jpeg",
+                    text: "Cichlids are a large, diverse, and widespread family of percomorph fish in the family Cichlidae, order Cichliformes. At least 1,760 species have been scientifically described, making it one of the largest vertebrate families, with only the Cyprinidae being more speciose.[3] New species are discovered annually, and many species remain undescribed...",
+                    caption: "X <em>(X)</em>"
+                },
+                "Esocidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/northern-pike.jpeg",
+                    text: "Esocidae is a family of ray-finned fish in the order Salmoniformes, which contains pike, pickerel, and mudminnows. While the family traditionally only contained the genus Esox, recent genetic and paleontological research have recovered Novumbra and Dallia as members of the family Esocidae, being closer related to Esox than Umbra....",
+                    caption: "Northern pike <em>(Esox lucius)</em>"
+                },
+                "Percidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/walleye.jpeg",
+                    text: "The Percidae are a family of ray-finned fish, part of the order Perciformes, which are found in fresh and brackish waters of the Northern Hemisphere. The majority are Nearctic, but there are also Palearctic species. The family contains more than 200 species in 11 genera...",
+                    caption: "Walleye <em>(Sander vitreus)</em>"
+                },
+                "Siluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-catfish.jpeg",
+                    text: "Siluridae is the nominate family of catfishes in the order Siluriformes. About 105 living species of silurids are placed in 12 or 14 genera. Although silurids occur across much of Europe and Asia, they are most diverse in Southeast Asia, beyond which their diversity decreases in temperate East Asia, the Indian subcontinent, Southwest Asia, and Europe...",
+                    caption: "European catfish <em>(Silurus glanis)</em>"
+                },
+                "Ictaluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/catfish.jpeg",
+                    text: "The Ictaluridae, sometimes called ictalurids, are a family of catfish native to North America, where they are an important food source and sometimes fished for sport. The family includes about 51 species, some commonly known as bullheads, madtoms, channel catfish, and blue catfish....",
+                    caption: "Catfish <em>(Ictalurus punctatus)</em>"
+                },
+                "Latidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/nile-perch.jpeg",
+                    text: "The Latidae, known as the lates perches, are a family of perch-like fish found in Africa, Asia, and the Indian and western Pacific Oceans. Including about 13 species, the family, previously classified subfamily Latinae in family Centropomidae, was raised to family status in 2004 after a cladistic analysis showed the original Centropomidae were paraphyletic...",
+                    caption: "Nile perch <em>(Lates niloticus)</em>"
+                },
+                "Erythrinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/trahira.jpeg",
+                    text: "The Erythrinidae are a family of fishes found in rivers and other freshwater habitats from Costa Rica south as far as Argentina. They are common and are caught with hooks by fishermen, partially because of their voracious behaviour. They are sometimes called trahiras (also spelled trairas) or tarariras...",
+                    caption: "Trahira <em>(Hoplias malabaricus)</em>"
+                },
+                "Lotidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/burbot.jpeg",
+                    text: "The Lotidae are a family of cod-like fishes commonly known as lings or rocklings. They are found in the Arctic, Atlantic, and Pacific Oceans. Except for a few species of Gaidropsarus, all are restricted to the Northern Hemisphere. All species are marine, except for the burbot, Lota lota, found in rivers and lakes in northern Europe, Siberia, and North America. They are important commercial and game fish species...",
+                    caption: "Burbot <em>(Lota lota)</em>"
+                },
+                "Osmeridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-smelt.jpeg",
+                    text: "Smelts are a family of small fish, the Osmeridae, found in the North Atlantic and North Pacific oceans, as well as rivers, streams and lakes in Europe, North America and Northeast Asia. They are also known as freshwater smelts or typical smelts to distinguish them from the related Argentinidae (herring smelts or argentines), Bathylagidae (deep-sea smelts), and Retropinnidae (Australian and New Zealand smelts)...",
+                    caption: "European smelt <em>(Osmerus eperlanus)</em>"
+                },
+                "Percichthyidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/murray-cod.jpeg",
+                    text: "Percichthyidae, the temperate perches, are a family of freshwater ray-finned fish found in Australia and southern South America. Formerly placed in the order Perciformes, they are now placed in the order Centrarchiformes...",
+                    caption: "Murray cod <em>(Maccullochella peelii)</em>"
+                }
+            },
+            defaultFamily: {
+                image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg",
+                text: "Click on a fish family in the chart to learn more about its importance and characteristics.",
+                caption: "Brown trout <em>(Salmo trutta)</em>"
+            }
+        },        
         FishAsFoodSankey: {
             paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
         },
