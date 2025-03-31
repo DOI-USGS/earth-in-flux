@@ -4,6 +4,12 @@
       v-for="option in options"
       :key="option.value"
       class="radio-label"
+      :class="{ selected: modelValue === option.value }"
+      :style="{
+        backgroundColor: modelValue === option.value
+          ? `${option.color}20`  // 20 is ~12% opacity in hex
+          : 'transparent'
+      }"
     >
       <input
         type="radio"
@@ -15,8 +21,12 @@
       />
       <span
         class="radio-button"
-        :style="{ borderColor: modelValue === option.value ? activeColor : inactiveColor }"
+        :style="{
+          borderColor: modelValue === option.value ? option.color || activeColor : inactiveColor,
+          backgroundColor: modelValue === option.value ? option.color || activeColor : 'transparent'
+        }"
       ></span>
+
       <span
         class="radio-text"
         :class="{ ractive: modelValue === option.value }"
@@ -65,6 +75,13 @@ defineEmits(['update:modelValue']);
   cursor: pointer;
   user-select: none;
 }
+.radio-label.selected {
+  background-color: rgba(0, 0, 0, 0.05); /* or use a theme color */
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
 
 .radio-input {
   display: none;
@@ -77,13 +94,13 @@ defineEmits(['update:modelValue']);
   border: 2px solid var(--inactive-grey);
   position: relative;
   transition: border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .radio-input:checked + .radio-button::after {
   content: "";
-  position: absolute;
-  top: 3px;
-  left: 3px;
   width: 8px;
   height: 8px;
   background-color: var(--black-soft);
