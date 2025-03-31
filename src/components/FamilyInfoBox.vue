@@ -1,7 +1,6 @@
 <template>
   <div class="info-box" v-if="activeFamily">
-    
-      <!-- FAMILY LEVEL -->
+    <!-- FAMILY LEVEL -->
     <div v-if="activeFamily.type === 'family' || !activeFamily.type" class="family-content">
       <figure>
         <img :src="activeFamily.image" alt="Fish silhouette" />
@@ -10,8 +9,12 @@
       <div class="family-text">
         <h2 v-if="activeFamily.name">{{ activeFamily.name }}</h2>
         <p v-if="activeFamily.type === 'family'" class="species-subtitle">Family</p>
-        <p v-if="activeFamily.economicValue"><strong>{{ activeFamily.economicValue }}</strong> in total economic value</p>
-        <p v-if="activeFamily.speciesCount"><strong>{{ activeFamily.speciesCount }}</strong> species that are recreationally fished</p>
+        <p v-if="activeFamily.economicValue">
+          <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+        </p>
+        <p v-if="activeFamily.speciesCount">
+          <strong>{{ activeFamily.speciesCount }}</strong> species that are recreationally fished
+        </p>
         <p>{{ activeFamily.text }}</p>
       </div>
     </div>
@@ -24,26 +27,27 @@
       <hr />
       <h2>{{ activeFamily.name }}</h2>
       <p class="species-subtitle">Species</p>
-      <p><strong>{{ activeFamily.economicValue }}</strong> in total economic value</p>
-      <p><strong>{{ activeFamily.countryCount }}</strong> countries where it is recreationally fished</p>
+      <p>
+        <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+      </p>
+      <p>
+        <strong>{{ activeFamily.countryCount }}</strong> countries where it is recreationally fished
+      </p>
     </div>
-
   </div>
 </template>
 
-  <script setup>
+<script setup>
+defineProps({
+  activeFamily: {
+    type: Object,
+    required: true
+  }
+})
+</script>
 
-  defineProps({
-    activeFamily: {
-      type: Object,
-      required: true
-    }
-    });
-
-  </script>
-  
-  <style scoped>
- .info-box {
+<style scoped>
+.info-box {
   background-color: #f8f9fa;
   padding: 2rem;
   border-radius: 12px;
@@ -61,7 +65,7 @@
 
 .family-text {
   max-width: 600px;
-   font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 
 img {
@@ -81,7 +85,7 @@ figcaption {
 .species-content {
   display: flex;
   flex-direction: column;
-  font-size: 1.4rem
+  font-size: 1.4rem;
 }
 
 .species-header {
@@ -109,9 +113,49 @@ figcaption {
 
 .species-content hr {
   margin-top: 1rem;
-  margin-bottom: 0.5rem
+  margin-bottom: 0.5rem;
 }
 
+@media (max-width: 700px) {
+  .info-box {
+    padding: 1rem;
+  }
 
-  </style>
-  
+  .family-content figure {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .family-text {
+    max-width: 100%;
+    font-size: 1.2rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    align-self: center;
+  }
+
+  figcaption {
+    text-align: center;
+  }
+
+  .species-content {
+    font-size: 1.2rem;
+  }
+
+  .species-icon {
+    width: 60px;
+  }
+
+  .family-label {
+    font-size: 1.2rem;
+  }
+
+  .species-subtitle {
+    font-size: 1.2rem;
+  }
+}
+</style>
