@@ -23,6 +23,16 @@ export default {
             description: 'Inland fisheries are threatened globally.'
         },
         {
+            title: 'A test viz using the RegionMap component',
+            project: 'Findex',
+            vizKey: 'FindexTest',
+            vizRoute: 'inland-fish-region-map',
+            img_src: 'threat_by_basin_thumbnail.webp',
+            alt: '',
+            chartOrder: 3,
+            description: 'FILL THIS OUT'
+        },
+        {
             title: 'Explore the Juneau Icefield',
             project: 'Fire in Ice',
             vizKey: 'GlacierScan',
