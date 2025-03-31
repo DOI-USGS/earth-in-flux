@@ -10,13 +10,7 @@
             </h2>
             <RadioGroup
                 v-model="selectedLayer"
-                :options="[
-                    { label: 'Climate and weather', value: 'Climate_and_weather_map', color: '#2a9d8f' },
-                    { label: 'Fishing pressure', value: 'Fishing_pressure_map', color: '#264653' },
-                    { label: 'Habitat', value: 'Habitat_map', color: '#899bb7' },
-                    { label: 'Invasive species', value: 'Invasive_species_map', color: '#c29fcd' },
-                    { label: 'Pollution', value: 'Pollution_map', color: '#dab589' }
-                ]"
+                :options="layers"
             />
         </template>
         <!-- FIGURES -->
@@ -27,12 +21,12 @@
                 <MapComponent
                     :selected-layer="selectedLayer"
                     :layer-paths="layerPaths"
-                    :layerX="layerX"
-                    :layerY="layerY"
-                    :layerMag="1"
-                    :regionsDataUrl="regionsDataUrl"
-                    :regionsVar="Region_nam"
-                    :usOutlineUrl="usOutlineUrl"
+                    :layer-x="layerX"
+                    :layer-y="layerY"
+                    :layer-mag="1"
+                    :topo-regions="topoRegions"
+                    :regions-var="Region_nam"
+                    :topo-us="topoUS"
                 />
             </div>
         </template>
@@ -58,14 +52,47 @@
     import HabitatMap from '@/assets/images/Habitat_map.png'
     import InvasiveMap from '@/assets/images/Invasive_species_map.png'
     import PollutionMap from '@/assets/images/Pollution_map.png'
+    import topoRegions from '@/assets/geo/Regions.json'
+    import topoUS from '@/assets/geo/USoutline.json'
 
-    const layerPaths = {
-        Climate_and_weather_map: { path: ClimateMap },
-        Fishing_pressure_map: { path: FishingMap },
-        Habitat_map: { path: HabitatMap },
-        Invasive_species_map: { path: InvasiveMap },
-        Pollution_map: { path: PollutionMap }
-    }
+
+    const layers = [
+        {
+            label: 'Climate and weather',
+            value: 'Climate_and_weather_map',
+            color: '#2a9d8f',
+            path: ClimateMap
+        },
+        {
+            label: 'Fishing pressure',
+            value: 'Fishing_pressure_map',
+            color: '#264653',
+            path: FishingMap
+        },
+        {
+            label: 'Habitat',
+            value: 'Habitat_map',
+            color: '#899bb7',
+            path: HabitatMap
+        },
+        {
+            label: 'Invasive species',
+            value: 'Invasive_species_map',
+            color: '#c29fcd',
+            path: InvasiveMap
+        },
+        {
+            label: 'Pollution',
+            value: 'Pollution_map',
+            color: '#dab589',
+            path: PollutionMap
+        }
+    ]
+    const layerPaths = Object.fromEntries(
+        layers.map(layer => [layer.value, { path: layer.path }])
+    )
+
+
 
     // define props
     defineProps({
@@ -75,7 +102,7 @@
     // Global variables 
     const publicPath = import.meta.env.BASE_URL;
     const mobileView = isMobile;
-    const data = ref();
+    const data = ref([]);
     const chart = ref(null);
     let chartDimensions;
     let chartBounds;

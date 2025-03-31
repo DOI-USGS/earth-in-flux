@@ -5,7 +5,7 @@
 <script setup>
   import { onMounted, ref, watch } from 'vue'
   import * as d3 from 'd3'
-  //import * as topojson from 'topojson-client'
+  import * as topojson from 'topojson-client'
 
   const publicPath = import.meta.env.BASE_URL; // this gets the base url for the site
 
@@ -32,23 +32,23 @@
       required: true
     },
     layerX: {
-      type: String,
-      required: true
+      type: [String, Number],
+      required: false
     },
     layerY: {
-      type: String,
-      required: true
+      type: [String, Number],
+      required: false
     },
-    regionsDataUrl: {
-      type: String,
+    topoRegions: {
+      type: Object,
       required: true
     },
     regionsVar: {
       type: String,
       required: true
     },
-    usOutlineUrl: {
-      type: String,
+    topoUS: {
+      type: Object,
       required: true
     }
   })
@@ -124,12 +124,10 @@
     try {
     // read in data
       // region shapes - feature collection
-      const topoRegions = await d3.json(`${publicPath}${props.regionsDataUrl}`);
-      const geoRegions = topojson.feature(topoRegions, topoRegions.objects[Object.keys(topoRegions.objects)[0]]);
+      const geoRegions = topojson.feature(props.topoRegions, props.topoRegions.objects[Object.keys(props.topoRegions.objects)[0]]);
 
       // CONUS outline - single feature
-      const topoUS = await d3.json(props.usOutlineUrl);
-      const geoUS = topojson.feature(topoUS, topoUS.objects['foo']);  
+      const geoUS = topojson.feature(props.topoUS, props.topoUS.objects['foo']);  
       const projection = d3.geoIdentity().reflectY(true).fitSize([width, height], geoRegions);
       const path = d3.geoPath().projection(projection);
   
