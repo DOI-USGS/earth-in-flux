@@ -5,7 +5,7 @@
 <script setup>
   import { onMounted, ref, watch } from 'vue'
   import * as d3 from 'd3'
-  import * as topojson from 'topojson-client'
+  //import * as topojson from 'topojson-client'
 
   const publicPath = import.meta.env.BASE_URL; // this gets the base url for the site
 
@@ -19,8 +19,8 @@
 
   // props definition, allowing customized paths and datasets
   const props = defineProps({
-    layerVisibility: {
-      type: Object,
+    selectedLayer: {
+      type: String,
       required: true
     },
     layerPaths: {
@@ -56,17 +56,18 @@
   const updateLayers = () => {
     if (!mapLayers) return 
 
-    const visibleLayers = Object.entries(props.layerVisibility).map(([key, value]) => ({
+    const visibleLayers = Object.entries(props.layerPaths).map(([key, val]) => ({
       key,
-      path: props.layerPaths[key]?.path,
-      visible: value
-    }))
+      path: val.path,
+      visible: key === props.selectedLayer
+    }));
+
 
     mapLayers.selectAll('image')
       .data(visibleLayers, d => d.key) // use key as the identifier
       .join(
         enter => enter.append('image')
-          .attr('xlink:href', d => s3ProdURL + 'images/water-availability/' + d.path)
+          .attr('xlink:href', d => d.path)
           .attr('x', props.layerX)
           .attr('y', props.layerY)
           .attr('width', 800 * props.layerMag)
@@ -81,13 +82,12 @@
       
   }
 
-  // watch layerVisibility for changes
+  // watch selectedLayer for changes
   watch(
-    () => props.layerVisibility,
+    () => props.selectedLayer,
     () => {
       updateLayers(); // Trigger layer updates
-    },
-    { deep: true }
+    }
   );
 
   

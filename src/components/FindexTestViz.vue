@@ -9,7 +9,7 @@
             <h2>
             </h2>
             <RadioGroup
-                v-model="selected"
+                v-model="selectedLayer"
                 :options="[
                     { label: 'Climate and weather', value: 'Climate_and_weather_map', color: '#2a9d8f' },
                     { label: 'Fishing pressure', value: 'Fishing_pressure_map', color: '#264653' },
@@ -24,10 +24,15 @@
         </template>
         <template #figures>
             <div id="image-container" ref="chart">
-                <img
-                    :src="`@/assets/images/${selected}.png`"
-                    :alt="selected"
-                    class="preview-img"
+                <MapComponent
+                    :selected-layer="selectedLayer"
+                    :layer-paths="layerPaths"
+                    :layerX="layerX"
+                    :layerY="layerY"
+                    :layerMag="1"
+                    :regionsDataUrl="regionsDataUrl"
+                    :regionsVar="Region_nam"
+                    :usOutlineUrl="usOutlineUrl"
                 />
             </div>
         </template>
@@ -46,6 +51,21 @@
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from './RadioGroup.vue'
+    import MapComponent from './RegionMap.vue'
+
+    import ClimateMap from '@/assets/images/Climate_and_weather_map.png'
+    import FishingMap from '@/assets/images/Fishing_pressure_map.png'
+    import HabitatMap from '@/assets/images/Habitat_map.png'
+    import InvasiveMap from '@/assets/images/Invasive_species_map.png'
+    import PollutionMap from '@/assets/images/Pollution_map.png'
+
+    const layerPaths = {
+        Climate_and_weather_map: { path: ClimateMap },
+        Fishing_pressure_map: { path: FishingMap },
+        Habitat_map: { path: HabitatMap },
+        Invasive_species_map: { path: InvasiveMap },
+        Pollution_map: { path: PollutionMap }
+    }
 
     // define props
     defineProps({
@@ -56,12 +76,11 @@
     const publicPath = import.meta.env.BASE_URL;
     const mobileView = isMobile;
     const data = ref();
-    //const dataFile = 'findex_total_weighted_threats.csv'
     const chart = ref(null);
     let chartDimensions;
     let chartBounds;
 
-    const selected = ref('mountains')
+    const selectedLayer = ref('Climate_and_weather_map')
 
 
     onMounted(async () => {
@@ -210,12 +229,16 @@
 </script>
 
 <style lang="scss">
-    #threat-container {
-        max-width: min(1000px, 60vw);
+    #image-container {
+        max-width: min(1400px, 60vw);
         margin: 5rem auto 0 auto;
         @media screen and (max-width: 600px) {
             max-width: 100%;
         }
+    }
+    .preview-img {
+        max-width: 100%;
+        height: auto;
     }
     .axis-text {
         font-size: 1.6rem;
@@ -238,4 +261,5 @@
     .axis-notation {
         font-style: italic;
     }
+    
 </style>
