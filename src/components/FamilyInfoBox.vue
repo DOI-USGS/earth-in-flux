@@ -13,7 +13,12 @@
           <strong>{{ activeFamily.economicValue }}</strong> in total economic value
         </p>
         <p v-if="activeFamily.speciesCount">
-          <strong>{{ activeFamily.speciesCount }}</strong> species that are recreationally fished
+          <strong>{{ activeFamily.speciesCount }}</strong>
+          {{
+            activeFamily.speciesCount === 1
+              ? 'species that is recreationally fished'
+              : 'species that are recreationally fished'
+          }}
         </p>
         <p>{{ activeFamily.text }}</p>
       </div>
@@ -31,7 +36,12 @@
         <strong>{{ activeFamily.economicValue }}</strong> in total economic value
       </p>
       <p>
-        <strong>{{ activeFamily.countryCount }}</strong> countries where it is recreationally fished
+        <strong>{{ activeFamily.countryCount }}</strong>
+        {{
+          activeFamily.countryCount === 1
+            ? 'country where it is recreationally fished'
+            : 'countries where it is recreationally fished'
+        }}
       </p>
     </div>
   </div>
