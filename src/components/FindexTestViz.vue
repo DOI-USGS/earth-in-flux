@@ -18,7 +18,7 @@
         </template>
         <template #figures>
             <div id="image-container" ref="chart">
-                <MapComponent
+                <RegionMap
                     :selected-layer="selectedLayer"
                     :layer-paths="layerPaths"
                     :layer-x="layerX"
@@ -45,7 +45,7 @@
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from './RadioGroup.vue'
-    import MapComponent from './RegionMap.vue'
+    import RegionMap from './RegionMap.vue'
 
     import ClimateMap from '@/assets/images/Climate_and_weather_map.png'
     import FishingMap from '@/assets/images/Fishing_pressure_map.png'
