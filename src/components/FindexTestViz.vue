@@ -103,8 +103,6 @@
     const publicPath = import.meta.env.BASE_URL;
     const data = ref([]);
     const chart = ref(null);
-    let chartDimensions;
-    let chartBounds;
 
     const selectedLayer = ref('Climate_and_weather_map')
 
