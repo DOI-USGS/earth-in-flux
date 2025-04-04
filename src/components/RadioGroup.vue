@@ -64,7 +64,7 @@ defineEmits(['update:modelValue']);
 <style scoped>
 .radio_wrap {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -72,13 +72,12 @@ defineEmits(['update:modelValue']);
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
   user-select: none;
 }
-.radio-label.selected {
-  background-color: rgba(0, 0, 0, 0.05); /* or use a theme color */
-  padding: 8px 12px;
-  border-radius: 8px;
+.radio-label.selected { 
   transition: background-color 0.3s ease;
 }
 
