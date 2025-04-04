@@ -101,7 +101,6 @@
 
     // Global variables 
     const publicPath = import.meta.env.BASE_URL;
-    const mobileView = isMobile;
     const data = ref([]);
     const chart = ref(null);
     let chartDimensions;
