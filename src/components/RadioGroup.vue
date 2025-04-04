@@ -39,7 +39,11 @@
 
 <script setup>
 defineProps({
-  modelValue: [String, Number], // v-model binding for selected value
+  // v-model binding for selected value
+  modelValue: {
+    type: [String, Number],
+    default: '' // Default to an empty string
+  },
 
   // array of radio options: [{ label: 'Option 1', value: 'opt1' }, ...]
   options: {
