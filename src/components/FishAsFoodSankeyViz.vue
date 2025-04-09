@@ -46,6 +46,12 @@ const colors = [
 ]
 
 onMounted(async () => {
+  const containerWidth = chart.value.clientWidth
+  const isMobile = window.innerWidth <= 700
+  const fontSize = isMobile ? 9 : 12
+  const chartWidth = isMobile ? chart.value.clientWidth : 800
+  const chartHeight = isMobile ? 1400 : 1000
+
   const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv')
 
   // Get top-level families
@@ -116,9 +122,12 @@ onMounted(async () => {
       nodeGroups: families,
       nodeAlign,
       format: d3.format(',.0f'),
-      width: 800,
-      height: 1000,
+      width: chartWidth,
+      height: chartHeight,
+      fontSize,
       colors,
+      nodeStroke: 'none',
+      nodeLabelPadding: isMobile ? 2 : 6,
       linkColor: (d) => colorScale(familyGroupMap.get(d.source.id)),
       countryColorMap // pass to chart
     }
@@ -165,7 +174,8 @@ function SankeyChart(
     marginRight = 1, // right margin, in pixels
     marginBottom = 5, // bottom margin, in pixels
     marginLeft = 1, // left margin, in pixels
-    countryColorMap
+    countryColorMap,
+    fontSize = 12
   } = {}
 ) {
   // Convert nodeAlign from a name to a function (since d3-sankey is not part of core d3).
@@ -309,7 +319,7 @@ function SankeyChart(
       .attr('dy', '0.35em')
       .attr('text-anchor', (d) => (d.x0 < width / 2 ? 'start' : 'end'))
       .text(({ index: i }) => Tl[i])
-      .attr('font-size', 12)
+      .attr('font-size', fontSize)
       .attr('fill', 'black')
       .attr('stroke', 'white')
       .attr('stroke-width', 2)
@@ -327,5 +337,17 @@ function SankeyChart(
 <style scoped lang="scss">
 .chart-container {
   margin-top: 4rem;
+
+  @media (max-width: 700px) {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  svg {
+    @media (max-width: 700px) {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
 }
 </style>
