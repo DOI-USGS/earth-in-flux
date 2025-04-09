@@ -147,7 +147,7 @@ function SankeyChart(
     nodeWidth = 15, // width of node rects
     nodePadding = 10, // vertical separation between adjacent nodes
     nodeLabelPadding = 6, // horizontal separation between node and label
-    nodeStroke = 'currentColor', // stroke around node rects
+    nodeStroke = 'none', // stroke around node rects
     nodeStrokeWidth, // width of stroke around node rects, in pixels
     nodeStrokeOpacity, // opacity of stroke around node rects
     nodeStrokeLinejoin, // line join for stroke around node rects
