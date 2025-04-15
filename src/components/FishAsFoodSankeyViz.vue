@@ -6,6 +6,7 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p class="annotation">{{ currentText }}</p>
     </template>
     <template #figures>
       <div class="chart-container single" ref="chart"></div>
@@ -30,6 +31,7 @@ defineProps({
 const publicPath = import.meta.env.BASE_URL
 const chart = ref(null)
 const nodeAlign = 'justify'
+const currentText = ref("")
 
 // Family color palette
 const colors = [
@@ -150,7 +152,7 @@ function SankeyChart(
     nodeGroup, // given d in nodes, returns an (ordinal) value for color
     nodeGroups, // an array of ordinal values representing the node groups
     nodeLabel, // given d in (computed) nodes, text to label the associated rect
-    nodeTitle = (d) => `${d.id}\n${format(d.value)}`, // given d in (computed) nodes, hover text
+    nodeTitle = (d) => `${d.id}\n${format(d.value)} kg`, // given d in (computed) nodes, hover text
     nodeAlign = align, // Sankey node alignment strategy: left, right, justify, center
     nodeSort, // comparator function to order nodes
     nodeWidth = 15, // width of node rects
@@ -164,7 +166,7 @@ function SankeyChart(
     linkTarget = ({ target }) => target, // given d in links, returns a node identifier string
     linkValue = ({ value }) => value, // given d in links, returns the quantitative value
     linkPath = d3Sankey.sankeyLinkHorizontal(), // given d in (computed) links, returns the SVG path
-    linkTitle = (d) => `${d.source.id} → ${d.target.id}\n${format(d.value)}`, // given d in (computed) links
+    linkTitle = (d) => `${d.source.id} → ${d.target.id}\n${format(d.value)} kg`, // given d in (computed) links
     linkColor = 'source-target', // source, target, source-target, or static color
     linkStrokeOpacity = 0.5, // link stroke opacity
     linkMixBlendMode = 'multiply', // link blending mode
@@ -258,6 +260,12 @@ function SankeyChart(
       }
       return color(G[d.index])
     })
+    .on("mouseover", (event, d) => {
+      currentText.value = Tt[d.index]
+    })
+    .on("mouseout", () => {
+      currentText.value = ""
+    })
 
   if (Tt) node.append('title').text(({ index: i }) => Tt[i])
 
@@ -306,7 +314,13 @@ function SankeyChart(
               : linkColor
     )
     .attr('stroke-width', ({ width }) => Math.max(1, width))
-    .call(Lt ? (path) => path.append('title').text(({ index: i }) => Lt[i]) : () => {})
+    .call(Lt ? (path) => path.append('title').text(({ index: i }) => Lt[i]) : () => {})    
+    .on("mouseover", (event, d) => {
+      currentText.value = Lt[d.index]
+    })
+    .on("mouseout", () => {
+      currentText.value = ""
+    })
 
   if (Tl)
     svg
@@ -349,5 +363,11 @@ function SankeyChart(
       height: auto !important;
     }
   }
+}
+.annotation {
+  margin-top: 3rem;
+  font-style: italic;
+  font-weight: 300;
+  height: 1rem;
 }
 </style>
