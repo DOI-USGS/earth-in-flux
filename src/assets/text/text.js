@@ -343,7 +343,7 @@ export default {
                     text: "The Serrasalmidae (serrasalmids) are a family of characiform fishes, recently  elevated to family status. It includes more than 90 species. The name means serrated salmon family, which refers to the serrated keel running along the belly of these fish. Fish classified as Serrasalmidae are also known by these common names: pacu, piranha, and silver dollar. These common names generally designate differing dental characteristics and feeding habits...",
                     caption: "Silver dollar <em>(Metynnis luna)</em>"
                 },
-                "Sinipercidae ": {
+                "Sinipercidae": {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/mandarin-fish-edit.jpeg",
                     text: "Sinipercidae, the Chinese perches or Oriental perches, is a family of freshwater ray-finned fishes , part of the order Centrarchiformes. They have been placed within the temperate perch family, Percichthyidae in the past but may be more closely allied to the Centrarchidae...",
                     caption: "Mandarin fish <em>(Siniperca chuatsi)</em>"
