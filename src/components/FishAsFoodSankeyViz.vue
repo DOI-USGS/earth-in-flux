@@ -339,6 +339,7 @@ function SankeyChart(
       .attr('stroke-width', 2)
       .attr('paint-order', 'stroke')
       .attr('stroke-linejoin', 'round')
+      .style('user-select', 'none')
 
   function intern(value) {
     return value !== null && typeof value === 'object' ? value.valueOf() : value
