@@ -264,9 +264,9 @@ export default {
                     caption: "Hemibrycon <em>(Hemibrycon boquiae)</em>"
                 },
                 "Cichlidae": {
-                    image: "https://labs.waterdata.usgs.gov/visualizations/images/x.jpeg",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/ zebra-mbuna.jpeg",
                     text: "Cichlids are a large, diverse, and widespread family of percomorph fish in the family Cichlidae, order Cichliformes. At least 1,760 species have been scientifically described, making it one of the largest vertebrate families, with only the Cyprinidae being more speciose.[3] New species are discovered annually, and many species remain undescribed...",
-                    caption: "X <em>(X)</em>"
+                    caption: "Zebra mbuna <em>(Maylandia zebra)</em>"
                 },
                 "Esocidae": {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/northern-pike.jpeg",
@@ -309,24 +309,24 @@ export default {
                     caption: "European smelt <em>(Osmerus eperlanus)</em>"
                 },
                 "Percichthyidae": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Percichthyidae.jpeg",
                     text: "Percichthyidae, the temperate perches, are a family of freshwater ray-finned fish found in Australia and southern South America. Formerly placed in the order Perciformes, they are now placed in the order Centrarchiformes...",
-                    caption: "Murray cod <em>(Maccullochella peelii)</em>"
+                    caption: "Macquarie perch<em>(Macquaria australasica)</em>"
                 },
                 "Bagridae": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Bagridae.jpeg",
                     text: "The Bagridae are a family of catfish that are native to Africa (Bagrus) and Asia (all other genera) from Japan to Borneo. It includes about 245 species. These fish are commonly known as naked catfishes or bagrid catfishes...",
-                    caption: "Yellowhead catfish <em>(Tachysurus fulvidraco)</em>"
+                    caption: "Striped dwarf catfish <em>(Mystus vittatus)</em>"
                 },
                 "Centropomidae": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Centropomidae.jpeg",
                     text: "Centropomus is a genus of predominantly marine fish comprising the family Centropomidae. The type species is Centropomus undecimalis, the common snook. Commonly known as snooks or róbalos, the Centropomus species are native to tropical and subtropical waters of the western Atlantic and eastern Pacific Oceans...",
                     caption: "Common snook <em>(Centropomus undecimalis)</em>"
                 },
                 "Osteichthyes": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Osteichthyes.jpeg",
                     text: "Osteichthyes also known as osteichthyans or commonly referred to as the bony fish, is a diverse clade of vertebrate animals that have endoskeletons primarily composed of bone tissue. They can be contrasted with the Chondrichthyes (cartilaginous fish) and the extinct placoderms and acanthodians, which have endoskeletons primarily composed of cartilage. The vast majority of extant fish are members of Osteichthyes, being an extremely diverse and abundant group consisting of 45 orders, over 435 families and 28,000 species...",
-                    caption: "x<em>(x)</em>"
+                    caption: "Osteichthyes <em>(bony fish)</em>"
                 },
                 "Pimelodidae": {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/redtail-catfish.jpeg",
@@ -334,7 +334,7 @@ export default {
                     caption: "Redtail catfish <em>(Phractocephalus hemioliopterus)</em>"
                 },
                 "Plecoglossidae": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Plecoglossidae.jpeg",
                     text: "A monospecific family (Plecoglossus altivelis) of fish that spend some time in the sea but return to freshwater streams to spawn. Large numbers of juveniles are caught during their annual migration, and are stocked in ponds for cultivation, making them commercially important in Japan, and to some extent China. Ayus occur in northern Asia....",
                     caption: "Ayu sweetfish <em>(Plecoglossus altivelis)</em>"
                 },
@@ -344,10 +344,10 @@ export default {
                     caption: "Silver dollar <em>(Metynnis luna)</em>"
                 },
                 "Sinipercidae ": {
-                    image: "",
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/mandarin-fish-edit.jpeg",
                     text: "Sinipercidae, the Chinese perches or Oriental perches, is a family of freshwater ray-finned fishes , part of the order Centrarchiformes. They have been placed within the temperate perch family, Percichthyidae in the past but may be more closely allied to the Centrarchidae...",
-                    caption: "Golden mandarin <em>(Siniperca scherzeri)</em>"
-                },
+                    caption: "Mandarin fish <em>(Siniperca chuatsi)</em>"
+                }
 
             },
             defaultFamily: {
