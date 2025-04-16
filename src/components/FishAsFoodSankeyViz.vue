@@ -39,20 +39,14 @@ const colors = [
   '#5b7083',
   '#cc5b4d',
   '#d09a47',
-  '#628c8c',
-  '#9c755f',
-  '#2a9d8f',
-  '#b56576',
-  '#6a4c93',
-  '#7f8c8d'
+  '#628c8c'
 ]
 
 onMounted(async () => {
-  const containerWidth = chart.value.clientWidth
   const isMobile = window.innerWidth <= 700
-  const fontSize = isMobile ? 9 : 12
+  const fontSize = isMobile ? 11 : 13
   const chartWidth = isMobile ? chart.value.clientWidth : 800
-  const chartHeight = isMobile ? 1400 : 1000
+  const chartHeight = isMobile ? 1600 : 1200
 
   const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv')
 
@@ -109,6 +103,7 @@ onMounted(async () => {
     }
   })
 
+  // set color for each country based on dominant family
   const countryColorMap = new Map()
 
   countryFamilyTotals.forEach((famObj, country) => {
