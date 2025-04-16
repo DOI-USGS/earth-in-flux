@@ -92,6 +92,11 @@ export default {
       initials: 'HCD',
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
+    {
+      fullName: 'Elmera Azadpour',
+      initials: 'EA',
+      profile_link: 'https://www.usgs.gov/staff-profiles/elmera-azadpour'
+    }
   ],
   FishAsFoodCirclePacking: [
     {
@@ -99,6 +104,11 @@ export default {
       initials: 'HCD',
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
+    {
+      fullName: 'Elmera Azadpour',
+      initials: 'EA',
+      profile_link: 'https://www.usgs.gov/staff-profiles/elmera-azadpour'
+    }
   ],
   FindexThreatSankey: [
     {
