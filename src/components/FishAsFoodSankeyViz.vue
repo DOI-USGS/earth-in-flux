@@ -23,6 +23,7 @@ import { onMounted, ref } from 'vue'
 import * as d3 from 'd3'
 import * as d3Sankey from 'd3-sankey'
 import VizSection from '@/components/VizSection.vue'
+import { isMobile } from 'mobile-device-detect'
 
 defineProps({
   text: { type: Object }
@@ -32,12 +33,12 @@ const publicPath = import.meta.env.BASE_URL
 const chart = ref(null)
 const nodeAlign = 'justify'
 const currentText = ref('')
+const mobileView = isMobile
 
 // Family color palette
 const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
 
 onMounted(async () => {
-  const isMobile = window.innerWidth <= 700
   const fontSize = isMobile ? 11 : 13
   const chartWidth = isMobile ? chart.value.clientWidth : 800
   const chartHeight = isMobile ? 1600 : 1200
