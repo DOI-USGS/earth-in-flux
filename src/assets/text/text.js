@@ -332,6 +332,149 @@ export default {
             explanation1: "As scientists <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected the snow core</a>, they carefully stored each ten-centimeter section for transport off the Juneau Icefield. The retrieved samples were analyzed in a laboratory for particle counts, major ions, stable isotopes of oxygen and hydrogen, and the three sugars that are markers of biomass combustion—mannosan, galactosan, and levoglucosan.",
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
+        FindexThreatDefinitions: {
+            paragraph1: "intro text",
+            iconData: [
+                {
+                    iconTitle: "Habitat",
+                    iconID: "habitat",
+                    icon: "habitat-29572",
+                    iconText: "Habitat text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Dams",
+                            subThreatIcon: "H-dams-3916913",
+                            subThreatText: "Dams"
+                        },
+                        {
+                            subThreat: "Wetland drainage",
+                            subThreatIcon: "H-wetland-drainage-34007",
+                            subThreatText: "Wetland drainage"
+                        },
+                        {
+                            subThreat: "Deforestation and associated runoff",
+                            subThreatIcon: "H-deforestation-4811548",
+                            subThreatText: "Deforestation and associated runoff"
+                        },
+                        {
+                            subThreat: "Riparian degradation",
+                            subThreatIcon: "H-riparian-6291",
+                            subThreatText: "Riparian degradation"
+                        },
+                        {
+                            subThreat: "Agricultural extraction",
+                            subThreatIcon: "H-agriculture-5491228",
+                            subThreatText: "Agricultural extraction"
+                        },
+                        {
+                            subThreat: "Urban extraction",
+                            subThreatIcon: "H-urban-7019973",
+                            subThreatText: "Urban extraction"
+                        },
+                        {
+                            subThreat: "Industrial extraction",
+                            subThreatIcon: "H-industrial-659077",
+                            subThreatText: "Industrial extraction"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Pollution",
+                    iconID: "pollution",
+                    icon: "pollution-6278",
+                    iconText: "Pollution text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Agricultural effluents",
+                            subThreatIcon: "P-agriculture-3634692",
+                            subThreatText: "Agricultural effluents"
+                        },
+                        {
+                            subThreat: "Urban wastewater",
+                            subThreatIcon: "P-urban-waste-25100",
+                            subThreatText: "Urban wastewate"
+                        },
+                        {
+                            subThreat: "Industrial effluents",
+                            subThreatIcon: "P-industrial-200223",
+                            subThreatText: "Industrial effluents"
+                        },
+                        {
+                            subThreat: "Aquaculture effluents",
+                            subThreatIcon: "P-aquaculture-23815",
+                            subThreatText: "Aquaculture effluents"
+                        },
+                        {
+                            subThreat: "Pharmaceuticals",
+                            subThreatIcon: "P-pharmaceuticals-164439",
+                            subThreatText: "Pharmaceuticals"
+                        },
+                        {
+                            subThreat: "Oil or gas exploration",
+                            subThreatIcon: "P-oil-gas-3723255",
+                            subThreatText: "Oil or gas exploration"
+                        },
+                        {
+                            subThreat: "Plastics",
+                            subThreatIcon: "P-plastics-2484814",
+                            subThreatText: "Plastics"
+                        },
+                        {
+                            subThreat: "Mining",
+                            subThreatIcon: "P-mining-7248907",
+                            subThreatText: "Mining"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Climate and weather",
+                    iconID: "climate-and-weather",
+                    icon: "climate-6795675",
+                    iconText: "Climate and Weather text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Change in water temperature",
+                            subThreatIcon: "CW-temperature-1979336",
+                            subThreatText: "Change in water temperature"
+                        },
+                        {
+                            subThreat: "Drought",
+                            subThreatIcon: "CW-drought-002D5E",
+                            subThreatText: "Drought"
+                        },
+                        {
+                            subThreat: "Change in flooding",
+                            subThreatIcon: "CW-flooding-1760091",
+                            subThreatText: "Change in flooding"
+                        },
+                        {
+                            subThreat: "Change in wind patterns",
+                            subThreatIcon: "CW-wind-7479181",
+                            subThreatText: "Change in wind patterns"
+                        },
+                        {
+                            subThreat: "Change in ice cover",
+                            subThreatIcon: "CW-ice-cover-5314745",
+                            subThreatText: "Change in ice cover"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Invasive species",
+                    iconID: "invasive-species",
+                    icon: "invasive-species-973991",
+                    iconText: "Invasive species text.",
+                    subThreatData: []
+                },
+                {
+                    iconTitle: "Fishing pressure",
+                    iconID: "fishing-pressure",
+                    icon: "fishing-pressure-4847095",
+                    iconText: "Fishing pressure text.",
+                    subThreatData: []
+                }
+            ]
+        },
         FindexThreatSankey: {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         },
