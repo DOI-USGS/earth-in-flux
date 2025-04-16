@@ -31,16 +31,10 @@ defineProps({
 const publicPath = import.meta.env.BASE_URL
 const chart = ref(null)
 const nodeAlign = 'justify'
-const currentText = ref("")
+const currentText = ref('')
 
 // Family color palette
-const colors = [
-  '#2b2e3c',
-  '#5b7083',
-  '#cc5b4d',
-  '#d09a47',
-  '#628c8c'
-]
+const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
 
 onMounted(async () => {
   const isMobile = window.innerWidth <= 700
@@ -80,25 +74,32 @@ onMounted(async () => {
     findFamily(d.target)
   })
 
-  // Find dominant family for each country
-  const countryFamilyTotals = new Map()
+  // Find rhe dominant fish family harvested in each country and then color the nodes accordingly
+  const countryFamilyTotals = new Map() // create map to track total harvest vals
 
+  // loop through each link in data
   rawLinks.forEach((d) => {
+    // check if the target is a country by confirming it's *not* in the list of sources
     const isCountry = !allSources.has(d.target)
-    if (isCountry) {
-      const country = d.target
-      const species = d.source
-      const family = findFamily(species)
-      const value = +d.value
 
+    if (isCountry) {
+      const country = d.target // destination country
+      const species = d.source // species being harvested
+      const family = findFamily(species) // determine the family this species belongs to
+      const value = +d.value // convert  harvest value to number
+
+      // if this country hasn't been seen yet, initialize its entry in the map with an empty object
       if (!countryFamilyTotals.has(country)) {
         countryFamilyTotals.set(country, {})
       }
 
+      //  get the totals object for this country
       const totals = countryFamilyTotals.get(country)
+      // if family hasn't been counted for this country, initialize it to 0
       if (!totals[family]) {
         totals[family] = 0
       }
+      // Add  current value to the running total for this family in this country
       totals[family] += value
     }
   })
@@ -255,11 +256,11 @@ function SankeyChart(
       }
       return color(G[d.index])
     })
-    .on("mouseover", (event, d) => {
+    .on('mouseover', (event, d) => {
       currentText.value = Tt[d.index]
     })
-    .on("mouseout", () => {
-      currentText.value = ""
+    .on('mouseout', () => {
+      currentText.value = ''
     })
 
   if (Tt) node.append('title').text(({ index: i }) => Tt[i])
@@ -309,12 +310,12 @@ function SankeyChart(
               : linkColor
     )
     .attr('stroke-width', ({ width }) => Math.max(1, width))
-    .call(Lt ? (path) => path.append('title').text(({ index: i }) => Lt[i]) : () => {})    
-    .on("mouseover", (event, d) => {
+    .call(Lt ? (path) => path.append('title').text(({ index: i }) => Lt[i]) : () => {})
+    .on('mouseover', (event, d) => {
       currentText.value = Lt[d.index]
     })
-    .on("mouseout", () => {
-      currentText.value = ""
+    .on('mouseout', () => {
+      currentText.value = ''
     })
 
   if (Tl)
@@ -327,7 +328,6 @@ function SankeyChart(
       .attr('y', (d) => (d.y1 + d.y0) / 2)
       .attr('dy', '0.35em')
       .attr('text-anchor', (d) => (d.x0 < width / 2 ? 'start' : 'end'))
-      .text(({ index: i }) => Tl[i])
       .attr('font-size', fontSize)
       .attr('fill', 'black')
       .attr('stroke', 'white')
@@ -335,6 +335,7 @@ function SankeyChart(
       .attr('paint-order', 'stroke')
       .attr('stroke-linejoin', 'round')
       .style('user-select', 'none')
+      .text(({ index: i }) => Tl[i])
 
   function intern(value) {
     return value !== null && typeof value === 'object' ? value.valueOf() : value
