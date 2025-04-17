@@ -39,9 +39,9 @@ const mobileView = isMobile
 const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
 
 onMounted(async () => {
-  const fontSize = isMobile ? 11 : 13
-  const chartWidth = isMobile ? chart.value.clientWidth : 800
-  const chartHeight = isMobile ? 1600 : 1200
+  const fontSize = mobileView ? 11 : 13
+  const chartWidth = mobileView ? chart.value.clientWidth : 800
+  const chartHeight = mobileView ? 1600 : 1200
 
   const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv')
 
@@ -126,7 +126,7 @@ onMounted(async () => {
       fontSize,
       colors,
       nodeStroke: 'none',
-      nodeLabelPadding: isMobile ? 2 : 6,
+      nodeLabelPadding: mobileView ? 2 : 6,
       linkColor: (d) => colorScale(familyGroupMap.get(d.source.id)),
       countryColorMap // pass to chart
     }
