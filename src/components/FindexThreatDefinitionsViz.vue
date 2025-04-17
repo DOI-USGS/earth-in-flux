@@ -16,25 +16,29 @@
         <template #figures>
             <div
                 id="threat-svg-container"
-                class="single maxWidth"
             >
                 <ThreatsSVG 
                     class="threat-svg"
                     v-if="currentCategory == 'none'"
                 />
                 <HabitatThreatsSVG 
+                    class="threat-svg"
                     v-if="currentCategory == 'habitat'"
                 />
                 <PollutionThreatsSVG 
+                    class="threat-svg"
                     v-if="currentCategory == 'pollution'"
                 />
                 <ClimateThreatsSVG 
+                    class="threat-svg"
                     v-if="currentCategory == 'climate-and-weather'"
                 />
                 <InvasivesThreatsSVG 
+                    class="threat-svg"
                     v-if="currentCategory == 'invasive-species'"
                 />
                 <FishingThreatsSVG 
+                    class="threat-svg"
                     v-if="currentCategory == 'fishing-pressure'"
                 />
             </div>
@@ -54,7 +58,9 @@
                     reset
                 </button>
                 <div
-                    v-for="icon in text.iconData" :key="icon.iconID"
+                    v-for="icon in text.iconData"
+                    :key="icon.iconID"
+                    class="button-wrapper"
                 >
                     <button
                         class="icon-button primary"
@@ -81,11 +87,16 @@
                     v-for="subicon, index in icon.subThreatData"
                     :key="index"
                 >
-                    <button
-                        class="icon-button"
+                    <div
+                        class="button-wrapper-vertical"
                     >
-                        <img class="icon-image" :src="getImageURL(subicon.subThreatIcon)" alt="">
-                    </button>
+                        <button
+                            class="icon-button sub"
+                            :class="icon.iconID"
+                        >
+                            <img class="icon-image" :src="getImageURL(subicon.subThreatIcon)" alt="">
+                        </button>
+                    </div>
                     <p> <span class="emph"> {{ subicon.subThreat }}</span>: {{ subicon.subThreatText }}</p>
                 </div>
 
@@ -122,17 +133,29 @@
 </script>
 
 <style lang="scss" scoped>
+#threat-svg-container {
+    display: flex;
+    justify-content: center;
+}
+.threat-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 700px;
+}
 #primary-icon-container {
     display: flex;
-    gap: 30px;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
 }
 .sub-icon-container {
     display: flex;
     gap: 15px;
     align-items: center;
     margin-bottom: 15px;
+}
+.sub-icon-container p {
+    padding: 0;
 }
 #reset-button {
     background-color: transparent;
@@ -141,43 +164,77 @@
     padding: 0.75rem;
     border-radius: 3px;
     opacity: 0.8;
+    margin: 3px;
 }
 #reset-button:hover {
     opacity: 1;
     box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
     transition: all .3s ease; 
 }
+.button-wrapper {
+    display: flex;
+    flex: 1 1 50%;
+    max-width: 115px;
+}
+.button-wrapper-vertical {
+    display: flex;
+    flex: 1 1 50%;
+    max-width: 120px;
+    @media screen and (max-width: 600px) {
+        max-width: 60px;
+    }
+}
 .icon-button {
+    flex: 1;
     background-color: transparent;
     border: 0.25px solid rgb(223, 223, 223);
     border-radius: 50%;
-    height: 85px;
-    width: 85px;
+    padding: 0px;
+    margin: 15px;
+    @media screen and (max-width: 600px) {
+        margin: 5px;
+    }
 }
 .primary {
+    min-width: 35px;
     opacity: 0.5;
     border: 0.5px solid var(--background-color);
     box-shadow: 0px 0px 8px rgba(39,44,49,.15), 1px 4px 4px rgba(39,44,49,.04);
-}
-.active {
-    opacity: 1;
-    transform: scale(1.1);
+    @media screen and (max-width: 600px) {
+        margin: 7px;
+    }
 }
 .primary:hover {
     transform: scale(1.1);
     opacity: 1;
     transition: all .3s ease; 
 }
+.sub {
+    min-width: 55px;
+}
+.icon-button:after {
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 100%;
+}
+.active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+.habitat {
+    border-color: var(--color-habitat-faded);
+}
+.pollution {
+    border-color: var(--color-pollution-faded);
+}
+.climate-and-weather {
+    border-color: var(--color-climate-and-weather-faded);
+}
 .icon-image {
-    padding: 10px;
-    max-width: 75px;
-    max-height: 75px;
-    height: auto;
-    width: auto;
-    @media only screen and (max-width: 600px) {
-        max-width: 40px;
-        max-height: 40px;
-    }
+    transform: translate(0, 32%); /* negate vertical-align top on parent*/
+    max-height: 60%;
+    max-width: 60%;
 }
 .definition-container {
     margin: 3rem 0 3rem 0;
