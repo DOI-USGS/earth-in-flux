@@ -258,16 +258,40 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
 }
 
 #' @description create top threats by basin global map
-#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param in_dat dataframe with weighted threat scores by threat type and HYBAS_ID
 #' @param threat_pal dataframe with color palettes and file name templates by threat type
 #' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
 #' @param proj character string with map projection definition
 #' @param threat_category list of target threat categories
 top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category){
   
-  processed_df <- in_dat |> 
+  # compute sum of weighted threats by threat category
+  weighted_sums <- in_dat |>
+    group_by(HYBAS_ID, ThreatCategory) |> 
+    summarize(TotalWeightedThreatMetric = sum(weightedThreatMetric, na.rm = TRUE))
+  
+  # Get threat category with max sum of weighted threats for each basin
+  processed_df <- weighted_sums |> 
     group_by(HYBAS_ID) |> 
-    filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
+    # filter out basins where total for all threat categories is 0
+    # filter(sum(TotalWeightedThreatMetric) > 0) |>
+    # if keeping basins where total = 0, set ranking for ties to match SME approach
+    mutate(ThreatCategory = factor(ThreatCategory, 
+                                   levels = c("Habitat", "Fishing pressure",
+                                              "Pollution", "Invasive species", 
+                                              "Climate and weather"))) |>
+    arrange(ThreatCategory) |>
+    slice_max(
+      n = 1,
+      order_by = TotalWeightedThreatMetric,
+      with_ties = FALSE,
+      na_rm = TRUE
+    )
+  
+  
+  # processed_df <- in_dat |> 
+  #   group_by(HYBAS_ID) |> 
+  #   filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
   
   processed_sf <- processed_df |> 
     left_join(hybas_habitat_types) |> 
