@@ -17,29 +17,9 @@
             <div
                 id="threat-svg-container"
             >
-                <ThreatsSVG 
+                <component 
+                    :is="getCurrentSVG()" 
                     class="threat-svg"
-                    v-if="currentCategory == 'none'"
-                />
-                <HabitatThreatsSVG 
-                    class="threat-svg"
-                    v-if="currentCategory == 'habitat'"
-                />
-                <PollutionThreatsSVG 
-                    class="threat-svg"
-                    v-if="currentCategory == 'pollution'"
-                />
-                <ClimateThreatsSVG 
-                    class="threat-svg"
-                    v-if="currentCategory == 'climate-and-weather'"
-                />
-                <InvasivesThreatsSVG 
-                    class="threat-svg"
-                    v-if="currentCategory == 'invasive-species'"
-                />
-                <FishingThreatsSVG 
-                    class="threat-svg"
-                    v-if="currentCategory == 'fishing-pressure'"
                 />
             </div>
         </template>
@@ -106,7 +86,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue";
+    import { ref } from "vue";
     import VizSection from '@/components/VizSection.vue';
     import ThreatsSVG from "@/assets/svgs/InlandFisheriesThreats.svg";
     import HabitatThreatsSVG from "@/assets/svgs/InlandFisheriesThreats_habitat.svg";
@@ -123,9 +103,17 @@
     // Global variables 
     const currentCategory = ref('none')
 
-    onMounted(async () => {
-
-    });
+    const getCurrentSVG = () => {
+        const components = {
+            none: ThreatsSVG,
+            habitat: HabitatThreatsSVG,
+            pollution: PollutionThreatsSVG,
+            'climate-and-weather': ClimateThreatsSVG,
+            'invasive-species': InvasivesThreatsSVG,
+            'fishing-pressure': FishingThreatsSVG
+        };
+        return components[currentCategory.value] || ThreatsSVG;
+    }
 
     function getImageURL(filename) {
         return new URL(`../assets/svgs/${filename}.svg`, import.meta.url).href
