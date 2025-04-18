@@ -7,7 +7,7 @@ export default {
             project: 'Findex',
             vizKey: 'FindexThreatDefinitions',
             vizRoute: 'inland-fish-threats',
-            img_src: 'Placeholder_thumbnail.webp',
+            img_src: 'inland_fisheries_thumbnail.webp',
             alt: '',
             chartOrder: 1,
             description: 'Inland fisheries face many threats.'
