@@ -86,7 +86,7 @@ export default {
             project: 'Fish as Food',
             vizKey: 'FishAsFoodSankey',
             vizRoute: 'inland-rec-fish-harvest',
-            img_src: 'FishAsFoodSankey_thumbnail.webp',
+            img_src: 'FishAsFood_sankey_thumbnail.webp',
             alt: '',
             chartOrder: 1,
             description: 'Inland recreational fishing harvest is substantial.'
