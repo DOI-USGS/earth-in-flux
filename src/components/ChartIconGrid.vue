@@ -1,5 +1,5 @@
 <template>
-    <div id="chartGrid">
+    <div id="chartIconGrid">
         <ChartIcon 
             :id="projectRoute"
             :vizRoute=null
@@ -48,7 +48,7 @@
 </script>
 
 <style>
-#chartGrid{
+#chartIconGrid{
     margin: 8rem auto 2rem auto;
     display: flex;
     justify-content: center;
