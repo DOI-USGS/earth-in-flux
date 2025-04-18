@@ -36,7 +36,7 @@ export default {
             project: 'Findex',
             vizKey: 'FindexTest',
             vizRoute: 'inland-fish-region-map',
-            img_src: 'threat_by_basin_thumbnail.webp',
+            img_src: 'Placeholder_thumbnail.webp',
             alt: '',
             chartOrder: 4,
             description: 'FILL THIS OUT'
