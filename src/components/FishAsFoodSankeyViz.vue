@@ -16,7 +16,7 @@
       <p class="annotation">{{ currentText }}</p>
     </template>
     <template #figures>
-      <div class="chart-container single" ref="chart"></div>
+      <div class="chart-container single" ref="chart" v-show="toggle.visible"></div>
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption> </template>
