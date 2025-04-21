@@ -357,7 +357,12 @@ export default {
             }
         },        
         FishAsFoodSankey: {
-            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
+            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
+            toggleData: {
+                visible: true,
+                color: 'var(--usgs-blue)',
+                label: "include China"
+            }
         },
         WildfireAerosols: {
             paragraph1: "Each layer of the <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected snow core</a> contains more than just packed snow. Particulates from the air, like dust, deposit on the surface of the glacier, along with tiny airborne particles called aerosols. Over time, the deposited particulates and aerosols are preserved in the glacier. If the aerosols are dark in color, the glacier absorbs more heat and melts more quickly. These dark aerosols include black carbon, or soot, that is generated when vehicles and industrial activities burn fossil fuels or when wildfires burn vegetation.",   
