@@ -6,17 +6,13 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-      <div class="toggle-group"> 
-          <ToggleSwitch 
-              v-model="toggle.visible" 
-              :label="toggle.label"
-              :rightColor="toggle.color"
-          />
+      <div class="toggle-group">
+        <ToggleSwitch v-model="toggle.visible" :label="toggle.label" :rightColor="toggle.color" />
       </div>
       <p class="annotation">{{ currentText }}</p>
     </template>
     <template #figures>
-      <div class="chart-container single" ref="chart" v-show="toggle.visible"></div>
+      <div class="chart-container single" ref="chart"></div>
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption> </template>
@@ -26,11 +22,11 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import * as d3 from 'd3'
 import * as d3Sankey from 'd3-sankey'
 import VizSection from '@/components/VizSection.vue'
-import ToggleSwitch from '@/components/ToggleSwitch.vue';
+import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import { isMobile } from 'mobile-device-detect'
 
 const props = defineProps({
@@ -50,26 +46,69 @@ const toggle = reactive(props.text.toggleData)
 // Family color palette
 const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
 
-onMounted(async () => {
-  const fontSize = mobileView ? 11 : 13
-  const chartWidth = mobileView ? chart.value.clientWidth : 800
-  const chartHeight = mobileView ? 1600 : 1200
+const rawLinksRef = ref([])
+const filteredLinksRef = ref([])
 
-  const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv')
-  
-  // Get top-level families
-  const allSources = new Set(rawLinks.map((d) => d.source))
-  const allTargets = new Set(rawLinks.map((d) => d.target))
+onMounted(async () => {
+  const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv', (d) => ({
+    source: d.source,
+    target: d.target,
+    value: +d.value
+  }))
+
+  //  connections to China
+  const filteredLinks = rawLinks.filter((d) => d.target !== 'China')
+
+  // species/families that ONLY link to China
+  const allTargetsFromSource = new Map()
+  rawLinks.forEach((d) => {
+    if (!allTargetsFromSource.has(d.source)) {
+      allTargetsFromSource.set(d.source, new Set())
+    }
+    allTargetsFromSource.get(d.source).add(d.target)
+  })
+
+  const chinaOnlySources = new Set()
+  allTargetsFromSource.forEach((targets, source) => {
+    if (targets.size === 1 && targets.has('China')) {
+      chinaOnlySources.add(source)
+    }
+  })
+
+  // filtered links
+  const finalFilteredLinks = filteredLinks.filter((d) => !chinaOnlySources.has(d.source))
+
+  rawLinksRef.value = rawLinks
+  filteredLinksRef.value = finalFilteredLinks
+
+  drawSankey(toggle.visible ? rawLinks : finalFilteredLinks)
+})
+
+watch(
+  () => toggle.visible,
+  (newVal) => {
+    const dataset = newVal ? rawLinksRef.value : filteredLinksRef.value
+    drawSankey(dataset)
+  }
+)
+
+function drawSankey(links) {
+  d3.select(chart.value).selectAll('*').remove()
+
+  if (!links || links.length === 0) return
+
+  const validLinks = links.filter((d) => d.value && !isNaN(d.value))
+
+  const allSources = new Set(validLinks.map((d) => d.source))
+  const allTargets = new Set(validLinks.map((d) => d.target))
   const families = [...allSources].filter((src) => !allTargets.has(src))
 
   const colorScale = d3.scaleOrdinal().domain(families).range(colors)
 
-  // Trace every node back to their family
   const parentOf = new Map()
-  rawLinks.forEach((d) => parentOf.set(d.target, d.source))
+  validLinks.forEach((d) => parentOf.set(d.target, d.source))
 
   const familyGroupMap = new Map()
-
   function findFamily(node) {
     if (families.includes(node)) {
       familyGroupMap.set(node, node)
@@ -82,68 +121,58 @@ onMounted(async () => {
     return fam
   }
 
-  rawLinks.forEach((d) => {
+  validLinks.forEach((d) => {
     findFamily(d.source)
     findFamily(d.target)
   })
 
-  // Find rhe dominant fish family harvested in each country and then color the nodes accordingly
-  const countryFamilyTotals = new Map() // create map to track total harvest vals
+  const nodes = Array.from(
+    new Set([...validLinks.map((d) => d.source), ...validLinks.map((d) => d.target)])
+  ).map((id) => ({ id }))
 
-  // loop through each link in data
-  rawLinks.forEach((d) => {
-    // check if the target is a country by confirming it's *not* in the list of sources
+  const activeNodes = nodes.filter((node) =>
+    validLinks.some((link) => link.source === node.id || link.target === node.id)
+  )
+
+  // Country colors
+  const countryFamilyTotals = new Map()
+  validLinks.forEach((d) => {
     const isCountry = !allSources.has(d.target)
-
     if (isCountry) {
-      const country = d.target // destination country
-      const species = d.source // species being harvested
-      const family = findFamily(species) // determine the family this species belongs to
-      const value = +d.value // convert  harvest value to number
-
-      // if this country hasn't been seen yet, initialize its entry in the map with an empty object
-      if (!countryFamilyTotals.has(country)) {
-        countryFamilyTotals.set(country, {})
-      }
-
-      //  get the totals object for this country
+      const country = d.target
+      const species = d.source
+      const family = findFamily(species)
+      const value = +d.value
+      if (!countryFamilyTotals.has(country)) countryFamilyTotals.set(country, {})
       const totals = countryFamilyTotals.get(country)
-      // if family hasn't been counted for this country, initialize it to 0
-      if (!totals[family]) {
-        totals[family] = 0
-      }
-      // Add  current value to the running total for this family in this country
-      totals[family] += value
+      totals[family] = (totals[family] || 0) + value
     }
   })
 
-  // set color for each country based on dominant family
   const countryColorMap = new Map()
-
   countryFamilyTotals.forEach((famObj, country) => {
     const [topFamily] = Object.entries(famObj).sort((a, b) => b[1] - a[1])[0]
     countryColorMap.set(country, colorScale(topFamily))
   })
 
-  // Pass everything into SankeyChart
   SankeyChart(
-    { links: rawLinks },
+    { nodes: activeNodes, links: validLinks },
     {
       nodeGroup: (d) => familyGroupMap.get(d.id),
       nodeGroups: families,
       nodeAlign,
       format: d3.format(',.0f'),
-      width: chartWidth,
-      height: chartHeight,
-      fontSize,
+      width: mobileView ? chart.value.clientWidth : 800,
+      height: mobileView ? 1600 : 1200,
+      fontSize: mobileView ? 11 : 13,
       colors,
       nodeStroke: 'none',
       nodeLabelPadding: mobileView ? 2 : 6,
       linkColor: (d) => colorScale(familyGroupMap.get(d.source.id)),
-      countryColorMap // pass to chart
+      countryColorMap
     }
   )
-})
+}
 
 // https://observablehq.com/@d3/sankey-component
 // Copyright 2021-2023 Observable, Inc.
