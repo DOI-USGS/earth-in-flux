@@ -6,10 +6,17 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <div class="toggle-group"> 
+          <ToggleSwitch 
+              v-model="toggle.visible" 
+              :label="toggle.label"
+              :rightColor="toggle.color"
+          />
+      </div>
       <p class="annotation">{{ currentText }}</p>
     </template>
     <template #figures>
-      <div class="chart-container single" ref="chart"></div>
+      <div class="chart-container single" ref="chart" v-show="toggle.visible"></div>
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption> </template>
@@ -19,21 +26,26 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import * as d3 from 'd3'
 import * as d3Sankey from 'd3-sankey'
 import VizSection from '@/components/VizSection.vue'
+import ToggleSwitch from '@/components/ToggleSwitch.vue';
 import { isMobile } from 'mobile-device-detect'
 
-defineProps({
+const props = defineProps({
   text: { type: Object }
 })
 
+// global variables
 const publicPath = import.meta.env.BASE_URL
 const chart = ref(null)
 const nodeAlign = 'justify'
 const currentText = ref('')
 const mobileView = isMobile
+
+// set up reactive layers object
+const toggle = reactive(props.text.toggleData)
 
 // Family color palette
 const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
@@ -44,7 +56,7 @@ onMounted(async () => {
   const chartHeight = mobileView ? 1600 : 1200
 
   const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv')
-
+  
   // Get top-level families
   const allSources = new Set(rawLinks.map((d) => d.source))
   const allTargets = new Set(rawLinks.map((d) => d.target))
