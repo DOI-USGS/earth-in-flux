@@ -188,6 +188,8 @@ function drawSankey(links) {
     countryColorMap.set(country, colorScale(topFamily))
   })
 
+  const desktopHeight = toggle.visible ? 1200 : 900;
+  const mobileHeight = toggle.visible ? 1600 : 1200;
   SankeyChart(
     { nodes: activeNodes, links: validLinks },
     {
@@ -197,7 +199,7 @@ function drawSankey(links) {
       nodeSort: (a,b) => d3.descending(a.value, b.value),
       format: d3.format(',.0f'),
       width: mobileView ? chart.value.clientWidth : 800,
-      height: mobileView ? 1600 : 1200,
+      height: mobileView ? mobileHeight : desktopHeight,
       fontSize: mobileView ? 11 : 13,
       colors,
       nodeStroke: 'none',
