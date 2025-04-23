@@ -7,7 +7,13 @@
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
       <div class="toggle-group">
-        <ToggleSwitch v-model="toggle.visible" :label="toggle.label" :rightColor="toggle.color" />
+        <ToggleSwitch 
+            v-for="toggle, index in toggles"
+            :key="index"
+            v-model="toggle.value" 
+            :label="toggle.label"
+            :rightColor="toggle.color"
+        />
       </div>
       <p class="annotation">{{ currentText }}</p>
     </template>
@@ -41,7 +47,7 @@ const currentText = ref('')
 const mobileView = isMobile
 
 // set up reactive layers object
-const toggle = reactive(props.text.toggleData)
+const toggles = reactive(props.text.toggleData);
 
 // Family color palette
 const colors = {
@@ -107,14 +113,19 @@ onMounted(async () => {
     })
 
   // draw sankey 
-  drawSankey(toggle.visible ? rawLinks : filteredLinks)
+  const showChina = toggles.showChina.value;
+  const sortByHarvest = toggles.sortHarvest.value;
+  const dataset = showChina ? rawLinks : filteredLinks
+  drawSankey(dataset, showChina, sortByHarvest)
 })
 
 watch(
-  () => toggle.visible,
-  (newVal) => {
-    const dataset = newVal ? rawLinks : filteredLinks
-    drawSankey(dataset)
+  [toggles],
+  ([togglesNewVal]) => {
+    const showChina = togglesNewVal.showChina.value;
+    const sortByHarvest = togglesNewVal.sortHarvest.value;
+    const dataset = showChina ? rawLinks : filteredLinks
+    drawSankey(dataset, showChina, sortByHarvest)
   }
 )
 
@@ -125,7 +136,7 @@ function makeColorScale(categories, colors) {
     .range(categories.map(category => colors[category]));
 }
 
-function drawSankey(links) {
+function drawSankey(links, showChina, sortByHarvest) {
   d3.select(chart.value).selectAll('*').remove()
 
   if (!links || links.length === 0) return
@@ -188,15 +199,15 @@ function drawSankey(links) {
     countryColorMap.set(country, colorScale(topFamily))
   })
 
-  const desktopHeight = toggle.visible ? 1200 : 900;
-  const mobileHeight = toggle.visible ? 1600 : 1200;
+  const desktopHeight = showChina ? 1200 : 900;
+  const mobileHeight = showChina ? 1600 : 1200;
   SankeyChart(
     { nodes: activeNodes, links: validLinks },
     {
       nodeGroup: (d) => familyGroupMap.get(d.id),
       nodeGroups: families,
       nodeAlign,
-      nodeSort: (a,b) => d3.descending(a.value, b.value),
+      nodeSort: sortByHarvest ? (a,b) => d3.descending(a.value, b.value) : undefined,
       format: d3.format(',.0f'),
       width: mobileView ? chart.value.clientWidth : 800,
       height: mobileView ? mobileHeight : desktopHeight,
