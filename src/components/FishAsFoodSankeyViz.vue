@@ -44,7 +44,13 @@ const mobileView = isMobile
 const toggle = reactive(props.text.toggleData)
 
 // Family color palette
-const colors = ['#2b2e3c', '#5b7083', '#cc5b4d', '#d09a47', '#628c8c']
+const colors = {
+  'Bagridae' : '#2b2e3c',
+  'Centrarchidae' : '#5b7083',
+  'Cyprinidae' : '#cc5b4d',
+  'Percidae' : '#d09a47',
+  'Salmonidae' : '#628c8c'
+}
 
 const rawLinksRef = ref([])
 const filteredLinksRef = ref([])
@@ -57,7 +63,11 @@ onMounted(async () => {
   }))
 
   //  connections to China
-  const filteredLinks = rawLinks.filter((d) => d.target !== 'China')
+  const filteredLinks = rawLinks
+    // filter out explicit links with China as a target
+    .filter((d) => d.target !== 'China')
+    // make a deep copy, so that we can modify this object without affecting rawLinks
+    .map(d => JSON.parse(JSON.stringify(d)));
 
   // species/families that ONLY link to China
   const allTargetsFromSource = new Map()
@@ -67,20 +77,36 @@ onMounted(async () => {
     }
     allTargetsFromSource.get(d.source).add(d.target)
   })
-
   const chinaOnlySources = new Set()
   allTargetsFromSource.forEach((targets, source) => {
     if (targets.size === 1 && targets.has('China')) {
       chinaOnlySources.add(source)
     }
   })
-
+  // Build Map of species + values associated with China
+  const chinaLinks = rawLinks.filter((d) => d.target == 'China')
+  const chinaSourceValues = new Map()
+  chinaLinks.forEach((d) => {
+    chinaSourceValues.set(d.source, d.value)
+  })
   // filtered links
-  const finalFilteredLinks = filteredLinks.filter((d) => !chinaOnlySources.has(d.source))
-
+  const finalFilteredLinks = filteredLinks
+    // Filter out links with sources that are China-only sources
+    .filter((d) => !chinaOnlySources.has(d.source))
+    // Filter out links with targets that are China-only sources
+    .filter((d) => !chinaOnlySources.has(d.target))
+    // For source links with targets that are China sources and sources for other countries
+    // update values to remove value totals associated with China
+    .map((d) => {
+      if (chinaSourceValues.has(d.target)) {
+        return {...d, value: d.value-= chinaSourceValues.get(d.target)}
+        // return d
+      } else {
+        return d
+      }
+    })
   rawLinksRef.value = rawLinks
   filteredLinksRef.value = finalFilteredLinks
-
   drawSankey(toggle.visible ? rawLinks : finalFilteredLinks)
 })
 
@@ -91,6 +117,13 @@ watch(
     drawSankey(dataset)
   }
 )
+
+// Tie colors to families
+function makeColorScale(categories, colors) {
+  return d3.scaleOrdinal()
+    .domain(categories)
+    .range(categories.map(category => colors[category]));
+}
 
 function drawSankey(links) {
   d3.select(chart.value).selectAll('*').remove()
@@ -103,7 +136,7 @@ function drawSankey(links) {
   const allTargets = new Set(validLinks.map((d) => d.target))
   const families = [...allSources].filter((src) => !allTargets.has(src))
 
-  const colorScale = d3.scaleOrdinal().domain(families).range(colors)
+  const colorScale = makeColorScale(families, colors)
 
   const parentOf = new Map()
   validLinks.forEach((d) => parentOf.set(d.target, d.source))
@@ -161,6 +194,7 @@ function drawSankey(links) {
       nodeGroup: (d) => familyGroupMap.get(d.id),
       nodeGroups: families,
       nodeAlign,
+      nodeSort: (a,b) => d3.descending(a.value, b.value),
       format: d3.format(',.0f'),
       width: mobileView ? chart.value.clientWidth : 800,
       height: mobileView ? 1600 : 1200,
@@ -246,7 +280,7 @@ function SankeyChart(
   if (G && nodeGroups === undefined) nodeGroups = G
 
   // Construct the scales.
-  const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors)
+  const color = nodeGroup == null ? null : makeColorScale(nodeGroups, colors)
 
   // Compute the Sankey layout.
   d3Sankey
