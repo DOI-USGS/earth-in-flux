@@ -63,12 +63,6 @@ onMounted(async () => {
   }))
 
   // Build filtered set of links that don't include data for China
-  
-  // First filter out explicit links with China as a target
-  filteredLinks = rawLinks
-    .filter((d) => d.target !== 'China')
-    // make a deep copy, so that we can modify this object without affecting rawLinks
-    .map(d => JSON.parse(JSON.stringify(d)));
 
   // Find species/families that ONLY link to China
   const allTargetsFromSource = new Map()
@@ -92,12 +86,16 @@ onMounted(async () => {
     chinaSourceValues.set(d.source, d.value)
   })
 
-  // Finish filtering links
-  filteredLinks = filteredLinks
+  // Generate filtered links
+  filteredLinks = rawLinks
+    // First filter out links with China as a target
+    .filter((d) => d.target !== 'China')
     // Filter out links with sources that are China-only sources
     .filter((d) => !chinaOnlySources.has(d.source))
     // Filter out links with targets that are China-only sources
     .filter((d) => !chinaOnlySources.has(d.target))
+    // make a deep copy, so that we can modify this object without affecting rawLinks
+    .map(d => JSON.parse(JSON.stringify(d)))
     // For source links with targets that are China sources and sources for other countries
     // update values to remove value totals associated with China
     .map((d) => {
