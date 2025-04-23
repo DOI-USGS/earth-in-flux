@@ -359,9 +359,16 @@ export default {
         FishAsFoodSankey: {
             paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
             toggleData: {
-                visible: true,
-                color: 'var(--usgs-blue)',
-                label: "include China"
+                showChina: {
+                    value: true,
+                    color: 'var(--usgs-blue)',
+                    label: "include China"
+                },
+                sortHarvest: {
+                    value: false,
+                    color: 'var(--usgs-blue)',
+                    label: "sort by harvest totals"
+                }
             }
         },
         WildfireAerosols: {
