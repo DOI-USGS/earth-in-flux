@@ -52,24 +52,25 @@ const colors = {
   'Salmonidae' : '#628c8c'
 }
 
-const rawLinksRef = ref([])
-const filteredLinksRef = ref([])
+let rawLinks = null;
+let filteredLinks = null;
 
 onMounted(async () => {
-  const rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv', (d) => ({
+  rawLinks = await d3.csv(publicPath + 'fish_as_food_harvest.csv', (d) => ({
     source: d.source,
     target: d.target,
     value: +d.value
   }))
 
-  //  connections to China
-  const filteredLinks = rawLinks
-    // filter out explicit links with China as a target
+  // Build filtered set of links that don't include data for China
+  
+  // First filter out explicit links with China as a target
+  filteredLinks = rawLinks
     .filter((d) => d.target !== 'China')
     // make a deep copy, so that we can modify this object without affecting rawLinks
     .map(d => JSON.parse(JSON.stringify(d)));
 
-  // species/families that ONLY link to China
+  // Find species/families that ONLY link to China
   const allTargetsFromSource = new Map()
   rawLinks.forEach((d) => {
     if (!allTargetsFromSource.has(d.source)) {
@@ -83,14 +84,16 @@ onMounted(async () => {
       chinaOnlySources.add(source)
     }
   })
+
   // Build Map of species + values associated with China
   const chinaLinks = rawLinks.filter((d) => d.target == 'China')
   const chinaSourceValues = new Map()
   chinaLinks.forEach((d) => {
     chinaSourceValues.set(d.source, d.value)
   })
-  // filtered links
-  const finalFilteredLinks = filteredLinks
+
+  // Finish filtering links
+  filteredLinks = filteredLinks
     // Filter out links with sources that are China-only sources
     .filter((d) => !chinaOnlySources.has(d.source))
     // Filter out links with targets that are China-only sources
@@ -100,20 +103,19 @@ onMounted(async () => {
     .map((d) => {
       if (chinaSourceValues.has(d.target)) {
         return {...d, value: d.value-= chinaSourceValues.get(d.target)}
-        // return d
       } else {
         return d
       }
     })
-  rawLinksRef.value = rawLinks
-  filteredLinksRef.value = finalFilteredLinks
-  drawSankey(toggle.visible ? rawLinks : finalFilteredLinks)
+
+  // draw sankey 
+  drawSankey(toggle.visible ? rawLinks : filteredLinks)
 })
 
 watch(
   () => toggle.visible,
   (newVal) => {
-    const dataset = newVal ? rawLinksRef.value : filteredLinksRef.value
+    const dataset = newVal ? rawLinks : filteredLinks
     drawSankey(dataset)
   }
 )
