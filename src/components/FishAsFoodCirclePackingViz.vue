@@ -82,7 +82,8 @@ function lumpLowValueSpecies(data, threshold = 500000) {
     if (countryMap.size > 0) {
       const otherSpecies = {
         name: 'Other',
-        children: []
+        children: [],
+        lumpedSpeciesCount
       }
 
       countryMap.forEach((value, name) => {
@@ -95,7 +96,8 @@ function lumpLowValueSpecies(data, threshold = 500000) {
     return {
       ...family,
       children: newChildren,
-      originalSpeciesCount: family.children.length
+      originalSpeciesCount: family.children.length,
+      lumpedSpeciesCount
     }
   })
 
@@ -270,9 +272,11 @@ function buildChart(data) {
       const silhouette = familyInfo[familyName]?.image
 
       let economicValue
+      let lumpedSpeciesCount = 0
       if (d.data.name === 'Other') {
         const totalValue = d.data.children.reduce((sum, c) => sum + (c.value || 0), 0)
         economicValue = totalValue
+        lumpedSpeciesCount = d.data.lumpedSpeciesCount || 0
       } else {
         economicValue = formatEconomicValue(d.value)
       }
@@ -283,7 +287,8 @@ function buildChart(data) {
         family: familyName,
         image: silhouette,
         economicValue,
-        countryCount: d.children ? d.children.length : 0
+        countryCount: d.children ? d.children.length : 0,
+        lumpedSpeciesCount
       }
     }
     activeFamily.value = infoObj || defaultFamily

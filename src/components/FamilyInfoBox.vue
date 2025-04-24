@@ -31,7 +31,10 @@
       </div>
       <hr />
       <h2>Other</h2>
-      <p class="species-subtitle">Species</p>
+      <p class="species-subtitle">
+        <strong>{{ activeFamily.lumpedSpeciesCount }}</strong>
+        {{ activeFamily.lumpedSpeciesCount === 1 ? 'species' : 'species' }}
+      </p>
       <p>
         <strong>${{ roundValue(activeFamily.economicValue) }}</strong> in total economic value
       </p>
