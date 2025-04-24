@@ -80,17 +80,27 @@ function lumpLowValueSpecies(data, threshold = 500000) {
     })
 
     if (countryMap.size > 0) {
-      const otherSpecies = {
-        name: 'Other',
-        children: [],
-        lumpedSpeciesCount
+      if (lumpedSpeciesCount === 1) {
+        // Only one low-value species, push it through as is
+        const [onlySpecies] = family.children.filter((species) => {
+          const total = species.children.reduce((sum, country) => sum + country.value, 0)
+          return total < threshold
+        })
+        newChildren.push(onlySpecies)
+      } else {
+        // More than one , lump into "Other"
+        const otherSpecies = {
+          name: 'Other',
+          children: [],
+          lumpedSpeciesCount
+        }
+
+        countryMap.forEach((value, name) => {
+          otherSpecies.children.push({ name, value })
+        })
+
+        newChildren.push(otherSpecies)
       }
-
-      countryMap.forEach((value, name) => {
-        otherSpecies.children.push({ name, value })
-      })
-
-      newChildren.push(otherSpecies)
     }
 
     return {
