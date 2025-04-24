@@ -23,6 +23,27 @@
         <p>{{ activeFamily.text }}</p>
       </div>
     </div>
+    <!-- OTHER-SPECIES LUMPING BIN -->
+    <div v-else-if="activeFamily.name === 'Other'" class="species-content">
+      <div class="species-header">
+        <img :src="activeFamily.image" alt="Fish silhouette small" class="species-icon" />
+        <span class="family-label">{{ activeFamily.family }}</span>
+      </div>
+      <hr />
+      <h2>Other</h2>
+      <p class="species-subtitle">Species</p>
+      <p>
+        <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+      </p>
+      <p>
+        <strong>{{ activeFamily.countryCount }}</strong>
+        {{
+          activeFamily.countryCount === 1
+            ? 'country where they are recreationally fished'
+            : 'countries where they are recreationally fished'
+        }}
+      </p>
+    </div>
     <!-- SPECIES LEVEL -->
     <div v-else-if="activeFamily.type === 'species'" class="species-content">
       <div class="species-header">

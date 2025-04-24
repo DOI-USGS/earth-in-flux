@@ -48,9 +48,58 @@ onMounted(async () => {
   // Load the json data
   const data = await d3.json(publicPath + 'total_price.json')
 
+  const processedData = lumpLowValueSpecies(data)
+
   // build chart
-  buildChart(data)
+  buildChart(processedData)
 })
+
+function lumpLowValueSpecies(data, threshold = 500000) {
+  const transformed = JSON.parse(JSON.stringify(data)) // deep clone
+
+  transformed.children = transformed.children.map((family) => {
+    const newChildren = []
+    const countryMap = new Map() // <- where we group countries for "Other"
+
+    family.children.forEach((species) => {
+      const total = species.children.reduce((sum, country) => sum + country.value, 0)
+
+      if (total < threshold) {
+        // Add this species’ countries to the map
+        species.children.forEach((country) => {
+          if (countryMap.has(country.name)) {
+            countryMap.set(country.name, countryMap.get(country.name) + country.value)
+          } else {
+            countryMap.set(country.name, country.value)
+          }
+        })
+      } else {
+        newChildren.push(species)
+      }
+    })
+
+    // Only add an "Other" node if there were grouped countries
+    if (countryMap.size > 0) {
+      const otherSpecies = {
+        name: 'Other',
+        children: []
+      }
+
+      countryMap.forEach((value, name) => {
+        otherSpecies.children.push({ name, value })
+      })
+
+      newChildren.push(otherSpecies)
+    }
+
+    return {
+      ...family,
+      children: newChildren
+    }
+  })
+
+  return transformed
+}
 
 // https://observablehq.com/@d3/zoomable-circle-packing
 function buildChart(data) {
