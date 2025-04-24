@@ -268,16 +268,24 @@ function buildChart(data) {
       // species level
       const familyName = d.parent?.data?.name
       const silhouette = familyInfo[familyName]?.image
+
+      let economicValue
+      if (d.data.name === 'Other') {
+        const totalValue = d.data.children.reduce((sum, c) => sum + (c.value || 0), 0)
+        economicValue = totalValue
+      } else {
+        economicValue = formatEconomicValue(d.value)
+      }
+
       infoObj = {
         type: 'species',
         name: d.data.name,
         family: familyName,
         image: silhouette,
-        economicValue: formatEconomicValue(d.value),
+        economicValue,
         countryCount: d.children ? d.children.length : 0
       }
     }
-
     activeFamily.value = infoObj || defaultFamily
   }
 

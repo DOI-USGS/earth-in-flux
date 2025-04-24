@@ -33,7 +33,7 @@
       <h2>Other</h2>
       <p class="species-subtitle">Species</p>
       <p>
-        <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+        <strong>${{ roundValue(activeFamily.economicValue) }}</strong> in total economic value
       </p>
       <p>
         <strong>{{ activeFamily.countryCount }}</strong>
@@ -75,6 +75,11 @@ defineProps({
     required: true
   }
 })
+function roundValue(value) {
+  const number = Number(value)
+  if (isNaN(number)) return '0'
+  return Math.round(number).toLocaleString()
+}
 </script>
 
 <style scoped>
