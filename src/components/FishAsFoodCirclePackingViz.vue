@@ -55,11 +55,12 @@ onMounted(async () => {
 })
 
 function lumpLowValueSpecies(data, threshold = 500000) {
-  const transformed = JSON.parse(JSON.stringify(data)) // deep clone
+  // lumping species w/ value < 500k amount together for each fish family
+  const transformed = JSON.parse(JSON.stringify(data))
 
   transformed.children = transformed.children.map((family) => {
     const newChildren = []
-    const countryMap = new Map() // <- where we group countries for "Other"
+    const countryMap = new Map() // group countries for "Other"
 
     family.children.forEach((species) => {
       const total = species.children.reduce((sum, country) => sum + country.value, 0)
@@ -78,7 +79,7 @@ function lumpLowValueSpecies(data, threshold = 500000) {
       }
     })
 
-    // Only add an "Other" node if there were grouped countries
+    // add an "Other" node if there were grouped countries
     if (countryMap.size > 0) {
       const otherSpecies = {
         name: 'Other',
