@@ -55,18 +55,18 @@ onMounted(async () => {
 })
 
 function lumpLowValueSpecies(data, threshold = 500000) {
-  // lumping species w/ value < 500k amount together for each fish family
   const transformed = JSON.parse(JSON.stringify(data))
 
   transformed.children = transformed.children.map((family) => {
     const newChildren = []
-    const countryMap = new Map() // group countries for "Other"
+    const countryMap = new Map()
+    let lumpedSpeciesCount = 0
 
     family.children.forEach((species) => {
       const total = species.children.reduce((sum, country) => sum + country.value, 0)
 
       if (total < threshold) {
-        // Add this species’ countries to the map
+        lumpedSpeciesCount += 1
         species.children.forEach((country) => {
           if (countryMap.has(country.name)) {
             countryMap.set(country.name, countryMap.get(country.name) + country.value)
@@ -79,7 +79,6 @@ function lumpLowValueSpecies(data, threshold = 500000) {
       }
     })
 
-    // add an "Other" node if there were grouped countries
     if (countryMap.size > 0) {
       const otherSpecies = {
         name: 'Other',
@@ -95,7 +94,8 @@ function lumpLowValueSpecies(data, threshold = 500000) {
 
     return {
       ...family,
-      children: newChildren
+      children: newChildren,
+      originalSpeciesCount: family.children.length
     }
   })
 
@@ -262,7 +262,7 @@ function buildChart(data) {
         text: familyData.text,
         caption: familyData.caption,
         economicValue: d3.format('$.1s')(d.value).replace('G', 'B'),
-        speciesCount: d.children ? d.children.length : 0
+        speciesCount: d.data.originalSpeciesCount || (d.children ? d.children.length : 0)
       }
     } else if (level === 2) {
       // species level
