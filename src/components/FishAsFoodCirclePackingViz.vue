@@ -48,9 +48,71 @@ onMounted(async () => {
   // Load the json data
   const data = await d3.json(publicPath + 'total_price.json')
 
+  const processedData = lumpLowValueSpecies(data)
+
   // build chart
-  buildChart(data)
+  buildChart(processedData)
 })
+
+function lumpLowValueSpecies(data, threshold = 500000) {
+  const transformed = JSON.parse(JSON.stringify(data))
+
+  transformed.children = transformed.children.map((family) => {
+    const newChildren = []
+    const countryMap = new Map()
+    let lumpedSpeciesCount = 0
+
+    family.children.forEach((species) => {
+      const total = species.children.reduce((sum, country) => sum + country.value, 0)
+
+      if (total < threshold) {
+        lumpedSpeciesCount += 1
+        species.children.forEach((country) => {
+          if (countryMap.has(country.name)) {
+            countryMap.set(country.name, countryMap.get(country.name) + country.value)
+          } else {
+            countryMap.set(country.name, country.value)
+          }
+        })
+      } else {
+        newChildren.push(species)
+      }
+    })
+
+    if (countryMap.size > 0) {
+      if (lumpedSpeciesCount === 1) {
+        // Only one low-value species, push it through as is
+        const onlySpecies = family.children.find((species) => {
+          const total = species.children.reduce((sum, country) => sum + country.value, 0)
+          return total < threshold
+        })
+        newChildren.push(onlySpecies)
+      } else {
+        // More than one , lump into "Other"
+        const otherSpecies = {
+          name: 'Other',
+          children: [],
+          lumpedSpeciesCount
+        }
+
+        countryMap.forEach((value, name) => {
+          otherSpecies.children.push({ name, value })
+        })
+
+        newChildren.push(otherSpecies)
+      }
+    }
+
+    return {
+      ...family,
+      children: newChildren,
+      originalSpeciesCount: family.children.length,
+      lumpedSpeciesCount
+    }
+  })
+
+  return transformed
+}
 
 // https://observablehq.com/@d3/zoomable-circle-packing
 function buildChart(data) {
@@ -212,22 +274,33 @@ function buildChart(data) {
         text: familyData.text,
         caption: familyData.caption,
         economicValue: d3.format('$.1s')(d.value).replace('G', 'B'),
-        speciesCount: d.children ? d.children.length : 0
+        speciesCount: d.data.originalSpeciesCount || (d.children ? d.children.length : 0)
       }
     } else if (level === 2) {
       // species level
       const familyName = d.parent?.data?.name
       const silhouette = familyInfo[familyName]?.image
+
+      let economicValue
+      let lumpedSpeciesCount = 0
+      if (d.data.name === 'Other') {
+        const totalValue = d.data.children.reduce((sum, c) => sum + (c.value || 0), 0)
+        economicValue = totalValue
+        lumpedSpeciesCount = d.data.lumpedSpeciesCount || 0
+      } else {
+        economicValue = formatEconomicValue(d.value)
+      }
+
       infoObj = {
         type: 'species',
         name: d.data.name,
         family: familyName,
         image: silhouette,
-        economicValue: formatEconomicValue(d.value),
-        countryCount: d.children ? d.children.length : 0
+        economicValue,
+        countryCount: d.children ? d.children.length : 0,
+        lumpedSpeciesCount
       }
     }
-
     activeFamily.value = infoObj || defaultFamily
   }
 
