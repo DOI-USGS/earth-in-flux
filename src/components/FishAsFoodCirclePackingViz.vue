@@ -82,7 +82,7 @@ function lumpLowValueSpecies(data, threshold = 500000) {
     if (countryMap.size > 0) {
       if (lumpedSpeciesCount === 1) {
         // Only one low-value species, push it through as is
-        const [onlySpecies] = family.children.filter((species) => {
+        const onlySpecies = family.children.find((species) => {
           const total = species.children.reduce((sum, country) => sum + country.value, 0)
           return total < threshold
         })
