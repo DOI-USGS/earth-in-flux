@@ -288,11 +288,6 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
       na_rm = TRUE
     )
   
-  
-  # processed_df <- in_dat |> 
-  #   group_by(HYBAS_ID) |> 
-  #   filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
-  
   processed_sf <- processed_df |> 
     left_join(hybas_habitat_types) |> 
     st_as_sf() |> 
