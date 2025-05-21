@@ -258,18 +258,14 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
 }
 
 #' @description create top threats by basin global map
-#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param in_dat dataframe with top threat category by HYBAS_ID
 #' @param threat_pal dataframe with color palettes and file name templates by threat type
 #' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
 #' @param proj character string with map projection definition
 #' @param threat_category list of target threat categories
 top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category){
-  
-  processed_df <- in_dat |> 
-    group_by(HYBAS_ID) |> 
-    filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
-  
-  processed_sf <- processed_df |> 
+
+  processed_sf <- in_dat |> 
     left_join(hybas_habitat_types) |> 
     st_as_sf() |> 
     # remove visual bug with robinson projection
