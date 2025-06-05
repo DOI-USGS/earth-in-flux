@@ -22,6 +22,7 @@ export default {
         // keys must match project routes (with '-' replaced with '')
         findex: {
             title: "Findex",
+            fullTitle: "Findex",
             logo: "Findex_Logo.png",
             motivation: {
                 paragraph1: "Global freshwater biodiversity faces unprecedented loss from rapid global change. Found in less than 0.01% of available surface water, inland fishes comprise 51% of all fish species and inland fisheries provide food for billions and livelihoods for millions of people worldwide. Despite their importance, inland fishes are some of the most threatened taxa on the planet from intensifying pressures, such as hydrological alterations, riparian degradation, invasive species, and climate change. One-third of all inland fishes are threatened with extinction. However, standardized methods to monitor and assess fisheries proves elusive because inland fisheries are highly dispersed with limited market integration. Here, we present the first global metric to examine threats to inland fisheries by river basin using literature synthesis, expert elicitation, and computational modeling. The resulting standardized assessment serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. We show that most threats to inland fisheries come from outside the fishery sector, predominately from land use change. Given that inland fisheries are severely threatened and highly important with limited resources, this index can help direct, efficiently use, and mobilize limited resources for watershed management, sustainable fisheries, and ultimately human well-being."
@@ -34,6 +35,7 @@ export default {
         },
         fireinice: {
             title: "Fire in Ice",
+            fullTitle: "Fire in Ice",
             motivation: {
                 paragraph1: "Glaciers and ice caps around the world are melting.",
                 paragraph2: "Glaciers serve as water towers that store freshwater that is essential for drinking water and agriculture. When glaciers melt, this freshwater is lost to the ocean, leading to sea level rise. Glacial retreat is occurring due to increased temperatures, water collecting under glaciers and hastening their movement, alterations in atmospheric circulation, and the deposition of dark aerosols on ice.",
@@ -49,10 +51,13 @@ export default {
                 { name: "Morgan Schachterle", link: "https://www.usgs.gov/staff-profiles/morgan-schachterle", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/Morgan%20_Schachterle_profileImage.jpeg?itok=r244L8u8" }
             ]
         },
-        fishasfood: {
-            title: "Fish as Food",
+        recfishasfood: {
+            title: "Rec Fish as Food",
+            fullTitle: "Inland Recreational Fish as Food",
+            pageHasSubtitle: true,
+            pageSubtitle: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
             motivation: {
-                paragraph1: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of national inland recreational consumption estimates with species specificity to identify the nutritional composition, total use value, and climate vulnerability of this recreational consumption."
+                paragraph1: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of inland recreational consumption estimates by species and country to identify the nutritional composition, consumptive use value, and climate vulnerability of this recreational consumption."
             },
             teamText: null,
             teamData: [
@@ -63,6 +68,7 @@ export default {
         },
         beaufortsea: {
             title: "Beaufort Sea",
+            fullTitle: "Beaufort Sea",
             motivation: {
                 paragraph1: "The Arctic Ocean is undergoing dramatic sea ice reduction and warming conditions.",
                 paragraph2: "These changes affect the sealife of the region, including bottom-dwelling organisms and the marine mammals, seabirds, and fish that rely on them for food. The researchers of this project use microfossils from sediment cores taken in the Beaufort Sea to rebuild the climate patterns, sea ice and circulation, and ecosystems from the past 2000 years.",
@@ -220,8 +226,8 @@ export default {
             paragraph5: "USGS scientists reconstructed this record using <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> collected from the ocean floor on the Beaufort Sea continental shelf, north of Yukon, Canada. After cutting the sediment cores into slices representing ~4 to 24 years of time, researchers used a microscope to identify the <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>species of microfossils</a> in each slice.",
         },
         FishAsFoodCirclePacking: {
-            paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished. Species with economic value under $500k are grouped into 'Other' unless only one exists.",
-            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of biomass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
+            paragraph1: "Explore the global total consumptive use value of recreationally-harvested inland fish species, in U.S. dollars. Click on the circles in the diagram to see the consumptive use value of species within each fish family, and click on the nested circles to see the consumptive use value of each species in the various countries where it is recreationally harvested for consumption. Species with economic value under $500k are grouped into 'Other' unless only one exists.",
+            paragraph2: "The total consumptive use value for each species in each country is calculated by multiplying the total kilograms of species-specific edible proportions by the shadow prices for each species per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
             familyInfo: {
                 "Cyprinidae": {
                     image: "https://labs.waterdata.usgs.gov/visualizations/images/common-carp.jpeg",
@@ -352,12 +358,12 @@ export default {
             },
             defaultFamily: {
                 image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg",
-                text: "Click on a fish family in the chart to learn more about its importance and characteristics.",
+                text: "Click on a fish family in the chart to learn more about the consumptive use value of species within each fish family that are recreationally harvested for consumption.",
                 caption: "Brown trout <em>(Salmo trutta)</em>"
             }
         },        
         FishAsFoodSankey: {
-            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
+            paragraph1: 'Explore inland recreational consumable harvest for the the five families with the largest recreational consumable harvest: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
             toggleData: {
                 showChina: {
                     value: true,

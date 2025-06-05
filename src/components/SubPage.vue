@@ -4,7 +4,7 @@
     >
         <div class="page-content">
             <div
-                class="text-container" 
+                class="text-container subpage-title-container" 
                 :class="{ mobile: mobileView}"
             >
                 <h1 class = 'title'>
@@ -91,4 +91,7 @@
 </script>
 
 <style scoped lang="scss">
+  .subpage-title-container {
+    margin-bottom: 4rem;
+  }
 </style>

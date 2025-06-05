@@ -139,7 +139,7 @@ export default {
       doi: "https://doi.org/10.1007/s41063-018-0058-7"
     }
   ],
-  fishasfood: [
+  recfishasfood: [
     {
       reference: "Reference 1.",
       num: "1",

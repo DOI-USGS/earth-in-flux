@@ -43,6 +43,14 @@
   background-color: #d2e9ff;
   border-radius: 2px;
 }
+.project-subtitle {
+  font-size: 2rem;
+  padding-top: 0.5rem;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 50rem;
+  font-weight: 300;
+}
 button {
   cursor: pointer;
 }
