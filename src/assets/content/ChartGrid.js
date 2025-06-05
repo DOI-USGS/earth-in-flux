@@ -13,7 +13,7 @@ export default {
             description: 'Land use change is threatening inland fisheries.'
         },
         {
-            title: 'Country climate vulnerability vs. dependence on recreational fishing',
+            title: 'Climate vulnerability of recreational fish consumption by country',
             project: 'Fish as Food',
             vizKey: 'FishAsFoodClimate',
             vizRoute: 'inland-rec-fish-country-climate',
