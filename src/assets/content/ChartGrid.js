@@ -16,11 +16,11 @@ export default {
             title: 'Climate vulnerability of recreational fish consumption by country',
             project: 'Fish as Food',
             vizKey: 'FishAsFoodClimate',
-            vizRoute: 'inland-rec-fish-country-climate',
+            vizRoute: 'rec-fish-vulnerability',
             img_src: 'Placeholder_thumbnail.webp',
             chartOrder: 4,
             alt: '',
-            description: 'Vulnerbility of recreational inland fishing to climate change varies by country'
+            description: 'Climate vulnerability of recreational fish consumption varies by country.'
         },
         {
             title: 'A global view of threats',
