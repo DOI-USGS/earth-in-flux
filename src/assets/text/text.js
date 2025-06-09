@@ -335,7 +335,19 @@ export default {
                 image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg",
                 text: "Click on a fish family in the chart to learn more about the consumptive use value of species within each fish family that are recreationally harvested for consumption.",
                 caption: "Brown trout <em>(Salmo trutta)</em>"
-            }
+            },
+            accordionData: [
+                {
+                    heading: "Attributions for fish family silhouette images",
+                    content: [
+                        {
+                            type: "text",
+                            content: "The silhouette images used for each fish family are available under Creative Commons licenses on <a href='https://www.phylopic.org/' target='_blank'>PhyloPic</a>:<span><ul><span class='scientificName'>Salmo trutta</span> by Carlo Cano-Barbacil is licensed under <a href='https://creativecommons.org/publicdomain/zero/1.0/' target='_blank'>CC0 1.0</a></ul></span>"
+                        },
+                    ],
+                    activeOnLoad: false
+                },
+            ]
         },        
         FishAsFoodSankey: {
             paragraph1: 'Explore inland recreational consumable harvest for the the five families with the largest recreational consumable harvest: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
@@ -563,6 +575,7 @@ export default {
                     tabText: "Habitat text.",
                     tabMapImageAlt: "Habitat alt.",
                     tabLegendImageAlt: "Legend",
+                    tabColor: "var(--color-habitat)",
                     subThreatPrefix: "H",
                     subThreatData: [
                         {
@@ -571,28 +584,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Dams sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Dams sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Dams mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Dams mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Dams measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Dams measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -602,28 +615,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Wetland drainage text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Wetland drainage text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Wetland drainage impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Wetland drainage impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Wetland drainage sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Wetland drainage sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Wetland drainage mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Wetland drainage mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Wetland drainage measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Wetland drainage measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -633,28 +646,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Deforestation and associated runoff text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Deforestation and associated runoff text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Deforestation and associated runoff impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Deforestation and associated runoff impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Deforestation and associated runoff sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Deforestation and associated runoff sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Deforestation and associated runoff mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Deforestation and associated runoff mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Deforestation and associated runoff measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Deforestation and associated runoff measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -664,28 +677,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Riparian degradation text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Riparian degradation text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Riparian degradation impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Riparian degradation impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Riparian degradation sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Riparian degradation sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Riparian degradation mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Riparian degradation mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Riparian degradation measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Riparian degradation measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -695,28 +708,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Agricultural extraction text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Agricultural extraction text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Agricultural extraction impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Agricultural extraction impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Agricultural extraction sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural extraction sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Agricultural extraction mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural extraction mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Agricultural extraction measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural extraction measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -726,28 +739,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Urban extraction text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Urban extraction text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Urban extraction impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Urban extraction impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Urban extraction sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban extraction sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Urban extraction mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban extraction mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Urban extraction measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban extraction measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -757,28 +770,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Industrial extraction text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Industrial extraction text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Industrial extraction impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Industrial extraction impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Industrial extraction sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial extraction sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Industrial extraction mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial extraction mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Industrial extraction measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial extraction measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         }
@@ -792,6 +805,7 @@ export default {
                     tabText: "Pollution text.",
                     tabMapImageAlt: "Pollution alt.",
                     tabLegendImageAlt: "Legend",
+                    tabColor: "var(--color-pollution)",
                     subThreatPrefix: "P",
                     subThreatData: [
                         {
@@ -800,28 +814,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Agricultural effluents text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Agricultural effluents text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Agricultural effluents impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Agricultural effluents impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Agricultural effluents sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural effluents sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Agricultural effluents mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural effluents mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Agricultural effluents measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Agricultural effluents measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -831,28 +845,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Urban wastewater text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Urban wastewater text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Urban wastewater impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Urban wastewater impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Urban wastewater sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban wastewater sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Urban wastewater mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban wastewater mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Urban wastewater measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Urban wastewater measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -862,28 +876,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Industrial effluents text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Industrial effluents text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Industrial effluents impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Industrial effluents impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Industrial effluents sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial effluents sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Industrial effluents mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial effluents mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Industrial effluents measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Industrial effluents measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -893,28 +907,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Aquaculture effluents text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Aquaculture effluents text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Aquaculture effluents impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Aquaculture effluents impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Aquaculture effluents sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Aquaculture effluents sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Aquaculture effluents mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Aquaculture effluents mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Aquaculture effluents measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Aquaculture effluents measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -924,28 +938,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Pharmaceuticals text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Pharmaceuticals text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Pharmaceuticals impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Pharmaceuticals impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Pharmaceuticals sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Pharmaceuticals sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Pharmaceuticals mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Pharmaceuticals mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Pharmaceuticals measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Pharmaceuticals measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -955,28 +969,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Oil or gas exploration text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Oil or gas exploration text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Oil or gas exploration impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Oil or gas exploration impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Oil or gas exploration sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Oil or gas exploration sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Oil or gas exploration mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Oil or gas exploration mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Oil or gas exploration measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Oil or gas exploration measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -986,28 +1000,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Plastics text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Plastics text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Plastics impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Plastics impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Plastics sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Plastics sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Plastics mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Plastics mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Plastics measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Plastics measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -1017,28 +1031,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Mining text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Mining text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Mining impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Mining impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Mining sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Mining sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Mining mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Mining mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Mining measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Mining measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         }
@@ -1052,6 +1066,7 @@ export default {
                     tabText: "Climate and Weather text.",
                     tabMapImageAlt: "Climate and Weather alt.",
                     tabLegendImageAlt: "Legend",
+                    tabColor: "var(--color-climate-and-weather)",
                     subThreatPrefix: "CW",
                     subThreatData: [
                         {
@@ -1060,28 +1075,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Change in water temperature text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in water temperature text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Change in water temperature impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in water temperature impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Change in water temperature sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in water temperature sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Change in water temperature mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in water temperature mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Change in water temperature measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in water temperature measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -1091,28 +1106,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Drought text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Drought text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Drought impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Drought impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Drought sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Drought sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Drought mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Drought mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Drought measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Drought measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -1122,28 +1137,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Change in flooding text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in flooding text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Change in flooding impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in flooding impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Change in flooding sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in flooding sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Change in flooding mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in flooding mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Change in flooding measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in flooding measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -1153,28 +1168,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Change in wind patterns text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in wind patterns text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Change in wind patterns impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in wind patterns impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Change in wind patterns sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in wind patterns sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Change in wind patterns mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in wind patterns mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Change in wind patterns measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in wind patterns measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         },
@@ -1184,28 +1199,28 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    text: "Change in ice cover text",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in ice cover text",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    text: "Change in ice cover impact",
-                                    activeOnLoad: true
+                                    content: [{type: "text", content: "Change in ice cover impact",
+                                    }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    text: "Change in ice cover sectors",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in ice cover sectors",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    text: "Change in ice cover mitigation",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in ice cover mitigation",
+                                    }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    text: "Change in ice cover measurement",
-                                    activeOnLoad: false
+                                    content: [{type: "text", content: "Change in ice cover measurement",
+                                    }],activeOnLoad: false
                                 }
                             ]
                         }
