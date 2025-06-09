@@ -85,7 +85,7 @@
                         :left-border-color="tab.tabColor"
                         button-active-background-color="var(--light-grey)"
                         button-inactive-background-color="var(--light-grey)"
-                        button-font-weight="500"
+                        button-font-weight="bold"
                         button-font-color="var(--color-text)"
                     />
                 </div>
