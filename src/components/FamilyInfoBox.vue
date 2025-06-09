@@ -20,7 +20,7 @@
               : 'species that are recreationally harvested for human consumption'
           }}
         </p>
-        <p>{{ activeFamily.text }}</p>
+        <p v-if="activeFamily.text">{{ activeFamily.text }}</p>
       </div>
     </div>
     <!-- OTHER-SPECIES LUMPING BIN -->
