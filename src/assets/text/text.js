@@ -53,11 +53,12 @@ export default {
         },
         recfishasfood: {
             title: "Rec Fish as Food",
-            fullTitle: "Inland Recreational Fish as Food",
+            fullTitle: "Recreational Inland Fisheries as Food",
             pageHasSubtitle: true,
             pageSubtitle: "Inland recreational fisheries contribute nutritional benefits and economic value but are vulnerable to climate change",
             motivation: {
-                paragraph1: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of inland recreational consumption estimates by species and country to identify the nutritional composition, consumptive use value, and climate vulnerability of this recreational consumption."
+                paragraph1: "Inland recreational fishing, defined as primarily leisure-driven fishing in freshwaters, is a popular past-time which can provide substantial contributions to human consumption which are often overlooked at global scales. Here, we established a baseline of inland recreational consumption estimates by species and country to identify the nutritional composition, consumptive use value, and climate vulnerability of this recreational consumption.",
+                paragraph2: "Read more about this research <a href='https://cascprojects.org/#/project/5050cb0ee4b0be20bb30eac0/6026e1a9d34eb120311394c4' target='_blank'>here</a> or visit the <a href='https://rconnect.usgs.gov/recfishfood/' target='_blank'>Recreational Inland Fisheries as Food web app</a> to explore the data."
             },
             teamText: null,
             teamData: [
