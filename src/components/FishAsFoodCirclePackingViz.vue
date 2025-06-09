@@ -17,6 +17,18 @@
     <!-- EXPLANATION -->
     <template #belowExplanation>
       <p v-html="text.paragraph2" />
+      <CollapsibleAccordion 
+        v-for="item, index in text.accordionData"
+        :key="index"
+        :heading="item.heading"
+        :content="item.content"
+        :active-on-load="item.activeOnLoad"
+        left-border-color="var(--medium-blue)"
+        button-active-background-color="var(--medium-light-grey)"
+        button-inactive-background-color="var(--medium-light-grey)"
+        button-font-weight="600"
+        button-font-color="var(--color-text)"
+      />
     </template>
   </VizSection>
 </template>
@@ -26,6 +38,7 @@ import { onMounted, ref } from 'vue'
 import * as d3 from 'd3'
 import VizSection from '@/components/VizSection.vue'
 import FamilyInfoBox from '@/components/FamilyInfoBox.vue'
+import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue'
 
 // define props
 const props = defineProps({

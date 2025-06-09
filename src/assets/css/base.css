@@ -134,6 +134,15 @@ h3 {
     font-size: 1.8rem;
   }
 }
-p, text, li {
+p, text {
   padding: 0 0 1.5rem 0;
+}
+li {
+  padding-bottom: 1rem;
+}
+li:first-of-type {
+  padding-top: 1rem;
+}
+li:last-of-type {
+  padding-bottom: 1rem;
 }

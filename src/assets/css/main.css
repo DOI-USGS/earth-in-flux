@@ -131,10 +131,10 @@ a:hover {
 }
 
 /* css for tab components */
-ul {
+.tabs-component ul {
   padding-inline-start: 0px;
 }
-li {
+.tabs-component li {
   padding: 0; 
 }
 .tabs-component {
