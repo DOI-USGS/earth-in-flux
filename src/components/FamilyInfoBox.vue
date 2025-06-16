@@ -86,16 +86,6 @@ function roundValue(value) {
 </script>
 
 <style scoped>
-.info-box {
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  display: block;
-}
-
 .family-content {
   display: flex;
   align-items: center;
