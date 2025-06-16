@@ -5,17 +5,25 @@
         :fig-caption="false"
     >
         <template #figures>
-            <div id="chart-container" class="maxWidth" ref="chart">
-              <div
-                id="continent-map-image-container"
-              >
-                <img 
-                  id="continent-map-image"
-                  :src="getImageURL(text.image)"
-                  :alt="text.imageAlt"
+          <div
+            id="grid-container"
+          >
+            <CountryInfoBox :activeCountry="activeCountry"  />
+            <div
+              id="sub-grid-container"
+            >
+                <div
+                    id="continent-map-image-container"
                 >
-              </div>  
+                    <img 
+                    id="continent-map-image"
+                    :src="getImageURL(text.image)"
+                    :alt="text.imageAlt"
+                    >
+                </div>
+                <div id="chart-container" class="maxWidth" ref="chart" />           
             </div>
+          </div>
         </template>
         <!-- FIGURE CAPTION -->
         <template #figureCaption>
@@ -31,18 +39,21 @@
     import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
+    import CountryInfoBox from '@/components/CountryInfoBox.vue';
 
     // define props
-    defineProps({
+    const props = defineProps({
         text: { type: Object }
     })
 
     // global variables
     const publicPath = import.meta.env.BASE_URL;
     const mobileView = isMobile;
+    const defaultInfo = props.text.defaultInfo;
+    const activeCountry = ref(props.text.defaultInfo);
     const data = ref();
     const datasetsConfig = [
-        { file: 'fish_as_food_country_climate.csv', ref: data, type: 'csv', numericFields: ['n_fishers', 'total_consumable_harv_kg', 'MCDM_VUL_2075_45', 'consum_kg_fisher']}
+        { file: 'fish_as_food_country_climate.csv', ref: data, type: 'csv', numericFields: ['population','participation_rate','n_fishers', 'total_rec_harv_kg','total_consumable_harv_kg', 'MCDM_VUL_2075_45', 'consum_kg_fisher', 'warm', 'cool', 'cold', 'unknown']}
     ]
     const chart = ref(null);
     const chartTitle = 'Title of chart';
@@ -78,7 +89,7 @@
                 // initialize chart elements
                 initChart({
                     width: chart.value.offsetWidth,
-                    height: mobileView ? window.innerHeight * 0.9 : window.innerHeight * 0.7,
+                    height: mobileView ? window.innerHeight * 0.8 : window.innerHeight * 0.7,
                     margin: 10,
                     marginBottom: 60,
                     marginLeft:5,
@@ -162,10 +173,9 @@
                 .attr("height", "100%")
                 .attr("id", "wrapper");
 
-        // assign role for accessibility
-        chartSVG.attr("role", "figure")
-            .append("title")
-            .text(chartTitle);
+        // assign aria-label for accessibility
+        chartSVG
+            .attr("aria-label", chartTitle);
 
         // Add group for bounds
         chartBounds = chartSVG.append("g")
@@ -506,8 +516,54 @@
                     .attr("cy", d => yScale(yAccessor(d)))
                     .attr("r", d => rScale(rAccessor(d)))
                     .attr('fill', d => colors[colorAccessor(d)])
-                    .attr('stroke', '#FFFFFF');
+                    .attr('stroke', '#FFFFFF')
+                    // .on("mouseover", (event, d) => {
+                    //     activeCountry.value = {
+                    //         name: d.admin
+                    //     }
+                    // })
+                    .on("click", (event, d) => {
+                        console.log(d.admin)
+                        activeCountry.value = {
+                            name: d.admin,
+                            population: d3.format(',')(d.population),
+                            participation_rate: Math.round(d.participation_rate),
+                            n_fishers: d3.format(',')(d.n_fishers),
+                            consum_harv_kg: d3.format(',')(d.total_consumable_harv_kg),
+                            mean_vul: Math.round(d.MCDM_VUL_2075_45*100)/100,
+                            harv_breakdown: [
+                                {
+                                    guild: "warm",
+                                    percent: Math.round(d.warm*10)/10
+                                },
+                                {
+                                    guild: "cool",
+                                    percent: Math.round(d.cool*10)/10
+                                },
+                                {
+                                    guild: "cold",
+                                    percent: Math.round(d.cold*10)/10
+                                },
+                                {
+                                    guild: "unknown",
+                                    percent: Math.round(d.unkown*10)/10
+                                }
+                            ]
+                        }
+                    })
+                    // .on("mouseout", resetInfoBox)
+        d3.select(chart.value)
+            .select('svg')
+            .on('click', () => {
+              resetInfoBox
+            })
+    }
 
+    function resetInfoBox() {
+        console.log('reset')
+        console.log(defaultInfo)
+        activeCountry.value = defaultInfo;
+        console.log(activeCountry.value)
     }
 
     // https://gist.github.com/mbostock/7555321
@@ -559,17 +615,42 @@
 
 <style scoped lang="scss">
   #chart-container {
-    margin: 6rem auto 2rem auto;
     width: 60vw;
     @media only screen and (max-width: 600px) {
       width: 100%;
     }
   }
+  #grid-container {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem auto 4rem auto;
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+  }
+  #sub-grid-container {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 6rem auto 2rem auto;
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        flex-direction: column;
+    }
+  }
   #continent-map-image-container {
     position: absolute;
+    right: 10px;
+    @media screen and (max-width: 600px) {
+        position: relative;
+    }
   }
   #continent-map-image {
-    width: 500px;
+    width: 300px;
+    @media screen and (max-width: 600px) {
+        margin-top: 1rem;
+    }
   }
 </style>
 

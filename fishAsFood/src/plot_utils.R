@@ -19,8 +19,10 @@ generate_continent_map <- function(country_data, out_file) {
             aes(fill = continent),
             color = NA)  +
     scale_fill_manual(values = colors) +
+    scale_y_continuous(expand = c(0, 0)) +
+    scale_x_continuous(expand = c(0, 0)) +
     theme_void() +
     theme(legend.position = "None")
   
-  ggsave(out_file, height = 1, dpi = 300)
+  ggsave(out_file, height = 1, width = 2, dpi = 300)
 }

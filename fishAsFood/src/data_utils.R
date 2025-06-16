@@ -55,21 +55,50 @@ build_nested_json <- function(data, focal_columns, out_file, n_top_families = 25
   return(out_file)
 }
 
-build_country_climate_summary <- function(data) {
+build_country_climate_summary <- function(data, metadata_xlsx) {
+  data <- data |>
+    filter(total_rec_harvest_kg > 0, !is.na(family))
+    
   # get country-level summary of harvest, consumption, and climate vulnerability
   data_country <- data |>
-    filter(total_rec_harvest_kg > 0) |>
     group_by(admin) |>
-    summarize(n_fishers = first(n_fishers),
-              total_consumable_harv_kg = sum(total_consumable_harv_kg),
-              MCDM_VUL_2075_45 = mean(MCDM_VUL_2075_45, na.rm = TRUE)) |>
+    summarize(
+      population = first(population),
+      participation_rate = first(participation_rate),
+      n_fishers = first(n_fishers),
+      total_rec_harv_kg = first(total_rec_harvest_kg),
+      total_consumable_harv_kg = sum(total_consumable_harv_kg),
+      MCDM_VUL_2075_45 = mean(MCDM_VUL_2075_45, na.rm = TRUE)) |>
     mutate(consum_kg_fisher = total_consumable_harv_kg / n_fishers)
   
-  # pull in natural earth data to get region and economic classifications
-  rnaturalearth::ne_countries(returnclass = 'sf') %>%
+  # get percent of consumable harvest within each thermal guild
+  metadata <- read_xlsx(metadata_xlsx, na="NA")
+  guild_summ <- data |>
+    select(admin, total_consumable_harv_kg, family) |>
+    left_join(metadata, by = "family") |>
+    group_by(admin) |>
+    mutate(country_consumable_harv_kg = sum(total_consumable_harv_kg)) |>
+    group_by(admin, thermal_guild) |>
+    summarize(
+      country_consumable_harv_kg = first(country_consumable_harv_kg),
+      guild_consumable_harv_kg = sum(total_consumable_harv_kg),
+      perc_harvest = 
+        sum(total_consumable_harv_kg)/first(country_consumable_harv_kg)*100)
+  
+  guild_summ_wide <- guild_summ |>
+    pivot_wider(id_cols = c(admin), 
+                names_from = thermal_guild, 
+                values_from = perc_harvest)
+  
+  # pull in natural earth data to get continent information
+  continent_info <- rnaturalearth::ne_countries(returnclass = 'sf') %>%
     dplyr::select(admin, continent) |>
-    sf::st_drop_geometry() |>
-    dplyr::right_join(data_country)
+    sf::st_drop_geometry()
+  
+  # join together
+  data_country <- data_country |>
+    left_join(guild_summ_wide, by = "admin") |>
+    left_join(continent_info, by = "admin")
 }
 
 build_harvest_csv <- function(data, out_file, n_top_families) {

@@ -374,7 +374,12 @@ export default {
         FishAsFoodClimate: {
             paragraph1: "",
             image: "fish_as_food_continent_map.png",
-            imageAlt: "Map of the continents for which data are shown"
+            imageAlt: "Map of the continents for which data are shown",
+            defaultInfo: {
+                image: "fish_as_food_continent_map.png",
+                text: "Click on a circle in the chart to learn more about recreational fish consumption in each country.",
+                name: null
+            }
         },
         WildfireAerosols: {
             paragraph1: "Each layer of the <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected snow core</a> contains more than just packed snow. Particulates from the air, like dust, deposit on the surface of the glacier, along with tiny airborne particles called aerosols. Over time, the deposited particulates and aerosols are preserved in the glacier. If the aerosols are dark in color, the glacier absorbs more heat and melts more quickly. These dark aerosols include black carbon, or soot, that is generated when vehicles and industrial activities burn fossil fuels or when wildfires burn vegetation.",   

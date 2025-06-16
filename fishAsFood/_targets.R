@@ -53,7 +53,8 @@ p2 <- list(
   tar_target(
     p2_country_climate_summary,
     build_country_climate_summary(
-      data = p2_data
+      data = p2_data,
+      metadata_xlsx = p2_metadata_xlsx
     )
   ),
   tar_target(
