@@ -22,10 +22,10 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import * as d3 from 'd3'
-import VizSection from '@/components/VizSection.vue'
-import FamilyInfoBox from '@/components/FamilyInfoBox.vue'
+import { onMounted, ref } from 'vue';
+import * as d3 from 'd3';
+import VizSection from '@/components/VizSection.vue';
+import FamilyInfoBox from '@/components/FamilyInfoBox.vue';
 
 // define props
 const props = defineProps({
