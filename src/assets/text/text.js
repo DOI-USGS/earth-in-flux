@@ -11,7 +11,9 @@ export default {
             { name: "Maggie Jaenicke", link: "https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/MaggieJaenicke.png" },
             { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/cee%20nell%20resized.png?h=53fbb397&itok=I7tqKZDm" },
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
-            { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" }
+            { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/jeffrey_kwang_profile.png" },
+            { name: "Kaysa Vaarre-Lamoureux", link: "", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/kaysa_squarepic.png" },
+            { name: "Elmera Azadpour", link: "https://www.usgs.gov/staff-profiles/elmera-azadpour", image: "https://labs.waterdata.usgs.gov/visualizations/headshots/elmera_azadpourSquare.jpg" }
         ],
         projectsHeading: "USGS land change science projects",
         projectsLeadIn: "The USGS land change science projects currently highlighted in this page are the"
@@ -20,6 +22,7 @@ export default {
         // keys must match project routes (with '-' replaced with '')
         findex: {
             title: "Findex",
+            logo: "Findex_Logo.png",
             motivation: {
                 paragraph1: "Global freshwater biodiversity faces unprecedented loss from rapid global change. Found in less than 0.01% of available surface water, inland fishes comprise 51% of all fish species and inland fisheries provide food for billions and livelihoods for millions of people worldwide. Despite their importance, inland fishes are some of the most threatened taxa on the planet from intensifying pressures, such as hydrological alterations, riparian degradation, invasive species, and climate change. One-third of all inland fishes are threatened with extinction. However, standardized methods to monitor and assess fisheries proves elusive because inland fisheries are highly dispersed with limited market integration. Here, we present the first global metric to examine threats to inland fisheries by river basin using literature synthesis, expert elicitation, and computational modeling. The resulting standardized assessment serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. We show that most threats to inland fisheries come from outside the fishery sector, predominately from land use change. Given that inland fisheries are severely threatened and highly important with limited resources, this index can help direct, efficiently use, and mobilize limited resources for watershed management, sustainable fisheries, and ultimately human well-being."
             },
@@ -217,11 +220,156 @@ export default {
             paragraph5: "USGS scientists reconstructed this record using <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> collected from the ocean floor on the Beaufort Sea continental shelf, north of Yukon, Canada. After cutting the sediment cores into slices representing ~4 to 24 years of time, researchers used a microscope to identify the <a href='/visualizations/earth-in-flux/#/beaufort-sea/beaufort-sea-species' target='_blank'>species of microfossils</a> in each slice.",
         },
         FishAsFoodCirclePacking: {
-            paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished.",
-            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of bimoass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022."
-        },
+            paragraph1: "Explore the global economic value of recreationally-fished inland fish species, in U.S. dollars. Click on the circles in the diagram to see the economic value of species within each fish family, and click on the nested circles to see the economic value of each species in the various countries where it is recreationally fished. Species with economic value under $500k are grouped into 'Other' unless only one exists.",
+            paragraph2: "The total economic value for each species in each country is calculated by multiplying the total kilograms of biomass harvested for each species by the price per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
+            familyInfo: {
+                "Cyprinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/common-carp.jpeg",
+                    text: "Cyprinidae is a family of freshwater fish commonly called the carp or minnow family, including the carps, the true minnows, and their relatives the barbs and barbels, among others. Cyprinidae is the largest and most diverse fish family, and the largest vertebrate animal family overall, with about 1,780 species divided into 166 valid genera..... ",
+                    caption: "Common carp <em>(Cyprinus carpio)</em>"
+                },
+                "Salmonidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/pink-salmon.jpeg",
+                    text: "Salmonidae is a family of ray-finned fish that constitutes the only currently extant family in the order Salmoniformes, consisting of 11 extant genera and over 200 species collectively known as salmonids or salmonoids. The family includes salmon (both Atlantic and Pacific species), trout (both ocean-going and landlocked), char, graylings, freshwater whitefishes, taimens and lenoks, all coldwater mid-level predatory fish that inhabit the subarctic and cool temperate waters of the Northern Hemisphere...",
+                    caption: "Pink salmon <em>(Oncorhynchus gorbuscha)</em>"
+                },
+                "Centrarchidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/black-crappie.jpeg",
+                    text: "Centrarchidae, better known as sunfishes, is a family of freshwater ray-finned fish belonging to the order Centrarchiformes, native only to North America. The centrarchid family comprises 38 identified species, 34 of which are extant. It includes many popular game fishes familiar to North American anglers, such as the rock bass, largemouth bass, bluegill, pumpkinseed, green sunfish and crappies... ",
+                    caption: "Black crappie <em>(Pomoxis nigromaculatus)</em>"
+                },
+                "Anguillidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-eel.jpeg",
+                    text: "The Anguillidae are a family of ray-finned fish that contains the freshwater eels. All the extant species and six subspecies in this family are in the genus Anguilla, and are elongated fish of snake-like bodies, with long dorsal, caudal and anal fins forming a continuous fringe. They are catadromous, spending their adult lives in freshwater, but migrating to the ocean to spawn...",
+                    caption: "European eel <em>(Anguilla anguilla)</em>"
+                },
+                "Anostomidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/boga.jpeg",
+                    text: "The Anostomidae are a family of ray-finned fishes that belong to the order Characiformes. Closely related to the Chilodontidae and formerly included with them, the Anostomidae contain about 150 described species. Commonly known as anostomids, they are found in freshwater habitats from the Río Atrato in northernmost South America to warm-temperate central Argentina; they are of Amazon origin, with few found west of the Andes...",
+                    caption: "Boga <em>(Megaleporinus obtusidens)</em>"
+                },
+                "Atherinopsidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/silverside.jpeg",
+                    text: "The neotropical silversides are a family, Atherinopsidae, of fishes in the order Atheriniformes. About 112 species in 13 genera are distributed throughout the tropical and temperate waters of the New World, including both marine and freshwater habitats. The familiar grunions and Atlantic silverside belong to this family...",
+                    caption: "Argentinian silverside <em>(Odontesthes bonariensis)</em>"
+                },
+                "Channidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/snakehead.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older...",
+                    caption: "Northern snakehead <em>(Channa argus)</em>"
+                },
+                "Characidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/hemibrycon.jpeg",
+                    text: "The snakeheads are members of the freshwater perciform fish family Channidae, native to parts of Africa and Asia. These elongated, predatory fish are distinguished by their long dorsal fins, large mouths, and shiny teeth. They breathe air with gills, which allows them to migrate short distances over land. They have suprabranchial organs, which are primitive forms of labyrinth organs, that develop when they grow older..",
+                    caption: "Hemibrycon <em>(Hemibrycon boquiae)</em>"
+                },
+                "Cichlidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/ zebra-mbuna.jpeg",
+                    text: "Cichlids are a large, diverse, and widespread family of percomorph fish in the family Cichlidae, order Cichliformes. At least 1,760 species have been scientifically described, making it one of the largest vertebrate families, with only the Cyprinidae being more speciose.[3] New species are discovered annually, and many species remain undescribed...",
+                    caption: "Zebra mbuna <em>(Maylandia zebra)</em>"
+                },
+                "Esocidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/northern-pike.jpeg",
+                    text: "Esocidae is a family of ray-finned fish in the order Salmoniformes, which contains pike, pickerel, and mudminnows. While the family traditionally only contained the genus Esox, recent genetic and paleontological research have recovered Novumbra and Dallia as members of the family Esocidae, being closer related to Esox than Umbra....",
+                    caption: "Northern pike <em>(Esox lucius)</em>"
+                },
+                "Percidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/walleye.jpeg",
+                    text: "The Percidae are a family of ray-finned fish, part of the order Perciformes, which are found in fresh and brackish waters of the Northern Hemisphere. The majority are Nearctic, but there are also Palearctic species. The family contains more than 200 species in 11 genera...",
+                    caption: "Walleye <em>(Sander vitreus)</em>"
+                },
+                "Siluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-catfish.jpeg",
+                    text: "Siluridae is the nominate family of catfishes in the order Siluriformes. About 105 living species of silurids are placed in 12 or 14 genera. Although silurids occur across much of Europe and Asia, they are most diverse in Southeast Asia, beyond which their diversity decreases in temperate East Asia, the Indian subcontinent, Southwest Asia, and Europe...",
+                    caption: "European catfish <em>(Silurus glanis)</em>"
+                },
+                "Ictaluridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/catfish.jpeg",
+                    text: "The Ictaluridae, sometimes called ictalurids, are a family of catfish native to North America, where they are an important food source and sometimes fished for sport. The family includes about 51 species, some commonly known as bullheads, madtoms, channel catfish, and blue catfish....",
+                    caption: "Catfish <em>(Ictalurus punctatus)</em>"
+                },
+                "Latidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/nile-perch.jpeg",
+                    text: "The Latidae, known as the lates perches, are a family of perch-like fish found in Africa, Asia, and the Indian and western Pacific Oceans. Including about 13 species, the family, previously classified subfamily Latinae in family Centropomidae, was raised to family status in 2004 after a cladistic analysis showed the original Centropomidae were paraphyletic...",
+                    caption: "Nile perch <em>(Lates niloticus)</em>"
+                },
+                "Erythrinidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/trahira.jpeg",
+                    text: "The Erythrinidae are a family of fishes found in rivers and other freshwater habitats from Costa Rica south as far as Argentina. They are common and are caught with hooks by fishermen, partially because of their voracious behaviour. They are sometimes called trahiras (also spelled trairas) or tarariras...",
+                    caption: "Trahira <em>(Hoplias malabaricus)</em>"
+                },
+                "Lotidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/burbot.jpeg",
+                    text: "The Lotidae are a family of cod-like fishes commonly known as lings or rocklings. They are found in the Arctic, Atlantic, and Pacific Oceans. Except for a few species of Gaidropsarus, all are restricted to the Northern Hemisphere. All species are marine, except for the burbot, Lota lota, found in rivers and lakes in northern Europe, Siberia, and North America. They are important commercial and game fish species...",
+                    caption: "Burbot <em>(Lota lota)</em>"
+                },
+                "Osmeridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/european-smelt.jpeg",
+                    text: "Smelts are a family of small fish, the Osmeridae, found in the North Atlantic and North Pacific oceans, as well as rivers, streams and lakes in Europe, North America and Northeast Asia. They are also known as freshwater smelts or typical smelts to distinguish them from the related Argentinidae (herring smelts or argentines), Bathylagidae (deep-sea smelts), and Retropinnidae (Australian and New Zealand smelts)...",
+                    caption: "European smelt <em>(Osmerus eperlanus)</em>"
+                },
+                "Percichthyidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Percichthyidae.jpeg",
+                    text: "Percichthyidae, the temperate perches, are a family of freshwater ray-finned fish found in Australia and southern South America. Formerly placed in the order Perciformes, they are now placed in the order Centrarchiformes...",
+                    caption: "Macquarie perch<em>(Macquaria australasica)</em>"
+                },
+                "Bagridae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Bagridae.jpeg",
+                    text: "The Bagridae are a family of catfish that are native to Africa (Bagrus) and Asia (all other genera) from Japan to Borneo. It includes about 245 species. These fish are commonly known as naked catfishes or bagrid catfishes...",
+                    caption: "Striped dwarf catfish <em>(Mystus vittatus)</em>"
+                },
+                "Centropomidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Centropomidae.jpeg",
+                    text: "Centropomus is a genus of predominantly marine fish comprising the family Centropomidae. The type species is Centropomus undecimalis, the common snook. Commonly known as snooks or róbalos, the Centropomus species are native to tropical and subtropical waters of the western Atlantic and eastern Pacific Oceans...",
+                    caption: "Common snook <em>(Centropomus undecimalis)</em>"
+                },
+                "Osteichthyes": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Osteichthyes.jpeg",
+                    text: "Osteichthyes also known as osteichthyans or commonly referred to as the bony fish, is a diverse clade of vertebrate animals that have endoskeletons primarily composed of bone tissue. They can be contrasted with the Chondrichthyes (cartilaginous fish) and the extinct placoderms and acanthodians, which have endoskeletons primarily composed of cartilage. The vast majority of extant fish are members of Osteichthyes, being an extremely diverse and abundant group consisting of 45 orders, over 435 families and 28,000 species...",
+                    caption: "Osteichthyes <em>(bony fish)</em>"
+                },
+                "Pimelodidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/redtail-catfish.jpeg",
+                    text: "The family Pimelodidae has undergone much revision. Currently, it contains about 30 genera and about 90 recognized and known but unnamed species. Wikipedia lists 109 species in this family. The low-eye catfish (previously family Hypophthalmidae), and thus the genus Hypophthalmus, which contains four species, was reclassified with the pimelodids...",
+                    caption: "Redtail catfish <em>(Phractocephalus hemioliopterus)</em>"
+                },
+                "Plecoglossidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/Plecoglossidae.jpeg",
+                    text: "A monospecific family (Plecoglossus altivelis) of fish that spend some time in the sea but return to freshwater streams to spawn. Large numbers of juveniles are caught during their annual migration, and are stocked in ponds for cultivation, making them commercially important in Japan, and to some extent China. Ayus occur in northern Asia....",
+                    caption: "Ayu sweetfish <em>(Plecoglossus altivelis)</em>"
+                },
+                "Serrasalmidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/silver-dollar.jpeg",
+                    text: "The Serrasalmidae (serrasalmids) are a family of characiform fishes, recently  elevated to family status. It includes more than 90 species. The name means serrated salmon family, which refers to the serrated keel running along the belly of these fish. Fish classified as Serrasalmidae are also known by these common names: pacu, piranha, and silver dollar. These common names generally designate differing dental characteristics and feeding habits...",
+                    caption: "Silver dollar <em>(Metynnis luna)</em>"
+                },
+                "Sinipercidae": {
+                    image: "https://labs.waterdata.usgs.gov/visualizations/images/mandarin-fish-edit.jpeg",
+                    text: "Sinipercidae, the Chinese perches or Oriental perches, is a family of freshwater ray-finned fishes , part of the order Centrarchiformes. They have been placed within the temperate perch family, Percichthyidae in the past but may be more closely allied to the Centrarchidae...",
+                    caption: "Mandarin fish <em>(Siniperca chuatsi)</em>"
+                }
+
+            },
+            defaultFamily: {
+                image: "https://labs.waterdata.usgs.gov/visualizations/images/default-fish.jpeg",
+                text: "Click on a fish family in the chart to learn more about its importance and characteristics.",
+                caption: "Brown trout <em>(Salmo trutta)</em>"
+            }
+        },        
         FishAsFoodSankey: {
-            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms'
+            paragraph1: 'Explore total recreational harvest for the five families of inland fish with the largest recreational harvests: <span class="scientificName">Cyprinidae</span> (minnows and carps), <span class="scientificName">Percidae</span> (perch), <span class="scientificName">Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class="scientificName">Bagridae</span> (bagrid catfish), and <span class="scientificName">Centrarchidae</span> (sunfishes). Total recreational harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms',
+            toggleData: {
+                showChina: {
+                    value: true,
+                    color: 'var(--usgs-blue)',
+                    label: "include China"
+                },
+                sortHarvest: {
+                    value: false,
+                    color: 'var(--usgs-blue)',
+                    label: "sort by harvest totals"
+                }
+            }
         },
         FishAsFoodClimate: {
             paragraph1: "",
@@ -237,12 +385,199 @@ export default {
             explanation1: "As scientists <a href='/visualizations/earth-in-flux/#/fire-in-ice/glacier-scan' target='_blank'>collected the snow core</a>, they carefully stored each ten-centimeter section for transport off the Juneau Icefield. The retrieved samples were analyzed in a laboratory for particle counts, major ions, stable isotopes of oxygen and hydrogen, and the three sugars that are markers of biomass combustion—mannosan, galactosan, and levoglucosan.",
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
+        FindexThreatDefinitions: {
+            paragraph1: "intro text",
+            iconData: [
+                {
+                    iconTitle: "Habitat",
+                    iconID: "habitat",
+                    icon: "habitat-29572",
+                    iconText: "Habitat text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Dams",
+                            subThreatIcon: "H-dams-3916913",
+                            subThreatText: "Dams"
+                        },
+                        {
+                            subThreat: "Wetland drainage",
+                            subThreatIcon: "H-wetland-drainage-34007",
+                            subThreatText: "Wetland drainage"
+                        },
+                        {
+                            subThreat: "Deforestation and associated runoff",
+                            subThreatIcon: "H-deforestation-4811548",
+                            subThreatText: "Deforestation and associated runoff"
+                        },
+                        {
+                            subThreat: "Riparian degradation",
+                            subThreatIcon: "H-riparian-6291",
+                            subThreatText: "Riparian degradation"
+                        },
+                        {
+                            subThreat: "Agricultural extraction",
+                            subThreatIcon: "H-agriculture-5491228",
+                            subThreatText: "Agricultural extraction"
+                        },
+                        {
+                            subThreat: "Urban extraction",
+                            subThreatIcon: "H-urban-7019973",
+                            subThreatText: "Urban extraction"
+                        },
+                        {
+                            subThreat: "Industrial extraction",
+                            subThreatIcon: "H-industrial-659077",
+                            subThreatText: "Industrial extraction"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Pollution",
+                    iconID: "pollution",
+                    icon: "pollution-6278",
+                    iconText: "Pollution text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Agricultural effluents",
+                            subThreatIcon: "P-agriculture-3634692",
+                            subThreatText: "Agricultural effluents"
+                        },
+                        {
+                            subThreat: "Urban wastewater",
+                            subThreatIcon: "P-urban-waste-25100",
+                            subThreatText: "Urban wastewate"
+                        },
+                        {
+                            subThreat: "Industrial effluents",
+                            subThreatIcon: "P-industrial-200223",
+                            subThreatText: "Industrial effluents"
+                        },
+                        {
+                            subThreat: "Aquaculture effluents",
+                            subThreatIcon: "P-aquaculture-23815",
+                            subThreatText: "Aquaculture effluents"
+                        },
+                        {
+                            subThreat: "Pharmaceuticals",
+                            subThreatIcon: "P-pharmaceuticals-164439",
+                            subThreatText: "Pharmaceuticals"
+                        },
+                        {
+                            subThreat: "Oil or gas exploration",
+                            subThreatIcon: "P-oil-gas-3723255",
+                            subThreatText: "Oil or gas exploration"
+                        },
+                        {
+                            subThreat: "Plastics",
+                            subThreatIcon: "P-plastics-2484814",
+                            subThreatText: "Plastics"
+                        },
+                        {
+                            subThreat: "Mining",
+                            subThreatIcon: "P-mining-7248907",
+                            subThreatText: "Mining"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Climate and weather",
+                    iconID: "climate-and-weather",
+                    icon: "climate-6795675",
+                    iconText: "Climate and Weather text.",
+                    subThreatData: [
+                        {
+                            subThreat: "Change in water temperature",
+                            subThreatIcon: "CW-temperature-1979336",
+                            subThreatText: "Change in water temperature"
+                        },
+                        {
+                            subThreat: "Drought",
+                            subThreatIcon: "CW-drought-002D5E",
+                            subThreatText: "Drought"
+                        },
+                        {
+                            subThreat: "Change in flooding",
+                            subThreatIcon: "CW-flooding-1760091",
+                            subThreatText: "Change in flooding"
+                        },
+                        {
+                            subThreat: "Change in wind patterns",
+                            subThreatIcon: "CW-wind-7479181",
+                            subThreatText: "Change in wind patterns"
+                        },
+                        {
+                            subThreat: "Change in ice cover",
+                            subThreatIcon: "CW-ice-cover-5314745",
+                            subThreatText: "Change in ice cover"
+                        }
+                    ]
+                },
+                {
+                    iconTitle: "Invasive species",
+                    iconID: "invasive-species",
+                    icon: "invasive-species-973991",
+                    iconText: "Invasive species text.",
+                    subThreatData: []
+                },
+                {
+                    iconTitle: "Fishing pressure",
+                    iconID: "fishing-pressure",
+                    icon: "fishing-pressure-4847095",
+                    iconText: "Fishing pressure text.",
+                    subThreatData: []
+                }
+            ]
+        },
         FindexThreatSankey: {
             paragraph1: 'Land use change is the biggest threat to inland fisheries.'
         },
         FindexGlobalThreats: {
-            heading1:"Global variability of threats",
-            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the severity of threats varies globally.",
+            heading1:"What are the top threats to inland fisheries?",
+            paragraph1: "While threats related to habitat are the <a href='/visualizations/earth-in-flux/#/findex/inland-fish-total-threats' target='_blank'>overall highest threat</a> to inland fisheries worldwide, the top threat for each river basin varies globally. The map below shows the top threat to inland fisheries in each river basin.",
+            mapData: {
+                habitat: {
+                    visible: true,
+                    path: 'Habitat_threat_by_basin.png',
+                    color: 'var(--color-habitat-top)',
+                    order: 1,
+                    label: "Habitat"
+                },
+                pollution: {
+                    visible: true,
+                    path: 'Pollution_threat_by_basin.png',
+                    color: 'var(--color-pollution-top)',
+                    order: 2,
+                    label: "Pollution"
+                },
+                climate_and_weather: {
+                    visible: true,
+                    path: 'Climate_and_weather_threat_by_basin.png',
+                    color: 'var(--color-climate-and-weather-top)',
+                    order: 3,
+                    label: "Climate and weather"
+                },
+                invasive_species: {
+                    visible: true,
+                    path: 'Invasive_species_threat_by_basin.png',
+                    color: 'var(--color-invasive-species-top)',
+                    order: 4,
+                    label: "Invasive species"
+                },
+                fishing_pressure: {
+                    visible: true,
+                    path: 'Fishing_pressure_threat_by_basin.png',
+                    color: 'var(--color-fishing-pressure-top)',
+                    order: 5,
+                    label: "Fishing pressure"
+                },
+            },
+            heading2:"Where are threats higher and lower?",
+            paragraph2: "Similarly, the severity of threats varies globally. Explore the tabs below to learn more.",
+            subThreatHeading1: "Drivers",
+            subThreatHeading2: "Potential impacts",
+            subThreatHeading3: "Sectors involved",
+            subThreatHeading4: "Mitigation and adaptation opportunities",
+            subThreatHeading5: "How it’s measured",
             tabData: [
                 {
                     tabTitle: "Habitat",
@@ -256,38 +591,220 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Dams",
-                            subThreatText: "Dams text",
-                            subThreatIcon: "H-dams-3916913"
+                            subThreatIcon: "H-dams-3916913",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Hydropower (as a source of green energy), water supply (for growing urban populations), flood control (prevention of flooding or urban and agricultural areas), irrigation for agriculture.",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Blocking of longitudinal connectivity; interference with sediment and nutrient transport along channel; Shortening and disruption of migratory pathways and fish recruitment; Reduction in productivity upstream and downstream of dam; Reduction in flooding of floodplains and increased low flows; Impoundment results in depletion of populations of riverine fish and change to lentic fish species. The effects of drawdown and refilling destroy aquatic vegetation and fish breeding areas; Loss of thermal cues, and reduction in growth potential and reproductive potential of aquatic organisms.",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Dams sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Dams mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Dams measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Wetland drainage",
-                            subThreatText: "Wetland drainage text",
-                            subThreatIcon: "H-wetland-drainage-34007"
+                            subThreatIcon: "H-wetland-drainage-34007",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Wetland drainage text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Wetland drainage impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Wetland drainage sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Wetland drainage mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Wetland drainage measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
-                            subThreatText: "Deforestation and associated runoff text",
-                            subThreatIcon: "H-deforestation-4811548"
+                            subThreatIcon: "H-deforestation-4811548",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Deforestation and associated runoff text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Deforestation and associated runoff impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Deforestation and associated runoff sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Deforestation and associated runoff mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Deforestation and associated runoff measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Riparian degradation",
-                            subThreatText: "Riparian degradation text",
-                            subThreatIcon: "H-riparian-6291"
+                            subThreatIcon: "H-riparian-6291",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Riparian degradation text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Riparian degradation impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Riparian degradation sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Riparian degradation mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Riparian degradation measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Agricultural extraction",
-                            subThreatText: "Agricultural extraction text",
-                            subThreatIcon: "H-agriculture-5491228"
+                            subThreatIcon: "H-agriculture-5491228",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Agricultural extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Agricultural extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Agricultural extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Agricultural extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Agricultural extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Urban extraction",
-                            subThreatText: "Urban extraction text",
-                            subThreatIcon: "H-urban-7019973"
+                            subThreatIcon: "H-urban-7019973",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Urban extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Urban extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Urban extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Urban extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Urban extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Industrial extraction",
-                            subThreatText: "Industrial Extraction text",
-                            subThreatIcon: "H-industrial-659077"
+                            subThreatIcon: "H-industrial-659077",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Industrial extraction text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Industrial extraction impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Industrial extraction sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Industrial extraction mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Industrial extraction measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -303,43 +820,251 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Agricultural effluents",
-                            subThreatText: "Agricultural effluents text",
-                            subThreatIcon: "P-agriculture-3634692"
+                            subThreatIcon: "P-agriculture-3634692",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Agricultural effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Agricultural effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Agricultural effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Agricultural effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Agricultural effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Urban wastewater",
-                            subThreatText: "Urban wastewater text",
-                            subThreatIcon: "P-urban-waste-25100"
+                            subThreatIcon: "P-urban-waste-25100",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Urban wastewater text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Urban wastewater impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Urban wastewater sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Urban wastewater mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Urban wastewater measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Industrial effluents",
-                            subThreatText: "Industrial effluents text",
-                            subThreatIcon: "P-industrial-200223"
+                            subThreatIcon: "P-industrial-200223",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Industrial effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Industrial effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Industrial effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Industrial effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Industrial effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Aquaculture effluents",
-                            subThreatText: "Aquaculture effluents text",
-                            subThreatIcon: "P-aquaculture-23815"
+                            subThreatIcon: "P-aquaculture-23815",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Aquaculture effluents text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Aquaculture effluents impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Aquaculture effluents sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Aquaculture effluents mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Aquaculture effluents measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Pharmaceuticals",
-                            subThreatText: "Pharmaceuticals text",
-                            subThreatIcon: "P-pharmaceuticals-164439"
+                            subThreatIcon: "P-pharmaceuticals-164439",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Pharmaceuticals text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Pharmaceuticals impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Pharmaceuticals sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Pharmaceuticals mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Pharmaceuticals measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Oil or gas exploration",
-                            subThreatText: "Oil or gas exploration text",
-                            subThreatIcon: "P-oil-gas-3723255"
+                            subThreatIcon: "P-oil-gas-3723255",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Oil or gas exploration text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Oil or gas exploration impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Oil or gas exploration sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Oil or gas exploration mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Oil or gas exploration measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Plastics",
-                            subThreatText: "Plastics text",
-                            subThreatIcon: "P-plastics-2484814"
+                            subThreatIcon: "P-plastics-2484814",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Plastics text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Plastics impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Plastics sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Plastics mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Plastics measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Mining",
-                            subThreatText: "Mining text",
-                            subThreatIcon: "P-mining-7248907"
+                            subThreatIcon: "P-mining-7248907",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Mining text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Mining impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Mining sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Mining mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Mining measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -355,28 +1080,158 @@ export default {
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
-                            subThreatText: "Change in water temperature text",
-                            subThreatIcon: "CW-temperature-1979336"
+                            subThreatIcon: "CW-temperature-1979336",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in water temperature text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in water temperature impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in water temperature sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in water temperature mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in water temperature measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Drought",
-                            subThreatText: "Drought text",
-                            subThreatIcon: "CW-drought-002D5E"
+                            subThreatIcon: "CW-drought-002D5E",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Drought text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Drought impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Drought sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Drought mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Drought measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in flooding",
-                            subThreatText: "Change in flooding text",
-                            subThreatIcon: "CW-flooding-1760091"
+                            subThreatIcon: "CW-flooding-1760091",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in flooding text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in flooding impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in flooding sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in flooding mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in flooding measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in wind patterns",
-                            subThreatText: "Change in wind patterns text",
-                            subThreatIcon: "CW-wind-7479181"
+                            subThreatIcon: "CW-wind-7479181",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in wind patterns text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in wind patterns impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in wind patterns sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in wind patterns mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in wind patterns measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         },
                         {
                             subThreat: "Change in ice cover",
-                            subThreatText: "Change in ice cover text",
-                            subThreatIcon: "CW-ice-cover-5314745"
+                            subThreatIcon: "CW-ice-cover-5314745",
+                            subThreatText: [
+                                {
+                                    heading: "Drivers",
+                                    text: "Change in ice cover text",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Potential impacts",
+                                    text: "Change in ice cover impact",
+                                    activeOnLoad: true
+                                },
+                                {
+                                    heading: "Sectors involved",
+                                    text: "Change in ice cover sectors",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "Mitigation and adaptation opportunities",
+                                    text: "Change in ice cover mitigation",
+                                    activeOnLoad: false
+                                },
+                                {
+                                    heading: "How it’s measured",
+                                    text: "Change in ice cover measurement",
+                                    activeOnLoad: false
+                                }
+                            ]
                         }
                     ]
                 },

@@ -96,6 +96,15 @@ p2 <- list(
       in_dat = p2_weighted_threats
     )
   ),
+  tar_target(
+    p2_top_threats,
+    compute_top_weighted_threats(
+      in_dat = p2_weighted_threats,
+      keep_basins_without_scores = TRUE,
+      category_levels = c("Habitat", "Fishing pressure", "Pollution", 
+                            "Invasive species", "Climate and weather")
+    )
+  ),
   
   #### threat lists for branching ####
   
@@ -242,7 +251,7 @@ p3 <- list(
   tar_target(
     p3_top_threat_map_png,
     {
-      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
+      final_plot <- top_threat_plot(in_dat = p2_top_threats, 
                                     threat_pal = p2_viz_config, 
                                     hybas_habitat_types = p2_hybas_habitat_types_sf, 
                                     proj = p1_proj,
@@ -250,9 +259,7 @@ p3 <- list(
         theme(legend.position = "none")
       
       ggsave(sprintf("../src/assets/images/%s_threat_by_basin.png", str_replace_all(p2_threat_categories, " ", "_")), 
-             final_plot, height = 6, width = 10, dpi = 300)
-      
-      knitr::plot_crop(sprintf("../src/assets/images/%s_threat_by_basin.png", str_replace_all(p2_threat_categories, " ", "_")))
+             final_plot, height = 4.5, width = 10, dpi = 300)
     },
     format = "file",
     pattern = p2_threat_categories
@@ -260,7 +267,7 @@ p3 <- list(
   tar_target(
     p3_all_top_threat_map_png,
     {
-      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
+      final_plot <- top_threat_plot(in_dat = p2_top_threats, 
                                     threat_pal = p2_viz_config, 
                                     hybas_habitat_types = p2_hybas_habitat_types_sf, 
                                     proj = p1_proj,
@@ -268,15 +275,28 @@ p3 <- list(
         theme(legend.position = "none")
       
       ggsave("../src/assets/images/all_threat_by_basin.png", 
-             final_plot, height = 6, width = 10, dpi = 300)
+             final_plot, height = 4.5, width = 10, dpi = 300)
+    },
+    format = "file"
+  ),
+  tar_target(
+    p3_base_top_threat_map_png,
+    {
+      final_plot <- top_threat_plot(in_dat = p2_top_threats, 
+                                    threat_pal = p2_viz_config, 
+                                    hybas_habitat_types = p2_hybas_habitat_types_sf, 
+                                    proj = p1_proj,
+                                    threat_category = "base")  + 
+        theme(legend.position = "none")
       
-      knitr::plot_crop("../src/assets/images/all_threat_by_basin.png")
+      ggsave("../src/assets/images/base_threat_by_basin.png", 
+             final_plot, height = 4.5, width = 10, dpi = 300)
     },
     format = "file"
   ),
   tar_target(
     p3_top_threat_thumbnail,
-    top_threat_thumbnail(in_dat = p2_mean_weighted_threats, 
+    top_threat_thumbnail(in_dat = p2_top_threats, 
                          threat_pal = p2_viz_config, 
                          hybas_habitat_types = p2_hybas_habitat_types_sf, 
                          proj = p1_proj,
@@ -287,22 +307,6 @@ p3 <- list(
                          out_file = "../src/assets/images/threat_by_basin_thumbnail.png"),
     format = "file"
   )
-#  tar_target(
-#    p3_top_threat_legend_png,
-#    {
-#      final_plot <- top_threat_plot(in_dat = p2_mean_weighted_threats, 
-#                                    threat_pal = p2_viz_config, 
-#                                    hybas_habitat_types = p2_hybas_habitat_types_sf, 
-#                                    proj = p1_proj,
-#                                    threat_category = "none")
-#      
-#      save_top_threat_legend(plot = final_plot, 
-#                             dpi = 300, 
-#                             # change to actual directory once design is finalized
-#                             out_file = "../src/assets/images/threat_by_basin_legend.png")
-#    },
-#    format = "file"
-#  )
 )
 
 

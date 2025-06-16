@@ -258,18 +258,14 @@ save_map <- function(type, plot, threat_category, threat_pal, height, width, dpi
 }
 
 #' @description create top threats by basin global map
-#' @param in_dat dataframe with mean weighted threat scores by threat type and HYBAS_ID
+#' @param in_dat dataframe with top threat category by HYBAS_ID
 #' @param threat_pal dataframe with color palettes and file name templates by threat type
 #' @param hybas_habitat_types shape file with HYBAS IDs and their habitat types
 #' @param proj character string with map projection definition
 #' @param threat_category list of target threat categories
 top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threat_category){
-  
-  processed_df <- in_dat |> 
-    group_by(HYBAS_ID) |> 
-    filter(MeanWeightedThreatMetric == max(MeanWeightedThreatMetric, na.rm = T))
-  
-  processed_sf <- processed_df |> 
+
+  processed_sf <- in_dat |> 
     left_join(hybas_habitat_types) |> 
     st_as_sf() |> 
     # remove visual bug with robinson projection
@@ -277,11 +273,14 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
   
   proj_sf <- st_transform(processed_sf, crs = st_crs(proj))
   
+  bbox <- sf::st_bbox(proj_sf)
+  
   # make non-target threat category values NA so they are not plotted
   if(threat_category != "none"){
     proj_sf <- proj_sf |> 
       mutate(ThreatCategory = case_when(ThreatCategory != threat_category ~ NA, .default = as.character(ThreatCategory)))
   }
+  na_color <- ifelse(threat_category == "base", "gray80", NA)
   
   pal <- threat_pal |> 
     select(MajorCat, pal) |> 
@@ -296,9 +295,12 @@ top_threat_plot <- function(in_dat, threat_pal, hybas_habitat_types, proj, threa
   
   threat_map <- ggplot()+
     geom_sf(data = proj_sf, aes(geometry = Shape, fill = ThreatCategory), color = NA)+
-    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat, na.value = "gray80")+
+    scale_fill_manual(values = pal$pal, breaks = pal$MajorCat, na.value = na_color)+
     guides(fill = guide_legend(nrow = 2,)) +
     theme_void()+
+    coord_sf(xlim = c(bbox[["xmin"]], bbox[["xmax"]]),
+             ylim = c(bbox[["ymin"]], bbox[["ymax"]]),
+             expand = FALSE) +
     theme(
       legend.ticks = element_blank(),
       legend.title = element_text(face = "bold"),

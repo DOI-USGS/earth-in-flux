@@ -3,13 +3,22 @@ export default {
         //we'll be replacing these img_src with paths to location on s3
         //vizRoutes will direct to appropriate subpage
         {
+            title: 'Threats to inland fisheries',
+            project: 'Findex',
+            vizKey: 'FindexThreatDefinitions',
+            vizRoute: 'inland-fish-threats',
+            img_src: 'inland_fisheries_thumbnail.webp',
+            alt: '',
+            chartOrder: 1,
+            description: 'Inland fisheries face many threats.'
+        },{
             title: 'Inland fisheries are threatened',
             project: 'Findex',
             vizKey: 'FindexThreatSankey',
             vizRoute: 'inland-fish-total-threats',
             img_src: 'findex_sankey_thumbnail.webp',
             alt: '',
-            chartOrder: 1,
+            chartOrder: 2,
             description: 'Land use change is threatening inland fisheries.'
         },
         {
@@ -29,8 +38,18 @@ export default {
             vizRoute: 'inland-fish-global-threats',
             img_src: 'threat_by_basin_thumbnail.webp',
             alt: '',
-            chartOrder: 2,
+            chartOrder: 3,
             description: 'Inland fisheries are threatened globally.'
+        },
+        {
+            title: 'A test viz using the RegionMap component',
+            project: 'Findex',
+            vizKey: 'FindexTest',
+            vizRoute: 'inland-fish-region-map',
+            img_src: 'Placeholder_thumbnail.webp',
+            alt: '',
+            chartOrder: 4,
+            description: 'FILL THIS OUT'
         },
         {
             title: 'Explore the Juneau Icefield',
@@ -77,7 +96,7 @@ export default {
             project: 'Fish as Food',
             vizKey: 'FishAsFoodSankey',
             vizRoute: 'inland-rec-fish-harvest',
-            img_src: 'FishAsFoodSankey_thumbnail.webp',
+            img_src: 'FishAsFood_sankey_thumbnail.webp',
             alt: '',
             chartOrder: 1,
             description: 'Inland recreational fishing harvest is substantial.'

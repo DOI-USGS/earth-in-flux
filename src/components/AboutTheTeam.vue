@@ -111,21 +111,22 @@ onMounted(() => {
 
     node
       .append('text')
+      .attr('class', 'name-text')
       .attr('x', 0)
       .attr('y', 0)
+      .attr('dx', '0em')
+      .attr('dy', '0em')
       .attr('text-anchor', 'middle')
-      .attr('dy', '.35em')
-      .attr('class', 'name-text')
-      .attr('font-weight', 'bold')
-      .attr('fill', 'white')
-      .attr('pointer-events', 'none')
+      .attr("dominant-baseline", "central")
+      .attr("text-width", radius * 2)
       .style('opacity', 0)
-      .text(d => d.name);
+      .text(d => d.name)
+      .call(d => wrap(d, {shift: true}));
 
     // append link
     node    
       .append("a")
-        .attr("href", d => d.link)
+        .attr("href", d => d.link? d.link : null)
         .attr("target", "_blank")
         .append("svg:rect")
           .attr("y", -radius)
@@ -177,6 +178,47 @@ onMounted(() => {
   //   }
   //   return array;
   // }
+
+  // https://gist.github.com/mbostock/7555321
+  function wrap(text, {
+      shift = false
+  }) {
+      text.each(function() {
+          // split at hyphens, too: text.text().split(/\s|-+/) (but they don't get re-inserted)
+          var text = d3.select(this),
+          words = text.text().split(/\s+/).reverse(),
+          word,
+          line = [],
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          width = text.attr("text-width"),
+          baseline = text.attr("dominant-baseline"),
+          x = text.attr("x"),
+          y = text.attr("y"),
+          dy = parseFloat(text.attr("dy")),
+          dx = parseFloat(text.attr("dx")),
+          tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);;
+
+          while ((word = words.pop())) {
+          line.push(word);
+          tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dx", dx).attr("dy", ++lineNumber * lineHeight + dy + "em").attr("dominant-baseline", baseline).text(word);
+              }
+          }
+
+          // https://stackoverflow.com/questions/60558291/wrapping-and-vertically-centering-text-using-d3-js
+          if (lineNumber > 0  && shift) {
+              const startDy = -(lineNumber * (lineHeight / 2));
+              text
+                  .selectAll("tspan")
+                  .attr("dy", (d, i) => startDy + lineHeight * i + "em");
+          }
+      }
+  )};
 });
 </script>
 
@@ -193,24 +235,12 @@ onMounted(() => {
   width: 100%;
   height: 100%;
 }
-
-.text-container {
-  min-width: 30vw;
-  max-width: 70rem;
-  margin: 0 auto;
-  padding: 1rem 1rem 1rem 0rem;
-  @media screen and (max-width: 600px) {
-    max-width: 95vw;
-    padding: 0.5rem;
-  }
-}
-
-.title-text {
-  width: 100%;
-}
-
+</style>
+<style lang="scss">
+/* css for elements added/classed w/ d3 */
 .name-text {
-  font-size: 1rem;
+  font-weight: 700;
+  fill: #ffffff;
+  pointer-events: 'none';
 }
-
 </style>

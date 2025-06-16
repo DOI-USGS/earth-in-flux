@@ -73,13 +73,16 @@
       <!---Project page-->
       <div v-if="projectPage">
         <VizSection
-          :figures="false"
+          :figures="true"
           :fig-caption="false"
         >
-          <template #heading>
-            <h3>About the {{ pageText.title }} research</h3>
+          <template #figures v-if="pageText.logo">
+            <figure id="logo-container">
+                <img :src="getImageURL(pageText.logo)" alt="Logo for Findex project" class="logo">
+            </figure>
           </template>
-          <template #aboveExplanation>
+          <template #belowExplanation>
+            <h3>About the {{ pageText.title }} research</h3>
             <p v-for="paragraph, item in pageText.motivation" :key="item" v-html="paragraph" />
           </template>
         </VizSection>
@@ -153,6 +156,10 @@
     projectKey.value = projectRoute.value ? `${projectRoute.value.replace(/-/g, '')}` : null
   })
 
+  function getImageURL(file) {
+    return new URL(`../assets/images/${file}`, import.meta.url).href
+  }
+
 </script>
 
 <style scoped>
@@ -177,5 +184,14 @@
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: var(--usgs-blue); }
+  }
+
+  #logo-container {
+    text-align: center;
+    margin-bottom: 0rem;
+  }
+  .logo {
+    max-width: 150px;
+    margin-top: 20px;
   }
 </style>
