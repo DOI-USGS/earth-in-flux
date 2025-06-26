@@ -504,7 +504,14 @@
                     .attr("r", d => rScale(rAccessor(d)))
                     .attr('fill', d => colors[colorAccessor(d)])
                     .attr('stroke', '#FFFFFF')
+                    .attr('stroke-width', '1px')
                     .on("click", (event, d) => {
+                        chartBounds.selectAll(".circle")
+                            .attr('stroke', '#FFFFFF')
+                            .attr('stroke-width', '1px')
+                        chartBounds.select("#circle-" + identifierAccessor(d))
+                            .attr('stroke', '#000000')
+                            .attr('stroke-width', '3px')
                         activeCountry.value = {
                             name: d.admin,
                             participation_rate: Math.round(d.participation_rate),
