@@ -9,20 +9,7 @@
             id="grid-container"
           >
             <CountryInfoBox :activeCountry="activeCountry"  />
-            <div
-              id="sub-grid-container"
-            >
-                <div
-                    id="continent-map-image-container"
-                >
-                    <img 
-                    id="continent-map-image"
-                    :src="getImageURL(text.image)"
-                    :alt="text.imageAlt"
-                    >
-                </div>
-                <div id="chart-container" class="maxWidth" ref="chart" />           
-            </div>
+            <div id="chart-container" class="maxWidth" ref="chart" />
           </div>
         </template>
         <!-- FIGURE CAPTION -->
@@ -606,15 +593,13 @@
             }
         }
     )};
-
-    function getImageURL(filename) {
-        return new URL(`../assets/images/${filename}`, import.meta.url).href
-    }
 </script>
 
 <style scoped lang="scss">
   #chart-container {
     width: 60vw;
+    max-width: 1000px;
+    margin: 3rem auto 2rem auto;
     @media only screen and (max-width: 600px) {
       width: 100%;
     }
@@ -625,30 +610,6 @@
     margin: 3rem auto 4rem auto;
     @media screen and (max-width: 600px) {
         flex-direction: column;
-    }
-  }
-  #sub-grid-container {
-    width: 60vw;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin: 6rem auto 2rem auto;
-    @media screen and (max-width: 600px) {
-        width: 100%;
-        flex-direction: column;
-    }
-  }
-  #continent-map-image-container {
-    position: absolute;
-    right: 10px;
-    @media screen and (max-width: 600px) {
-        position: relative;
-    }
-  }
-  #continent-map-image {
-    width: 300px;
-    @media screen and (max-width: 600px) {
-        margin-top: 1rem;
     }
   }
 </style>

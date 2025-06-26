@@ -2,7 +2,11 @@
   <div class="info-box" v-if="activeCountry">
     <div class="country-content">
       <div class="country-text">
-        <div v-if="!activeCountry.name">
+        <div
+          v-if="!activeCountry.name"
+          id="intro-content-container"
+        >
+          <img class="map-image" :src="getImageURL('fish_as_food_continent_map.png')" alt="">
           <p>{{ activeCountry.text }}</p>
         </div>
         <div v-if="activeCountry.name">
@@ -69,6 +73,10 @@ function getSvgURL(filename) {
   return new URL(`../assets/svgs/${filename}.svg`, import.meta.url).href
 }
 
+function getImageURL(filename) {
+  return new URL(`../assets/images/${filename}`, import.meta.url).href
+}
+
 function identifySvgURL(guild) {
   let filename = '';
   switch (guild) {
@@ -94,16 +102,30 @@ function identifySvgURL(guild) {
 
 <style scoped>
 .info-box {
-    /* width: 60vw; */
+    max-width: 60vw;
     margin-left: auto;
     margin-right: auto;
-    /* height: 320px; */
+    @media screen and (min-width: 2000px) {
+      max-width: 1000px;
+    }
     @media screen and (max-width: 600px) {
         width: 100%;
         height: auto;
         min-width: auto;
-        /* height: 450px; */
+        max-width: 100%;
     }
+}
+#intro-content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+.map-image {
+  width: 300px;
 }
 .country-content {
     /* min-width: 60vw; */

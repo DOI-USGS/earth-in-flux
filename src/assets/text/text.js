@@ -371,7 +371,7 @@ export default {
             imageAlt: "Map of the continents for which data are shown",
             defaultInfo: {
                 image: "fish_as_food_continent_map.png",
-                text: "Click on a circle in the chart to learn more about recreational fish consumption in each country.",
+                text: "In the chart below, each circle represents a country. The circles are colored by continent, and the size of each circle is proportional to the number of recreational fishers in each country. Click on a circle to learn more about the climate vulnerability recreational fish consumption in each country.",
                 name: null
             }
         },
