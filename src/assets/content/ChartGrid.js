@@ -82,24 +82,24 @@ export default {
             description: 'Smoke plumes from regional wildfires affect glaciers.'
         },
         {
-            title: 'Global economic value of recreationally fished species',
-            project: 'Fish as Food',
+            title: 'Total consumptive use value of recreationally harvested fishes',
+            project: 'Rec Fish as Food',
             vizKey: 'FishAsFoodCirclePacking',
-            vizRoute: 'inland-rec-fish-value',
+            vizRoute: 'rec-fish-consumption-value',
             img_src: 'circle-pack-thumbnail.webp',
             alt: '',
             chartOrder: 2,
-            description: 'Inland recreational fishing contributes economic value.'
+            description: 'The consumption of recreationally harvested inland fish has economic value.'
         },
         {
-            title: 'Global harvest of recreationally fished species',
-            project: 'Fish as Food',
+            title: 'Inland recreational fish consumption',
+            project: 'Rec Fish as Food',
             vizKey: 'FishAsFoodSankey',
-            vizRoute: 'inland-rec-fish-harvest',
+            vizRoute: 'rec-fish-consumption',
             img_src: 'FishAsFood_sankey_thumbnail.webp',
             alt: '',
             chartOrder: 1,
-            description: 'Inland recreational fishing harvest is substantial.'
+            description: 'Recreational harvest of inland fish for consumption is substantial.'
         },
         {
             title: 'Beaufort Sea sediment coring',

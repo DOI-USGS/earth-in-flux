@@ -76,15 +76,18 @@
                 </div>
                 <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
                 <div v-if="!primaryCategorySelected">
-                    <div v-for="item, index in subCategoryData.subThreatText" :key="index" class="accordion-container" :class="`${tab.tabContentTitleID}-accordion`">
-                        <button class="accordion" :class="[`${tab.tabContentTitleID}-bkgd`, { 'active': item.activeOnLoad }]" @click="accordionClick">
-                            <h4 class="accordion-button-text" v-html="item.heading"></h4>
-                            <span class="accordion-button-text symbol"></span>
-                        </button>
-                        <div class="panel" :class="[{ 'active': item.activeOnLoad }]">
-                            <p v-if="!primaryCategorySelected" v-html="item.text" />
-                        </div>
-                    </div>
+                    <CollapsibleAccordion 
+                        v-for="item, index in subCategoryData.subThreatText"
+                        :key="index"
+                        :heading="item.heading"
+                        :content="item.content"
+                        :active-on-load="item.activeOnLoad"
+                        :left-border-color="tab.tabColor"
+                        button-active-background-color="var(--light-grey)"
+                        button-inactive-background-color="var(--light-grey)"
+                        button-font-weight="bold"
+                        button-font-color="var(--color-text)"
+                    />
                 </div>
             </tabItem>
         </tabsGroup>
@@ -95,6 +98,7 @@
     import { computed, nextTick, onMounted, reactive, ref } from "vue";
     import VizSection from '@/components/VizSection.vue';
     import ToggleSwitch from '@/components/ToggleSwitch.vue';
+    import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue';
     import FishIcon from '@/assets/svgs/noun-fish-7471722.svg';
 
     // define props
@@ -193,16 +197,6 @@
     }
     function getImageURL(file) {
         return new URL(`../assets/images/${file}`, import.meta.url).href
-    }
-    function accordionClick(event) {
-        // Pull class(es) associated with target
-        const targetClass = event.target.classList.value
-        // If the target is the button text, target the parent button element
-        // Otherwise if the target is the button, target it directly
-        const accordion = targetClass.includes('accordion-button-text') ? event.target.parentElement : event.target
-        accordion.classList.toggle("active");
-        const panel = accordion.nextElementSibling;
-        panel.classList.toggle("active");
     }
 
 </script>
@@ -304,15 +298,6 @@
 }
 .highlight.fishing-pressure {
     background-color: var(--color-fishing-pressure);
-}
-.habitat-accordion {
-    border-left-color: var(--color-habitat);
-}
-.pollution-accordion {
-    border-left-color: var(--color-pollution);
-}
-.climate-and-weather-accordion {
-    border-left-color: var(--color-climate-and-weather);
 }
 .category-button {
     background-color: transparent;

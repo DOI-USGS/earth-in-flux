@@ -1,8 +1,9 @@
 <template>
   <section id="visualization-container">
     <div class="page-content">
-      <div class="text-container" :class="{ mobile: mobileView}">
-        <div v-if="!projectPage">
+      <!---Homepage-->
+      <div v-if="!projectPage">      
+        <div class="text-container" :class="{ mobile: mobileView}">
           <div :class="{ typewriter: !mobileView}">
             <h1 class="title">
               {{ pageText.pageTitle }}
@@ -12,13 +13,8 @@
             {{  pageText.pageSubTitle }}
           </h2>
         </div>
-        <h2 v-if="projectPage" class="subtitle">
-          The {{ pageText.title }} project
-        </h2>
-      </div>
-      <ChartGrid v-if="!projectPage" :view="currentView"/>
-      <div v-if="!projectPage">
-        <!---About the project-->
+        <ChartGrid :view="currentView"/>
+        <!---About the chart gallery project-->
         <VizSection
           :figures="false"
           :fig-caption="false"
@@ -76,13 +72,19 @@
           :figures="true"
           :fig-caption="false"
         >
+          <template #aboveExplanation>
+            <h2 class="subtitle">
+              The {{ pageText.fullTitle }} project
+            </h2>
+            <p v-if="pageText.pageHasSubtitle" class="project-subtitle" v-html="pageText.pageSubtitle" />
+          </template>
           <template #figures v-if="pageText.logo">
             <figure id="logo-container">
                 <img :src="getImageURL(pageText.logo)" alt="Logo for Findex project" class="logo">
             </figure>
           </template>
           <template #belowExplanation>
-            <h3>About the {{ pageText.title }} research</h3>
+            <h3>About the {{ pageText.fullTitle }} research</h3>
             <p v-for="paragraph, item in pageText.motivation" :key="item" v-html="paragraph" />
           </template>
         </VizSection>
@@ -91,7 +93,7 @@
           :fig-caption="false"
         >
           <template #heading>
-            <h3>{{ pageText.title }} visualizations</h3>
+            <h3>{{ pageText.fullTitle }} visualizations</h3>
           </template>
           <template #figures>
             <ChartGrid :view="currentView"/>

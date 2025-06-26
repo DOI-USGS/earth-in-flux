@@ -10,17 +10,17 @@
         <h2 v-if="activeFamily.name">{{ activeFamily.name }}</h2>
         <p v-if="activeFamily.type === 'family'" class="species-subtitle">Family</p>
         <p v-if="activeFamily.economicValue">
-          <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+          <strong>{{ activeFamily.economicValue }}</strong> total consumptive use value
         </p>
         <p v-if="activeFamily.speciesCount">
           <strong>{{ activeFamily.speciesCount }}</strong>
           {{
             activeFamily.speciesCount === 1
-              ? 'species that is recreationally fished'
-              : 'species that are recreationally fished'
+              ? 'species that is recreationally harvested for human consumption'
+              : 'species that are recreationally harvested for human consumption'
           }}
         </p>
-        <p>{{ activeFamily.text }}</p>
+        <p v-if="activeFamily.text">{{ activeFamily.text }}</p>
       </div>
     </div>
     <!-- OTHER-SPECIES LUMPING BIN -->
@@ -36,14 +36,14 @@
         {{ activeFamily.lumpedSpeciesCount === 1 ? 'species' : 'species' }}
       </p>
       <p>
-        <strong>${{ roundValue(activeFamily.economicValue) }}</strong> in total economic value
+        <strong>${{ roundValue(activeFamily.economicValue) }}</strong> total consumptive use value
       </p>
       <p>
         <strong>{{ activeFamily.countryCount }}</strong>
         {{
           activeFamily.countryCount === 1
-            ? 'country where they are recreationally fished'
-            : 'countries where they are recreationally fished'
+            ? 'country where they are recreationally harvested for human consumption'
+            : 'countries where they are recreationally harvested for human consumption'
         }}
       </p>
     </div>
@@ -57,14 +57,14 @@
       <h2>{{ activeFamily.name }}</h2>
       <p class="species-subtitle">Species</p>
       <p>
-        <strong>{{ activeFamily.economicValue }}</strong> in total economic value
+        <strong>{{ activeFamily.economicValue }}</strong> total consumptive use value
       </p>
       <p>
         <strong>{{ activeFamily.countryCount }}</strong>
         {{
           activeFamily.countryCount === 1
-            ? 'country where it is recreationally fished'
-            : 'countries where it is recreationally fished'
+            ? 'country where it is recreationally harvested for human consumption'
+            : 'countries where it is recreationally harvested for human consumption'
         }}
       </p>
     </div>
