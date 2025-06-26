@@ -26,7 +26,7 @@ export default {
             project: 'Rec Fish as Food',
             vizKey: 'FishAsFoodClimate',
             vizRoute: 'rec-fish-vulnerability',
-            img_src: 'Placeholder_thumbnail.webp',
+            img_src: 'FaF_climate_vulnerability_thumbnail.webp',
             chartOrder: 4,
             alt: '',
             description: 'Climate vulnerability of recreational fish consumption varies by country.'
