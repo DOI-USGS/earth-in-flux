@@ -69,7 +69,12 @@ build_country_climate_summary <- function(data, metadata_xlsx) {
       total_rec_harv_kg = first(total_rec_harvest_kg),
       total_consumable_harv_kg = sum(total_consumable_harv_kg),
       MCDM_VUL_2075_45 = mean(MCDM_VUL_2075_45, na.rm = TRUE)) |>
-    mutate(consum_kg_fisher = total_consumable_harv_kg / n_fishers)
+    mutate(
+      consum_kg_fisher = total_consumable_harv_kg / n_fishers,
+      participation_rate = ifelse(is.na(participation_rate),
+                                  n_fishers/population*100,
+                                  participation_rate)
+    )
   
   # get percent of consumable harvest within each thermal guild
   metadata <- read_xlsx(metadata_xlsx, na="NA")
