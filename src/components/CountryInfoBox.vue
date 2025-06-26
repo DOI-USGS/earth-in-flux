@@ -82,7 +82,6 @@ const props = defineProps({
 const mobileView = isMobile;
 
 const guildSummary = computed(() => {
-  console.log(props.activeCountry.harv_breakdown)
   return props.activeCountry.harv_breakdown.filter(d => d.percent)
 });
 
@@ -98,7 +97,6 @@ function identifySvgURL(guild) {
   let filename = '';
   switch (guild) {
     case 'warm':
-      console.log('it is warm')
       filename = 'noun-water-temperature-743356'
       return new URL(`../assets/svgs/${filename}.svg`, import.meta.url).href
       // break;
@@ -137,7 +135,8 @@ function identifySvgURL(guild) {
   flex-direction: row;
   align-items: center;
   gap: 2rem;
-  @media screen and (max-width: 600px) {
+  min-height: 285px;
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
 }
