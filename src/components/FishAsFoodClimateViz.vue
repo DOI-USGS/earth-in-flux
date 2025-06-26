@@ -526,10 +526,9 @@
                         console.log(d.admin)
                         activeCountry.value = {
                             name: d.admin,
-                            population: d3.format(',')(d.population),
                             participation_rate: Math.round(d.participation_rate),
                             n_fishers: d3.format(',')(d.n_fishers),
-                            consum_harv_kg: d3.format(',')(d.total_consumable_harv_kg),
+                            consum_harv_kg: d3.format(',')(Math.round(d.total_consumable_harv_kg)),
                             mean_vul: Math.round(d.MCDM_VUL_2075_45*100)/100,
                             harv_breakdown: [
                                 {
@@ -546,7 +545,7 @@
                                 },
                                 {
                                     guild: "unknown",
-                                    percent: Math.round(d.unkown*10)/10
+                                    percent: Math.round(d.unknown*10)/10
                                 }
                             ]
                         }
