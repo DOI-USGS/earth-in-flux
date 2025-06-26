@@ -7,7 +7,20 @@
           id="intro-content-container"
         >
           <img class="map-image" :src="getImageURL('fish_as_food_continent_map.png')" alt="">
-          <p>{{ activeCountry.text }}</p>
+          <span>
+            <p>{{ activeCountry.text }}</p>
+            <br>
+            <p
+              v-if="mobileView"
+            >
+              {{ activeCountry.prompt_mobile }}
+            </p>
+            <p
+              v-else
+            >
+              {{ activeCountry.prompt_desktop }}
+            </p>
+          </span>
         </div>
         <div v-if="activeCountry.name">
           <h2>{{ activeCountry.name }}</h2>
@@ -55,7 +68,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from "vue";    
+import { isMobile } from 'mobile-device-detect';
 
 const props = defineProps({
   activeCountry: {
@@ -63,6 +77,9 @@ const props = defineProps({
     required: true
   }
 })
+
+// global variables
+const mobileView = isMobile;
 
 const guildSummary = computed(() => {
   console.log(props.activeCountry.harv_breakdown)
