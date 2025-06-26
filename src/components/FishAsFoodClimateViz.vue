@@ -55,16 +55,13 @@
     const rPropMin = 0.01
     const rPropMax = 0.05
     const colors = {
-        Africa: "#648E8E",
-        Oceania: "#845c93",
-        "North America": "#b24d4b",
-        Europe: "#a27846",
-        Asia: "#1D3867",
-        "South America": "#899bb7"
+        Africa: "var(--mid-teal)",
+        Oceania: "var(--mid-purple)",
+        "North America": "var(--mid-red)",
+        Europe: "var(--mid-brown)",
+        Asia: "var(--dark-blue)",
+        "South America": "var(--grey-blue)"
     }
-    const colorLowerBound = "#6F4E37" // lower end
-    const colorUpperBound =  "#5CB270" // upper end
-    let colorScale;
 
     // Behavior on mounted (functions called here)
     // Load data and then make chart
@@ -361,11 +358,6 @@
             .range([Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMin,Math.min(chartDimensions.boundedWidth,chartDimensions.boundedHeight)*rPropMax]);
     }
 
-    function initColorScale() {
-        colorScale = d3.scaleLinear()            
-            .range([colorLowerBound, colorUpperBound]);
-    }
-
     function drawChart(data) {
         //////////////////////////////
         /////    PROCESS DATA    /////
@@ -480,13 +472,6 @@
         initRScale()
         rScale
             .domain(d3.extent(chartData, rAccessor));
-            
-        // ///////////////////////////////////
-        // /////    SET UP COLOR SCALE   /////
-        // ///////////////////////////////////
-        initColorScale()
-        colorScale
-            .domain(d3.extent(chartData, colorAccessor));
 
         ////////////////////////////////////
         /////    ADD CHART ELEMENTS    /////
@@ -544,6 +529,9 @@
         // attach click event to svg to return to default view
         chartSVG
             .on('click', () => {
+                chartBounds.selectAll(".circle")
+                    .attr('stroke', '#FFFFFF')
+                    .attr('stroke-width', '1px')
                 resetInfoBox()
             })
     }
