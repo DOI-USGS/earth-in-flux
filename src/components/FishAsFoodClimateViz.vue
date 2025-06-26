@@ -606,7 +606,7 @@
 </style>
 
 <style lang="scss">
-/* css for elements added and classed w/ d3 */
+  /* css for elements added and classed w/ d3 */
   #y-axis line {
     stroke-width: 0.5px;
     stroke: var(--dark-grey);
