@@ -392,7 +392,7 @@
         xScale
             .domain([xDomain_min, xDomain_max]);
         drawXAxis({axisTitle: 'Climate vulnerability', tickValues: []})
-        //console.log(r_prop_max * (xDomain_max - xDomain_max), xInnerDomainRange * r_prop_max / (1.0 - 2.0 * r_prop_max))
+
         // Add arrow
         const arrow_dim = 12;
         chartSVG.append("defs").append("marker")
@@ -504,13 +504,7 @@
                     .attr("r", d => rScale(rAccessor(d)))
                     .attr('fill', d => colors[colorAccessor(d)])
                     .attr('stroke', '#FFFFFF')
-                    // .on("mouseover", (event, d) => {
-                    //     activeCountry.value = {
-                    //         name: d.admin
-                    //     }
-                    // })
                     .on("click", (event, d) => {
-                        console.log(d.admin)
                         activeCountry.value = {
                             name: d.admin,
                             participation_rate: Math.round(d.participation_rate),
@@ -536,20 +530,19 @@
                                 }
                             ]
                         }
+                        // Don't propagate event to svg itself
+                        event.stopPropagation();
                     })
-                    // .on("mouseout", resetInfoBox)
-        d3.select(chart.value)
-            .select('svg')
+        
+        // attach click event to svg to return to default view
+        chartSVG
             .on('click', () => {
-              resetInfoBox
+                resetInfoBox()
             })
     }
 
     function resetInfoBox() {
-        console.log('reset')
-        console.log(defaultInfo)
         activeCountry.value = defaultInfo;
-        console.log(activeCountry.value)
     }
 
     // https://gist.github.com/mbostock/7555321
@@ -570,8 +563,6 @@
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
             tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em").attr("dominant-baseline", baseline);;
-            
-            console.log(text.attr("dy"))
 
             while ((word = words.pop())) {
             line.push(word);
