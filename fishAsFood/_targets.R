@@ -3,9 +3,11 @@ library(targets)
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("tidyverse", 
                             "readxl",
-                            "jsonlite"))
+                            "jsonlite",
+                            "rnaturalearth"))
 
 source('src/data_utils.R')
+source('src/plot_utils.R')
 
 p0 <- list(
   tar_target(
@@ -49,6 +51,22 @@ p2 <- list(
     format = 'file'
   ),
   tar_target(
+    p2_country_climate_summary,
+    build_country_climate_summary(
+      data = p2_data,
+      metadata_xlsx = p2_metadata_xlsx
+    )
+  ),
+  tar_target(
+    p2_country_climate_csv,
+    {
+      outfile <- '../public/fish_as_food_country_climate.csv'
+      readr::write_csv(p2_country_climate_summary, outfile)
+      return(outfile)
+    },
+    format = 'file'
+  ),
+  tar_target(
     p2_harvest_csv,
     build_harvest_csv(
       data = p2_data,
@@ -59,4 +77,14 @@ p2 <- list(
   )
 )
 
-c(p0, p1, p2)
+p3 <- list(
+  tar_target(
+    p3_continent_map_png,
+    generate_continent_map(
+      country_data = p2_country_climate_summary,
+      out_file = '../src/assets/images/fish_as_food_continent_map.png'
+    )
+  )
+)
+
+c(p0, p1, p2, p3)

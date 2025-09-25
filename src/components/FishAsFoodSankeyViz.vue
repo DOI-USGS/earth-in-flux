@@ -20,10 +20,10 @@
     <template #figures>
       <div class="chart-container single" ref="chart"></div>
     </template>
-    <!-- FIGURE CAPTION -->
-    <template #figureCaption> </template>
     <!-- EXPLANATION -->
-    <template #belowExplanation> </template>
+    <template #belowExplanation>
+      <p v-html="text.paragraph2" />
+    </template>
   </VizSection>
 </template>
 
@@ -433,11 +433,10 @@ function SankeyChart(
   return Object.assign(svg.node(), { scales: { color } })
 }
 </script>
-
 <style scoped lang="scss">
 .chart-container {
   margin-top: 4rem;
-
+  margin-bottom: 4rem;
   @media (max-width: 700px) {
     overflow-x: auto;
     padding-bottom: 1rem;

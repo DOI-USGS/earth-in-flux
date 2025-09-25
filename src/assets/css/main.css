@@ -130,6 +130,17 @@ a:hover {
   }
 }
 
+/* css for info boxes */
+.info-box {
+  background-color: var(--color-background);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+}
+
 /* css for tab components */
 .tabs-component ul {
   padding-inline-start: 0px;

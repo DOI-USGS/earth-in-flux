@@ -22,6 +22,16 @@ export default {
             description: 'Land use change is threatening inland fisheries.'
         },
         {
+            title: 'Climate vulnerability of recreational fish consumption by country',
+            project: 'Rec Fish as Food',
+            vizKey: 'FishAsFoodClimate',
+            vizRoute: 'rec-fish-vulnerability',
+            img_src: 'FaF_climate_vulnerability_thumbnail.webp',
+            chartOrder: 4,
+            alt: '',
+            description: 'Climate vulnerability of recreational fish consumption varies by country.'
+        },
+        {
             title: 'A global view of threats',
             project: 'Findex',
             vizKey: 'FindexGlobalThreats',
