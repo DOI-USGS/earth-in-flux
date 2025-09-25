@@ -377,10 +377,22 @@
         /////    FINISH SETTING UP X SCALE    /////
         ///////////////////////////////////////////
         // set domain for xScale, based on data
-        const xInnerDomainRange = d3.max(chartData, xAccessor) - d3.min(chartData, xAccessor);
-        let xDomain_min = d3.min(chartData, xAccessor) - xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the smallest data point
+
+        // set up x-scale vars
+        const xMin = d3.min(chartData, xAccessor);
+        const xMax = d3.max(chartData, xAccessor);
+        const xRange = xMax - xMin;
+
+        // buffer logic
+        // ensures that the buffer is the max radius away from the smallest data point
+        const xBuffer = (xRange * rPropMax) / (1 - 2 * rPropMax);
+
+        // domain vars
+        let xDomain_min = xMin - xBuffer;
         xDomain_min = mobileView ? xDomain_min * 0.95 : xDomain_min;
-        const xDomain_max = d3.max(chartData, xAccessor) + xInnerDomainRange * rPropMax / (1.0 - 2.0 * rPropMax); //ensures that the buffer is the max radius away from the larger data point        
+        const xDomain_max = xMax + xBuffer;     
+        
+        // apply domain to scale
         xScale
             .domain([xDomain_min, xDomain_max]);
         drawXAxis({axisTitle: 'Climate vulnerability', tickValues: []})
