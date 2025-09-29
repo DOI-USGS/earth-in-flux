@@ -4,11 +4,20 @@
         :figures="true"
         :fig-caption="false"
     >
+        <!-- EXPLANATION -->
+        <template #aboveExplanation>
+            <p v-html="text.paragraph1" />
+        </template>
         <template #figures>
           <div
             id="grid-container"
           >
             <CountryInfoBox :activeCountry="activeCountry"  />
+            <div
+              class="axis-title-container"
+            >
+              <p class="axis-title">{{ yAxisLabel }}</p>
+            </div>
             <div id="chart-container" class="maxWidth" ref="chart" />
           </div>
         </template>
@@ -17,12 +26,13 @@
         </template>
         <!-- EXPLANATION -->
         <template #belowExplanation>
+            <p v-html="text.paragraph2" />
         </template>
     </VizSection>
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue";    
+    import { computed, onMounted, ref } from "vue";    
     import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
@@ -43,6 +53,8 @@
         { file: 'fish_as_food_country_climate.csv', ref: data, type: 'csv', numericFields: ['population','participation_rate','n_fishers', 'total_rec_harv_kg','total_consumable_harv_kg', 'MCDM_VUL_2075_45', 'consum_kg_fisher', 'warm', 'cool', 'cold', 'unknown']}
     ]
     const chart = ref(null);
+    const currentVal = ref(null);
+    const currentCountry = ref(null);
     const chartTitle = 'Title of chart';
     let chartDimensions;
     let chartSVG;
@@ -63,6 +75,11 @@
         "South America": "var(--grey-blue)"
     }
 
+    const yAxisLabel = computed(() => {
+        const defaultLabel = 'Each year, each inland recreational fisher consumes'
+        return currentCountry.value ? `Each year, each inland recreational fisher in ${currentCountry.value} consumes ${currentVal.value} of fish` : `${defaultLabel}...`
+    })
+
     // Behavior on mounted (functions called here)
     // Load data and then make chart
     onMounted(async () => {
@@ -75,9 +92,9 @@
                     width: chart.value.offsetWidth,
                     height: mobileView ? window.innerHeight * 0.8 : window.innerHeight * 0.7,
                     margin: 10,
-                    marginBottom: 60,
+                    marginBottom: mobileView ? 90: 60,
                     marginLeft:5,
-                    marginTop: mobileView ? 80 : 30
+                    marginTop: 10
                 });
 
                 // draw chart
@@ -231,6 +248,8 @@
         tickValues = null,
         textAngle = 0,
         keepDomain = true,
+        wrapTitle = false,
+        wrapWidth = null
     }) {
         // generate axis
         // if numeric ticks, include specification of format
@@ -270,12 +289,16 @@
             .attr("class", "axis-title")
             .attr("x", titleX)
             .attr("y", titleY)
+            .attr("dx", "0em")
+            .attr("dy", wrapTitle ? "-1em" :  "0em")
             .attr("transform", `rotate(${titleAngle})`)
             .attr("text-anchor", titleTextAnchor)
             .attr("dominant-baseline", titleBaseline)
             .attr("role", "presentation")
             .attr("aria-hidden", true)
-            .text(axisTitle);
+            .text(axisTitle)
+            .attr("text-width", wrapTitle ? wrapWidth : null)
+            .call(d => wrapTitle ? wrap(d, {shift: false}) : d);
     }
 
     function drawXAxis({
@@ -293,6 +316,8 @@
         tickValues = null,
         textAngle = 0, 
         keepDomain = true,
+        wrapTitle = false,
+        chartWidth = null
     }) {
         drawAxis({
             axis: xAxis,
@@ -312,6 +337,8 @@
             tickValues: tickValues,
             textAngle: textAngle,
             keepDomain: keepDomain,
+            wrapTitle: wrapTitle,
+            wrapWidth: chartWidth
         })
     }
 
@@ -330,6 +357,8 @@
         tickValues = null,
         textAngle = 0,
         keepDomain = true,
+        wrapTitle = false,
+        chartHeight = null
     }) {
         drawAxis({
             axis: yAxis,
@@ -350,6 +379,8 @@
             customFormat: customFormat,
             tickValues: tickValues,
             keepDomain: keepDomain,
+            wrapTitle: wrapTitle,
+            wrapWidth: chartHeight
         })
     }
 
@@ -362,7 +393,7 @@
         //////////////////////////////
         /////    PROCESS DATA    /////
         //////////////////////////////
-        const chartData = data //.filter(d => d.continent === continent); // May filter later
+        const chartData = data.sort((a, b) => b.n_fishers - a.n_fishers) //.filter(d => d.continent === continent); // May filter later
 
         ///////////////////////////////////////////
         /////    SET UP ACCESSOR FUNCTIONS    /////
@@ -395,7 +426,7 @@
         // apply domain to scale
         xScale
             .domain([xDomain_min, xDomain_max]);
-        drawXAxis({axisTitle: 'Climate vulnerability', tickValues: []})
+        drawXAxis({axisTitle: 'Average climate vulnerability of harvested species', tickValues: [], titleBaseline: 'text-after-edge', wrapTitle: true, chartWidth: chartDimensions.boundedWidth})
 
         // Add arrow
         const arrow_dim = 12;
@@ -425,7 +456,7 @@
         d3.select("#x-axis").append("text")
             .attr("class", "axis-subtitle")
             .attr("x", 0)
-            .attr("y", chartDimensions.margin.bottom / 2)
+            .attr("y", mobileView ? chartDimensions.margin.bottom / 3 : chartDimensions.margin.bottom / 2)
             .attr("dominant-baseline", "text-after-edge")
             .style("text-anchor", "start")
             .text("lower​")
@@ -433,7 +464,7 @@
         d3.select("#x-axis").append("text")
             .attr("class", "axis-subtitle")
             .attr("x", chartDimensions.boundedWidth)
-            .attr("y", chartDimensions.margin.bottom / 2)
+            .attr("y", mobileView ? chartDimensions.margin.bottom / 3 : chartDimensions.margin.bottom / 2)
             .attr("dominant-baseline", "text-after-edge")
             .style("text-anchor", "end")
             .text("higher")
@@ -450,10 +481,10 @@
         const tickFormatter = function(d) {
             let suffix;
             if (d < 1) {
-              suffix = "g"              
+              suffix = "g of fish"              
               return d3.format(".1s")(d).replace("m","") + " " + suffix;
             } else {
-              suffix = "kg"              
+              suffix = "kg of fish"              
               return d3.format(".1s")(d) + " " + suffix;
             }            
         }
@@ -464,18 +495,6 @@
             .attr("dy", mobileView ? "-0.05em" : "-0.2em")
             .attr("text-anchor", "start")
             .attr("dominant-baseline", "text-after-edge")
-
-        chartSVG.append("text")
-            .attr("class", "axis-title")
-            .attr("x", chartDimensions.margin.left)
-            .attr("y", 0)
-            .attr("dx", mobileView ? "0em" : "-0.2em")
-            .attr("dy", "0em")
-            .attr("dominant-baseline", "hanging")
-            .attr("text-width", chartDimensions.boundedWidth)
-            .style("text-anchor", "start")
-            .text("Per fisher consumption of recreationally-harvested inland fish is…​")
-            .call(d => mobileView ? wrap(d, {shift: false}) : d)
 
         ///////////////////////////////////////////
         /////    FINISH SETTING UP R SCALE    /////
@@ -489,6 +508,7 @@
         /////    ADD CHART ELEMENTS    /////
         ////////////////////////////////////
         // draw chart
+
         chartBounds.select('.circles') // selects our group we set up to hold chart elements
             .selectAll(".circle") // empty selection
                 .data(chartData) // bind data
@@ -502,15 +522,44 @@
                     .attr('fill', d => colors[colorAccessor(d)])
                     .attr('stroke', '#FFFFFF')
                     .attr('stroke-width', '1px')
+
+        chartBounds.select('.circles') // selects our group we set up to hold chart elements
+            .selectAll(".circle-mask") // empty selection
+                .data(chartData) // bind data
+                .enter() // instantiate chart element for each element of data
+                .append("circle") // append a circle for each element
+                    .attr("class", d => "circle-mask " + d.continent)
+                    .attr("id", d => 'circle-mask-' + identifierAccessor(d))
+                    .attr("cx", d => xScale(xAccessor(d)))
+                    .attr("cy", d => yScale(yAccessor(d)))
+                    .attr("r", d => rScale(rAccessor(d)))
+                    .attr('fill', '#FFFFFF')
+                    .attr('stroke', '#FFFFFF')
+                    .attr('stroke-width', '1px')
+                    .attr('opacity', 0)
                     .on("click", (event, d) => {
                         chartBounds.selectAll(".circle")
                             .attr('stroke', '#FFFFFF')
                             .attr('stroke-width', '1px')
+                        chartBounds.selectAll(".circle-mask")
+                            .attr("opacity", 0.5)
+                        // arrange circles in DOM
+                        for (var i = 0; i < chartData.length; i++){
+                            let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
+                            let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
+                            currentCircle.raise();
+                            currentCircleMask.raise();
+                        };
                         chartBounds.select("#circle-" + identifierAccessor(d))
                             .attr('stroke', '#000000')
                             .attr('stroke-width', '3px')
+                            .raise()
+                        chartBounds.select("#circle-mask-" + identifierAccessor(d))
+                            .attr("opacity", 0)
+                            .raise()
                         activeCountry.value = {
                             name: d.admin,
+                            continent: colorAccessor(d).replace(/ /g,"_"),
                             participation_rate: Math.round(d.participation_rate),
                             n_fishers: d3.format(',')(d.n_fishers),
                             consum_harv_kg: d3.format(',')(Math.round(d.total_consumable_harv_kg)),
@@ -537,15 +586,56 @@
                         // Don't propagate event to svg itself
                         event.stopPropagation();
                     })
+                    .on("mouseover", (event, d) => {
+                        currentCountry.value = d.admin == 'United States of America' ? `the United States of America` : d.admin;
+                        currentVal.value = `${Math.round(yAccessor(d))} kg`;
+                    })
+                    .on("mouseout", (event, d) => {
+                        currentCountry.value = null;
+                    })
         
         // attach click event to svg to return to default view
         chartSVG
             .on('click', () => {
+                // arrange circles in DOM
+                for (var i = 0; i < chartData.length; i++){
+                    let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
+                    let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
+                    currentCircle.raise();
+                    currentCircleMask.raise();
+                };
                 chartBounds.selectAll(".circle")
                     .attr('stroke', '#FFFFFF')
                     .attr('stroke-width', '1px')
+                chartBounds.selectAll(".circle-mask")
+                    .attr('opacity', 0)
                 resetInfoBox()
             })
+
+        const notationWidth = mobileView ? 80 : 160;
+        chartBounds.append("text")
+            .attr("class", "chart-notation")
+            .attr("x", chartDimensions.boundedWidth - notationWidth / 2 )
+            .attr("y", mobileView ? 2 : 0)
+            .attr("dx", '0em')
+            .attr("dy", '0em')
+            .attr("dominant-baseline", "text-before-edge")
+            .style("text-anchor", "middle")
+            .attr("text-width", notationWidth)
+            .text("More consumption of more vulnerable species")
+            .call(d => wrap(d, {shift: false}));
+
+        chartBounds.append("text")
+            .attr("class", "chart-notation")
+            .attr("x", mobileView ? 130 : 160)
+            .attr("y", chartDimensions.boundedHeight * 0.99)
+            .attr("dx", '0em')
+            .attr("dy", mobileView ? '-5em' : '-2em')
+            .attr("dominant-baseline", "text-after-edge")
+            .style("text-anchor", "middle")
+            .attr("text-width", notationWidth)
+            .text("Less consumption of less vulnerable species")
+            .call(d => wrap(d, {shift: false}));
     }
 
     function resetInfoBox() {
@@ -595,20 +685,30 @@
 
 <style scoped lang="scss">
   #chart-container {
-    width: 60vw;
-    max-width: 1000px;
-    margin: 3rem auto 2rem auto;
-    @media only screen and (max-width: 600px) {
-      width: 100%;
-    }
+    width: 100%;
+    margin: 0rem auto 2rem auto;
   }
   #grid-container {
     display: flex;
     flex-direction: column;
     margin: 3rem auto 4rem auto;
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
+    width: 60vw;
+    max-width: 1000px;
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      flex-direction: column;
     }
+  }
+  .axis-title-container {
+    margin-top: 4rem;
+    margin-left: 0;
+    height: 3.6rem;
+    @media only screen and (max-width: 600px) {
+      height: 5.4rem;
+    }
+  }
+  .axis-title-container .axis-title {
+    line-height: 1;
   }
 </style>
 
@@ -627,7 +727,7 @@
   .axis-title {
     font-size: 1.8rem;
     font-family: var(--default-font);
-    font-weight: 900;
+    font-weight: 800;
     fill: var(--color-text);
     user-select: none;
   }
@@ -637,6 +737,14 @@
     font-style: italic;
     font-weight: 500;
     fill: var(--color-text);
+    user-select: none;
+  }
+  .chart-notation {
+    font-size: 1.6rem;
+    font-family: var(--default-font);
+    font-style: italic;
+    font-weight: 300;
+    fill: var(--dark-grey);
     user-select: none;
   }
 </style>

@@ -22,8 +22,16 @@
             </p>
           </span>
         </div>
-        <div v-if="activeCountry.name">
-          <h2>{{ activeCountry.name }}</h2>
+        <div v-if="activeCountry.name"
+          class="country-box"
+          :class="activeCountry.continent"
+        >
+          <div
+            id="country-map-container"
+          >
+            <h2>{{ activeCountry.name }}</h2>
+            <img class="map-image-small" :src="getImageURL('fish_as_food_continent_map.png')" alt=""></img>
+          </div>
           <hr>
           <span
             class="card-line"
@@ -35,7 +43,7 @@
             class="card-line"
           >
             <img class="icon-image" :src="getSvgURL('noun-net-pen-1559229')" alt="">
-            <span><b>{{ activeCountry.consum_harv_kg }} kg</b> of consumable harvest</span>
+            <span><b>{{ activeCountry.consum_harv_kg }} kg</b> total consumable harvest<sup>1</sup></span>
           </span>
           <span>
             <ul
@@ -48,7 +56,7 @@
                 <span
                   class="card-line"
                 >
-                  <img class="icon-image" :src="identifySvgURL(guild.guild)" alt="">
+                  <img class="icon-image guild" :src="identifySvgURL(guild.guild)" alt="">
                   <span v-if="guild.guild != 'unknown'"><b>{{ guild.percent }}%</b> {{ guild.guild }}-water species</span>
                   <span v-if="guild.guild == 'unknown'"><b>{{ guild.percent }}%</b> species with unknown thermal guild</span>
                 </span>
@@ -117,12 +125,9 @@ function identifySvgURL(guild) {
 
 <style scoped>
 .info-box {
-    max-width: 60vw;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    @media screen and (min-width: 2000px) {
-      max-width: 1000px;
-    }
     @media screen and (max-width: 600px) {
         width: 100%;
         height: auto;
@@ -143,23 +148,49 @@ function identifySvgURL(guild) {
 .map-image {
   width: 300px;
 }
-.country-content {
-    /* min-width: 60vw; */
-    display: flex;
-    flex-direction: row;
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
-    }
+.map-image-small {
+  width: 100px;
 }
 .country-content h2 {
-    padding-top: 0rem;
+  padding: 0;
+  line-height: 1;
 }
 .country-content p {
-    padding-bottom: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 .country-content hr {
   margin-top: 0.1rem;
   margin-bottom: 0.5rem;
+}
+.country-box {
+  border-left: 12px black solid;
+  padding-left: 10px;
+  border-radius: 8px;
+}
+.Europe {
+  border-color: var(--mid-brown);
+}
+.Africa {
+  border-color: var(--mid-teal);
+}
+.Oceania {
+  border-color: var(--mid-purple);
+}
+.North_America {
+  border-color: var(--mid-red);
+}
+.Asia {
+  border-color: var(--dark-blue);
+}
+.South_America {
+  border-color: var(--grey-blue);
+}
+#country-map-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0 0.2rem 0;
 }
 .card-line {
   display: flex;
@@ -168,8 +199,15 @@ function identifySvgURL(guild) {
   align-items: center;
   margin-bottom: 1rem;
 }
+.card-line:last-of-type {
+  margin-bottom: 0rem;
+}
 .icon-image {
   max-width: 50px;
+  margin-right: 10px;
+}
+.icon-image.guild {
+  max-width: 45px;
   margin-right: 10px;
 }
 #guild-breakdown-container {
@@ -177,9 +215,18 @@ function identifySvgURL(guild) {
   display: flex;
   flex-direction: row;
   align-items: center;
+  max-width: 100%;
+  font-size: 1.6rem;
   @media screen and (max-width: 600px) {
     flex-direction: column;
     align-items: start;
+    max-width: 100%;
+  }
+}
+ul#guild-breakdown-container {
+  padding-inline-start: 60px;
+  @media screen and (max-width: 600px) {
+    padding-inline-start: 40px;
   }
 }
 #guild-breakdown-container li {

@@ -367,7 +367,8 @@ export default {
             }
         },
         FishAsFoodClimate: {
-            paragraph1: "",
+            paragraph1: "Inland recreational fishing is often considered a leisure-driven activity, yet recreationally harvested fish can be an important food source. Depending on what species are fished, this consumption may be more or less vulnerable to climate change. Use the chart below to explore the global implications of inland recreational fishing being a source of food in a changing climate.",
+            paragraph2: "<sup>1</sup> We calculated consumable harvest from species-specific estimates of literature-based filet yield (i.e., edible portion (%) of a given fish).",
             image: "fish_as_food_continent_map.png",
             imageAlt: "Map of the continents for which data are shown",
             defaultInfo: {
@@ -375,7 +376,8 @@ export default {
                 text: "In the chart below, each circle represents a country. The circles are colored by continent, and the size of each circle is proportional to the number of recreational fishers in each country.",
                 prompt_desktop: "Click on a circle to learn more about the climate vulnerability of recreational fish consumption in each country.",
                 prompt_mobile: "Tap on a circle to learn more about the climate vulnerability of recreational fish consumption in each country.",
-                name: null
+                name: null,
+                continent: null
             }
         },
         WildfireAerosols: {
