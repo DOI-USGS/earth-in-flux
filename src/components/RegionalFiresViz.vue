@@ -1,31 +1,34 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        id="cross-section"
-        :figures="true"
-        :fig-caption="false"
-    >
-        <template #heading>
-            <h2 />
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-            <p v-html="text.paragraph2" />
-        </template>
-        <template #figures>
-            <div id="aerosols-grid-container" />
-            <div class="text-container">
-                <button id="reset-button" @click="resetViz">Reset map</button>
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
+  <!---VizSection-->
+  <VizSection
+    id="cross-section"
+    :figures="true"
+    :fig-caption="false"
+  >
+    <template #heading>
+      <h2 />
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+      <p v-html="text.paragraph2" />
+    </template>
+    <template #figures>
+      <div id="aerosols-grid-container" />
+      <div class="text-container">
+        <button
+          id="reset-button"
+          @click="resetViz"
+        >
+          Reset map
+        </button>
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation />
+  </VizSection>
 </template>
 
 <script setup>
@@ -36,7 +39,10 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // global variables
@@ -47,13 +53,15 @@
     const number_of_fires = 2;
     const smoke_opacity = 0.6;
     const smoke_width = 15;
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/regional_fires_map_v10.svg").then(function(xml) {
+            d3.xml(`${s3ProdURL}svgs/regional_fires_map_v10.svg`).then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("aerosols-grid-container")
                 svgGrid.appendChild(xml.documentElement);

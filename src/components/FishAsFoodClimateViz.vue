@@ -1,34 +1,39 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- EXPLANATION -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1" />
-        </template>
-        <template #figures>
-          <div
-            id="grid-container"
-          >
-            <CountryInfoBox :activeCountry="activeCountry"  />
-            <div
-              class="axis-title-container"
-            >
-              <p class="axis-title">{{ yAxisLabel }}</p>
-            </div>
-            <div id="chart-container" class="maxWidth" ref="chart" />
-          </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <p v-html="text.paragraph2" />
-        </template>
-    </VizSection>
+  <!---VizSection-->
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
+    <!-- EXPLANATION -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
+    <template #figures>
+      <div
+        id="grid-container"
+      >
+        <CountryInfoBox :active-country="activeCountry" />
+        <div
+          class="axis-title-container"
+        >
+          <p class="axis-title">
+            {{ yAxisLabel }}
+          </p>
+        </div>
+        <div
+          id="chart-container"
+          ref="chart"
+          class="maxWidth"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation>
+      <p v-html="text.paragraph2" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -40,7 +45,10 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // global variables

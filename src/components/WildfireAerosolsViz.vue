@@ -1,48 +1,92 @@
 <template>
-    <section>
-        <!---VizSection-->
-        <VizSection
-            id="cross-section"
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #figures>
-                <div id="wildfire-aerosols-grid-container">
-                    <div id="aerosol-text-container" class="text-container">
-                        <p v-html="currentText" />
-                    </div>
-                    <button id="aerosol-next-upper" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked" aria-label="Upper button to see next slide">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                    </button>
-                    <button id="aerosol-prev-upper" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked" aria-label="Upper button to see previous slide">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                    </button>
-                    <div id="chart-container" ref="chart"></div>
-                    <button v-if="!mobileView" id="aerosol-next-lower" class="flip-button" @click="currentIndex++; clicked()" :disabled="isLastImage || justClicked" aria-label="Lower button to see next slide">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-right' }"  class="fa fa-arrow-right"/>
-                    </button>
-                    <button v-if="!mobileView" id="aerosol-prev-lower" class="flip-button" @click="currentIndex--; clicked()" :disabled="isFirstImage || justClicked" aria-label="Lower button to see previous slide">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'arrow-left' }"  class="fa fa-arrow-left"/>
-                    </button>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            id="cross-section"
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2>
-                    {{ text.heading }}
-                </h2>
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.explanation1" />
-                <p v-html="text.explanation2" />
-            </template>
-        </VizSection>
-    </section>
+  <section>
+    <!---VizSection-->
+    <VizSection
+      id="cross-section"
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #figures>
+        <div id="wildfire-aerosols-grid-container">
+          <div
+            id="aerosol-text-container"
+            class="text-container"
+          >
+            <p v-html="currentText" />
+          </div>
+          <button
+            id="aerosol-next-upper"
+            class="flip-button"
+            :disabled="isLastImage || justClicked"
+            aria-label="Upper button to see next slide"
+            @click="currentIndex++; clicked()"
+          >
+            <font-awesome-icon
+              :icon="{ prefix: 'fas', iconName: 'arrow-right' }"
+              class="fa fa-arrow-right"
+            />
+          </button>
+          <button
+            id="aerosol-prev-upper"
+            class="flip-button"
+            :disabled="isFirstImage || justClicked"
+            aria-label="Upper button to see previous slide"
+            @click="currentIndex--; clicked()"
+          >
+            <font-awesome-icon
+              :icon="{ prefix: 'fas', iconName: 'arrow-left' }"
+              class="fa fa-arrow-left"
+            />
+          </button>
+          <div
+            id="chart-container"
+            ref="chart"
+          />
+          <button
+            v-if="!mobileView"
+            id="aerosol-next-lower"
+            class="flip-button"
+            :disabled="isLastImage || justClicked"
+            aria-label="Lower button to see next slide"
+            @click="currentIndex++; clicked()"
+          >
+            <font-awesome-icon
+              :icon="{ prefix: 'fas', iconName: 'arrow-right' }"
+              class="fa fa-arrow-right"
+            />
+          </button>
+          <button
+            v-if="!mobileView"
+            id="aerosol-prev-lower"
+            class="flip-button"
+            :disabled="isFirstImage || justClicked"
+            aria-label="Lower button to see previous slide"
+            @click="currentIndex--; clicked()"
+          >
+            <font-awesome-icon
+              :icon="{ prefix: 'fas', iconName: 'arrow-left' }"
+              class="fa fa-arrow-left"
+            />
+          </button>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      id="cross-section"
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2>
+          {{ text.heading }}
+        </h2>
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.explanation1" />
+        <p v-html="text.explanation2" />
+      </template>
+    </VizSection>
+  </section>
 </template>
 
 <script setup>
@@ -53,7 +97,10 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // global variables

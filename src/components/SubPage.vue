@@ -1,23 +1,41 @@
 <template>
-    <section 
-        :id="`${vizRoute}-subpage`"
-    >
-        <div class="page-content">
-            <div
-                class="text-container subpage-title-container" 
-                :class="{ mobile: mobileView}"
-            >
-                <h1 class = 'title'>
-                    {{ filteredChartContent.title }}
-                </h1>
-            </div>
-            <VizComponent :id="`${vizRoute}-viz`" :text="vizText" :key="$route.fullPath"/>
-            <ChartIconGrid :projectRoute="projectRoute" :vizRoute="vizRoute" :key="vizRoute"/>
-            <ReferencesSection v-if="vizReferences" title="References" titleLevel="3" :references="vizReferences"/>
-            <AuthorshipSection v-if="vizAuthors" title="" titleLevel="3" :authors="vizAuthors"/>
-        </div>
-        <PreFooterCodeLinks :gitHubRepositoryLink="vizGitHubRepositoryLink"/>
-    </section>
+  <section 
+    :id="`${vizRoute}-subpage`"
+  >
+    <div class="page-content">
+      <div
+        class="text-container subpage-title-container" 
+        :class="{ mobile: mobileView}"
+      >
+        <h1 class="title">
+          {{ filteredChartContent.title }}
+        </h1>
+      </div>
+      <VizComponent
+        :id="`${vizRoute}-viz`"
+        :key="$route.fullPath"
+        :text="vizText"
+      />
+      <ChartIconGrid
+        :key="vizRoute"
+        :project-route="projectRoute"
+        :viz-route="vizRoute"
+      />
+      <ReferencesSection
+        v-if="vizReferences"
+        title="References"
+        title-level="3"
+        :references="vizReferences"
+      />
+      <AuthorshipSection
+        v-if="vizAuthors"
+        title=""
+        title-level="3"
+        :authors="vizAuthors"
+      />
+    </div>
+    <PreFooterCodeLinks :git-hub-repository-link="vizGitHubRepositoryLink" />
+  </section>
 </template>
 
 <script setup>

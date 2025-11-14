@@ -1,28 +1,28 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-                <p v-html="text.paragraph1" />
-        </template>
-        <template #figures>
-            <div id="threat-container" ref="chart"></div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
+  <!---VizSection-->
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2 />
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
+    <template #figures>
+      <div
+        id="threat-container"
+        ref="chart"
+      />
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation />
+  </VizSection>
 </template>
 
 <script setup>
@@ -34,7 +34,10 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // Global variables 

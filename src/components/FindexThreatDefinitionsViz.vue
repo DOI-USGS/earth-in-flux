@@ -1,88 +1,97 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-            </h2>
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p v-html="text.paragraph1"/>
-        </template>
-        <template #figures>
-            <div
-                id="threat-svg-container"
+  <!---VizSection-->
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2 />
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p v-html="text.paragraph1" />
+    </template>
+    <template #figures>
+      <div
+        id="threat-svg-container"
+      >
+        <component 
+          :is="getCurrentSVG()" 
+          class="threat-svg"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation>
+      <div
+        id="primary-icon-container"
+      >
+        <button
+          id="reset-button"
+          @click="currentCategory = 'none'"
+        >
+          reset
+        </button>
+        <div
+          v-for="icon in text.iconData"
+          :key="icon.iconID"
+          class="button-wrapper"
+        >
+          <button
+            class="icon-button primary"
+            :class="{ 'active': currentCategory == icon.iconID }"
+            @click="currentCategory = icon.iconID"
+          >
+            <img
+              class="icon-image"
+              :src="getImageURL(icon.icon)"
+              alt=""
             >
-                <component 
-                    :is="getCurrentSVG()" 
-                    class="threat-svg"
-                />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <div
-                id="primary-icon-container"
+          </button>
+        </div>
+      </div>
+      <div
+        v-for="icon in text.iconData"
+        v-show="currentCategory == icon.iconID"
+        :key="icon.iconID"
+        class="definition-container"
+      >
+        <p>
+          {{ icon.iconText }}
+        </p>
+      </div>
+      <div
+        v-for="icon, index in text.iconData"
+        v-show="currentCategory == icon.iconID"
+        :key="index"
+      >
+        <div
+          v-for="subicon, subindex in icon.subThreatData"
+          :key="subindex"
+          class="sub-icon-container"
+        >
+          <div
+            class="button-wrapper-vertical"
+          >
+            <button
+              class="icon-button sub"
+              :class="icon.iconID"
             >
-                <button
-                    id="reset-button"
-                    @click="currentCategory = 'none'"
-                >
-                    reset
-                </button>
-                <div
-                    v-for="icon in text.iconData"
-                    :key="icon.iconID"
-                    class="button-wrapper"
-                >
-                    <button
-                        class="icon-button primary"
-                        :class="{ 'active': currentCategory == icon.iconID }"
-                        @click="currentCategory = icon.iconID"
-                    >
-                        <img class="icon-image" :src="getImageURL(icon.icon)" alt="">
-                    </button>
-                </div>
-            </div>
-            <div
-                class="definition-container"
-                v-for="icon in text.iconData" :key="icon.iconID" v-show="currentCategory == icon.iconID"
-            >
-                <p>
-                    {{ icon.iconText }}
-                </p>
-            </div>
-            <div
-                v-for="icon, index in text.iconData" :key="index" v-show="currentCategory == icon.iconID"
-            >
-                <div
-                    class="sub-icon-container"
-                    v-for="subicon, index in icon.subThreatData"
-                    :key="index"
-                >
-                    <div
-                        class="button-wrapper-vertical"
-                    >
-                        <button
-                            class="icon-button sub"
-                            :class="icon.iconID"
-                        >
-                            <img class="icon-image" :src="getImageURL(subicon.subThreatIcon)" alt="">
-                        </button>
-                    </div>
-                    <p> <span class="emph"> {{ subicon.subThreat }}</span>: {{ subicon.subThreatText }}</p>
-                </div>
-
-            </div>
-        </template>
-    </VizSection>
+              <img
+                class="icon-image"
+                :src="getImageURL(subicon.subThreatIcon)"
+                alt=""
+              >
+            </button>
+          </div>
+          <p> <span class="emph"> {{ subicon.subThreat }}</span>: {{ subicon.subThreatText }}</p>
+        </div>
+      </div>
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -97,7 +106,10 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // Global variables 

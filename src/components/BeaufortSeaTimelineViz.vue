@@ -1,33 +1,41 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2 v-html="text.heading1" />
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-            <p class="increase-line-height" v-html="text.paragraph1" />
-            <p class="increase-line-height" v-html="text.paragraph2" />
-        </template>
-        <template #figures>
-            <div id="chart-container" ref="chart"></div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-            <h2 v-html="text.heading2" />
-            <p v-html="text.paragraph3" />
-            <p v-html="text.paragraph4" />
-            <h2 v-html="text.heading3" />
-            <p v-html="text.paragraph5" />
-        </template>
-    </VizSection>
+  <!---VizSection-->
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2 v-html="text.heading1" />
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation>
+      <p
+        class="increase-line-height"
+        v-html="text.paragraph1"
+      />
+      <p
+        class="increase-line-height"
+        v-html="text.paragraph2"
+      />
+    </template>
+    <template #figures>
+      <div
+        id="chart-container"
+        ref="chart"
+      />
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation>
+      <h2 v-html="text.heading2" />
+      <p v-html="text.paragraph3" />
+      <p v-html="text.paragraph4" />
+      <h2 v-html="text.heading3" />
+      <p v-html="text.paragraph5" />
+    </template>
+  </VizSection>
 </template>
 
 <script setup>
@@ -38,7 +46,10 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+        text: { 
+          type: Object,
+          default: () => ({}),
+        }
     })
 
     // global variables

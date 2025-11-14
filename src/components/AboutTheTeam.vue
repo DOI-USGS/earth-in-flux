@@ -1,6 +1,9 @@
 <template>
   <div class="chart-container">
-    <div ref="chart" class="chart"></div>
+    <div
+      ref="chart"
+      class="chart"
+    />
   </div>
 </template>
 
@@ -21,6 +24,8 @@ const props = defineProps({
 });
 
 const chart = ref(null);
+// S3 resource sourcing
+const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
 onMounted(() => {
   createChart();
@@ -95,7 +100,7 @@ onMounted(() => {
 
     node
       .append('image')
-      .attr('xlink:href', d => d.image)
+      .attr('xlink:href', d => d.image.includes('headshots') ? s3ProdURL + d.image : d.image)
       .attr('width', radius * 2.1)
       .attr('height', radius * 2.1)
       .attr('x', -1.05 * radius)

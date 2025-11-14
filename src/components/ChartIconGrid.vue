@@ -1,19 +1,21 @@
 <template>
-    <div id="chartIconGrid">
-        <ChartIcon 
-            :id="projectRoute"
-            :vizRoute=null
-            :projectRoute="projectRoute"
-        />
-        <ChartIcon v-for="item in filteredChartContent" :key="item.vizRoute"
-            :id="item.vizRoute"
-            :src="getThumb(item.img_src)"
-            :alt="item.alt"
-            :active="item.vizRoute === vizRoute"
-            :vizRoute="item.vizRoute"
-            :projectRoute="projectRoute"
-        />
-    </div>
+  <div id="chartIconGrid">
+    <ChartIcon 
+      :id="projectRoute"
+      :viz-route="null"
+      :project-route="projectRoute"
+    />
+    <ChartIcon
+      v-for="item in filteredChartContent"
+      :id="item.vizRoute"
+      :key="item.vizRoute"
+      :src="getThumb(item.img_src)"
+      :alt="item.alt"
+      :active="item.vizRoute === vizRoute"
+      :viz-route="item.vizRoute"
+      :project-route="projectRoute"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -35,6 +37,8 @@
     
     // global variables
     const chartContent = ChartGridContent.chartGridItems;
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
     // set up filtered chart data as computed property
     const filteredChartContent = computed(() => {
@@ -42,7 +46,7 @@
     });    
 
     function getThumb(pic) {
-        return 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/'+pic
+        return `${s3ProdURL}thumbnails/`+pic
     }
 
 </script>

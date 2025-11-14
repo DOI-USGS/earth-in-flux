@@ -1,97 +1,152 @@
 <template>
-    <section>
-        <!---VizSection-->
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading1" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph1" />
-            <div class="toggle-group">
-                <p id="toggle-title">Toggle map layers:</p> 
-                <ToggleSwitch 
-                    v-for="layer in layers"
-                    :key="layer.order"
-                    v-model="layer.visible" 
-                    :label="layer.label"
-                    :rightColor="layer.color"
+  <section>
+    <!---VizSection-->
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading1" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph1" />
+        <div class="toggle-group">
+          <p id="toggle-title">
+            Toggle map layers:
+          </p> 
+          <ToggleSwitch 
+            v-for="layer in layers"
+            :key="layer.order"
+            v-model="layer.visible" 
+            :label="layer.label"
+            :right-color="layer.color"
+          />
+        </div>
+      </template>
+      <template #figures>    
+        <div id="top-threat-map-container">
+          <figure
+            class="base-image"
+          >
+            <img
+              class="map-image"
+              :src="getImageURL('base_threat_by_basin.png')"
+              alt=""
+            >
+          </figure>
+          <figure 
+            v-for="layer in layers"
+            v-show="layer.visible"
+            :key="layer.order"
+            class="overlay-image"
+          >
+            <img
+              class="map-image"
+              :src="getImageURL(layer.path)"
+              alt=""
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <!---VizSection-->
+    <VizSection
+      :figures="false"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading2" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph2" />
+      </template>
+    </VizSection>
+    <tabsGroup
+      id="map-tabs"
+      :options="{ useUrlFragment: false }"
+    >
+      <tabItem
+        v-for="tab in text.tabData"
+        :key="tab.tabTitle"
+        :name="tab.tabTitle"
+        :prefix="getPrefixImageHTML(tab.tabIcon)"
+      >
+        <h3>
+          Threat category:
+          <button
+            :id="tab.tabContentTitleID"
+            :class="[tab.tabContentTitleID, { 'highlight': currentCategory == tab.tabContentTitle }]"
+            class="category-button primary"
+            @click="switchToPrimaryCategory(tab.tabContentTitle, tab.subThreatPrefix)"
+            v-html="tab.tabContentTitle"
+          />
+        </h3>
+        <div id="button-container">
+          <h4 v-if="tab.subThreatData.length > 1">
+            Subthreat categories:
+            <span
+              v-for="subThreatCategory, index in tab.subThreatData"
+              :key="subThreatCategory.subThreat"
+            >
+              <button
+                :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]"
+                class="category-button sub"
+                @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)"
+                v-html="subThreatCategory.subThreat"
+              />
+              <span
+                v-if="index < tab.subThreatData.length-1"
+                :class="tab.tabContentTitleID"
+                class="separator"
+              >
+                <FishIcon
+                  id="findex-fish"
+                  :class="tab.tabContentTitleID"
                 />
-            </div>
-            </template>
-            <template #figures>    
-                <div id="top-threat-map-container">
-                    <figure
-                        class="base-image"
-                    >
-                        <img class="map-image" :src="getImageURL('base_threat_by_basin.png')" alt="">
-                    </figure>
-                    <figure 
-                        v-for="layer in layers"
-                        :key="layer.order"
-                        v-show="layer.visible"
-                        class="overlay-image"
-                    >
-                        <img class="map-image" :src="getImageURL(layer.path)" alt="">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <!---VizSection-->
-        <VizSection
-            :figures="false"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading2" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
-            </template>
-        </VizSection>
-        <tabsGroup id="map-tabs" :options="{ useUrlFragment: false }" >
-            <tabItem v-for="tab in text.tabData" :name="tab.tabTitle" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabIcon)">
-                <h3>
-                    Threat category:
-                    <button v-html="tab.tabContentTitle" @click = "switchToPrimaryCategory(tab.tabContentTitle, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == tab.tabContentTitle }]" :id="tab.tabContentTitleID" class="category-button primary" />
-                </h3>
-                <div id="button-container">
-                    <h4 v-if="tab.subThreatData.length > 1">Subthreat categories:
-                        <span v-for="subThreatCategory, index in tab.subThreatData" :key="subThreatCategory.subThreat">
-                            <button @click="switchToSubCategory(subThreatCategory.subThreat, tab.subThreatPrefix)" :class="[tab.tabContentTitleID, { 'highlight': currentCategory == subThreatCategory.subThreat }]" v-html="subThreatCategory.subThreat" class="category-button sub"></button>
-                            <span v-if="index < tab.subThreatData.length-1" :class="tab.tabContentTitleID" class="separator">
-                                <FishIcon id="findex-fish" :class="tab.tabContentTitleID"/>
-                            </span>
-                        </span>
-                    </h4>
-                </div>
-                <div id="icon-legend-container">
-                    <img class="tab-icon-image" :src="iconSource" alt="">
-                    <img class="tab-legend-image" :src="legendSource" :alt="tab.tabLegendImageAlt">
-                </div>
-                <div id="threat-map-container">
-                    <img class="tab-map-image" :src="mapSource" :alt="tab.tabMapImageAlt">
-                </div>
-                <p v-html="tab.tabText" v-if="primaryCategorySelected"/>
-                <div v-if="!primaryCategorySelected">
-                    <CollapsibleAccordion 
-                        v-for="item, index in subCategoryData.subThreatText"
-                        :key="index"
-                        :heading="item.heading"
-                        :content="item.content"
-                        :active-on-load="item.activeOnLoad"
-                        :left-border-color="tab.tabColor"
-                        button-active-background-color="var(--light-grey)"
-                        button-inactive-background-color="var(--light-grey)"
-                        button-font-weight="bold"
-                        button-font-color="var(--color-text)"
-                    />
-                </div>
-            </tabItem>
-        </tabsGroup>
-    </section>
+              </span>
+            </span>
+          </h4>
+        </div>
+        <div id="icon-legend-container">
+          <img
+            class="tab-icon-image"
+            :src="iconSource"
+            alt=""
+          >
+          <img
+            class="tab-legend-image"
+            :src="legendSource"
+            :alt="tab.tabLegendImageAlt"
+          >
+        </div>
+        <div id="threat-map-container">
+          <img
+            class="tab-map-image"
+            :src="mapSource"
+            :alt="tab.tabMapImageAlt"
+          >
+        </div>
+        <p
+          v-if="primaryCategorySelected"
+          v-html="tab.tabText"
+        />
+        <div v-if="!primaryCategorySelected">
+          <CollapsibleAccordion 
+            v-for="item, index in subCategoryData.subThreatText"
+            :key="index"
+            :heading="item.heading"
+            :content="item.content"
+            :active-on-load="item.activeOnLoad"
+            :left-border-color="tab.tabColor"
+            button-active-background-color="var(--light-grey)"
+            button-inactive-background-color="var(--light-grey)"
+            button-font-weight="bold"
+            button-font-color="var(--color-text)"
+          />
+        </div>
+      </tabItem>
+    </tabsGroup>
+  </section>
 </template>
 
 <script setup>
@@ -103,7 +158,10 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // Global variables 

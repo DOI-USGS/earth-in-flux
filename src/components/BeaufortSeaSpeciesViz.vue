@@ -1,74 +1,119 @@
 <template>
-    <div>
-        <!---VizSection-->
-        <VizSection
-            :figures="false"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading1" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph1" />
-            </template>
-        </VizSection>
+  <div>
+    <!---VizSection-->
+    <VizSection
+      :figures="false"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading1" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph1" />
+      </template>
+    </VizSection>
         
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading2" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph2" />
+        <div class="subheading-container">
+          <h3
+            class="subheading"
+            v-html="text.subheading1"
+          />
+          <img
+            v-for="foram in forams"
+            :key="foram.tabTitle"
+            class="subheading-image"
+            :src="getPrefixImageURL(foram.tabPrefixImageName)"
+          >
+        </div>
+        <p v-html="text.paragraph3" />
+        <div class="subheading-container">
+          <h3
+            class="subheading"
+            v-html="text.subheading2"
+          />
+          <img
+            v-for="ostracode in ostracodes"
+            :key="ostracode.tabTitle"
+            class="subheading-image"
+            :src="getPrefixImageURL(ostracode.tabPrefixImageName)"
+          >
+        </div>
+        <p v-html="text.paragraph4" />
+      </template>
+    </VizSection>
+    <tabsGroup
+      id="species-tabs"
+      :options="{ useUrlFragment: false }"
+    >
+      <tabItem
+        v-for="tab in text.tabData"
+        :key="tab.tabTitle"
+        :name="`<span class='scientificName'>${tab.tabTitle}</span>`"
+        :prefix="getPrefixImageHTML(tab.tabPrefixImageName)"
+      >
+        <h3 class="tab-content-title">
+          <span
+            v-if="!mobileView"
+            :id="`species-${tab.tabContentTitleID}`"
+            class="species-class"
+          >
+            <span
+              :id="tab.tabContentTitleID"
+              class="scientificName highlight species-title"
+            >
+              {{ tab.tabContentTitle }}
+            </span>
+            {{ tab.tabSpeciesClass }}
+          </span>
+          <span
+            v-if="mobileView"
+            :id="tab.tabContentTitleID"
+            class="scientificName highlight species-title"
+          >
+            {{ tab.tabContentTitle }}
+          </span>
+        </h3>
+        <h3
+          v-if="mobileView"
+          class="tab-content-title"
         >
-            <template #heading>
-                <h2 v-html="text.heading2" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
-                <div class="subheading-container">
-                    <h3 class="subheading" v-html="text.subheading1" />
-                    <img v-for="foram in forams" class='subheading-image' :src="getPrefixImageURL(foram.tabPrefixImageName)" :key="foram.tabTitle"/>
-                </div>
-                <p v-html="text.paragraph3" />
-                <div class="subheading-container">
-                    <h3 class="subheading" v-html="text.subheading2" />
-                    <img v-for="ostracode in ostracodes" class='subheading-image' :src="getPrefixImageURL(ostracode.tabPrefixImageName)" :key="ostracode.tabTitle"/>
-                </div>
-                <p v-html="text.paragraph4" />
-            </template>
-        </VizSection>
-        <tabsGroup id="species-tabs" :options="{ useUrlFragment: false }">
-            <tabItem v-for="tab in text.tabData" :name="`<span class='scientificName'>${tab.tabTitle}</span>`" :key="tab.tabTitle" :prefix="getPrefixImageHTML(tab.tabPrefixImageName)">
-                <h3 class="tab-content-title">
-                    <span v-if="!mobileView" class="species-class" :id="`species-${tab.tabContentTitleID}`">
-                        <span class="scientificName highlight species-title" :id="tab.tabContentTitleID">
-                            {{ tab.tabContentTitle }}
-                        </span>
-                        {{ tab.tabSpeciesClass }}
-                    </span>
-                    <span v-if="mobileView" class="scientificName highlight species-title" :id="tab.tabContentTitleID">
-                        {{ tab.tabContentTitle }}
-                    </span>
-                </h3>
-                <h3 v-if="mobileView" class="tab-content-title">
-                    <span class="species-class mobile" :id="`species-${tab.tabContentTitleID}`">
-                        {{ tab.tabSpeciesClass }}
-                    </span>
-                </h3>
-                <p v-html="tab.tabText" />
-                <img class="tab-content-image" :src="getContentImageUrl(tab.tabContentImageSuffix)" :alt="tab.tabImageAlt">
-            </tabItem>
-        </tabsGroup>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
+          <span
+            :id="`species-${tab.tabContentTitleID}`"
+            class="species-class mobile"
+          >
+            {{ tab.tabSpeciesClass }}
+          </span>
+        </h3>
+        <p v-html="tab.tabText" />
+        <img
+          class="tab-content-image"
+          :src="getContentImageUrl(tab.tabContentImageSuffix)"
+          :alt="tab.tabImageAlt"
         >
-            <template #heading>
-                <h2 v-html="text.heading3" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph5" />
-                <p v-html="text.paragraph6" />
-            </template>
-        </VizSection>
-    </div>
+      </tabItem>
+    </tabsGroup>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading3" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph5" />
+        <p v-html="text.paragraph6" />
+      </template>
+    </VizSection>
+  </div>
 </template>
 
 <script setup>
@@ -77,12 +122,17 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+        text: { 
+          type: Object,
+          default: () => ({}),
+        }
     })
 
     // global objects
     const mobileView = isMobile;
-    const baseURL = "https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/"
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
+    const baseURL = `${s3ProdURL}images/BeaufortSea/`
     const forams = props.text.tabData.filter(item => item.tabPrefixImageName.includes('F'))
     const ostracodes = props.text.tabData.filter(item => item.tabPrefixImageName.includes('O'))
 

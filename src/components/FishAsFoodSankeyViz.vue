@@ -1,24 +1,32 @@
 <template>
   <!---VizSection-->
-  <VizSection :figures="true" :fig-caption="false">
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
     <!-- HEADING -->
-    <template #heading> </template>
+    <template #heading />
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
       <div class="toggle-group">
         <ToggleSwitch 
-            v-for="toggle, index in toggles"
-            :key="index"
-            v-model="toggle.value" 
-            :label="toggle.label"
-            :rightColor="toggle.color"
+          v-for="toggle, index in toggles"
+          :key="index"
+          v-model="toggle.value" 
+          :label="toggle.label"
+          :right-color="toggle.color"
         />
       </div>
-      <p class="annotation">{{ currentText }}</p>
+      <p class="annotation">
+        {{ currentText }}
+      </p>
     </template>
     <template #figures>
-      <div class="chart-container single" ref="chart"></div>
+      <div
+        ref="chart"
+        class="chart-container single"
+      />
     </template>
     <!-- EXPLANATION -->
     <template #belowExplanation>
@@ -36,7 +44,10 @@ import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import { isMobile } from 'mobile-device-detect'
 
 const props = defineProps({
-  text: { type: Object }
+  text: { 
+    type: Object,
+    default: () => ({}),
+  }
 })
 
 // global variables

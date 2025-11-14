@@ -1,14 +1,33 @@
 <template>
-  <div class="info-box" v-if="activeFamily">
+  <div
+    v-if="activeFamily"
+    class="info-box"
+  >
     <!-- FAMILY LEVEL -->
-    <div v-if="activeFamily.type === 'family' || !activeFamily.type" class="family-content">
+    <div
+      v-if="activeFamily.type === 'family' || !activeFamily.type"
+      class="family-content"
+    >
       <figure>
-        <img :src="activeFamily.image" alt="Fish silhouette" />
-        <figcaption v-if="activeFamily.caption" v-html="activeFamily.caption"></figcaption>
+        <img
+          :src="getImageURL(activeFamily.image)"
+          alt="Fish silhouette"
+        >
+        <figcaption
+          v-if="activeFamily.caption"
+          v-html="activeFamily.caption"
+        />
       </figure>
       <div class="family-text">
-        <h2 v-if="activeFamily.name">{{ activeFamily.name }}</h2>
-        <p v-if="activeFamily.type === 'family'" class="species-subtitle">Family</p>
+        <h2 v-if="activeFamily.name">
+          {{ activeFamily.name }}
+        </h2>
+        <p
+          v-if="activeFamily.type === 'family'"
+          class="species-subtitle"
+        >
+          Family
+        </p>
         <p v-if="activeFamily.economicValue">
           <strong>{{ activeFamily.economicValue }}</strong> total consumptive use value
         </p>
@@ -20,16 +39,25 @@
               : 'species that are recreationally harvested for human consumption'
           }}
         </p>
-        <p v-if="activeFamily.text">{{ activeFamily.text }}</p>
+        <p v-if="activeFamily.text">
+          {{ activeFamily.text }}
+        </p>
       </div>
     </div>
     <!-- OTHER-SPECIES LUMPING BIN -->
-    <div v-else-if="activeFamily.name === 'Other'" class="species-content">
+    <div
+      v-else-if="activeFamily.name === 'Other'"
+      class="species-content"
+    >
       <div class="species-header">
-        <img :src="activeFamily.image" alt="Fish silhouette small" class="species-icon" />
+        <img
+          :src="getImageURL(activeFamily.image)"
+          alt="Fish silhouette small"
+          class="species-icon"
+        >
         <span class="family-label">{{ activeFamily.family }}</span>
       </div>
-      <hr />
+      <hr>
       <h2>Other</h2>
       <p class="species-subtitle">
         <strong>{{ activeFamily.lumpedSpeciesCount }}</strong>
@@ -48,14 +76,23 @@
       </p>
     </div>
     <!-- SPECIES LEVEL -->
-    <div v-else-if="activeFamily.type === 'species'" class="species-content">
+    <div
+      v-else-if="activeFamily.type === 'species'"
+      class="species-content"
+    >
       <div class="species-header">
-        <img :src="activeFamily.image" alt="Fish silhouette small" class="species-icon" />
+        <img
+          :src="getImageURL(activeFamily.image)"
+          alt="Fish silhouette small"
+          class="species-icon"
+        >
         <span class="family-label">{{ activeFamily.family }}</span>
       </div>
-      <hr />
+      <hr>
       <h2>{{ activeFamily.name }}</h2>
-      <p class="species-subtitle">Species</p>
+      <p class="species-subtitle">
+        Species
+      </p>
       <p>
         <strong>{{ activeFamily.economicValue }}</strong> total consumptive use value
       </p>
@@ -78,10 +115,17 @@ defineProps({
     required: true
   }
 })
+
+// S3 resource sourcing
+const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
+
 function roundValue(value) {
   const number = Number(value)
   if (isNaN(number)) return '0'
   return Math.round(number).toLocaleString()
+}
+function getImageURL(imagePath) {
+  return s3ProdURL + imagePath
 }
 </script>
 

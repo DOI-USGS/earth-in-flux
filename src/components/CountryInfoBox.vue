@@ -1,12 +1,19 @@
 <template>
-  <div class="info-box" v-if="activeCountry">
+  <div
+    v-if="activeCountry"
+    class="info-box"
+  >
     <div class="country-content">
       <div class="country-text">
         <div
           v-if="!activeCountry.name"
           id="intro-content-container"
         >
-          <img class="map-image" :src="getImageURL('fish_as_food_continent_map.png')" alt="">
+          <img
+            class="map-image"
+            :src="getImageURL('fish_as_food_continent_map.png')"
+            alt=""
+          >
           <span>
             <p>{{ activeCountry.text }}</p>
             <br>
@@ -22,7 +29,8 @@
             </p>
           </span>
         </div>
-        <div v-if="activeCountry.name"
+        <div
+          v-if="activeCountry.name"
           class="country-box"
           :class="activeCountry.continent"
         >
@@ -30,19 +38,31 @@
             id="country-map-container"
           >
             <h2>{{ activeCountry.name }}</h2>
-            <img class="map-image-small" :src="getImageURL('fish_as_food_continent_map.png')" alt=""></img>
+            <img
+              class="map-image-small"
+              :src="getImageURL('fish_as_food_continent_map.png')"
+              alt=""
+            >
           </div>
           <hr>
           <span
             class="card-line"
           >
-            <img class="icon-image" :src="getSvgURL('noun-fishermen-305219')" alt="">
+            <img
+              class="icon-image"
+              :src="getSvgURL('noun-fishermen-305219')"
+              alt=""
+            >
             <span><b>{{ activeCountry.n_fishers }}</b> recreational fishers ({{ activeCountry.participation_rate }} % of population)</span>
           </span>
           <span
             class="card-line"
           >
-            <img class="icon-image" :src="getSvgURL('noun-net-pen-1559229')" alt="">
+            <img
+              class="icon-image"
+              :src="getSvgURL('noun-net-pen-1559229')"
+              alt=""
+            >
             <span><b>{{ activeCountry.consum_harv_kg }} kg</b> total consumable harvest<sup>1</sup></span>
           </span>
           <span>
@@ -56,7 +76,11 @@
                 <span
                   class="card-line"
                 >
-                  <img class="icon-image guild" :src="identifySvgURL(guild.guild)" alt="">
+                  <img
+                    class="icon-image guild"
+                    :src="identifySvgURL(guild.guild)"
+                    alt=""
+                  >
                   <span v-if="guild.guild != 'unknown'"><b>{{ guild.percent }}%</b> {{ guild.guild }}-water species</span>
                   <span v-if="guild.guild == 'unknown'"><b>{{ guild.percent }}%</b> species with unknown thermal guild</span>
                 </span>
@@ -66,8 +90,15 @@
           <span
             class="card-line"
           >
-            <img class="icon-image" :src="getSvgURL('noun-global-warming-7927954')" alt="">
-            <span><b>{{ activeCountry.mean_vul }} out of 1</b> average <a href='https://onlinelibrary.wiley.com/doi/10.1111/gcb.15768?af=R' target='_blank'>climate vulnerability score</a> for harvested species</span>
+            <img
+              class="icon-image"
+              :src="getSvgURL('noun-global-warming-7927954')"
+              alt=""
+            >
+            <span><b>{{ activeCountry.mean_vul }} out of 1</b> average <a
+              href="https://onlinelibrary.wiley.com/doi/10.1111/gcb.15768?af=R"
+              target="_blank"
+            >climate vulnerability score</a> for harvested species</span>
           </span>
         </div>
       </div>
