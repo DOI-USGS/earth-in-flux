@@ -1,14 +1,19 @@
 <template>
-    <div id="chartGrid" class="padded">
-        <ChartCard v-for="(item, index) in sortedChartContent" :key="index"
-            :id="item.vizRoute"
-            :projectRoute="item.project.replace(/\s+/g, '-').toLowerCase()"
-            :vizRoute="item.vizRoute"
-            :src="getThumb(item.img_src)"
-            :alt="item.alt"
-            :description="item.description"
-        />
-    </div>
+  <div
+    id="chartGrid"
+    class="padded"
+  >
+    <ChartCard
+      v-for="(item, index) in sortedChartContent"
+      :id="item.vizRoute"
+      :key="index"
+      :project-route="item.project.replace(/\s+/g, '-').toLowerCase()"
+      :viz-route="item.vizRoute"
+      :src="getThumb(item.img_src)"
+      :alt="item.alt"
+      :description="item.description"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -28,6 +33,8 @@
     // global variables
     const mobileView = isMobile;
     const chartContent = ChartGridContent.chartGridItems;
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
     // set up filtered chart data as computed property
     const filteredChartContent = computed(() => {
@@ -81,7 +88,7 @@
     }
 
     function getThumb(pic) {
-        return 'https://labs.waterdata.usgs.gov/visualizations/thumbnails/'+pic
+        return `${s3ProdURL}thumbnails/`+pic
     }
 
     function isInViewport(elem) {

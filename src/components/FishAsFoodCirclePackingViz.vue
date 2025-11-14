@@ -1,19 +1,25 @@
 <template>
   <!---VizSection-->
-  <VizSection :figures="true" :fig-caption="false">
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
     <!-- HEADING -->
-    <template #heading> </template>
+    <template #heading />
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-      <FamilyInfoBox :activeFamily="activeFamily" />
+      <FamilyInfoBox :active-family="activeFamily" />
     </template>
 
     <template #figures>
-      <div class="chart-container single" ref="chart"></div>
+      <div
+        ref="chart"
+        class="chart-container single"
+      />
     </template>
     <!-- FIGURE CAPTION -->
-    <template #figureCaption> </template>
+    <template #figureCaption />
     <!-- EXPLANATION -->
     <template #belowExplanation>
       <p v-html="text.paragraph2" />
@@ -42,7 +48,10 @@ import CollapsibleAccordion from '@/components/CollapsibleAccordion.vue';
 
 // define props
 const props = defineProps({
-  text: { type: Object }
+  text: { 
+    type: Object,
+    default: () => ({}),
+  }
 })
 
 // global variables

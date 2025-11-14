@@ -1,12 +1,15 @@
 <template>
-    <div class="chart">
-        <RouterLink :to="{ name: 'SubPage', params: { projectRoute, vizRoute } }">
-            <div class="takeaway">
-                <p>{{ description }}</p>
-            </div>
-            <img :src="src" :alt="alt"/>
-        </RouterLink>
-    </div>
+  <div class="chart">
+    <RouterLink :to="{ name: 'SubPage', params: { projectRoute, vizRoute } }">
+      <div class="takeaway">
+        <p>{{ description }}</p>
+      </div>
+      <img
+        :src="src"
+        :alt="alt"
+      >
+    </RouterLink>
+  </div>
 </template>
 
 <script setup>
@@ -109,5 +112,8 @@
     }
     .expanded img {
         border-radius: 3px;
+    }
+    .chart:focus-within {
+        outline: 2px solid var(--usgs-blue);
     }
 </style>

@@ -1,111 +1,153 @@
 <template>
-    <div>
-        <VizSection
-            :figures="false"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading1" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.intro1" />
-                <p v-html="text.intro2" />
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2 v-html="text.heading2" />
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph1" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container maxWidth group two">
-                    <figure v-for="index in getRange(1,2)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container image-narrow">
-                    <figure v-for="index in getRange(3,3)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #aboveExplanation>
-                <p v-html="text.paragraph3" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container maxWidth group two">
-                    <figure v-for="index in getRange(4,5)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #aboveExplanation>
-                <p v-html="text.paragraph4" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container image-narrow">
-                    <figure v-for="index in getRange(6,6)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #aboveExplanation>
-                <p v-html="text.paragraph5" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container image-narrow">
-                    <figure v-for="index in getRange(7,7)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-        <VizSection
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #aboveExplanation>
-                <p v-html="text.paragraph6" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container image-narrow">
-                    <figure v-for="index in getRange(8,8)" :key="index">
-                        <img class="coring-image" :src="getImagePath(index)" :alt="getAltText(index)">
-                    </figure>
-                </div>
-            </template>
-        </VizSection>
-    </div>
+  <div>
+    <VizSection
+      :figures="false"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading1" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.intro1" />
+        <p v-html="text.intro2" />
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2 v-html="text.heading2" />
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph1" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container maxWidth group two">
+          <figure
+            v-for="index in getRange(1,2)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #aboveExplanation>
+        <p v-html="text.paragraph2" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container image-narrow">
+          <figure
+            v-for="index in getRange(3,3)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #aboveExplanation>
+        <p v-html="text.paragraph3" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container maxWidth group two">
+          <figure
+            v-for="index in getRange(4,5)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #aboveExplanation>
+        <p v-html="text.paragraph4" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container image-narrow">
+          <figure
+            v-for="index in getRange(6,6)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #aboveExplanation>
+        <p v-html="text.paragraph5" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container image-narrow">
+          <figure
+            v-for="index in getRange(7,7)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+    <VizSection
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #aboveExplanation>
+        <p v-html="text.paragraph6" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container image-narrow">
+          <figure
+            v-for="index in getRange(8,8)"
+            :key="index"
+          >
+            <img
+              class="coring-image"
+              :src="getImagePath(index)"
+              :alt="getAltText(index)"
+            >
+          </figure>
+        </div>
+      </template>
+    </VizSection>
+  </div>
 </template>
 
 <script setup>
@@ -113,11 +155,16 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+        text: { 
+          type: Object,
+          default: () => ({}),
+        }
     })
 
     // global variables
     const gifImageIndices = [3, 5, 7]
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
     function getRange(start, end) {
         return Array.from({ length: end - start + 1 }, (_, i) => i + start)
@@ -130,7 +177,7 @@
         } else {
             fileEnding = 'webp'
         }
-        return `https://labs.waterdata.usgs.gov/visualizations/images/BeaufortSea/BeaufortSeaCore_${index}.${fileEnding}`;
+        return `${s3ProdURL}images/BeaufortSea/BeaufortSeaCore_${index}.${fileEnding}`;
     }
 
     function getAltText(index) {

@@ -3,17 +3,20 @@
     <div class="page-content">
       <!---Homepage-->
       <div v-if="!projectPage">      
-        <div class="text-container" :class="{ mobile: mobileView}">
+        <div
+          class="text-container"
+          :class="{ mobile: mobileView}"
+        >
           <div :class="{ typewriter: !mobileView}">
             <h1 class="title">
               {{ pageText.pageTitle }}
             </h1>
           </div>
           <h2 class="subtitle">
-            {{  pageText.pageSubTitle }}
+            {{ pageText.pageSubTitle }}
           </h2>
         </div>
-        <ChartGrid :view="currentView"/>
+        <ChartGrid :view="currentView" />
         <!---About the chart gallery project-->
         <VizSection
           :figures="false"
@@ -26,7 +29,10 @@
             </h2>
           </template>
           <template #aboveExplanation>
-            <p v-if="pageText.collaborationDescription" v-html="pageText.collaborationDescription" />
+            <p
+              v-if="pageText.collaborationDescription"
+              v-html="pageText.collaborationDescription"
+            />
           </template>
         </VizSection>
         <!---About Vizlab-->
@@ -35,13 +41,21 @@
           :fig-caption="false"
         >
           <template #heading>
-            <h3 v-if="pageText.teamData"> {{ pageText.teamHeading }} </h3>
+            <h3 v-if="pageText.teamData">
+              {{ pageText.teamHeading }}
+            </h3>
           </template>
           <template #aboveExplanation>
-            <p v-if="pageText.teamData && pageText.teamText" v-html="pageText.teamText" />
+            <p
+              v-if="pageText.teamData && pageText.teamText"
+              v-html="pageText.teamText"
+            />
           </template>
           <template #figures>
-            <AboutTheTeam v-if="pageText.teamData" :data="pageText.teamData"/>
+            <AboutTheTeam
+              v-if="pageText.teamData"
+              :data="pageText.teamData"
+            />
           </template>
         </VizSection>
         <!---Highlighted Projects-->
@@ -55,13 +69,20 @@
             </h3>
           </template>
           <template #aboveExplanation>
-            <p> {{ pageText.projectsLeadIn }}
-            <span v-for="projectKey in projectKeys" :key="projectKey">
-              <RouterLink :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }}</RouterLink>
-                <span v-if="projectKeys.indexOf(projectKey) != projectKeys.length - 1 && projectKeys.length > 2">, </span>
-                <span v-if="projectKeys.indexOf(projectKey) == projectKeys.length - 2"> and </span>
-            </span>
-            projects.
+            <p>
+              {{ pageText.projectsLeadIn }}
+              <span
+                v-for="singleProjectKey in projectKeys"
+                :key="singleProjectKey"
+              >
+                <RouterLink
+                  :key="singleProjectKey"
+                  :to="{ path: `/${text.projects[singleProjectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"
+                > {{ text.projects[singleProjectKey].title }}</RouterLink>
+                <span v-if="projectKeys.indexOf(singleProjectKey) != projectKeys.length - 1 && projectKeys.length > 2">, </span>
+                <span v-if="projectKeys.indexOf(singleProjectKey) == projectKeys.length - 2"> and </span>
+              </span>
+              projects.
             </p>
           </template>
         </VizSection>
@@ -76,16 +97,31 @@
             <h2 class="subtitle">
               The {{ pageText.fullTitle }} project
             </h2>
-            <p v-if="pageText.pageHasSubtitle" class="project-subtitle" v-html="pageText.pageSubtitle" />
+            <p
+              v-if="pageText.pageHasSubtitle"
+              class="project-subtitle"
+              v-html="pageText.pageSubtitle"
+            />
           </template>
-          <template #figures v-if="pageText.logo">
+          <template
+            v-if="pageText.logo"
+            #figures
+          >
             <figure id="logo-container">
-                <img :src="getImageURL(pageText.logo)" alt="Logo for Findex project" class="logo">
+              <img
+                :src="getImageURL(pageText.logo)"
+                alt="Logo for Findex project"
+                class="logo"
+              >
             </figure>
           </template>
           <template #belowExplanation>
             <h3>About the {{ pageText.fullTitle }} research</h3>
-            <p v-for="paragraph, item in pageText.motivation" :key="item" v-html="paragraph" />
+            <p
+              v-for="paragraph, item in pageText.motivation"
+              :key="item"
+              v-html="paragraph"
+            />
           </template>
         </VizSection>
         <VizSection
@@ -96,7 +132,7 @@
             <h3>{{ pageText.fullTitle }} visualizations</h3>
           </template>
           <template #figures>
-            <ChartGrid :view="currentView"/>
+            <ChartGrid :view="currentView" />
           </template>
         </VizSection>
         <VizSection
@@ -104,19 +140,33 @@
           :fig-caption="false"
         >
           <template #heading>
-            <h3 v-if="pageText.teamData">Meet the team</h3>
+            <h3 v-if="pageText.teamData">
+              Meet the team
+            </h3>
           </template>
           <template #aboveExplanation>              
-            <p v-if="pageText.teamData && pageText.teamText" v-html="pageText.teamText" />
+            <p
+              v-if="pageText.teamData && pageText.teamText"
+              v-html="pageText.teamText"
+            />
           </template>
           <template #figures>
-            <AboutTheTeam v-if="pageText.teamData" :key="projectRoute" :data="pageText.teamData"/>
+            <AboutTheTeam
+              v-if="pageText.teamData"
+              :key="projectRoute"
+              :data="pageText.teamData"
+            />
           </template>
         </VizSection>
       </div>
-      <ReferencesSection v-if="projectReferences" title="Project resources" titleLevel="3" :references="projectReferences"/>
+      <ReferencesSection
+        v-if="projectReferences"
+        title="Project resources"
+        title-level="3"
+        :references="projectReferences"
+      />
     </div>
-    <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
+    <PreFooterCodeLinks :git-hub-repository-link="gitHubRepositoryLink" />
   </section>
 </template>
 

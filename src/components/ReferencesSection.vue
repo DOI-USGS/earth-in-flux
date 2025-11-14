@@ -6,30 +6,51 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <h1 v-if="titleLevel === '1'" v-html="title" />
-      <h2 v-if="titleLevel === '2'" v-html="title" />
-      <h3 v-if="titleLevel === '3'" v-html="title" />
+      <h1
+        v-if="titleLevel === '1'"
+        v-html="title"
+      />
+      <h2
+        v-if="titleLevel === '2'"
+        v-html="title"
+      />
+      <h3
+        v-if="titleLevel === '3'"
+        v-html="title"
+      />
     </template>
     <template #aboveExplanation>
       <div>
         <div
           v-for="reference in references"
-          class="reference-text"
           :key="reference.num"
+          class="reference-text"
         >
           <ol>
             <span v-html="reference.authors" /> (<span v-html="reference.year" />). <a
               :href="reference.link"
               target="_blank"
-            ><span v-html="reference.title" :class="{ report: reference.report }"/></a>
+            ><span
+              :class="{ report: reference.report }"
+              v-html="reference.title"
+            /></a>
             <span v-if="reference.data_release">: U.S. Geological Survey data release</span>.
             <span v-if="reference.publication_info"> {{ reference.publication_info }}. </span>
             <span v-if="reference.journal">
-              <span v-html="reference.journal_name" class="journal-name"></span>
+              <span
+                class="journal-name"
+                v-html="reference.journal_name"
+              />
               <span v-if="reference.journal_issue">, {{ reference.journal_issue }}</span>.
             </span>
-            <span v-if="reference.doi" v-html="reference.doi"></span>
-            <span v-else v-html="reference.link"></span>
+            <span
+              v-if="reference.doi"
+              v-html="reference.doi"
+            />
+            <span
+              v-else
+              v-html="reference.link"
+            />
           </ol>
         </div>
       </div>
@@ -44,12 +65,15 @@
   defineProps({
     title: {
       type: String,
+      default: ""
     },
     titleLevel: {
       type: String,
+      default: ""
     },
     references: {
       type: Object,
+      default: () => ({})
     },
   })
 </script>

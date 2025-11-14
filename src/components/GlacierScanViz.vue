@@ -1,66 +1,97 @@
 <template>
-    <section>
-        <VizSection
-            id="cross-section"
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #figures>
-                <div id="cross-section-grid-container">                
-                    <div id="caption-container" >
-                        <img v-if="defaultView" id="globe-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/globe_marker_40.png" alt="locator map showing location of Juneau ice field in southeastern Alaska">
-                        <img v-if="!defaultView" class="jif-image" :id=currentPhotoID :src=getImageSrc(currentPhotoID) :alt="currentPhotoAlt">
-                        <div v-if="!mobileView && defaultView">
-                            <p v-html="text.paragraph1" />
-                            <p v-html="text.promptDesktop" />
-                        </div>
-                        <div v-if="mobileView && defaultView">
-                            <p v-html="text.paragraph1Mobile" />
-                            <p v-html="text.promptMobile" />
-                        </div>
-                        <p v-if="!defaultView" v-html="currentPhotoText"></p>
-                    </div>
-                </div>
-            </template>
-            <template #belowExplanation>
-                <div class="text-container">
-                    <button id="reset-button" @click="resetViz">Reset map</button>
-                </div>
-            </template>
-        </VizSection>
+  <section>
+    <VizSection
+      id="cross-section"
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #figures>
+        <div id="cross-section-grid-container">                
+          <div id="caption-container">
+            <img
+              v-if="defaultView"
+              id="globe-image"
+              :src="`${s3ProdURL}images/FireInIce/globe_marker_40.png`"
+              alt="locator map showing location of Juneau ice field in southeastern Alaska"
+            >
+            <img
+              v-if="!defaultView"
+              :id="currentPhotoID"
+              class="jif-image"
+              :src="getImageSrc(currentPhotoID)"
+              :alt="currentPhotoAlt"
+            >
+            <div v-if="!mobileView && defaultView">
+              <p v-html="text.paragraph1" />
+              <p v-html="text.promptDesktop" />
+            </div>
+            <div v-if="mobileView && defaultView">
+              <p v-html="text.paragraph1Mobile" />
+              <p v-html="text.promptMobile" />
+            </div>
+            <p
+              v-if="!defaultView"
+              v-html="currentPhotoText"
+            />
+          </div>
+        </div>
+      </template>
+      <template #belowExplanation>
+        <div class="text-container">
+          <button
+            id="reset-button"
+            @click="resetViz"
+          >
+            Reset map
+          </button>
+        </div>
+      </template>
+    </VizSection>
 
-        <VizSection
-            id="cross-section-how-to"
-            :figures="true"
-            :fig-caption="false"
-        >
-            <template #heading>
-                <h2>
-                    {{ text.heading }}
-                </h2>
-            </template>
-            <template #aboveExplanation>
-                <p v-html="text.paragraph2" />
-                <p v-html="text.paragraph3" />
-                <p v-html="text.paragraph4" />
-            </template>
-            <template #figures>
-                <div class="coring-image-container-top image-narrow">
-                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7547.webp" :alt="text.corerAlt1">
-                </div>
-                <div class="coring-image-container-bottom image-narrow group two">
-                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7553_v2.webp" :alt="text.corerAlt2">
-                    <img class="coring-image" src="https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/IMG_7554_v2.webp" :alt="text.corerAlt3">
-                </div>
-            </template>
-            <template #belowExplanation>
-                <p v-html="text.paragraph5" />
-                <p v-html="text.paragraph6" />
-                <br>
-                <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.</i></p>
-            </template>
-        </VizSection>
-    </section>
+    <VizSection
+      id="cross-section-how-to"
+      :figures="true"
+      :fig-caption="false"
+    >
+      <template #heading>
+        <h2>
+          {{ text.heading }}
+        </h2>
+      </template>
+      <template #aboveExplanation>
+        <p v-html="text.paragraph2" />
+        <p v-html="text.paragraph3" />
+        <p v-html="text.paragraph4" />
+      </template>
+      <template #figures>
+        <div class="coring-image-container-top image-narrow">
+          <img
+            class="coring-image"
+            :src="`${s3ProdURL}images/FireInIce/IMG_7547.webp`"
+            :alt="text.corerAlt1"
+          >
+        </div>
+        <div class="coring-image-container-bottom image-narrow group two">
+          <img
+            class="coring-image"
+            :src="`${s3ProdURL}images/FireInIce/IMG_7553_v2.webp`"
+            :alt="text.corerAlt2"
+          >
+          <img
+            class="coring-image"
+            :src="`${s3ProdURL}images/FireInIce/IMG_7554_v2.webp`"
+            :alt="text.corerAlt3"
+          >
+        </div>
+      </template>
+      <template #belowExplanation>
+        <p v-html="text.paragraph5" />
+        <p v-html="text.paragraph6" />
+        <br>
+        <p><i>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.</i></p>
+      </template>
+    </VizSection>
+  </section>
 </template>
 
 <script setup>
@@ -71,7 +102,10 @@
 
     // define props
     const props = defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // global variables
@@ -84,13 +118,15 @@
     const defaultView = ref(true)
     const default_xs = "113";
     const defaultPhotoID = null;
+    // S3 resource sourcing
+    const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
     // Declare behavior on mounted
     // functions called here
     onMounted(async () => {
         try {
             // Use external svg from s3
-            d3.xml("https://labs.waterdata.usgs.gov/visualizations/svgs/glacial_mri_v10.svg").then(function(xml) {
+            d3.xml(`${s3ProdURL}svgs/glacial_mri_v10.svg`).then(function(xml) {
                 // add svg content to DOM
                 const svgGrid = document.getElementById("cross-section-grid-container")
                 svgGrid.appendChild(xml.documentElement);
@@ -158,7 +194,7 @@
     });
 
     function getImageSrc(photoID) {
-        return `https://labs.waterdata.usgs.gov/visualizations/images/FireInIce/juneau_icefield_${photoID}.webp`
+        return `${s3ProdURL}images/FireInIce/juneau_icefield_${photoID}.webp`
     }
 
     function draw_xs(line_id,photo_id){

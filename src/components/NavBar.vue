@@ -1,15 +1,30 @@
 <template>
-    <header id="NavBar" class="header-nav"  role="banner">
-        <div class="topnav">
-            <RouterLink :to="{ path: '/' }">Home</RouterLink>
-            <div class="dropdown">
-                <a href="javascript:void(0)" class="dropdown">Projects</a>
-                <div class="dropdown-content">
-                    <RouterLink v-for="projectKey in projectKeys" :key="projectKey" :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"> {{ text.projects[projectKey].title }} </RouterLink>
-                </div>
-            </div>
+  <header
+    id="NavBar"
+    class="header-nav"
+    role="banner"
+  >
+    <div class="topnav">
+      <RouterLink :to="{ path: '/' }">
+        Home
+      </RouterLink>
+      <div class="dropdown">
+        <a
+          href="javascript:void(0)"
+          class="dropdown"
+        >Projects</a>
+        <div class="dropdown-content">
+          <RouterLink
+            v-for="projectKey in projectKeys"
+            :key="projectKey"
+            :to="{ path: `/${text.projects[projectKey].title.replace(/\s+/g, '-').toLowerCase()}` }"
+          >
+            {{ text.projects[projectKey].title }}
+          </RouterLink>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script setup>

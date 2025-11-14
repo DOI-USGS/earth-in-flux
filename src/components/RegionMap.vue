@@ -1,5 +1,8 @@
 <template>
-    <div ref="mapContainer" class="map-container"></div>
+  <div
+    ref="mapContainer"
+    class="map-container"
+  />
 </template>
   
 <script setup>
@@ -21,35 +24,43 @@
   const props = defineProps({
     selectedLayer: {
       type: String,
-      required: true
+      required: true,
+      default: ""
     },
     layerPaths: {
       type: Object,
-      required: true
+      required: true,
+      default: () => ({})
     },
     layerMag: {
       type: String,
-      required: true
+      required: true,
+      default: ""
     },
     layerX: {
       type: [String, Number],
-      required: false
+      required: false,
+      default: ""
     },
     layerY: {
       type: [String, Number],
-      required: false
+      required: false,
+      default: ""
     },
     topoRegions: {
       type: Object,
-      required: true
+      required: true,
+      default: () => ({})
     },
     regionsVar: {
       type: String,
-      required: true
+      required: true,
+      default: ""
     },
     topoUS: {
       type: Object,
-      required: true
+      required: true,
+      default: () => ({})
     }
   })
 

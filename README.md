@@ -8,10 +8,10 @@ The Earth in Flux chart gallery is a shared initiative between the USGS Water Mi
 
 ## Citation
 
-Corson-Dosch, Hayley, Archer, Althea, Kwang, Jeffrey, Jaenicke, Margaret, and Nell, Cee. 2024. Earth in Flux chart gallery. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P1J2PMFE](https://doi.org/10.5066/P1J2PMFE)
+[1.0.0] Corson-Dosch, Hayley, Archer, Althea, Kwang, Jeffrey, Jaenicke, Margaret, and Nell, Cee. 2024. Earth in Flux chart gallery. U.S. Geological Survey software release. Reston, VA. [https://doi.org/10.5066/P1J2PMFE](https://doi.org/10.5066/P1J2PMFE)
 
 ## Additional contributors
-[Laura Gemery](https://www.usgs.gov/staff-profiles/laura-gemery) and [Natalie Kerhwald](https://www.usgs.gov/staff-profiles/natalie-m-kehrwald) consulted on the development of this website as subject matter experts.
+[Laura Gemery](https://www.usgs.gov/staff-profiles/laura-gemery), [Natalie Kerhwald](https://www.usgs.gov/staff-profiles/natalie-m-kehrwald), [Abigail Lynch](https://www.usgs.gov/staff-profiles/abigail-lynch), [Holly Embke](https://www.usgs.gov/staff-profiles/holly-embke), and [Gretchen Stokes](https://www.linkedin.com/in/gretchen-stokes-ph-d-4019a948) consulted on the development of this website as subject matter experts.
 
 ## Additional information
 * We welcome contributions from the community. See the [guidelines for contributing](https://github.com/DOI-USGS/earth-in-flux/) to this repository on GitHub.

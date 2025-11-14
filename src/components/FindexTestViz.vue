@@ -1,47 +1,45 @@
 <template>
-    <!---VizSection-->
-    <VizSection
-        :figures="true"
-        :fig-caption="false"
-    >
-        <!-- HEADING -->
-        <template #heading>
-            <h2>
-            </h2>
-            <RadioGroup
-                v-model="selectedLayer"
-                :options="layers"
-            />
-        </template>
-        <!-- FIGURES -->
-        <template #aboveExplanation>
-        </template>
-        <template #figures>
-            <div id="image-container" ref="chart">
-                <RegionMap
-                    :selected-layer="selectedLayer"
-                    :layer-paths="layerPaths"
-                    :layer-x="layerX"
-                    :layer-y="layerY"
-                    :layer-mag="1"
-                    :topo-regions="topoRegions"
-                    :regions-var="Region_nam"
-                    :topo-us="topoUS"
-                />
-            </div>
-        </template>
-        <!-- FIGURE CAPTION -->
-        <template #figureCaption>
-        </template>
-        <!-- EXPLANATION -->
-        <template #belowExplanation>
-        </template>
-    </VizSection>
+  <!---VizSection-->
+  <VizSection
+    :figures="true"
+    :fig-caption="false"
+  >
+    <!-- HEADING -->
+    <template #heading>
+      <h2 />
+      <RadioGroup
+        v-model="selectedLayer"
+        :options="layers"
+      />
+    </template>
+    <!-- FIGURES -->
+    <template #aboveExplanation />
+    <template #figures>
+      <div
+        id="image-container"
+        ref="chart"
+      >
+        <RegionMap
+          :selected-layer="selectedLayer"
+          :layer-paths="layerPaths"
+          :layer-x="layerX"
+          :layer-y="layerY"
+          :layer-mag="1"
+          :topo-regions="topoRegions"
+          :regions-var="Region_nam"
+          :topo-us="topoUS"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation />
+  </VizSection>
 </template>
 
 <script setup>
     import { onMounted, ref } from "vue";
-    import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import VizSection from '@/components/VizSection.vue';
     import RadioGroup from './RadioGroup.vue'
@@ -96,7 +94,10 @@
 
     // define props
     defineProps({
-        text: { type: Object }
+      text: { 
+        type: Object,
+        default: () => ({}),
+      }
     })
 
     // Global variables 

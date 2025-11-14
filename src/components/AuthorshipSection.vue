@@ -6,10 +6,22 @@
   >
     <!-- HEADING -->
     <template #heading>
-      <hr role="presentation" aria-hidden="true">
-      <h1 v-if="titleLevel === '1'" v-html="title" />
-      <h2 v-if="titleLevel === '2'" v-html="title" />
-      <h3 v-if="titleLevel === '3'" v-html="title" />
+      <hr
+        role="presentation"
+        aria-hidden="true"
+      >
+      <h1
+        v-if="titleLevel === '1'"
+        v-html="title"
+      />
+      <h2
+        v-if="titleLevel === '2'"
+        v-html="title"
+      />
+      <h3
+        v-if="titleLevel === '3'"
+        v-html="title"
+      />
     </template>
     <template #aboveExplanation>
       <div
@@ -18,7 +30,10 @@
         class="text-content"
       >
         <p>
-          This visualization was developed by the <a href='https://labs.waterdata.usgs.gov/visualizations/' target='_blank'>USGS Vizlab</a>
+          This visualization was developed by the <a
+            href="https://labs.waterdata.usgs.gov/visualizations/"
+            target="_blank"
+          >USGS Vizlab</a>
           <span id="primary-author-statment">
             and led by 
             <span
@@ -50,12 +65,15 @@
   const props = defineProps({
     title: {
       type: String,
+      default: ""
     },
     titleLevel: {
       type: String,
+      default: ""
     },
     authors: {
       type: Object,
+      default: () => ({}),
     },
   })
 
