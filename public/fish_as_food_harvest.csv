@@ -11,15 +11,15 @@ Cyprinidae,Common bream,17966349.7041
 Cyprinidae,Common carp,143988868.56225
 Cyprinidae,Common roach,16233861.35399
 Cyprinidae,Crucian carp,11815384.4651
-Cyprinidae,European carp,14461955.106
+Cyprinidae,European carp,14461955.105999999
 Cyprinidae,Goldfish,251110800
 Cyprinidae,Grass carp,127573747.385
-Percidae,European perch,16929867.70744
+Percidae,European perch,16929867.707439996
 Percidae,Walleye,48837246.23
 Percidae,Yellow perch,20015412.44
-Percidae,Zander (pikeperch),7931600.43831
-Salmonidae,Brown Trout,7452262.1516216
-Salmonidae,Rainbow trout,11415117.83892
+Percidae,Zander (pikeperch),7931600.438309999
+Salmonidae,Brown Trout,7452262.151621601
+Salmonidae,Rainbow trout,11415117.838920001
 Salmonidae,Salmon,16168185.3858
 Salmonidae,Steelhead,899689
 Salmonidae,Trout,45493116.1581
@@ -78,14 +78,14 @@ Common bream,Croatia,107906.25
 Grass carp,Croatia,143875
 Common carp,Croatia,143875
 Zander (pikeperch),Croatia,28775
-Common bream,Czech Republic,12899.458
-Whitefish,Czech Republic,431.42
-Grass carp,Czech Republic,12511.18
-Common carp,Czech Republic,337370.44
-Rainbow trout,Czech Republic,8628.4
-European perch,Czech Republic,1294.26
-Brown Trout,Czech Republic,1294.26
-Zander (pikeperch),Czech Republic,8628.4
+Common bream,Czechia,12899.458
+Whitefish,Czechia,431.42
+Grass carp,Czechia,12511.18
+Common carp,Czechia,337370.44
+Rainbow trout,Czechia,8628.4
+European perch,Czechia,1294.26
+Brown Trout,Czechia,1294.26
+Zander (pikeperch),Czechia,8628.4
 Whitefish,Denmark,6218.89568
 Rainbow trout,Denmark,6218.89568
 European perch,Denmark,23818.19124
@@ -154,11 +154,11 @@ Common roach,Luxembourg,263.94
 Brown Trout,Luxembourg,1055.76
 Salmon,Luxembourg,351.92
 Zander (pikeperch),Luxembourg,527.88
-Common carp,Macedonia,4267.242
-European perch,Macedonia,865.9728
-Common roach,Macedonia,880.2864
-Brown Trout,Macedonia,1146.8772
-Zander (pikeperch),Macedonia,1467.144
+Common carp,North Macedonia,4267.242
+European perch,North Macedonia,865.9728
+Common roach,North Macedonia,880.2864
+Brown Trout,North Macedonia,1146.8772
+Zander (pikeperch),North Macedonia,1467.144
 Sunfish,Mexico,3537207.3
 Bass,Mexico,3537207.3
 Trout,Mexico,3537207.3

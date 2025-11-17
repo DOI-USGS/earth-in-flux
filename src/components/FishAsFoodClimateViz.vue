@@ -596,7 +596,7 @@
                     })
                     .on("mouseover", (event, d) => {
                         currentCountry.value = d.admin == 'United States of America' ? `the United States of America` : d.admin;
-                        currentVal.value = `${Math.round(yAccessor(d))} kg`;
+                        currentVal.value = yAccessor(d) < 1 ? (yAccessor(d) * 1000 < 10 ? `${Math.round(yAccessor(d) * 10000) / 10} g` : `${Math.round(yAccessor(d) * 1000 / 5) * 5} g`) : `${Math.round(yAccessor(d) * 10) / 10} kg`;
                     })
                     .on("mouseout", (event, d) => {
                         currentCountry.value = null;
@@ -752,7 +752,7 @@
     font-family: var(--default-font);
     font-style: italic;
     font-weight: 300;
-    fill: var(--dark-grey);
+    fill: var(--grey-12_1);
     user-select: none;
   }
 </style>
