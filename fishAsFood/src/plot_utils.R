@@ -1,6 +1,6 @@
 generate_continent_map <- function(country_data, out_file) {
   
-  countries_sf <- rnaturalearth::ne_countries(returnclass = 'sf')
+  countries_sf <- rnaturalearth::ne_countries(returnclass = "sf")
   
   country_data_sf <- countries_sf %>%
     dplyr::right_join(country_data)

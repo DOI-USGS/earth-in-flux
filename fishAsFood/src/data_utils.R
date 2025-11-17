@@ -2,23 +2,27 @@ clean_input_data <- function(data_file) {
   data <- read_xlsx(data_file, na="NA")
   
   names(data)<-make.names(names(data),unique = TRUE)
-  
   data |>
     mutate(
-      family = ifelse(family == 'Salmonindae', 'Salmonidae', family),
+      family = ifelse(family == "Salmonindae", "Salmonidae", family),
       species_common = case_when(
-        species_common == 'Bey?ehir bleak' ~ 'Beyşehir bleak',
-        species_taxa_sci == 'Brachyplatystoma rousseauxii' ~ 'Gilded catfish',
-        species_common == 'Speckled pavon, speckled peacock bass (percid)' ~ 
-          'Speckled pavon',
+        species_common == "Bey?ehir bleak" ~ "Beyşehir bleak",
+        species_taxa_sci == "Brachyplatystoma rousseauxii" ~ "Gilded catfish",
+        species_common == "Speckled pavon, speckled peacock bass (percid)" ~ 
+          "Speckled pavon",
         TRUE ~ species_common
+      ),
+      admin = case_when(
+        admin == "Macedonia" ~ "North Macedonia",
+        admin == "Czech Republic" ~ "Czechia",
+        TRUE ~ admin
       )
     )
 }
 
 build_nested_json <- function(data, focal_columns, out_file, n_top_families = 25) {
   
-  value_col <- focal_columns[['value']]
+  value_col <- focal_columns[["value"]]
   data_subset <- data |> 
     filter(!is.na(.data[[value_col]]))
   
@@ -96,7 +100,7 @@ build_country_climate_summary <- function(data, metadata_xlsx) {
                 values_from = perc_harvest)
   
   # pull in natural earth data to get continent information
-  continent_info <- rnaturalearth::ne_countries(returnclass = 'sf') %>%
+  continent_info <- rnaturalearth::ne_countries(returnclass = "sf") %>%
     dplyr::select(admin, continent) |>
     sf::st_drop_geometry()
   
