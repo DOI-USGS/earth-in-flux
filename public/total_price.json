@@ -5,6 +5,7 @@
     "children": [
       {
         "name": "Australian eel",
+        "sci_name": "Anguilla australis",
         "children": [
           {
             "name": "Australia",
@@ -14,6 +15,7 @@
       },
       {
         "name": "European eel",
+        "sci_name": "Anguilla anguilla",
         "children": [
           {
             "name": "Austria",
@@ -55,6 +57,7 @@
       },
       {
         "name": "Japanese eel",
+        "sci_name": "Anguilla japonica",
         "children": [
           {
             "name": "Japan",
@@ -73,6 +76,7 @@
     "children": [
       {
         "name": "Boga",
+        "sci_name": "Megaleporinus obtusidens",
         "children": [
           {
             "name": "Argentina",
@@ -82,6 +86,7 @@
       },
       {
         "name": "Piapara, Piau, Piavucu",
+        "sci_name": "Leporinus obtusidens",
         "children": [
           {
             "name": "Brazil",
@@ -96,6 +101,7 @@
     "children": [
       {
         "name": "Argentinian silverside/pejerrey",
+        "sci_name": "Odontesthes bonariensis",
         "children": [
           {
             "name": "Argentina",
@@ -110,6 +116,7 @@
     "children": [
       {
         "name": "Nilgiri mystus",
+        "sci_name": "Hemibagrus punctatus",
         "children": [
           {
             "name": "India",
@@ -119,6 +126,7 @@
       },
       {
         "name": "Yellow catfish",
+        "sci_name": "Tachysurus fulvidraco",
         "children": [
           {
             "name": "China",
@@ -133,11 +141,18 @@
     "children": [
       {
         "name": "Bass",
+        "sci_name": "Micropterus dolomieu",
         "children": [
           {
             "name": "Canada",
             "value": 365295287.628
-          },
+          }
+        ]
+      },
+      {
+        "name": "Bass",
+        "sci_name": "Micropterus spp.",
+        "children": [
           {
             "name": "Mexico",
             "value": 16589502.237
@@ -146,6 +161,7 @@
       },
       {
         "name": "Black bass",
+        "sci_name": "Micropterus spp.",
         "children": [
           {
             "name": "Morocco",
@@ -163,6 +179,7 @@
       },
       {
         "name": "Crappie",
+        "sci_name": "Pomoxis spp.",
         "children": [
           {
             "name": "United States of America",
@@ -172,6 +189,7 @@
       },
       {
         "name": "Largemouth bass",
+        "sci_name": "Micropterus salmoides",
         "children": [
           {
             "name": "South Africa",
@@ -185,6 +203,7 @@
       },
       {
         "name": "Sunfish",
+        "sci_name": "Lepomis spp.",
         "children": [
           {
             "name": "Mexico",
@@ -198,6 +217,7 @@
       },
       {
         "name": "White bass, striped bass",
+        "sci_name": "Moronidae spp.",
         "children": [
           {
             "name": "United States of America",
@@ -212,6 +232,7 @@
     "children": [
       {
         "name": "Snook",
+        "sci_name": "Centropomus spp.",
         "children": [
           {
             "name": "Mexico",
@@ -226,6 +247,7 @@
     "children": [
       {
         "name": "Great snakehead",
+        "sci_name": "Channa marulius",
         "children": [
           {
             "name": "Myanmar",
@@ -235,6 +257,7 @@
       },
       {
         "name": "Shol",
+        "sci_name": "Channa striata",
         "children": [
           {
             "name": "Bangladesh",
@@ -244,6 +267,7 @@
       },
       {
         "name": "Snakehead",
+        "sci_name": "Channidae spp.",
         "children": [
           {
             "name": "India",
@@ -261,6 +285,7 @@
       },
       {
         "name": "Striped snakehead",
+        "sci_name": "Channa striata",
         "children": [
           {
             "name": "Myanmar",
@@ -275,6 +300,7 @@
     "children": [
       {
         "name": "Dorado",
+        "sci_name": "Brycon moorei",
         "children": [
           {
             "name": "Colombia",
@@ -284,6 +310,7 @@
       },
       {
         "name": "Goldenfish",
+        "sci_name": "Salminus brasiliensis",
         "children": [
           {
             "name": "Argentina",
@@ -293,6 +320,7 @@
       },
       {
         "name": "Macabil",
+        "sci_name": "Brycon guatemalensis",
         "children": [
           {
             "name": "Mexico",
@@ -302,6 +330,7 @@
       },
       {
         "name": "Sabaleta",
+        "sci_name": "Brycon henni",
         "children": [
           {
             "name": "Colombia",
@@ -311,6 +340,7 @@
       },
       {
         "name": "Sabalo del Patía",
+        "sci_name": "Brycon meeki",
         "children": [
           {
             "name": "Colombia",
@@ -320,6 +350,7 @@
       },
       {
         "name": "South American trout",
+        "sci_name": "Brycon spp.",
         "children": [
           {
             "name": "Argentina",
@@ -329,6 +360,7 @@
       },
       {
         "name": "Yamú, Bocón, Sábalo",
+        "sci_name": "Brycon amazonicus",
         "children": [
           {
             "name": "Colombia",
@@ -343,6 +375,7 @@
     "children": [
       {
         "name": "Bay snook (Tenguayaca)",
+        "sci_name": "Petenia splendida",
         "children": [
           {
             "name": "Mexico",
@@ -352,6 +385,7 @@
       },
       {
         "name": "Mojarra Amarilla",
+        "sci_name": "Caquetaia krausii",
         "children": [
           {
             "name": "Colombia",
@@ -361,6 +395,7 @@
       },
       {
         "name": "Mojarra Plateada, Tilapia",
+        "sci_name": "Oreochromis niloticus",
         "children": [
           {
             "name": "Colombia",
@@ -370,6 +405,7 @@
       },
       {
         "name": "Mozambique tilapia",
+        "sci_name": "Oreochromis mossambicus",
         "children": [
           {
             "name": "South Africa",
@@ -379,6 +415,7 @@
       },
       {
         "name": "Nile tilapia",
+        "sci_name": "Oreochromis niloticus",
         "children": [
           {
             "name": "Kenya",
@@ -392,6 +429,7 @@
       },
       {
         "name": "Oscar",
+        "sci_name": "Astronotus spp.",
         "children": [
           {
             "name": "Colombia",
@@ -401,6 +439,7 @@
       },
       {
         "name": "Pavón",
+        "sci_name": "Cichla monoculus",
         "children": [
           {
             "name": "Colombia",
@@ -410,6 +449,7 @@
       },
       {
         "name": "Pavón Cinchado - Pinta de Lapa",
+        "sci_name": "Cichla temensis",
         "children": [
           {
             "name": "Colombia",
@@ -419,6 +459,7 @@
       },
       {
         "name": "Pavón Mariposo",
+        "sci_name": "Cichla orinocensis",
         "children": [
           {
             "name": "Colombia",
@@ -428,6 +469,7 @@
       },
       {
         "name": "Peacock Bass",
+        "sci_name": "Cichla piquiti",
         "children": [
           {
             "name": "Brazil",
@@ -437,6 +479,7 @@
       },
       {
         "name": "Pemá, Mojarra Pemá",
+        "sci_name": "Mesoheros ornatus",
         "children": [
           {
             "name": "Colombia",
@@ -446,6 +489,7 @@
       },
       {
         "name": "Speckled pavon",
+        "sci_name": "Cichla temensis",
         "children": [
           {
             "name": "Brazil",
@@ -455,11 +499,18 @@
       },
       {
         "name": "Tilapia",
+        "sci_name": "Oreochromis mossambicus",
         "children": [
           {
             "name": "Bangladesh",
             "value": 720984.7125
-          },
+          }
+        ]
+      },
+      {
+        "name": "Tilapia",
+        "sci_name": "Oreochromis niloticus",
+        "children": [
           {
             "name": "India",
             "value": 2635.88
@@ -468,6 +519,7 @@
       },
       {
         "name": "Tilapia Negra",
+        "sci_name": "Oreochromis mossambicus",
         "children": [
           {
             "name": "Colombia",
@@ -482,6 +534,7 @@
     "children": [
       {
         "name": "Albanian roach",
+        "sci_name": "Pachychilon pictum",
         "children": [
           {
             "name": "Montenegro",
@@ -491,6 +544,7 @@
       },
       {
         "name": "Asp",
+        "sci_name": "Leuciscus aspius",
         "children": [
           {
             "name": "Czechia",
@@ -516,11 +570,18 @@
       },
       {
         "name": "Barbel",
+        "sci_name": "Barbus barbus",
         "children": [
           {
             "name": "Czechia",
             "value": 2994.0548
-          },
+          }
+        ]
+      },
+      {
+        "name": "Barbel",
+        "sci_name": "Barbus spp.",
+        "children": [
           {
             "name": "North Macedonia",
             "value": 1330.628
@@ -537,6 +598,7 @@
       },
       {
         "name": "Bata",
+        "sci_name": "Labeo bata",
         "children": [
           {
             "name": "Bangladesh",
@@ -546,6 +608,7 @@
       },
       {
         "name": "Beyşehir bleak",
+        "sci_name": "Alburnus akilli",
         "children": [
           {
             "name": "Turkey",
@@ -555,6 +618,7 @@
       },
       {
         "name": "Bigheaded carps",
+        "sci_name": "Hypophthalmichthys spp.",
         "children": [
           {
             "name": "Hungary",
@@ -564,6 +628,7 @@
       },
       {
         "name": "Black bream",
+        "sci_name": "Megalobrama amblycephala",
         "children": [
           {
             "name": "China",
@@ -573,6 +638,7 @@
       },
       {
         "name": "Black carp",
+        "sci_name": "Mylopharyngodon piceus",
         "children": [
           {
             "name": "China",
@@ -582,6 +648,7 @@
       },
       {
         "name": "Blue-finned mahseer",
+        "sci_name": "Tor khudree",
         "children": [
           {
             "name": "India",
@@ -591,6 +658,7 @@
       },
       {
         "name": "Bream",
+        "sci_name": "Abramis spp.",
         "children": [
           {
             "name": "Hungary",
@@ -600,6 +668,7 @@
       },
       {
         "name": "Carnatic carp",
+        "sci_name": "Hypselobarbus carnaticus",
         "children": [
           {
             "name": "India",
@@ -609,6 +678,7 @@
       },
       {
         "name": "Catla",
+        "sci_name": "Labeo catla",
         "children": [
           {
             "name": "Bangladesh",
@@ -622,6 +692,7 @@
       },
       {
         "name": "Chocolate mahseer",
+        "sci_name": "Neolissochilus hexagonolepis",
         "children": [
           {
             "name": "India",
@@ -631,6 +702,7 @@
       },
       {
         "name": "Chub",
+        "sci_name": "Squalius cephalus",
         "children": [
           {
             "name": "North Macedonia",
@@ -640,6 +712,7 @@
       },
       {
         "name": "Common barbel",
+        "sci_name": "Barbus barbus",
         "children": [
           {
             "name": "Hungary",
@@ -649,6 +722,7 @@
       },
       {
         "name": "Common bleak",
+        "sci_name": "Alburnus alburnus",
         "children": [
           {
             "name": "Poland",
@@ -658,6 +732,7 @@
       },
       {
         "name": "Common bream",
+        "sci_name": "Abramis brama",
         "children": [
           {
             "name": "Austria",
@@ -743,6 +818,7 @@
       },
       {
         "name": "Common carp",
+        "sci_name": "Cyprinus carpio",
         "children": [
           {
             "name": "Bangladesh",
@@ -848,6 +924,7 @@
       },
       {
         "name": "Common nase",
+        "sci_name": "Chondrostoma nasus",
         "children": [
           {
             "name": "Czechia",
@@ -865,6 +942,7 @@
       },
       {
         "name": "Common roach",
+        "sci_name": "Rutilus rutilus",
         "children": [
           {
             "name": "Austria",
@@ -930,6 +1008,7 @@
       },
       {
         "name": "Crucian carp",
+        "sci_name": "Carassius carassius",
         "children": [
           {
             "name": "Bosnia and Herzegovina",
@@ -942,10 +1021,6 @@
           {
             "name": "Hungary",
             "value": 0
-          },
-          {
-            "name": "Japan",
-            "value": 7108170
           },
           {
             "name": "Republic of Serbia",
@@ -962,7 +1037,18 @@
         ]
       },
       {
+        "name": "Crucian carp",
+        "sci_name": "Carassius spp.",
+        "children": [
+          {
+            "name": "Japan",
+            "value": 7108170
+          }
+        ]
+      },
+      {
         "name": "Cyprinds",
+        "sci_name": "Cyprinidae spp.",
         "children": [
           {
             "name": "Austria",
@@ -984,6 +1070,7 @@
       },
       {
         "name": "European carp",
+        "sci_name": "Cyprinus carpio",
         "children": [
           {
             "name": "Australia",
@@ -1005,6 +1092,7 @@
       },
       {
         "name": "European chub",
+        "sci_name": "Squalius cephalus",
         "children": [
           {
             "name": "Czechia",
@@ -1014,6 +1102,7 @@
       },
       {
         "name": "Ghonia",
+        "sci_name": "Labeo gonius",
         "children": [
           {
             "name": "Bangladesh",
@@ -1023,6 +1112,7 @@
       },
       {
         "name": "Golden mahseer",
+        "sci_name": "Tor putitora",
         "children": [
           {
             "name": "India",
@@ -1032,6 +1122,7 @@
       },
       {
         "name": "Goldfish",
+        "sci_name": "Carassius auratus",
         "children": [
           {
             "name": "China",
@@ -1045,6 +1136,7 @@
       },
       {
         "name": "Grass carp",
+        "sci_name": "Ctenopharyngodon idella",
         "children": [
           {
             "name": "Austria",
@@ -1102,6 +1194,7 @@
       },
       {
         "name": "Gudgeon",
+        "sci_name": "Gobio gobio",
         "children": [
           {
             "name": "North Macedonia",
@@ -1111,6 +1204,7 @@
       },
       {
         "name": "Italian bleak",
+        "sci_name": "Alburnus albidus",
         "children": [
           {
             "name": "North Macedonia",
@@ -1124,6 +1218,7 @@
       },
       {
         "name": "Kalibaus",
+        "sci_name": "Labeo calbasu",
         "children": [
           {
             "name": "Bangladesh",
@@ -1133,6 +1228,7 @@
       },
       {
         "name": "Kutum",
+        "sci_name": "Rutilus frisii",
         "children": [
           {
             "name": "Turkey",
@@ -1142,6 +1238,7 @@
       },
       {
         "name": "Labeo",
+        "sci_name": "Labeo calbasu",
         "children": [
           {
             "name": "India",
@@ -1151,11 +1248,18 @@
       },
       {
         "name": "Mahseer",
+        "sci_name": "Neolissochilus spp.",
         "children": [
           {
             "name": "Myanmar",
             "value": 18679.375
-          },
+          }
+        ]
+      },
+      {
+        "name": "Mahseer",
+        "sci_name": "Tor spp.",
+        "children": [
           {
             "name": "Myanmar",
             "value": 18679.375
@@ -1164,6 +1268,7 @@
       },
       {
         "name": "Mrigal",
+        "sci_name": "Cirrhinus cirrhosus",
         "children": [
           {
             "name": "Bangladesh",
@@ -1177,6 +1282,7 @@
       },
       {
         "name": "Mullet",
+        "sci_name": "Squalius cephalus",
         "children": [
           {
             "name": "Turkey",
@@ -1186,6 +1292,7 @@
       },
       {
         "name": "Orange River mudfish",
+        "sci_name": "Labeo capensis",
         "children": [
           {
             "name": "South Africa",
@@ -1195,6 +1302,7 @@
       },
       {
         "name": "Pale chub",
+        "sci_name": "Zacco platypus",
         "children": [
           {
             "name": "South Korea",
@@ -1204,6 +1312,7 @@
       },
       {
         "name": "Pearl mullet",
+        "sci_name": "Alburnus tarichi",
         "children": [
           {
             "name": "Turkey",
@@ -1213,6 +1322,7 @@
       },
       {
         "name": "Prussian carp",
+        "sci_name": "Carassius gibelio",
         "children": [
           {
             "name": "Czechia",
@@ -1234,6 +1344,7 @@
       },
       {
         "name": "Prussian/Crucian carp",
+        "sci_name": "Carassius spp.",
         "children": [
           {
             "name": "Poland",
@@ -1243,6 +1354,7 @@
       },
       {
         "name": "Razor fish (ziege)",
+        "sci_name": "Pelecus cultratus",
         "children": [
           {
             "name": "Hungary",
@@ -1252,6 +1364,7 @@
       },
       {
         "name": "Red garra",
+        "sci_name": "Garra rufa",
         "children": [
           {
             "name": "India",
@@ -1261,6 +1374,7 @@
       },
       {
         "name": "Rohu",
+        "sci_name": "Labeo rohita",
         "children": [
           {
             "name": "India",
@@ -1270,6 +1384,7 @@
       },
       {
         "name": "Rudd",
+        "sci_name": "Scardinius erythrophthalmus",
         "children": [
           {
             "name": "Austria",
@@ -1287,6 +1402,7 @@
       },
       {
         "name": "Rui",
+        "sci_name": "Labeo rohita",
         "children": [
           {
             "name": "Bangladesh",
@@ -1296,6 +1412,7 @@
       },
       {
         "name": "Sarapunti",
+        "sci_name": "Puntius sarana",
         "children": [
           {
             "name": "Bangladesh",
@@ -1305,6 +1422,7 @@
       },
       {
         "name": "Shabout",
+        "sci_name": "Barbus grypus",
         "children": [
           {
             "name": "Turkey",
@@ -1314,6 +1432,7 @@
       },
       {
         "name": "Silver bream",
+        "sci_name": "Blicca bjoerkna",
         "children": [
           {
             "name": "Poland",
@@ -1323,6 +1442,7 @@
       },
       {
         "name": "Silver carp",
+        "sci_name": "Hypophthalmichthys molitrix",
         "children": [
           {
             "name": "Bangladesh",
@@ -1352,6 +1472,7 @@
       },
       {
         "name": "Snow trout",
+        "sci_name": "Schizothorax intermedius",
         "children": [
           {
             "name": "Uzbekistan",
@@ -1361,6 +1482,7 @@
       },
       {
         "name": "Tench",
+        "sci_name": "Tinca tinca",
         "children": [
           {
             "name": "Czechia",
@@ -1390,6 +1512,7 @@
       },
       {
         "name": "Transcau casian barb",
+        "sci_name": "Capoeta baliki",
         "children": [
           {
             "name": "Turkey",
@@ -1399,6 +1522,7 @@
       },
       {
         "name": "Trout barb",
+        "sci_name": "Capoeta trutta",
         "children": [
           {
             "name": "Turkey",
@@ -1408,6 +1532,7 @@
       },
       {
         "name": "Vimba bream",
+        "sci_name": "Vimba vimba",
         "children": [
           {
             "name": "Czechia",
@@ -1421,6 +1546,7 @@
       },
       {
         "name": "White Bream",
+        "sci_name": "Blicca bjoerkna",
         "children": [
           {
             "name": "Ukraine",
@@ -1435,6 +1561,7 @@
     "children": [
       {
         "name": "Trahira",
+        "sci_name": "Hoplias malabaricus",
         "children": [
           {
             "name": "Argentina",
@@ -1453,6 +1580,7 @@
     "children": [
       {
         "name": "Northern pike",
+        "sci_name": "Esox lucius",
         "children": [
           {
             "name": "Austria",
@@ -1566,6 +1694,7 @@
       },
       {
         "name": "Northern pike, muskellunge, hybrids",
+        "sci_name": "Esox spp.",
         "children": [
           {
             "name": "United States of America",
@@ -1580,6 +1709,7 @@
     "children": [
       {
         "name": "Black bullhead",
+        "sci_name": "Ameiurus melas",
         "children": [
           {
             "name": "Hungary",
@@ -1589,6 +1719,7 @@
       },
       {
         "name": "Catfish",
+        "sci_name": "Ictaluridae spp.",
         "children": [
           {
             "name": "United States of America",
@@ -1603,6 +1734,7 @@
     "children": [
       {
         "name": "Barramundi",
+        "sci_name": "Lates calcarifer",
         "children": [
           {
             "name": "Australia",
@@ -1616,6 +1748,7 @@
       },
       {
         "name": "Nile perch",
+        "sci_name": "Lates niloticus",
         "children": [
           {
             "name": "Kenya",
@@ -1638,6 +1771,7 @@
     "children": [
       {
         "name": "Burbot",
+        "sci_name": "Lota lota",
         "children": [
           {
             "name": "Czechia",
@@ -1664,6 +1798,7 @@
     "children": [
       {
         "name": "European smelt",
+        "sci_name": "Osmerus eperlanus",
         "children": [
           {
             "name": "Lithuania",
@@ -1677,6 +1812,7 @@
       },
       {
         "name": "Japanese smelt",
+        "sci_name": "Hypomesus nipponensis",
         "children": [
           {
             "name": "Japan",
@@ -1690,7 +1826,8 @@
     "name": "Osteichthyes",
     "children": [
       {
-        "name": "Freshwater fishes nei",
+        "name": "Freshwater fishes not elsewhere included",
+        "sci_name": "Osteichthyes",
         "children": [
           {
             "name": "Hungary",
@@ -1717,6 +1854,7 @@
     "children": [
       {
         "name": "Australian bass/perch",
+        "sci_name": "Percalates novemaculeata",
         "children": [
           {
             "name": "Australia",
@@ -1726,6 +1864,7 @@
       },
       {
         "name": "Murray cod",
+        "sci_name": "Maccullochella peelii",
         "children": [
           {
             "name": "Australia",
@@ -1740,6 +1879,7 @@
     "children": [
       {
         "name": "Eurasian Ruffe",
+        "sci_name": "Gymnocephalus cernua",
         "children": [
           {
             "name": "Netherlands",
@@ -1749,6 +1889,7 @@
       },
       {
         "name": "European perch",
+        "sci_name": "Perca fluviatilis",
         "children": [
           {
             "name": "Austria",
@@ -1838,6 +1979,7 @@
       },
       {
         "name": "Golden perch",
+        "sci_name": "Macquaria ambigua",
         "children": [
           {
             "name": "Australia",
@@ -1847,6 +1989,7 @@
       },
       {
         "name": "Redfin perch",
+        "sci_name": "Perca fluviatilis",
         "children": [
           {
             "name": "Australia",
@@ -1856,6 +1999,7 @@
       },
       {
         "name": "Volga pikeperch",
+        "sci_name": "Sander volgensis",
         "children": [
           {
             "name": "Hungary",
@@ -1865,6 +2009,7 @@
       },
       {
         "name": "Walleye",
+        "sci_name": "Sander vitreus",
         "children": [
           {
             "name": "Canada",
@@ -1878,6 +2023,7 @@
       },
       {
         "name": "Yellow perch",
+        "sci_name": "Perca flavescens",
         "children": [
           {
             "name": "Canada",
@@ -1887,6 +2033,7 @@
       },
       {
         "name": "Zander (pikeperch)",
+        "sci_name": "Sander lucioperca",
         "children": [
           {
             "name": "Austria",
@@ -1985,6 +2132,7 @@
     "children": [
       {
         "name": "Amarillo, Toruno, Chontaduro",
+        "sci_name": "Zungaro zungaro",
         "children": [
           {
             "name": "Colombia",
@@ -1994,6 +2142,7 @@
       },
       {
         "name": "Baboso",
+        "sci_name": "Brachyplatystoma platynemum",
         "children": [
           {
             "name": "Colombia",
@@ -2003,19 +2152,38 @@
       },
       {
         "name": "Bagre, Bagre Rayado",
+        "sci_name": "Pseudoplatystoma magdaleniatum",
         "children": [
           {
             "name": "Colombia",
             "value": 543963.6964
-          },
+          }
+        ]
+      },
+      {
+        "name": "Bagre, Bagre Rayado",
+        "sci_name": "Pseudoplatystoma metaense",
+        "children": [
           {
             "name": "Colombia",
             "value": 543963.6964
-          },
+          }
+        ]
+      },
+      {
+        "name": "Bagre, Bagre Rayado",
+        "sci_name": "Pseudoplatystoma orinocoense",
+        "children": [
           {
             "name": "Colombia",
             "value": 543963.6964
-          },
+          }
+        ]
+      },
+      {
+        "name": "Bagre, Bagre Rayado",
+        "sci_name": "Pseudoplatystoma tigrinum",
+        "children": [
           {
             "name": "Colombia",
             "value": 403669.262
@@ -2024,6 +2192,7 @@
       },
       {
         "name": "Barbiancho",
+        "sci_name": "Pinirampus pirinampu",
         "children": [
           {
             "name": "Colombia",
@@ -2033,6 +2202,7 @@
       },
       {
         "name": "Barred sorubim",
+        "sci_name": "Pseudoplatystoma fasciatum",
         "children": [
           {
             "name": "Brazil",
@@ -2042,6 +2212,7 @@
       },
       {
         "name": "Blancopobre",
+        "sci_name": "Brachyplatystoma vaillantii",
         "children": [
           {
             "name": "Colombia",
@@ -2051,6 +2222,7 @@
       },
       {
         "name": "Blanquillo",
+        "sci_name": "Sorubim cuspicaudus",
         "children": [
           {
             "name": "Colombia",
@@ -2060,6 +2232,7 @@
       },
       {
         "name": "Cajaro",
+        "sci_name": "Phractocephalus hemioliopterus",
         "children": [
           {
             "name": "Colombia",
@@ -2069,6 +2242,7 @@
       },
       {
         "name": "Cucharo",
+        "sci_name": "Sorubim lima",
         "children": [
           {
             "name": "Colombia",
@@ -2078,6 +2252,7 @@
       },
       {
         "name": "Flatwhiskered catfish",
+        "sci_name": "Pinirampus pirinampu",
         "children": [
           {
             "name": "Brazil",
@@ -2087,6 +2262,7 @@
       },
       {
         "name": "Gilded catfish",
+        "sci_name": "Brachyplatystoma rousseauxii",
         "children": [
           {
             "name": "Colombia",
@@ -2096,6 +2272,7 @@
       },
       {
         "name": "Kumakuma (catfish)",
+        "sci_name": "Brachyplatystoma filamentosum",
         "children": [
           {
             "name": "Brazil",
@@ -2105,6 +2282,7 @@
       },
       {
         "name": "Pati",
+        "sci_name": "Luciopimelodus pati",
         "children": [
           {
             "name": "Argentina",
@@ -2114,6 +2292,7 @@
       },
       {
         "name": "Pintadillo, Bagre, Bagre Rayado",
+        "sci_name": "Pseudoplatystoma punctifer",
         "children": [
           {
             "name": "Colombia",
@@ -2123,6 +2302,7 @@
       },
       {
         "name": "Redtail catfish",
+        "sci_name": "Phractocephalus hemioliopterus",
         "children": [
           {
             "name": "Brazil",
@@ -2132,6 +2312,7 @@
       },
       {
         "name": "South American catfish",
+        "sci_name": "Pseudoplatystoma spp.",
         "children": [
           {
             "name": "Argentina",
@@ -2141,6 +2322,7 @@
       },
       {
         "name": "Spotted sorubim",
+        "sci_name": "Pseudoplatystoma corruscans",
         "children": [
           {
             "name": "Brazil",
@@ -2150,6 +2332,7 @@
       },
       {
         "name": "Tigrito, tijero",
+        "sci_name": "Platynematichthys notatus",
         "children": [
           {
             "name": "Colombia",
@@ -2159,6 +2342,7 @@
       },
       {
         "name": "Valentón, Plumita",
+        "sci_name": "Brachyplatystoma filamentosum",
         "children": [
           {
             "name": "Colombia",
@@ -2168,6 +2352,7 @@
       },
       {
         "name": "White catfish",
+        "sci_name": "Pimelodus albicans",
         "children": [
           {
             "name": "Argentina",
@@ -2177,6 +2362,7 @@
       },
       {
         "name": "Yellow catfish",
+        "sci_name": "Pimelodus clarias",
         "children": [
           {
             "name": "Argentina",
@@ -2191,6 +2377,7 @@
     "children": [
       {
         "name": "Ayu (sweetfish)",
+        "sci_name": "Plecoglossus altivelis",
         "children": [
           {
             "name": "Japan",
@@ -2205,6 +2392,7 @@
     "children": [
       {
         "name": "Arctic Char",
+        "sci_name": "Salvelinus alpinus",
         "children": [
           {
             "name": "Iceland",
@@ -2222,6 +2410,7 @@
       },
       {
         "name": "Atlantic salmon",
+        "sci_name": "Salmo salar",
         "children": [
           {
             "name": "Chile",
@@ -2251,6 +2440,7 @@
       },
       {
         "name": "Balkan trout",
+        "sci_name": "Salmo trutta",
         "children": [
           {
             "name": "Bulgaria",
@@ -2260,6 +2450,7 @@
       },
       {
         "name": "Brook Trout",
+        "sci_name": "Salvelinus fontinalis",
         "children": [
           {
             "name": "Czechia",
@@ -2272,7 +2463,8 @@
         ]
       },
       {
-        "name": "Brown Trout",
+        "name": "Brown trout",
+        "sci_name": "Salmo trutta",
         "children": [
           {
             "name": "Austria",
@@ -2354,6 +2546,7 @@
       },
       {
         "name": "Cherry trout",
+        "sci_name": "Oncorhynchus masou",
         "children": [
           {
             "name": "South Korea",
@@ -2363,6 +2556,7 @@
       },
       {
         "name": "Chinook Salmon (Quinnat Salmon)",
+        "sci_name": "Oncorhynchus tshawytscha",
         "children": [
           {
             "name": "New Zealand",
@@ -2372,6 +2566,7 @@
       },
       {
         "name": "Chum salmon",
+        "sci_name": "Oncorhynchus keta",
         "children": [
           {
             "name": "Russia",
@@ -2381,6 +2576,7 @@
       },
       {
         "name": "Coho salmon",
+        "sci_name": "Oncorhynchus kisutch",
         "children": [
           {
             "name": "Chile",
@@ -2390,6 +2586,7 @@
       },
       {
         "name": "Common huchen",
+        "sci_name": "Hucho hucho",
         "children": [
           {
             "name": "Czechia",
@@ -2399,6 +2596,7 @@
       },
       {
         "name": "Dolly varden/Char",
+        "sci_name": "Salvelinus malma",
         "children": [
           {
             "name": "South Korea",
@@ -2408,6 +2606,7 @@
       },
       {
         "name": "European grayling",
+        "sci_name": "Thymallus thymallus",
         "children": [
           {
             "name": "Czechia",
@@ -2425,6 +2624,7 @@
       },
       {
         "name": "Pink salmon",
+        "sci_name": "Oncorhynchus gorbuscha",
         "children": [
           {
             "name": "Russia",
@@ -2434,6 +2634,7 @@
       },
       {
         "name": "Rainbow trout",
+        "sci_name": "Oncorhynchus mykiss",
         "children": [
           {
             "name": "Argentina",
@@ -2495,6 +2696,17 @@
       },
       {
         "name": "Salmon",
+        "sci_name": "Salmo salar",
+        "children": [
+          {
+            "name": "Romania",
+            "value": 680492.4
+          }
+        ]
+      },
+      {
+        "name": "Salmon",
+        "sci_name": "Salmonidae spp.",
         "children": [
           {
             "name": "Austria",
@@ -2521,10 +2733,6 @@
             "value": 2034359.808
           },
           {
-            "name": "Romania",
-            "value": 680492.4
-          },
-          {
             "name": "United States of America",
             "value": 49554870.12
           }
@@ -2532,6 +2740,7 @@
       },
       {
         "name": "Sockeye salmon",
+        "sci_name": "Oncorhynchus nerka",
         "children": [
           {
             "name": "Russia",
@@ -2541,6 +2750,7 @@
       },
       {
         "name": "Steelhead",
+        "sci_name": "Oncorhynchus mykiss",
         "children": [
           {
             "name": "United States of America",
@@ -2550,6 +2760,27 @@
       },
       {
         "name": "Trout",
+        "sci_name": "Salmo labrax",
+        "children": [
+          {
+            "name": "Turkey",
+            "value": 67091.7744
+          }
+        ]
+      },
+      {
+        "name": "Trout",
+        "sci_name": "Salmo trutta",
+        "children": [
+          {
+            "name": "Romania",
+            "value": 505236
+          }
+        ]
+      },
+      {
+        "name": "Trout",
+        "sci_name": "Salmonidae spp.",
         "children": [
           {
             "name": "Australia",
@@ -2568,14 +2799,6 @@
             "value": 278898.4
           },
           {
-            "name": "Romania",
-            "value": 505236
-          },
-          {
-            "name": "Turkey",
-            "value": 67091.7744
-          },
-          {
             "name": "United States of America",
             "value": 329106236.2
           }
@@ -2583,6 +2806,7 @@
       },
       {
         "name": "Vendace",
+        "sci_name": "Coregonus albula",
         "children": [
           {
             "name": "Finland",
@@ -2592,11 +2816,8 @@
       },
       {
         "name": "Whitefish",
+        "sci_name": "Coregonus lavaretus",
         "children": [
-          {
-            "name": "Czechia",
-            "value": 4991.5294
-          },
           {
             "name": "Finland",
             "value": 28118095.2
@@ -2610,12 +2831,28 @@
             "value": 1183875.48
           },
           {
-            "name": "Russia",
-            "value": 2773113
-          },
-          {
             "name": "Switzerland",
             "value": 1404402.6852
+          }
+        ]
+      },
+      {
+        "name": "Whitefish",
+        "sci_name": "Coregonus maraena",
+        "children": [
+          {
+            "name": "Czechia",
+            "value": 4991.5294
+          }
+        ]
+      },
+      {
+        "name": "Whitefish",
+        "sci_name": "Coregonus spp.",
+        "children": [
+          {
+            "name": "Russia",
+            "value": 2773113
           }
         ]
       }
@@ -2626,6 +2863,7 @@
     "children": [
       {
         "name": "Cachama, Morocoto",
+        "sci_name": "Piaractus orinoquensis",
         "children": [
           {
             "name": "Colombia",
@@ -2635,6 +2873,7 @@
       },
       {
         "name": "Cachama, Pacú",
+        "sci_name": "Piaractus brachypomus",
         "children": [
           {
             "name": "Colombia",
@@ -2644,6 +2883,7 @@
       },
       {
         "name": "Cachara, Tambaqui",
+        "sci_name": "Colossoma macropomum",
         "children": [
           {
             "name": "Brazil",
@@ -2653,6 +2893,7 @@
       },
       {
         "name": "Cherna, Cachama Negra",
+        "sci_name": "Colossoma macropomum",
         "children": [
           {
             "name": "Colombia",
@@ -2662,14 +2903,21 @@
       },
       {
         "name": "Pacu",
+        "sci_name": "Piaractus mesopotamicus",
+        "children": [
+          {
+            "name": "Brazil",
+            "value": 3167730.72
+          }
+        ]
+      },
+      {
+        "name": "Pacu",
+        "sci_name": "Piaractus spp.",
         "children": [
           {
             "name": "Argentina",
             "value": 7097750
-          },
-          {
-            "name": "Brazil",
-            "value": 3167730.72
           }
         ]
       }
@@ -2680,6 +2928,7 @@
     "children": [
       {
         "name": "Boal",
+        "sci_name": "Wallago attu",
         "children": [
           {
             "name": "Bangladesh",
@@ -2689,18 +2938,11 @@
       },
       {
         "name": "Catfish",
+        "sci_name": "Silurus glanis",
         "children": [
           {
             "name": "Bosnia and Herzegovina",
             "value": 86661.12
-          },
-          {
-            "name": "India",
-            "value": 14960.4
-          },
-          {
-            "name": "Myanmar",
-            "value": 112755.5
           },
           {
             "name": "Republic of Serbia",
@@ -2709,7 +2951,22 @@
         ]
       },
       {
+        "name": "Catfish",
+        "sci_name": "Wallago attu",
+        "children": [
+          {
+            "name": "India",
+            "value": 14960.4
+          },
+          {
+            "name": "Myanmar",
+            "value": 112755.5
+          }
+        ]
+      },
+      {
         "name": "European catfish",
+        "sci_name": "Silurus glanis",
         "children": [
           {
             "name": "Czechia",
@@ -2723,6 +2980,7 @@
       },
       {
         "name": "Far eastern catfish",
+        "sci_name": "Silurus asotus",
         "children": [
           {
             "name": "South Korea",
@@ -2732,6 +2990,7 @@
       },
       {
         "name": "Wels catfish",
+        "sci_name": "Silurus glanis",
         "children": [
           {
             "name": "Bulgaria",
@@ -2782,6 +3041,7 @@
     "children": [
       {
         "name": "Golden mandarin",
+        "sci_name": "Siniperca scherzeri",
         "children": [
           {
             "name": "South Korea",

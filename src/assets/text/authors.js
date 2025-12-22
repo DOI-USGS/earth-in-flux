@@ -140,5 +140,22 @@ export default {
       initials: 'JK',
       profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
     }
+  ],
+  FishAsFoodClimate: [
+    {
+      fullName: 'Hayley Corson-Dosch',
+      initials: 'HCD',
+      profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
+    },
+    {
+      fullName: 'Jeffrey Kwang',
+      initials: 'JK',
+      profile_link: 'https://www.usgs.gov/staff-profiles/jeffrey-kwang'
+    },
+    {
+      fullName: 'Elmera Azadpour',
+      initials: 'EA',
+      profile_link: 'https://www.usgs.gov/staff-profiles/elmera-azadpour'
+    }
   ]
 };

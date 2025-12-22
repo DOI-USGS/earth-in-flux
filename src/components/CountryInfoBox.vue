@@ -53,7 +53,7 @@
               :src="getSvgURL('noun-fishermen-305219')"
               alt=""
             >
-            <span><b>{{ activeCountry.n_fishers }}</b> recreational fishers ({{ activeCountry.participation_rate }} % of population)</span>
+            <span><b>{{ activeCountry.n_fishers }}</b> recreational fishers ({{ activeCountry.participation_rate }}% of population)</span>
           </span>
           <span
             class="card-line"
@@ -63,7 +63,10 @@
               :src="getSvgURL('noun-net-pen-1559229')"
               alt=""
             >
-            <span><b>{{ activeCountry.consum_harv_kg }} kg</b> total consumable harvest<sup>1</sup></span>
+            <span><b>{{ activeCountry.consum_harv_kg }} kg</b> total <span class="tooltip-group"><span class="tooltip-span">consumable harvest</span><span
+              id="consumable-tooltip"
+              class="tooltiptext"
+            >Calculated from species-specific estimates of literature-based edible portion (%) of a given fish</span></span></span>
           </span>
           <span>
             <ul
@@ -95,10 +98,25 @@
               :src="getSvgURL('noun-global-warming-7927954')"
               alt=""
             >
-            <span><b>{{ activeCountry.mean_vul }} out of 1</b> average <a
-              href="https://onlinelibrary.wiley.com/doi/10.1111/gcb.15768?af=R"
-              target="_blank"
-            >climate vulnerability score</a> for harvested species</span>
+            <span>
+              <b>{{ activeCountry.mean_vul }} out of 1</b> average 
+              <span class="tooltip-group">
+                <span class="tooltip-span">
+                  climate vulnerability score
+                </span>
+                <span
+                  id="vulnerability-tooltip"
+                  class="tooltiptext"
+                >
+                  Climate vulnerability score between 0 and 1 (higher values = more vulnerable) based on multi-criteria decision analysis (MCDA) index calculated for year 2075 under the Representative Concentration Pathway (RCP) 4.5 emission scenario - 
+                  <a
+                    href="https://www.researchgate.net/publication/353385734_Global_assessment_of_marine_and_freshwater_recreational_fish_reveals_mismatch_in_climate_change_vulnerability_and_conservation_effort"
+                    target="_blank"
+                  >Nyboer et al. 2021</a>
+                </span>
+              </span>
+              for harvested species
+            </span>
           </span>
         </div>
       </div>

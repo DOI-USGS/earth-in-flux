@@ -29,10 +29,6 @@
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption />
-    <!-- EXPLANATION -->
-    <template #belowExplanation>
-      <p v-html="text.paragraph2" />
-    </template>
   </VizSection>
 </template>
 
@@ -63,6 +59,7 @@
     const chart = ref(null);
     const currentVal = ref(null);
     const currentCountry = ref(null);
+    const countrySelected = ref(false);
     const chartTitle = 'Title of chart';
     let chartDimensions;
     let chartSVG;
@@ -102,7 +99,7 @@
                     margin: 10,
                     marginBottom: mobileView ? 90: 60,
                     marginLeft:5,
-                    marginTop: 10
+                    marginTop: mobileView ? 30 : 25
                 });
 
                 // draw chart
@@ -546,6 +543,11 @@
                     .attr('stroke-width', '1px')
                     .attr('opacity', 0)
                     .on("click", (event, d) => {
+                        // Note that a country is selected
+                        countrySelected.value = true;
+                        // Update the y-axis label
+                        populateYAxisLabel(d.admin, yAccessor(d))
+                        
                         chartBounds.selectAll(".circle")
                             .attr('stroke', '#FFFFFF')
                             .attr('stroke-width', '1px')
@@ -595,16 +597,25 @@
                         event.stopPropagation();
                     })
                     .on("mouseover", (event, d) => {
-                        currentCountry.value = d.admin == 'United States of America' ? `the United States of America` : d.admin;
-                        currentVal.value = yAccessor(d) < 1 ? (yAccessor(d) * 1000 < 10 ? `${Math.round(yAccessor(d) * 10000) / 10} g` : `${Math.round(yAccessor(d) * 1000 / 5) * 5} g`) : `${Math.round(yAccessor(d) * 10) / 10} kg`;
+                        // If no country is selected, allow mouseover updates to y-axis label
+                        if (!countrySelected.value) {
+                            populateYAxisLabel(d.admin, yAccessor(d))
+                        }
                     })
-                    .on("mouseout", (event, d) => {
-                        currentCountry.value = null;
+                    .on("mouseout", () => {
+                        // If no country is selected, allow mouseout reset of y-axis label
+                        if (!countrySelected.value) {
+                            currentCountry.value = null;
+                        }
                     })
         
         // attach click event to svg to return to default view
         chartSVG
             .on('click', () => {
+                // Note that no country is selected
+                countrySelected.value = false;
+                // Reset y-axis label
+                currentCountry.value = null;
                 // arrange circles in DOM
                 for (var i = 0; i < chartData.length; i++){
                     let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
@@ -620,8 +631,8 @@
                 resetInfoBox()
             })
 
-        const notationWidth = mobileView ? 80 : 160;
-        chartBounds.append("text")
+        const notationWidth = mobileView ? 160 : 160;
+        chartSVG.append("text")
             .attr("class", "chart-notation")
             .attr("x", chartDimensions.boundedWidth - notationWidth / 2 )
             .attr("y", mobileView ? 2 : 0)
@@ -635,10 +646,10 @@
 
         chartBounds.append("text")
             .attr("class", "chart-notation")
-            .attr("x", mobileView ? 130 : 160)
+            .attr("x", mobileView ? 90 : 160)
             .attr("y", chartDimensions.boundedHeight * 0.99)
             .attr("dx", '0em')
-            .attr("dy", mobileView ? '-5em' : '-2em')
+            .attr("dy", mobileView ? '-1.75em' : '-2em')
             .attr("dominant-baseline", "text-after-edge")
             .style("text-anchor", "middle")
             .attr("text-width", notationWidth)
@@ -648,6 +659,11 @@
 
     function resetInfoBox() {
         activeCountry.value = defaultInfo;
+    }
+
+    function populateYAxisLabel(country, value) {
+        currentCountry.value = country == 'United States of America' ? `the United States of America` : country;
+        currentVal.value = value < 1 ? (value * 1000 < 10 ? `${Math.round(value * 10000) / 10} g` : `${Math.round(value * 1000 / 5) * 5} g`) : `${Math.round(value * 10) / 10} kg`;
     }
 
     // https://gist.github.com/mbostock/7555321
@@ -739,6 +755,10 @@
     fill: var(--color-text);
     user-select: none;
   }
+
+  p.axis-title {
+    padding: 0;
+  }
   .axis-subtitle {
     font-size: 1.8rem;
     font-family: var(--default-font);
@@ -754,5 +774,18 @@
     font-weight: 300;
     fill: var(--grey-12_1);
     user-select: none;
+  }
+  #vulnerability-tooltip {
+    margin-left: -235px;
+    width: 235px;
+    @media only screen and (max-width: 600px) {
+        width: 210px;
+        margin-left: -210px;
+    }
+  }
+  #vulnerability-tooltip a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 400;
   }
 </style>
