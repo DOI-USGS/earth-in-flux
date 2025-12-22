@@ -229,8 +229,7 @@ export default {
             paragraph5: `USGS scientists reconstructed this record using <a href='/${viteAppAssetURl}/earth-in-flux/beaufort-sea/beaufort-sea-sediment-coring' target='_blank'>sediment cores</a> collected from the ocean floor on the Beaufort Sea continental shelf, north of Yukon, Canada. After cutting the sediment cores into slices representing ~4 to 24 years of time, researchers used a microscope to identify the <a href='/${viteAppAssetURl}/earth-in-flux/beaufort-sea/beaufort-sea-species' target='_blank'>species of microfossils</a> in each slice.`,
         },
         FishAsFoodCirclePacking: {
-            paragraph1: `Explore the global total consumptive use value<sup>1</sup> of <a href='/${viteAppAssetURl}/earth-in-flux/rec-fish-as-food/rec-fish-consumption' target='_blank'>recreationally-harvested inland fish species</a>, in U.S. dollars. Click on the circles in the diagram to see the consumptive use value of species within each fish family, and click on the nested circles to see the consumptive use value of each species in the various countries where it is recreationally harvested for consumption. Note that species with consumptive use values under $500k are grouped into 'Other' unless only one exists, and that some taxonomic data are not available to the species level. To zoom out, click on the surrounding white space.`,
-            paragraph2: "<sup>1</sup> The total consumptive use value for each species in each country is calculated by multiplying the total kilograms of species-specific edible proportions by the shadow prices for each species per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.",
+            paragraph1: `Explore the global <span class='tooltip-group'><span class='tooltip-span'>total consumptive use value</span><span id='tcuv-tooltip' class='tooltiptext'>Calculated by multiplying the total kilograms of species-specific edible portions by the shadow prices for each species per kilogram, in U.S. dollars. Species- and country-specific price data were collected from November 2021 to February 2022.</span></span> in U.S. dollars (2022) of <a href='/${viteAppAssetURl}/earth-in-flux/rec-fish-as-food/rec-fish-consumption' target='_blank'>recreationally harvested inland fish species</a>. Click on the largest circles in the diagram to see the consumptive use value of species in each fish family. Click on the nested blue-gray circles to see the value for a species in each country where it is recreationally harvested for consumption. Note that species with consumptive use values under $500,000 are grouped into 'Other' unless only one exists. Some taxonomic data are not available to the species level. Click anywhere outside the circle to zoom out.`,
             familyInfo: {
                 "Cyprinidae": {
                     image: "images/common-carp.jpeg",
@@ -302,7 +301,7 @@ export default {
                 },
                 "Percichthyidae": {
                     image: "images/Percichthyidae.jpeg",
-                    caption: "Macquarie perch<em>(Macquaria australasica)</em>"
+                    caption: "Macquarie perch <em>(Macquaria australasica)</em>"
                 },
                 "Bagridae": {
                     image: "images/Bagridae.jpeg",
@@ -336,7 +335,7 @@ export default {
             },
             defaultFamily: {
                 image: "images/default-fish.jpeg",
-                text: "Click on a fish family in the chart to learn more about the consumptive use value of species within each fish family that are recreationally harvested for consumption.",
+                text: "Click the circles in the chart to learn more about the consumptive use value of each fish family and species.",
                 caption: "Brown trout <em>(Salmo trutta)</em>"
             },
             accordionData: [
@@ -353,8 +352,7 @@ export default {
             ]
         },        
         FishAsFoodSankey: {
-            paragraph1: "Explore inland recreational consumable harvest<sup>1</sup> for the the five families with the largest recreational consumable harvest: <span class='scientificName'>Cyprinidae</span> (minnows and carps), <span class='scientificName'>Percidae</span> (perch), <span class='scientificName'>Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class='scientificName'>Bagridae</span> (bagrid catfish), and <span class='scientificName'>Centrarchidae</span> (sunfishes). Total harvest is broken out by family, by species, and by country.  Hover over the chart to see the harvest totals, in kilograms",
-            paragraph2: "<sup>1</sup> We calculated consumable harvest from species-specific estimates of literature-based filet yield (i.e., edible portion (%) of a given fish).",
+            paragraph1: "Explore inland recreational <span class='tooltip-group'><span class='tooltip-span'>consumable harvest</span><span id='consumable-tooltip' class='tooltiptext'>Calculated from species-specific estimates of literature-based edible portion (%) of a given fish</span></span> for the five families with the largest recreational consumable harvest: <span class='scientificName'>Cyprinidae</span> (minnows and carps), <span class='scientificName'>Percidae</span> (perch), <span class='scientificName'>Salmonidae</span> (salmon, trout, grayling, and whitefish), <span class='scientificName'>Bagridae</span> (bagrid catfish), and <span class='scientificName'>Centrarchidae</span> (sunfishes). Total harvest is split by family (at left), species/co-reported taxa (in the center), and country (at right). Hover over the chart to see the harvest totals in kilograms. Use the toggles to include or exclude China from the chart and to sort the chart from highest to lowest harvest totals.",
             toggleData: {
                 showChina: {
                     value: true,
@@ -369,14 +367,13 @@ export default {
             }
         },
         FishAsFoodClimate: {
-            paragraph1: "Inland recreational fishing is often considered a leisure-driven activity, yet recreationally harvested fish can be an important food source. Depending on what species are fished, this consumption may be more or less vulnerable to climate change. Use the chart below to explore the global implications of inland recreational fishing being a source of food in a changing climate<sup>1</sup>.",
-            paragraph2: "<sup>1</sup> We calculated consumable harvest from species-specific estimates of literature-based filet yield (i.e., edible portion (%) of a given fish).",
+            paragraph1: `Inland recreational fishing is often considered a leisure-driven activity, yet <a href='/${viteAppAssetURl}/earth-in-flux/rec-fish-as-food/rec-fish-consumption' target='_blank'>recreationally harvested fish</a> can be an important food source. Depending on what species are fished, this consumption may be more or less vulnerable to climate change. Use the chart below to explore the global implications of inland recreational fishing as a source of food in a changing climate.`,
             image: "fish_as_food_continent_map.png",
             imageAlt: "Map of the continents for which data are shown",
             defaultInfo: {
                 image: "fish_as_food_continent_map.png",
                 text: "In the chart below, each circle represents a country. The circles are colored by continent, and the size of each circle is proportional to the number of recreational fishers in each country.",
-                prompt_desktop: "Click on a circle to learn more about the climate vulnerability of recreational fish consumption in each country.",
+                prompt_desktop: "Click on a circle to learn more about the climate vulnerability of recreational fish consumption in each country. Click outside the circle to return to the original view.",
                 prompt_mobile: "Tap on a circle to learn more about the climate vulnerability of recreational fish consumption in each country.",
                 name: null,
                 continent: null

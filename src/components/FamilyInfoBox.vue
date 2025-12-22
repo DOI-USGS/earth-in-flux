@@ -35,8 +35,8 @@
           <strong>{{ activeFamily.speciesCount }}</strong>
           {{
             activeFamily.speciesCount === 1
-              ? 'species that is recreationally harvested for human consumption'
-              : 'species that are recreationally harvested for human consumption'
+              ? 'species is recreationally harvested for human consumption'
+              : 'species are recreationally harvested for human consumption'
           }}
         </p>
         <p v-if="activeFamily.text">
@@ -89,7 +89,7 @@
         <span class="family-label">{{ activeFamily.family }}</span>
       </div>
       <hr>
-      <h2>{{ activeFamily.name }}</h2>
+      <h2>{{ activeFamily.name }} <em>({{ activeFamily.sciName }})</em></h2>
       <p class="species-subtitle">
         Species
       </p>

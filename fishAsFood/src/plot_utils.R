@@ -6,9 +6,17 @@ generate_continent_map <- function(country_data, out_file) {
     dplyr::right_join(country_data)
   
   fish_continents <- unique(country_data_sf[["continent"]])
+  
   fish_continent_sf <- countries_sf |>
-    filter(continent %in% fish_continents) |>
+    filter(continent %in% fish_continents & !(admin == "France")) |>
     sf::st_transform(crs = "ESRI:54030")
+  # Correct continent field for French Guiana
+  france_sf <- countries_sf |>
+    dplyr::filter(admin == "France") |>
+    sf::st_cast("POLYGON") |>
+    mutate(continent = c("South America", "Europe", "Europe")) |>
+    sf::st_transform(crs = sf::st_crs(fish_continent_sf))
+  fish_continent_sf <- bind_rows(fish_continent_sf, france_sf)
   
   colors <- c("#648E8E","#845c93","#b24d4b","#a27846","#1D3867","#899bb7")
   names(colors) <- c("Africa", "Oceania", "North America", "Europe", "Asia", 

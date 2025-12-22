@@ -10,6 +10,9 @@ clean_input_data <- function(data_file) {
         species_taxa_sci == "Brachyplatystoma rousseauxii" ~ "Gilded catfish",
         species_common == "Speckled pavon, speckled peacock bass (percid)" ~ 
           "Speckled pavon",
+        species_common == "Brown Trout" ~ "Brown trout",
+        species_common == "Freshwater fishes nei" ~ 
+          "Freshwater fishes not elsewhere included",
         TRUE ~ species_common
       ),
       admin = case_when(
@@ -41,7 +44,7 @@ build_nested_json <- function(data, focal_columns, out_file, n_top_families = 25
     group_by(name = family) |>
     group_modify(~ {
       species_list <- .x |>
-        group_by(name = species_common) |>
+        group_by(name = species_common, sci_name = species_taxa_sci) |>
         group_modify(~ {
           country_list <- .x |>
             select(!!focal_columns) |>
@@ -69,7 +72,7 @@ build_country_climate_summary <- function(data, metadata_xlsx) {
     summarize(
       population = first(population),
       participation_rate = first(participation_rate),
-      n_fishers = first(n_fishers),
+      n_fishers = round(first(n_fishers)),
       total_rec_harv_kg = first(total_rec_harvest_kg),
       total_consumable_harv_kg = sum(total_consumable_harv_kg),
       MCDM_VUL_2075_45 = mean(MCDM_VUL_2075_45, na.rm = TRUE)) |>
@@ -140,7 +143,7 @@ build_harvest_csv <- function(data, out_file, n_top_families) {
     filter(percent_harvest > 1) |>
     select(source = family, target = species_common, value)
   
-  # Pull country specific harvest for species including in family level aggregation
+  # Pull country specific harvest for species included in family level aggregation
   species_country <- data_subset |> 
     filter(species_common %in% unique(pull(family_species, target))) |>
     select(source = species_common, target = admin, value = total_biomass_harv_kg)

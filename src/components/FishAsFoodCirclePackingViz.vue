@@ -22,7 +22,6 @@
     <template #figureCaption />
     <!-- EXPLANATION -->
     <template #belowExplanation>
-      <p v-html="text.paragraph2" />
       <CollapsibleAccordion 
         v-for="item, index in text.accordionData"
         :key="index"
@@ -312,10 +311,10 @@ function buildChart(data) {
       } else {
         economicValue = formatEconomicValue(d.value)
       }
-
       infoObj = {
         type: 'species',
         name: d.data.name,
+        sciName: d.data.sci_name,
         family: familyName,
         image: silhouette,
         economicValue,
@@ -351,5 +350,13 @@ function buildChart(data) {
 }
 .fish-value {
   font-weight: 400;
+}
+#tcuv-tooltip {
+  margin-left: -245px;
+  width: 245px;
+  @media only screen and (max-width: 600px) {
+    width: 220px;
+    margin-left: -220px;
+  }
 }
 </style>

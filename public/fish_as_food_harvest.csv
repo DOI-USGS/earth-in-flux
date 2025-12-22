@@ -18,7 +18,7 @@ Percidae,European perch,16929867.707439996
 Percidae,Walleye,48837246.23
 Percidae,Yellow perch,20015412.44
 Percidae,Zander (pikeperch),7931600.438309999
-Salmonidae,Brown Trout,7452262.151621601
+Salmonidae,Brown trout,7452262.151621601
 Salmonidae,Rainbow trout,11415117.838920001
 Salmonidae,Salmon,16168185.3858
 Salmonidae,Steelhead,899689
@@ -36,7 +36,7 @@ European carp,Austria,1449000
 Rainbow trout,Austria,945000
 European perch,Austria,252000
 Common roach,Austria,189000
-Brown Trout,Austria,756000
+Brown trout,Austria,756000
 Salmon,Austria,252000
 Zander (pikeperch),Austria,378000
 Grass carp,Bangladesh,62720.85
@@ -52,7 +52,7 @@ European carp,Belgium,177606
 Rainbow trout,Belgium,115830
 European perch,Belgium,30888
 Common roach,Belgium,23166
-Brown Trout,Belgium,92664
+Brown trout,Belgium,92664
 Salmon,Belgium,30888
 Zander (pikeperch),Belgium,46332
 Common bream,Bosnia and Herzegovina,48000
@@ -84,12 +84,12 @@ Grass carp,Czechia,12511.18
 Common carp,Czechia,337370.44
 Rainbow trout,Czechia,8628.4
 European perch,Czechia,1294.26
-Brown Trout,Czechia,1294.26
+Brown trout,Czechia,1294.26
 Zander (pikeperch),Czechia,8628.4
 Whitefish,Denmark,6218.89568
 Rainbow trout,Denmark,6218.89568
 European perch,Denmark,23818.19124
-Brown Trout,Denmark,6218.89568
+Brown trout,Denmark,6218.89568
 Zander (pikeperch),Denmark,25897.13042
 Common bream,Estonia,5205.1665
 Crucian carp,Estonia,13030.8651
@@ -101,11 +101,11 @@ Vendace,Finland,1087320
 Whitefish,Finland,1087320
 European perch,Finland,4711720
 Common roach,Finland,1993420
-Brown Trout,Finland,362440
+Brown trout,Finland,362440
 Zander (pikeperch),Finland,1087320
 Whitefish,France,13500
 European perch,France,9000
-Brown Trout,France,2250
+Brown trout,France,2250
 Zander (pikeperch),France,4500
 Common bream,Germany,2400000
 Grass carp,Germany,400000
@@ -113,7 +113,7 @@ European carp,Germany,9200000
 Rainbow trout,Germany,6000000
 European perch,Germany,1600000
 Common roach,Germany,1200000
-Brown Trout,Germany,4800000
+Brown trout,Germany,4800000
 Salmon,Germany,1600000
 Zander (pikeperch),Germany,2400000
 Common bream,Greece,132360
@@ -122,21 +122,21 @@ Crucian carp,Hungary,0
 Grass carp,Hungary,257622.075
 Common carp,Hungary,3916428.034
 European perch,Hungary,4579.948
-Brown Trout,Hungary,0
+Brown trout,Hungary,0
 Zander (pikeperch),Hungary,234722.335
-Brown Trout,Iceland,30029.694
+Brown trout,Iceland,30029.694
 Grass carp,India,3113.5
 Common carp,India,4452.5
 Rainbow trout,India,4004
-Brown Trout,India,4004
-Brown Trout,Ireland,504.3793416
+Brown trout,India,4004
+Brown trout,Ireland,504.3793416
 Crucian carp,Japan,693480
 Common carp,Japan,346740
 Salmon,Japan,11962530
 Common carp,Kosovo,2240.469
 European perch,Kosovo,454.6696
 Common roach,Kosovo,462.1848
-Brown Trout,Kosovo,602.1554
+Brown trout,Kosovo,602.1554
 Zander (pikeperch),Kosovo,770.308
 Common bream,Latvia,106405.38
 European perch,Latvia,79606.988
@@ -151,13 +151,13 @@ European carp,Luxembourg,2023.54
 Rainbow trout,Luxembourg,1319.7
 European perch,Luxembourg,351.92
 Common roach,Luxembourg,263.94
-Brown Trout,Luxembourg,1055.76
+Brown trout,Luxembourg,1055.76
 Salmon,Luxembourg,351.92
 Zander (pikeperch),Luxembourg,527.88
 Common carp,North Macedonia,4267.242
 European perch,North Macedonia,865.9728
 Common roach,North Macedonia,880.2864
-Brown Trout,North Macedonia,1146.8772
+Brown trout,North Macedonia,1146.8772
 Zander (pikeperch),North Macedonia,1467.144
 Sunfish,Mexico,3537207.3
 Bass,Mexico,3537207.3
@@ -177,10 +177,10 @@ Common roach,Netherlands,70535.40879
 Zander (pikeperch),Netherlands,96986.18709
 Rainbow trout,New Zealand,506631.184
 European perch,New Zealand,253315.592
-Brown Trout,New Zealand,506631.184
+Brown trout,New Zealand,506631.184
 Whitefish,Norway,101160
 European perch,Norway,185460
-Brown Trout,Norway,101160
+Brown trout,Norway,101160
 Common bream,Poland,7824460.8
 Grass carp,Poland,920524.8
 Common carp,Poland,9205248
@@ -219,14 +219,14 @@ Common carp,South Africa,779730
 Rainbow trout,South Africa,9870
 Crucian carp,South Korea,7997840
 Common carp,South Korea,383444
-Brown Trout,South Korea,122332
+Brown trout,South Korea,122332
 Common carp,Spain,13300
-Brown Trout,Spain,3800
+Brown trout,Spain,3800
 Vendace,Sweden,1258800
 Whitefish,Sweden,839200
 European perch,Sweden,3251900
 Common roach,Sweden,1049000
-Brown Trout,Sweden,629400
+Brown trout,Sweden,629400
 Zander (pikeperch),Sweden,944100
 Common bream,Switzerland,1090.9272
 Whitefish,Switzerland,45387.6456
@@ -234,7 +234,7 @@ Common carp,Switzerland,2384.8176
 Rainbow trout,Switzerland,1167.0384
 European perch,Switzerland,91993.0704
 Common roach,Switzerland,1953.5208
-Brown Trout,Switzerland,25116.696
+Brown trout,Switzerland,25116.696
 Zander (pikeperch),Switzerland,3805.56
 Common bream,Turkey,3993.558
 Common carp,Turkey,169726.215
@@ -255,7 +255,7 @@ Trout,United States of America,8996890
 Walleye,United States of America,6297823
 Common bream,Uzbekistan,11224.5
 Common carp,Uzbekistan,22449
-Brown Trout,Uzbekistan,5612.25
+Brown trout,Uzbekistan,5612.25
 Zander (pikeperch),Uzbekistan,11224.5
 Common carp,Zimbabwe,60893.24465
 Rainbow trout,Zimbabwe,36691.03682

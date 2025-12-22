@@ -28,10 +28,6 @@
         class="chart-container single"
       />
     </template>
-    <!-- EXPLANATION -->
-    <template #belowExplanation>
-      <p v-html="text.paragraph2" />
-    </template>
   </VizSection>
 </template>
 
@@ -348,7 +344,7 @@ function SankeyChart(
     .join('rect')
     .attr('x', (d) => d.x0)
     .attr('y', (d) => d.y0)
-    .attr('height', (d) => d.y1 - d.y0)
+    .attr('height', (d) => Math.max((d.y1 - d.y0), 0.5))
     .attr('width', (d) => d.x1 - d.x0)
     .attr('fill', (d) => {
       if (typeof countryColorMap !== 'undefined' && d.depth === 2 && countryColorMap.has(d.id)) {
@@ -466,4 +462,14 @@ function SankeyChart(
   font-weight: 300;
   height: 1rem;
 }
+</style>
+<style lang="scss">
+  #consumable-tooltip {
+    margin-left: -180px;
+    width: 180px;
+    @media only screen and (max-width: 600px) {
+       width: 160px;
+      margin-left: -160px;
+    }
+  }
 </style>
