@@ -139,7 +139,6 @@
     async function loadDatasets(file) {
         try {
             data.value = await loadData(file);
-            console.log('data in');
         } catch (error) {
             console.error('Error loading datasets', error);
         }
@@ -730,8 +729,6 @@
             dy = parseFloat(text.attr("dy")),
             dx = parseFloat(text.attr("dx")),
             tspan = text.text(null).append("tspan").attr("y", y).attr("dy", dy + "em");
-            
-            console.log(text.attr("dy"))
 
             while ((word = words.pop())) {
             line.push(word);

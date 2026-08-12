@@ -126,7 +126,6 @@
     async function loadDatasets() {
         try {
             data.value = await loadData(dataFile);
-            console.log('data in');
         } catch (error) {
             console.error('Error loading datasets', error);
         }

@@ -116,7 +116,6 @@
         for (const { file, ref, type, numericFields} of configs) {
         try {
             ref.value = await loadData(file, type, numericFields);
-            console.log(`${file} data in`);
         } catch (error) {
             console.error(`Error loading ${file}`, error);
         }

@@ -278,7 +278,6 @@
         try {
             for (let i = 0; i < Math.min(dataFiles.length, dataRefs.length, dataNumericFields.length); i++) {
                 dataRefs[i].value = await loadData(dataFiles[i], dataNumericFields[i]);
-                console.log(`${dataFiles[i]} data in`);
             }
         } catch (error) {
             console.error('Error loading datasets', error);

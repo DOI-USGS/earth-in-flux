@@ -61,7 +61,7 @@ export default {
             vizKey: 'GlacierScan',
             vizRoute: 'glacier-scan',
             img_src: 'glacial_mri_thumbnail.webp',
-            alt: '',
+            alt: 'Interactive topographic map of the Juneau Icefield showing snow core collection sites.',
             chartOrder: 1,
             description: 'Glacier ice records change.'
         },
@@ -71,7 +71,7 @@ export default {
             vizKey: 'WildfireAerosols',
             vizRoute: 'wildfire-aerosols',
             img_src: 'wildfire_aerosols_thumbnail.webp',
-            alt: '',
+            alt: 'Visual representation of a snow core showing layers of wildfire aerosol deposition preserved in glacier ice.',
             chartOrder: 2,
             description: 'Wildfire aerosols are preserved in glaciers.'
         },          
@@ -81,7 +81,7 @@ export default {
             vizKey: 'RegionalFires',
             vizRoute: 'regional-fires',
             img_src: 'aerosols_map_thumbnail.webp',
-            alt: '',
+            alt: 'Map of Alaska showing smoke plume trajectories from regional wildfires to the Juneau Icefield.',
             chartOrder: 2,
             description: 'Smoke plumes from regional wildfires affect glaciers.'
         },
@@ -111,7 +111,7 @@ export default {
             vizKey: 'BeaufortSeaCore',
             vizRoute: 'beaufort-sea-sediment-coring',
             img_src: 'BeaufortSeaCore_thumbnail.webp',
-            alt: '',
+            alt: 'Illustrated sequence showing how USGS scientists collect and process ocean sediment cores from the Beaufort Sea.',
             chartOrder: 1,
             description: 'Sediment cores can help build past and present climates.'
         },  
@@ -121,7 +121,7 @@ export default {
             vizKey: 'BeaufortSeaSpecies',
             vizRoute: 'beaufort-sea-species',
             img_src: 'BeaufortSeaSpecies_thumbnail.webp',
-            alt: '',
+            alt: 'Charts showing changes in relative abundance of foraminifera and ostracode microfossil species over the past 2000 years in the Beaufort Sea.',
             chartOrder: 2,
             description: 'Microfossils show that Arctic waters are changing.'
         },   
@@ -131,7 +131,7 @@ export default {
             vizKey: 'BeaufortSeaTimeline',
             vizRoute: 'beaufort-sea-timeline',
             img_src: 'BeaufortSeaTimeline_thumbnail.webp',
-            alt: '',
+            alt: 'Timeline visualization of climate proxy data from Beaufort Sea sediment cores spanning the past 2000 years.',
             chartOrder: 3,
             description: 'Microfossil records help reconstruct past climates.'
         }   
