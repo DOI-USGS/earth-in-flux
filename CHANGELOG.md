@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added draft visualizations for the Findex and Fish as Food USGS projects.
  
+## [1.0.1] - 2025-03-12
+ 
+### Added
+
+- New pre-footer code links component 
+
 ## [1.0.0] - 2024-12-18
  
 ### Added

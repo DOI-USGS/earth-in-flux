@@ -75,6 +75,8 @@
   --color-climate-and-dark-faded: var(--darker-blue);
   --inactive-grey: #CCCCCC;
   --inactive-text-grey: #757575;
+  --color-prefooter-highlight: var(--medium-blue);
+
 }
 
 /* @media (prefers-color-scheme: dark) {
