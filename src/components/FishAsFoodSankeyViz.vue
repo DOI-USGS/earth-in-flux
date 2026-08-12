@@ -328,6 +328,7 @@ function SankeyChart(
     .select(chart.value)
     .append('svg')
     .attr('id', 'sankey-svg')
+    .attr('aria-label', 'sankey diagram breaking out total harvest across five fish families with the largest recreational harvest by family, species/co-reported taxa, and country.')
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height])
@@ -342,6 +343,7 @@ function SankeyChart(
     .selectAll('rect')
     .data(nodes)
     .join('rect')
+    .attr('aria-hidden', (d) => d.depth === 0 ? 'false' : 'true')
     .attr('x', (d) => d.x0)
     .attr('y', (d) => d.y0)
     .attr('height', (d) => Math.max((d.y1 - d.y0), 0.5))
@@ -363,6 +365,7 @@ function SankeyChart(
 
   const link = svg
     .append('g')
+    .attr('aria-hidden', 'true')
     .attr('fill', 'none')
     .attr('stroke-opacity', linkStrokeOpacity)
     .selectAll('g')
@@ -417,6 +420,7 @@ function SankeyChart(
   if (Tl)
     svg
       .append('g')
+      .attr('aria-hidden', 'true')
       .selectAll('text')
       .data(nodes)
       .join('text')

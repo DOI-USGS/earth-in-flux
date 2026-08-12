@@ -16,7 +16,9 @@
           >
           <span>
             <p>{{ activeCountry.text }}</p>
-            <br>
+            <br
+              aria-hidden="true"
+            >
             <p
               v-if="mobileView"
             >
@@ -44,7 +46,9 @@
               alt=""
             >
           </div>
-          <hr>
+          <hr
+            aria-hidden="true"
+          >
           <span
             class="card-line"
           >
@@ -101,7 +105,10 @@
             <span>
               <b>{{ activeCountry.mean_vul }} out of 1</b> average 
               <span class="tooltip-group">
-                <span class="tooltip-span">
+                <span
+                  id="vulnerability-tooltip-span"
+                  class="tooltip-span"
+                >
                   climate vulnerability score
                 </span>
                 <span

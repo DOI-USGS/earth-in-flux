@@ -28,6 +28,7 @@
         :heading="item.heading"
         :content="item.content"
         :active-on-load="item.activeOnLoad"
+        accordion-id="silhouette-accordion"
         left-border-color="var(--medium-blue)"
         button-active-background-color="var(--medium-light-grey)"
         button-inactive-background-color="var(--medium-light-grey)"
@@ -163,6 +164,7 @@ function buildChart(data) {
     .select(chart.value)
     .append('svg')
     .attr('id', 'circle-pack-svg')
+    .attr('aria-label', 'circle packing diagram of total consumptive use value of recreationally harvested fish family, broken out by family, within family by species, and within species, by country where recreational harvest occurs.')
     .attr('viewBox', `-${width / 2} -${height / 2} ${width} ${height}`)
     .attr('width', width)
     .attr('height', height)
@@ -170,9 +172,15 @@ function buildChart(data) {
   // Append the nodes.
   const node = svg
     .append('g')
+    .attr('role', 'list')
     .selectAll('circle')
     .data(root.descendants().slice(1))
     .join('circle')
+    .attr('role', 'listitem')
+    .attr('aria-hidden', (d) => d.children ? "false" : "true")
+    .attr('aria-label', (d) => d.data.name)
+    .attr('class', 'packed-circle')
+    .attr('tabindex', (d) => d.children ? 0 : -1)
     .attr('fill', (d) => (d.children ? color(d.depth) : 'white'))
     .attr('pointer-events', (d) => (!d.children ? 'none' : null))
     .on('mouseover', function () {
@@ -185,6 +193,14 @@ function buildChart(data) {
       if (focus !== d) {
         zoom(event, d)
         event.stopPropagation()
+      }
+    })
+    .on("keydown", function(event, d) {
+      if (event.code == 'Enter' | event.code == 'Space') {
+        if (focus !== d) {
+          zoom(event, d)
+          event.stopPropagation()
+        }
       }
     })
 
@@ -218,6 +234,14 @@ function buildChart(data) {
       event.stopPropagation()
     }
   })
+  .on("keydown", function(event, d) {
+    if (event.code == 'Enter' | event.code == 'Space') {
+      if (focus !== d) {
+        zoom(event, d)
+        event.stopPropagation()
+      }
+    }
+  })
 
   //  zoom-out on background click
   d3.select(chart.value)
@@ -225,6 +249,12 @@ function buildChart(data) {
     .on('click', (event) => {
       activeFamily.value = defaultFamily
       zoom(event, root)
+    })
+    .on("keydown", function(event, d) {
+      if(event.code == 'Enter' | event.code == 'Space'){
+        activeFamily.value = defaultFamily
+        zoom(event, root)
+      }
     })
 
   let focus = root
@@ -358,5 +388,12 @@ function buildChart(data) {
     width: 220px;
     margin-left: -220px;
   }
+}
+.packed-circle:focus-visible {
+  stroke: var(--usgs-blue);
+  stroke-width: 3px;
+}
+circle:focus {
+  outline: none;
 }
 </style>
