@@ -5,10 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ## [Unreleased]
- 
+
 ### Added
-- Added draft visualizations for the Findex and Fish as Food USGS projects.
- 
+- Added visualizations for the Recreational Inland Fisheries as Food project, including interactive charts for fish consumption, consumptive use value, and climate vulnerability.
+- Added `enabled` flag to toggle project visibility without removing code.
+
 ## [1.0.1] - 2025-03-12
  
 ### Added
