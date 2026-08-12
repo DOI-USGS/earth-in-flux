@@ -31,7 +31,7 @@
     import text from "@/assets/text/text.js";
 
     // Get alphabetical list of project keys
-    const projectKeys = Object.keys(text.projects).sort()
+    const projectKeys = Object.keys(text.projects).filter(key => text.projects[key].enabled !== false).sort()
 </script>
 
 <style scoped>

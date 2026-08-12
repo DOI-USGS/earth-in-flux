@@ -10,7 +10,8 @@ export default {
             img_src: 'inland_fisheries_thumbnail.webp',
             alt: '',
             chartOrder: 1,
-            description: 'Inland fisheries face many threats.'
+            description: 'Inland fisheries face many threats.',
+            enabled: false
         },{
             title: 'Inland fisheries are threatened',
             project: 'Findex',
@@ -19,7 +20,8 @@ export default {
             img_src: 'findex_sankey_thumbnail.webp',
             alt: '',
             chartOrder: 2,
-            description: 'Land use change is threatening inland fisheries.'
+            description: 'Land use change is threatening inland fisheries.',
+            enabled: false
         },
         {
             title: 'Climate vulnerability of recreational fish consumption by country',
@@ -39,7 +41,8 @@ export default {
             img_src: 'threat_by_basin_thumbnail.webp',
             alt: '',
             chartOrder: 3,
-            description: 'Inland fisheries are threatened globally.'
+            description: 'Inland fisheries are threatened globally.',
+            enabled: false
         },
         {
             title: 'A test viz using the RegionMap component',
@@ -49,7 +52,8 @@ export default {
             img_src: 'Placeholder_thumbnail.webp',
             alt: '',
             chartOrder: 4,
-            description: 'FILL THIS OUT'
+            description: 'FILL THIS OUT',
+            enabled: false
         },
         {
             title: 'Explore the Juneau Icefield',

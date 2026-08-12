@@ -187,7 +187,9 @@
   const mobileView = isMobile;
   const projectRoute = ref(route.params.projectRoute)
   const projectKey = ref(projectRoute.value ? `${projectRoute.value.replace(/-/g, '')}` : null)
-  const projectKeys = Object.keys(text.projects).sort(); // Get alphabetical list of project keys
+  const projectKeys = Object.keys(text.projects)
+    .filter(key => text.projects[key].enabled !== false)
+    .sort(); // Get alphabetical list of project keys
   const currentView = computed(() => {
     return projectRoute.value ? projectRoute.value : 'all'
   });

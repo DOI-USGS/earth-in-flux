@@ -32,7 +32,7 @@
     
     // global variables
     const mobileView = isMobile;
-    const chartContent = ChartGridContent.chartGridItems;
+    const chartContent = ChartGridContent.chartGridItems.filter(d => d.enabled !== false);
     // S3 resource sourcing
     const s3ProdURL = import.meta.env.VITE_APP_S3_PROD_URL;
 
