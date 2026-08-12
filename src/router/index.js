@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import VisualizationView from '@/views/VisualizationView.vue'
 import SubPage from '@/components/SubPage.vue'
 
@@ -7,7 +7,7 @@ function lazyLoad(view){
 }
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',

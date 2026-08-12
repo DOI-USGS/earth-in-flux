@@ -87,6 +87,9 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
 
 .dropdown-content {
     display: none;

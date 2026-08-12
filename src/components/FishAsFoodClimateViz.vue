@@ -15,6 +15,7 @@
         <CountryInfoBox :active-country="activeCountry" />
         <div
           class="axis-title-container"
+          aria-hidden="true"
         >
           <p class="axis-title">
             {{ yAxisLabel }}
@@ -60,7 +61,7 @@
     const currentVal = ref(null);
     const currentCountry = ref(null);
     const countrySelected = ref(false);
-    const chartTitle = 'Title of chart';
+    const chartTitle = 'Scatterplot of inland fish consumption by recreational fishers vs. average climate vulnerability of harvested species. There is a circle for each country, and the size of each circle is proportional to the number of recreational fishers in each country. Hit the spacebar or enter while on this element to return to the default view after interacting with the chart.';
     let chartDimensions;
     let chartSVG;
     let chartBounds;
@@ -201,7 +202,9 @@
 
         // Add groups for visual elements
         chartBounds.append("g")
-            .attr("class", "circles");
+            .attr("class", "circles")
+            .attr("role", "list")
+            .attr("aria-label", "circles for individual countries");
     }
 
     function initXScale() {
@@ -213,6 +216,7 @@
     function initXAxis() {
         // add group for x axis
         xAxis = chartBounds.append("g")
+            .attr("aria-hidden", "true")
             .attr("id", "x-axis")
             .attr("class", "axis")
             .attr("transform", `translate(0,${chartDimensions.boundedHeight})`)
@@ -228,6 +232,7 @@
     function initYAxis() {
         // add group for y axis
         yAxis = chartBounds.append("g")
+            .attr("aria-hidden", "true")
             .attr("id", "y-axis")
             .attr("class", "axis")
             .attr("aria-hidden", true);
@@ -434,7 +439,7 @@
 
         // Add arrow
         const arrow_dim = 12;
-        chartSVG.append("defs").append("marker")
+        chartSVG.append("defs").attr("aria-hidden", "true").append("marker")
             .attr("id", "arrowhead-right") // Assign a unique ID
             .attr("viewBox", "0 -5 10 10") // Define the coordinate system for the marker
             .attr("refX", 10) // Reference point for the end of the arrow
@@ -443,7 +448,7 @@
             .attr("markerHeight", arrow_dim)
             .append("path")
             .attr("d", "M 0,-5 L 10,0 L 0,5"); // Define the arrowhead shape
-        chartSVG.append("defs").append("marker")
+        chartSVG.append("defs").attr("aria-hidden", "true").append("marker")
             .attr("id", "arrowhead-left") // Assign a unique ID
             .attr("viewBox", "0 -5 10 10") // Define the coordinate system for the marker
             .attr("refX", 0) // Reference point for the end of the arrow
@@ -518,6 +523,7 @@
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
                 .append("circle") // append a circle for each element
+                    .attr("aria-hidden", "true")
                     .attr("class", d => "circle " + d.continent)
                     .attr("id", d => 'circle-' + identifierAccessor(d))
                     .attr("cx", d => xScale(xAccessor(d)))
@@ -532,6 +538,13 @@
                 .data(chartData) // bind data
                 .enter() // instantiate chart element for each element of data
                 .append("circle") // append a circle for each element
+                    .attr("tabindex", 0)
+                    .attr("role", "listitem")
+                    .attr("aria-label", d => {
+                        const value = yAccessor(d)
+                        const roundedValue = value < 1 ? (value * 1000 < 10 ? `${Math.round(value * 10000) / 10} g` : `${Math.round(value * 1000 / 5) * 5} g`) : `${Math.round(value * 10) / 10} kg`
+                        return `Each year, each inland recreational fisher in ${d.admin} consumes ${roundedValue} of fish`
+                    })
                     .attr("class", d => "circle-mask " + d.continent)
                     .attr("id", d => 'circle-mask-' + identifierAccessor(d))
                     .attr("cx", d => xScale(xAccessor(d)))
@@ -540,60 +553,15 @@
                     .attr('fill', '#FFFFFF')
                     .attr('stroke', '#FFFFFF')
                     .attr('stroke-width', '1px')
-                    .attr('opacity', 0)
+                    .attr('fill-opacity', 0)
+                    .attr('stroke-opacity', 0)
                     .on("click", (event, d) => {
-                        // Note that a country is selected
-                        countrySelected.value = true;
-                        // Update the y-axis label
-                        populateYAxisLabel(d.admin, yAccessor(d))
-                        
-                        chartBounds.selectAll(".circle")
-                            .attr('stroke', '#FFFFFF')
-                            .attr('stroke-width', '1px')
-                        chartBounds.selectAll(".circle-mask")
-                            .attr("opacity", 0.5)
-                        // arrange circles in DOM
-                        for (var i = 0; i < chartData.length; i++){
-                            let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
-                            let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
-                            currentCircle.raise();
-                            currentCircleMask.raise();
-                        };
-                        chartBounds.select("#circle-" + identifierAccessor(d))
-                            .attr('stroke', '#000000')
-                            .attr('stroke-width', '3px')
-                            .raise()
-                        chartBounds.select("#circle-mask-" + identifierAccessor(d))
-                            .attr("opacity", 0)
-                            .raise()
-                        activeCountry.value = {
-                            name: d.admin,
-                            continent: colorAccessor(d).replace(/ /g,"_"),
-                            participation_rate: Math.round(d.participation_rate),
-                            n_fishers: d3.format(',')(d.n_fishers),
-                            consum_harv_kg: d3.format(',')(Math.round(d.total_consumable_harv_kg)),
-                            mean_vul: Math.round(d.MCDM_VUL_2075_45*100)/100,
-                            harv_breakdown: [
-                                {
-                                    guild: "warm",
-                                    percent: Math.round(d.warm*10)/10
-                                },
-                                {
-                                    guild: "cool",
-                                    percent: Math.round(d.cool*10)/10
-                                },
-                                {
-                                    guild: "cold",
-                                    percent: Math.round(d.cold*10)/10
-                                },
-                                {
-                                    guild: "unknown",
-                                    percent: Math.round(d.unknown*10)/10
-                                }
-                            ]
+                        selectCountry(event, d)
+                    })
+                    .on("keydown", function(event, d) {
+                        if (event.code == 'Enter' | event.code == 'Space') {
+                          selectCountry(event, d)
                         }
-                        // Don't propagate event to svg itself
-                        event.stopPropagation();
                     })
                     .on("mouseover", (event, d) => {
                         // If no country is selected, allow mouseover updates to y-axis label
@@ -608,30 +576,99 @@
                         }
                     })
         
+        function selectCountry(event, d) {
+            // Note that a country is selected
+            countrySelected.value = true;
+            // Update the y-axis label
+            populateYAxisLabel(d.admin, yAccessor(d))
+            
+            chartBounds.selectAll(".circle")
+                .attr('stroke', '#FFFFFF')
+                .attr('stroke-width', '1px')
+            chartBounds.selectAll(".circle-mask")
+                .attr("fill-opacity", 0.5)
+                .attr("stroke-opacity", 0.5)
+            // arrange circles in DOM
+            for (var i = 0; i < chartData.length; i++){
+                let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
+                let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
+                currentCircle.raise();
+                currentCircleMask.raise();
+            };
+            chartBounds.select("#circle-" + identifierAccessor(d))
+                .attr('stroke', '#000000')
+                .attr('stroke-width', '3px')
+                .raise()
+            chartBounds.select("#circle-mask-" + identifierAccessor(d))
+                .attr("fill-opacity", 0)
+                .attr("stroke-opacity", 0)
+                .raise()
+            activeCountry.value = {
+                name: d.admin,
+                continent: colorAccessor(d).replace(/ /g,"_"),
+                participation_rate: Math.round(d.participation_rate),
+                n_fishers: d3.format(',')(d.n_fishers),
+                consum_harv_kg: d3.format(',')(Math.round(d.total_consumable_harv_kg)),
+                mean_vul: Math.round(d.MCDM_VUL_2075_45*100)/100,
+                harv_breakdown: [
+                    {
+                        guild: "warm",
+                        percent: Math.round(d.warm*10)/10
+                    },
+                    {
+                        guild: "cool",
+                        percent: Math.round(d.cool*10)/10
+                    },
+                    {
+                        guild: "cold",
+                        percent: Math.round(d.cold*10)/10
+                    },
+                    {
+                        guild: "unknown",
+                        percent: Math.round(d.unknown*10)/10
+                    }
+                ]
+            }
+            // Don't propagate event to svg itself
+            event.stopPropagation();
+        }
+
         // attach click event to svg to return to default view
         chartSVG
+            .attr("tabindex", 0)
             .on('click', () => {
-                // Note that no country is selected
-                countrySelected.value = false;
-                // Reset y-axis label
-                currentCountry.value = null;
-                // arrange circles in DOM
-                for (var i = 0; i < chartData.length; i++){
-                    let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
-                    let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
-                    currentCircle.raise();
-                    currentCircleMask.raise();
-                };
-                chartBounds.selectAll(".circle")
-                    .attr('stroke', '#FFFFFF')
-                    .attr('stroke-width', '1px')
-                chartBounds.selectAll(".circle-mask")
-                    .attr('opacity', 0)
-                resetInfoBox()
+                returnToDefaultView();
             })
+            .on("keydown", (event, d) => {
+                if (event.code == 'Enter' | event.code == 'Space') {
+                    returnToDefaultView();
+                }
+            })
+
+        function returnToDefaultView() {
+            // Note that no country is selected
+            countrySelected.value = false;
+            // Reset y-axis label
+            currentCountry.value = null;
+            // arrange circles in DOM
+            for (var i = 0; i < chartData.length; i++){
+                let currentCircle = chartBounds.select("#circle-" + identifierAccessor(chartData[i]))
+                let currentCircleMask = chartBounds.select("#circle-mask-" + identifierAccessor(chartData[i]))
+                currentCircle.raise();
+                currentCircleMask.raise();
+            };
+            chartBounds.selectAll(".circle")
+                .attr('stroke', '#FFFFFF')
+                .attr('stroke-width', '1px')
+            chartBounds.selectAll(".circle-mask")
+                .attr('fill-opacity', 0)
+                .attr('stroke-opacity', 0)
+            resetInfoBox()
+        }
 
         const notationWidth = mobileView ? 160 : 160;
         chartSVG.append("text")
+            .attr("aria-hidden", "true")
             .attr("class", "chart-notation")
             .attr("x", chartDimensions.boundedWidth - notationWidth / 2 )
             .attr("y", mobileView ? 2 : 0)
@@ -644,6 +681,7 @@
             .call(d => wrap(d, {shift: false}));
 
         chartBounds.append("text")
+            .attr("aria-hidden", "true")
             .attr("class", "chart-notation")
             .attr("x", mobileView ? 90 : 160)
             .attr("y", chartDimensions.boundedHeight * 0.99)
@@ -737,6 +775,19 @@
 
 <style lang="scss">
   /* css for elements added and classed w/ d3 */
+  #wrapper {
+    padding: 2px 0 0 2px;
+  }
+  #wrapper:focus {
+    outline: none;
+    border: none;
+  }
+  #wrapper:focus-visible {
+    padding: -2px 0 0 -2px;
+    border: none;
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+  }
   #y-axis line {
     stroke-width: 0.5px;
     stroke: var(--dark-grey);
@@ -773,6 +824,29 @@
     font-weight: 300;
     fill: var(--grey-12_1);
     user-select: none;
+  }
+  .circle-mask:focus-visible {
+    stroke-opacity: 1;
+    outline: none;
+    border: none;
+    stroke: #000000;
+    stroke-width: 3px;
+  }
+  .circle-mask:focus {
+    outline: none;
+    border: none;
+  }
+  #consumable-tooltip {
+    margin-left: -180px;
+    width: 185px;
+    z-index: 10;
+    @media only screen and (max-width: 600px) {
+        width: 160px;
+        margin-left: -160px;
+    }
+    }
+  #vulnerability-tooltip-span {
+    z-index: 9;
   }
   #vulnerability-tooltip {
     margin-left: -235px;

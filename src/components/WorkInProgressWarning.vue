@@ -47,5 +47,8 @@
       font-weight: bold;
       font-size: small;
     }
+    button:focus-visible {
+      outline: 2px solid white;
+    }
   }
 </style>
