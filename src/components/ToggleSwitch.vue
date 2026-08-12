@@ -5,7 +5,7 @@
   >
     <label
       class="toggle-label"
-      aria-hidden="true"
+      :aria-label="toggleTitle"
     >
       <!-- Left label for either/or use case -->
       <span 
@@ -22,7 +22,7 @@
         type="checkbox" 
         class="toggle-input" 
         :checked="modelValue"
-        aria-hidden="true" 
+        :aria-checked="modelValue"
         @change="$emit('update:modelValue', !modelValue)"
       >
       <span 
@@ -54,7 +54,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   modelValue: Boolean, // v-model binding for toggle state
 
   // optional props for either/or labels
@@ -90,6 +92,10 @@ defineProps({
   }
 });
 
+const toggleTitle = computed(() => {
+  return props.label ? `${props.label}` : `${rightLabel}`;
+})
+
 defineEmits(['update:modelValue']);
 </script>
 
@@ -99,6 +105,7 @@ defineEmits(['update:modelValue']);
   display: flex;
   align-items: start;
   gap: 10px;
+  margin-bottom: 0.3rem;
 }
 
 /* toggle label for positioning */
@@ -109,7 +116,12 @@ defineEmits(['update:modelValue']);
   cursor: pointer;
   position: relative;
 }
-
+.toggle-label:has(:focus-visible) {
+  border: 2px solid var(--usgs-blue);
+  border-radius: 10px;
+  padding: 0 3px 0 3px;
+  margin: -2px -5px -2px -5px;
+}
 /* text styles */
 .toggle-text {
   transition: color 0.3s ease;
@@ -119,9 +131,6 @@ defineEmits(['update:modelValue']);
 .toggle-text.tactive {
   color: var(--black-soft); /* active label is black */
 }
-.toggle-input:focus-visible {
-  outline: none; /* removes focus outline */
-}
 
 .toggle-label:focus-visible {
   outline: none; /* removes focus outline */
@@ -129,7 +138,8 @@ defineEmits(['update:modelValue']);
 
 /* toggle input (hidden) */
 .toggle-input {
-  display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 /* toggle slider styles */
@@ -140,7 +150,7 @@ defineEmits(['update:modelValue']);
   height: 20px;
   border-radius: 20px;
   transition: background-color 0.3s ease;
-  border: 1px solid var(--black-soft);
+  /* border: 1px solid var(--black-soft); */
 }
 
 .toggle-slider::before {
@@ -150,16 +160,17 @@ defineEmits(['update:modelValue']);
   height: 16px;
   background-color: white;
   border-radius: 50%;
-  top: 1.5px;
-  left: 1.5px;
+  top: 2px;
+  left: 2px;
   transition: transform 0.3s ease;
-  border: 1px solid var(--black-soft); 
+  /* border: 1px solid var(--black-soft);  */
 }
 
 /* move slider to the right when checked */
 .toggle-input:checked + .toggle-slider::before {
+  top: 2px;
   transform: translateX(20px);
-  border: 1px solid var(--black-soft); 
+  /* border: 1px solid var(--black-soft);  */
 }
 
 </style>

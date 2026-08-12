@@ -214,16 +214,6 @@
             "value": 495548701.2
           }
         ]
-      },
-      {
-        "name": "White bass, striped bass",
-        "sci_name": "Moronidae spp.",
-        "children": [
-          {
-            "name": "United States of America",
-            "value": 272551785.66
-          }
-        ]
       }
     ]
   },
@@ -1127,10 +1117,6 @@
           {
             "name": "China",
             "value": 473955300
-          },
-          {
-            "name": "Romania",
-            "value": 1165536
           }
         ]
       },
@@ -1331,6 +1317,10 @@
           {
             "name": "Hungary",
             "value": 526476.4725
+          },
+          {
+            "name": "Romania",
+            "value": 1165536
           },
           {
             "name": "Russia",
@@ -1794,6 +1784,21 @@
     ]
   },
   {
+    "name": "Moronidae",
+    "children": [
+      {
+        "name": "White bass, striped bass",
+        "sci_name": "Moronidae spp.",
+        "children": [
+          {
+            "name": "United States of America",
+            "value": 272551785.66
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Osmeridae",
     "children": [
       {
@@ -1817,33 +1822,6 @@
           {
             "name": "Japan",
             "value": 13044358.8
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "Osteichthyes",
-    "children": [
-      {
-        "name": "Freshwater fishes not elsewhere included",
-        "sci_name": "Osteichthyes",
-        "children": [
-          {
-            "name": "Hungary",
-            "value": 2110623.2363
-          },
-          {
-            "name": "Latvia",
-            "value": 1148058.877
-          },
-          {
-            "name": "Republic of Serbia",
-            "value": 2775689.28
-          },
-          {
-            "name": "Switzerland",
-            "value": 3944.2143
           }
         ]
       }

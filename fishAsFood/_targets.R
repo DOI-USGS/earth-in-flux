@@ -20,7 +20,7 @@ p1 <- list(
   tar_target(
     p1_data_xlsx,
     {
-      data_file <- 'Rec fish food_v1.1.xlsx'
+      data_file <- 'Rec fish food_v1.2.xlsx'
       out_file <- file.path('in', data_file)
       sbtools::item_file_download(sb_id = p0_sb_id, 
                                   names = data_file, 

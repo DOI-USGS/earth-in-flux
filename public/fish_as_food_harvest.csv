@@ -4,7 +4,6 @@ Centrarchidae,Bass,21057364.98
 Centrarchidae,Black bass,9133270
 Centrarchidae,Crappie,15294713
 Centrarchidae,Sunfish,21530987.3
-Centrarchidae,"White bass, striped bass",9896579
 Cyprinidae,Black bream,125385000
 Cyprinidae,Black carp,125385000
 Cyprinidae,Common bream,17966349.7041
@@ -12,7 +11,7 @@ Cyprinidae,Common carp,143988868.56225
 Cyprinidae,Common roach,16233861.35399
 Cyprinidae,Crucian carp,11815384.4651
 Cyprinidae,European carp,14461955.105999999
-Cyprinidae,Goldfish,251110800
+Cyprinidae,Goldfish,250770000
 Cyprinidae,Grass carp,127573747.385
 Percidae,European perch,16929867.707439996
 Percidae,Walleye,48837246.23
@@ -193,7 +192,6 @@ Black bass,Portugal,46380
 Trout,Portugal,61840
 Zander (pikeperch),Portugal,46380
 Common bream,Romania,85200
-Goldfish,Romania,340800
 Common carp,Romania,170400
 Salmon,Romania,59640
 Trout,Romania,85200
@@ -247,7 +245,6 @@ European perch,Ukraine,425930.4
 Common roach,Ukraine,1874093.76
 Sunfish,United States of America,17993780
 Black bass,United States of America,8996890
-"White bass, striped bass",United States of America,9896579
 Steelhead,United States of America,899689
 Crappie,United States of America,15294713
 Salmon,United States of America,1799378
