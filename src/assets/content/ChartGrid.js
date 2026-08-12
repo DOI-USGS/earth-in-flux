@@ -30,7 +30,7 @@ export default {
             vizRoute: 'rec-fish-vulnerability',
             img_src: 'FaF_climate_vulnerability_thumbnail.webp',
             chartOrder: 3,
-            alt: '',
+            alt: 'Bubble chart showing climate vulnerability of recreational fish consumption by country, with circles colored by continent and sized by number of fishers.',
             description: 'Climate vulnerability of recreational fish consumption varies by country.'
         },
         {
@@ -91,7 +91,7 @@ export default {
             vizKey: 'FishAsFoodCirclePacking',
             vizRoute: 'rec-fish-consumption-value',
             img_src: 'circle-pack-thumbnail.webp',
-            alt: '',
+            alt: 'Circle packing diagram showing the economic value of recreationally harvested fish, with nested circles representing fish families, species, and countries.',
             chartOrder: 2,
             description: 'The consumption of recreationally harvested inland fish has economic value.'
         },
@@ -101,7 +101,7 @@ export default {
             vizKey: 'FishAsFoodSankey',
             vizRoute: 'rec-fish-consumption',
             img_src: 'FishAsFood_sankey_thumbnail.webp',
-            alt: '',
+            alt: 'Sankey diagram showing the flow of inland recreational fish harvest from fish families to species to countries.',
             chartOrder: 1,
             description: 'Recreational harvest of inland fish for consumption is substantial.'
         },
