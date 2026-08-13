@@ -81,7 +81,6 @@ onMounted(() => {
       .append("g")
       .attr('class', 'node')
       .on('click', function (event, d) {
-        console.log('Clicked:', d.link); // Log to ensure click event is triggered
       });
 
     node
