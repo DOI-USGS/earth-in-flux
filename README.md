@@ -4,7 +4,7 @@
 
 The Earth in Flux chart gallery is a shared initiative between the USGS Water Mission Area and Ecosystems Mission Area to communicate key findings of USGS land change science in innovative ways, and to encourage creativity, exploration, and community in data visualization across USGS mission areas.
 
-**The chart gallery can be viewed at [https://labs.waterdata.usgs.gov/visualizations/earth-in-flux](https://labs.waterdata.usgs.gov/visualizations/earth-in-flux).**
+**The chart gallery can be viewed at [https://water.usgs.gov/vizlab/earth-in-flux](https://water.usgs.gov/vizlab/earth-in-flux).**
 
 ## Citation
 
