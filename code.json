@@ -14,7 +14,7 @@
         }
       ]
     },
-    "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
+    "homepageURL": "https://water.usgs.gov/vizlab/earth-in-flux/",
     "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/main/earth-in-flux-main.zip",
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",
@@ -53,7 +53,7 @@
         }
       ]
     },
-    "homepageURL": "https://labs.waterdata.usgs.gov/visualizations/earth-in-flux/",
+    "homepageURL": "https://water.usgs.gov/vizlab/earth-in-flux/",
     "downloadURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/archive/1.0.0/earth-in-flux-1.0.0.zip",
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux/-/raw/1.0.0/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/earth-in-flux.git",

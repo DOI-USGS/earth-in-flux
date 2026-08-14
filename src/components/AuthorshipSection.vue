@@ -31,7 +31,7 @@
       >
         <p>
           This visualization was developed by the <a
-            href="https://labs.waterdata.usgs.gov/visualizations/"
+            href="https://water.usgs.gov/vizlab/"
             target="_blank"
           >USGS Vizlab</a>
           <span id="primary-author-statment">
