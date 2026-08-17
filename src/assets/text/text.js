@@ -15,7 +15,7 @@ export default {
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "headshots/jeffrey_kwang_profile.png" },
             { name: "Kaysa Vaarre-Lamoureux", link: "", image: "headshots/kaysa_squarepic.png" },
-            { name: "Elmera Azadpour", link: "https://www.usgs.gov/staff-profiles/elmera-azadpour", image: "headshots/elmera_azadpourSquare.jpg" }
+            { name: "Elmera Azadpour", link: "https://www.usgs.gov/staff-profiles/elmera-azadpour", image: "headshots/elmera_azadpour_square_update.png"}
         ],
         projectsHeading: "USGS land change science projects",
         projectsLeadIn: "The USGS land change science projects currently highlighted in this page are the"
