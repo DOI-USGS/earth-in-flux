@@ -11,7 +11,7 @@ export default {
         teamData: [
             { name: "Hayley Corson-Dosch", link: "https://www.usgs.gov/staff-profiles/hayley-corson-dosch", image: "headshots/HCorson-Dosch.png" },
             { name: "Maggie Jaenicke", link: "https://www.usgs.gov/staff-profiles/margaret-maggie-jaenicke", image: "headshots/MaggieJaenicke.png" },
-            { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/cee%20nell%20resized.png?h=53fbb397&itok=I7tqKZDm" },
+            { name: "Cee Nell", link: "https://www.usgs.gov/staff-profiles/cee-nell", image: "headshots/cee_png.jpeg" },
             { name: "Althea Archer", link: "https://www.usgs.gov/staff-profiles/althea-archer", image: "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/staff_profile/public/media/images/aaarcher_staff_profile.jpg?h=585bdce6&itok=Z0LQ51Gs" },
             { name: "Jeffrey Kwang", link: "https://www.usgs.gov/staff-profiles/jeffrey-kwang", image: "headshots/jeffrey_kwang_profile.png" },
             { name: "Kaysa Vaarre-Lamoureux", link: "", image: "headshots/kaysa_squarepic.png" },
