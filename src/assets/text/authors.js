@@ -85,6 +85,11 @@ export default {
       initials: 'AA',
       profile_link: 'https://www.usgs.gov/staff-profiles/althea-archer'
     },
+    {
+      fullName: 'Cee Nell',
+      initials: 'CN',
+      profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell'
+    }
   ],
   FishAsFoodSankey: [
     {
