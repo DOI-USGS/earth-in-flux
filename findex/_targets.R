@@ -129,7 +129,7 @@ p2 <- list(
       p2_mean_weighted_subThreats |>
         select(MajorCat, ThreatCategory) |>
         mutate(
-          # color ramps
+          # color ramps, mirroring the category colors in src/assets/css/base.css
           pal = case_when(
             MajorCat == "Habitat" ~ list(c("#4E6D6E", "#C9D8D9")),#), 
             MajorCat == "Fishing pressure" ~ list(c("#835192", "#DDCCE2")), 
