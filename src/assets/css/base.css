@@ -32,6 +32,10 @@
   --blue: #002D5E;
   --red: #B74F49;
   --purple: #835192;
+  --light-teal: #729C9D;
+  --light-brown: #dab589;
+  --light-red: #d38884;
+  --light-purple: #c29fcd;
   --faded-teal: #C9D8D9;;
   --faded-brown: #E1C8AA;
   --faded-blue: #B2C0CE;
@@ -70,9 +74,14 @@
   --color-habitat-faded: var(--faded-teal);
   --color-pollution-faded: var(--faded-brown);
   --color-climate-and-weather-faded: var(--faded-blue);
+  --color-habitat-light: var(--light-teal);
+  --color-pollution-light: var(--light-brown);
+  --color-climate-and-weather-light: var(--grey-blue);
+  --color-invasive-species-light: var(--light-red);
+  --color-fishing-pressure-light: var(--light-purple);
   --color-habitat-dark: var(--darker-teal);
   --color-pollution-dark: var(--darker-brown);
-  --color-climate-and-dark-faded: var(--darker-blue);
+  --color-climate-and-weather-dark: var(--darker-blue);
   --inactive-grey: #CCCCCC;
   --inactive-text-grey: #757575;
   --color-prefooter-highlight: var(--medium-blue);

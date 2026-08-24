@@ -54,35 +54,41 @@
     import topoUS from '@/assets/geo/USoutline.json'
 
 
+    // threat category colors live in base.css so every findex chart matches
+    function categoryColor(category) {
+        const cssVar = `--color-${category.replace(/ /g, '-').toLowerCase()}-top`;
+        return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+    }
+
     const layers = [
         {
             label: 'Climate and weather',
             value: 'Climate_and_weather_map',
-            color: '#2a9d8f',
+            color: categoryColor('Climate and weather'),
             path: ClimateMap
         },
         {
             label: 'Fishing pressure',
             value: 'Fishing_pressure_map',
-            color: '#264653',
+            color: categoryColor('Fishing pressure'),
             path: FishingMap
         },
         {
             label: 'Habitat',
             value: 'Habitat_map',
-            color: '#899bb7',
+            color: categoryColor('Habitat'),
             path: HabitatMap
         },
         {
             label: 'Invasive species',
             value: 'Invasive_species_map',
-            color: '#c29fcd',
+            color: categoryColor('Invasive species'),
             path: InvasiveMap
         },
         {
             label: 'Pollution',
             value: 'Pollution_map',
-            color: '#dab589',
+            color: categoryColor('Pollution'),
             path: PollutionMap
         }
     ]

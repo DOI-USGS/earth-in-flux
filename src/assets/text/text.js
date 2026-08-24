@@ -23,7 +23,6 @@ export default {
     projects: {
         // keys must match project routes (with '-' replaced with '')
         findex: {
-            enabled: false,
             title: "Findex",
             fullTitle: "Findex",
             logo: "Findex_Logo.png",

@@ -54,14 +54,11 @@
     const nodeWidth = 4;
     const labelBuffer = 10;
 
-    // Colors for threat categories, Needs to be updated with CSS for text legend
-    const categoryColors = {
-        'Climate and weather': '#899bb7',
-        'Fishing pressure': '#c29fcd',
-        'Habitat': '#729C9D', 
-        'Invasive species': '#d38884',
-        'Pollution': '#dab589'
-    }; 
+    // threat category colors live in base.css so every findex chart matches
+    function categoryColor(category) {
+        const cssVar = `--color-${category.replace(/ /g, '-').toLowerCase()}-light`;
+        return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
+    }
 
     onMounted(async () => {
         try {
@@ -233,7 +230,7 @@
         // Set up color scale 
         const colorScale = d3.scaleOrdinal()
             .domain(categoryGroups)
-            .range(categoryGroups.map(item => categoryColors[item]));
+            .range(categoryGroups.map(category => categoryColor(category)));
         
         // set up the nodes and links
         var nodesLinks = graphNodes({
