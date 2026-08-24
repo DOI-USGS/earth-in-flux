@@ -720,7 +720,7 @@ export default {
                             ]
                         },
                         {
-                            subThreat: "Agricultural extraction",
+                            subThreat: "Agricultural water use",
                             subThreatIcon: "H-agriculture-5491228",
                             subThreatText: [
                                 {
@@ -740,7 +740,7 @@ export default {
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Agricultural extraction mitigation",
+                                    content: [{type: "text", content: "Agricultural water use mitigation",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -751,7 +751,7 @@ export default {
                             ]
                         },
                         {
-                            subThreat: "Urban extraction",
+                            subThreat: "Urban water use",
                             subThreatIcon: "H-urban-7019973",
                             subThreatText: [
                                 {
@@ -782,7 +782,7 @@ export default {
                             ]
                         },
                         {
-                            subThreat: "Industrial extraction",
+                            subThreat: "Industrial water use",
                             subThreatIcon: "H-industrial-659077",
                             subThreatText: [
                                 {
@@ -831,22 +831,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Agricultural effluents text",
+                                    content: [{type: "text", content: "Expansion of aquaculture production, transition from fishing to farming of aquatic organisms.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Agricultural effluents impact",
+                                    content: [{type: "text", content: "Aquaculture effluents can contain nutrients, solids, pharmaceuticals, pathogens, and sometimes cultured organisms. Nutrients can lead to eutrophication of receiving waters, solids can increase turbidity and sedimentation. Impacts of pharmaceuticals are varied, most pharmaceuticals used in aquaculture are not toxic to fish but some such as hormones used to induce sex reversal can have non-lethal impacts. Pathogens can have major impacts on wild fish particularly when non-native pathogens are introduced or when exposure to native pathogens is greatly increased due to cultured fish acting as a reservoir host. ",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Agricultural effluents sectors",
+                                    content: [{type: "text", content: "Aquaculture industry, commercial fishing industry, recreational fishing industry, government resource managers.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Agricultural effluents mitigation",
+                                    content: [{type: "text", content: "Effluents from tank aquaculture systems, and to a lesser extent pond systems, can be treated. Cage/pen systems are environmentally open and offer no such opportunities.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -862,22 +862,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Urban wastewater text",
+                                    content: [{type: "text", content: "Populations are urbanizing around the globe leading to increases in municipal wastewater discharge.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Urban wastewater impact",
+                                    content: [{type: "text", content: "Urban and municipal wastewaters contain a variety of pollutants that are harmful to fish. <br/>Inputs of organic materials and nutrients from wastewater can cause habitat degradation due eutrophication and reductions in dissolved oxygen (Tetreault et al. 2013).<br/><br/>A wide variety of toxic contaminants including ammonia, chloride, and industrial chemicals can result in acute toxicity (Tetreault et al. 2013).<br/><br/>Natural and synthetic hormones, pharmaceuticals, and personal care products can cause both acute toxicity and disruption of endocrine systems leading to reproductive impacts (Tetreault et al. 2013).",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Urban wastewater sectors",
+                                    content: [{type: "text", content: "Municipal governments<br/>Regulatory agencies",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Urban wastewater mitigation",
+                                    content: [{type: "text", content: "More widespread use of effective wastewater treatment infrastructure and technologies. <br/><br/>Increased regulation of municipal wastewater management.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -893,22 +893,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Industrial effluents text",
+                                    content: [{type: "text", content: "Economic development combined with weak environmental policy/legislation.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Industrial effluents impact",
+                                    content: [{type: "text", content: "Habitat: higher concentrations of nutrients leading to e.g. deoxygenation, food web changes. higher toxin levels, increased salt-concentration, <br/><br/>Fish impacts: acute toxicity, reduced spawning success, <br/><br/>Fisheries impacts: reduced value of fisheries, contaminated products",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industrial effluents sectors",
+                                    content: [{type: "text", content: "Government (environmental and industry ministry), Fisheries, Consumers, Downstream communities and ecosystems",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Industrial effluents mitigation",
+                                    content: [{type: "text", content: "Mitigation: Strikter policy/legislation on effluents purification (including industry specific standards), capacity building on environmental and socioeconomic effects. <br/><br/>Adaptation: Consumption guidelines, NBS for water purification",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -924,22 +924,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Aquaculture effluents text",
+                                    content: [{type: "text", content: "Expansion of aquaculture production, transition from fishing to farming of aquatic organisms.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Aquaculture effluents impact",
+                                    content: [{type: "text", content: "Aquaculture effluents can contain nutrients, solids, pharmaceuticals, pathogens, and sometimes cultured organisms. Nutrients can lead to eutrophication of receiving waters, solids can increase turbidity and sedimentation. Impacts of pharmaceuticals are varied, most pharmaceuticals used in aquaculture are not toxic to fish but some such as hormones used to induce sex reversal can have non-lethal impacts. Pathogens can have major impacts on wild fish particularly when non-native pathogens are introduced or when exposure to native pathogens is greatly increased due to cultured fish acting as a reservoir host.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Aquaculture effluents sectors",
+                                    content: [{type: "text", content: "Aquaculture industry <br/><br/>Commercial fishing industry<br/><br/>Recreational fishing industry<br/><br/>Government resource managers",   
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Aquaculture effluents mitigation",
+                                    content: [{type: "text", content: "Effluents from tank aquaculture systems, and to a lesser extent pond systems, can be treated. Cage/pen systems are environmentally open and offer no such opportunities. ",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -955,22 +955,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Pharmaceuticals text",
+                                    content: [{type: "text", content: "Increased utilization of pharmaceuticals for human and veterinary usage",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Pharmaceuticals impact",
+                                    content: [{type: "text", content: "Depending on fish species and pharmaceutical type and concentration, fish behavior, reproduction, development, and genetic characteristics may be negatively affected.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Pharmaceuticals sectors",
+                                    content: [{type: "text", content: "Pharmaceutical Industry, Medical Sector, Livestock Farmers, health agencies, environmental agencies.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Pharmaceuticals mitigation",
+                                    content: [{type: "text", content: "Reduction of pharmaceutical usage for animal use; Ensure proper disposal of pharmaceuticals; Enhance detection of pharmaceuticals in waterways.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -986,22 +986,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Oil or gas exploration text",
+                                    content: [{type: "text", content: "Weak legislation. Limited enforcement. No stakeholder involvement.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Oil or gas exploration impact",
+                                    content: [{type: "text", content: "PAH affects salmonid embryogenesis, impaired swimming capacity, and can result in malformations. Fish exposed to petroleum have become more susceptible to parasitism and eye and cardiac dysfunctions.<br/><br/>Water bodies affected by crude oil experienced a notable decline in fish diversity",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Oil or gas exploration sectors",
+                                    content: [{type: "text", content: "Oil industry, International corporations and government.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Oil or gas exploration mitigation",
+                                    content: [{type: "text", content: "Better regulation, monitoring and control. Stakeholder consultations.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -1017,7 +1017,7 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Plastics text",
+                                    content: [{type: "text", content: "Increased creation and consumption of plastics.",
                                     }],activeOnLoad: true
                                 },
                                 {
@@ -1027,12 +1027,12 @@ export default {
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Plastics sectors",
+                                    content: [{type: "text", content: "Manufacturers, Industrial Sectors, Environmental Agencies.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Plastics mitigation",
+                                    content: [{type: "text", content: "Reduction of plastic usage; Removal of plastic/microplastics from waterways.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -1048,12 +1048,12 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Mining text",
+                                    content: [{type: "text", content: "Poverty and lack of formal employment . Weak legislation. Limited enforcement.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Mining impact",
+                                    content: [{type: "text", content: "Affect fish habitats by increasing erosion and siltation.<br/><br/>Mining can also lead to the release of toxic chemicals into the environment, which can have negative effects on fish populations. For example, cyanide is often used in gold mining to extract gold from ore, and it can be toxic to fish and other aquatic organisms. Heavy metals such as mercury and lead can also be released during mining operations, which can accumulate in fish tissues and cause health problems for both fish and humans who consume them.<br/><br/>",
                                     }],activeOnLoad: true
                                 },
                                 {

@@ -133,6 +133,11 @@ export default {
       initials: 'HCD',
       profile_link: 'https://www.usgs.gov/staff-profiles/hayley-corson-dosch'
     },
+    {
+      fullName: 'Cee Nell',
+      initials: 'CN',
+      profile_link: 'https://www.usgs.gov/staff-profiles/cee-nell'
+    },
   ],
   WildfireAerosols: [
     {
