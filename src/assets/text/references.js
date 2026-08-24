@@ -102,19 +102,6 @@ export default {
     {
       reference: "Reference 2.",
       num: "2",
-      authors: "Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., Schwartz, V.",
-      year: "2023",
-      title: "Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea",
-      link: "http://doi.org/10.47894/mpal.69.3.04",
-      journal: true,
-      journal_name: "Micropaleontology",
-      journal_issue: "69",
-      data_release: false,
-      doi: "http://doi.org/10.47894/mpal.69.3.04"
-    },
-    {
-      reference: "Reference 3.",
-      num: "3",
       authors: "Gemery, L.",
       year: "2021",
       title: "Data Release to Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea.",
@@ -124,6 +111,19 @@ export default {
       data_release: true,
       link: "https://www.sciencebase.gov/catalog/item/6197a410d34eb622f692ce0e",
       doi: "https://doi.org/10.5066/P9SRRW6T"
+    },
+    {
+      reference: "Reference 3.",
+      num: "3",
+      authors: "Gemery, L., Cronin, T.M., Cooper, L.W., Roberts, L.R., Keigwin, L.D., Addison, J.A., Leng, M.J., Lin, P., Magen, C., Marot, M.E., Schwartz, V.",
+      year: "2023",
+      title: "Multi-proxy record of ocean-climate vulnerability during the last 2 millenia on the Mackenzie Shelf, Beaufort Sea",
+      link: "http://doi.org/10.47894/mpal.69.3.04",
+      journal: true,
+      journal_name: "Micropaleontology",
+      journal_issue: "69",
+      data_release: false,
+      doi: "http://doi.org/10.47894/mpal.69.3.04"
     },
     {
       reference: "Reference 4.",
@@ -196,19 +196,6 @@ export default {
       reference: "Reference 5.",
       num: "5",
       authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
-      year: "2022",
-      title: "Overturning stereotypes: The fuzzy boundary between recreational and subsistence inland fisheries",
-      link: "https://onlinelibrary.wiley.com/doi/10.1111/faf.12688",
-      journal: true,
-      journal_name: "Fish and Fisheries",
-      journal_issue: "23, 6",
-      data_release: false,
-      doi: "https://doi.org/10.1111/faf.12688"
-    },
-    {
-      reference: "Reference 6.",
-      num: "6",
-      authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
       year: "2021",
       title: "Data for: Nyboer et al. 2021 Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
       link: "https://osf.io/keajr/",
@@ -219,8 +206,8 @@ export default {
       doi: "https://doi.org/10.17605/osf.io/keajr"
     },
     {
-      reference: "Reference 7.",
-      num: "7",
+      reference: "Reference 6.",
+      num: "6",
       authors: "Nyboer, E.A.,  Lin, H., Bennett, J.R., Gabriel, J, Twardek, W., Chhor, A.D., Daly, L., Dolson, S., Guitard, E., Holder, P., Mozzon, C.M., Trahan, A., Zimmermann, D., Kesner-Reyes, K., Garilao, C., Kaschner, K., & Cooke, S.J.",
       year: "2021",
       title: "Global assessment of marine and freshwater recreational fish reveals mismatch in climate change vulnerability and conservation effort",
@@ -230,34 +217,51 @@ export default {
       journal_issue: "527, 19",
       data_release: false,
       doi: "https://doi.org/10.1111/gcb.15768"
+    },
+    {
+      reference: "Reference 7.",
+      num: "7",
+      authors: "Nyboer, E. A., Embke, H. S., Robertson, A. M., Arlinghaus, R., Bower, S., Baigun, C., Beard, D., Cooke, S. J., Cowx, I. G., Koehn, J. D., Lyach, R., Milardi, M., Potts, W., & Lynch, A. J.",
+      year: "2022",
+      title: "Overturning stereotypes: The fuzzy boundary between recreational and subsistence inland fisheries",
+      link: "https://onlinelibrary.wiley.com/doi/10.1111/faf.12688",
+      journal: true,
+      journal_name: "Fish and Fisheries",
+      journal_issue: "23, 6",
+      data_release: false,
+      doi: "https://doi.org/10.1111/faf.12688"
     }
   ],
   findex: [
     {
       reference: "Reference 1.",
       num: "1",
-      authors: "Sievert, N.A., Wieferich, D.W., Stokes, G.L., Smidt, S.J., Ainsworth, R., Wong, J.P., & Lynch, A.J.",
-      year: "2024",
-      title: "A global dataset of threats to inland fisheries by hydrological basins",
+      authors: "Convention on Biological Diversity",
+      year: "2021",
+      title: "Proposed Monitoring Approach and Headline, Component, and Complementary Indicators for the Post-2020 Global Biodiversity Framework",
+      link: "https://www.cbd.int/doc/c/437d/a239/12a22f2eaf5e6d103ed9adad/wg2020-03-inf-02-en.pdf",
+      report: true,
+      publication_info: "CBD/WG2020/3/INF/2",
       journal: false,
       journal_name: "",
       journal_issue: "",
-      data_release: true,
-      link: "https://doi.org/10.5066/P1BU4FSA",
-      doi: "https://doi.org/10.5066/P1BU4FSA"
+      data_release: false,
+      doi: ""
     },
     {
       reference: "Reference 2.",
       num: "2",
-      authors: "Stokes, G. L., Flores, J. V., Wong, J. P., Morang, C., Lynch, A. J., Romulo, C., Funge-Smith, S., Valbo‐Jørgensen, J., & Smidt, S. J.",
-      year: "2024",
-      title: "Computational approach improve evidence synthesis and inform broad fisheries trends",
-      link: "https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13167",
-      journal: true,
-      journal_name: "Conservation Science and Practice",
-      journal_issue: "e13167",
+      authors: "FAO",
+      year: "2021",
+      title: "Report of the Second Advisory Roundtable on the Assessment of Inland Fisheries, Rome, 25-27 November 2019",
+      link: "https://openknowledge.fao.org/items/96ed5804-b007-4c5a-81b9-41a8b9a1996f",
+      report: true,
+      publication_info: "FAO Fisheries and Aquaculture Report No. 1314. Rome",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
       data_release: false,
-      doi: "https://doi.org/10.1111/csp2.13167"
+      doi: "https://doi.org/10.4060/cb2196en"
     },
     {
       reference: "Reference 3.",
@@ -277,34 +281,19 @@ export default {
     {
       reference: "Reference 4.",
       num: "4",
-      authors: "Stokes, G. L.",
-      year: "2022",
-      title: "Inland fisheries go to the 'fishician' for a head to tail exam",
-      link: "https://afspubs.onlinelibrary.wiley.com/doi/10.1002/fsh.10710",
-      journal: true,
-      journal_name: "Fisheries",
-      journal_issue: "47(1)",
-      data_release: false,
-      doi: "https://doi.org/10.1002/fsh.10710"
+      authors: "Sievert, N.A., Wieferich, D.W., Stokes, G.L., Smidt, S.J., Ainsworth, R., Wong, J.P., & Lynch, A.J.",
+      year: "2024",
+      title: "A global dataset of threats to inland fisheries by hydrological basins",
+      journal: false,
+      journal_name: "",
+      journal_issue: "",
+      data_release: true,
+      link: "https://doi.org/10.5066/P1BU4FSA",
+      doi: "https://doi.org/10.5066/P1BU4FSA"
     },
     {
       reference: "Reference 5.",
       num: "5",
-      authors: "Convention on Biological Diversity",
-      year: "2021",
-      title: "Proposed Monitoring Approach and Headline, Component, and Complementary Indicators for the Post-2020 Global Biodiversity Framework",
-      link: "https://www.cbd.int/doc/c/437d/a239/12a22f2eaf5e6d103ed9adad/wg2020-03-inf-02-en.pdf",
-      report: true,
-      publication_info: "CBD/WG2020/3/INF/2",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
-      data_release: false,
-      doi: ""
-    },
-    {
-      reference: "Reference 6.",
-      num: "6",
       authors: "Stokes, G. L., Lynch, A. J., Funge-Smith, S., Valbo-Jorgensen, J., Lowe, B. S., Wong, J. P., & Smidt, S. J.",
       year: "2021",
       title: "A global dataset of inland fisheries expert knowledge",
@@ -316,19 +305,30 @@ export default {
       doi: "https://doi.org/10.1038/s41597-021-00949-0"
     },
     {
+      reference: "Reference 6.",
+      num: "6",
+      authors: "Stokes, G. L.",
+      year: "2022",
+      title: "Inland fisheries go to the 'fishician' for a head to tail exam",
+      link: "https://afspubs.onlinelibrary.wiley.com/doi/10.1002/fsh.10710",
+      journal: true,
+      journal_name: "Fisheries",
+      journal_issue: "47(1)",
+      data_release: false,
+      doi: "https://doi.org/10.1002/fsh.10710"
+    },
+    {
       reference: "Reference 7.",
       num: "7",
-      authors: "FAO",
-      year: "2021",
-      title: "Report of the Second Advisory Roundtable on the Assessment of Inland Fisheries, Rome, 25-27 November 2019",
-      link: "https://openknowledge.fao.org/items/96ed5804-b007-4c5a-81b9-41a8b9a1996f",
-      report: true,
-      publication_info: "FAO Fisheries and Aquaculture Report No. 1314. Rome",
-      journal: false,
-      journal_name: "",
-      journal_issue: "",
+      authors: "Stokes, G. L., Flores, J. V., Wong, J. P., Morang, C., Lynch, A. J., Romulo, C., Funge-Smith, S., Valbo‐Jørgensen, J., & Smidt, S. J.",
+      year: "2024",
+      title: "Computational approach improve evidence synthesis and inform broad fisheries trends",
+      link: "https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13167",
+      journal: true,
+      journal_name: "Conservation Science and Practice",
+      journal_issue: "e13167",
       data_release: false,
-      doi: "https://doi.org/10.4060/cb2196en"
+      doi: "https://doi.org/10.1111/csp2.13167"
     },
   ]
 };

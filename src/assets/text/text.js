@@ -27,7 +27,9 @@ export default {
             fullTitle: "Inland Fisheries Threat Index Project",
             logo: "Findex_Logo.png",
             motivation: {
-                paragraph1: "Global freshwater biodiversity faces unprecedented loss from rapid global change. Found in less than 0.01% of available surface water, inland fishes comprise 51% of all fish species and inland fisheries provide food for billions and livelihoods for millions of people worldwide. Despite their importance, inland fishes are some of the most threatened taxa on the planet from intensifying pressures, such as hydrological alterations, riparian degradation, invasive species, and climate change. One-third of all inland fishes are threatened with extinction. <br/><br/>Standardized methods to monitor and assess fisheries proves elusive because inland fisheries are highly dispersed with limited market integration. Here, we present the first global metric to examine threats to inland fisheries by river basin using literature synthesis, expert elicitation, and computational modeling. The resulting standardized assessment serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. Most threats to inland fisheries come from outside the fishery sector, predominately from land use change. Given that inland fisheries are severely threatened and highly important with limited resources, this index can help direct, efficiently use, and mobilize limited resources for watershed management, sustainable fisheries, and ultimately human well-being."
+                paragraph1: "Global freshwater biodiversity is declining rapidly. Although rivers, lakes, and other inland waters make up less than 0.01% of Earth's available surface water, they support 51% of all fish species. Inland fisheries also provide food for billions of people and support the livelihoods of millions worldwide.",
+                paragraph2: "Despite their importance, inland fishes are some of the most threatened taxa on the planet. Changes to rivers and water flows, damage to streamside habitats, invasive species, climate change, and other pressures have put about one-third of inland fish species at risk of extinction. Yet it is difficult to consistently monitor and asses inland fisheries around the world because they are widely dispersed and often poorly represented in formal markets and data systems.",
+                paragraph3: "Here, we present the first global metric of threats to inland fisheries at the river-basin scale. This work combines literature synthesis, expert knowledge, and computational modeling to create a standardized assessment that  serves as a potential risk indicator for freshwater ecosystem status and its capacity to support inland fisheries. These results show that most threats to inland fisheries come from outside the fishery sector, predominately from land use change. This index can help managers identify where risks are greatest and better target limited resources for watershed management, sustainable fisheries, and the people who depend on them. "
             },
             teamText: null,
             teamData: [
@@ -532,7 +534,7 @@ export default {
             ]
         },
         FindexThreatSankey: {
-            paragraph1: 'Land use change is the biggest threat to inland fisheries.'
+            paragraph1: 'Land use change is the biggest threat to inland fisheries, with dams, wetland drainage, and deforestation and associated changes in runoff as the largest contributors. View the snakey below to see the biggest threats to inland fisheries across threat categories of habitat, pollution, climate and weather, invasive species, and fishing pressure.'
         },
         FindexGlobalThreats: {
             heading1:"What are the top threats to inland fisheries?",
