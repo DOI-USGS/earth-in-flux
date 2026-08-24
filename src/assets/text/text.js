@@ -611,17 +611,17 @@ export default {
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Dams sectors",
+                                    content: [{type: "text", content: "Energy and water supply sectors, flood mitigation sector.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Dams mitigation",
+                                    content: [{type: "text", content: "Construction of fish passage facilities; Prepare fishing communities for transient nature of fisheries; Cooperation with reservoir management authorities to ensure minimal flows and timely flood discharges; Stocking of fish species better adapted to growth and reproduction in the reservoir environment; Stocking with young fish where recruitment is seen to be a limiting factor.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Dams measurement",
+                                    content: [{type: "text", content: "Dam impacts as the average of three metrics: degree of fragmentation (DOF), degree of regulation (DOR) and sediment trapping (SED) per stream kilometer. The DOF metric is based on the number of dams and their locations in the river network, the DOR metric is based on the volume of water stored in reservoirs relative to the mean annual flow, and the SED metric is based on the volume of sediment trapped in reservoirs relative to the estimated natural sediment load.",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -632,22 +632,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Wetland drainage text",
+                                    content: [{type: "text", content: "Direct drainage driven: agricultural development (reclaimed wetlands for agricultural lands; water abstraction for agriculture/agri-business eg. oil palm see Koh et al. 2011; consolidation drainage of small individual wetlands drained into a single larger wetland); aquaculture development (e.g. coastal wetlands; see Richards & Friess, 2016; Thomas et al., 2017); municipal development (housing); industrial development (wetland draining for industrial sites); recreation demands (draining/modifying wetlands to create parks/recreation space). Indirect drainage/loss of wetlands via adjacent water abstraction/lowering of water table. All of the above is also enabled by poor legislation/ governance. Wetland drainage is compounded by evaporative water loss by climate change. Also note that upstream 'wetland' (in broad sense) drainage will affect downstream flows; depleted flows to downstream wetlands can increase the chance of salinization of wetlands near the coast and facing salt water intrusion. ",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Wetland drainage impact",
+                                    content: [{type: "text", content: "General loss of habitat, especially key wetland habitat areas for spawning (e.g. in floodplain wetlands that would have been connected to rivers) Loss of species diversity due to reduced extent and quality of available habitat (endemic species in small wetlands especially at risk). Note that decreased water depth also results in decreased water quality and more extreme temperature variation, with concomitant threats to fishes as discussed for other threat categories. Impacts can be beyond source (eg., salinization of downstream wetlands due upstream reduced flow). Note that consolidation drainage will result in a single larger and deeper wetland that may support more fish, but creates habitat that is less supportive for inverts, birds, submerged plants (McCauley et al., 2015).",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Wetland drainage sectors",
+                                    content: [{type: "text", content: "Agricultural sector; industrial sector; municipal sector; water sector",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Wetland drainage mitigation",
+                                    content: [{type: "text", content: "Wetland restoration (but note that ecological function may not be retrieved in restored wetlands (Moreno-Mateos et al., 2012). Reducing greenhouse gas emissions by preventing wetland draining in areas of high 'irrecoverable carbon value' (e.g., peatlands) (Goldstein et al., 2020).",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -663,22 +663,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Deforestation and associated runoff text",
+                                    content: [{type: "text", content: "Increased need for timber products and conversion of forested lands to agricultural and urban uses has resulted in widespread deforestation.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Deforestation and associated runoff impact",
+                                    content: [{type: "text", content: "The loss of forested land cover within watersheds can have a variety of negative impacts on fish communities. Areas cleared of forest are highly susceptible to erosion and sediment runoff resulting in habitat degradation. Kemp et al 2011 identified a variety of impacts of sedimentation on fishes including trophic disruptions (i.e. reduced primary productivity and benthic invertebrate densities), physiological impacts (i.e. gill abrasion), reproductive impacts (i.e. reduced spawning success in lithophilic spawners), and behavioral impacts (i.e. reductions in foraging success due to changes in visibility). <br/>In addition to sedimentation the loss of forest cover can also alter habitats by reducing riparian shading resulting in warmer water temperatures stressing or killing thermally sensitive fish taxa (Ilha et al. 2018) and may reduce important habitat inputs such as coarse woody debris which some taxa depend upon for cover or foraging (Gurnell et al. 1995).",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Deforestation and associated runoff sectors",
+                                    content: [{type: "text", content: "Forestry, Agriculture, Municipal Planners, Governments",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Deforestation and associated runoff mitigation",
+                                    content: [{type: "text", content: "The impacts of deforestation and associated sedimentation on inland fisheries can be mitigated by limiting deforestation within sensitive or otherwise ecologically valuable basins, protecting riparian buffers, and using logging techniques which minimize erosion.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -694,22 +694,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Riparian degradation text",
+                                    content: [{type: "text", content: "Anthropogenic land use changes, such as deforestation, watershed regulation, hydropower, agriculture, irrigation, water abstraction, urbanization, and pollution can lead to riparian degradation. Riparian degradation can also be caused by natural events, such as floods, droughts, and wildfires.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Riparian degradation impact",
+                                    content: [{type: "text", content: "There is no uniform response from fish populations to catchment disturbance and land degradation (Yu-Chun et al. 2020). It depends very much on the status of the original system (lentic or lotic; oligotrophic or eutrophic; fluctuating or static), to which each fish community is acutely adapted and on the actual disturbance and degree. Opportunistic species may thrive (to some extent), while specialized species may suffer. But almost any change on land will be reflected by a change in the composition and structure of the fish community. Inland waters are intimately connected and depending on the riparian catchment and changes in land use have direct impacts on the fish.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Riparian degradation sectors",
+                                    content: [{type: "text", content: "Forestry, Agriculture, Energy, Industry, Municipal planners, Government.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Riparian degradation mitigation",
+                                    content: [{type: "text", content: "First and foremost a firm realization among policymakers and planners that riparian land use changes have inevitable aquatic repercussions and impacts, but that any planned degradation can be mitigated to some extent by technical interventions. We have millions of examples of degraded aquatic systems and years of experience of mitigating and restoration actions (the latter in the industrialized world), so the issue is simply a matter of willingness, responsibility, environmental legislation and economic trade-offs.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -725,17 +725,17 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Agricultural extraction text",
+                                    content: [{type: "text", content: "Population increases with growing demands for food, fiber, feed, and fuel. Agricultural markets are globally driven, but water is used locally (mismatched scales of management). Water used for agricultural production is rarely managed to promote downstream watershed connectivity. Large, transboundary water resources mixed with outdated and inflexible doctrines.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Agricultural extraction impact",
+                                    content: [{type: "text", content: "Water abstraction can lead to reduced or variable downstream flows as abstraction is often associated with anthropogenic infrastructure (e.g., reservoirs from dams) that can limit floodplain connectivity and impede natural movement and migration of wild stocks (Gregory et al., 2018). Agricultural water abstraction can further lead to lost biodiversity, changes in fish patterns, and increased fish mortality, increased catchability, and ultimately decrease which can contribute to malnutrition in the basin (Degeorges & Reilly, 2006). However, reservoirs and dams constructed for irrigation can also better control flow extremes, stabilize downstream channels, and create man made habitats for fish in areas where fisheries would otherwise not exist (Gregory et al., 2018).",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Agricultural extraction sectors",
+                                    content: [{type: "text", content: "Farmers, ranchers, water management and government officials, local communities, downstream communities, environmental professionals.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -745,7 +745,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Agricultural extraction measurement",
+                                    content: [{type: "text", content: "Modification of design and operation of delivery and storage infrastructure to improve watershed water connectivity and flows. Associated actions relating to construction or improvement of habitat and refuge areas within and around irrigated systems. Revised policies, modified regulation and management of irrigation systems to enable these modifications (Gregory et al., 2018).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -756,22 +756,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Urban extraction text",
+                                    content: [{type: "text", content: "Population increases, economic development, wastewater intakes and outtakes, recreational fishing, transportation of goods leading to altered natural flow regimes. Weak environmental legislation regarding water treatment before water returned to rivers.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Urban extraction impact",
+                                    content: [{type: "text", content: "Impacts on fish habitat, pollution of rivers from outflows from water treatment sectors. Excess nutrients from outflows causing pollution issues of untreated water. <br/>Altered flow regimes from water abstraction and modification for transport purposes, disconnect for fish from floodplains due to habitat modification. Altered species composition and reduced access to spawning areas. <br/>Abstraction of river water for man made recreational fishing lakes, again disconnection of river from floodplains for fish species and flood protection.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Urban extraction sectors",
+                                    content: [{type: "text", content: "Water management and use sectors, Government, commercial water users.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Urban extraction mitigation",
+                                    content: [{type: "text", content: "Environmental legislation to enforce treatment of wastewater before release into rivers. More focus on maintaining/ implementing environmental flows in urban environments, particularly around transportation. River restoration and establishment of fish refuges in urban environments.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -787,22 +787,22 @@ export default {
                             subThreatText: [
                                 {
                                     heading: "Drivers",
-                                    content: [{type: "text", content: "Industrial extraction text",
+                                    content: [{type: "text", content: "Economic development coupled with weak environmental policy/legislation, disconnect between water and fisheries management authorities.",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Industrial extraction impact",
+                                    content: [{type: "text", content: "Habitat: compromised environmental flow levels<br/><br/>Fish: disturbance ( habitat variability), spawning routes. species composition changed <br/><br/>Fisheries: less catch, different catch composition (species), unpredictability",
                                     }],activeOnLoad: true
                                 },
                                 {
                                     heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industrial extraction sectors",
+                                    content: [{type: "text", content: "Water management; Government, local communities, downstream and upstream communities and authorities.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Industrial extraction mitigation",
+                                    content: [{type: "text", content: "Mitigation: More focus on environmental flows in IWRM. \nAdaptation: fish refuge (? ); alternative livelihoods interventions",
                                     }],activeOnLoad: false
                                 },
                                 {
