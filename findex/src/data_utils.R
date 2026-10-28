@@ -27,8 +27,13 @@ compute_weighted_threats <- function(threat_data, threat_weights,
     left_join(select(threat_weights, ThreatCode = Threat_Code, Threat, 
                      ThreatCategory = Threat_Category, everything())) |>
     mutate(weightedThreatMetric = ThreatMetric * Final_Weight) |> 
-    mutate(ThreatCategory = case_when(ThreatCategory == "Exploitation" ~ "Fishing pressure", 
-                                      .default = as.character(ThreatCategory)))
+    mutate(ThreatCategory = case_when(ThreatCategory == "Exploitation" ~ "Fishing pressure",
+                                      .default = as.character(ThreatCategory))) |>
+    # rename water extraction threats to match the site text
+    mutate(Threat = case_when(Threat == "Agricultural extraction" ~ "Agricultural water use",
+                              Threat == "Urban extraction" ~ "Urban water use",
+                              Threat == "Industrial extraction" ~ "Industrial water use",
+                              .default = as.character(Threat)))
 }
 
 #' @description sum weighted threat scores by threat type
