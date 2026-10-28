@@ -60,6 +60,11 @@
         return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
     }
 
+    // tooltip values: fixed locale and one decimal so they read the same in every browser
+    function formatValue(value) {
+        return value.toLocaleString('en-US', { maximumFractionDigits: 1 });
+    }
+
     onMounted(async () => {
         try {
             await loadDatasets();
@@ -97,6 +102,8 @@
     async function loadData(fileName) {
         try {
             const data = await d3.csv(publicPath + fileName, d => {
+                // d3.csv reads every column as a string
+                d.TotalWeightedThreatMetric = +d.TotalWeightedThreatMetric;
                 return d;
             });
             return data;
@@ -256,7 +263,7 @@
                         .attr("height", d => d.y1 - d.y0)
                         .attr("width", d => d.x1 - d.x0)
                     .append("title")
-                        .text(d => `${d.name}\n${d.value.toLocaleString()}`),
+                        .text(d => `${d.name}\n${formatValue(d.value)}`),
 
                 null, // no update function
 
@@ -281,7 +288,7 @@
                             .style("mix-blend-mode", "multiply")
                             .style('fill', "none")
                         .append("title")
-                            .text(d => `${d.names.join(" → ")}\n${d.value.toLocaleString()}`)
+                            .text(d => `${d.names.join(" → ")}\n${formatValue(d.value)}`)
                 },
 
                 null,
