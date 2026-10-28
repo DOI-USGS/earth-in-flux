@@ -606,7 +606,7 @@ export default {
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Dams block river connectivity, interrupting sediment and nutrient transport and disrupting fish migration and recruitment. Productivity declines upstream and downstream, floodplains flood less often, and low flows increase. Reservoirs replace river fish with lake-adapted species, and drawdown and refilling destroy aquatic vegetation and breeding areas. Altered flows also remove thermal cues, reducing fish growth and reproduction. These effects are well documented (Petts 1984), including in large tropical rivers (<a href='https://doi.org/10.1126/science.aac7082' target='_blank'>Winemiller et al. 2016</a>).",
+                                    content: [{type: "text", content: "Dams block river connectivity, interrupting sediment and nutrient transport and disrupting fish migration and recruitment. Productivity declines upstream and downstream, floodplains flood less often, and low flows increase. Reservoirs replace river fish with lake-adapted species, and drawdown and refilling destroy aquatic vegetation and breeding areas. Altered flows also remove thermal cues, reducing fish growth and reproduction. These effects are well documented (<a href='https://archive.org/details/impoundedriversp0000pett/mode/2up' target='_blank'>Petts 1984</a>), including in large tropical rivers (<a href='https://doi.org/10.1126/science.aac7082' target='_blank'>Winemiller et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
                                 {
@@ -740,7 +740,7 @@ export default {
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Redesign and operate irrigation delivery and storage infrastructure to improve connectivity and flows, create or improve fish habitat and refuges in and around irrigated systems, and revise policies and regulations to support these changes (<a href='https://www.fao.org/3/CA2675EN/ca2675en.pdf' target='_blank'>Gregory et al. 2018</a>). Raising fish in irrigation reservoirs and rice fields can also help offset fisheries lost to altered flows (Peterson and Kalende 2006; Baran 2005).",
+                                    content: [{type: "text", content: "Redesign and operate irrigation delivery and storage infrastructure to improve connectivity and flows, create or improve fish habitat and refuges in and around irrigated systems, and revise policies and regulations to support these changes (<a href='https://www.fao.org/3/CA2675EN/ca2675en.pdf' target='_blank'>Gregory et al. 2018</a>). Raising fish in irrigation reservoirs and rice fields can also help offset fisheries lost to altered flows (<a href='https://www.fao.org/4/a0444e/A0444E09.htm#ch7' target='_blank'>Peterson and Kalende 2006</a>; <a href='https://digitalarchive.worldfishcenter.org/server/api/core/bitstreams/e2148d94-7037-4b51-b162-73f9705f137e/content' target='_blank'>Baran 2005</a>).",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -1097,7 +1097,7 @@ export default {
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Temperature affects every aspect of fish physiology, including growth, metabolism, feeding, and reproduction; for example, Atlantic salmon (<em>Salmo salar</em>) show delayed or no ovulation above 13–15°C (King and Pankhurst 2000). As waters warm, fish generally shift poleward or upslope to track suitable temperatures (Melles et al. 2011): species with narrow thermal ranges contract, while those with broad ranges expand (<a href='https://doi.org/10.1016/j.biocon.2016.08.021' target='_blank'>Ruiz-Navarro et al. 2016</a>). Warming also changes the spread and virulence of fish diseases and the toxicity of pollutants.",
+                                    content: [{type: "text", content: "Temperature affects every aspect of fish physiology, including growth, metabolism, feeding, and reproduction; for example, Atlantic salmon (<em>Salmo salar</em>) show delayed or no ovulation above 13–15°C (<a href='https://documentatiecentrum.watlab.be/imis.php?module=ref&refid=10981' target='_blank'>King and Pankhurst 2000</a>). As waters warm, fish generally shift poleward or upslope to track suitable temperatures (<a href='https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2486.2010.02214.x' target='_blank'>Melles et al. 2011</a>): species with narrow thermal ranges contract, while those with broad ranges expand (<a href='https://doi.org/10.1016/j.biocon.2016.08.021' target='_blank'>Ruiz-Navarro et al. 2016</a>). Warming also changes the spread and virulence of fish diseases and the toxicity of pollutants.",
                                     }],activeOnLoad: true
                                 },
                                 {
@@ -1159,7 +1159,7 @@ export default {
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Flood-borne sediment can deplete oxygen, nests and eggs can be destroyed, and floods can breach barriers that contain non-native fish. For example, flooding in the Illinois River could release invasive carp into the Laurentian Great Lakes, threatening a US$7 billion fishing industry (Spacapan et al. 2016).",
+                                    content: [{type: "text", content: "Flood-borne sediment can deplete oxygen, nests and eggs can be destroyed, and floods can breach barriers that contain non-native fish. For example, flooding in the Illinois River could release invasive carp into the Laurentian Great Lakes, threatening a $7 billion fishing industry (<a href='https://www.ideals.illinois.edu/items/92341/bitstreams/301346/data.pdf' target='_blank'>Spacapan et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
                                 {
@@ -1280,7 +1280,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Area-weighted number of harmful freshwater invasive species in each basin, based on counts by freshwater ecoregion (Molnar et al. 2008).",
+                                    content: [{type: "text", content: "Area-weighted number of harmful freshwater invasive species in each basin, based on counts by freshwater ecoregion (<a href='https://databasin.org/datasets/11a22d0ce62142258baaa1cbaf520fb2/' target='_blank'>The Nature Conservancy 2009</a>; <a href='https://esajournals.onlinelibrary.wiley.com/doi/10.1890/070064' target='_blank'>Molnar et al. 2008</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
