@@ -39,9 +39,13 @@
   --faded-teal: #C9D8D9;;
   --faded-brown: #E1C8AA;
   --faded-blue: #B2C0CE;
+  --faded-red: #E9CAC8;
+  --faded-purple: #DACBDE;
   --darker-teal: #405959;
   --darker-brown: #5B401F;
   --darker-blue: #002D5E;
+  --darker-red: #8F3E39;
+  --darker-purple: #663F72;
   --grey-blue: #899bb7;
 
   font-size: 62.5%;
@@ -74,6 +78,8 @@
   --color-habitat-faded: var(--faded-teal);
   --color-pollution-faded: var(--faded-brown);
   --color-climate-and-weather-faded: var(--faded-blue);
+  --color-invasive-species-faded: var(--faded-red);
+  --color-fishing-pressure-faded: var(--faded-purple);
   --color-habitat-light: var(--light-teal);
   --color-pollution-light: var(--light-brown);
   --color-climate-and-weather-light: var(--grey-blue);
@@ -82,6 +88,8 @@
   --color-habitat-dark: var(--darker-teal);
   --color-pollution-dark: var(--darker-brown);
   --color-climate-and-weather-dark: var(--darker-blue);
+  --color-invasive-species-dark: var(--darker-red);
+  --color-fishing-pressure-dark: var(--darker-purple);
   --inactive-grey: #CCCCCC;
   --inactive-text-grey: #757575;
   --color-prefooter-highlight: var(--medium-blue);

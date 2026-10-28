@@ -82,7 +82,7 @@
           />
         </h3>
         <div id="button-container">
-          <h4 v-if="tab.subThreatData.length > 1">
+          <h4 v-if="tab.subThreatData.length > 0">
             Subthreat categories:
             <span
               v-for="subThreatCategory, index in tab.subThreatData"
@@ -382,10 +382,12 @@
         color: var(--color-climate-and-weather-dark);
     }
     .category-button.invasive-species:hover {
-        color: white;
+        background-color: var(--color-invasive-species-faded);
+        color: var(--color-invasive-species-dark);
     }
     .category-button.fishing-pressure:hover {
-        color: white;
+        background-color: var(--color-fishing-pressure-faded);
+        color: var(--color-fishing-pressure-dark);
     }
 }
 .habitat {
@@ -396,7 +398,13 @@
 } 
 .climate-and-weather {
     text-decoration: underline solid var(--color-climate-and-weather-faded);
-} 
+}
+.invasive-species {
+    text-decoration: underline solid var(--color-invasive-species-faded);
+}
+.fishing-pressure {
+    text-decoration: underline solid var(--color-fishing-pressure-faded);
+}
 .separator {
     background-color: transparent;
     text-decoration: none;
