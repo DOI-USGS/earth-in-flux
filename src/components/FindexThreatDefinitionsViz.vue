@@ -231,6 +231,12 @@
 .climate-and-weather {
     border-color: var(--color-climate-and-weather-faded);
 }
+.invasive-species {
+    border-color: var(--color-invasive-species-faded);
+}
+.fishing-pressure {
+    border-color: var(--color-fishing-pressure-faded);
+}
 .icon-image {
     transform: translate(0, 32%); /* negate vertical-align top on parent*/
     max-height: 60%;
