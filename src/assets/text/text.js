@@ -420,19 +420,19 @@ export default {
                             subThreatText: "Riparian degradation"
                         },
                         {
-                            subThreat: "Agricultural extraction",
+                            subThreat: "Agricultural water use",
                             subThreatIcon: "H-agriculture-5491228",
-                            subThreatText: "Agricultural extraction"
+                            subThreatText: "Agricultural water use"
                         },
                         {
-                            subThreat: "Urban extraction",
+                            subThreat: "Urban water use",
                             subThreatIcon: "H-urban-7019973",
-                            subThreatText: "Urban extraction"
+                            subThreatText: "Urban water use"
                         },
                         {
-                            subThreat: "Industrial extraction",
+                            subThreat: "Industrial water use",
                             subThreatIcon: "H-industrial-659077",
-                            subThreatText: "Industrial extraction"
+                            subThreatText: "Industrial water use"
                         }
                     ]
                 },
@@ -522,14 +522,26 @@ export default {
                     iconID: "invasive-species",
                     icon: "invasive-species-973991",
                     iconText: "Invasive species text.",
-                    subThreatData: []
+                    subThreatData: [
+                        {
+                            subThreat: "Invasive non-native species",
+                            subThreatIcon: "invasive-species-973991",
+                            subThreatText: "Invasive non-native species"
+                        }
+                    ]
                 },
                 {
                     iconTitle: "Fishing pressure",
                     iconID: "fishing-pressure",
                     icon: "fishing-pressure-4847095",
                     iconText: "Fishing pressure text.",
-                    subThreatData: []
+                    subThreatData: [
+                        {
+                            subThreat: "Overfishing",
+                            subThreatIcon: "fishing-pressure-4847095",
+                            subThreatText: "Overfishing"
+                        }
+                    ]
                 }
             ]
         },
