@@ -633,7 +633,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Average of three dam impact metrics per stream kilometer: degree of fragmentation (how much dams divide the river network), degree of regulation (reservoir storage relative to annual river flow), and sediment trapping (share of the natural sediment load held behind dams) (<a href='https://doi.org/10.1038/s41586-019-1111-9' target='_blank'>Grill et al. 2019</a>).",
+                                    content: [{type: "text", content: "Average of three dam impact metrics per stream kilometer: degree of fragmentation (how much dams divide the river network), degree of regulation (reservoir storage relative to annual river flow), and sediment trapping (share of the natural sediment load held behind dams) (<a href='https://doi.org/10.6084/m9.figshare.7688801' target='_blank'>Grill and Lehner 2019</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -664,7 +664,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Percent of basin area where wetlands were lost between 1700 and 2020 (<a href='https://doi.org/10.1038/s41586-022-05572-6' target='_blank'>Fluet-Chouinard et al. 2023</a>). Basins with no net wetland loss score zero.",
+                                    content: [{type: "text", content: "Percent of basin area where wetlands were lost between 1700 and 2020 (<a href='https://doi.org/10.5281/zenodo.7616651' target='_blank'>Fluet-Chouinard et al. 2023</a>). Basins with no net wetland loss score zero.",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -726,7 +726,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Percent of land within riparian buffers that is built-up or cropland, based on 2019 land cover data (<a href='https://doi.org/10.5281/zenodo.3939050' target='_blank'>Copernicus Global Land Service</a>). Buffer widths scale with stream and lake size.",
+                                    content: [{type: "text", content: "Percent of land within riparian buffers that is built-up or cropland, based on 2019 land cover data (<a href='https://doi.org/10.5281/zenodo.3939050' target='_blank'>Buchhorn et al. 2020</a>). Buffer widths scale with stream and lake size.",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -757,7 +757,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Water consumed for irrigation and livestock in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.1038/s41597-023-02086-2' target='_blank'>Khan et al. 2023</a>).",
+                                    content: [{type: "text", content: "Water consumed for irrigation and livestock in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -788,7 +788,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Water consumed for domestic use and electricity generation in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.1038/s41597-023-02086-2' target='_blank'>Khan et al. 2023</a>).",
+                                    content: [{type: "text", content: "Water consumed for domestic use and electricity generation in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -819,7 +819,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Water consumed for mining and manufacturing in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.1038/s41597-023-02086-2' target='_blank'>Khan et al. 2023</a>).",
+                                    content: [{type: "text", content: "Water consumed for mining and manufacturing in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -863,7 +863,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Agricultural grey water footprint: the volume of fresh water needed to dilute nitrogen from crop fertilizers to meet water quality standards (<a href='https://doi.org/10.5194/hess-15-1577-2011' target='_blank'>Mekonnen and Hoekstra 2011</a>).",
+                                    content: [{type: "text", content: "Agricultural grey water footprint: the volume of fresh water needed to dilute nitrogen from crop fertilizers to meet water quality standards (<a href='https://doi.org/10.1073/pnas.1109936109' target='_blank'>Hoekstra and Mekonnen 2012</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -956,7 +956,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Combined nitrogen and phosphorus loads from aquaculture, estimated with the IMAGE-GNM global nutrient model (<a href='https://doi.org/10.5194/gmd-8-4045-2015' target='_blank'>Beusen et al. 2015</a>).",
+                                    content: [{type: "text", content: "Combined nitrogen and phosphorus loads from aquaculture, estimated with the IMAGE-GNM global nutrient model (<a href='https://doi.org/10.17026/dans-zgs-9k9m' target='_blank'>Beusen and PBL 2016</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1018,7 +1018,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Percent of basin area overlying oil and gas fields (<a href='https://doi.org/10.18141/1427300' target='_blank'>Global Oil and Gas Features Database</a>).",
+                                    content: [{type: "text", content: "Percent of basin area overlying oil and gas fields (<a href='https://doi.org/10.18141/1427300' target='_blank'>Sabbatino 2018</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1049,7 +1049,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Mismanaged plastic waste entering rivers, estimated at 40,760 river mouths worldwide and distributed upstream in proportion to human population (<a href='https://doi.org/10.1038/ncomms15611' target='_blank'>Lebreton et al. 2017</a>).",
+                                    content: [{type: "text", content: "Mismanaged plastic waste entering rivers, estimated at 40,760 river mouths worldwide and distributed upstream in proportion to human population (<a href='https://doi.org/10.6084/m9.figshare.4725541.v6' target='_blank'>Lebreton and Reisser 2020</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1080,7 +1080,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Percent of basin area covered by mining operations, including large-scale, artisanal, and small-scale mines (<a href='https://doi.org/10.1038/s41597-022-01547-4' target='_blank'>Maus et al. 2022</a>).",
+                                    content: [{type: "text", content: "Percent of basin area covered by mining operations, including large-scale, artisanal, and small-scale mines (<a href='https://doi.org/10.1594/pangaea.942325' target='_blank'>Maus et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1217,7 +1217,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Projected change in the number of days lakes are stratified between 2006–2020 and 2041–2060, averaged across four climate models (<a href='https://doi.org/10.48364/ISIMIP.931371.1' target='_blank'>ISIMIP2b Global Lakes Sector</a>; <a href='https://doi.org/10.1038/s41467-021-22657-4' target='_blank'>Woolway et al. 2021</a>). Data are available for Northern Hemisphere lakes only.",
+                                    content: [{type: "text", content: "Projected change in the number of days lakes are stratified between 2006–2020 and 2041–2060, averaged across four climate models (<a href='https://doi.org/10.48364/ISIMIP.931371.1' target='_blank'>ISIMIP2b Global Lakes Sector</a>; <a href='https://doi.org/10.5281/zenodo.4617643' target='_blank'>Woolway 2021</a>). Data are available for Northern Hemisphere lakes only.",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1248,7 +1248,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Projected change in the number of days lakes are ice-covered between 2001–2020 and 2041–2060, weighted by lake area and averaged across four climate models (<a href='https://doi.org/10.1029/2022GL099022' target='_blank'>Wang et al. 2022</a>). Data are available for Northern Hemisphere lakes only.",
+                                    content: [{type: "text", content: "Projected change in the number of days lakes are ice-covered between 2001–2020 and 2041–2060, weighted by lake area and averaged across four climate models (<a href='https://doi.org/10.6084/m9.figshare.19424801.v1' target='_blank'>Wang and Feng 2022</a>). Data are available for Northern Hemisphere lakes only.",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1292,7 +1292,7 @@ export default {
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Area-weighted number of harmful freshwater invasive species in each basin, based on counts by freshwater ecoregion (<a href='https://databasin.org/datasets/11a22d0ce62142258baaa1cbaf520fb2/' target='_blank'>The Nature Conservancy 2009</a>; <a href='https://esajournals.onlinelibrary.wiley.com/doi/10.1890/070064' target='_blank'>Molnar et al. 2008</a>).",
+                                    content: [{type: "text", content: "Area-weighted number of harmful freshwater invasive species in each basin, based on counts by freshwater ecoregion (<a href='https://databasin.org/datasets/11a22d0ce62142258baaa1cbaf520fb2/' target='_blank'>Boucher 2009</a>; <a href='https://esajournals.onlinelibrary.wiley.com/doi/10.1890/070064' target='_blank'>Molnar et al. 2008</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
@@ -1321,7 +1321,7 @@ export default {
                                 },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "As target stocks decline, fishers shift gears and species (<a href='https://doi.org/10.1641/0006-3568(2005)055[1041:OOIW]2.0.CO;2' target='_blank'>Allan et al. 2005</a>). Large, slow-growing species are depleted first and replaced by smaller species lower in the food web (<a href='https://doi.org/10.1006/jmsc.2000.0738' target='_blank'>Murawski 2000</a>). Total harvest can remain stable while fishers keep reducing mesh sizes until no commercial stocks remain (Welcomme 2003). In Lake Victoria, juvenile fish dominated catches in the early 2000s, and catch per boat fell from 80 to 45 kilograms per day (<a href='https://doi.org/10.1111/j.1365-2400.2006.00477.x' target='_blank'>Matsuishi et al. 2006</a>).",
+                                    content: [{type: "text", content: "As target stocks decline, fishers shift gears and species (<a href='https://doi.org/10.1641/0006-3568(2005)055[1041:OOIW]2.0.CO;2' target='_blank'>Allan et al. 2005</a>). Large, slow-growing species are depleted first and replaced by smaller species lower in the food web (<a href='https://doi.org/10.1006/jmsc.2000.0738' target='_blank'>Murawski 2000</a>). In Lake Victoria, juvenile fish dominated catches in the early 2000s, and catch per boat fell from 80 to 45 kilograms per day (<a href='https://doi.org/10.1111/j.1365-2400.2006.00477.x' target='_blank'>Matsuishi et al. 2006</a>).",
                                     }],activeOnLoad: true
                                 },
                                 {
@@ -1331,12 +1331,12 @@ export default {
                                 },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Adopt an ecosystem approach to fisheries management that conserves ecosystem function and trophic structure; introduce regulations such as closed seasons, gear restrictions, and size limits; and support alternative livelihoods, stocking, or aquaculture. For example, catch-and-release rules were introduced after recreational fishing contributed to the collapse of Atlantic salmon fisheries (Cowx et al. 2018).",
+                                    content: [{type: "text", content: "Adopt an ecosystem approach to fisheries management that conserves ecosystem function and trophic structure; introduce regulations such as closed seasons, gear restrictions, and size limits; and support alternative livelihoods, stocking, or aquaculture.",
                                     }],activeOnLoad: false
                                 },
                                 {
                                     heading: "How it’s measured",
-                                    content: [{type: "text", content: "Documented fish catch in major river basins and lakes important to inland fisheries, allocated to basins by area, river discharge, and human population (<a href='https://doi.org/10.4060/cb2827en' target='_blank'>Ainsworth et al. 2021</a>).",
+                                    content: [{type: "text", content: "Documented fish catch in major river basins and lakes important to inland fisheries, allocated to basins by area, river discharge, and human population (<a href='https://doi.org/10.4060/cb2827en' target='_blank'>FAO 2021</a>).",
                                     }],activeOnLoad: false
                                 }
                             ]
