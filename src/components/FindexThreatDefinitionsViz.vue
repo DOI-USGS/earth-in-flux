@@ -155,6 +155,7 @@
     margin-bottom: 15px;
 }
 .sub-icon-container p {
+    flex: 1;
     padding: 0;
 }
 #reset-button {
@@ -178,10 +179,9 @@
 }
 .button-wrapper-vertical {
     display: flex;
-    flex: 1 1 50%;
-    max-width: 120px;
+    flex: 0 0 120px;
     @media screen and (max-width: 600px) {
-        max-width: 60px;
+        flex-basis: 60px;
     }
 }
 .icon-button {

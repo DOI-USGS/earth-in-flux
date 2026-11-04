@@ -391,48 +391,48 @@ export default {
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
         FindexThreatDefinitions: {
-            paragraph1: "intro text test",
+            paragraph1: "Inland fisheries face a range of threats driven by human activities and environmental change. These pressures can affect aquatic habitats, water quality, and fish populations. Explore five categories of threats to learn what drives them and how they affect inland fisheries.",
             iconData: [
                 {
                     iconTitle: "Habitat",
                     iconID: "habitat",
                     icon: "habitat-29572",
-                    iconText: "Habitat text.",
+                    iconText: "Fish need healthy, connected waters to spawn, feed, and grow. Dams, drained wetlands, cleared forests, and heavy water use reshape rivers and lakes, cutting fish off from the places they depend on.",
                     subThreatData: [
                         {
                             subThreat: "Dams",
                             subThreatIcon: "H-dams-3916913",
-                            subThreatText: "Dams"
+                            subThreatText: "Hydropower, water supply for growing urban populations, flood control for urban and agricultural areas, and irrigation for agriculture."
                         },
                         {
                             subThreat: "Wetland drainage",
                             subThreatIcon: "H-wetland-drainage-34007",
-                            subThreatText: "Wetland drainage"
+                            subThreatText: "Wetlands are drained directly for agriculture, aquaculture, housing, industry, and recreation, and indirectly when nearby water withdrawals lower the water table. Weak legislation and governance enable drainage, and climate-driven evaporation compounds it. Upstream drainage also reduces flows to downstream wetlands, raising the risk of salinization near coasts."
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
                             subThreatIcon: "H-deforestation-4811548",
-                            subThreatText: "Deforestation and associated runoff"
+                            subThreatText: "Demand for timber products and conversion of forests to agricultural and urban land."
                         },
                         {
                             subThreat: "Riparian degradation",
                             subThreatIcon: "H-riparian-6291",
-                            subThreatText: "Riparian degradation"
+                            subThreatText: "Land use changes such as deforestation, watershed regulation, hydropower, agriculture, irrigation, water withdrawals, urbanization, and pollution."
                         },
                         {
                             subThreat: "Agricultural water use",
                             subThreatIcon: "H-agriculture-5491228",
-                            subThreatText: "Agricultural water use"
+                            subThreatText: "Growing demand for food, fiber, feed, and fuel. Agricultural markets are global, but water is managed locally, and irrigation water is rarely managed to maintain downstream connectivity. Large transboundary water resources are often governed by outdated, inflexible rules."
                         },
                         {
                             subThreat: "Urban water use",
                             subThreatIcon: "H-urban-7019973",
-                            subThreatText: "Urban water use"
+                            subThreatText: "Population growth, economic development, wastewater intake and discharge, recreational fishing, and river transport alter natural flows. Weak legislation on treating water before it returns to rivers adds to the problem."
                         },
                         {
                             subThreat: "Industrial water use",
                             subThreatIcon: "H-industrial-659077",
-                            subThreatText: "Industrial water use"
+                            subThreatText: "Economic development combined with weak environmental policy and legislation, and poor coordination between water and fisheries management authorities."
                         }
                     ]
                 },
@@ -440,47 +440,47 @@ export default {
                     iconTitle: "Pollution",
                     iconID: "pollution",
                     icon: "pollution-6278",
-                    iconText: "Pollution text.",
+                    iconText: "What happens on land doesn't stay on land. Runoff and wastewater from farms, cities, industry, aquaculture, and mining carry nutrients and contaminants into rivers and lakes, where they can harm fish and the people who eat them.",
                     subThreatData: [
                         {
                             subThreat: "Agricultural effluents",
                             subThreatIcon: "P-agriculture-3634692",
-                            subThreatText: "Agricultural effluents"
+                            subThreatText: "Food demand, economic policies, and weak environmental regulation and enforcement."
                         },
                         {
                             subThreat: "Urban wastewater",
                             subThreatIcon: "P-urban-waste-25100",
-                            subThreatText: "Urban wastewate"
+                            subThreatText: "Urbanizing populations around the world are increasing municipal wastewater discharge."
                         },
                         {
                             subThreat: "Industrial effluents",
                             subThreatIcon: "P-industrial-200223",
-                            subThreatText: "Industrial effluents"
+                            subThreatText: "Economic development combined with weak environmental policy and legislation."
                         },
                         {
                             subThreat: "Aquaculture effluents",
                             subThreatIcon: "P-aquaculture-23815",
-                            subThreatText: "Aquaculture effluents"
+                            subThreatText: "Expanding aquaculture production as fish supply shifts from capture fisheries to farming."
                         },
                         {
                             subThreat: "Pharmaceuticals",
                             subThreatIcon: "P-pharmaceuticals-164439",
-                            subThreatText: "Pharmaceuticals"
+                            subThreatText: "Growing use of pharmaceuticals in human and veterinary medicine."
                         },
                         {
                             subThreat: "Oil or gas exploration",
                             subThreatIcon: "P-oil-gas-3723255",
-                            subThreatText: "Oil or gas exploration"
+                            subThreatText: "Weak legislation, limited enforcement, and lack of stakeholder involvement."
                         },
                         {
                             subThreat: "Plastics",
                             subThreatIcon: "P-plastics-2484814",
-                            subThreatText: "Plastics"
+                            subThreatText: "Increasing production and consumption of plastics."
                         },
                         {
                             subThreat: "Mining",
                             subThreatIcon: "P-mining-7248907",
-                            subThreatText: "Mining"
+                            subThreatText: "Poverty and lack of formal employment, weak legislation, and limited enforcement."
                         }
                     ]
                 },
@@ -488,32 +488,32 @@ export default {
                     iconTitle: "Climate and weather",
                     iconID: "climate-and-weather",
                     icon: "climate-6795675",
-                    iconText: "Climate and Weather text.",
+                    iconText: "As the climate changes, so do the waters fish call home. Warmer temperatures, more extreme droughts and floods, shifting winds, and shorter ice seasons are changing where and how fish can thrive.",
                     subThreatData: [
                         {
                             subThreat: "Change in water temperature",
                             subThreatIcon: "CW-temperature-1979336",
-                            subThreatText: "Change in water temperature"
+                            subThreatText: "Human-caused climate change."
                         },
                         {
                             subThreat: "Drought",
                             subThreatIcon: "CW-drought-002D5E",
-                            subThreatText: "Drought"
+                            subThreatText: "More frequent and intense periods of abnormally low precipitation."
                         },
                         {
                             subThreat: "Change in flooding",
                             subThreatIcon: "CW-flooding-1760091",
-                            subThreatText: "Change in flooding"
+                            subThreatText: "Changes in the frequency and intensity of precipitation events, and sea-level rise."
                         },
                         {
                             subThreat: "Change in wind patterns",
                             subThreatIcon: "CW-wind-7479181",
-                            subThreatText: "Change in wind patterns"
+                            subThreatText: "Warmer water may reduce land–water temperature contrasts, warming oceans and atmosphere may make daily winds more variable, and melting Arctic ice may alter the jet stream, increasing the variability or severity of winds."
                         },
                         {
                             subThreat: "Change in ice cover",
                             subThreatIcon: "CW-ice-cover-5314745",
-                            subThreatText: "Change in ice cover"
+                            subThreatText: "Rising global temperatures."
                         }
                     ]
                 },
@@ -521,12 +521,12 @@ export default {
                     iconTitle: "Invasive species",
                     iconID: "invasive-species",
                     icon: "invasive-species-973991",
-                    iconText: "Invasive species text.",
+                    iconText: "When non-native species take hold in new waters, native fish can lose out. Invaders compete for food, prey on native species, spread disease, and disrupt entire food webs.",
                     subThreatData: [
                         {
                             subThreat: "Invasive non-native species",
                             subThreatIcon: "invasive-species-973991",
-                            subThreatText: "Invasive non-native species"
+                            subThreatText: "Species spread accidentally on boats, equipment, and stocked fish, or are introduced deliberately for aquaculture, stocking, or biological control."
                         }
                     ]
                 },
@@ -534,12 +534,12 @@ export default {
                     iconTitle: "Fishing pressure",
                     iconID: "fishing-pressure",
                     icon: "fishing-pressure-4847095",
-                    iconText: "Fishing pressure text.",
+                    iconText: "Fishing feeds and supports millions of people, but when fish are caught faster than populations can recover, stocks decline. Commercial, subsistence, and recreational fishing all play a role.",
                     subThreatData: [
                         {
                             subThreat: "Overfishing",
                             subThreatIcon: "fishing-pressure-4847095",
-                            subThreatText: "Overfishing"
+                            subThreatText: "Rising demand from rural populations, food-insecure communities, and commercial markets. Many inland fisheries are open access and poorly regulated, so heavy fishing and illegal gear are common. Recreational fishing can also heavily target large species."
                         }
                     ]
                 }
@@ -611,21 +611,21 @@ export default {
                             subThreat: "Dams",
                             subThreatIcon: "H-dams-3916913",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Hydropower, water supply for growing urban populations, flood control for urban and agricultural areas, and irrigation for agriculture.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Hydropower, water supply for growing urban populations, flood control for urban and agricultural areas, and irrigation for agriculture.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Dams block river connectivity, interrupting sediment and nutrient transport and disrupting fish migration and recruitment. Productivity declines upstream and downstream, floodplains flood less often, and low flows increase. Reservoirs replace river fish with lake-adapted species, and drawdown and refilling destroy aquatic vegetation and breeding areas. Altered flows also remove thermal cues, reducing fish growth and reproduction. These effects are well documented (<a href='https://archive.org/details/impoundedriversp0000pett/mode/2up' target='_blank'>Petts 1984</a>), including in large tropical rivers (<a href='https://doi.org/10.1126/science.aac7082' target='_blank'>Winemiller et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Energy, water supply, and flood mitigation sectors.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Energy, water supply, and flood mitigation sectors.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Build fish passage facilities; work with reservoir managers to ensure minimum flows and timely flood releases; stock species suited to reservoirs, or stock young fish where recruitment is limited; and prepare fishing communities for changing fisheries. Options for reducing dam impacts are reviewed by <a href='https://doi.org/10.1016/j.watbs.2022.100009' target='_blank'>Twardek et al. (2022)</a>.",
@@ -642,21 +642,21 @@ export default {
                             subThreat: "Wetland drainage",
                             subThreatIcon: "H-wetland-drainage-34007",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Wetlands are drained directly for agriculture, aquaculture, housing, industry, and recreation, and indirectly when nearby water withdrawals lower the water table. Weak legislation and governance enable drainage, and climate-driven evaporation compounds it. Upstream drainage also reduces flows to downstream wetlands, raising the risk of salinization near coasts.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Wetlands are drained directly for agriculture, aquaculture, housing, industry, and recreation, and indirectly when nearby water withdrawals lower the water table. Weak legislation and governance enable drainage, and climate-driven evaporation compounds it. Upstream drainage also reduces flows to downstream wetlands, raising the risk of salinization near coasts.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Loss of habitat, especially floodplain wetlands used for spawning, reduces species diversity; endemic species in small wetlands are most at risk. Shallower water lowers water quality and increases temperature extremes, and impacts can extend downstream. Consolidating small wetlands into one larger, deeper wetland may support more fish but provides poorer habitat for invertebrates, birds, and submerged plants (<a href='https://doi.org/10.1890/ES14-00494.1' target='_blank'>McCauley et al. 2015</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Agricultural, industrial, municipal, and water sectors.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Agricultural, industrial, municipal, and water sectors.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Restore wetlands, recognizing that restored wetlands may not regain full ecological function (<a href='https://doi.org/10.1371/journal.pbio.1001247' target='_blank'>Moreno-Mateos et al. 2012</a>). Preventing drainage of carbon-rich wetlands such as peatlands also reduces greenhouse gas emissions (<a href='https://doi.org/10.1038/s41558-020-0738-8' target='_blank'>Goldstein et al. 2020</a>). Restoration can pay off: re-flooding the Waza Logone floodplain in Cameroon was estimated to add $2.5 million per year to the regional economy, including through restored fisheries (<a href='https://doi.org/10.2305/IUCN.CH.2004.WANI.3.en' target='_blank'>Emerton and Bos 2004</a>).",
@@ -673,21 +673,21 @@ export default {
                             subThreat: "Deforestation and associated runoff",
                             subThreatIcon: "H-deforestation-4811548",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Demand for timber products and conversion of forests to agricultural and urban land.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Demand for timber products and conversion of forests to agricultural and urban land.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Cleared land erodes easily, sending sediment into waterways and degrading habitat. Sedimentation reduces food production and invertebrate densities, abrades gills, lowers spawning success for species that spawn on gravel and rock, and impairs foraging by reducing visibility (<a href='https://doi.org/10.1002/hyp.7940' target='_blank'>Kemp et al. 2011</a>). Loss of shade warms water, stressing or killing temperature-sensitive fish (<a href='https://doi.org/10.1371/journal.pone.0196560' target='_blank'>Ilha et al. 2018</a>), and reduces the woody debris some fish rely on for cover and food (<a href='https://doi.org/10.1002/aqc.3270050206' target='_blank'>Gurnell et al. 1995</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Forestry, agriculture, municipal planners, and governments.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Forestry, agriculture, municipal planners, and governments.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Limit deforestation in sensitive or ecologically valuable basins, protect riparian buffers, and use logging techniques that minimize erosion. Forested riparian buffers have been shown to reduce the effects of deforestation on fish communities (<a href='https://doi.org/10.1890/08-0050.1' target='_blank'>Lorion and Kennedy 2009</a>).",
@@ -704,21 +704,21 @@ export default {
                             subThreat: "Riparian degradation",
                             subThreatIcon: "H-riparian-6291",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Land use changes such as deforestation, watershed regulation, hydropower, agriculture, irrigation, water withdrawals, urbanization, and pollution.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Land use changes such as deforestation, watershed regulation, hydropower, agriculture, irrigation, water withdrawals, urbanization, and pollution.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Fish responses vary with the type of water body and the nature and degree of disturbance (<a href='https://doi.org/10.1038/s41467-020-14624-2' target='_blank'>Kao et al. 2020</a>). Opportunistic species may thrive while specialized species decline, but almost any change on land alters the composition and structure of fish communities. In Lake Victoria, land degradation and species introductions have sharply reduced fish diversity even as overall productivity increased (<a href='https://doi.org/10.1079/9781845934149.0309' target='_blank'>Kolding et al. 2008</a>; <a href='https://doi.org/10.1139/cjfas-2015-0130' target='_blank'>van Zwieten et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Forestry, agriculture, energy, industry, municipal planners, and governments.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Forestry, agriculture, energy, industry, municipal planners, and governments.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Policymakers and planners must recognize that changes to riparian land inevitably affect waterways. Planned degradation can be partly offset through technical interventions, and decades of restoration experience show what works; progress depends on willingness, environmental legislation, and economic trade-offs.",
@@ -735,21 +735,21 @@ export default {
                             subThreat: "Agricultural water use",
                             subThreatIcon: "H-agriculture-5491228",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Growing demand for food, fiber, feed, and fuel. Agricultural markets are global, but water is managed locally, and irrigation water is rarely managed to maintain downstream connectivity. Large transboundary water resources are often governed by outdated, inflexible rules.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Growing demand for food, fiber, feed, and fuel. Agricultural markets are global, but water is managed locally, and irrigation water is rarely managed to maintain downstream connectivity. Large transboundary water resources are often governed by outdated, inflexible rules.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Withdrawals reduce or destabilize downstream flows, and the associated infrastructure, such as dams and reservoirs, can cut off floodplains and block fish movement and migration (<a href='https://www.fao.org/3/CA2675EN/ca2675en.pdf' target='_blank'>Gregory et al. 2018</a>). This can reduce biodiversity, alter fish communities, increase fish mortality, and reduce catches, contributing to malnutrition (<a href='https://doi.org/10.1080/00207230600963296' target='_blank'>Degeorges and Reilly 2006</a>). However, irrigation reservoirs can also moderate flow extremes and create fish habitat where fisheries would not otherwise exist (<a href='https://www.fao.org/3/CA2675EN/ca2675en.pdf' target='_blank'>Gregory et al. 2018</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Farmers, ranchers, water managers, government officials, local and downstream communities, and environmental professionals.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Farmers, ranchers, water managers, government officials, local and downstream communities, and environmental professionals.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Redesign and operate irrigation delivery and storage infrastructure to improve connectivity and flows, create or improve fish habitat and refuges in and around irrigated systems, and revise policies and regulations to support these changes (<a href='https://www.fao.org/3/CA2675EN/ca2675en.pdf' target='_blank'>Gregory et al. 2018</a>). Raising fish in irrigation reservoirs and rice fields can also help offset fisheries lost to altered flows (<a href='https://www.fao.org/4/a0444e/A0444E09.htm#ch7' target='_blank'>Peterson and Kalende 2006</a>; <a href='https://digitalarchive.worldfishcenter.org/server/api/core/bitstreams/e2148d94-7037-4b51-b162-73f9705f137e/content' target='_blank'>Baran 2005</a>).",
@@ -766,21 +766,21 @@ export default {
                             subThreat: "Urban water use",
                             subThreatIcon: "H-urban-7019973",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Population growth, economic development, wastewater intake and discharge, recreational fishing, and river transport alter natural flows. Weak legislation on treating water before it returns to rivers adds to the problem.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Population growth, economic development, wastewater intake and discharge, recreational fishing, and river transport alter natural flows. Weak legislation on treating water before it returns to rivers adds to the problem.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Discharges from water treatment add pollution and excess nutrients to rivers. Withdrawals and channel modifications for transport alter flows and cut fish off from floodplains, changing species composition and reducing access to spawning areas. Diverting river water to fill artificial recreational fishing lakes further disconnects rivers from their floodplains.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Water management and water-use sectors, governments, and commercial water users.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Water management and water-use sectors, governments, and commercial water users.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Enforce wastewater treatment before release into rivers, maintain environmental flows in urban areas (particularly around transport infrastructure), and restore urban rivers and fish refuges. The <a href='https://www.wildtrout.org/assets/img/general/Urban-River-Toolkit.pdf' target='_blank'>Trout in the Town Urban River Toolkit</a> offers practical restoration measures.",
@@ -797,21 +797,21 @@ export default {
                             subThreat: "Industrial water use",
                             subThreatIcon: "H-industrial-659077",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Economic development combined with weak environmental policy and legislation, and poor coordination between water and fisheries management authorities.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Economic development combined with weak environmental policy and legislation, and poor coordination between water and fisheries management authorities.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Withdrawals reduce environmental flows, increasing habitat variability and disrupting spawning routes. Fish species composition shifts, and fisheries see smaller, less predictable catches of different species.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Water managers, governments, and upstream and downstream communities and authorities.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Water managers, governments, and upstream and downstream communities and authorities.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Give greater weight to environmental flows in integrated water resources management. Communities can adapt through fish refuges and alternative livelihoods.",
@@ -841,21 +841,21 @@ export default {
                             subThreat: "Agricultural effluents",
                             subThreatIcon: "P-agriculture-3634692",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Food demand, economic policies, and weak environmental regulation and enforcement.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Food demand, economic policies, and weak environmental regulation and enforcement.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Pesticides, including organochlorines, organophosphates, and pyrethroid insecticides, are highly toxic to fish. They cause oxidative stress, alter blood chemistry, suppress immune function, damage organs such as the liver and kidneys, and change fish behavior. These effects have been documented in Nile tilapia (<a href='https://doi.org/10.1007/s11259-022-09961-0' target='_blank'>Abdelmagid et al. 2022</a>), and the toxicity of the herbicide glyphosate to aquatic organisms is reviewed by <a href='https://ph03.tci-thaijo.org/index.php/ahstr/article/view/1523' target='_blank'>Thanomsit et al. (2020)</a>.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Agriculture, governments, rural communities, and academia.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Agriculture, governments, rural communities, and academia.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Catchment management; better regulation, monitoring, and enforcement; and improved biological information.",
@@ -872,21 +872,21 @@ export default {
                             subThreat: "Urban wastewater",
                             subThreatIcon: "P-urban-waste-25100",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Urbanizing populations around the world are increasing municipal wastewater discharge.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Urbanizing populations around the world are increasing municipal wastewater discharge.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Urban wastewater contains many pollutants harmful to fish. Organic material and nutrients cause eutrophication and lower dissolved oxygen; toxic contaminants such as ammonia, chloride, and industrial chemicals can be acutely toxic; and hormones, pharmaceuticals, and personal care products can disrupt endocrine systems and impair reproduction (<a href='https://doi.org/10.1002/ieam.1364' target='_blank'>Tetreault et al. 2013</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Municipal governments and regulatory agencies.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Municipal governments and regulatory agencies.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Expand effective wastewater treatment and strengthen regulation of municipal wastewater. Improved wastewater management can substantially reduce the threat to downstream fish communities (<a href='https://doi.org/10.1139/f2011-096' target='_blank'>Holeton et al. 2011</a>).",
@@ -903,21 +903,21 @@ export default {
                             subThreat: "Industrial effluents",
                             subThreatIcon: "P-industrial-200223",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Economic development combined with weak environmental policy and legislation.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Economic development combined with weak environmental policy and legislation.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Industrial effluents raise nutrient, toxin, and salt concentrations, depleting oxygen and altering food webs. Fish can suffer acute toxicity and reduced spawning success, and fisheries lose value as products become contaminated.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Governments (environment and industry ministries), fisheries, consumers, and downstream communities.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Governments (environment and industry ministries), fisheries, consumers, and downstream communities.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Stricter, industry-specific standards for treating effluents and capacity building on their environmental and socioeconomic effects. Communities can adapt through fish consumption guidelines and nature-based solutions for water purification.",
@@ -934,21 +934,21 @@ export default {
                             subThreat: "Aquaculture effluents",
                             subThreatIcon: "P-aquaculture-23815",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Expanding aquaculture production as fish supply shifts from capture fisheries to farming.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Expanding aquaculture production as fish supply shifts from capture fisheries to farming.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Effluents can contain nutrients, solids, pharmaceuticals, pathogens, and escaped farmed organisms. Nutrients drive eutrophication, and solids increase turbidity and sedimentation. Most aquaculture pharmaceuticals are not toxic to fish, but some, such as hormones used for sex reversal, have sublethal effects. Pathogens can severely affect wild fish, especially when non-native pathogens are introduced or farmed fish act as reservoirs for native ones.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Aquaculture, commercial and recreational fishing industries, and government resource managers.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Aquaculture, commercial and recreational fishing industries, and government resource managers.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Effluents from tank systems and, to a lesser extent, pond systems can be treated. Cage and pen systems are open to the environment and offer no such opportunity.",
@@ -965,21 +965,21 @@ export default {
                             subThreat: "Pharmaceuticals",
                             subThreatIcon: "P-pharmaceuticals-164439",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Growing use of pharmaceuticals in human and veterinary medicine.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Growing use of pharmaceuticals in human and veterinary medicine.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Depending on the species and the type and concentration of pharmaceutical, fish behavior, reproduction, development, and genetics may be harmed.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Pharmaceutical industry, medical sector, livestock farmers, and health and environmental agencies.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Pharmaceutical industry, medical sector, livestock farmers, and health and environmental agencies.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Reduce pharmaceutical use in animals, ensure proper disposal, and improve detection in waterways.",
@@ -996,21 +996,21 @@ export default {
                             subThreat: "Oil or gas exploration",
                             subThreatIcon: "P-oil-gas-3723255",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Weak legislation, limited enforcement, and lack of stakeholder involvement.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Weak legislation, limited enforcement, and lack of stakeholder involvement.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Polycyclic aromatic hydrocarbons (PAHs) from petroleum disrupt salmonid embryo development, impair swimming, and cause malformations. Exposed fish become more susceptible to parasites and to eye and heart problems, and water bodies affected by crude oil show marked declines in fish diversity (<a href='https://doi.org/10.1590/1982-0224-2021-0001' target='_blank'>Azevedo-Santos et al. 2021</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Oil industry, international corporations, and governments.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Oil industry, international corporations, and governments.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Better regulation, monitoring, and enforcement, along with stakeholder consultation.",
@@ -1027,21 +1027,21 @@ export default {
                             subThreat: "Plastics",
                             subThreatIcon: "P-plastics-2484814",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Increasing production and consumption of plastics.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Increasing production and consumption of plastics.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Plastics impact",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Manufacturers, industry, and environmental agencies.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Manufacturers, industry, and environmental agencies.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Reduce plastic use and remove plastics and microplastics from waterways.",
@@ -1058,21 +1058,21 @@ export default {
                             subThreat: "Mining",
                             subThreatIcon: "P-mining-7248907",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Poverty and lack of formal employment, weak legislation, and limited enforcement.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Poverty and lack of formal employment, weak legislation, and limited enforcement.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Mining increases erosion and siltation, and toxic sludge and chemicals used to separate minerals can reach rivers. Heavy metals can impair fish growth, reproduction, and nervous system function, and cyanide can cause delayed mortality, impaired swimming, disrupted respiration, and altered growth (<a href='https://pubs.usgs.gov/publication/5200123' target='_blank'>Eisler 1991</a>). In southeastern Brazil, the collapse of mine tailings dams sent toxic waste into the Doce River, severely affecting fish diversity (<a href='https://doi.org/10.1016/j.pecon.2017.06.002' target='_blank'>Carmo et al. 2017</a>; <a href='https://doi.org/10.1016/j.ecoenv.2020.110165' target='_blank'>Weber et al. 2020</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industrial and artisanal mining, governments, and environmental agencies.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Industrial and artisanal mining, governments, and environmental agencies.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Better regulation, monitoring, and control of tailings disposal facilities.",
@@ -1102,21 +1102,21 @@ export default {
                             subThreat: "Change in water temperature",
                             subThreatIcon: "CW-temperature-1979336",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Human-caused climate change.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Human-caused climate change.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Temperature affects every aspect of fish physiology, including growth, metabolism, feeding, and reproduction; for example, Atlantic salmon (<em>Salmo salar</em>) show delayed or no ovulation above 13–15°C (<a href='https://documentatiecentrum.watlab.be/imis.php?module=ref&refid=10981' target='_blank'>King and Pankhurst 2000</a>). As waters warm, fish generally shift poleward or upslope to track suitable temperatures (<a href='https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2486.2010.02214.x' target='_blank'>Melles et al. 2011</a>): species with narrow thermal ranges contract, while those with broad ranges expand (<a href='https://doi.org/10.1016/j.biocon.2016.08.021' target='_blank'>Ruiz-Navarro et al. 2016</a>). Warming also changes the spread and virulence of fish diseases and the toxicity of pollutants.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industry, fossil fuel sectors, governments, and fishery managers.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Industry, fossil fuel sectors, governments, and fishery managers.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Reduce greenhouse gas emissions and increase shade along rivers. Fisheries can adapt by moving fish to locations within their thermal range, increasing disease surveillance, diversifying livelihoods, and taking advantage of new species at higher latitudes.",
@@ -1133,21 +1133,21 @@ export default {
                             subThreat: "Drought",
                             subThreatIcon: "CW-drought-002D5E",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "More frequent and intense periods of abnormally low precipitation.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "More frequent and intense periods of abnormally low precipitation.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Less rainfall reduces stream flow and water volume and warms water, degrading water quality and habitat and cutting off connectivity. Fish face more stress, energy deficits, restricted movement, and disease, which can raise mortality, reduce recruitment, and shift community composition, sometimes favoring invasive species (<a href='https://doi.org/10.1007/s11160-018-09545-9' target='_blank'>Lennox et al. 2019</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industry, fossil fuel sectors, governments, and fishery managers.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Industry, fossil fuel sectors, governments, and fishery managers.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Reduce greenhouse gas emissions and water use, remove barriers strategically, and restore habitat. In California, drought compounds existing threats to river trout from habitat change and water withdrawals, making drought-aware water management essential (<a href='https://doi.org/10.1007/s11160-018-09545-9' target='_blank'>Lennox et al. 2019</a>).",
@@ -1164,21 +1164,21 @@ export default {
                             subThreat: "Change in flooding",
                             subThreatIcon: "CW-flooding-1760091",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Changes in the frequency and intensity of precipitation events, and sea-level rise.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Changes in the frequency and intensity of precipitation events, and sea-level rise.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Flood-borne sediment can deplete oxygen, nests and eggs can be destroyed, and floods can breach barriers that contain non-native fish. For example, flooding in the Illinois River could release invasive carp into the Laurentian Great Lakes, threatening a $7 billion fishing industry (<a href='https://www.ideals.illinois.edu/items/92341/bitstreams/301346/data.pdf' target='_blank'>Spacapan et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Water resource and fishery management sectors.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Water resource and fishery management sectors.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Identify and maintain complex aquatic habitats that give fish refuge during and after floods.",
@@ -1195,21 +1195,21 @@ export default {
                             subThreat: "Change in wind patterns",
                             subThreatIcon: "CW-wind-7479181",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Warmer water may reduce land–water temperature contrasts, warming oceans and atmosphere may make daily winds more variable, and melting Arctic ice may alter the jet stream, increasing the variability or severity of winds.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Warmer water may reduce land–water temperature contrasts, warming oceans and atmosphere may make daily winds more variable, and melting Arctic ice may alter the jet stream, increasing the variability or severity of winds.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Wind is a key driver of when lakes mix after summer stratification into warm surface and cold bottom layers. Earlier and longer stratification can deplete oxygen in productive lakes, potentially increasing fish die-offs.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Change in wind patterns sectors",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Change in wind patterns sectors",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Change in wind patterns mitigation",
@@ -1226,21 +1226,21 @@ export default {
                             subThreat: "Change in ice cover",
                             subThreatIcon: "CW-ice-cover-5314745",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Rising global temperatures.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Rising global temperatures.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Less ice cover exposes overwintering eggs to more turbulence and storms, increasing mortality, particularly in poor spawning habitat. For example, ice cover is an important predictor of lake whitefish (<em>Coregonus clupeaformis</em>) recruitment, which is projected to decline as ice cover is lost (<a href='https://doi.org/10.1016/j.jglr.2015.03.015' target='_blank'>Lynch et al. 2015</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Industry and fishery managers.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Industry and fishery managers.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Reduce greenhouse gas emissions and designate spawning refuges with optimal habitat.",
@@ -1270,21 +1270,21 @@ export default {
                             subThreat: "Invasive non-native species",
                             subThreatIcon: "invasive-species-973991",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Accidental introductions occur through aquatic plant transfers, recreational boats, equipment, and water moved between waters, and escapes from aquarium-trade hatcheries during floods or drainage. Invasive fingerlings can also be mixed into fish stocked across borders. Deliberate introductions for aquaculture, stocking of closed water bodies, and biological control can lead to escapes, and non-native fish are sometimes released into open waters during ceremonies or when they outgrow aquariums.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Accidental introductions occur through aquatic plant transfers, recreational boats, equipment, and water moved between waters, and escapes from aquarium-trade hatcheries during floods or drainage. Invasive fingerlings can also be mixed into fish stocked across borders. Deliberate introductions for aquaculture, stocking of closed water bodies, and biological control can lead to escapes, and non-native fish are sometimes released into open waters during ceremonies or when they outgrow aquariums.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "Once established, invasive species compete with and prey on native species, spread diseases to which native fish have no resistance, and act as parasites or egg predators. Invasive plants such as water hyacinth clog waterways, and filter-feeding invaders form dense beds that deplete plankton and can promote weed growth or toxic algal blooms. Together these changes alter nutrient cycling and food webs and can harm commercial fisheries.",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Hatchery operations, particularly smaller hatcheries trading across borders.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Hatchery operations, particularly smaller hatcheries trading across borders.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Risk assessment and stronger biosecurity practices, particularly when recreational boats are moved between waters.",
@@ -1314,21 +1314,21 @@ export default {
                             subThreat: "Overfishing",
                             subThreatIcon: "fishing-pressure-4847095",
                             subThreatText: [
-                                {
-                                    heading: "Drivers",
-                                    content: [{type: "text", content: "Rising demand for fish from large rural populations, local food insecurity, and commercial markets. Many inland fisheries are open access, with little regulation or control of fishing effort, and intense fishing pressure and illegal gear are common. Recreational fisheries can also have high exploitation rates and target large species.",
-                                    }],activeOnLoad: true
-                                },
+                                // {
+                                    // heading: "Drivers",
+                                    // content: [{type: "text", content: "Rising demand for fish from large rural populations, local food insecurity, and commercial markets. Many inland fisheries are open access, with little regulation or control of fishing effort, and intense fishing pressure and illegal gear are common. Recreational fisheries can also have high exploitation rates and target large species.",
+                                    // }],activeOnLoad: true
+                                // },
                                 {
                                     heading: "Potential impacts",
                                     content: [{type: "text", content: "As target stocks decline, fishers shift gears and species (<a href='https://doi.org/10.1641/0006-3568(2005)055[1041:OOIW]2.0.CO;2' target='_blank'>Allan et al. 2005</a>). Large, slow-growing species are depleted first and replaced by smaller species lower in the food web (<a href='https://doi.org/10.1006/jmsc.2000.0738' target='_blank'>Murawski 2000</a>). In Lake Victoria, juvenile fish dominated catches in the early 2000s, and catch per boat fell from 80 to 45 kilograms per day (<a href='https://doi.org/10.1111/j.1365-2400.2006.00477.x' target='_blank'>Matsuishi et al. 2006</a>).",
                                     }],activeOnLoad: true
                                 },
-                                {
-                                    heading: "Sectors involved",
-                                    content: [{type: "text", content: "Local and national fisheries management bodies, fishers, and the agricultural sector.",
-                                    }],activeOnLoad: false
-                                },
+                                // {
+                                    // heading: "Sectors involved",
+                                    // content: [{type: "text", content: "Local and national fisheries management bodies, fishers, and the agricultural sector.",
+                                    // }],activeOnLoad: false
+                                // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
                                     content: [{type: "text", content: "Adopt an ecosystem approach to fisheries management that conserves ecosystem function and trophic structure; introduce regulations such as closed seasons, gear restrictions, and size limits; and support alternative livelihoods, stocking, or aquaculture.",

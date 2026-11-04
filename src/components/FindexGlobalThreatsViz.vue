@@ -131,8 +131,20 @@
           v-html="tab.tabText"
         />
         <div v-if="!primaryCategorySelected">
-          <CollapsibleAccordion 
-            v-for="item, index in subCategoryData.subThreatText"
+          <div
+            v-for="item, index in subCategoryData.subThreatText.filter(d => !accordionHeadings.includes(d.heading))"
+            :key="index"
+            class="sub-threat-section"
+          >
+            <h4 v-html="item.heading" />
+            <p
+              v-for="contentItem, contentIndex in item.content"
+              :key="contentIndex"
+              v-html="contentItem.content"
+            />
+          </div>
+          <CollapsibleAccordion
+            v-for="item, index in subCategoryData.subThreatText.filter(d => accordionHeadings.includes(d.heading))"
             :key="index"
             :heading="item.heading"
             :content="item.content"
@@ -171,6 +183,8 @@
     let legendSource = ref(null);
     let mapSource = ref(null);
     let iconSource = ref(null);
+    // sub-threat sections shown as accordions; all others are shown as text below the map
+    const accordionHeadings = ["How it’s measured"];
 
     // Set up computed variables that depend on ref values
     const primaryCategoryData = computed(() => {
@@ -321,6 +335,12 @@
 }
 .tab-map-image {
     width: 100%;
+}
+.sub-threat-section {
+    margin-bottom: 2rem;
+}
+.sub-threat-section h4 {
+    margin-bottom: 0.5rem;
 }
 .habitat {
     color: var(--color-habitat);
