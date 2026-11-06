@@ -493,7 +493,7 @@ export default {
                         {
                             subThreat: "Change in water temperature",
                             subThreatIcon: "CW-temperature-1979336",
-                            subThreatText: "Human-caused climate change."
+                            subThreatText: "Shifting weather patterns, snowmelt quantities, and warming temperatures affect local waterbody temperature."
                         },
                         {
                             subThreat: "Drought",
