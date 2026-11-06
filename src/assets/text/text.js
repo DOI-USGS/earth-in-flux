@@ -503,7 +503,7 @@ export default {
                         {
                             subThreat: "Change in flooding",
                             subThreatIcon: "CW-flooding-1760091",
-                            subThreatText: "Changes in the frequency and intensity of precipitation events, and sea-level rise."
+                            subThreatText: "Changes in the frequency and intensity of precipitation events and sea-level rise."
                         },
                         {
                             subThreat: "Change in wind patterns",
@@ -721,7 +721,7 @@ export default {
                                 // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Policymakers and planners must recognize that changes to riparian land inevitably affect waterways. Planned degradation can be partly offset through technical interventions, and decades of restoration experience show what works; progress depends on willingness, environmental legislation, and economic trade-offs.",
+                                    content: [{type: "text", content: "Policymakers and planners must recognize that changes to riparian land inevitably affect waterways. Planned degradation can be partly offset through technical interventions, and decades of restoration experience show what works: progress depends on willingness, environmental legislation, and economic trade-offs.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -814,7 +814,7 @@ export default {
                                 // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Give greater weight to environmental flows in integrated water resources management. Communities can adapt through fish refuges and alternative livelihoods.",
+                                    content: [{type: "text", content: "Give greater weight to environmental flows through integrated water resources management and establish fish refuges near heavy industrial areas.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -879,7 +879,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Urban wastewater contains many pollutants harmful to fish. Organic material and nutrients cause eutrophication and lower dissolved oxygen; toxic contaminants such as ammonia, chloride, and industrial chemicals can be acutely toxic; and hormones, pharmaceuticals, and personal care products can disrupt endocrine systems and impair reproduction (<a href='https://doi.org/10.1002/ieam.1364' target='_blank'>Tetreault et al. 2013</a>).",
+                                    content: [{type: "text", content: "Urban wastewater can contain pollutants harmful to fish. Organic material and nutrients cause eutrophication and lower dissolved oxygen; toxic contaminants such as ammonia, chloride, and industrial chemicals can be acutely toxic; and hormones, pharmaceuticals, and personal care products can disrupt endocrine systems and impair reproduction (<a href='https://doi.org/10.1002/ieam.1364' target='_blank'>Tetreault et al. 2013</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
@@ -910,7 +910,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Industrial effluents raise nutrient, toxin, and salt concentrations, depleting oxygen and altering food webs. Fish can suffer acute toxicity and reduced spawning success, and fisheries lose value as products become contaminated.",
+                                    content: [{type: "text", content: "Industrial effluents may raise nutrient, toxin, and salt concentrations, depleting oxygen and altering food webs. Fish can suffer acute toxicity and reduced spawning success, and fisheries lose value as products become contaminated.",
                                     }],activeOnLoad: true
                                 },
                                 // {
@@ -920,7 +920,7 @@ export default {
                                 // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Stricter, industry-specific standards for treating effluents and capacity building on their environmental and socioeconomic effects. Communities can adapt through fish consumption guidelines and nature-based solutions for water purification.",
+                                    content: [{type: "text", content: "Stricter, industry-specific standards for treating effluents and capacity building on their environmental and socioeconomic effects. Communities can adapt through fish consumption guidelines and innovative or nature-based solutions for water purification.",
                                     }],activeOnLoad: false
                                 },
                                 {
@@ -941,7 +941,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Effluents can contain nutrients, solids, pharmaceuticals, pathogens, and escaped farmed organisms. Nutrients drive eutrophication, and solids increase turbidity and sedimentation. Most aquaculture pharmaceuticals are not toxic to fish, but some, such as hormones used for sex reversal, have sublethal effects. Pathogens can severely affect wild fish, especially when non-native pathogens are introduced or farmed fish act as reservoirs for native ones.",
+                                    content: [{type: "text", content: "Effluents can contain nutrients, solids, pharmaceuticals, pathogens, and escaped farmed organisms. Nutrients drive eutrophication, and solids increase turbidity and sedimentation. Most aquaculture pharmaceuticals are nontoxic for fish, but some, such as hormones used for sex reversal, have sublethal effects. Pathogens can severely affect wild fish, especially when non-native pathogens are introduced or farmed fish act as reservoirs for native ones.",
                                     }],activeOnLoad: true
                                 },
                                 // {
@@ -1140,7 +1140,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Less rainfall reduces stream flow and water volume and warms water, degrading water quality and habitat and cutting off connectivity. Fish face more stress, energy deficits, restricted movement, and disease, which can raise mortality, reduce recruitment, and shift community composition, sometimes favoring invasive species (<a href='https://doi.org/10.1007/s11160-018-09545-9' target='_blank'>Lennox et al. 2019</a>).",
+                                    content: [{type: "text", content: "Less rainfall or snowmelt reduces stream flow and water volume and warms water, degrading water quality and habitat and cutting off connectivity. Fish face more stress, energy deficits, restricted movement, and disease, which can raise mortality, reduce recruitment, and shift community composition, sometimes favoring invasive species (<a href='https://doi.org/10.1007/s11160-018-09545-9' target='_blank'>Lennox et al. 2019</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
@@ -1171,7 +1171,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Flood-borne sediment can deplete oxygen, nests and eggs can be destroyed, and floods can breach barriers that contain non-native fish. For example, flooding in the Illinois River could release invasive carp into the Laurentian Great Lakes, threatening a $7 billion fishing industry (<a href='https://www.ideals.illinois.edu/items/92341/bitstreams/301346/data.pdf' target='_blank'>Spacapan et al. 2016</a>).",
+                                    content: [{type: "text", content: "Flood-borne sediment can deplete oxygen, affect water quality, or destroy nests and eggs. Rising sea-levels affect freshwater salinization. Floods can also breach barriers that contain non-native fish. For example, flooding in the Illinois River could release invasive carp into the Laurentian Great Lakes, threatening a $7 billion fishing industry (<a href='https://www.ideals.illinois.edu/items/92341/bitstreams/301346/data.pdf' target='_blank'>Spacapan et al. 2016</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
