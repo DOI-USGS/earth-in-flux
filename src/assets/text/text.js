@@ -513,7 +513,7 @@ export default {
                         {
                             subThreat: "Change in ice cover",
                             subThreatIcon: "CW-ice-cover-5314745",
-                            subThreatText: "Rising global temperatures."
+                            subThreatText: "Rising temperatures, changes in season timing, and increased rain-on-snow events affect ice cover on lakes and streams."
                         }
                     ]
                 },
