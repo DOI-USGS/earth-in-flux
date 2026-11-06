@@ -407,7 +407,7 @@ export default {
                         {
                             subThreat: "Wetland drainage",
                             subThreatIcon: "H-wetland-drainage-34007",
-                            subThreatText: "Wetlands are drained directly for agriculture, aquaculture, housing, industry, and recreation, and indirectly when nearby water withdrawals lower the water table. Weak legislation and governance enable drainage, and climate-driven evaporation compounds it. Upstream drainage also reduces flows to downstream wetlands, raising the risk of salinization near coasts."
+                            subThreatText: "Wetlands are drained directly for agriculture, aquaculture, housing, industry, and recreation, and indirectly when nearby water withdrawals lower the water table. Climate-driven evaporation compounds the loss. Upstream drainage also reduces flows to downstream wetlands, raising the risk of salinization near coasts."
                         },
                         {
                             subThreat: "Deforestation and associated runoff",
