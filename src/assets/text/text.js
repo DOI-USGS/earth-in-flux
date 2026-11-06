@@ -455,7 +455,7 @@ export default {
                         {
                             subThreat: "Industrial effluents",
                             subThreatIcon: "P-industrial-200223",
-                            subThreatText: "Economic development combined with weak environmental policy and legislation."
+                            subThreatText: "Industrial runoff and point-source pollution can affect local and downstream waterbodies."
                         },
                         {
                             subThreat: "Aquaculture effluents",
