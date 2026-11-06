@@ -432,7 +432,7 @@ export default {
                         {
                             subThreat: "Industrial water use",
                             subThreatIcon: "H-industrial-659077",
-                            subThreatText: "Economic development combined with weak environmental policy and legislation, and poor coordination between water and fisheries management authorities."
+                            subThreatText: "Economic development and industrial wastewater can strain local water resources."
                         }
                     ]
                 },
