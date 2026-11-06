@@ -422,7 +422,7 @@ export default {
                         {
                             subThreat: "Agricultural water use",
                             subThreatIcon: "H-agriculture-5491228",
-                            subThreatText: "Growing demand for food, fiber, feed, and fuel. Agricultural markets are global, but water is managed locally, and irrigation water is rarely managed to maintain downstream connectivity. Large transboundary water resources are often governed by outdated, inflexible rules."
+                            subThreatText: "Growing demand for food, fiber, feed, and fuel. Local water supply can be reduced through irrigation, affecting fish habitats."
                         },
                         {
                             subThreat: "Urban water use",
