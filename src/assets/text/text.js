@@ -1003,7 +1003,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Polycyclic aromatic hydrocarbons (PAHs) from petroleum disrupt salmonid embryo development, impair swimming, and cause malformations. Exposed fish become more susceptible to parasites and to eye and heart problems, and water bodies affected by crude oil show marked declines in fish diversity (<a href='https://doi.org/10.1590/1982-0224-2021-0001' target='_blank'>Azevedo-Santos et al. 2021</a>).",
+                                    content: [{type: "text", content: "Polycyclic aromatic hydrocarbons (PAHs) from petroleum disrupt salmonid embryo development, impair swimming, and cause malformations. Fish exposed to oil or gas extraction effluents or direct leaks become more susceptible to parasites and to eye and heart problems. Water bodies affected by crude oil show marked declines in fish diversity (<a href='https://doi.org/10.1590/1982-0224-2021-0001' target='_blank'>Azevedo-Santos et al. 2021</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
