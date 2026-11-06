@@ -445,7 +445,7 @@ export default {
                         {
                             subThreat: "Agricultural effluents",
                             subThreatIcon: "P-agriculture-3634692",
-                            subThreatText: "Food demand, economic policies, and weak environmental regulation and enforcement."
+                            subThreatText: "Agricultural runoff can contain elevated nutrients, affecting downstream water resources."
                         },
                         {
                             subThreat: "Urban wastewater",
