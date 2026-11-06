@@ -480,7 +480,7 @@ export default {
                         {
                             subThreat: "Mining",
                             subThreatIcon: "P-mining-7248907",
-                            subThreatText: "Poverty and lack of formal employment, weak legislation, and limited enforcement."
+                            subThreatText: "Water used for mining exploration and extraction can affect downstream systems, and direct input of oil or gas from leaks can directly impact water quality."
                         }
                     ]
                 },
