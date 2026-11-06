@@ -470,7 +470,7 @@ export default {
                         {
                             subThreat: "Oil or gas exploration",
                             subThreatIcon: "P-oil-gas-3723255",
-                            subThreatText: "Weak legislation, limited enforcement, and lack of stakeholder involvement."
+                            subThreatText: "Water used for oil or gas extraction can contain various water quality contaminants."
                         },
                         {
                             subThreat: "Plastics",
