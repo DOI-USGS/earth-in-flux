@@ -1277,7 +1277,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Once established, invasive species compete with and prey on native species, spread diseases to which native fish have no resistance, and act as parasites or egg predators. Invasive plants such as water hyacinth clog waterways, and filter-feeding invaders form dense beds that deplete plankton and can promote weed growth or toxic algal blooms. Together these changes alter nutrient cycling and food webs and can harm commercial fisheries.",
+                                    content: [{type: "text", content: "Once established, invasive species compete with and prey on native species, spread diseases to which native fish have no resistance, and act as parasites or egg predators. Invasive plants such as water hyacinth (<em>Pontederia crassipes</em>) clog waterways, and filter-feeding invaders form dense beds that deplete plankton and can promote weed growth or toxic algal blooms. Together these changes alter nutrient cycling and food webs and can harm commercial fisheries.",
                                     }],activeOnLoad: true
                                 },
                                 // {
