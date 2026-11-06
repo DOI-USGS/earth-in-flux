@@ -1034,7 +1034,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Plastics impact",
+                                    content: [{type: "text", content: "Plastics are found in waters throughout the world. As they break down into microplastics (pieces smaller than 5 millimeters), they spread through the water column and sediments and are ingested by invertebrates, fish, birds, and mammals (<a href='https://doi.org/10.1016/j.envpol.2020.115083' target='_blank'>Spanjer et al. 2020</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
