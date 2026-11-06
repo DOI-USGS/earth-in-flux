@@ -539,7 +539,7 @@ export default {
                         {
                             subThreat: "Overfishing",
                             subThreatIcon: "fishing-pressure-4847095",
-                            subThreatText: "Rising demand from rural populations, food-insecure communities, and commercial markets. Many inland fisheries are open access and poorly regulated, so heavy fishing and illegal gear are common. Recreational fishing can also heavily target large species."
+                            subThreatText: "Rising demand from rural populations, food-insecure communities, and commercial markets. Many inland fisheries are open access, increasing the risk of heavy fishing and illegal gear use. Recreational fishing can also heavily target large species."
                         }
                     ]
                 }
