@@ -498,7 +498,7 @@ export default {
                         {
                             subThreat: "Drought",
                             subThreatIcon: "CW-drought-002D5E",
-                            subThreatText: "More frequent and intense periods of abnormally low precipitation."
+                            subThreatText: "More frequent and intense periods of abnormally low precipitation or reduced snowmelt."
                         },
                         {
                             subThreat: "Change in flooding",
