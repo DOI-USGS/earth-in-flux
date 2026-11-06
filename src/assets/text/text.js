@@ -972,7 +972,7 @@ export default {
                                 // },
                                 {
                                     heading: "Potential impacts",
-                                    content: [{type: "text", content: "Depending on the species and the type and concentration of pharmaceutical, fish behavior, reproduction, development, and genetics may be harmed.",
+                                    content: [{type: "text", content: "Depending on the species and the type and concentration of pharmaceutical, fish behavior, reproduction, development, and genetics may be harmed (<a href='https://doi.org/10.1002/ieam.1364' target='_blank'>Tetreault et al. 2013</a>).",
                                     }],activeOnLoad: true
                                 },
                                 // {
