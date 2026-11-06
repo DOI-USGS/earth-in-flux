@@ -427,7 +427,7 @@ export default {
                         {
                             subThreat: "Urban water use",
                             subThreatIcon: "H-urban-7019973",
-                            subThreatText: "Population growth, economic development, wastewater intake and discharge, recreational fishing, and river transport alter natural flows. Weak legislation on treating water before it returns to rivers adds to the problem."
+                            subThreatText: "Population growth, economic development, wastewater intake and discharge, recreational fishing, and river transport alter natural flows. Wastewater returning to local waterbodies can add to the impact."
                         },
                         {
                             subThreat: "Industrial water use",
