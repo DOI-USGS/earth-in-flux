@@ -11,21 +11,6 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
-    </template>
-    <template #figures>
-      <div
-        id="threat-svg-container"
-      >
-        <component 
-          :is="getCurrentSVG()" 
-          class="threat-svg"
-        />
-      </div>
-    </template>
-    <!-- FIGURE CAPTION -->
-    <template #figureCaption />
-    <!-- EXPLANATION -->
-    <template #belowExplanation>
       <div
         id="primary-icon-container"
       >
@@ -53,6 +38,21 @@
           </button>
         </div>
       </div>
+    </template>
+    <template #figures>
+      <div
+        id="threat-svg-container"
+      >
+        <component
+          :is="getCurrentSVG()"
+          class="threat-svg"
+        />
+      </div>
+    </template>
+    <!-- FIGURE CAPTION -->
+    <template #figureCaption />
+    <!-- EXPLANATION -->
+    <template #belowExplanation>
       <div
         v-for="icon in text.iconData"
         v-show="currentCategory == icon.iconID"
@@ -68,6 +68,9 @@
         v-show="currentCategory == icon.iconID"
         :key="index"
       >
+        <h3 class="sub-threat-heading">
+          {{ text.subThreatHeading }}
+        </h3>
         <div
           v-for="subicon, subindex in icon.subThreatData"
           :key="subindex"
@@ -143,6 +146,7 @@
     max-width: 700px;
 }
 #primary-icon-container {
+    margin-top: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,5 +248,8 @@
 }
 .definition-container {
     margin: 3rem 0 3rem 0;
+}
+.sub-threat-heading {
+    margin-bottom: 1.5rem;
 }
 </style>

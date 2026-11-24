@@ -391,6 +391,7 @@ export default {
             explanation2: "In this visual representation of the core, the darker grey shows layers of the snow that had high amounts of particulate matter. The high-particulate layer present in both 2015 and 2016 likely represents the summer melt surface."
         },
         FindexThreatDefinitions: {
+            subThreatHeading: "Types of threats",
             paragraph1: "Inland fisheries face a range of threats driven by human activities and environmental change. These pressures can affect aquatic habitats, water quality, and fish populations. Explore five categories of threats to learn what drives them and how they affect inland fisheries.",
             iconData: [
                 {
