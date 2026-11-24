@@ -184,7 +184,7 @@
     let mapSource = ref(null);
     let iconSource = ref(null);
     // sub-threat sections shown as accordions; all others are shown as text below the map
-    const accordionHeadings = ["How it’s measured"];
+    const accordionHeadings = ["How the threat is measured"];
 
     // Set up computed variables that depend on ref values
     const primaryCategoryData = computed(() => {

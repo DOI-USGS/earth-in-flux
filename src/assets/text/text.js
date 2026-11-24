@@ -508,7 +508,7 @@ export default {
                         {
                             subThreat: "Change in wind patterns",
                             subThreatIcon: "CW-wind-7479181",
-                            subThreatText: "Warmer water may reduce land–water temperature contrasts, warming oceans and atmosphere may make daily winds more variable, and melting Arctic ice may alter the jet stream, increasing the variability or severity of winds."
+                            subThreatText: "Warmer water may reduce land–water temperature contrasts, increasing the variability or severity of winds and changing lake stratification processes and productivity."
                         },
                         {
                             subThreat: "Change in ice cover",
@@ -546,7 +546,7 @@ export default {
             ]
         },
         FindexThreatSankey: {
-            paragraph1: 'Land use change is the biggest threat to inland fisheries, with dams, wetland drainage, and deforestation and associated changes in runoff as the largest contributors. View the snakey below to see the biggest threats to inland fisheries across threat categories of habitat, pollution, climate and weather, invasive species, and fishing pressure.'
+            paragraph1: 'Land use change is the biggest threat to inland fisheries, with dams, wetland drainage, and deforestation and associated changes in runoff as the largest contributors. View the Sankey plot below to see the biggest threats to inland fisheries across threat categories of habitat, pollution, climate and weather, invasive species, and fishing pressure.'
         },
         FindexGlobalThreats: {
             heading1:"What are the top threats to inland fisheries?",
@@ -594,7 +594,7 @@ export default {
             subThreatHeading2: "Potential impacts",
             subThreatHeading3: "Sectors involved",
             subThreatHeading4: "Mitigation and adaptation opportunities",
-            subThreatHeading5: "How it’s measured",
+            subThreatHeading5: "How the threat is measured",
             tabData: [
                 {
                     tabTitle: "Habitat",
@@ -632,7 +632,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Average of three dam impact metrics per stream kilometer: degree of fragmentation (how much dams divide the river network), degree of regulation (reservoir storage relative to annual river flow), and sediment trapping (share of the natural sediment load held behind dams) (<a href='https://doi.org/10.6084/m9.figshare.7688801' target='_blank'>Grill and Lehner 2019</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -663,7 +663,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Percent of basin area where wetlands were lost between 1700 and 2020 (<a href='https://doi.org/10.5281/zenodo.7616651' target='_blank'>Fluet-Chouinard et al. 2023</a>). Basins with no net wetland loss score zero.",
                                     }],activeOnLoad: false
                                 }
@@ -694,7 +694,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Percent of basin area where forest cover was lost since 2000 (<a href='https://doi.org/10.1126/science.1244693' target='_blank'>Hansen et al. 2013</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -721,11 +721,11 @@ export default {
                                 // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Policymakers and planners must recognize that changes to riparian land inevitably affect waterways. Planned degradation can be partly offset through technical interventions, and decades of restoration experience show what works: progress depends on willingness, environmental legislation, and economic trade-offs.",
+                                    content: [{type: "text", content: "Recognition among policymakers and planners that changes to riparian land inevitably affect waterways. Planned degradation can be partly offset through technical interventions, and decades of restoration experience show what works: progress depends on willingness, environmental legislation, and economic trade-offs.",
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Percent of land within riparian buffers that is built-up or cropland, based on 2019 land cover data (<a href='https://doi.org/10.5281/zenodo.3939050' target='_blank'>Buchhorn et al. 2020</a>). Buffer widths scale with stream and lake size.",
                                     }],activeOnLoad: false
                                 }
@@ -756,7 +756,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Water consumed for irrigation and livestock in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -787,7 +787,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Water consumed for domestic use and electricity generation in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -818,7 +818,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Water consumed for mining and manufacturing in 2020, averaged across five climate models, relative to river discharge in the basin (<a href='https://doi.org/10.7910/dvn/viqeab' target='_blank'>Khan et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -862,7 +862,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Agricultural grey water footprint: the volume of fresh water needed to dilute nitrogen from crop fertilizers to meet water quality standards (<a href='https://doi.org/10.1073/pnas.1109936109' target='_blank'>Hoekstra and Mekonnen 2012</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -893,7 +893,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Domestic grey water footprint: the volume of fresh water needed to dilute household wastewater pollutants to meet water quality standards (<a href='https://doi.org/10.1073/pnas.1109936109' target='_blank'>Hoekstra and Mekonnen 2012</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -924,7 +924,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Industrial grey water footprint: the volume of fresh water needed to dilute industrial pollutants to meet water quality standards (<a href='https://doi.org/10.1073/pnas.1109936109' target='_blank'>Hoekstra and Mekonnen 2012</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -955,7 +955,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Combined nitrogen and phosphorus loads from aquaculture, estimated with the IMAGE-GNM global nutrient model (<a href='https://doi.org/10.17026/dans-zgs-9k9m' target='_blank'>Beusen and PBL 2016</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -986,7 +986,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Modeled river concentrations of diclofenac, a widely used anti-inflammatory drug, as an indicator of pharmaceutical contamination (<a href='https://doi.org/10.1016/j.envint.2020.105993' target='_blank'>Acuña et al. 2020</a>). Lakes are not included.",
                                     }],activeOnLoad: false
                                 }
@@ -1017,7 +1017,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Percent of basin area overlying oil and gas fields (<a href='https://doi.org/10.18141/1427300' target='_blank'>Sabbatino 2018</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1048,7 +1048,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Mismanaged plastic waste entering rivers, estimated at 40,760 river mouths worldwide and distributed upstream in proportion to human population (<a href='https://doi.org/10.6084/m9.figshare.4725541.v6' target='_blank'>Lebreton and Reisser 2020</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1079,7 +1079,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Percent of basin area covered by mining operations, including large-scale, artisanal, and small-scale mines (<a href='https://doi.org/10.1594/pangaea.942325' target='_blank'>Maus et al. 2022</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1123,7 +1123,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Fraction of river fish species potentially affected by higher maximum water temperatures under 4.5°C of warming, assuming species cannot move to new areas (<a href='https://doi.org/10.1038/s41467-021-21655-w' target='_blank'>Barbarossa et al. 2021</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1154,7 +1154,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Fraction of river fish species potentially affected by changes in minimum flows under 4.5°C of warming, assuming species cannot move to new areas (<a href='https://doi.org/10.1038/s41467-021-21655-w' target='_blank'>Barbarossa et al. 2021</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1185,7 +1185,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Fraction of river fish species potentially affected by changes in maximum flows under 4.5°C of warming, assuming species cannot move to new areas (<a href='https://doi.org/10.1038/s41467-021-21655-w' target='_blank'>Barbarossa et al. 2021</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1212,11 +1212,11 @@ export default {
                                 // },
                                 {
                                     heading: "Mitigation and adaptation opportunities",
-                                    content: [{type: "text", content: "Change in wind patterns mitigation",
+                                    content: [{type: "text", content: "Reduce greenhouse gas emissions and external nutrient loading to maintain oxygen or consider artificial circulation.",
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Projected change in the number of days lakes are stratified between 2006–2020 and 2041–2060, averaged across four climate models (<a href='https://doi.org/10.48364/ISIMIP.931371.1' target='_blank'>ISIMIP2b Global Lakes Sector</a>; <a href='https://doi.org/10.5281/zenodo.4617643' target='_blank'>Woolway 2021</a>). Data are available for Northern Hemisphere lakes only.",
                                     }],activeOnLoad: false
                                 }
@@ -1247,7 +1247,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Projected change in the number of days lakes are ice-covered between 2001–2020 and 2041–2060, weighted by lake area and averaged across four climate models (<a href='https://doi.org/10.6084/m9.figshare.19424801.v1' target='_blank'>Wang and Feng 2022</a>). Data are available for Northern Hemisphere lakes only.",
                                     }],activeOnLoad: false
                                 }
@@ -1291,7 +1291,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Area-weighted number of harmful freshwater invasive species in each basin, based on counts by freshwater ecoregion (<a href='https://databasin.org/datasets/11a22d0ce62142258baaa1cbaf520fb2/' target='_blank'>Boucher 2009</a>; <a href='https://esajournals.onlinelibrary.wiley.com/doi/10.1890/070064' target='_blank'>Molnar et al. 2008</a>).",
                                     }],activeOnLoad: false
                                 }
@@ -1335,7 +1335,7 @@ export default {
                                     }],activeOnLoad: false
                                 },
                                 {
-                                    heading: "How it’s measured",
+                                    heading: "How the threat is measured",
                                     content: [{type: "text", content: "Documented fish catch in major river basins and lakes important to inland fisheries, allocated to basins by area, river discharge, and human population (<a href='https://doi.org/10.4060/cb2827en' target='_blank'>FAO 2021</a>).",
                                     }],activeOnLoad: false
                                 }
