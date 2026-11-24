@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue";
+    import { onBeforeUnmount, onMounted, ref } from "vue";
     import { isMobile } from 'mobile-device-detect';
     import * as d3 from 'd3';
     import * as d3sankey from 'd3-sankey';
@@ -100,8 +100,18 @@
         d3.select(tooltip.value).style("visibility", "hidden");
         currentText.value = '';
     }
+    // on touch screens mouseout only fires when another flow is tapped,
+    // so close the tooltip when the user taps anywhere outside the flows and bars
+    function hideTooltipOnOutsideTap(event) {
+        if (!event.target.closest('#link_group, #node_group')) hideTooltip();
+    }
+
+    onBeforeUnmount(() => {
+        document.removeEventListener('pointerdown', hideTooltipOnOutsideTap);
+    });
 
     onMounted(async () => {
+        document.addEventListener('pointerdown', hideTooltipOnOutsideTap);
         try {
             await loadDatasets();
             
