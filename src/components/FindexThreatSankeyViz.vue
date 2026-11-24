@@ -11,12 +11,20 @@
     <!-- FIGURES -->
     <template #aboveExplanation>
       <p v-html="text.paragraph1" />
+      <p class="annotation">
+        {{ currentText }}
+      </p>
     </template>
     <template #figures>
       <div
         id="threat-container"
         ref="chart"
-      />
+      >
+        <div
+          ref="tooltip"
+          class="sankey-tooltip"
+        />
+      </div>
     </template>
     <!-- FIGURE CAPTION -->
     <template #figureCaption />
@@ -46,6 +54,8 @@
     const data = ref();
     const dataFile = 'findex_total_weighted_threats.csv'
     const chart = ref(null);
+    const tooltip = ref(null);
+    const currentText = ref('');
     let chartDimensions;
     let chartBounds;
     let nodeGroup;
@@ -63,6 +73,32 @@
     // tooltip values: fixed locale and one decimal so they read the same in every browser
     function formatValue(value) {
         return value.toLocaleString('en-US', { maximumFractionDigits: 1 });
+    }
+
+    // custom tooltip, since native svg <title> tooltips don't show in every browser
+    function showTooltip(event, label, value) {
+        const [x, y] = d3.pointer(event, chart.value);
+        // reset position before measuring, so the width isn't squeezed by the last position
+        const tip = d3.select(tooltip.value)
+            .text(`${label}\n${formatValue(value)}`)
+            .style("left", "0px");
+
+        // keep the tooltip inside the chart so it never runs off screen:
+        // flip to the left of the cursor when there's no room on the right
+        const containerWidth = chart.value.clientWidth;
+        const tipWidth = tooltip.value.offsetWidth;
+        let left = x + 12;
+        if (left + tipWidth > containerWidth) left = x - 12 - tipWidth;
+        left = Math.max(0, Math.min(left, containerWidth - tipWidth));
+
+        tip.style("left", `${left}px`)
+            .style("top", `${y + 16}px`)
+            .style("visibility", "visible");
+        currentText.value = `${label}: ${formatValue(value)}`;
+    }
+    function hideTooltip() {
+        d3.select(tooltip.value).style("visibility", "hidden");
+        currentText.value = '';
     }
 
     onMounted(async () => {
@@ -262,8 +298,8 @@
                         .attr("y", d => d.y0)
                         .attr("height", d => d.y1 - d.y0)
                         .attr("width", d => d.x1 - d.x0)
-                    .append("title")
-                        .text(d => `${d.name}\n${formatValue(d.value)}`),
+                        .on("mousemove", (event, d) => showTooltip(event, d.name, d.value))
+                        .on("mouseout", hideTooltip),
 
                 null, // no update function
 
@@ -287,8 +323,8 @@
                             .attr("stroke-width", d => d.width)
                             .style("mix-blend-mode", "multiply")
                             .style('fill', "none")
-                        .append("title")
-                            .text(d => `${d.names.join(" → ")}\n${formatValue(d.value)}`)
+                            .on("mousemove", (event, d) => showTooltip(event, d.names.join(" → "), d.value))
+                            .on("mouseout", hideTooltip)
                 },
 
                 null,
@@ -429,6 +465,7 @@
 
 <style lang="scss">
     #threat-container {
+        position: relative;
         max-width: min(1000px, 60vw);
         margin: 5rem auto 0 auto;
         @media screen and (max-width: 600px) {
@@ -455,5 +492,32 @@
     }
     .axis-notation {
         font-style: italic;
+    }
+    // hover caption, matching the rec fish as food sankey
+    .annotation {
+        margin-top: 3rem;
+        font-style: italic;
+        font-weight: 300;
+        height: 1rem;
+    }
+    // styled to match the browser's native tooltip
+    .sankey-tooltip {
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+        // keep the line break between name and value, but wrap long names on narrow screens
+        white-space: pre-line;
+        max-width: 100%;
+        box-sizing: border-box;
+        background-color: #374246;
+        color: #ffffff;
+        border: 1px solid #6b7679;
+        border-radius: 2px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        padding: 0.3rem 0.8rem;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 1.3rem;
+        line-height: 1.5;
+        z-index: 1;
     }
 </style>
